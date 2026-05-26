@@ -36,7 +36,7 @@ Por tique:
 
 ## 2. Conceitos de desenho
 
-- **Princípios básicos**: PBE; seleção via jogo global Morris-Shin (1998); difusão por contágio complexo (Centola-Macy 2007).
+- **Princípios básicos**: PBE; seleção **inspirada em** jogo global (Morris-Shin 1998) e difusão **aproximando** contágio complexo (Centola-Macy 2007). *Nota: o código usa limiares heurísticos (sinal privado ruidoso; imitação por fração de vizinhos no tique anterior), não o equilíbrio do jogo global nem um modelo formal de contágio — ver §3.3 e os submódulos.*
 - **Emergência**: taxa macro de denúncia a partir de limiares micro e topologia de rede.
 - **Sensoriamento**: trabalhadores observam σ com ruído; plataforma observa Σa exatamente mas só publica gatilho binário.
 - **Estocasticidade**: ε_i, arquétipo, detecção, represália.
@@ -67,14 +67,20 @@ Sob Regime B, existem parâmetros no interior do espaço factível em que IC-F* 
 
 *Esboço*: a jurisprudência da Res. 21/2018 permite D até 50% da multa esperada; para uma grande empresa de tecnologia com receita R no setor afetado e multa típica em [1%, 20%]·R, D ∈ [0,5%·R, 10%·R]. Pagamentos por trabalhador da ordem de 3·w_a com n ≤ 20 trabalhadores disparados ainda mantêm D > W. IR-W requer W ≥ r·(L_carreira + T·w_a/12); com r = 0,15, T = 8 meses, L = 2·w_a, o limiar é ≈ 0,4·w_a, bem abaixo da recompensa proposta. IC-T satisfeita pelo Art. 340 CP. □
 
+> **Status (v0.1.0):** a desigualdade D > W no ponto-alvo é verificada por teste de regressão (`tests/test_model.py`); as faixas jurídicas do esboço (multa, D ≤ 50%) são ilustrativas, não calibradas.
+
 ### Proposição 2 — Unicidade do equilíbrio de coordenação
 
 No limite τ → 0 do subjogo de jogo global, há equilíbrio único de switching `s*` para cada (k, W, r) na região relevante.
 
 *Esboço*: aplicação direta do Teorema 1 de Morris-Shin (1998) ao jogo binário com complementaridades estratégicas. □
 
+> **Status (v0.1.0):** conjectura. O modelo computacional **não** resolve o jogo global nem varre τ → 0 (τ é fixo); a unicidade não é verificada no código.
+
 ### Proposição 3 — Dominância de bem-estar do Regime B sobre o Regime A
 
 Para um conjunto de medida positiva de (W, D, σ), o bem-estar social esperado é estritamente maior sob Regime B do que sob Regime A.
 
 *Esboço*: a diferença se decompõe em três canais — dissuasão (Regime B eleva p_detecção), substituição (alguns trabalhadores que silenciariam passam a denunciar) e custo (recompensa privadamente financiada). □
+
+> **Status (v0.1.0):** conjectura. O canal de **dissuasão** (p_detecção endógena) não existe no modelo atual — o tipo da firma é fixo na inicialização (DECISIONS D05). Além disso, "bem-estar" é hoje operacionalizado como VP − FP (contagem), sem excedente/custo. Reenunciar quando esses elementos forem implementados.

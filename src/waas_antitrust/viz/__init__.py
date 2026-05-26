@@ -1,6 +1,8 @@
-"""Onze visualizações modulares.
+"""Visualizações modulares.
 
-Cada submódulo expõe uma função `gerar_figura(...)` que retorna uma tupla
+Apenas `inversao` e `fase` estão implementadas como módulo; as demais
+permanecem no caderno (backlog T01 em docs/DECISIONS.md). Cada submódulo
+implementado expõe uma função `gerar_figura(...)` que retorna uma tupla
 `(fig, ax)` ou `(fig, axes)` do matplotlib.
 """
 

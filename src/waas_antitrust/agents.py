@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import networkx as nx
 import numpy as np
-from mesa import Agent
+from mesa import Agent, Model
 
 
 class TrabalhadorAgent(Agent):
@@ -35,12 +35,12 @@ class TrabalhadorAgent(Agent):
 
     def __init__(
         self,
-        modelo,
+        modelo: Model,
         id_empresa: int,
         arquetipo: str,
         w_a: float,
         k_pessoal: int,
-    ):
+    ) -> None:
         super().__init__(modelo)
         self.id_empresa = id_empresa
         self.arquetipo = arquetipo
@@ -50,7 +50,7 @@ class TrabalhadorAgent(Agent):
         self.sinaliza_agora: bool = False
 
     def receber_sinal(self, sigma: float, tau: float) -> float | None:
-        """Sinal privado: σ + ε com ε ~ N(0, τ²) — jogo global Morris-Shin."""
+        """Sinal privado σ + ε, ε ~ N(0, τ²) (inspirado em jogo global; sem cálculo de equilíbrio)."""
         if not self.observou:
             return None
         return sigma + self.model.rng.normal(0, tau)
@@ -102,14 +102,14 @@ class EmpresaAgent(Agent):
 
     def __init__(
         self,
-        modelo,
+        modelo: Model,
         id_empresa: int,
         sigma: float,
         eh_violadora: bool,
         n_trabalhadores: int,
         fatia_mercado: float,
         R_receita: float,
-    ):
+    ) -> None:
         super().__init__(modelo)
         self.id_empresa = id_empresa
         self.sigma = sigma
@@ -128,17 +128,9 @@ class EmpresaAgent(Agent):
         base = 0.05 * self.R
         return base * (1.0 + self.sigma)
 
-    def decidir_pagamento(
-        self,
-        W_total: float,
-        D_disc: float,
-        p_deteccao: float,
-        delta_leniencia: float,
-    ) -> bool:
-        S = self.sancao_esperada()
-        custo_waas = (S - D_disc * S) + W_total
-        custo_nao_paga = p_deteccao * S * (1.0 - delta_leniencia)
-        return custo_waas <= custo_nao_paga
+    def satisfaz_ic_f_estrela(self, W_total: float, D_val: float) -> bool:
+        """IC-F*: a firma paga as recompensas se o desconto no TCC supera o custo (D > W)."""
+        return D_val > W_total
 
     def step(self) -> None:
         return None
@@ -151,7 +143,7 @@ class AutoridadeAgent(Agent):
     restrição de capacidade são descartados (Harrington-Chang 2015).
     """
 
-    def __init__(self, modelo, capacidade: int, rho_acuracia: float):
+    def __init__(self, modelo: Model, capacidade: int, rho_acuracia: float) -> None:
         super().__init__(modelo)
         self.capacidade = capacidade
         self.rho = rho_acuracia

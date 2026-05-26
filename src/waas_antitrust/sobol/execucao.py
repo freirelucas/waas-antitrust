@@ -24,8 +24,12 @@ def executar_para_sobol(
     n_empresas: int = 15,
     tam_medio_empresa: int = 300,
     n_tiques: int = 24,
+    replica: int = 0,
 ) -> dict:
-    """Executa uma única configuração paramétrica."""
+    """Executa uma única configuração paramétrica.
+
+    `VP`/`FP`/`bem_estar` são os totais acumulados ao fim do horizonte.
+    """
     W_mult, k_rel, D_disc, rho, r_repres, F_falso, densidade, taxa_obs = linha
     params = WaaSParametros(
         n_empresas=n_empresas,
@@ -44,13 +48,14 @@ def executar_para_sobol(
     )
     modelo = WaaSModel(params)
     df = modelo.executar()
-    vp = int(df["verdadeiros_positivos"].max())
-    fp = int(df["falsos_positivos"].max())
+    vp = int(df["verdadeiros_positivos_acum"].max())
+    fp = int(df["falsos_positivos_acum"].max())
     precisao = vp / (vp + fp) if (vp + fp) > 0 else 0.0
     return {
-        **dict(zip(PROBLEMA_SOBOL_8D["names"], linha)),
+        **dict(zip(PROBLEMA_SOBOL_8D["names"], linha, strict=True)),
         "regime": regime,
         "seed": seed,
+        "replica": replica,
         "VP": vp,
         "FP": fp,
         "precisao": precisao,
@@ -65,38 +70,46 @@ def executar_varredura(
     n_empresas: int = 15,
     n_tiques: int = 24,
     seed_base: int = 42,
-    n_seeds: int = 5,
+    n_replicas: int = 5,
     problema: dict | None = None,
 ) -> pd.DataFrame:
-    """Executa a varredura completa de Sobol.
+    """Executa a varredura de Sobol com replicação correta sobre seeds.
+
+    A matriz de Saltelli é gerada uma vez. Para cada réplica ``r`` em
+    ``range(n_replicas)``, a matriz **inteira** é avaliada com uma seed fixa
+    (``seed_base + r``), preservando o pareamento A/B/AB_i exigido pelo
+    estimador de Sobol. As linhas de cada réplica ficam na ordem original da
+    matriz; os índices são calculados por réplica e mediados em
+    ``analise.calcular_indices_replicado``.
+
+    NB: alternar a seed *dentro* de uma única matriz (como em versões
+    anteriores) contamina o estimador e é incorreto.
 
     Parameters
     ----------
     n_base : int
-        Número-base de amostras Sobol. Total de simulações é
-        n_base × (2·d + 2) onde d é o número de parâmetros.
-    regime : str
-        "A", "B" ou "C".
-    n_jobs : int
-        Número de processos paralelos. -1 usa todos os núcleos.
-    n_seeds : int
-        Quantas sementes diferentes alternar entre as amostras.
+        Número-base N. A matriz tem N·(d+2) linhas (calc_second_order=False).
+    n_replicas : int
+        Número de réplicas (seeds distintas) da matriz inteira.
 
     Returns
     -------
-    DataFrame com colunas: parâmetros + regime + seed + VP + FP + precisão + bem_estar.
+    DataFrame com N·(d+2)·n_replicas linhas; colunas: parâmetros + regime +
+    seed + replica + VP + FP + precisão + bem_estar.
     """
     problema = problema or PROBLEMA_SOBOL_8D
     amostras = sobol_amostragem.sample(problema, n_base, calc_second_order=False)
 
+    tarefas = [(r, linha) for r in range(n_replicas) for linha in amostras]
     resultados = Parallel(n_jobs=n_jobs, verbose=10)(
         delayed(executar_para_sobol)(
             linha,
             regime=regime,
-            seed=seed_base + (i % n_seeds),
+            seed=seed_base + r,
             n_empresas=n_empresas,
             n_tiques=n_tiques,
+            replica=r,
         )
-        for i, linha in enumerate(amostras)
+        for r, linha in tarefas
     )
     return pd.DataFrame(resultados)

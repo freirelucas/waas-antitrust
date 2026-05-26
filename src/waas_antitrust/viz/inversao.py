@@ -2,11 +2,12 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.figure import Figure
 
 from waas_antitrust.viz.paleta import PALETA
 
 
-def gerar_figura():
+def gerar_figura() -> tuple[Figure, np.ndarray]:
     """Retorna (fig, axes) com painel duplo: utilidade clássica vs. WaaS."""
     fig, axes = plt.subplots(1, 2, figsize=(13, 5.2))
 

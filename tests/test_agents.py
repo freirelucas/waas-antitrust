@@ -38,7 +38,7 @@ def test_autoridade_respeita_capacidade():
     modelo = WaaSModel(params)
     autoridade = modelo.autoridade
     # injeta mais casos que a capacidade
-    for i in range(autoridade.capacidade * 3):
+    for _ in range(autoridade.capacidade * 3):
         autoridade.receber_caso(
             modelo.empresas[0], qualidade_prova=0.5, identidades_protegidas=True
         )

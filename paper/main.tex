@@ -22,8 +22,10 @@ A Whistleblower-as-a-Service Mechanism}
 \begin{document}
 \maketitle
 
+\begin{center}\textbf{Rascunho de trabalho (v0.1.0) --- não citar.}\end{center}
+
 \begin{abstract}
-\textit{Resumo a redigir.} O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. A intuição é uma inversão da função-utilidade da conformidade corporativa: ao invés de minimizar a sanção esperada $p \cdot S$, a empresa passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação e $W$ é a recompensa total paga aos denunciantes internos. A condição $D > W$ é satisfazível na jurisprudência atual da Resolução CADE nº 21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos um jogo bayesiano sequencial de quatro jogadores (denunciantes, empresa, assessoria jurídica privada, autoridade) e simulamos um modelo baseado em agentes com varredura de Sobol em oito dimensões. A análise identifica a região robusta de política e calibra a simulação contra a série histórica do CADE (109 acordos de leniência em 20 anos).
+\textit{Resumo a redigir.} O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. A intuição é uma inversão da função-utilidade da conformidade corporativa: ao invés de minimizar a sanção esperada $p \cdot S$, a empresa passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação e $W$ é a recompensa total paga aos denunciantes internos. A condição $D > W$ é satisfazível na jurisprudência atual da Resolução CADE nº 21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos o mecanismo e simulamos um modelo baseado em agentes com três populações (denunciantes, empresa, autoridade) --- a assessoria jurídica é tratada como intermediário transparente, não como jogador estratégico --- com varredura de Sobol em oito dimensões. A análise identifica a região robusta de política e parametriza a simulação com ordens de grandeza da série do CADE (109 acordos de leniência em 20 anos); não há calibração formal contra esses alvos nesta versão.
 \end{abstract}
 
 \section{Introdução}

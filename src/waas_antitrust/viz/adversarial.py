@@ -8,9 +8,10 @@ manter o caderno como referência canônica até a estabilização das interface
 """
 
 import warnings
+from typing import NoReturn
 
 
-def gerar_figura():
+def gerar_figura() -> NoReturn:
     """Placeholder. Veja o caderno para a implementação atual."""
     warnings.warn(
         "Implementação de adversarial ainda no caderno. Migrar para módulo é tarefa "

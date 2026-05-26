@@ -2,6 +2,7 @@
 
 import pytest
 
+from waas_antitrust.agents import EmpresaAgent
 from waas_antitrust.model import WaaSModel, WaaSParametros
 
 
@@ -19,7 +20,7 @@ def test_modelo_executa_em_todos_regimes(regime):
     df = modelo.executar()
     assert df is not None
     assert len(df) == 4
-    assert "verdadeiros_positivos" in df.columns
+    assert "verdadeiros_positivos_acum" in df.columns
 
 
 def test_regime_a_produz_silencio_em_horizonte_curto():
@@ -54,20 +55,42 @@ def test_modelo_eh_reprodutivel_dado_seed():
     df1 = WaaSModel(p).executar()
     df2 = WaaSModel(p).executar()
     assert df1["n_sinais"].equals(df2["n_sinais"])
-    assert df1["verdadeiros_positivos"].equals(df2["verdadeiros_positivos"])
+    assert df1["verdadeiros_positivos_acum"].equals(df2["verdadeiros_positivos_acum"])
 
 
-def test_propoSicao_1_ic_f_estrela():
-    """Proposição 1: IC-F* é satisfeita no ponto-alvo W=1.5·w_a, D=0.30·S."""
-    p = WaaSParametros(
-        n_empresas=10,
-        tam_medio_empresa=200,
-        n_tiques=8,
-        regime="B",
-        seed=42,
-        W_mult=1.5,
-        D_disc=0.30,
+def test_proposicao_1_ic_f_estrela_satisfazivel_no_ponto_alvo():
+    """Proposição 1: no ponto-alvo (W=1,5·w_a, D=0,30·S) existe firma com D > W."""
+    p = WaaSParametros(seed=42, W_mult=1.5, D_disc=0.30)
+    modelo = WaaSModel(p)
+    empresa = EmpresaAgent(
+        modelo,
+        id_empresa=999,
+        sigma=0.6,
+        eh_violadora=True,
+        n_trabalhadores=500,
+        fatia_mercado=0.05,
+        R_receita=500 * p.R_por_trabalhador,
     )
-    df = WaaSModel(p).executar()
-    # Sob IC-F* satisfeita, pelo menos algum TCC deve ser assinado
-    assert df["n_tcc_assinados"].max() >= 0  # tolerante (depende do número de empresas violadoras)
+    D_val = p.D_disc * empresa.sancao_esperada()
+    W_total = 20 * modelo._W_esperado(p.w_a_base)  # 20 denunciantes a 1,5·w_a
+    assert D_val > W_total
+    assert empresa.satisfaz_ic_f_estrela(W_total, D_val) is True
+
+
+def test_ic_f_estrela_viola_com_recompensa_excessiva():
+    """Caso espelho: desconto baixo e recompensa total enorme ⇒ IC-F* viola."""
+    p = WaaSParametros(seed=42)
+    modelo = WaaSModel(p)
+    empresa = EmpresaAgent(
+        modelo,
+        id_empresa=999,
+        sigma=0.3,
+        eh_violadora=True,
+        n_trabalhadores=60,
+        fatia_mercado=0.05,
+        R_receita=60 * p.R_por_trabalhador,
+    )
+    D_val = 0.10 * empresa.sancao_esperada()
+    W_total = 500 * modelo._W_esperado(p.w_a_base)
+    assert W_total > D_val
+    assert empresa.satisfaz_ic_f_estrela(W_total, D_val) is False

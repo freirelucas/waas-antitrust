@@ -10,8 +10,10 @@ Fontes primárias:
       do Cade em 2023*. (13 TCCs homologados em 2023, R$ 92,2 milhões.)
 """
 
-# Acordos de leniência cumulativos por ano (2003–2023)
-# Fonte: composição com base no comunicado CADE 06/10/2023 (total 109)
+# Acordos de leniência cumulativos por ano (2003–2023).
+# NOTA: apenas o total (109) é verbatim do comunicado CADE de 06/10/2023; os
+# valores intermediários são interpolação/composição para fechar nesse total,
+# NÃO contagens ano a ano verificadas. Usar com essa ressalva.
 SERIE_LENIENCIAS_CADE_2003_2023: dict[int, int] = {
     2003: 0,
     2004: 0,

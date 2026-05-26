@@ -1,12 +1,14 @@
-"""§3 — Diagrama de fase · jogo global Morris-Shin."""
+"""§3 — Diagrama de fase (heurística inspirada em jogo global, Morris-Shin 1998)."""
 
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 
 from waas_antitrust.viz.paleta import PALETA
 
 
-def gerar_figura():
+def gerar_figura() -> tuple[Figure, Axes]:
     fig, ax = plt.subplots(figsize=(9, 6.5))
     sigma_grid = np.linspace(0, 1, 80)
     k_grid = np.linspace(0.01, 0.30, 80)
@@ -62,7 +64,10 @@ def gerar_figura():
     )
     ax.set_xlabel(r"Severidade da violação  $\sigma$")
     ax.set_ylabel(r"Massa crítica relativa  $k / n$")
-    ax.set_title("Coordenação como jogo global · seleção Morris-Shin (1998)", fontweight="bold")
+    ax.set_title(
+        "Coordenação tipo jogo global (heurística inspirada em Morris-Shin 1998)",
+        fontweight="bold",
+    )
     ax.legend(loc="upper right", framealpha=0.95)
     ax.set_xlim(0, 1)
     ax.set_ylim(0.01, 0.30)

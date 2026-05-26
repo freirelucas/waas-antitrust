@@ -7,7 +7,7 @@ A Whistleblower-as-a-Service Mechanism".
 Módulos principais:
     agents     — três classes de agentes (Trabalhador, Empresa, Autoridade)
     model      — classe WaaSModel e contêiner WaaSParametros
-    viz        — onze visualizações modulares para o artigo
+    viz        — visualizações modulares (inversão e fase; demais no caderno)
     sobol      — varredura de Sobol e identificação da região robusta
     calibracao — parâmetros calibrados (CADE histórico, Brasscom 2024)
 """

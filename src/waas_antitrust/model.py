@@ -3,21 +3,25 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 import networkx as nx
-import numpy as np
 from mesa import Model
 from mesa.datacollection import DataCollector
 
 from waas_antitrust.agents import AutoridadeAgent, EmpresaAgent, TrabalhadorAgent
+
+if TYPE_CHECKING:
+    import pandas as pd
 
 
 @dataclass
 class WaaSParametros:
     """Contêiner de parâmetros do modelo.
 
-    Valores padrão calibrados para o cenário Big Tech BR a partir de
-    `waas_antitrust.calibracao.brasscom` e da série histórica do CADE.
+    Valores-padrão inspirados em ordens de grandeza de Brasscom 2024 e da
+    série do CADE (ver `waas_antitrust.calibracao`). Não há ajuste/calibração
+    formal contra esses alvos — ver `docs/DECISIONS.md`.
     """
 
     # Tamanho do sistema
@@ -55,17 +59,17 @@ class WaaSModel(Model):
     """Modelo Whistleblower-as-a-Service com três populações.
 
     Implementa as cinco fases do protocolo ODD (Grimm et al., JASSS 2020):
-        P1 — fase de sinalização dos trabalhadores (jogo global de Morris-Shin)
+        P1 — fase de sinalização (sinal privado ruidoso; inspirada em jogo global)
         P2 — disparo de massa crítica
         P3 — decisão de pagamento da empresa (IC-F*)
         P4 — intervenção da autoridade (com restrição de capacidade)
         P5 — coleta de estado
     """
 
-    def __init__(self, params: WaaSParametros):
-        super().__init__(seed=params.seed)
+    def __init__(self, params: WaaSParametros) -> None:
+        # Mesa 3.5 fornece self.rng (numpy Generator) a partir de `rng`.
+        super().__init__(rng=params.seed)
         self.params = params
-        self.rng = np.random.default_rng(params.seed)
 
         self.regime = params.regime
         self.W_mult = params.W_mult
@@ -89,7 +93,12 @@ class WaaSModel(Model):
         self.trabalhadores_por_empresa: dict[int, list[TrabalhadorAgent]] = {}
         self.historia_sinais_por_empresa: dict[int, list[set[int]]] = {}
 
-        # Capacidade calibrada contra CADE (≈ 92 investigações/ano = 23/trimestre)
+        # Contadores de fluxo (por tique), redefinidos a cada step.
+        self.vp_tique: int = 0
+        self.fp_tique: int = 0
+        self.fn_tique: int = 0
+
+        # Capacidade por tique (heurística: metade do número de empresas).
         capacidade_tique = max(1, int(0.5 * params.n_empresas))
         self.autoridade = AutoridadeAgent(
             self, capacidade=capacidade_tique, rho_acuracia=params.rho
@@ -100,13 +109,18 @@ class WaaSModel(Model):
         self.coletor = DataCollector(
             model_reporters={
                 "tique": "tique",
+                # Fluxos (por tique)
                 "n_sinais": self._contar_sinais,
                 "n_empresas_notif": self._contar_notificadas,
+                "vp_tique": "vp_tique",
+                "fp_tique": "fp_tique",
+                "fn_tique": "fn_tique",
+                # Estoques (acumulados até o tique)
                 "n_tcc_assinados": self._contar_tcc,
                 "n_pagou": self._contar_pagou,
-                "verdadeiros_positivos": self._contar_vp,
-                "falsos_positivos": self._contar_fp,
-                "falsos_negativos": self._contar_fn,
+                "verdadeiros_positivos_acum": self._contar_vp,
+                "falsos_positivos_acum": self._contar_fp,
+                "falsos_negativos_acum": self._contar_fn,
                 "regime": "regime",
             }
         )
@@ -171,10 +185,11 @@ class WaaSModel(Model):
                 k_viz = tam - 1
             if k_viz % 2 == 1:
                 k_viz += 1
+            grafo_seed = int(self.rng.integers(0, 2**31 - 1))
             try:
-                g = nx.watts_strogatz_graph(tam, k_viz, self.densidade, seed=fid)
+                g = nx.watts_strogatz_graph(tam, k_viz, self.densidade, seed=grafo_seed)
             except (nx.NetworkXError, ValueError):
-                g = nx.erdos_renyi_graph(tam, 0.02, seed=fid)
+                g = nx.erdos_renyi_graph(tam, 0.02, seed=grafo_seed)
             empresa.grafo_interno = g
 
             arquetipos = self.rng.choice(
@@ -203,7 +218,7 @@ class WaaSModel(Model):
         return self.W_mult * w_a
 
     # ---- step ----
-    def step(self) -> None:
+    def step(self) -> None:  # noqa: C901 — orquestra as 5 fases do protocolo ODD
         self.tique += 1
         W_ativo = self.regime in ("B", "C")
         D_ativo = self.regime in ("B", "C")
@@ -249,7 +264,7 @@ class WaaSModel(Model):
             W_total = sum(self._W_esperado(t.w_a) for t in disparados)
             S_esp = empresa.sancao_esperada()
             D_val = self.D_disc * S_esp if D_ativo else 0.0
-            empresa.pagou_denunciantes = (D_val > W_total) and D_ativo
+            empresa.pagou_denunciantes = D_ativo and empresa.satisfaz_ic_f_estrela(W_total, D_val)
             if empresa.pagou_denunciantes:
                 empresa.tcc_assinado = True
 
@@ -264,10 +279,23 @@ class WaaSModel(Model):
             id_prot = not empresa.pagou_denunciantes
             self.autoridade.receber_caso(empresa, qualidade, id_prot)
 
-        self.autoridade.processar_casos()
+        resultados_tique = self.autoridade.processar_casos()
+        self.vp_tique = sum(
+            1 for c in resultados_tique if c["eh_violadora_real"] and c["classificada_violadora"]
+        )
+        self.fp_tique = sum(
+            1
+            for c in resultados_tique
+            if not c["eh_violadora_real"] and c["classificada_violadora"]
+        )
+        self.fn_tique = sum(
+            1
+            for c in resultados_tique
+            if c["eh_violadora_real"] and not c["classificada_violadora"]
+        )
         self.coletor.collect(self)
 
-    def executar(self, n_tiques: int | None = None):
+    def executar(self, n_tiques: int | None = None) -> pd.DataFrame:
         """Executa o modelo por n_tiques (ou pelos parâmetros configurados)."""
         n = n_tiques if n_tiques is not None else self.params.n_tiques
         for _ in range(n):
