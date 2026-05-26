@@ -1,0 +1,115 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "waas-antitrust"
+version = "0.1.0"
+description = "Modelo baseado em agentes para o mecanismo Whistleblower-as-a-Service em enforcement antitruste de mercados digitais."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "CC-BY-SA-4.0" }
+authors = [{ name = "L." }]
+keywords = ["antitrust", "agent-based-model", "cade", "whistleblower", "leniency", "mesa", "sobol"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Natural Language :: Portuguese (Brazilian)",
+]
+dependencies = [
+    "mesa>=3.5,<4.0",
+    "networkx>=3.0",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "seaborn>=0.13",
+    "SALib>=1.5",
+    "joblib>=1.3",
+    "pyarrow>=14.0",      # parquet
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "pytest-xdist>=3.5",
+    "nbval>=0.10",
+    "ruff>=0.4",
+    "black>=24.0",
+    "pre-commit>=3.5",
+    "jupyterlab>=4.0",
+    "ipykernel>=6.25",
+]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/freirelucas/waas-antitrust"
+Repository = "https://github.com/freirelucas/waas-antitrust"
+Issues = "https://github.com/freirelucas/waas-antitrust/issues"
+
+[project.scripts]
+waas-sobol = "waas_antitrust.cli:sobol"
+waas-figuras = "waas_antitrust.cli:figuras"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"waas_antitrust" = ["calibracao/dados/*.csv"]
+
+# ----- Ruff -----
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["notebooks/", "paper/"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "C90", "N", "UP", "ANN", "SIM", "RET"]
+ignore = [
+    "ANN101", "ANN102",  # self e cls não precisam de tipo
+    "E501",              # line-length é tratado por black
+    "N803", "N806",      # variáveis em maiúsculas (matemática) são bem-vindas
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN", "B011"]
+"scripts/**" = ["ANN"]
+
+# ----- Black -----
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+extend-exclude = "notebooks/|paper/"
+
+# ----- Pytest -----
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --strict-config"
+markers = [
+    "slow: testes lentos (varreduras paramétricas)",
+    "integration: testes de integração (Mesa + Sobol)",
+]
+
+# ----- Coverage -----
+[tool.coverage.run]
+branch = true
+source = ["src/waas_antitrust"]
+omit = ["*/cli.py", "*/__main__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

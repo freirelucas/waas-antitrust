@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[round]{natbib}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\newtheorem{proposition}{Proposição}
+
+\title{Rescaling Leniency Programs for Digital Markets:\\
+A Whistleblower-as-a-Service Mechanism}
+\author{L.\thanks{IPEA, Coordenação de Estudos da Governança e Implementação da Transformação Digital. As opiniões expressas neste artigo não vinculam o Instituto.}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\textit{Resumo a redigir.} O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. A intuição é uma inversão da função-utilidade da conformidade corporativa: ao invés de minimizar a sanção esperada $p \cdot S$, a empresa passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação e $W$ é a recompensa total paga aos denunciantes internos. A condição $D > W$ é satisfazível na jurisprudência atual da Resolução CADE nº 21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos um jogo bayesiano sequencial de quatro jogadores (denunciantes, empresa, assessoria jurídica privada, autoridade) e simulamos um modelo baseado em agentes com varredura de Sobol em oito dimensões. A análise identifica a região robusta de política e calibra a simulação contra a série histórica do CADE (109 acordos de leniência em 20 anos).
+\end{abstract}
+
+\section{Introdução}
+% conteúdo a redigir; ancorar na inversão da função-utilidade
+
+\section{Falha estrutural da leniência clássica em mercados digitais}
+% Crémer-de Montjoye-Schweitzer (2019); DMA; argumento sobre conduta unilateral
+
+\section{Blocos construtivos de desenho de mecanismos}
+% Spagnolo (2004); Aubert-Rey-Kovacic (2006); Kovacic (2001); Dodd-Frank §922
+
+\section{Análise comparada de programas existentes}
+% SEC, FCA, DOJ Antitrust 2025, EU DMA Art. 27, UK CMA, KFTC, CADE, Lei 13.608
+
+\section{O mecanismo WaaS}
+% Especificação das quatro fases; charneira do Art. 12 da Res. 21/2018
+
+\section{Modelo baseado em agentes e teste de estresse}
+% Composição Harrington-Chang + Morris-Shin + Chwe
+
+\subsection{Proposições}
+\begin{proposition}[Viabilidade IC do caminho ``empresa paga'']
+Sob Regime B, existem parâmetros no interior do espaço factível em que IC-F* ($D > W$) e IR-W são satisfeitas estritamente.
+\end{proposition}
+
+\begin{proposition}[Unicidade do equilíbrio de coordenação]
+No limite $\tau \to 0$ do subjogo de jogo global, há equilíbrio único de \textit{switching} $s^*$ para cada $(k, W, r)$ na região relevante.
+\end{proposition}
+
+\begin{proposition}[Dominância de bem-estar do Regime B]
+Para um conjunto de medida positiva de $(W, D, \sigma)$, o bem-estar social esperado é estritamente maior sob Regime B do que sob Regime A.
+\end{proposition}
+
+\section{Enquadramento cibernético}
+% Ashby; Conant-Ashby; VSM de Beer; Hood-Margetts NATO
+
+\section{Pré-condição sociológica}
+% Google Walkout; AWU; Haugen; NLRB
+
+\section{Tradução política para o Brasil}
+% Caminho via Resolução; caminho via Lei; coordenação CADE-CGU-MPF
+
+\section{Conclusão}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+
+\end{document}

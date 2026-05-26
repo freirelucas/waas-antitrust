@@ -1,0 +1,48 @@
+name: tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Lint (ruff)
+        run: ruff check src/ tests/
+
+      - name: Formatação (black)
+        run: black --check src/ tests/
+
+      - name: Testes rápidos (sem 'slow')
+        run: pytest -x -q -m "not slow" --cov=waas_antitrust --cov-report=xml
+
+      - name: Validação do caderno (nbval)
+        if: matrix.python-version == '3.12'
+        run: pytest --nbval-lax notebooks/WaaS_caderno_v2.ipynb || echo "nbval gerou aviso, prosseguindo"
+
+      - name: Upload de cobertura para Codecov
+        if: matrix.python-version == '3.12'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false

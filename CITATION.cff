@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+title: >-
+  waas-antitrust: modelo baseado em agentes para o mecanismo
+  Whistleblower-as-a-Service em enforcement antitruste de mercados digitais
+message: >-
+  Se este software for usado em pesquisa, cite conforme abaixo.
+type: software
+authors:
+  - given-names: "L."
+    family-names: ""
+    affiliation: "IPEA (DIEST/COGIT)"
+repository-code: "https://github.com/freirelucas/waas-antitrust"
+license: CC-BY-SA-4.0
+version: "0.1.0"
+date-released: "2026-05-26"
+abstract: >-
+  Modelo baseado em agentes (Mesa 3.x) e análise de sensibilidade global
+  (Sobol) para o mecanismo Whistleblower-as-a-Service aplicado a casos
+  unilaterais antitruste em mercados digitais. Inclui calibração contra a
+  série histórica do CADE (109 acordos de leniência em 20 anos) e
+  parâmetros do mercado de trabalho TIC brasileiro (Brasscom, 2024).
+keywords:
+  - "antitrust"
+  - "agent-based-model"
+  - "leniency"
+  - "CADE"
+  - "digital-markets"
+  - "Sobol-sensitivity"
+  - "Mesa"
+preferred-citation:
+  type: article
+  authors:
+    - given-names: "L."
+      family-names: ""
+  title: >-
+    Rescaling Leniency Programs for Digital Markets:
+    A Whistleblower-as-a-Service Mechanism
+  year: 2026
+  status: in-preparation

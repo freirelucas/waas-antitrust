@@ -1,0 +1,25 @@
+{
+  "title": "waas-antitrust: modelo baseado em agentes para o mecanismo Whistleblower-as-a-Service em enforcement antitruste de mercados digitais",
+  "description": "Modelo baseado em agentes (Mesa 3.x) e análise de sensibilidade global (Sobol) para o mecanismo Whistleblower-as-a-Service aplicado a casos unilaterais antitruste em mercados digitais. Inclui calibração contra a série histórica do CADE e parâmetros do mercado de trabalho TIC brasileiro (Brasscom, 2024).",
+  "creators": [
+    { "name": "L.", "affiliation": "IPEA (DIEST/COGIT)" }
+  ],
+  "license": "CC-BY-SA-4.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "antitrust",
+    "agent-based-model",
+    "leniency",
+    "CADE",
+    "digital-markets",
+    "Sobol-sensitivity",
+    "Mesa",
+    "whistleblower",
+    "Brazil"
+  ],
+  "language": "por",
+  "communities": [
+    { "identifier": "computational-economics" }
+  ]
+}
