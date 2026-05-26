@@ -11,21 +11,30 @@ Modelo baseado em agentes (MBA) e análise de sensibilidade global para o mecani
 
 ## Início rápido
 
+Requer **Python 3.12+** (`mesa>=3.5`).
+
 ```bash
-# Instalação em modo desenvolvimento
+# Clonar e instalar em modo desenvolvimento
+git clone https://github.com/freirelucas/waas-antitrust.git
+cd waas-antitrust
 pip install -e ".[dev]"
+```
 
-# Testes
-pytest
+Para usar apenas como biblioteca, sem clonar:
 
-# Caderno-demo (rápido, baseado no pacote) — ou abra no Colab pelo badge acima
-jupyter lab notebooks/WaaS_demo.ipynb
+```bash
+pip install "waas-antitrust @ git+https://github.com/freirelucas/waas-antitrust.git"
+```
 
-# Varredura Sobol completa (versão definitiva do artigo)
+Em seguida:
+
+```bash
+pytest                                   # testes
+jupyter lab notebooks/WaaS_demo.ipynb    # caderno-demo (ou abra no Colab pelo badge acima)
+
+# Varredura Sobol completa (paper-grade) e figuras
 python scripts/run_sobol_full.py --n-base 1024 --jobs -1 --out results/sobol_full.parquet
-
-# Geração das figuras implementadas como módulo (inversão e fase; demais no caderno)
-python scripts/gerar_figuras.py --out figuras/
+waas-figuras --out figuras/ --formato todos
 ```
 
 ## Documentação

@@ -14,7 +14,7 @@ import time
 from pathlib import Path
 
 from waas_antitrust.sobol import executar_varredura
-from waas_antitrust.sobol.analise import calcular_indices, identificar_regiao_robusta
+from waas_antitrust.sobol.analise import calcular_indices_replicado, identificar_regiao_robusta
 from waas_antitrust.sobol.problema import PROBLEMA_SOBOL_8D
 
 
@@ -25,12 +25,13 @@ def principal():
     parser.add_argument("--jobs", type=int, default=-1)
     parser.add_argument("--n-empresas", type=int, default=15)
     parser.add_argument("--n-tiques", type=int, default=24)
-    parser.add_argument("--n-seeds", type=int, default=5)
+    parser.add_argument("--n-replicas", type=int, default=5)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
 
     print("=== Varredura Sobol ===")
     print(f"  n_base    : {args.n_base}")
+    print(f"  n_replicas: {args.n_replicas}")
     print(f"  regime    : {args.regime}")
     print(f"  núcleos   : {args.jobs}")
     print(f"  n_empresas: {args.n_empresas}")
@@ -45,7 +46,7 @@ def principal():
         n_jobs=args.jobs,
         n_empresas=args.n_empresas,
         n_tiques=args.n_tiques,
-        n_seeds=args.n_seeds,
+        n_replicas=args.n_replicas,
     )
     elapsed = time.time() - inicio
     print(f"\nVarredura concluída em {elapsed/60:.1f} minutos · {len(df)} amostras")
@@ -57,7 +58,7 @@ def principal():
 
     # Calcula índices Sobol e região robusta (tolerante a resultados constantes)
     try:
-        indices = calcular_indices(df, PROBLEMA_SOBOL_8D)
+        indices = calcular_indices_replicado(df, PROBLEMA_SOBOL_8D)
         indices.to_csv(args.out.with_suffix(".indices.csv"), index=False)
         print(f"Índices Sobol: {args.out.with_suffix('.indices.csv')}")
         print()
