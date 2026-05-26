@@ -6,6 +6,7 @@
 \usepackage{lmodern}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{graphicx}
+\graphicspath{{figs/}}
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage[round]{natbib}
@@ -25,11 +26,49 @@ A Whistleblower-as-a-Service Mechanism}
 \begin{center}\textbf{Rascunho de trabalho (v0.1.0) --- não citar.}\end{center}
 
 \begin{abstract}
-\textit{Resumo a redigir.} O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. A intuição é uma inversão da função-utilidade da conformidade corporativa: ao invés de minimizar a sanção esperada $p \cdot S$, a empresa passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação e $W$ é a recompensa total paga aos denunciantes internos. A condição $D > W$ é satisfazível na jurisprudência atual da Resolução CADE nº 21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos o mecanismo e simulamos um modelo baseado em agentes com três populações (denunciantes, empresa, autoridade) --- a assessoria jurídica é tratada como intermediário transparente, não como jogador estratégico --- com varredura de Sobol em oito dimensões. A análise identifica a região robusta de política e parametriza a simulação com ordens de grandeza da série do CADE (109 acordos de leniência em 20 anos); não há calibração formal contra esses alvos nesta versão.
+O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. A intuição é uma inversão da função-utilidade da conformidade corporativa: ao invés de minimizar a sanção esperada $p \cdot S$, a empresa passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação e $W$ é a recompensa total paga aos denunciantes internos. A condição $D > W$ é satisfazível na jurisprudência atual da Resolução CADE nº 21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos o mecanismo e simulamos um modelo baseado em agentes com três populações (denunciantes, empresa, autoridade) --- a assessoria jurídica é tratada como intermediário transparente, não como jogador estratégico --- com varredura de Sobol em oito dimensões. A análise identifica a região robusta de política e parametriza a simulação com ordens de grandeza da série do CADE (109 acordos de leniência em 20 anos); não há calibração formal contra esses alvos nesta versão.
 \end{abstract}
 
 \section{Introdução}
-% conteúdo a redigir; ancorar na inversão da função-utilidade
+
+Programas de leniência transformaram o enforcement antitruste ao oferecer imunidade ao
+primeiro membro de um cartel que coopera com a autoridade \citep{spagnolo2004divide,
+harrington2015when}. Sua eficácia, porém, pressupõe um \emph{cartel} --- conduta
+coordenada entre concorrentes cuja instabilidade interna a leniência explora. Em
+mercados digitais, parte central das condutas potencialmente anticompetitivas é
+\emph{unilateral} (autopreferência, venda casada, recusa de acesso), sem co-conspirador
+com incentivo a delatar. A leniência clássica, desenhada para o dilema do prisioneiro
+entre firmas, perde tração onde o conhecimento relevante reside \emph{dentro} de uma
+única firma, com seus empregados.
+
+Este artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS), que desloca o
+incentivo da delação do concorrente para o \emph{denunciante interno}. A evidência
+empírica indica que empregados são uma das principais fontes de detecção de fraude
+corporativa \citep{dyck2010blows} e que recompensas --- não apenas a redução de
+penalidades --- ampliam materialmente a delação \citep{bigoni2012fines,
+aubert2006impact}. A contribuição teórica do WaaS é uma \emph{inversão da
+função-utilidade da conformidade}: em vez de minimizar a sanção esperada $p \cdot S$, a
+firma passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição
+pecuniária do Termo de Compromisso de Cessação (TCC) e $W$ é a recompensa total paga aos
+denunciantes internos (Figura~\ref{fig:inversao}). Quando $D > W$ --- condição que
+denominamos IC-F* --- a própria firma tem incentivo a financiar a revelação, e o
+enforcement deixa de depender exclusivamente da capacidade investigativa da autoridade.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{01_inversao_utilidade}
+  \caption{Inversão da função-utilidade da conformidade. À esquerda, o regime clássico
+  (Regime~A): a firma minimiza a sanção esperada $p\cdot S$ e a conformidade ótima reside
+  na zona de baixa detecção. À direita, sob WaaS (Regimes~B/C), a firma maximiza a margem
+  $D - W$; a fronteira IC-F* ($D = W$) separa a região em que pagar os denunciantes é
+  individualmente racional. \emph{Figura ilustrativa; as magnitudes relativas $S/W$ são
+  discutidas na Seção~\ref{sec:mecanismo}.}}
+  \label{fig:inversao}
+\end{figure}
+
+Sustentamos que IC-F* é satisfazível \emph{de lege lata} na Resolução CADE nº~21/2018
+(Regime~B), permitindo implementação por via infralegal, e discutimos uma via legal mais
+robusta (Regime~C). % TODO: ancorar a falha da leniência digital em Crémer, de Montjoye & Schweitzer (2019) — inserir no refs.bib.
 
 \section{Falha estrutural da leniência clássica em mercados digitais}
 % Crémer-de Montjoye-Schweitzer (2019); DMA; argumento sobre conduta unilateral
@@ -41,7 +80,44 @@ A Whistleblower-as-a-Service Mechanism}
 % SEC, FCA, DOJ Antitrust 2025, EU DMA Art. 27, UK CMA, KFTC, CADE, Lei 13.608
 
 \section{O mecanismo WaaS}
-% Especificação das quatro fases; charneira do Art. 12 da Res. 21/2018
+\label{sec:mecanismo}
+
+O WaaS opera em quatro fases sequenciais. (P1) \emph{Sinalização}: cada empregado que
+observa indício de violação recebe um sinal privado ruidoso e decide, segundo seu
+arquétipo \citep{hokamp2010income}, se reporta. (P2) \emph{Massa crítica}: a plataforma
+agrega os sinais na rede intrafirma e dispara quando o número de reportes atinge um
+limiar $k$ --- dinâmica de coordenação cuja seleção de equilíbrio é \emph{inspirada} no
+jogo global de \citet{morris1998unique} e cuja difusão aproxima o contágio complexo de
+\citet{centola2007complex} sobre redes de mundo pequeno. (P3) \emph{Decisão da firma}:
+disparado o gatilho, a firma compara o desconto $D$ com a recompensa total $W$ e paga
+quando IC-F* ($D > W$) é satisfeita. (P4) \emph{Autoridade}: o caso chega ao CADE,
+sujeito a uma restrição de capacidade $\kappa$ no espírito de \citet{harrington2015when}
+e a uma acurácia que cresce com a qualidade da prova.
+
+A charneira jurídica do Regime~B é o Art.~12 da Resolução CADE nº~21/2018, que autoriza
+considerar o ressarcimento das vítimas como circunstância atenuante no cálculo da
+contribuição pecuniária do TCC (Art.~85 da Lei nº~12.529/2011). A recompensa paga pela
+firma aos denunciantes é, assim, re-caracterizada como ressarcimento extrajudicial,
+gerando o desconto $D$ sem mudança legal. O Regime~C estende a Lei nº~13.608/2018 (com a
+redação da Lei nº~13.964/2019) ao enforcement antitruste, com percentual explícito de
+recompensa --- maior robustez jurídica ao custo de via legislativa. O Regime~A é a
+situação atual, sem canal de incentivo individual.
+% TODO: citar verbatim o texto integral do Art. 12 da Res. 21/2018 (conferir no Diário Oficial, E04).
+
+A dinâmica de coordenação da fase~P2 é ilustrada na Figura~\ref{fig:fase}: a
+probabilidade de cascata cresce com a severidade percebida $\sigma$ e cai com o limiar
+relativo $k/n$, definindo uma fronteira entre silêncio e revelação.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.78\textwidth]{02_fase_jogo_global}
+  \caption{Diagrama de fase da coordenação intrafirma (heurística inspirada em
+  \citealp{morris1998unique}). A região verde indica alta probabilidade de cascata
+  ($P(\sum a_i \geq k)\to 1$); as estrelas marcam os pontos-alvo dos Regimes B e C.
+  \emph{O modelo computacional usa limiares heurísticos, não o equilíbrio fechado do jogo
+  global --- ver Limitações.}}
+  \label{fig:fase}
+\end{figure}
 
 \section{Modelo baseado em agentes e teste de estresse}
 % Composição Harrington-Chang + Morris-Shin + Chwe
@@ -58,6 +134,13 @@ No limite $\tau \to 0$ do subjogo de jogo global, há equilíbrio único de \tex
 \begin{proposition}[Dominância de bem-estar do Regime B]
 Para um conjunto de medida positiva de $(W, D, \sigma)$, o bem-estar social esperado é estritamente maior sob Regime B do que sob Regime A.
 \end{proposition}
+
+\paragraph{Status (v0.1.0).} As Proposições~2 e~3 são, nesta versão,
+\emph{conjecturas}: o modelo computacional usa limiares heurísticos (não resolve o jogo
+global nem varre $\tau\to 0$) e o tipo da firma é fixo (não há dissuasão endógena). A
+Proposição~1 é verificada por teste de regressão no ponto-alvo ($D > W$). Os itens de
+pesquisa que sustentariam plenamente cada proposição estão rastreados no backlog
+(R01--R06) do repositório.
 
 \section{Enquadramento cibernético}
 % Ashby; Conant-Ashby; VSM de Beer; Hood-Margetts NATO

@@ -32,7 +32,7 @@ Extensão da Lei 13.608/2018 para alcançar infrações à ordem econômica, com
 
 ## Decisão de design não-trivial
 
-A `decidir_pagamento` da `EmpresaAgent` implementa o teste IC-F* na sua forma simplificada D > W (não a forma completa custo_waas ≤ custo_não_paga). Isso é uma escolha deliberada: assume-se que, dado o sinal já recebido, o caminho "não paga" é dominado pela detecção quase certa (a notificação chega à autoridade de qualquer forma). A forma completa fica como exercício para variantes do modelo.
+O método `satisfaz_ic_f_estrela` da `EmpresaAgent` implementa o teste IC-F* na forma D > W. Isso é uma escolha deliberada: assume-se que, dado o sinal já recebido, o caminho "não paga" é dominado pela detecção quase certa (a notificação chega à autoridade de qualquer forma). A forma completa (custo_waas ≤ custo_não_paga, com p_detecção endógeno) fica como exercício para variantes do modelo — ver R01 no backlog.
 
 ## Articulação com o IPEA
 

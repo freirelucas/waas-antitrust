@@ -1,0 +1,45 @@
+name: paper
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "paper/**"
+      - "src/waas_antitrust/viz/**"
+      - "scripts/gerar_figuras.py"
+      - ".github/workflows/paper.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Instalar o pacote
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Gerar figuras do paper (PDF)
+        run: python scripts/gerar_figuras.py --out paper/figs --formato pdf
+
+      - name: Instalar Tectonic
+        run: |
+          curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+          echo "$PWD" >> "$GITHUB_PATH"
+
+      - name: Compilar o paper
+        run: tectonic paper/main.tex --keep-logs
+
+      - name: Publicar PDF como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-pdf
+          path: paper/main.pdf
