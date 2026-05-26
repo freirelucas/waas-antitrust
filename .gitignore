@@ -5,6 +5,7 @@ __pycache__/
 *.so
 .Python
 .pytest_cache/
+.ruff_cache/
 .coverage
 .coverage.*
 htmlcov/
@@ -55,6 +56,9 @@ data/raw/*
 *.synctex.gz
 *.toc
 paper/*.pdf
+
+# MkDocs (site gerado)
+/site/
 
 # Outros
 .env

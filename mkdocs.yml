@@ -1,0 +1,67 @@
+site_name: waas-antitrust
+site_description: >-
+  Modelo baseado em agentes para o mecanismo Whistleblower-as-a-Service no
+  enforcement antitruste de mercados digitais no Brasil.
+site_author: "L."
+repo_url: https://github.com/freirelucas/waas-antitrust
+repo_name: freirelucas/waas-antitrust
+copyright: "Código e documentação sob CC BY-SA 4.0."
+
+theme:
+  name: material
+  language: pt-BR
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: default
+      primary: green
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Mudar para o modo escuro
+    - scheme: slate
+      primary: green
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para o modo claro
+  features:
+    - navigation.top
+    - navigation.footer
+    - content.code.copy
+    - search.suggest
+
+nav:
+  - Início: index.md
+  - Uso: uso.md
+  - Modelo (protocolo ODD): ODD.md
+  - Análise institucional: INSTITUTIONAL.md
+  - Decisões e backlog: DECISIONS.md
+  - Referências: REFERENCES.md
+  - Referência da API: api.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_root_heading: true
+            show_source: false
+            members_order: source
+            heading_level: 3
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

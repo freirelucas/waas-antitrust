@@ -45,7 +45,9 @@ def figuras() -> None:
         description="Gera todas as figuras do artigo para a pasta indicada.",
     )
     parser.add_argument("--out", type=Path, default=Path("figuras/"))
-    parser.add_argument("--formato", choices=["png", "svg", "ambos"], default="ambos")
+    parser.add_argument(
+        "--formato", choices=["png", "svg", "pdf", "ambos", "todos"], default="ambos"
+    )
     args = parser.parse_args()
 
     from waas_antitrust.viz import aplicar_estilo, fase, inversao
@@ -59,10 +61,13 @@ def figuras() -> None:
         # outras viz ainda no caderno; ver docs/DECISIONS.md
     }
 
+    formatos = {"ambos": ["png", "svg"], "todos": ["png", "svg", "pdf"]}.get(
+        args.formato, [args.formato]
+    )
     for nome, fn in figuras_disponiveis.items():
         try:
             fig, _ = fn()
-            for ext in (["png", "svg"] if args.formato == "ambos" else [args.formato]):
+            for ext in formatos:
                 caminho = args.out / f"{nome}.{ext}"
                 fig.savefig(caminho, dpi=150, bbox_inches="tight")
                 print(f"  gerada: {caminho}")

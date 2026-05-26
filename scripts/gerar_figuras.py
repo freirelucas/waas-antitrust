@@ -12,7 +12,9 @@ from waas_antitrust.viz import aplicar_estilo, fase, inversao
 def principal():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=Path("figuras/"))
-    parser.add_argument("--formato", choices=["png", "svg", "ambos"], default="ambos")
+    parser.add_argument(
+        "--formato", choices=["png", "svg", "pdf", "ambos", "todos"], default="ambos"
+    )
     parser.add_argument("--dpi", type=int, default=150)
     args = parser.parse_args()
 
@@ -25,7 +27,9 @@ def principal():
         # 03-11 ainda no caderno; ver docs/DECISIONS.md
     }
 
-    formatos = ["png", "svg"] if args.formato == "ambos" else [args.formato]
+    formatos = {"ambos": ["png", "svg"], "todos": ["png", "svg", "pdf"]}.get(
+        args.formato, [args.formato]
+    )
 
     for nome, fn in geradoras.items():
         try:
