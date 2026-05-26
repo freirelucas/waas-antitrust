@@ -34,11 +34,13 @@ theme:
 nav:
   - Início: index.md
   - Uso: uso.md
-  - Modelo (protocolo ODD): ODD.md
-  - Análise institucional: INSTITUTIONAL.md
-  - Decisões e backlog: DECISIONS.md
-  - Referências: REFERENCES.md
+  - Fundamentos:
+      - Modelo (protocolo ODD): ODD.md
+      - Análise institucional: INSTITUTIONAL.md
+      - Referências: REFERENCES.md
   - Referência da API: api.md
+  - Desenvolvimento:
+      - Limitações e backlog: DECISIONS.md
 
 plugins:
   - search

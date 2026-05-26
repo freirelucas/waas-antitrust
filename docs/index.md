@@ -25,6 +25,8 @@ desconto $D$ no Termo de Compromisso de Cessação menos a recompensa total $W$
 paga aos denunciantes internos. A condição $D > W$ (IC-F\*) é satisfazível na
 Resolução CADE nº 21/2018, sustentando implementação por via infralegal.
 
+![Inversão da função-utilidade da conformidade (Regime A clássico vs. WaaS).](img/01_inversao.png)
+
 ## Três regimes institucionais
 
 | Regime | Canal de denúncia | Base institucional |
@@ -32,6 +34,11 @@ Resolução CADE nº 21/2018, sustentando implementação por via infralegal.
 | **A**  | inexistente (situação atual) | — |
 | **B**  | WaaS via Resolução | Art. 12 da Res. CADE 21/2018 |
 | **C**  | WaaS via Lei | extensão da Lei 13.608/2018 |
+
+A coordenação dos denunciantes dentro da firma tem um limiar de massa crítica:
+abaixo dele, silêncio; acima, uma cascata de revelação.
+
+![Diagrama de fase da coordenação intrafirma (heurística inspirada em jogo global).](img/02_fase.png)
 
 ## Comece por aqui
 
