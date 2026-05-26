@@ -170,10 +170,12 @@ class AutoridadeAgent(Agent):
         aceitos = self.casos_neste_tique[: self.capacidade]
         resultados = []
         for caso in aceitos:
+            # A acurácia cresce com a qualidade da prova: p_correto = ρ + (1−ρ)·q.
+            # Provas melhores (canal WaaS) ⇒ classificação mais confiável.
+            p_correto = min(1.0, self.rho + (1.0 - self.rho) * caso["qualidade_prova"])
+            acerta = self.model.rng.random() < p_correto
             classificada_violadora = (
-                caso["eh_violadora_real"]
-                if self.model.rng.random() < self.rho
-                else not caso["eh_violadora_real"]
+                caso["eh_violadora_real"] if acerta else not caso["eh_violadora_real"]
             )
             resultados.append({**caso, "classificada_violadora": classificada_violadora})
         self.historico_casos.extend(resultados)

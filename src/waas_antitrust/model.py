@@ -10,6 +10,7 @@ from mesa import Model
 from mesa.datacollection import DataCollector
 
 from waas_antitrust.agents import AutoridadeAgent, EmpresaAgent, TrabalhadorAgent
+from waas_antitrust.calibracao.cade import INVESTIGACOES_ANUAIS_CADE
 
 if TYPE_CHECKING:
     import pandas as pd
@@ -32,7 +33,8 @@ class WaaSParametros:
     W_mult: float = 1.5  # recompensa em múltiplos do salário anual
     k_rel: float = 0.05  # massa crítica como fração de n_trabalhadores
     D_disc: float = 0.30  # desconto sobre contribuição pecuniária
-    rho: float = 0.7  # acurácia da autoridade
+    rho: float = 0.7  # acurácia-base da autoridade
+    taxa_capacidade: float = 0.5  # fração de empresas processáveis por tique (limitada pelo CADE)
     r_represalia: float = 0.15  # probabilidade de represália
     F_falso: float = 1.0  # penalidade por falso reporte (múltiplos de w_a)
     densidade: float = 0.10  # reescrita Watts-Strogatz
@@ -97,9 +99,16 @@ class WaaSModel(Model):
         self.vp_tique: int = 0
         self.fp_tique: int = 0
         self.fn_tique: int = 0
+        # Custo total de recompensas pagas (R$, acumulado no horizonte).
+        self.custo_recompensa_acum: float = 0.0
 
-        # Capacidade por tique (heurística: metade do número de empresas).
-        capacidade_tique = max(1, int(0.5 * params.n_empresas))
+        # Capacidade da autoridade por tique: fração das empresas do sistema,
+        # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
+        # O reescalonamento exato para o universo do CADE é decisão em aberto
+        # (ver docs/DECISIONS.md, E01).
+        capacidade_cade_trimestral = max(1, INVESTIGACOES_ANUAIS_CADE // 4)
+        capacidade_por_fracao = max(1, int(params.taxa_capacidade * params.n_empresas))
+        capacidade_tique = min(capacidade_por_fracao, capacidade_cade_trimestral)
         self.autoridade = AutoridadeAgent(
             self, capacidade=capacidade_tique, rho_acuracia=params.rho
         )
@@ -118,6 +127,7 @@ class WaaSModel(Model):
                 # Estoques (acumulados até o tique)
                 "n_tcc_assinados": self._contar_tcc,
                 "n_pagou": self._contar_pagou,
+                "custo_recompensa_acum": "custo_recompensa_acum",
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -267,6 +277,7 @@ class WaaSModel(Model):
             empresa.pagou_denunciantes = D_ativo and empresa.satisfaz_ic_f_estrela(W_total, D_val)
             if empresa.pagou_denunciantes:
                 empresa.tcc_assinado = True
+                self.custo_recompensa_acum += W_total
 
         # P4 · intervenção da autoridade
         for empresa in self.empresas:

@@ -44,3 +44,16 @@ def test_autoridade_respeita_capacidade():
         )
     resultados = autoridade.processar_casos()
     assert len(resultados) == autoridade.capacidade
+
+
+def test_autoridade_prova_perfeita_classifica_corretamente():
+    """Com qualidade de prova = 1, a classificação é sempre correta (ρ + (1−ρ)·1 = 1)."""
+    params = WaaSParametros(
+        n_empresas=5, tam_medio_empresa=20, n_tiques=1, seed=1, rho=0.5, taxa_capacidade=1.0
+    )
+    modelo = WaaSModel(params)
+    autoridade = modelo.autoridade
+    for empresa in modelo.empresas:
+        autoridade.receber_caso(empresa, qualidade_prova=1.0, identidades_protegidas=True)
+    for resultado in autoridade.processar_casos():
+        assert resultado["classificada_violadora"] == resultado["eh_violadora_real"]
