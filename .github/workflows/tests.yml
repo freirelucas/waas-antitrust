@@ -36,9 +36,9 @@ jobs:
       - name: Testes rápidos (sem 'slow')
         run: pytest -x -q -m "not slow" --cov=waas_antitrust --cov-report=xml
 
-      - name: Validação do caderno (nbval)
+      - name: Validação do caderno-demo (nbval)
         if: matrix.python-version == '3.12'
-        run: pytest --nbval-lax notebooks/WaaS_caderno_v2.ipynb || echo "nbval gerou aviso, prosseguindo"
+        run: pytest --nbval-lax notebooks/WaaS_demo.ipynb
 
       - name: Upload de cobertura para Codecov
         if: matrix.python-version == '3.12'

@@ -3,7 +3,7 @@
 [![CC BY-SA 4.0](https://img.shields.io/badge/license-CC%20BY--SA%204.0-blue.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/)
-[![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_caderno_v2.ipynb)
+[![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)
 
 Núcleo computacional do artigo **"Rescaling Leniency Programs for Digital Markets: A Whistleblower-as-a-Service Mechanism"**.
 
@@ -18,8 +18,8 @@ pip install -e ".[dev]"
 # Testes
 pytest
 
-# Caderno de demonstração
-jupyter lab notebooks/WaaS_caderno_v2.ipynb
+# Caderno-demo (rápido, baseado no pacote) — ou abra no Colab pelo badge acima
+jupyter lab notebooks/WaaS_demo.ipynb
 
 # Varredura Sobol completa (versão definitiva do artigo)
 python scripts/run_sobol_full.py --n-base 1024 --jobs -1 --out results/sobol_full.parquet
@@ -31,7 +31,7 @@ python scripts/gerar_figuras.py --out figuras/
 ## Documentação
 
 - **Site**: <https://freirelucas.github.io/waas-antitrust/> — gerado com MkDocs Material e publicado pelo workflow `docs.yml` (requer GitHub Pages habilitado no repositório).
-- **Caderno no Colab**: [abrir](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_caderno_v2.ipynb) — instala as dependências automaticamente no ambiente do Colab.
+- **Caderno no Colab**: [abrir](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb) — instala as dependências automaticamente no ambiente do Colab.
 - **Paper**: `paper/main.tex` (rascunho) — compilado a PDF pelo workflow `paper.yml`.
 - **Backlog de pesquisa**: `docs/DECISIONS.md` (itens R01–R06 rumo ao camera-ready).
 
