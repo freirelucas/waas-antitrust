@@ -44,6 +44,8 @@ class WaaSParametros:
 
     # Calibração
     fracao_violadoras: float = 0.30
+    p_deteccao_prior: float = 0.15  # detecção percebida inicial (dissuasão, R01)
+    lambda_expectativa: float = 0.3  # peso da expectativa adaptativa de detecção (R01)
     taxa_observacao: float = 0.20
     taxa_falso_reporte: float = (
         0.02  # prob. de reporte errôneo/malicioso por não-violadora/tique (R04)
@@ -87,6 +89,8 @@ class WaaSModel(Model):
         self.fracao_violadoras = params.fracao_violadoras
         self.taxa_observacao = params.taxa_observacao
         self.taxa_falso_reporte = params.taxa_falso_reporte
+        self.p_deteccao_prior = params.p_deteccao_prior
+        self.lambda_expectativa = params.lambda_expectativa
         self.tau_ruido = params.tau_ruido
         self.sigma_etico = params.sigma_etico
         self.eta_aleatorio = params.eta_aleatorio
@@ -105,6 +109,11 @@ class WaaSModel(Model):
         self.fn_tique: int = 0
         # Custo total de recompensas pagas (R$, acumulado no horizonte).
         self.custo_recompensa_acum: float = 0.0
+        # Dissuasão endógena (R01): detecção percebida e contagem de violadoras ativas.
+        self._g_max = params.p_deteccao_prior / max(1e-6, 1.0 - params.fracao_violadoras)
+        self.p_perc: float = params.p_deteccao_prior
+        self.n_violadoras_ativas: int = 0
+        self.dano_acumulado: int = 0  # Σ violadoras ativas por tique (proxy de dano social)
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
@@ -125,6 +134,8 @@ class WaaSModel(Model):
                 # Fluxos (por tique)
                 "n_sinais": self._contar_sinais,
                 "n_empresas_notif": self._contar_notificadas,
+                "n_violadoras_ativas": "n_violadoras_ativas",
+                "dano_acumulado": "dano_acumulado",
                 "vp_tique": "vp_tique",
                 "fp_tique": "fp_tique",
                 "fn_tique": "fn_tique",
@@ -179,8 +190,13 @@ class WaaSModel(Model):
     def _criar_empresas(self, n_empresas: int, tam_medio: int) -> None:
         for fid in range(n_empresas):
             tam = max(50, int(self.rng.normal(tam_medio, tam_medio * 0.3)))
-            eh_v = self.rng.random() < self.fracao_violadoras
-            sigma = self.rng.uniform(0.3, 0.9) if eh_v else 0.0
+            # Atratividade de violar g_i = ganho ilícito / sanção esperada (R01).
+            # A firma viola enquanto g_i > detecção percebida; _g_max calibra a
+            # fração inicial de violadoras dado o prior de detecção.
+            g_violacao = float(self.rng.uniform(0.0, self._g_max))
+            sigma_potencial = float(self.rng.uniform(0.3, 0.9))
+            eh_v = g_violacao > self.p_deteccao_prior
+            sigma = sigma_potencial if eh_v else 0.0
             R = tam * self.R_por_trabalhador
 
             empresa = EmpresaAgent(
@@ -192,6 +208,8 @@ class WaaSModel(Model):
                 fatia_mercado=1.0 / n_empresas,
                 R_receita=R,
             )
+            empresa.g_violacao = g_violacao
+            empresa.sigma_potencial = sigma_potencial
             self.empresas.append(empresa)
 
             k_viz = max(4, int(tam * 0.02))
@@ -236,6 +254,24 @@ class WaaSModel(Model):
         self.tique += 1
         W_ativo = self.regime in ("B", "C")
         D_ativo = self.regime in ("B", "C")
+
+        # P0 · dissuasão endógena (R01): a detecção percebida é atualizada por
+        # expectativa adaptativa sobre a detecção realizada no tique anterior;
+        # cada firma re-decide violar enquanto sua atratividade g_i superar p_perc.
+        if self.tique > 1 and self.n_violadoras_ativas > 0:
+            p_realizado = self.vp_tique / self.n_violadoras_ativas
+            self.p_perc = (
+                1.0 - self.lambda_expectativa
+            ) * self.p_perc + self.lambda_expectativa * p_realizado
+        for empresa in self.empresas:
+            empresa.eh_violadora = empresa.g_violacao > self.p_perc
+            empresa.sigma = empresa.sigma_potencial if empresa.eh_violadora else 0.0
+        self.n_violadoras_ativas = sum(1 for e in self.empresas if e.eh_violadora)
+        self.dano_acumulado += self.n_violadoras_ativas
+        for fid, ws in self.trabalhadores_por_empresa.items():
+            violando = self.empresas[fid].eh_violadora
+            for t in ws:
+                t.observou = violando and (self.rng.random() < self.taxa_observacao)
 
         # P1 · fase de sinalização
         for fid, ws in self.trabalhadores_por_empresa.items():

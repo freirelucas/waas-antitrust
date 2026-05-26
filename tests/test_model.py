@@ -111,3 +111,22 @@ def test_canal_falso_reporte_gera_falsos_positivos():
     com = WaaSModel(WaaSParametros(**base, taxa_falso_reporte=0.6)).executar()
     assert sem["falsos_positivos_acum"].max() == 0
     assert com["falsos_positivos_acum"].max() > 0
+
+
+def test_dissuasao_endogena_reduz_violadoras_no_regime_b():
+    """R01: o canal WaaS (B) eleva a detecção percebida e DETER a violação vs. Regime A."""
+    base = dict(
+        n_empresas=30,
+        tam_medio_empresa=150,
+        n_tiques=40,
+        seed=11,
+        fracao_violadoras=0.5,
+        taxa_observacao=0.4,
+    )
+    df_a = WaaSModel(WaaSParametros(**base, regime="A")).executar()
+    df_b = WaaSModel(WaaSParametros(**base, regime="B")).executar()
+    viol_a = df_a["n_violadoras_ativas"].tail(10).mean()
+    viol_b = df_b["n_violadoras_ativas"].tail(10).mean()
+    # canal de dissuasão da Prop. 3: B reduz as violadoras ativas; A não deter
+    assert viol_b < viol_a
+    assert viol_a >= df_a["n_violadoras_ativas"].iloc[0]

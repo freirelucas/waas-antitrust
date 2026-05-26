@@ -87,6 +87,7 @@ def executar_para_sobol(
     fp = int(df["falsos_positivos_acum"].max())
     fn = int(df["falsos_negativos_acum"].max())
     custo_recompensa = float(df["custo_recompensa_acum"].max())
+    dano = int(df["dano_acumulado"].max())
     precisao = vp / (vp + fp) if (vp + fp) > 0 else 0.0
     return {
         **dict(zip(PROBLEMA_SOBOL_8D["names"], linha, strict=True)),
@@ -96,6 +97,7 @@ def executar_para_sobol(
         "VP": vp,
         "FP": fp,
         "FN": fn,
+        "dano_acumulado": dano,
         "custo_recompensa": custo_recompensa,
         "precisao": precisao,
         "bem_estar": calcular_bem_estar(vp, fp, fn, custo_recompensa, params.w_a_base),

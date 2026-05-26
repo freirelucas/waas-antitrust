@@ -39,7 +39,7 @@ de pesquisa necessário para *sustentar* — não apenas alegar — cada ponto.
 
 | # | Item | Abordagem recomendada |
 |---|---|---|
-| R01 | Dissuasão endógena (Prop. 3) | Tornar `eh_violadora`/`sigma` responsivos ao mecanismo (a probabilidade de violar decai com a p_detecção percebida). Hoje o tipo da firma é fixo na inicialização, então o canal de dissuasão da Prop. 3 não existe. |
+| R01 | Dissuasão endógena (Prop. 3) | **Implementado:** a firma viola enquanto g_i = ganho/sanção > detecção percebida (expectativa adaptativa, λ). B/C deter (violadoras → 0); A não. `dano_acumulado` exposto; teste de regressão em `tests/test_model.py`. Resta: reponderar o bem-estar para creditar a dissuasão (R05) e calibrar prior/λ (R03). |
 | R02 | Jogo global de fato (Prop. 2) | Derivar o limiar de switching `s*` da estrutura de informação e varrer τ→0, em vez dos limiares heurísticos fixos atuais. Sem isso, a unicidade da Prop. 2 é conjectura. |
 | R03 | Calibração + validação reais | Rotina que ajusta parâmetros aos alvos do ODD (109 leniências; 47 TCC/ano; 19% Dyck-Morse-Zingales) e reporta aderência. Hoje os alvos não restringem o modelo; a "calibração" é documental. |
 | R04 | Canal de falso reporte | **Parcial (implementado):** `taxa_falso_reporte` gera reportes errôneos/maliciosos contra não-violadoras (prova fraca q=0,15) ⇒ FP>0 e precisão deixa de ser trivial; teste de regressão em `tests/test_model.py`. Falta: represália a falsos reportes e calibração da taxa. |

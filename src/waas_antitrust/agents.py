@@ -122,6 +122,8 @@ class EmpresaAgent(Agent):
         self.tcc_assinado: bool = False
         self.trabalhadores: list[TrabalhadorAgent] = []
         self.grafo_interno: nx.Graph | None = None
+        self.g_violacao: float = 0.0  # atratividade de violar = ganho/sanção (R01)
+        self.sigma_potencial: float = sigma  # severidade quando ativa a violação
 
     def sancao_esperada(self) -> float:
         """E[S] escalada por σ. Faixa CADE: 0,1% a 20% da receita afetada."""
