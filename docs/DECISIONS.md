@@ -20,7 +20,7 @@ Decisões rastreadas que afetam o desenho do mecanismo ou a arquitetura do códi
 | T02 | Adotar Mesa 3.x space classes para a rede intra-firma | aberta | Hoje uso direto de NetworkX. |
 | T03 | Integração contínua com Zenodo | aberta | Workflow `.github/workflows/release.yml` pronto; falta vincular conta. |
 | T04 | Adicionar DVC para versionamento de dados brutos | aberta | Pasta `data/raw/` reservada. |
-| T05 | Cobertura de testes acima de 80% | aberta | Hoje só smoke tests. |
+| T05 | Cobertura de testes acima de 80% | fechada | Cobertura 93% (modo rápido): modelo, agentes, sobol (execução + análise) e viz (figuras + stubs). |
 
 ## Empíricas
 

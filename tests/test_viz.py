@@ -1,6 +1,9 @@
 """Testes das visualizações."""
 
+import importlib
+
 import matplotlib
+import pytest
 
 matplotlib.use("Agg")  # backend não-interativo
 import matplotlib.pyplot as plt
@@ -28,3 +31,24 @@ def test_fase_gera_figura():
     fig, ax = fase.gerar_figura()
     assert fig is not None
     plt.close(fig)
+
+
+@pytest.mark.parametrize(
+    "modulo",
+    [
+        "adversarial",
+        "bootstrap",
+        "cade",
+        "cascata",
+        "falsificacao",
+        "internacional",
+        "painel",
+        "sankey",
+        "variedade",
+    ],
+)
+def test_viz_stubs_levantam_not_implemented(modulo):
+    """Os 9 stubs de viz (ainda no caderno) levantam NotImplementedError."""
+    mod = importlib.import_module(f"waas_antitrust.viz.{modulo}")
+    with pytest.raises(NotImplementedError):
+        mod.gerar_figura()

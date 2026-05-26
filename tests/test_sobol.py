@@ -51,6 +51,30 @@ def test_calcular_bem_estar_formula():
     assert calcular_bem_estar(10, 2, 3, 360_000, 180_000, pesos) == 3.0
 
 
+def test_calcular_indices_matriz_unica():
+    """calcular_indices roda sobre uma matriz única e retorna S1/ST por parâmetro."""
+    import numpy as np
+    from SALib.sample import sobol as amostragem
+
+    from waas_antitrust.sobol.analise import calcular_indices
+
+    amostras = amostragem.sample(PROBLEMA_SOBOL_8D, 8, calc_second_order=False)
+    rng = np.random.default_rng(0)
+    df = pd.DataFrame({"bem_estar": rng.normal(size=len(amostras))})
+    res = calcular_indices(df, PROBLEMA_SOBOL_8D, "bem_estar")
+    assert len(res) == PROBLEMA_SOBOL_8D["num_vars"]
+    assert {"parâmetro", "S1", "ST"}.issubset(res.columns)
+
+
+def test_identificar_regiao_robusta():
+    """Marca como robusta quem tem bem-estar positivo e precisão acima do limiar."""
+    from waas_antitrust.sobol.analise import identificar_regiao_robusta
+
+    df = pd.DataFrame({"bem_estar": [5, -1, 3], "precisao": [0.9, 0.95, 0.5]})
+    out = identificar_regiao_robusta(df, limiar_precisao=0.85)
+    assert out["robusta"].tolist() == [True, False, False]
+
+
 @pytest.mark.slow
 def test_varredura_replicada_e_indices():
     """Varredura replicada gera coluna `replica` e índices de Sobol mediados."""
