@@ -36,15 +36,19 @@ def smoke_modelo() -> None:
     secao("modelo · 3 regimes (execução direta)")
     for regime in ("A", "B", "C"):
         p = WaaSParametros(
-            n_empresas=12, tam_medio_empresa=200, n_tiques=20, regime=regime, seed=42
+            n_empresas=20, tam_medio_empresa=200, n_tiques=40, regime=regime, seed=42
         )
         df = WaaSModel(p).executar()
         vp = int(df["verdadeiros_positivos_acum"].max())
         fp = int(df["falsos_positivos_acum"].max())
         fn = int(df["falsos_negativos_acum"].max())
+        dano = int(df["dano_acumulado"].max())
         custo = float(df["custo_recompensa_acum"].max())
-        bem_estar = calcular_bem_estar(vp, fp, fn, custo, p.w_a_base)
-        print(f"  regime {regime}: VP={vp:4d}  FP={fp:3d}  FN={fn:3d}  bem_estar={bem_estar:8.1f}")
+        bem_estar = calcular_bem_estar(dano, fp, custo, p.w_a_base)
+        print(
+            f"  regime {regime}: VP={vp:4d} FP={fp:3d} FN={fn:3d} "
+            f"dano={dano:5d} bem_estar={bem_estar:9.1f}"
+        )
 
 
 def smoke_sobol() -> None:

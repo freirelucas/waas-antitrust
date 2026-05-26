@@ -15,40 +15,34 @@ from SALib.sample import sobol as sobol_amostragem
 from waas_antitrust.model import WaaSModel, WaaSParametros
 from waas_antitrust.sobol.problema import PROBLEMA_SOBOL_8D
 
-# Pesos do bem-estar social. NORMATIVOS e provisórios — marcados para calibração
-# (ver docs/DECISIONS.md). Padrão: contagem líquida de acertos penalizando erros
-# (VP − FP − FN). O custo de recompensa entra com peso nulo por ser, a rigor, uma
-# transferência privada (empresa → denunciantes); eleve `gamma_recompensa` para
-# penalizar distorções/custos administrativos da recompensa.
+# Pesos do bem-estar SOCIAL. NORMATIVOS e provisórios — calibrar em R03
+# (ver docs/DECISIONS.md, R05). O bem-estar é o NEGATIVO do custo social total:
+# dano (Σ violadoras·tique, R01) + custo de erro (falsos positivos) + custo da
+# recompensa. `gamma_recompensa`=0 por ser, a rigor, transferência privada
+# (empresa → denunciantes); eleve para penalizar distorções.
 PESOS_BEM_ESTAR: dict[str, float] = {
-    "alpha_vp": 1.0,
-    "beta_fp": 1.0,
-    "delta_fn": 1.0,
-    "gamma_recompensa": 0.0,
+    "beta_fp": 1.0,  # custo de um falso positivo (em violador-tiques equivalentes)
+    "gamma_recompensa": 0.0,  # peso do custo de recompensa (normalizado por w_a)
 }
 
 
 def calcular_bem_estar(
-    vp: int,
+    dano: int,
     fp: int,
-    fn: int,
     custo_recompensa: float,
     w_a_base: float,
     pesos: dict[str, float] | None = None,
 ) -> float:
-    """Bem-estar social agregado (métrica normativa; pesos em PESOS_BEM_ESTAR).
+    """Bem-estar social = − custo social total = −(dano + β·FP + γ·custo/w_a).
 
-    `custo_recompensa` (R$) é normalizado por `w_a_base` (salário anual) antes de
-    entrar com peso `gamma_recompensa`.
+    `dano` = Σ violadoras ativas por tique (proxy de dano social). Como a dissuasão
+    (R01) reduz o dano, esta métrica credita a PREVENÇÃO — ao contrário da antiga
+    contagem por detecção (VP−FP−FN), que ranqueava mal regimes que deterem.
+    Pesos normativos provisórios (calibrar em R03).
     """
     pesos = pesos or PESOS_BEM_ESTAR
     custo_norm = custo_recompensa / w_a_base if w_a_base else 0.0
-    return (
-        pesos["alpha_vp"] * vp
-        - pesos["beta_fp"] * fp
-        - pesos["delta_fn"] * fn
-        - pesos["gamma_recompensa"] * custo_norm
-    )
+    return -(dano + pesos["beta_fp"] * fp + pesos["gamma_recompensa"] * custo_norm)
 
 
 def executar_para_sobol(
@@ -100,7 +94,7 @@ def executar_para_sobol(
         "dano_acumulado": dano,
         "custo_recompensa": custo_recompensa,
         "precisao": precisao,
-        "bem_estar": calcular_bem_estar(vp, fp, fn, custo_recompensa, params.w_a_base),
+        "bem_estar": calcular_bem_estar(dano, fp, custo_recompensa, params.w_a_base),
     }
 
 

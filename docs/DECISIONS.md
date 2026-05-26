@@ -39,11 +39,11 @@ de pesquisa necessário para *sustentar* — não apenas alegar — cada ponto.
 
 | # | Item | Abordagem recomendada |
 |---|---|---|
-| R01 | Dissuasão endógena (Prop. 3) | **Implementado:** a firma viola enquanto g_i = ganho/sanção > detecção percebida (expectativa adaptativa, λ). B/C deter (violadoras → 0); A não. `dano_acumulado` exposto; teste de regressão em `tests/test_model.py`. Resta: reponderar o bem-estar para creditar a dissuasão (R05) e calibrar prior/λ (R03). |
+| R01 | Dissuasão endógena (Prop. 3) | **Implementado:** a firma viola enquanto g_i = ganho/sanção > detecção percebida (expectativa adaptativa, λ). B/C deter; A não. `dano_acumulado` exposto; teste de regressão em `tests/test_model.py`. *Caveat:* p_percebida = vp/violadoras é ruidosa com poucas violadoras (pode super-deter em n pequeno) — suavizar/Bayes fica para R03. Resta calibrar prior/λ (R03). |
 | R02 | Jogo global de fato (Prop. 2) | Derivar o limiar de switching `s*` da estrutura de informação e varrer τ→0, em vez dos limiares heurísticos fixos atuais. Sem isso, a unicidade da Prop. 2 é conjectura. |
 | R03 | Calibração + validação reais | Rotina que ajusta parâmetros aos alvos do ODD (109 leniências; 47 TCC/ano; 19% Dyck-Morse-Zingales) e reporta aderência. Hoje os alvos não restringem o modelo; a "calibração" é documental. |
 | R04 | Canal de falso reporte | **Parcial (implementado):** `taxa_falso_reporte` gera reportes errôneos/maliciosos contra não-violadoras (prova fraca q=0,15) ⇒ FP>0 e precisão deixa de ser trivial; teste de regressão em `tests/test_model.py`. Falta: represália a falsos reportes e calibração da taxa. |
-| R05 | Calibrar pesos do bem-estar | `PESOS_BEM_ESTAR` (α, β, δ, γ) são normativos provisórios; ancorar em estimativas de dano ao consumidor, custo do erro de tipo I/II e custo/transferência da recompensa. |
+| R05 | Bem-estar coerente / pesos | **Implementado (parcial):** `bem_estar` redefinido como −(dano + β·FP + γ·custo) — credita a dissuasão (R01) em vez de premiar detecção. Resta calibrar os pesos β/γ contra estimativas de dano ao consumidor e custo de erro (R03). |
 | R06 | Reescalonar capacidade ao universo do CADE | Hoje `capacidade_tique` é fração do sistema simulado limitada por INVESTIGACOES_ANUAIS_CADE/4; o reescalonamento para o universo nacional é aproximação (liga-se a E01). |
 
 Itens correlatos já rastreados: migração das 9 viz do caderno (T01) e adoção das

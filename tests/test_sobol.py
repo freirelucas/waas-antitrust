@@ -41,14 +41,14 @@ def test_executar_para_sobol_determinismo():
     assert (r1["VP"], r1["FP"], r1["bem_estar"]) == (r2["VP"], r2["FP"], r2["bem_estar"])
 
 
-def test_calcular_bem_estar_formula():
-    """bem_estar = α·VP − β·FP − δ·FN − γ·(custo/w_a). Padrão γ=0 ⇒ VP − FP − FN."""
+def test_calcular_bem_estar_social():
+    """bem_estar social = −(dano + β·FP + γ·custo/w_a); padrão γ=0 ⇒ −(dano + FP)."""
     from waas_antitrust.sobol.execucao import calcular_bem_estar
 
-    assert calcular_bem_estar(10, 2, 3, custo_recompensa=1e6, w_a_base=180_000) == 5.0
-    pesos = {"alpha_vp": 1.0, "beta_fp": 1.0, "delta_fn": 1.0, "gamma_recompensa": 1.0}
-    # custo/w_a = 360000/180000 = 2  ⇒  10 − 2 − 3 − 2 = 3
-    assert calcular_bem_estar(10, 2, 3, 360_000, 180_000, pesos) == 3.0
+    assert calcular_bem_estar(dano=100, fp=5, custo_recompensa=1e6, w_a_base=180_000) == -105.0
+    pesos = {"beta_fp": 1.0, "gamma_recompensa": 1.0}
+    # custo/w_a = 360000/180000 = 2  ⇒  −(100 + 5 + 2) = −107
+    assert calcular_bem_estar(100, 5, 360_000, 180_000, pesos) == -107.0
 
 
 def test_calcular_indices_matriz_unica():
