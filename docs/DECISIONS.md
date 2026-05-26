@@ -42,7 +42,7 @@ de pesquisa necessário para *sustentar* — não apenas alegar — cada ponto.
 | R01 | Dissuasão endógena (Prop. 3) | Tornar `eh_violadora`/`sigma` responsivos ao mecanismo (a probabilidade de violar decai com a p_detecção percebida). Hoje o tipo da firma é fixo na inicialização, então o canal de dissuasão da Prop. 3 não existe. |
 | R02 | Jogo global de fato (Prop. 2) | Derivar o limiar de switching `s*` da estrutura de informação e varrer τ→0, em vez dos limiares heurísticos fixos atuais. Sem isso, a unicidade da Prop. 2 é conjectura. |
 | R03 | Calibração + validação reais | Rotina que ajusta parâmetros aos alvos do ODD (109 leniências; 47 TCC/ano; 19% Dyck-Morse-Zingales) e reporta aderência. Hoje os alvos não restringem o modelo; a "calibração" é documental. |
-| R04 | Canal de falso reporte | Não-violadoras nunca são reportadas ⇒ FP≡0 e precisão degenerada; o termo β·FP do bem-estar fica inerte. Modelar reportes errôneos/maliciosos (e represália a falsos) para dar sentido a FP/precisão. |
+| R04 | Canal de falso reporte | **Parcial (implementado):** `taxa_falso_reporte` gera reportes errôneos/maliciosos contra não-violadoras (prova fraca q=0,15) ⇒ FP>0 e precisão deixa de ser trivial; teste de regressão em `tests/test_model.py`. Falta: represália a falsos reportes e calibração da taxa. |
 | R05 | Calibrar pesos do bem-estar | `PESOS_BEM_ESTAR` (α, β, δ, γ) são normativos provisórios; ancorar em estimativas de dano ao consumidor, custo do erro de tipo I/II e custo/transferência da recompensa. |
 | R06 | Reescalonar capacidade ao universo do CADE | Hoje `capacidade_tique` é fração do sistema simulado limitada por INVESTIGACOES_ANUAIS_CADE/4; o reescalonamento para o universo nacional é aproximação (liga-se a E01). |
 

@@ -94,3 +94,20 @@ def test_ic_f_estrela_viola_com_recompensa_excessiva():
     W_total = 500 * modelo._W_esperado(p.w_a_base)
     assert W_total > D_val
     assert empresa.satisfaz_ic_f_estrela(W_total, D_val) is False
+
+
+def test_canal_falso_reporte_gera_falsos_positivos():
+    """R04: o canal de falso reporte é a fonte de falsos positivos (sem ele, FP≡0)."""
+    base = dict(
+        n_empresas=20,
+        tam_medio_empresa=120,
+        n_tiques=40,
+        regime="B",
+        seed=3,
+        fracao_violadoras=0.2,
+        rho=0.6,
+    )
+    sem = WaaSModel(WaaSParametros(**base, taxa_falso_reporte=0.0)).executar()
+    com = WaaSModel(WaaSParametros(**base, taxa_falso_reporte=0.6)).executar()
+    assert sem["falsos_positivos_acum"].max() == 0
+    assert com["falsos_positivos_acum"].max() > 0

@@ -45,6 +45,9 @@ class WaaSParametros:
     # Calibração
     fracao_violadoras: float = 0.30
     taxa_observacao: float = 0.20
+    taxa_falso_reporte: float = (
+        0.02  # prob. de reporte errôneo/malicioso por não-violadora/tique (R04)
+    )
     tau_ruido: float = 0.10
     sigma_etico: float = 0.5
     eta_aleatorio: float = 0.05
@@ -83,6 +86,7 @@ class WaaSModel(Model):
         self.densidade = params.densidade
         self.fracao_violadoras = params.fracao_violadoras
         self.taxa_observacao = params.taxa_observacao
+        self.taxa_falso_reporte = params.taxa_falso_reporte
         self.tau_ruido = params.tau_ruido
         self.sigma_etico = params.sigma_etico
         self.eta_aleatorio = params.eta_aleatorio
@@ -285,6 +289,14 @@ class WaaSModel(Model):
                 # canal residual independente (auto-detecção)
                 if empresa.eh_violadora and self.rng.random() < 0.012:
                     self.autoridade.receber_caso(empresa, 0.4, identidades_protegidas=True)
+                # canal de falso reporte (R04): reporte errôneo/malicioso contra
+                # não-violadora, com prova fraca — fonte de falsos positivos.
+                elif (
+                    not empresa.eh_violadora
+                    and W_ativo
+                    and self.rng.random() < self.taxa_falso_reporte
+                ):
+                    self.autoridade.receber_caso(empresa, 0.15, identidades_protegidas=True)
                 continue
             qualidade = 0.9 if empresa.pagou_denunciantes else 0.6
             id_prot = not empresa.pagou_denunciantes
