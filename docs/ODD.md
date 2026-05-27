@@ -75,7 +75,7 @@ No limite τ → 0 do subjogo de jogo global, há equilíbrio único de switchin
 
 *Esboço*: aplicação direta do Teorema 1 de Morris-Shin (1998) ao jogo binário com complementaridades estratégicas. □
 
-> **Status (v0.1.0):** conjectura. O modelo computacional **não** resolve o jogo global nem varre τ → 0 (τ é fixo); a unicidade não é verificada no código.
+> **Status (atualizado — R02 exploratório):** o módulo `waas_antitrust.jogo_global` deriva o limiar de switching **único** do subgame estilizado e mostra sua convergência quando τ → 0 (`tests/test_jogo_global.py`) — a seleção de equilíbrio único que a proposição afirma. **Ressalva:** é um subgame estilizado (ganho linear na severidade, massa crítica constante), **não** integrado à dinâmica de arquétipos do ABM; o contraste formal com a multiplicidade sob conhecimento comum e a generalização seguem em aberto.
 
 ### Proposição 3 — Dominância de bem-estar do Regime B sobre o Regime A
 

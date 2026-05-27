@@ -16,3 +16,7 @@ Documentação gerada automaticamente a partir das docstrings do pacote
 ::: waas_antitrust.sobol.execucao
 
 ::: waas_antitrust.sobol.analise
+
+## Jogo global (R02, exploratório)
+
+::: waas_antitrust.jogo_global
