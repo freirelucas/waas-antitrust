@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Driver de fumaça do waas-antitrust.
 
-Exercita, num passe só, as três camadas que os PRs deste repositório costumam
+Exercita, num passe só, as quatro camadas que os PRs deste repositório costumam
 tocar — e produz um artefato visual (as figuras), que é o equivalente do
 "screenshot" para um projeto científico sem GUI:
 
-  1. modelo  (model.py / agents.py) — execução direta nos 3 regimes;
-  2. sobol   (sobol/)               — varredura replicada + índices mediados;
-  3. viz     (viz/)                 — gera as 2 figuras implementadas em PNG.
+  1. modelo      (model.py / agents.py) — 3 regimes; dissuasão (R01) e bem-estar (R05);
+  2. sobol       (sobol/)               — varredura replicada + índices mediados;
+  3. jogo_global (jogo_global.py)       — limiar de switching único, convergência τ→0 (R02);
+  4. viz         (viz/)                 — gera as 2 figuras implementadas em PNG.
 
 Rode dentro do venv de desenvolvimento (Python 3.12, `pip install -e ".[dev]"`):
 
@@ -57,14 +58,24 @@ def smoke_sobol() -> None:
     from waas_antitrust.sobol.analise import calcular_indices_replicado
 
     secao("sobol · varredura replicada + índices mediados")
-    df = executar_varredura(
-        n_base=8, regime="B", n_jobs=1, n_empresas=4, n_tiques=6, n_replicas=2
-    )
+    df = executar_varredura(n_base=8, regime="B", n_jobs=1, n_empresas=4, n_tiques=6, n_replicas=2)
     print(f"  amostras={len(df)}  réplicas={sorted(int(r) for r in df['replica'].unique())}")
     resumo = calcular_indices_replicado(df, PROBLEMA_SOBOL_8D, metrica="bem_estar")
     print("  ST (ordem total) — 4 parâmetros mais sensíveis:")
     for _, linha in resumo.head(4).iterrows():
         print(f"    {linha['parâmetro']:<16} ST={linha['ST']:+.3f}")
+
+
+def smoke_jogo_global() -> None:
+    """Camada R02: limiar de switching único e convergência quando τ→0."""
+    from waas_antitrust.jogo_global import limiar_switching, trilha_convergencia
+
+    secao("jogo_global · limiar de switching único (R02, estilizado)")
+    b, c, k = 1.5, 0.15, 0.05
+    limite = limiar_switching(b, c, k, tau=0.0)
+    erros = [abs(x - limite) for x in trilha_convergencia(b, c, k, [0.5, 0.1, 0.01])]
+    print(f"  x*(τ→0)={limite:+.4f}  erros decrescentes p/ τ↓: {[f'{e:.3f}' for e in erros]}")
+    assert erros == sorted(erros, reverse=True), "convergência não-monotônica em τ"
 
 
 def smoke_figuras(out: Path) -> list[Path]:
@@ -96,6 +107,7 @@ def main() -> int:
 
     smoke_modelo()
     smoke_sobol()
+    smoke_jogo_global()
     figs = smoke_figuras(args.out)
 
     secao("OK")

@@ -59,3 +59,6 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
 - Cobertura de testes ≥ 80% — análise de Sobol e stubs de visualização (`666fa13`).
 - Caderno-demo limpo, baseado no pacote, como companheiro canônico para Colab/CI
   (`b4f91ce`).
+- Refresh da skill `run-waas-antitrust`: driver ganha a camada `jogo_global` (R02);
+  `SKILL.md` atualizado (4 camadas, demo, métricas de dano/bem-estar) e corrige a
+  gotcha obsoleta "FP≡0" (o R04 introduziu falsos positivos).

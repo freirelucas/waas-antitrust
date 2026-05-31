@@ -12,8 +12,8 @@ Matplotlib + um caderno Jupyter. Não há servidor nem janela — dirige-se pela
 são as **figuras PNG** — o equivalente ao "screenshot" deste projeto.
 
 O caminho de agente é o driver **`.claude/skills/run-waas-antitrust/driver.py`**:
-num passe só ele exercita as três camadas que os PRs costumam tocar (modelo,
-sobol, viz) e gera as figuras.
+num passe só ele exercita as quatro camadas que os PRs costumam tocar (modelo —
+com dissuasão R01 e bem-estar R05; sobol; jogo_global R02; viz) e gera as figuras.
 
 > Todos os caminhos são relativos à raiz do repositório.
 
@@ -39,9 +39,10 @@ pip install -e ".[dev]"
 /home/user/.venv-waas/bin/python .claude/skills/run-waas-antitrust/driver.py --out /tmp/waas-driver
 ```
 
-Imprime as métricas do modelo nos 3 regimes, os índices de Sobol (ST) replicados,
-e grava 2 PNGs em `/tmp/waas-driver/` (`01_inversao.png`, `02_fase.png`). **Abra os
-PNGs** para inspeção visual. Código de saída 0 = tudo rodou.
+Imprime as métricas do modelo nos 3 regimes (VP/FP/FN/dano/bem-estar), os índices
+de Sobol (ST) replicados, o limiar do jogo global e sua convergência (τ→0), e grava
+2 PNGs em `/tmp/waas-driver/` (`01_inversao.png`, `02_fase.png`). **Abra os PNGs**
+para inspeção visual. Código de saída 0 = tudo rodou.
 
 ## Invocação direta (API / CLI)
 
@@ -58,15 +59,21 @@ print(df[['n_sinais','verdadeiros_positivos_acum','falsos_negativos_acum']].tail
 CLIs (instalados como entry points pelo `pip install -e`):
 
 ```bash
-waas-sobol --n-base 4 --jobs 1 --n-empresas 3 --n-tiques 4 --out /tmp/sobol_smoke.parquet
+waas-sobol --n-base 4 --n-replicas 2 --jobs 1 --n-empresas 3 --n-tiques 4 --out /tmp/sobol_smoke.parquet
 waas-figuras --out /tmp/figs_smoke --formato png
+```
+
+Caderno-demo (porta de entrada, ~20 s; também é o que o badge do Colab abre):
+
+```bash
+pytest --nbval-lax notebooks/WaaS_demo.ipynb
 ```
 
 ## Testes
 
 ```bash
-pytest -q tests/                  # 21 passam (inclui 1 teste lento de Sobol)
-pytest -q -m "not slow" tests/    # 20, rápido (~2 s)
+pytest -q tests/                  # 38 passam (inclui 1 teste lento de Sobol)
+pytest -q -m "not slow" tests/    # 37, rápido (~7 s)
 ruff check src/ tests/ scripts/   # limpo
 black --check src/ tests/ scripts/
 ```
@@ -82,12 +89,17 @@ black --check src/ tests/ scripts/
 - **Só 2 das "11" visualizações existem como módulo** (`inversao`, `fase`). As
   outras 9 (`sankey`, `painel`, …) são *stubs* que levantam `NotImplementedError`
   (estão no caderno; backlog T01). `waas-figuras` e o driver geram apenas as 2.
-- **`FP ≡ 0` é esperado, não bug.** Não-violadoras nunca são reportadas, então
-  `falsos_positivos_acum` (e a coluna FP do Sobol) é sempre 0 e `precisao`=1. Ver
-  R04 em `docs/DECISIONS.md`.
+- **`bem_estar` é baseado em DANO, não em detecção (R05).** É `−(dano + β·FP + γ·custo)`.
+  Logo, no horizonte longo, o Regime A pode ter mais VP que B (há mais crime a
+  detectar quando ninguém é dissuadido) — isso é o ponto, não um bug. O sinal
+  coerente é `dano_acumulado` (menor = melhor).
 - **`waas-sobol` multiplica por réplicas.** `executar_varredura` roda a matriz
-  inteira `n_replicas` vezes (padrão 5): `n_base=4` → 4·(8+2)·5 = 200 amostras. O
-  joblib imprime progresso no stderr (verbose=10) — é ruído, não erro.
+  inteira `n_replicas` vezes (padrão 5): `n_base=4, n_replicas=2` → 4·(8+2)·2 = 80
+  amostras. O joblib imprime progresso no stderr (verbose=10) — é ruído, não erro.
+- **Em populações pequenas o Sobol pode emitir `RuntimeWarning: divide by zero`**
+  (variância nula com poucas amostras) e a dissuasão (R01) pode super-deter (a
+  detecção percebida `vp/violadoras` é ruidosa). Use n_empresas ≥ 20 para o quadro
+  representativo; some no smoke test.
 
 ## Troubleshooting
 
