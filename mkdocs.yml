@@ -5,6 +5,7 @@ site_description: >-
 site_author: "L."
 repo_url: https://github.com/freirelucas/waas-antitrust
 repo_name: freirelucas/waas-antitrust
+edit_uri: edit/main/docs/
 copyright: "Código e documentação sob CC BY-SA 4.0."
 
 theme:
@@ -28,19 +29,25 @@ theme:
   features:
     - navigation.top
     - navigation.footer
+    - navigation.tracking
     - content.code.copy
+    - content.action.edit
     - search.suggest
+    - toc.integrate
 
 nav:
   - Início: index.md
-  - Uso: uso.md
+  - Resultados: resultados.md
+  - Limitações: limitacoes.md
+  - Como usar: uso.md
+  - Glossário: glossario.md
   - Fundamentos:
       - Modelo (protocolo ODD): ODD.md
       - Análise institucional: INSTITUTIONAL.md
       - Referências: REFERENCES.md
   - Referência da API: api.md
   - Desenvolvimento:
-      - Limitações e backlog: DECISIONS.md
+      - Decisões e backlog: DECISIONS.md
 
 plugins:
   - search

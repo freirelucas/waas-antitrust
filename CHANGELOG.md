@@ -47,6 +47,11 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
 - README aponta para o site, o Colab e o paper (`8906892`).
 - Site: figuras na página inicial e navegação reorganizada (`e40ed9b`).
 - Adiciona e mantém este `CHANGELOG.md`, com uma entrada por commit, agrupada por tema.
+- **Banho de loja de UX**: landing reescrita para o leigo (o problema → a ideia →
+  resultado real → para quem), novas páginas **Resultados**, **Limitações** e
+  **Glossário**, figura de resultado real do modelo (dissuasão + bem-estar) no site
+  e no README, botão "editar esta página" (`edit_uri`), e README com "por quê/como"
+  antes do quickstart.
 
 ### Ferramentas, Colab e testes
 - Skill de execução `run-waas-antitrust` com driver de fumaça (`89bc38b`).
