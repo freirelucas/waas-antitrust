@@ -59,6 +59,16 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Categoria 7 (pendências normativas)** — abrir **R09** (endogeneizar
+  `g_i(t) = π·R/(p·S)` — altera Prop. 3), **R10** (IC-F* completa
+  `W + p_pago·(S−D) < p_npago·S` — altera Prop. 1), **R11** (Hirschman
+  como elevação de `W_esperado` em vez de subtração de `g_i` — altera
+  microfundamento de R07), **R12** (substituir arquétipo "racional" por
+  `s_i ≥ x*` do `jogo_global` — fecha R02a) e **R13** (endgame do paper:
+  `p_anulacao_tcc`, fatia Pareto/lognormal, sankey real, 3 condutas-piloto
+  com fixtures). Estes itens **alteram material e Proposições** e
+  permanecem no backlog `docs/DECISIONS.md` para conversa explícita —
+  fora do piloto automático por design.
 - **Categoria 6 (UX visual + acessibilidade)** — Designer. (6.1) Mapas de
   cor das figuras conceituais migrados de `RdYlGn` (pior caso para
   daltonismo vermelho-verde) para `cividis` (`viz/inversao.py`,

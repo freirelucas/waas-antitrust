@@ -56,6 +56,21 @@ de pesquisa necessário para *sustentar* — não apenas alegar — cada ponto.
 Itens correlatos já rastreados: migração das 9 viz do caderno (T01) e adoção das
 classes de espaço do Mesa para a rede intra-firma (T02).
 
+## Pendências normativas — Categoria 7 da crítica x10
+
+Itens da [Crítica x10](critica_x10.md) que alterariam material e Proposições
+centrais do modelo. Ficam aqui como decisões **suas** (autor): não cabem ao
+piloto automático porque mudam interpretação teórica ou de mecanismo, e exigem
+conversa explícita antes da execução.
+
+| # | Origem | Decisão pendente |
+|---|---|---|
+| R09 | Eco A | Endogeneizar `g_i(t) = π·R / (p·S)` como função do estado, não constante. **Altera Prop. 3** (canal de dissuasão deixaria de ser pelo gating estático de `g_i > p_perc` e passaria a refletir feedback `g_i ↘ quando p ↗`). Avaliar: o ganho de realismo justifica revisitar o esboço da Prop. 3? |
+| R10 | Eco A | IC-F* completa: substituir `D > W` por `W + p_pago·(S − D) < p_npago·S`. **Altera Prop. 1**. Hoje a IC-F* assume que o caminho "não paga" é dominado por suposição estrutural — Eco A aponta que isso vicia qualquer alegação sobre economizar contribuição pecuniária. Implementação não-trivial. |
+| R11 | Eco A | Hirschman como elevação de `W_esperado` em vez de subtração de `g_i`. **Altera microfundamento de R07** (cláusula vira *pagamento condicional* na IC do trabalhador, não desconto na atratividade da firma). Avaliar a equivalência analítica antes de implementar. |
+| R12 | Mat B | Substituir o arquétipo "racional" por estratégia-limiar `s_i ≥ x*` do `jogo_global`. **Integra Prop. 2** ao ABM e fecha o R02a. Mais ambicioso: contraste numérico multiplicidade × unicidade no espírito Morris-Shin (R02b). |
+| R13 | Adv A, Eco B, Designer, PM | Conjunto de itens "endgame" para o paper: (i) parâmetro `p_anulacao_tcc` simulado (transforma F6 em falsificador de fato, Adv A); (ii) distribuição Pareto/lognormal de `fatia_mercado` (R03 dependência empírica, Eco B); (iii) promover `sankey.py` de stub a fluxograma real do mecanismo (Designer); (iv) escolher 3 condutas-piloto para o paper (marketplace_exclusividade, anti_steering, killer_acq_ia) com fixtures e testes de regressão (PM). |
+
 ## Histórico de decisões fechadas
 
 | # | Decisão | Resolução | Data |
