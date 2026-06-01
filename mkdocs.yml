@@ -47,6 +47,8 @@ nav:
       - Referências: REFERENCES.md
   - Referência da API: api.md
   - Desenvolvimento:
+      - Crítica x10: critica_x10.md
+      - Plano de melhorias: plano_melhorias.md
       - Decisões e backlog: DECISIONS.md
 
 plugins:

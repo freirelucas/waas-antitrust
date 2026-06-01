@@ -52,6 +52,13 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   observabilidade em P0 passa a depender do par (papel, conduta). Teste
   end-to-end confirma direcionalmente que engenheiros observam mais
   self_preferencing que designers. Glossário ganha 10 termos.
+- **Crítica x10 sintetizada**: 8 especialistas em paralelo (2 mat / 2 eco / 2 adv
+  / 1 designer / 1 PM) entregaram diagnóstico + 3–5 melhorias concretas cada.
+  Síntese em `docs/critica_x10.md` (convergências + críticas únicas + sinal mais
+  forte: descompasso de competência do Regime B). Roteiro de execução em
+  `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
+  (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
+  categoria de pendências normativas (R09–R13 a abrir).
 
 ### Documentação, site e paper
 - **Fase 3** — registra o backlog de pesquisa (R01–R06) em `docs/DECISIONS.md`
