@@ -24,3 +24,13 @@ Termos usados no projeto, em uma linha cada.
 | **Sobol** | Método de análise de sensibilidade: mede quanto cada parâmetro contribui para a variação do resultado. |
 | **Dano (acumulado)** | Proxy de prejuízo social: soma das empresas violando ao longo do tempo (quanto menor, melhor). |
 | **ODD** | Protocolo padrão (Grimm et al.) para descrever modelos baseados em agentes. |
+| **Hirschman exit-with-equity** | Saída coletiva crível com vesting acelerado: funcionários "ameaçam ir embora juntos" e a cláusula contratual transfere parte do equity *non-vested* — preserva valor em vez de derretê-lo (R07). |
+| **Vesting** | Esquema em que ações/opções do empregado são conquistadas ao longo do tempo (padrão YC: 4 anos com *cliff* de 1 ano). |
+| **Cláusula acelerada** | Cláusula que antecipa o vesting em eventos específicos (aqui: gatilho de ação coletiva). |
+| **Self-preferencing** | Auto-preferência: plataforma destaca/prioriza seus próprios produtos em busca ou marketplace. |
+| **Tying / bundling** | Vinculação: obrigar a compra conjunta de produtos que poderiam ser separados. |
+| **Predatory pricing** | Preços abaixo do custo para excluir concorrente; depois recupera com poder de mercado. |
+| **Killer acquisition** | Aquisição de concorrente nascente para neutralizá-lo (Meta–Instagram, Meta–WhatsApp). |
+| **Dark patterns** | Design de interface que dificulta saída ou induz consentimento via fricção assimétrica. |
+| **MFN / paridade** | Cláusula obrigando vendedor a não cobrar menos em outros canais (Booking, Amazon). |
+| **Ator crítico interno** | Papel dentro da firma que mais frequentemente sabe da conduta e teria incentivo a denunciá-la via WaaS (engenharia, produto, design, corp dev, jurídico…). |

@@ -40,12 +40,14 @@ class TrabalhadorAgent(Agent):
         arquetipo: str,
         w_a: float,
         k_pessoal: int,
+        papel: str = "outro",
     ) -> None:
         super().__init__(modelo)
         self.id_empresa = id_empresa
         self.arquetipo = arquetipo
         self.w_a = w_a
         self.k_pessoal = k_pessoal
+        self.papel = papel  # R08: time funcional na firma (afeta observabilidade)
         self.observou: bool = False
         self.sinaliza_agora: bool = False
 
@@ -125,6 +127,7 @@ class EmpresaAgent(Agent):
         self.g_violacao: float = 0.0  # atratividade de violar = ganho/sanção (R01)
         self.sigma_potencial: float = sigma  # severidade quando ativa a violação
         self.tem_clausula_acelerada: bool = False  # vesting acelerado em ação coletiva (R07)
+        self.conduta_potencial: str | None = None  # tipo de conduta se eh_violadora (R08)
 
     def sancao_esperada(self) -> float:
         """E[S] escalada por σ. Faixa CADE: 0,1% a 20% da receita afetada."""

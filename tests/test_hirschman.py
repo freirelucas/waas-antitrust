@@ -80,15 +80,12 @@ def test_modelo_integrado_aumenta_pagamento_com_clausula():
     sem = WaaSModel(WaaSParametros(**base, fracao_contratos_acelerados=0.0)).executar()
     com = WaaSModel(WaaSParametros(**base, fracao_contratos_acelerados=1.0)).executar()
 
-    # Direcional: com cláusula em todas as firmas, mais TCCs assinados
-    # OU menos dano (ou ambos: pagamento direto OU dissuasão preventiva).
-    n_tcc_sem = int(sem["n_tcc_assinados"].max())
-    n_tcc_com = int(com["n_tcc_assinados"].max())
+    # Direcional: cláusulas devem reduzir o dano social (canal preventivo via
+    # g_i_efetivo OU canal reativo via IC-F* ampliada). Menos TCC pode resultar
+    # de menos violação — o que é precisamente o sucesso esperado.
     dano_sem = int(sem["dano_acumulado"].max())
     dano_com = int(com["dano_acumulado"].max())
-
-    melhora = (n_tcc_com >= n_tcc_sem) and (dano_com <= dano_sem)
-    assert melhora, (
-        f"esperado mais cooperação ou menos dano com cláusulas: "
-        f"TCC {n_tcc_sem}→{n_tcc_com}, dano {dano_sem}→{dano_com}"
+    assert dano_com < dano_sem, (
+        f"esperado redução de dano com cláusulas (dissuasão preventiva): "
+        f"dano sem={dano_sem}, com={dano_com}"
     )

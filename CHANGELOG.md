@@ -42,8 +42,16 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   acelerado têm `g_i` efetivo menor) e P3 (IC-F* ampliada: `D + custo_exodo > W`,
   parametrizada por padrões YC — vesting 4y/1y cliff, substituição ~50% w_a, equity
   ~50% w_a, ~50% non-vested). Novos reporters `n_firmas_sob_ameaca_exodo` e
-  `custo_exodo_acum`. Teste de integração confirma direcionalmente que firmas com
-  cláusula cooperam mais ou geram menos dano.
+  `custo_exodo_acum`. Teste de integração confirma direcionalmente: dissuasão
+  preventiva reduz o dano social com cláusulas ativas.
+- **R08** — Heterogeneidade conduta × ator crítico: novo módulo `condutas.py` com
+  catálogo de 7 condutas canônicas digitais (self_preferencing, tying, predatory
+  pricing, killer acquisitions, dark patterns, acesso API/dados, MFN), cada uma
+  com atores primários (eng/produto/design/growth/comercial/juridico/corpdev).
+  `TrabalhadorAgent` ganha `papel`, `EmpresaAgent` ganha `conduta_potencial`, e a
+  observabilidade em P0 passa a depender do par (papel, conduta). Teste
+  end-to-end confirma direcionalmente que engenheiros observam mais
+  self_preferencing que designers. Glossário ganha 10 termos.
 
 ### Documentação, site e paper
 - **Fase 3** — registra o backlog de pesquisa (R01–R06) em `docs/DECISIONS.md`

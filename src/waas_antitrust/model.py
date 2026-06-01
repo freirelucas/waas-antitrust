@@ -9,6 +9,7 @@ import networkx as nx
 from mesa import Model
 from mesa.datacollection import DataCollector
 
+from waas_antitrust import condutas as condutas_mod
 from waas_antitrust import hirschman
 from waas_antitrust.agents import AutoridadeAgent, EmpresaAgent, TrabalhadorAgent
 from waas_antitrust.calibracao.cade import INVESTIGACOES_ANUAIS_CADE
@@ -66,6 +67,10 @@ class WaaSParametros:
     fator_substituicao_uw: float = 0.5  # custo recrutamento/onboarding em w_a
     fracao_nao_vested: float = 0.5  # vesting 4y/1y cliff: ~50% non-vested
 
+    # Heterogeneidade conduta × ator (R08): distribuição de papéis nos
+    # trabalhadores; o catálogo de condutas vem de waas_antitrust.condutas.
+    distribuicao_papeis: dict[str, float] | None = None  # None ⇒ padrão big tech
+
     # Execução
     n_tiques: int = 40  # horizonte (10 anos em trimestres)
     seed: int = 42
@@ -112,6 +117,12 @@ class WaaSModel(Model):
         self.valor_equity_por_funcionario_uw = params.valor_equity_por_funcionario_uw
         self.fator_substituicao_uw = params.fator_substituicao_uw
         self.fracao_nao_vested = params.fracao_nao_vested
+        # Heterogeneidade conduta × ator (R08): distribuição de papéis.
+        self.distribuicao_papeis = (
+            params.distribuicao_papeis
+            if params.distribuicao_papeis is not None
+            else condutas_mod.DISTRIBUICAO_PAPEIS_PADRAO
+        )
 
         self.tique: int = 0
         self.empresas: list[EmpresaAgent] = []
@@ -235,6 +246,10 @@ class WaaSModel(Model):
             empresa.tem_clausula_acelerada = bool(
                 self.rng.random() < self.fracao_contratos_acelerados
             )
+            # Conduta-tipo da firma (R08): qual abuso ela cometeria se violasse.
+            empresa.conduta_potencial = str(
+                self.rng.choice([c.nome for c in condutas_mod.CATALOGO])
+            )
             self.empresas.append(empresa)
 
             k_viz = max(4, int(tam * 0.02))
@@ -254,6 +269,9 @@ class WaaSModel(Model):
                 size=tam,
                 p=[0.15, 0.35, 0.40, 0.10],
             )
+            papeis_keys = list(self.distribuicao_papeis.keys())
+            papeis_probs = list(self.distribuicao_papeis.values())
+            papeis = self.rng.choice(papeis_keys, size=tam, p=papeis_probs)
             ws = []
             for j in range(tam):
                 w_a = max(60_000, self.rng.normal(self.w_a_base, self.w_a_base * 0.25))
@@ -264,6 +282,7 @@ class WaaSModel(Model):
                     arquetipo=str(arquetipos[j]),
                     w_a=w_a,
                     k_pessoal=k_p,
+                    papel=str(papeis[j]),
                 )
                 t.observou = eh_v and (self.rng.random() < self.taxa_observacao)
                 ws.append(t)
@@ -303,9 +322,23 @@ class WaaSModel(Model):
         self.n_violadoras_ativas = sum(1 for e in self.empresas if e.eh_violadora)
         self.dano_acumulado += self.n_violadoras_ativas
         for fid, ws in self.trabalhadores_por_empresa.items():
-            violando = self.empresas[fid].eh_violadora
+            empresa = self.empresas[fid]
+            violando = empresa.eh_violadora
+            # R08: observabilidade depende do par (papel × conduta). Sem conduta
+            # potencial registrada, cai no taxa_observacao homogêneo (compat).
+            conduta = (
+                condutas_mod.lookup_conduta(empresa.conduta_potencial)
+                if violando and empresa.conduta_potencial is not None
+                else None
+            )
             for t in ws:
-                t.observou = violando and (self.rng.random() < self.taxa_observacao)
+                if not violando:
+                    t.observou = False
+                    continue
+                fator = (
+                    condutas_mod.observabilidade(t.papel, conduta) if conduta is not None else 1.0
+                )
+                t.observou = self.rng.random() < (self.taxa_observacao * fator)
 
         # P1 · fase de sinalização
         for fid, ws in self.trabalhadores_por_empresa.items():
