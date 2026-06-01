@@ -29,6 +29,13 @@ class TrabalhadorAgent(Agent):
         imitativo — sinaliza se fração de vizinhos sinalizadores ≥ 30%
         racional  — ponderação custo-benefício explícita (IR-W e IC-T)
         aleatório — ruído uniforme com probabilidade eta
+
+    Heterogeneidade adicional (R14, exploratório):
+        anos_carreira              — tempo na firma (distrib. exponencial em P0)
+        fracao_vested_individual   — derivado: 0 se < 1 ano (cliff); min(1, anos/4)
+        tolerancia_represalia      — multiplicador individual do custo esperado
+                                     de represália (heterogeneidade ~ N(1, 0,15))
+        historico_observou         — memória: nº de tiques em que observou
     """
 
     ARQUETIPOS = ("ético", "imitativo", "racional", "aleatório")
@@ -41,6 +48,8 @@ class TrabalhadorAgent(Agent):
         w_a: float,
         k_pessoal: int,
         papel: str = "outro",
+        anos_carreira: float = 2.0,
+        tolerancia_represalia: float = 1.0,
     ) -> None:
         super().__init__(modelo)
         self.id_empresa = id_empresa
@@ -48,8 +57,22 @@ class TrabalhadorAgent(Agent):
         self.w_a = w_a
         self.k_pessoal = k_pessoal
         self.papel = papel  # R08: time funcional na firma (afeta observabilidade)
+        # R14: heterogeneidade individual (carreira, vesting, tolerância).
+        self.anos_carreira = anos_carreira
+        self.tolerancia_represalia = tolerancia_represalia
         self.observou: bool = False
         self.sinaliza_agora: bool = False
+        self.historico_observou: int = 0
+
+    @property
+    def fracao_vested_individual(self) -> float:
+        """Fração vested do equity, dada `anos_carreira` (4y vesting, 1y cliff).
+
+        Antes do cliff (anos < 1): 0. Depois: linear até 1 em 4 anos.
+        """
+        if self.anos_carreira < 1.0:
+            return 0.0
+        return min(1.0, self.anos_carreira / 4.0)
 
     def receber_sinal(self, sigma: float, tau: float) -> float | None:
         """Sinal privado σ + ε, ε ~ N(0, τ²) (inspirado em jogo global; sem cálculo de equilíbrio)."""
@@ -65,7 +88,11 @@ class TrabalhadorAgent(Agent):
         r: float,
         F_falso: float,
     ) -> int:
-        """Retorna 1 se sinaliza nesta rodada, 0 caso contrário."""
+        """Retorna 1 se sinaliza nesta rodada, 0 caso contrário.
+
+        O custo esperado de represália é modulado por `tolerancia_represalia`
+        (R14): trabalhadores mais tolerantes ao risco têm custo efetivo menor.
+        """
         if not self.observou:
             return 0
 
@@ -78,8 +105,8 @@ class TrabalhadorAgent(Agent):
         if self.arquetipo == "racional":
             if s_i is None:
                 return 0
-            # IR-W: W ≥ r · 2·w_a (custo esperado de represália)
-            custo_esperado = r * 2.0 * self.w_a
+            # IR-W: W ≥ r · tol · 2·w_a (R14: tolerância individual a represália)
+            custo_esperado = r * self.tolerancia_represalia * 2.0 * self.w_a
             # IC-T: penalidade esperada por falso reporte
             prob_verdadeiro = 1.0 / (1.0 + np.exp(-5.0 * (s_i - 0.5)))
             penalidade_esperada = (1.0 - prob_verdadeiro) * 0.5 * F_falso * self.w_a
@@ -100,6 +127,17 @@ class EmpresaAgent(Agent):
 
     Tipo θ ∈ {V, V̄} (violadora ou não). Decisão de pagamento (IC-F*):
     paga se D > W (e o regime permite).
+
+    Heterogeneidade adicional (R14, exploratório):
+        cultura_compliance — ∈ [0, 1]; modula a severidade efetiva da conduta
+                             ``sigma_efetiva = sigma_potencial · (1 − ω·cultura)``.
+                             Captura programa de integridade, conselho de ética,
+                             treinamento — sem alterar a Proposição 3 (canal
+                             ortogonal ao WaaS).
+        poder_retaliacao   — proporcional a `fatia_mercado`; modula o custo
+                             efetivo de represália percebido pelo trabalhador.
+        n_denuncias_acum   — memória: nº de denúncias internas já sofridas
+                             (proxy de pressão reputacional).
     """
 
     def __init__(
@@ -111,6 +149,7 @@ class EmpresaAgent(Agent):
         n_trabalhadores: int,
         fatia_mercado: float,
         R_receita: float,
+        cultura_compliance: float = 0.0,
     ) -> None:
         super().__init__(modelo)
         self.id_empresa = id_empresa
@@ -128,6 +167,10 @@ class EmpresaAgent(Agent):
         self.sigma_potencial: float = sigma  # severidade quando ativa a violação
         self.tem_clausula_acelerada: bool = False  # vesting acelerado em ação coletiva (R07)
         self.conduta_potencial: str | None = None  # tipo de conduta se eh_violadora (R08)
+        # R14: heterogeneidade institucional / poder relativo.
+        self.cultura_compliance = cultura_compliance
+        self.poder_retaliacao: float = fatia_mercado  # proxy: posição dominante
+        self.n_denuncias_acum: int = 0
 
     def sancao_esperada(self) -> float:
         """E[S] escalada por σ. Faixa CADE: 0,1% a 20% da receita afetada."""
@@ -147,12 +190,26 @@ class AutoridadeAgent(Agent):
 
     Capacidade κ (casos por tique) e acurácia ρ. Casos não-aceitos por
     restrição de capacidade são descartados (Harrington-Chang 2015).
+
+    Heterogeneidade adicional (R14, exploratório):
+        prioridade_digital — ∈ [0, 1]; modula a acurácia em condutas digitais
+                             ``rho_efetivo = rho + (1 − rho)·prioridade``.
+                             Captura especialização institucional (CGAA/CADE
+                             Departamento de Estudos Econômicos sobre digital).
+                             Default 0 preserva o comportamento original.
     """
 
-    def __init__(self, modelo: Model, capacidade: int, rho_acuracia: float) -> None:
+    def __init__(
+        self,
+        modelo: Model,
+        capacidade: int,
+        rho_acuracia: float,
+        prioridade_digital: float = 0.0,
+    ) -> None:
         super().__init__(modelo)
         self.capacidade = capacidade
         self.rho = rho_acuracia
+        self.prioridade_digital = prioridade_digital
         self.casos_neste_tique: list[dict] = []
         self.historico_casos: list[dict] = []
 
@@ -175,10 +232,14 @@ class AutoridadeAgent(Agent):
     def processar_casos(self) -> list[dict]:
         aceitos = self.casos_neste_tique[: self.capacidade]
         resultados = []
+        # R14: acurácia base é elevada por `prioridade_digital` (especialização
+        # institucional da autoridade em mercados digitais). Default 0 preserva
+        # o comportamento original (rho_efetivo == rho).
+        rho_efetivo = self.rho + (1.0 - self.rho) * self.prioridade_digital
         for caso in aceitos:
             # A acurácia cresce com a qualidade da prova: p_correto = ρ + (1−ρ)·q.
             # Provas melhores (canal WaaS) ⇒ classificação mais confiável.
-            p_correto = min(1.0, self.rho + (1.0 - self.rho) * caso["qualidade_prova"])
+            p_correto = min(1.0, rho_efetivo + (1.0 - rho_efetivo) * caso["qualidade_prova"])
             acerta = self.model.rng.random() < p_correto
             classificada_violadora = (
                 caso["eh_violadora_real"] if acerta else not caso["eh_violadora_real"]

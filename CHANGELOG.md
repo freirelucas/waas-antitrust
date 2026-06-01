@@ -59,6 +59,24 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R14 — Enriquecimento heterogêneo dos agentes (exploratório)**:
+  três canais ortogonais ao R01, sem violar Proposições, todos opt-in
+  por defaults para preservar compatibilidade.
+  - **TrabalhadorAgent**: `anos_carreira` (Exponencial), property
+    derivada `fracao_vested_individual` (cliff 1y + linear até 4y),
+    `tolerancia_represalia` heterogênea (multiplicador individual no
+    custo esperado de represália; ativa com
+    `sigma_tolerancia_represalia > 0`), e memória `historico_observou`.
+  - **EmpresaAgent**: `cultura_compliance ∈ [0,1]` modula a severidade
+    efetiva σ via `peso_cultura_compliance · cultura` — programa de
+    integridade como canal ortogonal ao R01. Atributo `poder_retaliacao`
+    (proxy = `fatia_mercado`; ainda não acionado). Memória
+    `n_denuncias_acum` em P2.
+  - **AutoridadeAgent**: `prioridade_digital ∈ [0,1]` eleva ρ na P4
+    (`ρ_ef = ρ + (1−ρ)·prioridade`). Default 0 preserva ρ_ef = ρ.
+  - Sete testes direcionais novos em `tests/test_agentes_enriquecidos.py`
+    (vesting + cliff, homogeneidade vs heterogeneidade, cultura reduz
+    multa, prioridade eleva VP, memória acumula). Total: 73 → 80.
 - **Categoria 7 (pendências normativas)** — abrir **R09** (endogeneizar
   `g_i(t) = π·R/(p·S)` — altera Prop. 3), **R10** (IC-F* completa
   `W + p_pago·(S−D) < p_npago·S` — altera Prop. 1), **R11** (Hirschman

@@ -72,6 +72,16 @@ class WaaSParametros:
     # (default 0 = versão bruta histórica; ~0,4 reflete a realidade tributária).
     aliquota_tributaria_vesting: float = 0.0
 
+    # R14: enriquecimento heterogêneo dos agentes (canais ortogonais a R01).
+    # Empresa: cultura de compliance reduz σ efetivo (programa de integridade).
+    peso_cultura_compliance: float = 0.0  # ω em σ_ef = σ · (1 − ω · cultura)
+    # Trabalhador: dispersão da tolerância à represália em torno de 1.0.
+    sigma_tolerancia_represalia: float = 0.0  # 0 ⇒ todos com tol=1 (compat); 0,2 ativa
+    # Autoridade: especialização em mercados digitais (modula ρ na P4).
+    prioridade_digital_autoridade: float = 0.0  # 0 ⇒ ρ_ef = ρ; 1 ⇒ ρ_ef = 1
+    # Distribuição de tempo de carreira (exponencial, em anos; cliff de 1 ano).
+    media_anos_carreira: float = 3.0
+
     # Heterogeneidade conduta × ator (R08): distribuição de papéis nos
     # trabalhadores; o catálogo de condutas vem de waas_antitrust.condutas.
     distribuicao_papeis: dict[str, float] | None = None  # None ⇒ padrão big tech
@@ -145,6 +155,11 @@ class WaaSModel(Model):
         self.fator_substituicao_uw = params.fator_substituicao_uw
         self.fracao_nao_vested = params.fracao_nao_vested
         self.aliquota_tributaria_vesting = params.aliquota_tributaria_vesting
+        # R14: pesos da heterogeneidade adicional dos agentes.
+        self.peso_cultura_compliance = params.peso_cultura_compliance
+        self.sigma_tolerancia_represalia = params.sigma_tolerancia_represalia
+        self.prioridade_digital_autoridade = params.prioridade_digital_autoridade
+        self.media_anos_carreira = params.media_anos_carreira
         # Heterogeneidade conduta × ator (R08): distribuição de papéis.
         self.distribuicao_papeis = (
             params.distribuicao_papeis
@@ -188,7 +203,10 @@ class WaaSModel(Model):
         capacidade_por_fracao = max(1, int(params.taxa_capacidade * params.n_empresas))
         capacidade_tique = min(capacidade_por_fracao, capacidade_cade_trimestral)
         self.autoridade = AutoridadeAgent(
-            self, capacidade=capacidade_tique, rho_acuracia=params.rho
+            self,
+            capacidade=capacidade_tique,
+            rho_acuracia=params.rho,
+            prioridade_digital=params.prioridade_digital_autoridade,
         )
 
         self._criar_empresas(params.n_empresas, params.tam_medio_empresa)
@@ -268,6 +286,9 @@ class WaaSModel(Model):
             sigma = sigma_potencial if eh_v else 0.0
             R = tam * self.R_por_trabalhador
 
+            # R14: cultura de compliance sorteada por firma (U[0, 1]); a magnitude
+            # do efeito sobre σ é controlada por `peso_cultura_compliance`.
+            cultura = float(self.rng.uniform(0.0, 1.0))
             empresa = EmpresaAgent(
                 self,
                 id_empresa=fid,
@@ -276,6 +297,7 @@ class WaaSModel(Model):
                 n_trabalhadores=tam,
                 fatia_mercado=1.0 / n_empresas,
                 R_receita=R,
+                cultura_compliance=cultura,
             )
             empresa.g_violacao = g_violacao
             empresa.sigma_potencial = sigma_potencial
@@ -314,6 +336,17 @@ class WaaSModel(Model):
             for j in range(tam):
                 w_a = max(60_000, self.rng.normal(self.w_a_base, self.w_a_base * 0.25))
                 k_p = max(1, int(self.k_rel * tam + self.rng.normal(0, 1)))
+                # R14: tempo de carreira (Exp média configurável, em anos),
+                # truncado em [0, 8]. Derivado a fração vested individual.
+                anos = float(self.rng.exponential(self.media_anos_carreira))
+                anos = max(0.0, min(8.0, anos))
+                # Tolerância individual à represália (multiplicador em torno de 1).
+                # `sigma_tolerancia_represalia = 0` ⇒ todos iguais (compat).
+                if self.sigma_tolerancia_represalia > 0:
+                    tol = float(self.rng.normal(1.0, self.sigma_tolerancia_represalia))
+                    tol = max(0.2, min(2.0, tol))
+                else:
+                    tol = 1.0
                 t = TrabalhadorAgent(
                     self,
                     id_empresa=fid,
@@ -321,6 +354,8 @@ class WaaSModel(Model):
                     w_a=w_a,
                     k_pessoal=k_p,
                     papel=str(papeis[j]),
+                    anos_carreira=anos,
+                    tolerancia_represalia=tol,
                 )
                 t.observou = eh_v and (self.rng.random() < self.taxa_observacao)
                 ws.append(t)
@@ -364,7 +399,13 @@ class WaaSModel(Model):
                 self.peso_hirschman,
             )
             empresa.eh_violadora = g_ef > self.p_perc
-            empresa.sigma = empresa.sigma_potencial if empresa.eh_violadora else 0.0
+            # R14: cultura de compliance atenua a severidade efetiva σ. Canal
+            # ortogonal ao R01 (dissuasão por detecção): mesmo violando, firma
+            # com cultura forte viola menos pesadamente.
+            sigma_efetiva = empresa.sigma_potencial * max(
+                0.0, 1.0 - self.peso_cultura_compliance * empresa.cultura_compliance
+            )
+            empresa.sigma = sigma_efetiva if empresa.eh_violadora else 0.0
         self.n_violadoras_ativas = sum(1 for e in self.empresas if e.eh_violadora)
         self.dano_acumulado += self.n_violadoras_ativas
         # Categoria 3 (Eco B): dano ponderado pela fatia de mercado da violadora.
@@ -390,6 +431,8 @@ class WaaSModel(Model):
                     condutas_mod.observabilidade(t.papel, conduta) if conduta is not None else 1.0
                 )
                 t.observou = self.rng.random() < (self.taxa_observacao * fator)
+                if t.observou:
+                    t.historico_observou += 1
 
         # P1 · fase de sinalização
         for fid, ws in self.trabalhadores_por_empresa.items():
@@ -423,6 +466,7 @@ class WaaSModel(Model):
             k_req = max(1, int(self.k_rel * empresa.n_trabalhadores))
             if W_ativo and n_sig >= k_req:
                 empresa.notificada_no_periodo = True
+                empresa.n_denuncias_acum += 1  # R14: memória da firma
 
         # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07)
         for empresa in self.empresas:
