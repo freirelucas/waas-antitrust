@@ -130,3 +130,34 @@ def test_dissuasao_endogena_reduz_violadoras_no_regime_b():
     # canal de dissuasão da Prop. 3: B reduz as violadoras ativas; A não deter
     assert viol_b < viol_a
     assert viol_a >= df_a["n_violadoras_ativas"].iloc[0]
+
+
+def test_dissuasao_endogena_robusta_a_multi_seed():
+    """R01 multi-seed (Categoria 2, Mat A/Mat B): mediana(B − A) negativa com
+    CI 95% que não cruza zero — promove a comparação pontual a comparação
+    estatística sobre uma amostra de seeds independentes.
+    """
+    from waas_antitrust.robustez import bootstrap_ci, varredura_multi_seed
+
+    base = dict(
+        n_empresas=30,
+        tam_medio_empresa=150,
+        n_tiques=40,
+        fracao_violadoras=0.5,
+        taxa_observacao=0.4,
+    )
+
+    def diff_b_menos_a(seed: int) -> float:
+        df_a = WaaSModel(WaaSParametros(**base, regime="A", seed=seed)).executar()
+        df_b = WaaSModel(WaaSParametros(**base, regime="B", seed=seed)).executar()
+        return float(
+            df_b["n_violadoras_ativas"].tail(10).mean()
+            - df_a["n_violadoras_ativas"].tail(10).mean()
+        )
+
+    # 12 seeds independentes; suficiente para um sinal claro sob direção forte.
+    seeds = list(range(101, 113))
+    diffs = varredura_multi_seed(diff_b_menos_a, seeds)
+    ci = bootstrap_ci(diffs, n_bootstrap=2000, seed=0)
+    assert ci.mediana < 0.0
+    assert ci.superior < 0.0  # CI 95% não cruza zero — direção robusta a reamostragem

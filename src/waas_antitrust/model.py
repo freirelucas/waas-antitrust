@@ -13,6 +13,7 @@ from waas_antitrust import condutas as condutas_mod
 from waas_antitrust import hirschman
 from waas_antitrust.agents import AutoridadeAgent, EmpresaAgent, TrabalhadorAgent
 from waas_antitrust.calibracao.cade import INVESTIGACOES_ANUAIS_CADE
+from waas_antitrust.robustez import beta_binomial_smoothing
 
 if TYPE_CHECKING:
     import pandas as pd
@@ -71,6 +72,13 @@ class WaaSParametros:
     # trabalhadores; o catálogo de condutas vem de waas_antitrust.condutas.
     distribuicao_papeis: dict[str, float] | None = None  # None ⇒ padrão big tech
 
+    # Suavização Beta-Binomial em p_perc (Categoria 2 da crítica x10, Mat A):
+    # estimador `(vp + α) / (n_viol + α + β)` remove singularidade em
+    # n_viol = 0 e estabiliza a variância em n pequeno. α=1, β=5 ⇒ prior
+    # centrado em ~16,7%, próximo do default `p_deteccao_prior = 0.15`.
+    alpha_beta_binomial: float = 1.0
+    beta_beta_binomial: float = 5.0
+
     # Execução
     n_tiques: int = 40  # horizonte (10 anos em trimestres)
     seed: int = 42
@@ -123,6 +131,9 @@ class WaaSModel(Model):
             if params.distribuicao_papeis is not None
             else condutas_mod.DISTRIBUICAO_PAPEIS_PADRAO
         )
+        # Suavização Beta-Binomial (Categoria 2, Mat A): pseudo-contagens do prior.
+        self.alpha_beta_binomial = params.alpha_beta_binomial
+        self.beta_beta_binomial = params.beta_beta_binomial
 
         self.tique: int = 0
         self.empresas: list[EmpresaAgent] = []
@@ -302,8 +313,16 @@ class WaaSModel(Model):
         # P0 · dissuasão endógena (R01): a detecção percebida é atualizada por
         # expectativa adaptativa sobre a detecção realizada no tique anterior;
         # cada firma re-decide violar enquanto sua atratividade g_i superar p_perc.
-        if self.tique > 1 and self.n_violadoras_ativas > 0:
-            p_realizado = self.vp_tique / self.n_violadoras_ativas
+        # Categoria 2 (Mat A): estimador frequencista vp/n_viol substituído por
+        # Beta-Binomial MAP `(vp + α) / (n_viol + α + β)` — sempre definido
+        # (mesmo em n_viol = 0, retorna a média do prior) e estável em n pequeno.
+        if self.tique > 1:
+            p_realizado = beta_binomial_smoothing(
+                self.vp_tique,
+                self.n_violadoras_ativas,
+                alpha=self.alpha_beta_binomial,
+                beta=self.beta_beta_binomial,
+            )
             self.p_perc = (
                 1.0 - self.lambda_expectativa
             ) * self.p_perc + self.lambda_expectativa * p_realizado

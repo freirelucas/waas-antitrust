@@ -59,6 +59,21 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Categoria 2 (infra de robustez)** — Mat A + Mat B. Novo módulo
+  `src/waas_antitrust/robustez.py` com (2.1) **suavização Beta-Binomial**
+  `beta_binomial_smoothing(sucessos, tentativas, α, β)` — estimador MAP
+  `(sucessos + α) / (tentativas + α + β)` que remove a singularidade do
+  estimador frequencista em `tentativas = 0` e estabiliza a variância em
+  n pequeno; integrada em P0 (`model.py`) substituindo `vp/n_violadoras`,
+  parametrizada por `alpha_beta_binomial=1.0` e `beta_beta_binomial=5.0`
+  (prior centrado em ~16,7%, próximo do `p_deteccao_prior` default). (2.2)
+  Helper de **bootstrap multi-seed** `bootstrap_ci(valores, n_bootstrap,
+  α, seed)` + `varredura_multi_seed(fabrica, seeds)` para promover
+  comparações pontuais a comparações com intervalo de confiança
+  percentílico. Teste novo `test_dissuasao_endogena_robusta_a_multi_seed`
+  confirma que a mediana de `B − A` em 12 seeds é negativa e o CI 95% não
+  cruza zero — direção da Prop. 3 robusta a reamostragem. 10 testes novos
+  (53 → 63); gates seguem verdes.
 - **Categoria 1 (honestidade documental)** — só-texto, sem mudança de comportamento.
   (1.1) `hirschman.py` corrige docstring "padrões YC" → reconhece que o
   gatilho de vesting acelerado por ação coletiva é **construção normativa
