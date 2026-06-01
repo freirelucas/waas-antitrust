@@ -82,6 +82,30 @@ def valor_vesting_acelerado(
     return n_funcionarios * valor_equity_por_funcionario * w_a_medio * fracao_nao_vested
 
 
+def valor_liquido_pos_tributos(
+    valor_bruto: float,
+    aliquota_efetiva: float = 0.4,
+) -> float:
+    """Aplica haircut tributário (IRPF + INSS) sobre vesting acelerado no Brasil.
+
+    Padrão 40% (faixa indicada por Adv B na crítica x10); pode chegar a ~50%
+    sob caracterização salarial estrita. A natureza jurídica do vesting
+    (salarial vs. mercantil) ainda está em formação na jurisprudência
+    pós-reforma trabalhista (Lei 13.467/2017).
+
+    Esta função encapsula o haircut como knob explícito: o modelo pode optar
+    pela versão bruta (default histórica, `aliquota = 0`) ou líquida (mais
+    conservadora). O custo de substituição (recrutamento + onboarding) **não**
+    sofre haircut — é despesa operacional da firma, não rendimento do
+    trabalhador.
+    """
+    if valor_bruto < 0:
+        raise ValueError("valor_bruto deve ser não-negativo")
+    if not 0.0 <= aliquota_efetiva < 1.0:
+        raise ValueError("aliquota_efetiva deve estar em [0, 1)")
+    return valor_bruto * (1.0 - aliquota_efetiva)
+
+
 def custo_exodo_esperado(
     n_disparados: int,
     w_a_medio: float,
@@ -89,18 +113,24 @@ def custo_exodo_esperado(
     fator_substituicao: float = 0.5,
     valor_equity_por_funcionario: float = 0.5,
     fracao_nao_vested: float = 0.5,
+    aliquota_tributaria: float = 0.0,
 ) -> float:
     """Custo total esperado se a ameaça de êxodo se materializar.
 
     Sem cláusula contratual: zero (não há gatilho legal para acelerar vesting).
+    Com `aliquota_tributaria > 0`, o valor do vesting acelerado é descontado
+    pelo haircut tributário antes de entrar na soma — credibilidade reduzida
+    porque o trabalhador retém menos. Default 0 preserva a versão bruta
+    histórica; a Categoria 4 da crítica x10 (Adv B) recomenda ~0,4.
     """
     if not tem_clausula:
         return 0.0
-    return custo_substituicao(
-        n_disparados, w_a_medio, fator_substituicao
-    ) + valor_vesting_acelerado(
+    sub = custo_substituicao(n_disparados, w_a_medio, fator_substituicao)
+    vest_bruto = valor_vesting_acelerado(
         n_disparados, w_a_medio, valor_equity_por_funcionario, fracao_nao_vested
     )
+    vest_liquido = valor_liquido_pos_tributos(vest_bruto, aliquota_tributaria)
+    return sub + vest_liquido
 
 
 def deve_pagar_com_hirschman(

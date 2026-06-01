@@ -59,6 +59,22 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Categoria 4 (gating jurídico do R07)** — Adv B (sinal mais forte da
+  crítica x10: descompasso de competência do Regime B). (4.1)
+  `WaaSModel.__init__` agora rejeita `fracao_contratos_acelerados > 0` sob
+  Regime A ou B: emite `UserWarning` citando reserva de lei (Art. 22, I,
+  CF — Resolução do CADE não pode impor cláusula contratual padrão) e
+  força o valor para 0.0. Apenas Regime C preserva o parâmetro. (4.2)
+  Nova função `valor_liquido_pos_tributos(valor_bruto, aliquota=0.4)` em
+  `hirschman.py`: aplica haircut IRPF+INSS (40% default) sobre o vesting
+  acelerado; **substituição não sofre haircut** — é despesa operacional
+  da firma, não rendimento do trabalhador. `custo_exodo_esperado` ganha
+  arg `aliquota_tributaria=0.0` (default preserva versão bruta histórica);
+  `WaaSParametros.aliquota_tributaria_vesting` propaga para o modelo.
+  (4.3) Testes novos: gating sob A/B com `pytest.warns`, preservação sob
+  C, haircut só no vesting (não na substituição), defaults antigos. O
+  teste integrado de R07 migrou de regime B → C (coerência institucional).
+  Total: 65 → 70 testes.
 - **Categoria 3 (bem-estar substantivo)** — Eco B. (3.1) `custo_exodo_acum`
   entra em `calcular_bem_estar` com peso `delta_exodo=0.5` (custo social de
   perda transitória de capital humano). (3.2) Novo reporter

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import warnings
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
@@ -67,6 +68,9 @@ class WaaSParametros:
     valor_equity_por_funcionario_uw: float = 0.5  # em unidades de w_a (YC ref)
     fator_substituicao_uw: float = 0.5  # custo recrutamento/onboarding em w_a
     fracao_nao_vested: float = 0.5  # vesting 4y/1y cliff: ~50% non-vested
+    # Categoria 4 (Adv B): haircut IRPF + INSS sobre vesting acelerado no BR
+    # (default 0 = versão bruta histórica; ~0,4 reflete a realidade tributária).
+    aliquota_tributaria_vesting: float = 0.0
 
     # Heterogeneidade conduta × ator (R08): distribuição de papéis nos
     # trabalhadores; o catálogo de condutas vem de waas_antitrust.condutas.
@@ -119,12 +123,28 @@ class WaaSModel(Model):
         self.delta_leniencia = params.delta_leniencia
         self.w_a_base = params.w_a_base
         self.R_por_trabalhador = params.R_por_trabalhador
-        # Hirschman exit-with-equity (R07)
-        self.fracao_contratos_acelerados = params.fracao_contratos_acelerados
+        # Hirschman exit-with-equity (R07).
+        # Categoria 4 (Adv B): gating jurídico — cláusula contratual de vesting
+        # acelerado por ação coletiva só é instrumento institucionalmente
+        # disponível sob Regime C (via lei). Resolução do CADE (Regime B) é
+        # infralegal e, por reserva de lei (Art. 22, I, CF), não pode impor
+        # cláusula trabalhista. Sob A/B, força fracao_contratos_acelerados=0.
+        fc = params.fracao_contratos_acelerados
+        if fc > 0.0 and self.regime in ("A", "B"):
+            warnings.warn(
+                f"fracao_contratos_acelerados={fc:.3f} > 0 é incoerente com Regime "
+                f"{self.regime!r} (reserva de lei, Art. 22, I, CF — só Regime C pode "
+                f"impor cláusula contratual padrão). Forçando para 0.0.",
+                UserWarning,
+                stacklevel=2,
+            )
+            fc = 0.0
+        self.fracao_contratos_acelerados = fc
         self.peso_hirschman = params.peso_hirschman
         self.valor_equity_por_funcionario_uw = params.valor_equity_por_funcionario_uw
         self.fator_substituicao_uw = params.fator_substituicao_uw
         self.fracao_nao_vested = params.fracao_nao_vested
+        self.aliquota_tributaria_vesting = params.aliquota_tributaria_vesting
         # Heterogeneidade conduta × ator (R08): distribuição de papéis.
         self.distribuicao_papeis = (
             params.distribuicao_papeis
@@ -423,6 +443,7 @@ class WaaSModel(Model):
                 fator_substituicao=self.fator_substituicao_uw,
                 valor_equity_por_funcionario=self.valor_equity_por_funcionario_uw,
                 fracao_nao_vested=self.fracao_nao_vested,
+                aliquota_tributaria=self.aliquota_tributaria_vesting,
             )
             empresa.pagou_denunciantes = D_ativo and hirschman.deve_pagar_com_hirschman(
                 W_total, D_val, c_exodo

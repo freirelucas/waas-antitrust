@@ -7,6 +7,7 @@ from waas_antitrust.hirschman import (
     custo_substituicao,
     deve_pagar_com_hirschman,
     g_i_efetivo,
+    valor_liquido_pos_tributos,
     valor_vesting_acelerado,
 )
 
@@ -63,16 +64,91 @@ def test_argumentos_invalidos_levantam():
         valor_vesting_acelerado(10, 180_000, fracao_nao_vested=1.5)
 
 
+def test_valor_liquido_pos_tributos_aplica_haircut():
+    """Categoria 4 (Adv B): IRPF + INSS derrete o valor bruto do vesting."""
+    # Default 40% → líquido = 60% do bruto.
+    assert valor_liquido_pos_tributos(100_000.0) == pytest.approx(60_000.0)
+    # Aliquota 0 ⇒ líquido = bruto (compat com versão antiga).
+    assert valor_liquido_pos_tributos(100_000.0, aliquota_efetiva=0.0) == 100_000.0
+    # Aliquota 0.5 (caracterização salarial estrita).
+    assert valor_liquido_pos_tributos(100_000.0, aliquota_efetiva=0.5) == 50_000.0
+
+
+def test_valor_liquido_rejeita_argumentos_invalidos():
+    with pytest.raises(ValueError):
+        valor_liquido_pos_tributos(-1.0)
+    with pytest.raises(ValueError):
+        valor_liquido_pos_tributos(100.0, aliquota_efetiva=1.0)
+    with pytest.raises(ValueError):
+        valor_liquido_pos_tributos(100.0, aliquota_efetiva=-0.1)
+
+
+def test_custo_exodo_haircut_so_no_vesting_nao_na_substituicao():
+    """O haircut tributário atinge só o equity (rendimento do trabalhador),
+    não o custo de substituição (despesa operacional da firma)."""
+    # Sem haircut (default 0): bruto.
+    c_bruto = custo_exodo_esperado(10, 180_000, tem_clausula=True)
+    # Com haircut 0,4: vesting cai 40%, substituição inalterada.
+    c_liq = custo_exodo_esperado(10, 180_000, tem_clausula=True, aliquota_tributaria=0.4)
+    sub = custo_substituicao(10, 180_000)  # 50% × 10 × 180k = 900k
+    vest = valor_vesting_acelerado(10, 180_000)  # 50% × 50% × 10 × 180k = 450k
+    assert c_bruto == pytest.approx(sub + vest)
+    assert c_liq == pytest.approx(sub + vest * 0.6)
+    # A queda no custo total = 40% do vesting (não do total).
+    assert (c_bruto - c_liq) == pytest.approx(vest * 0.4)
+
+
+def test_gating_juridico_regime_b_forca_fracao_zero_e_emite_warning():
+    """Categoria 4.1 (Adv B): Resolução do CADE (Regime B) não pode impor
+    cláusula contratual padrão (reserva de lei). Sob A/B, o modelo força
+    `fracao_contratos_acelerados=0` e emite UserWarning."""
+    from waas_antitrust.model import WaaSModel, WaaSParametros
+
+    for regime_proibido in ("A", "B"):
+        with pytest.warns(UserWarning, match="reserva de lei"):
+            modelo = WaaSModel(
+                WaaSParametros(
+                    n_empresas=4,
+                    tam_medio_empresa=30,
+                    n_tiques=2,
+                    regime=regime_proibido,
+                    fracao_contratos_acelerados=0.5,
+                )
+            )
+        assert modelo.fracao_contratos_acelerados == 0.0
+
+
+def test_gating_juridico_regime_c_preserva_fracao():
+    """Categoria 4.1 (Adv B): Regime C (via lei) pode impor a cláusula."""
+    from waas_antitrust.model import WaaSModel, WaaSParametros
+
+    modelo = WaaSModel(
+        WaaSParametros(
+            n_empresas=4,
+            tam_medio_empresa=30,
+            n_tiques=2,
+            regime="C",
+            fracao_contratos_acelerados=0.5,
+        )
+    )
+    assert modelo.fracao_contratos_acelerados == pytest.approx(0.5)
+
+
 def test_modelo_integrado_aumenta_pagamento_com_clausula():
     """End-to-end: fração maior de cláusulas → mais firmas pagam denunciantes
-    (a ameaça preventiva e a IC ampliada se reforçam)."""
+    (a ameaça preventiva e a IC ampliada se reforçam).
+
+    Roda sob Regime C (via lei): após Categoria 4 (Adv B), só o Regime C
+    pode impor a cláusula contratual padrão (reserva de lei, Art. 22, I, CF);
+    A e B forçam `fracao_contratos_acelerados=0` independentemente do input.
+    """
     from waas_antitrust.model import WaaSModel, WaaSParametros
 
     base = {
         "n_empresas": 30,
         "tam_medio_empresa": 150,
         "n_tiques": 30,
-        "regime": "B",
+        "regime": "C",
         "seed": 7,
         "fracao_violadoras": 0.4,
         "taxa_observacao": 0.4,
