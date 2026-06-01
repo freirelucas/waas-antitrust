@@ -3,8 +3,10 @@
 import pytest
 
 from waas_antitrust.condutas import (
+    BIGTECH_MADURA,
     CATALOGO,
     DISTRIBUICAO_PAPEIS_PADRAO,
+    MARKETPLACE_BR,
     PAPEIS_PADRAO,
     Conduta,
     lookup_conduta,
@@ -12,10 +14,18 @@ from waas_antitrust.condutas import (
 )
 
 
-def test_catalogo_tem_7_condutas_unicas():
+def test_catalogo_tem_9_condutas_unicas():
+    """Categoria 5 (PM): catálogo passou de 7 → 9 com adição BR (iFood, Apple)."""
     nomes = [c.nome for c in CATALOGO]
-    assert len(CATALOGO) == 7
-    assert len(set(nomes)) == 7  # nenhum nome duplicado
+    assert len(CATALOGO) == 9
+    assert len(set(nomes)) == 9  # nenhum nome duplicado
+
+
+def test_catalogo_inclui_condutas_brasileiras():
+    """Categoria 5.1/5.2 (PM): cobertura específica do mercado BR."""
+    nomes = {c.nome for c in CATALOGO}
+    assert "exclusividade_retaliacao_marketplace" in nomes
+    assert "anti_steering_iap" in nomes
 
 
 def test_lookup_funciona_e_levanta_em_desconhecida():
@@ -26,12 +36,20 @@ def test_lookup_funciona_e_levanta_em_desconhecida():
         lookup_conduta("conduta_inexistente")
 
 
-def test_observabilidade_primario_vs_outro():
-    """Ator primário observa muito mais que ator de outro time."""
+def test_observabilidade_gradiente_3_niveis():
+    """Categoria 5.5 (PM): gradiente 3-níveis em vez de binário.
+    Primário=1.0, adjacente=0.5, distal=0.1."""
     sp = lookup_conduta("self_preferencing")
-    assert observabilidade("eng", sp) > observabilidade("design", sp)
+    # primário (eng está em atores_primarios)
     assert observabilidade("eng", sp) == 1.0
-    assert observabilidade("design", sp) == 0.2
+    # adjacente (growth está em atores_adjacentes)
+    assert observabilidade("growth", sp) == 0.5
+    # distal (design não está em nenhum dos dois conjuntos para self_preferencing)
+    assert observabilidade("design", sp) == 0.1
+    # ordenação estrita
+    assert (
+        observabilidade("eng", sp) > observabilidade("growth", sp) > observabilidade("design", sp)
+    )
 
 
 def test_atores_primarios_cobrem_papeis_centrais():
@@ -44,6 +62,23 @@ def test_atores_primarios_cobrem_papeis_centrais():
 def test_distribuicao_papeis_soma_um():
     soma = sum(DISTRIBUICAO_PAPEIS_PADRAO.values())
     assert abs(soma - 1.0) < 1e-9, f"distribuição soma {soma}, esperado 1.0"
+
+
+def test_presets_bigtech_e_marketplace_somam_um():
+    """Categoria 5.4 (PM): MARKETPLACE_BR convive com BIGTECH_MADURA (default)."""
+    assert abs(sum(BIGTECH_MADURA.values()) - 1.0) < 1e-9
+    assert abs(sum(MARKETPLACE_BR.values()) - 1.0) < 1e-9
+    # Marketplace BR é operations-heavy; bigtech é eng-heavy.
+    assert MARKETPLACE_BR["operacoes"] > BIGTECH_MADURA["operacoes"]
+    assert BIGTECH_MADURA["eng"] > MARKETPLACE_BR["eng"]
+    # Default mantido como BIGTECH_MADURA (preserva calibração existente).
+    assert DISTRIBUICAO_PAPEIS_PADRAO == BIGTECH_MADURA
+
+
+def test_papeis_padrao_inclui_operacoes_e_financeiro():
+    """Categoria 5.3 (PM): operações (marketplaces) e financeiro (FP&A)."""
+    assert "operacoes" in PAPEIS_PADRAO
+    assert "financeiro" in PAPEIS_PADRAO
 
 
 def test_casos_referencia_documentados():

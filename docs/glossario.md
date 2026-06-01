@@ -33,4 +33,8 @@ Termos usados no projeto, em uma linha cada.
 | **Killer acquisition** | Aquisição de concorrente nascente para neutralizá-lo (Meta–Instagram, Meta–WhatsApp). |
 | **Dark patterns** | Design de interface que dificulta saída ou induz consentimento via fricção assimétrica. |
 | **MFN / paridade** | Cláusula obrigando vendedor a não cobrar menos em outros canais (Booking, Amazon). |
-| **Ator crítico interno** | Papel dentro da firma que mais frequentemente sabe da conduta e teria incentivo a denunciá-la via WaaS (engenharia, produto, design, corp dev, jurídico…). |
+| **Exclusividade / retaliação em marketplace** | Exigência de exclusividade contratual a sellers ou retaliação contra quem também opera em concorrentes (iFood TCC 2023; indícios contra Mercado Livre 2024-2025). |
+| **Anti-steering / IAP** | Em plataformas móveis (iOS, Android), bloqueio de informação ou redirecionamento de pagamento fora do *in-app purchase* do operador da plataforma (Apple Brasil — CADE dez/2025; Epic v. Apple, EUA 2021). |
+| **Ator crítico interno** | Papel dentro da firma que mais frequentemente sabe da conduta e teria incentivo a denunciá-la via WaaS (engenharia, produto, design, corp dev, jurídico, **operações**, **financeiro**…). |
+| **Ator adjacente** | Papel que não executa a conduta mas vê seu efeito imediato (métricas, decisões, P&L). No catálogo R08 ganha observabilidade intermediária (0,5) entre o primário (1,0) e o distal (0,1). |
+| **MARKETPLACE_BR / BIGTECH_MADURA** | Presets da distribuição de papéis dentro da firma. `BIGTECH_MADURA` é eng-heavy (Google/Meta-like); `MARKETPLACE_BR` é operations-heavy (iFood/Mercado Livre-like). Calibração formal contra organogramas pendente (E05). |

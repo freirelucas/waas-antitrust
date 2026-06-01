@@ -59,6 +59,21 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Categoria 5 (catálogo BR + papéis)** — PM. (5.1) Nova conduta
+  `exclusividade_retaliacao_marketplace` (iFood TCC 2023 + indícios contra
+  Mercado Livre 2024-2025); primários: comercial/operações. (5.2) Nova
+  conduta `anti_steering_iap` (Apple Brasil CADE dez/2025; Epic v. Apple
+  EUA 2021); primários: produto/eng. (5.3) `PAPEIS_PADRAO` ganha
+  **`operacoes`** (marketplaces BR são operations-heavy) e **`financeiro`**
+  (FP&A em predatory pricing). (5.4) Dois presets de distribuição:
+  `BIGTECH_MADURA` (eng-heavy; default) e `MARKETPLACE_BR`
+  (operations-heavy). (5.5) Cada `Conduta` ganha `atores_adjacentes`;
+  `observabilidade` agora é gradiente 3-níveis (primário=1.0,
+  **adjacente=0.5**, distal=0.1 — Near & Miceli sobre whistleblowing
+  organizacional), substituindo o binário 1.0/0.2. Glossário ganha 5
+  termos (Exclusividade/retaliação marketplace, anti-steering/IAP, ator
+  adjacente, MARKETPLACE_BR/BIGTECH_MADURA). Total: 70 → 73 testes;
+  calibração formal de papéis BR pendente em E05.
 - **Categoria 4 (gating jurídico do R07)** — Adv B (sinal mais forte da
   crítica x10: descompasso de competência do Regime B). (4.1)
   `WaaSModel.__init__` agora rejeita `fracao_contratos_acelerados > 0` sob
