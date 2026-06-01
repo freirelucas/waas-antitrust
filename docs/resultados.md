@@ -6,7 +6,7 @@ figuras são **conceituais** (ilustram a lógica do mecanismo); a terceira é
 
 ## 1. A inversão de incentivo
 
-![Inversão da função-utilidade da conformidade.](img/01_inversao.png)
+![Inversão da função-utilidade da conformidade.](img/01_inversao.png){ .figura-conceitual }
 
 À **esquerda**, o cálculo clássico de uma empresa: o custo esperado de ser punida
 é "probabilidade de ser pega × tamanho da multa". Como a probabilidade de
@@ -20,7 +20,7 @@ que esconder. A linha tracejada é a fronteira em que os dois se igualam.
 
 ## 2. A coordenação dentro da firma
 
-![Diagrama de fase da coordenação intrafirma.](img/02_fase.png)
+![Diagrama de fase da coordenação intrafirma.](img/02_fase.png){ .figura-conceitual }
 
 Um único funcionário raramente denuncia sozinho — há medo de represália. A
 denúncia vira provável quando um número mínimo de colegas também está disposto
@@ -31,7 +31,7 @@ mirariam.
 
 ## 3. Dissuasão e bem-estar (saída real do modelo)
 
-![Saída real do modelo: dissuasão endógena e bem-estar por regime.](img/03_dissuasao_bem_estar.png)
+![Saída real do modelo: dissuasão endógena e bem-estar por regime.](img/03_dissuasao_bem_estar.png){ .figura-empirica }
 
 Esta figura vem de rodar a simulação nos três regimes (20 empresas, 40
 trimestres). À **esquerda**: no Regime A (sem WaaS), o número de empresas

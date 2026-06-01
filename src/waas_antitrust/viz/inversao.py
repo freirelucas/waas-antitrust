@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.figure import Figure
 
-from waas_antitrust.viz.paleta import PALETA
+from waas_antitrust.viz.paleta import CMAP_CONCEITUAL, PALETA
 
 
 def gerar_figura() -> tuple[Figure, np.ndarray]:
@@ -42,7 +42,7 @@ def gerar_figura() -> tuple[Figure, np.ndarray]:
     D_pct = np.linspace(0.1, 0.5, 100)
     Wg, Dg = np.meshgrid(W, D_pct)
     margem = Dg * 8 - Wg
-    cs = ax.contourf(Wg, Dg, margem, levels=15, cmap="RdYlGn", alpha=0.85)
+    cs = ax.contourf(Wg, Dg, margem, levels=15, cmap=CMAP_CONCEITUAL, alpha=0.85)
     ax.contour(Wg, Dg, margem, levels=[0], colors="black", linewidths=2, linestyles="--")
     cbar = plt.colorbar(cs, ax=ax, shrink=0.85)
     cbar.set_label(r"Margem da empresa  $D - W$  (proporcional ao bem-estar)", fontsize=9)

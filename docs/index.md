@@ -39,7 +39,7 @@ pode usar a recompensa paga aos denunciantes como parte desse ressarcimento.
 **Quando o desconto é maior que a recompensa, virou negócio para a empresa
 colaborar.** O combate à infração deixa de depender só da capacidade do Estado.
 
-![Inversão da função-utilidade da conformidade: à esquerda o cálculo clássico (minimizar a multa esperada); à direita, sob o WaaS, a empresa passa a buscar o desconto.](img/01_inversao.png)
+![Inversão da função-utilidade da conformidade: à esquerda o cálculo clássico (minimizar a multa esperada); à direita, sob o WaaS, a empresa passa a buscar o desconto.](img/01_inversao.png){ .figura-conceitual }
 
 ## O que a simulação mostra
 
@@ -49,7 +49,7 @@ o canal WaaS existe (Regimes B e C), a chance de ser denunciado sobe, **as
 empresas deixam de violar** (dissuasão) e o dano social cai — algo que o cenário
 atual (Regime A) não produz.
 
-![Saída real do modelo: com o canal WaaS (B/C) as firmas param de violar ao longo do tempo e o bem-estar social supera o cenário atual (A).](img/03_dissuasao_bem_estar.png)
+![Saída real do modelo: com o canal WaaS (B/C) as firmas param de violar ao longo do tempo e o bem-estar social supera o cenário atual (A).](img/03_dissuasao_bem_estar.png){ .figura-empirica }
 
 ➡️ **[Veja os resultados narrados, figura por figura](resultados.md).**
 
@@ -73,7 +73,7 @@ implementação por via infralegal (Regime B).
 A coordenação dos denunciantes dentro da firma tem um **limiar de massa crítica**:
 abaixo dele, silêncio; acima, uma cascata de revelação.
 
-![Diagrama de fase da coordenação intrafirma: a região verde indica alta probabilidade de uma cascata de denúncias.](img/02_fase.png)
+![Diagrama de fase da coordenação intrafirma: a região clara indica alta probabilidade de uma cascata de denúncias.](img/02_fase.png){ .figura-conceitual }
 
 !!! warning "Estado: rascunho de trabalho"
     Este repositório acompanha um **artigo em elaboração**. Vários resultados são

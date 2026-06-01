@@ -59,6 +59,21 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Categoria 6 (UX visual + acessibilidade)** — Designer. (6.1) Mapas de
+  cor das figuras conceituais migrados de `RdYlGn` (pior caso para
+  daltonismo vermelho-verde) para `cividis` (`viz/inversao.py`,
+  `viz/fase.py`). (6.2) Novas constantes em `viz/paleta.py`: `MARCADORES`
+  (A=`o`, B=`s`, C=`^`), `HACHURAS` (regime-específicas para barras) e
+  `CMAP_CONCEITUAL`. (6.3) Novo `docs/stylesheets/extra.css` com classes
+  `.figura-conceitual` (borda cinza tracejada + chip "Ilustrativo") e
+  `.figura-empirica` (borda verde + chip "Resultado da simulação"); modo
+  escuro tratado. `mkdocs.yml` ganha `extra_css`. (6.4) Novo script
+  `scripts/gerar_figura_dissuasao.py` que regenera
+  `docs/img/03_dissuasao_bem_estar.png` com rótulos `(A)`/`(B)` nos
+  painéis, anotações numéricas (tiques até zero violadoras, ΔW% B/C vs
+  A), marcadores por regime e hachuras nas barras. (6.5) Markdown
+  (`index.md`, `resultados.md`) ganha attribute lists
+  `{ .figura-conceitual }` (figs 1 e 2) e `{ .figura-empirica }` (fig 3).
 - **Categoria 5 (catálogo BR + papéis)** — PM. (5.1) Nova conduta
   `exclusividade_retaliacao_marketplace` (iFood TCC 2023 + indícios contra
   Mercado Livre 2024-2025); primários: comercial/operações. (5.2) Nova

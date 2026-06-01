@@ -5,7 +5,7 @@ import numpy as np
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
 
-from waas_antitrust.viz.paleta import PALETA
+from waas_antitrust.viz.paleta import CMAP_CONCEITUAL, MARCADORES, PALETA
 
 
 def gerar_figura() -> tuple[Figure, Axes]:
@@ -17,7 +17,7 @@ def gerar_figura() -> tuple[Figure, Axes]:
     p_sinaliza = 1.0 / (1.0 + np.exp(-7 * (Sig - 0.4)))
     P_cascata = 1.0 / (1.0 + np.exp(-30 * (q * p_sinaliza - K)))
 
-    cs = ax.contourf(Sig, K, P_cascata, levels=20, cmap="RdYlGn", alpha=0.92)
+    cs = ax.contourf(Sig, K, P_cascata, levels=20, cmap=CMAP_CONCEITUAL, alpha=0.92)
     plt.colorbar(cs, ax=ax, shrink=0.85, label=r"$P(\mathrm{cascata}) = P(\sum a_i \geq k)$")
     ax.contour(Sig, K, P_cascata, levels=[0.5], colors="black", linewidths=2.5)
 
@@ -43,8 +43,8 @@ def gerar_figura() -> tuple[Figure, Axes]:
     ax.scatter(
         [0.6],
         [0.05],
-        s=180,
-        marker="*",
+        s=200,
+        marker=MARCADORES["B"],
         color=PALETA["B"],
         edgecolors="white",
         linewidths=2,
@@ -54,8 +54,8 @@ def gerar_figura() -> tuple[Figure, Axes]:
     ax.scatter(
         [0.7],
         [0.10],
-        s=180,
-        marker="*",
+        s=200,
+        marker=MARCADORES["C"],
         color=PALETA["C"],
         edgecolors="white",
         linewidths=2,
