@@ -59,6 +59,27 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **REFERENCES expandida com pesquisa de fundo** (ABM aplicado a economia
+  industrial e a mercados digitais). Subagente em paralelo retornou ~26
+  referências verificadas (com DOI/arXiv/URL estável) cobrindo: ABM
+  fundacional (Tesfatsion-Judd, Farmer-Foley, LeBaron, Wilensky-Rand,
+  Dawid-Eurace); leniência clássica (Spagnolo, Motta-Polo,
+  Harrington-Chang 2009/2015, Aubert-Rey-Kovacic, Bigoni et al.,
+  Apesteguia-Dufwenberg-Selten); denúncia interna empírica
+  (Dyck-Morse-Zingales, Call et al., Stubben-Welch, Wiedman-Zhu sobre
+  Dodd-Frank §922); mercados digitais (Rochet-Tirole, Calvano et al.
+  2020/2021 sobre Q-learning colusivo, Klein, Ezrachi-Stucke,
+  Cunningham-Ederer-Ma sobre killer acquisitions, Caffarra-Crawford-Valletti
+  sobre *reverse* killer, Crémer-Montjoye-Schweitzer, Mathur et al. sobre
+  dark patterns); contexto brasileiro (Roquete/CADE, DEE/CADE DOCs
+  003/2022 e 001/2024, IPEA CTS sobre PL 2768/2022). **Marcações [?]
+  explícitas** em 3 referências não confirmadas (Roquete autoria JOTA;
+  Castro-Mundim-Resende DEE; Anderson Caputo Silva — este removido por
+  não-existência). Síntese pós-pesquisa em REFERENCES §4 identifica 5
+  contribuições distintivas do WaaS vs. corpus existente (objeto =
+  abuso unilateral; acoplamento triplo IC-T/IR/IC-F*; Hirschman como
+  microfundamento original de IC-F*; calibração institucional brasileira
+  granular; catálogo conduta × papel com gradiente 3-níveis).
 - **Pivô de UX e curadoria fina do texto** (decorrente da crítica continuada
   "a experiência do leitor continua péssima"): home reescrita com **H1
   pergunta-tese** (`E se a empresa pagasse para ser delatada?`),
