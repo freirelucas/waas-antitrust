@@ -59,6 +59,20 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Categoria 3 (bem-estar substantivo)** — Eco B. (3.1) `custo_exodo_acum`
+  entra em `calcular_bem_estar` com peso `delta_exodo=0.5` (custo social de
+  perda transitória de capital humano). (3.2) Novo reporter
+  `multa_arrecadada_acum` em `model.py`: a cada tique, VPs que assinaram TCC
+  pagam apenas o residual `sancao · (1 − D_disc)`, VPs sem TCC pagam a multa
+  cheia; integrado no `bem_estar` com peso `delta_multa=1.0` (credita o
+  erário). (3.3) Novo reporter `dano_economico_acum = Σ fatia_mercado ·
+  eh_violadora`: sob fatias uniformes colapsa em `dano_acumulado/n_empresas`,
+  mas torna-se métrica significativa quando heterogeneidade Pareto/lognormal
+  for introduzida (R03/E05). `calcular_bem_estar` ganha argumentos
+  `custo_exodo` e `multa_arrecadada` com defaults 0 (backward-compat). Testes
+  novos: `test_calcular_bem_estar_inclui_exodo_e_multa` e
+  `test_calcular_bem_estar_argumentos_novos_preservam_default_antigo`.
+  Pesos provisórios; calibrar em R03.
 - **Categoria 2 (infra de robustez)** — Mat A + Mat B. Novo módulo
   `src/waas_antitrust/robustez.py` com (2.1) **suavização Beta-Binomial**
   `beta_binomial_smoothing(sucessos, tentativas, α, β)` — estimador MAP

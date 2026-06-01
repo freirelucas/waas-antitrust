@@ -18,31 +18,51 @@ from waas_antitrust.sobol.problema import PROBLEMA_SOBOL_8D
 # Pesos do bem-estar SOCIAL. NORMATIVOS e provisórios — calibrar em R03
 # (ver docs/DECISIONS.md, R05). O bem-estar é o NEGATIVO do custo social total:
 # dano (Σ violadoras·tique, R01) + custo de erro (falsos positivos) + custo da
-# recompensa. `gamma_recompensa`=0 por ser, a rigor, transferência privada
-# (empresa → denunciantes); eleve para penalizar distorções.
+# recompensa + custo de êxodo (Hirschman, R07) − multa arrecadada pelo Estado
+# (transferência ao erário, Categoria 3 da crítica x10).
+# `gamma_recompensa`=0 por ser, a rigor, transferência privada (empresa →
+# denunciantes); eleve para penalizar distorções. `delta_exodo` e `delta_multa`
+# entram pela Categoria 3 (Eco B) — calibrar em R03.
 PESOS_BEM_ESTAR: dict[str, float] = {
     "beta_fp": 1.0,  # custo de um falso positivo (em violador-tiques equivalentes)
     "gamma_recompensa": 0.0,  # peso do custo de recompensa (normalizado por w_a)
+    "delta_exodo": 0.5,  # peso do custo de êxodo materializado (normalizado por w_a)
+    "delta_multa": 1.0,  # peso da multa arrecadada pelo Estado (normalizado por w_a)
 }
 
 
 def calcular_bem_estar(
-    dano: int,
+    dano: float,
     fp: int,
     custo_recompensa: float,
     w_a_base: float,
     pesos: dict[str, float] | None = None,
+    custo_exodo: float = 0.0,
+    multa_arrecadada: float = 0.0,
 ) -> float:
-    """Bem-estar social = − custo social total = −(dano + β·FP + γ·custo/w_a).
+    """Bem-estar social = −(dano + β·FP + γ·custo + δ_ex·exodo − δ_mu·multa)/w_a.
 
-    `dano` = Σ violadoras ativas por tique (proxy de dano social). Como a dissuasão
-    (R01) reduz o dano, esta métrica credita a PREVENÇÃO — ao contrário da antiga
-    contagem por detecção (VP−FP−FN), que ranqueava mal regimes que deterem.
-    Pesos normativos provisórios (calibrar em R03).
+    `dano` = Σ violadoras ativas por tique (R01) ou `dano_economico_acum`
+    (ponderado por fatia de mercado, Categoria 3); ambos creditam a PREVENÇÃO.
+    `custo_exodo` (Hirschman, R07) é custo social de perda de capital humano
+    transitória; `multa_arrecadada` é receita do erário (entra com sinal +,
+    creditando o bem-estar). Pesos normativos provisórios (calibrar em R03).
+
+    Os argumentos `custo_exodo` e `multa_arrecadada` têm default 0 para
+    preservar compatibilidade com chamadores anteriores; quando omitidos,
+    a fórmula colapsa em `−(dano + β·FP + γ·custo/w_a)`.
     """
     pesos = pesos or PESOS_BEM_ESTAR
     custo_norm = custo_recompensa / w_a_base if w_a_base else 0.0
-    return -(dano + pesos["beta_fp"] * fp + pesos["gamma_recompensa"] * custo_norm)
+    exodo_norm = custo_exodo / w_a_base if w_a_base else 0.0
+    multa_norm = multa_arrecadada / w_a_base if w_a_base else 0.0
+    return -(
+        dano
+        + pesos["beta_fp"] * fp
+        + pesos["gamma_recompensa"] * custo_norm
+        + pesos.get("delta_exodo", 0.0) * exodo_norm
+        - pesos.get("delta_multa", 0.0) * multa_norm
+    )
 
 
 def executar_para_sobol(
@@ -82,6 +102,9 @@ def executar_para_sobol(
     fn = int(df["falsos_negativos_acum"].max())
     custo_recompensa = float(df["custo_recompensa_acum"].max())
     dano = int(df["dano_acumulado"].max())
+    dano_economico = float(df["dano_economico_acum"].max())
+    custo_exodo = float(df["custo_exodo_acum"].max())
+    multa_arrecadada = float(df["multa_arrecadada_acum"].max())
     precisao = vp / (vp + fp) if (vp + fp) > 0 else 0.0
     return {
         **dict(zip(PROBLEMA_SOBOL_8D["names"], linha, strict=True)),
@@ -92,9 +115,19 @@ def executar_para_sobol(
         "FP": fp,
         "FN": fn,
         "dano_acumulado": dano,
+        "dano_economico": dano_economico,
         "custo_recompensa": custo_recompensa,
+        "custo_exodo": custo_exodo,
+        "multa_arrecadada": multa_arrecadada,
         "precisao": precisao,
-        "bem_estar": calcular_bem_estar(dano, fp, custo_recompensa, params.w_a_base),
+        "bem_estar": calcular_bem_estar(
+            dano,
+            fp,
+            custo_recompensa,
+            params.w_a_base,
+            custo_exodo=custo_exodo,
+            multa_arrecadada=multa_arrecadada,
+        ),
     }
 
 

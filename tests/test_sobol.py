@@ -51,6 +51,35 @@ def test_calcular_bem_estar_social():
     assert calcular_bem_estar(100, 5, 360_000, 180_000, pesos) == -107.0
 
 
+def test_calcular_bem_estar_inclui_exodo_e_multa():
+    """Categoria 3 (Eco B): custo_exodo soma como custo social;
+    multa_arrecadada credita (entra com sinal +)."""
+    from waas_antitrust.sobol.execucao import calcular_bem_estar
+
+    pesos = {
+        "beta_fp": 1.0,
+        "gamma_recompensa": 0.0,
+        "delta_exodo": 0.5,
+        "delta_multa": 1.0,
+    }
+    # exodo = 360000 → exodo/w_a = 2 → contrib = +0,5·2 = 1
+    # multa = 360000 → multa/w_a = 2 → contrib = −1·2 = −2 (credita o bem-estar)
+    # −(100 + 5 + 0 + 1 − 2) = −104
+    bem_estar = calcular_bem_estar(
+        100, 5, 0.0, 180_000, pesos=pesos, custo_exodo=360_000, multa_arrecadada=360_000
+    )
+    assert bem_estar == -104.0
+
+
+def test_calcular_bem_estar_argumentos_novos_preservam_default_antigo():
+    """Sem custo_exodo/multa, a fórmula nova bate com a antiga: backward-compat."""
+    from waas_antitrust.sobol.execucao import calcular_bem_estar
+
+    # Pesos default: delta_exodo=0.5, delta_multa=1.0, mas como custo_exodo e
+    # multa são 0 (default), os termos não disparam.
+    assert calcular_bem_estar(dano=100, fp=5, custo_recompensa=1e6, w_a_base=180_000) == -105.0
+
+
 def test_calcular_indices_matriz_unica():
     """calcular_indices roda sobre uma matriz única e retorna S1/ST por parâmetro."""
     import numpy as np

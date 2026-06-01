@@ -154,6 +154,11 @@ class WaaSModel(Model):
         # Hirschman (R07): firmas sob ameaça materializada de êxodo e custo agregado.
         self.n_firmas_sob_ameaca_exodo: int = 0
         self.custo_exodo_acum: float = 0.0
+        # Bem-estar substantivo (Categoria 3, Eco B): dano ponderado por
+        # fatia de mercado (R$ proporcional, em vez de contagem) e multa
+        # arrecadada pelo Estado (TCC ⇒ residual; sem TCC ⇒ multa cheia).
+        self.dano_economico_acum: float = 0.0
+        self.multa_arrecadada_acum: float = 0.0
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
@@ -185,6 +190,8 @@ class WaaSModel(Model):
                 "n_pagou": self._contar_pagou,
                 "custo_recompensa_acum": "custo_recompensa_acum",
                 "custo_exodo_acum": "custo_exodo_acum",
+                "dano_economico_acum": "dano_economico_acum",
+                "multa_arrecadada_acum": "multa_arrecadada_acum",
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -340,6 +347,11 @@ class WaaSModel(Model):
             empresa.sigma = empresa.sigma_potencial if empresa.eh_violadora else 0.0
         self.n_violadoras_ativas = sum(1 for e in self.empresas if e.eh_violadora)
         self.dano_acumulado += self.n_violadoras_ativas
+        # Categoria 3 (Eco B): dano ponderado pela fatia de mercado da violadora.
+        # Sob fatias uniformes (1/n_empresas), colapsa em `dano_acumulado/n_empresas`;
+        # com fatias heterogêneas (Pareto/lognormal — pendente em R03/E05), uma
+        # violação de firma de 40% conta muito mais que uma de 2%.
+        self.dano_economico_acum += sum(e.fatia_mercado for e in self.empresas if e.eh_violadora)
         for fid, ws in self.trabalhadores_por_empresa.items():
             empresa = self.empresas[fid]
             violando = empresa.eh_violadora
@@ -446,6 +458,16 @@ class WaaSModel(Model):
         self.vp_tique = sum(
             1 for c in resultados_tique if c["eh_violadora_real"] and c["classificada_violadora"]
         )
+        # Categoria 3 (Eco B): multa arrecadada pelo Estado nesse tique. VP que
+        # assinou TCC paga apenas o residual (sanção · (1−D_disc)); VP sem TCC
+        # paga a multa cheia. FP não geram receita estável (recurso/anulação).
+        for c in resultados_tique:
+            if not (c["eh_violadora_real"] and c["classificada_violadora"]):
+                continue
+            emp = self.empresas[c["id_empresa"]]
+            sancao = emp.sancao_esperada()
+            fator = (1.0 - self.D_disc) if (emp.tcc_assinado and emp.pagou_denunciantes) else 1.0
+            self.multa_arrecadada_acum += sancao * fator
         self.fp_tique = sum(
             1
             for c in resultados_tique
