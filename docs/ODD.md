@@ -28,9 +28,14 @@ Escalas: 1 tique = 1 trimestre; horizonte = 40 tiques (10 anos). Dimensão "espa
 
 Por tique:
 
+- **P0** — dissuasão endógena (R01): atualiza detecção percebida `p` e re-decide
+  quem viola; firmas com cláusula de vesting acelerado (R07) recebem desconto
+  preventivo em `g_i` (Hirschman antes mesmo de qualquer denúncia).
 - **P1** — cada trabalhador observador amostra `s_i = σ + ε_i` e decide `a_i ∈ {0, 1}`.
 - **P2** — agregador conta `Σ_i a_i` na rede intra-firma; dispara se `≥ k`.
-- **P3** — empresa decide pagar (β=1) ou não (β=0).
+- **P3** — empresa decide pagar denunciantes via IC-F* ampliada por Hirschman
+  (`D + custo_exodo > W`): com cláusula contratual, o custo de êxodo coletivo
+  entra na conta; sem cláusula, é a IC-F* clássica `D > W`.
 - **P4** — autoridade recebe caso (com restrição de capacidade κ).
 - **P5** — coleta de estado.
 
@@ -84,3 +89,5 @@ Para um conjunto de medida positiva de (W, D, σ), o bem-estar social esperado �
 *Esboço*: a diferença se decompõe em três canais — dissuasão (Regime B eleva p_detecção), substituição (alguns trabalhadores que silenciariam passam a denunciar) e custo (recompensa privadamente financiada). □
 
 > **Status (atualizado — R01 implementado):** o canal de **dissuasão é endógeno**: cada firma viola enquanto sua atratividade $g_i$ = ganho/sanção supera a detecção percebida $p$, que sobe por expectativa adaptativa quando o canal WaaS opera. Em simulação, os Regimes B/C reduzem as violadoras ativas a zero enquanto o Regime A as faz crescer — sustentando a **direção** da proposição (a prova formal segue como conjectura). Com **R05**, o `bem_estar` passou a ser baseado em **dano** (= −(dano + β·FP)), creditando a prevenção — os Regimes B/C superam o Regime A. Pesos provisórios; calibração formal em R03.
+
+> **Adicional (R07, exploratório):** a Hirschman exit-with-equity adiciona um **segundo canal de dissuasão** ortogonal ao WaaS — firmas com cláusulas contratuais de vesting acelerado por gatilho de ação coletiva enfrentam custo crível de êxodo do capital humano. A IC-F* da firma se amplia para `D + custo_exodo > W`, e o `g_i` preventivo recebe desconto proporcional a `peso_hirschman · p_perc`. Teste end-to-end em `tests/test_hirschman.py` confirma que firmas com cláusula cooperam mais (mais TCCs assinados) ou geram menos dano em comparação ao baseline. Parâmetros financeiros (substituição, equity, vesting) seguem padrões YC documentados; calibração formal em R03.

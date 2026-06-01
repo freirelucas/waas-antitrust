@@ -9,6 +9,7 @@ import networkx as nx
 from mesa import Model
 from mesa.datacollection import DataCollector
 
+from waas_antitrust import hirschman
 from waas_antitrust.agents import AutoridadeAgent, EmpresaAgent, TrabalhadorAgent
 from waas_antitrust.calibracao.cade import INVESTIGACOES_ANUAIS_CADE
 
@@ -57,6 +58,14 @@ class WaaSParametros:
     w_a_base: float = 180_000.0  # salário anual (R$, Brasscom 2024)
     R_por_trabalhador: float = 1_500_000.0
 
+    # Hirschman exit-with-equity (R07): cláusulas contratuais de vesting
+    # acelerado por gatilho de ação coletiva. Pesos provisionais (calibrar R03).
+    fracao_contratos_acelerados: float = 0.0  # fração das firmas com cláusula
+    peso_hirschman: float = 0.3  # peso do exit-threat no g_i preventivo
+    valor_equity_por_funcionario_uw: float = 0.5  # em unidades de w_a (YC ref)
+    fator_substituicao_uw: float = 0.5  # custo recrutamento/onboarding em w_a
+    fracao_nao_vested: float = 0.5  # vesting 4y/1y cliff: ~50% non-vested
+
     # Execução
     n_tiques: int = 40  # horizonte (10 anos em trimestres)
     seed: int = 42
@@ -97,6 +106,12 @@ class WaaSModel(Model):
         self.delta_leniencia = params.delta_leniencia
         self.w_a_base = params.w_a_base
         self.R_por_trabalhador = params.R_por_trabalhador
+        # Hirschman exit-with-equity (R07)
+        self.fracao_contratos_acelerados = params.fracao_contratos_acelerados
+        self.peso_hirschman = params.peso_hirschman
+        self.valor_equity_por_funcionario_uw = params.valor_equity_por_funcionario_uw
+        self.fator_substituicao_uw = params.fator_substituicao_uw
+        self.fracao_nao_vested = params.fracao_nao_vested
 
         self.tique: int = 0
         self.empresas: list[EmpresaAgent] = []
@@ -114,6 +129,9 @@ class WaaSModel(Model):
         self.p_perc: float = params.p_deteccao_prior
         self.n_violadoras_ativas: int = 0
         self.dano_acumulado: int = 0  # Σ violadoras ativas por tique (proxy de dano social)
+        # Hirschman (R07): firmas sob ameaça materializada de êxodo e custo agregado.
+        self.n_firmas_sob_ameaca_exodo: int = 0
+        self.custo_exodo_acum: float = 0.0
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
@@ -139,10 +157,12 @@ class WaaSModel(Model):
                 "vp_tique": "vp_tique",
                 "fp_tique": "fp_tique",
                 "fn_tique": "fn_tique",
+                "n_firmas_sob_ameaca_exodo": "n_firmas_sob_ameaca_exodo",
                 # Estoques (acumulados até o tique)
                 "n_tcc_assinados": self._contar_tcc,
                 "n_pagou": self._contar_pagou,
                 "custo_recompensa_acum": "custo_recompensa_acum",
+                "custo_exodo_acum": "custo_exodo_acum",
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -210,6 +230,11 @@ class WaaSModel(Model):
             )
             empresa.g_violacao = g_violacao
             empresa.sigma_potencial = sigma_potencial
+            # Hirschman (R07): firma tem cláusula contratual de vesting acelerado
+            # por gatilho de ação coletiva? Sorteio Bernoulli na população.
+            empresa.tem_clausula_acelerada = bool(
+                self.rng.random() < self.fracao_contratos_acelerados
+            )
             self.empresas.append(empresa)
 
             k_viz = max(4, int(tam * 0.02))
@@ -263,8 +288,17 @@ class WaaSModel(Model):
             self.p_perc = (
                 1.0 - self.lambda_expectativa
             ) * self.p_perc + self.lambda_expectativa * p_realizado
+        # Reset contadores de fluxo Hirschman (P3 abaixo os preenche).
+        self.n_firmas_sob_ameaca_exodo = 0
         for empresa in self.empresas:
-            empresa.eh_violadora = empresa.g_violacao > self.p_perc
+            # Hirschman preventivo (R07): firmas com cláusula têm g_i efetivo menor.
+            g_ef = hirschman.g_i_efetivo(
+                empresa.g_violacao,
+                empresa.tem_clausula_acelerada,
+                self.p_perc,
+                self.peso_hirschman,
+            )
+            empresa.eh_violadora = g_ef > self.p_perc
             empresa.sigma = empresa.sigma_potencial if empresa.eh_violadora else 0.0
         self.n_violadoras_ativas = sum(1 for e in self.empresas if e.eh_violadora)
         self.dano_acumulado += self.n_violadoras_ativas
@@ -306,7 +340,7 @@ class WaaSModel(Model):
             if W_ativo and n_sig >= k_req:
                 empresa.notificada_no_periodo = True
 
-        # P3 · decisão de pagamento
+        # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07)
         for empresa in self.empresas:
             if not empresa.notificada_no_periodo:
                 continue
@@ -314,10 +348,28 @@ class WaaSModel(Model):
             W_total = sum(self._W_esperado(t.w_a) for t in disparados)
             S_esp = empresa.sancao_esperada()
             D_val = self.D_disc * S_esp if D_ativo else 0.0
-            empresa.pagou_denunciantes = D_ativo and empresa.satisfaz_ic_f_estrela(W_total, D_val)
+            # Custo do êxodo se a firma não pagar (zero sem cláusula).
+            w_a_medio = (
+                sum(t.w_a for t in disparados) / len(disparados) if disparados else self.w_a_base
+            )
+            c_exodo = hirschman.custo_exodo_esperado(
+                len(disparados),
+                w_a_medio,
+                empresa.tem_clausula_acelerada,
+                fator_substituicao=self.fator_substituicao_uw,
+                valor_equity_por_funcionario=self.valor_equity_por_funcionario_uw,
+                fracao_nao_vested=self.fracao_nao_vested,
+            )
+            empresa.pagou_denunciantes = D_ativo and hirschman.deve_pagar_com_hirschman(
+                W_total, D_val, c_exodo
+            )
             if empresa.pagou_denunciantes:
                 empresa.tcc_assinado = True
                 self.custo_recompensa_acum += W_total
+            elif c_exodo > 0.0:
+                # Firma com cláusula que não pagou ⇒ êxodo materializa.
+                self.n_firmas_sob_ameaca_exodo += 1
+                self.custo_exodo_acum += c_exodo
 
         # P4 · intervenção da autoridade
         for empresa in self.empresas:

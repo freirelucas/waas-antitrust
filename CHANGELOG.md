@@ -37,6 +37,13 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   positivos), creditando a prevenção em vez de premiar a detecção (`233797e`).
 - **R02** — jogo global estilizado: limiar de switching único derivado em forma fechada,
   com convergência verificada quando τ → 0 (exploratório) (`2d0102c`).
+- **R07** — Hirschman exit-with-equity: novo módulo `hirschman.py` (puro, testado) +
+  integração em P0 (camada preventiva: firmas com cláusula contratual de vesting
+  acelerado têm `g_i` efetivo menor) e P3 (IC-F* ampliada: `D + custo_exodo > W`,
+  parametrizada por padrões YC — vesting 4y/1y cliff, substituição ~50% w_a, equity
+  ~50% w_a, ~50% non-vested). Novos reporters `n_firmas_sob_ameaca_exodo` e
+  `custo_exodo_acum`. Teste de integração confirma direcionalmente que firmas com
+  cláusula cooperam mais ou geram menos dano.
 
 ### Documentação, site e paper
 - **Fase 3** — registra o backlog de pesquisa (R01–R06) em `docs/DECISIONS.md`
