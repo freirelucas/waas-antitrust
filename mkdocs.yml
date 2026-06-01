@@ -66,11 +66,16 @@ plugins:
 markdown_extensions:
   - admonition
   - attr_list
+  - md_in_html
+  - tables
   - toc:
       permalink: true
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.arithmatex:
       generic: true
 

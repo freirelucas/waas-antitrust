@@ -59,6 +59,23 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Pivô de UX e curadoria fina do texto** (decorrente da crítica continuada
+  "a experiência do leitor continua péssima"): home reescrita com **H1
+  pergunta-tese** (`E se a empresa pagasse para ser delatada?`),
+  bloco-hero acima da dobra trazendo a figura empírica imediatamente,
+  navegação por **personas em grid cards Material** (Curioso · Formulador
+  ou jurista · Pesquisador · Cético saudável) substituindo o admonition
+  monolítico, badges movidas ao rodapé. CSS estendido em
+  `docs/stylesheets/extra.css` com classe `.hero` (verde institucional +
+  gradiente sutil), refinamento dos cards (hover, sombra, cabeçalho em
+  destaque) e suporte explícito a modo escuro. `mkdocs.yml` ganha
+  `md_in_html`, `tables`, `pymdownx.details` e `pymdownx.tabbed`.
+  `docs/resultados.md` curada com numeração ordinal (§1/§2/§3), painéis
+  rotulados explicitamente. `docs/limitacoes.md` reescrita: lista
+  expandida do que **já** está implementado (incluindo bootstrap
+  multi-seed, gating R07, catálogo BR de 9 condutas) e tabela atualizada
+  de pendências com R09–R14. `README.md` alinhado ao H1 do site para
+  coerência cross-canal. Sem regressão de testes (80 verdes).
 - **R14 — Enriquecimento heterogêneo dos agentes (exploratório)**:
   três canais ortogonais ao R01, sem violar Proposições, todos opt-in
   por defaults para preservar compatibilidade.

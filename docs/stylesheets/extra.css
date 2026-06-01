@@ -69,3 +69,70 @@
   color: #cfcfcf;
   border-color: #555;
 }
+
+/* ----------------------------------------------------------------------
+ * Hero da home — pergunta-tese + lead em destaque acima da dobra.
+ * Aplicado com classe `.hero` em um bloco markdown.
+ * --------------------------------------------------------------------*/
+.md-typeset .hero {
+  padding: 1.0em 1.2em 0.6em 1.2em;
+  margin: 0.4em 0 1.4em 0;
+  border-left: 4px solid #27ae60;
+  background: linear-gradient(180deg, #f3fbf6 0%, #ffffff 100%);
+  border-radius: 0 6px 6px 0;
+}
+.md-typeset .hero p:first-of-type {
+  font-size: 1.15em;
+  line-height: 1.45;
+  color: #2c3e50;
+  font-weight: 400;
+  margin-top: 0.1em;
+}
+.md-typeset .hero strong {
+  color: #1e8449;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .hero {
+  background: linear-gradient(180deg, #1e2d24 0%, transparent 100%);
+  border-left-color: #2ecc71;
+}
+[data-md-color-scheme="slate"] .md-typeset .hero p:first-of-type {
+  color: #e6e6e6;
+}
+
+/* ----------------------------------------------------------------------
+ * Cartões de navegação por persona (grid cards Material).
+ * --------------------------------------------------------------------*/
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  padding: 1em 1.1em;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+.md-typeset .grid.cards > ul > li > p:first-child strong {
+  display: inline-block;
+  font-size: 1.05em;
+  color: #1e8449;
+  margin-bottom: 0.2em;
+}
+
+/* ----------------------------------------------------------------------
+ * Distinções tipográficas leves para badges / chips em texto.
+ * --------------------------------------------------------------------*/
+.md-typeset .chip {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 0.8em;
+  border-radius: 10px;
+  background: #ececec;
+  color: #444;
+  margin-right: 4px;
+}
+[data-md-color-scheme="slate"] .md-typeset .chip {
+  background: #3a3a3a;
+  color: #cfcfcf;
+}
