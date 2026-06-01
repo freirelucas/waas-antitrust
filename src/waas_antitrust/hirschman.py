@@ -6,13 +6,27 @@ firma enfrenta uma ameaça crível de perder capital humano. O custo esperado
 dessa perda integra o cálculo de incentivo da firma — distinto do pagamento
 direto aos denunciantes.
 
-Parâmetros padrão (YC; calibrar formalmente em R03):
-- Vesting: 4 anos com cliff de 1 ano (single-trigger em ação coletiva)
+Parâmetros padrão (calibrar formalmente em R03):
+- Vesting: 4 anos com cliff de 1 ano — esse formato vem de templates YC/NVCA,
+  mas a aceleração ali é tipicamente atrelada a *change of control* (aquisição),
+  não a ação coletiva dos próprios funcionários. **O gatilho aqui modelado
+  ("vesting acelerado por massa crítica de denúncia interna") é construção
+  normativa proposta pelo projeto, NÃO cláusula contratual documentada em
+  templates YC/NVCA padrão** (ver Adv B na crítica x10).
 - Custo de substituição: ~50% do salário anual por funcionário (recrutamento +
-  onboarding + perda de produtividade na transição)
-- Valor de equity por funcionário: ~50% de um salário anual (provisional)
+  onboarding + perda de produtividade na transição).
+- Valor de equity por funcionário: ~50% de um salário anual (provisional).
 - Em média ~50% do equity está non-vested em qualquer momento (carreira típica
-  de 4 anos com cliff de 1 ano)
+  de 4 anos com cliff de 1 ano).
+- **Caveat tributário**: IRPF + INSS podem derreter 40–50% do valor bruto do
+  vesting acelerado no Brasil (incerto: natureza salarial vs. mercantil em
+  formação na jurisprudência pós Lei 13.467/2017). O modelo opera em bruto;
+  ver R07 em `docs/DECISIONS.md`.
+- **Caveat institucional**: Resolução do CADE não pode impor cláusula contratual
+  padrão de vesting nem proteção trabalhista (reserva de lei, Art. 22, I, CF);
+  portanto, `fracao_contratos_acelerados > 0` é coerente apenas com o Regime C
+  (via lei). O modelo hoje aceita o parâmetro em qualquer regime — gating
+  estrutural pendente (ver `docs/plano_melhorias.md`, Categoria 4).
 
 A integração no modelo ocorre em duas camadas:
 

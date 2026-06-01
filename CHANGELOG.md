@@ -59,6 +59,26 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Categoria 1 (honestidade documental)** — só-texto, sem mudança de comportamento.
+  (1.1) `hirschman.py` corrige docstring "padrões YC" → reconhece que o
+  gatilho de vesting acelerado por ação coletiva é **construção normativa
+  proposta pelo projeto**, não cláusula YC/NVCA documentada, e acrescenta
+  caveats de tributação (IRPF + INSS derrete 40–50% do valor bruto) e
+  institucional (reserva de lei Art. 22, I, CF — só Regime C entrega).
+  (1.2/1.3) `DECISIONS.md` R07: caveats de escopo (Lei 13.608/2018 não cobre
+  antitruste no eixo recompensa, Art. 4º-C §3º) e tributários explicitados.
+  (1.4) R02 particionada em R02a (integração do `x*` no ABM), R02b (contraste
+  multiplicidade × unicidade) e R02c (unicidade sob heterogeneidade —
+  conjectura). (1.5) `paper/main.tex`: "é, assim, re-caracterizada" →
+  "*pode ser* re-caracterizada (controvertida, sujeita a F6)". (1.6)
+  `limitacoes.md` ganha linha **L-Jur1** com a fragilidade jurídica do
+  Regime B. (1.7/1.8) `INSTITUTIONAL.md` ganha subseções "Limites do Regime
+  B (reserva de lei)" e "Quem é vítima? no Art. 12". (1.9) Abre **D06**
+  (análise dogmática vítima-empregado) e marca **E04** como pendência
+  rastreada também no paper. (1.10) Abre **E05** (calibrar
+  `DISTRIBUICAO_PAPEIS_PADRAO` para marketplace BR). (1.11) `ODD.md`:
+  pressuposto de homogeneidade de Morris-Shin explicitado em §2 e Prop. 2
+  status atualizado para "conjectura aberta sob heterogeneidade".
 
 ### Documentação, site e paper
 - **Fase 3** — registra o backlog de pesquisa (R01–R06) em `docs/DECISIONS.md`

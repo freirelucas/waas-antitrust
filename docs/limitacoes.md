@@ -22,6 +22,7 @@ lido como conclusão final. O backlog técnico completo está em
 | **R03** | Os números **não estão calibrados** contra a realidade | ajustar os parâmetros aos dados do CADE (acordos de leniência, TCCs) e à literatura; hoje as magnitudes são plausíveis, não ajustadas |
 | **R05** | Os **pesos do bem-estar** são provisórios | ancorar "quanto vale o dano evitado" em estimativas econômicas |
 | **R06** | A **capacidade da autoridade** usa uma aproximação | precisa de dado empírico (quantos funcionários têm as subsidiárias de big techs no Brasil) |
+| **L-Jur1** | A **fragilidade jurídica do Regime B** ainda não tem seção própria | (i) a re-caracterização da recompensa como "ressarcimento" sob o Art. 12 da Res. 21/2018 é juridicamente controvertida (falsificador F6); (ii) o Regime B é resolução infralegal e, por reserva de lei (Art. 22, I, CF), **não pode** impor cláusula contratual padrão de vesting nem proteção trabalhista — o que `hirschman.py` modela só é coerente sob Regime C (via lei); (iii) o conceito de "vítima" do Art. 12 é categoria coletiva na práxis do CADE, e o denunciante interno pode ser **partícipe** da conduta (colisão com Art. 86 da Lei 12.529/2011 — leniência clássica). Tratar como **conjectura jurídica otimista**, não tese pacificada |
 
 ## Em resumo
 

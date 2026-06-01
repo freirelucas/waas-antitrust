@@ -42,6 +42,7 @@ Por tique:
 ## 2. Conceitos de desenho
 
 - **Princípios básicos**: PBE; seleção **inspirada em** jogo global (Morris-Shin 1998) e difusão **aproximando** contágio complexo (Centola-Macy 2007). *Nota: o código usa limiares heurísticos (sinal privado ruidoso; imitação por fração de vizinhos no tique anterior), não o equilíbrio do jogo global nem um modelo formal de contágio — ver §3.3 e os submódulos.*
+- **Pressuposto de homogeneidade (Morris-Shin)**: o resultado de unicidade do jogo global de Morris-Shin (1998), aplicado em P2 e na Proposição 2, **supõe homogeneidade dos agentes** — mesmo *payoff*, mesma estrutura informacional. O ABM, em contraste, tem **arquétipos heterogêneos** (ético/imitativo/racional/aleatório) e, com R08, **papéis heterogêneos** com `observabilidade` diferente por par (papel, conduta). Não há, hoje, resultado fechado conhecido de unicidade do equilíbrio sob essa heterogeneidade; a Proposição 2 deve ser lida como conjectura aberta neste regime.
 - **Emergência**: taxa macro de denúncia a partir de limiares micro e topologia de rede.
 - **Sensoriamento**: trabalhadores observam σ com ruído; plataforma observa Σa exatamente mas só publica gatilho binário.
 - **Estocasticidade**: ε_i, arquétipo, detecção, represália.
@@ -80,7 +81,7 @@ No limite τ → 0 do subjogo de jogo global, há equilíbrio único de switchin
 
 *Esboço*: aplicação direta do Teorema 1 de Morris-Shin (1998) ao jogo binário com complementaridades estratégicas. □
 
-> **Status (atualizado — R02 exploratório):** o módulo `waas_antitrust.jogo_global` deriva o limiar de switching **único** do subgame estilizado e mostra sua convergência quando τ → 0 (`tests/test_jogo_global.py`) — a seleção de equilíbrio único que a proposição afirma. **Ressalva:** é um subgame estilizado (ganho linear na severidade, massa crítica constante), **não** integrado à dinâmica de arquétipos do ABM; o contraste formal com a multiplicidade sob conhecimento comum e a generalização seguem em aberto.
+> **Status (atualizado — R02 exploratório):** o módulo `waas_antitrust.jogo_global` deriva o limiar de switching **único** do subgame estilizado e mostra sua convergência quando τ → 0 (`tests/test_jogo_global.py`) — a seleção de equilíbrio único que a proposição afirma. **Ressalva:** é um subgame estilizado (ganho linear na severidade, massa crítica constante), **não** integrado à dinâmica de arquétipos do ABM; o contraste formal com a multiplicidade sob conhecimento comum e a generalização seguem em aberto. **Sob heterogeneidade (arquétipos × papéis, ver R08), a unicidade do equilíbrio é conjectura aberta** — não há, no nosso conhecimento, resultado fechado de Morris-Shin generalizado para esse mix; ver §2 (Pressuposto de homogeneidade).
 
 ### Proposição 3 — Dominância de bem-estar do Regime B sobre o Regime A
 
