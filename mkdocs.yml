@@ -37,6 +37,7 @@ theme:
 
 nav:
   - Início: index.md
+  - Como o mecanismo se sustenta: mecanismo.md
   - Resultados: resultados.md
   - Limitações: limitacoes.md
   - Como usar: uso.md

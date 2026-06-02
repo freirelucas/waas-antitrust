@@ -25,6 +25,13 @@ de violar** ao longo do tempo — algo que o cenário atual não produz.
 
     [Ver resultados](resultados.md) · [Glossário](glossario.md)
 
+-   **Cético(a) — "mas e se a empresa não pagar?"**
+
+    A pergunta direta, respondida com fórmulas, exemplo numérico e três
+    vetores de quebra modelados explicitamente.
+
+    [Como o mecanismo se sustenta](mecanismo.md)
+
 -   **Formulador(a) de política · jurista**
 
     Como o mecanismo caberia na lei brasileira; o que muda no Regime B vs. C.
@@ -33,15 +40,9 @@ de violar** ao longo do tempo — algo que o cenário atual não produz.
 
 -   **Pesquisador(a) · estudante**
 
-    O protocolo do modelo, a API, e o caderno-demo no Colab.
+    O protocolo do modelo, a API, o caderno-demo no Colab.
 
     [Modelo (ODD)](ODD.md) · [API](api.md) · [Como usar](uso.md)
-
--   **Cético(a) saudável**
-
-    O que ainda **não** está sustentado, e o que pediria uma calibração formal.
-
-    [Limitações](limitacoes.md) · [Crítica x10](critica_x10.md) · [Backlog](DECISIONS.md)
 
 </div>
 
@@ -80,12 +81,15 @@ Regime C ultrapassa.
 
 ## A tese, em termos técnicos
 
-O mecanismo **inverte a função-utilidade da conformidade**: em vez de minimizar
-$p \cdot S$ (probabilidade de detecção × sanção), a empresa passa a maximizar
-$D - W$ — o desconto $D$ no Termo de Compromisso de Cessação (TCC) menos a
-recompensa total $W$ paga aos denunciantes. A condição $D > W$ (chamamos
-**IC-F\***) é satisfazível no Art. 12 da Resolução 21/2018, sustentando
-implementação por via infralegal (Regime B).
+O mecanismo **inverte a função-utilidade da conformidade**: em vez de
+minimizar $p \cdot S$ (probabilidade de detecção × sanção), a empresa
+compara o **incremento** de desconto $D_{\text{extra}} = D_{\text{total}} -
+D_{\text{base}}$ que o canal WaaS oferece sobre o TCC clássico (Art. 85)
+contra a recompensa total $W$ paga aos denunciantes. A condição
+$W < D_{\text{extra}}$ (que chamamos **IC-F\***) é satisfazível no Art. 12
+da Resolução 21/2018, sustentando implementação por via infralegal
+(Regime B). [**Os detalhes — incluindo o vetor de quebra "e se a empresa
+não pagar?" — estão em uma página própria.**](mecanismo.md)
 
 A coordenação dos denunciantes tem **limiar de massa crítica**: abaixo dele,
 silêncio; acima, cascata de revelação.

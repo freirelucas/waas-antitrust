@@ -107,10 +107,17 @@ class TrabalhadorAgent(Agent):
                 return 0
             # IR-W: W ≥ r · tol · 2·w_a (R14: tolerância individual a represália)
             custo_esperado = r * self.tolerancia_represalia * 2.0 * self.w_a
+            # **Vetor de quebra C** (R15): custo legal individual do denunciante.
+            # Advogado para reivindicar a recompensa, defesa em ação trabalhista
+            # se houver represália, e potencial responsabilização criminal se
+            # caracterizado partícipe (Art. 86 — Lei 12.529/2011, colisão com
+            # leniência clássica). `custo_legal_uw` em unidades de w_a.
+            custo_legal = getattr(self.model, "custo_legal_uw", 0.0) * self.w_a
             # IC-T: penalidade esperada por falso reporte
             prob_verdadeiro = 1.0 / (1.0 + np.exp(-5.0 * (s_i - 0.5)))
             penalidade_esperada = (1.0 - prob_verdadeiro) * 0.5 * F_falso * self.w_a
-            return 1 if (W_esperado - custo_esperado - penalidade_esperada > 0) else 0
+            ganho_liquido = W_esperado - custo_esperado - custo_legal - penalidade_esperada
+            return 1 if ganho_liquido > 0 else 0
 
         if self.arquetipo == "aleatório":
             return 1 if self.model.rng.random() < self.model.eta_aleatorio else 0

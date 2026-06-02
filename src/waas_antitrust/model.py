@@ -36,7 +36,18 @@ class WaaSParametros:
     # Parâmetros do mecanismo
     W_mult: float = 1.5  # recompensa em múltiplos do salário anual
     k_rel: float = 0.05  # massa crítica como fração de n_trabalhadores
-    D_disc: float = 0.30  # desconto sobre contribuição pecuniária
+    D_disc: float = 0.30  # desconto TOTAL aplicável ao TCC com ressarcimento WaaS
+    # **Vetor de quebra A** (D03b): o TCC clássico (Lei 12.529/2011, Art. 85)
+    # **já oferece** desconto sem WaaS. Logo, o incentivo a pagar W é
+    # `D_extra = D_disc − D_disc_base_tcc`, NÃO `D_disc` inteiro.
+    # Default 0.0 assume que todo o desconto é WaaS-específico (compat com a
+    # IC-F* simplificada). Calibrar contra Saito 2021 (média de descontos
+    # observados em TCCs CADE 2012-2019).
+    D_disc_base_tcc: float = 0.0
+    # **Vetor de quebra B** (R13/F6): probabilidade de o TCC-WaaS ser anulado
+    # judicialmente (re-caracterização da recompensa como ressarcimento
+    # contestada). Default 0 preserva comportamento; ativar para falsificar F6.
+    p_anulacao_tcc: float = 0.0
     rho: float = 0.7  # acurácia-base da autoridade
     taxa_capacidade: float = 0.5  # fração de empresas processáveis por tique (limitada pelo CADE)
     r_represalia: float = 0.15  # probabilidade de represália
@@ -60,6 +71,12 @@ class WaaSParametros:
     delta_leniencia: float = 0.5
     w_a_base: float = 180_000.0  # salário anual (R$, Brasscom 2024)
     R_por_trabalhador: float = 1_500_000.0
+    # **Custo legal individual** do denunciante (em unidades de w_a). Cobre
+    # honorários para reivindicar a recompensa, defesa em ação trabalhista
+    # por represália e responsabilização criminal se for caracterizado
+    # partícipe. Default 0 preserva compat; valor empírico realista no Brasil
+    # estaria entre 0,1 e 0,5 (10–50% de um salário anual). Calibrar em R03.
+    custo_legal_uw: float = 0.0
 
     # Hirschman exit-with-equity (R07): cláusulas contratuais de vesting
     # acelerado por gatilho de ação coletiva. Pesos provisionais (calibrar R03).
@@ -118,6 +135,9 @@ class WaaSModel(Model):
         self.W_mult = params.W_mult
         self.k_rel = params.k_rel
         self.D_disc = params.D_disc
+        self.D_disc_base_tcc = params.D_disc_base_tcc
+        self.p_anulacao_tcc = params.p_anulacao_tcc
+        self.custo_legal_uw = params.custo_legal_uw
         self.rho = params.rho
         self.r_represalia = params.r_represalia
         self.F_falso = params.F_falso
@@ -194,6 +214,9 @@ class WaaSModel(Model):
         # arrecadada pelo Estado (TCC ⇒ residual; sem TCC ⇒ multa cheia).
         self.dano_economico_acum: float = 0.0
         self.multa_arrecadada_acum: float = 0.0
+        # Vetores de quebra (R15): contadores cumulativos
+        self.n_tcc_anulados: int = 0  # F6: TCC anulado por re-caracterização rejeitada
+        self.n_firmas_optaram_tcc_classico: int = 0  # firma preferiu TCC clássico vs. WaaS
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
@@ -230,6 +253,8 @@ class WaaSModel(Model):
                 "custo_exodo_acum": "custo_exodo_acum",
                 "dano_economico_acum": "dano_economico_acum",
                 "multa_arrecadada_acum": "multa_arrecadada_acum",
+                "n_tcc_anulados": "n_tcc_anulados",
+                "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -468,14 +493,20 @@ class WaaSModel(Model):
                 empresa.notificada_no_periodo = True
                 empresa.n_denuncias_acum += 1  # R14: memória da firma
 
-        # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07)
+        # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07).
+        # **Vetor de quebra A**: a IC-F* correta compara W contra o INCREMENTO
+        # de desconto que o canal WaaS oferece (`D_extra = D_total − D_base`),
+        # não contra o desconto total. Sem isso, o modelo superestima o
+        # incentivo a pagar — porque o TCC clássico já oferece desconto.
         for empresa in self.empresas:
             if not empresa.notificada_no_periodo:
                 continue
             disparados = [t for t in empresa.trabalhadores if t.sinaliza_agora]
             W_total = sum(self._W_esperado(t.w_a) for t in disparados)
             S_esp = empresa.sancao_esperada()
-            D_val = self.D_disc * S_esp if D_ativo else 0.0
+            D_total = self.D_disc * S_esp if D_ativo else 0.0
+            D_base = self.D_disc_base_tcc * S_esp if D_ativo else 0.0
+            D_extra = max(0.0, D_total - D_base)  # incentivo marginal do WaaS
             # Custo do êxodo se a firma não pagar (zero sem cláusula).
             w_a_medio = (
                 sum(t.w_a for t in disparados) / len(disparados) if disparados else self.w_a_base
@@ -490,15 +521,21 @@ class WaaSModel(Model):
                 aliquota_tributaria=self.aliquota_tributaria_vesting,
             )
             empresa.pagou_denunciantes = D_ativo and hirschman.deve_pagar_com_hirschman(
-                W_total, D_val, c_exodo
+                W_total, D_extra, c_exodo
             )
             if empresa.pagou_denunciantes:
                 empresa.tcc_assinado = True
                 self.custo_recompensa_acum += W_total
-            elif c_exodo > 0.0:
-                # Firma com cláusula que não pagou ⇒ êxodo materializa.
-                self.n_firmas_sob_ameaca_exodo += 1
-                self.custo_exodo_acum += c_exodo
+            else:
+                # Firma decidiu não pagar W. Se há D_base > 0, ela ainda pode
+                # optar pelo TCC clássico (Art. 85, sem ressarcimento WaaS) —
+                # contado como vetor de quebra A materializado.
+                if D_base > 0.0:
+                    self.n_firmas_optaram_tcc_classico += 1
+                if c_exodo > 0.0:
+                    # Firma com cláusula que não pagou ⇒ êxodo materializa.
+                    self.n_firmas_sob_ameaca_exodo += 1
+                    self.custo_exodo_acum += c_exodo
 
         # P4 · intervenção da autoridade
         for empresa in self.empresas:
@@ -525,13 +562,21 @@ class WaaSModel(Model):
         )
         # Categoria 3 (Eco B): multa arrecadada pelo Estado nesse tique. VP que
         # assinou TCC paga apenas o residual (sanção · (1−D_disc)); VP sem TCC
-        # paga a multa cheia. FP não geram receita estável (recurso/anulação).
+        # paga a multa cheia. **Vetor de quebra B (R15)**: TCC-WaaS pode ser
+        # anulado por contestação judicial (F6) — quando anulado, a empresa
+        # paga a multa cheia.
         for c in resultados_tique:
             if not (c["eh_violadora_real"] and c["classificada_violadora"]):
                 continue
             emp = self.empresas[c["id_empresa"]]
             sancao = emp.sancao_esperada()
-            fator = (1.0 - self.D_disc) if (emp.tcc_assinado and emp.pagou_denunciantes) else 1.0
+            tcc_valido = emp.tcc_assinado and emp.pagou_denunciantes
+            # Sorteia anulação judicial do TCC se ativo.
+            if tcc_valido and self.p_anulacao_tcc > 0.0 and self.rng.random() < self.p_anulacao_tcc:
+                tcc_valido = False
+                emp.tcc_assinado = False
+                self.n_tcc_anulados += 1
+            fator = (1.0 - self.D_disc) if tcc_valido else 1.0
             self.multa_arrecadada_acum += sancao * fator
         self.fp_tique = sum(
             1

@@ -59,6 +59,35 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R15 — Vetores de quebra do mecanismo (resposta à crítica direta do
+  autor)**. Três perguntas céticas materializadas no modelo e em uma página
+  narrativa expandida (`docs/mecanismo.md`):
+  - **Vetor A — TCC clássico já dá desconto**: novo parâmetro
+    `D_disc_base_tcc` em `WaaSParametros`. A IC-F* correta compara `W`
+    contra o **incremento** `D_extra = D_disc − D_disc_base_tcc`, NÃO
+    contra o desconto total. Default 0 preserva comportamento; com
+    `D_base ≥ D_total` ninguém paga W. Contador
+    `n_firmas_optaram_tcc_classico` registra materialização.
+  - **Vetor B — anulação judicial do TCC** (falsificador F6 explicitado):
+    novo parâmetro `p_anulacao_tcc`. Em P4, TCC válido sorteia anulação
+    com essa probabilidade; quando anulado, a multa cheia retorna ao
+    erário. Contador `n_tcc_anulados`. Calibrar `p_anulacao` falsifica F6
+    quantitativamente.
+  - **Vetor C — custos legais do denunciante** (advogado, defesa
+    trabalhista, eventual partícipe sob Art. 86): novo parâmetro
+    `custo_legal_uw` em unidades de `w_a` (0,1–0,5 realista no Brasil).
+    Entra na IR-W do arquétipo racional via `agents.decidir_sinal`.
+  - Nova página `docs/mecanismo.md` ("Como o mecanismo se sustenta") com
+    aritmética da IC-F* em exemplo numérico (R$ 1B receita, σ=0,5 ⇒
+    `D_extra` = R$ 15M vs. `W` = R$ 2,7M), três cenários institucionais
+    para quem cobre o custo legal (denunciante, empresa via TCC, Estado
+    via fundo) e §"Onde isto ainda pode ruir" listando gaps abertos
+    (R03/R09/R10/R13). Inserida cedo na navegação (entre Início e
+    Resultados). `docs/index.md` ganha card "Cético — e se a empresa não
+    pagar?" apontando direto para a página, e a "tese técnica" foi
+    reescrita usando `D_extra` em vez de `D` total.
+  - 8 testes em `tests/test_vetores_quebra.py` (vetores A/B/C
+    individualmente + combinação adversa). Total: 80 → 88.
 - **REFERENCES expandida com pesquisa de fundo** (ABM aplicado a economia
   industrial e a mercados digitais). Subagente em paralelo retornou ~26
   referências verificadas (com DOI/arXiv/URL estável) cobrindo: ABM
