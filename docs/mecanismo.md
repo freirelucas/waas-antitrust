@@ -108,6 +108,81 @@ Três cenários institucionais são possíveis, e implicam calibrações diferen
 
 O **modelo** torna isto calibrável via `custo_legal_uw` (em unidades de $w_a$). O parâmetro entra na IR-W do arquétipo "racional" — quando o custo legal é alto, a recompensa $W$ precisa subir para o trabalhador racional ainda denunciar.
 
+## O break-even ético coletivo (R16)
+
+Até aqui o argumento foi inteiramente financeiro — IC-F\* da firma, IR-W
+do trabalhador, contas em reais. Mas há uma intuição forte que a versão
+puramente racional não captura: **a partir de uma certa massa crítica,
+algo muda na lógica individual**. O trabalhador que vê dez colegas falando
+não decide pelo mesmo cálculo de quem está sozinho.
+
+O modelo agora incorpora isso explicitamente, baseado em **Torsell (2026,
+*Theory and Decision*)** e na teoria de inequity aversion de **Fehr &
+Schmidt (1999)**. Um quinto arquétipo — `"fairminded"` — entra ao lado dos
+quatro de Hokamp-Pickhardt (ético, imitativo, racional, aleatório). O FM
+agente computa o payoff racional clássico **e** adiciona um prêmio ético
+proporcional à fração de pares já sinalizando:
+
+$$
+\text{ganho}_{\text{FM}} = W_{\text{efetivo}} + \alpha \cdot \phi_{\text{vizinhos}} \cdot w_a - \text{custos}
+$$
+
+onde $\phi_{\text{vizinhos}}$ é a fração de vizinhos da rede intra-firma
+que sinalizaram no tique anterior, e $\alpha$ é o peso da inequity
+aversion (parâmetro `peso_inequity_aversion`).
+
+**A consequência emergente é o break-even ético**: enquanto $\phi$ é
+baixa, FM se comporta como racional puro; quando $\phi$ ultrapassa um
+limiar tácito, o prêmio ético inverte o sinal da decisão — calar passa a
+ser desigualdade moral mais custosa do que falar. Não é hardcoded; é
+propriedade emergente do mesmo agente Fehr-Schmidt que a literatura usa
+em jogos de barganha.
+
+O resultado central de Torsell (2026) — que FM **proliferaria** em
+populações HE+FM sob qualquer dinâmica payoff-monotone, com aprendizado
+intra-geracional via *fictitious play* — sugere que o canal ético não é
+uma curiosidade marginal; pode ser **a peça dominante** quando a massa
+crítica se forma. Modelar isto endogenamente é o trabalho de R16, e o
+catálogo de [cenários normativos](#) (R17) já oferece presets que ativam
+o canal.
+
+## Cenários normativos como variantes paramétricas (R17)
+
+Uma das primeiras objeções honestas a um modelo deste tipo é "**e se
+mudar a lei?**". A resposta tradicional — escrever um parágrafo no paper
+descrevendo a alteração — não é boa o suficiente. A versão deste projeto
+trata cada alteração normativa como um **cenário comparável**: um conjunto
+nomeado de sobrescritas de parâmetros, executável e reportável.
+
+O catálogo (módulo `waas_antitrust.cenarios`) contém sete cenários
+canônicos:
+
+| Cenário | Hipótese institucional |
+|---|---|
+| `status_quo` | Brasil hoje — sem canal de incentivo individual. |
+| `resolucao_pura` | Regime B — Art. 12 da Res. 21/2018; F6 calibrado em 10%. |
+| `resolucao_mais_portaria_mte` | Regime B + portaria MTE com proteção trabalhista reforçada — `r_represalia` cai a 8%, `custo_legal` a 15%. |
+| `lei_waas_pura` | Regime C — Lei 13.608/2018 estendida; F6 = 0. |
+| `lei_waas_com_fundo_honorarios` | Regime C + fundo público para honorários (análogo IRS Whistleblower Office). |
+| `lei_waas_com_vesting_padrao` | Regime C + cláusula padrão de vesting acelerado (Hirschman R07 universal); haircut IRPF+INSS realista. |
+| `cenario_sancao_dura` | Regime C + multa por descumprimento de TCC = 2× sanção base (R18). |
+
+Cada cenário roda como uma chamada de função:
+
+```python
+from waas_antitrust import cenarios
+from waas_antitrust.model import WaaSModel, WaaSParametros
+
+base = WaaSParametros(n_empresas=20, n_tiques=40, seed=42)
+for nome in cenarios.listar_cenarios():
+    params = cenarios.aplicar_cenario(base, nome)
+    df = WaaSModel(params).executar()
+    print(nome, df["dano_acumulado"].max())
+```
+
+Comparar regimes vira **trabalho computacional reprodutível**, não
+exercício retórico.
+
 ## Os outros três incentivos compatíveis
 
 Além da IC-F\* da firma, o desenho precisa satisfazer simultaneamente:

@@ -31,6 +31,19 @@
 - Granovetter, M. (1978). Threshold models of collective behavior. *American Journal of Sociology* 83(6): 1420–1443.
 - Near, J. P., & Miceli, M. P. (1985). Organizational dissidence: The case of whistle-blowing. *Journal of Business Ethics* 4(1): 1–16. — *base do gradiente 3-níveis primário/adjacente/distal em R08.*
 
+## Inequity aversion e evolução de preferências (base de R16)
+
+- Fehr, E., & Schmidt, K. M. (1999). A theory of fairness, competition, and cooperation. *Quarterly Journal of Economics* 114(3): 817–868. DOI: 10.1162/003355399556151 — *modelo seminal de inequity aversion; base da utilidade `u_i = π_i − α·|π_i − π_j|` adotada pelo arquétipo fairminded.*
+- Bolton, G. E., & Ockenfels, A. (2000). ERC: A theory of equity, reciprocity, and competition. *American Economic Review* 90(1): 166–193. DOI: 10.1257/aer.90.1.166 — *modelo alternativo (não-aditivo) de fairness preferences; comparação canônica com Fehr-Schmidt.*
+- Güth, W., & Yaari, M. (1992). Explaining reciprocal behavior in simple strategic games: An evolutionary approach. Em U. Witt (ed.), *Explaining process and change*. University of Michigan Press. — *abordagem evolutiva indireta: dual payoff structure (utilidade subjetiva × payoff material).*
+- Skyrms, B. (1996). *Evolution of the Social Contract*. Cambridge University Press. — *evolução de equilíbrios igualitários no jogo de demanda de Nash sob dinâmica replicador.*
+- Huck, S., & Oechssler, J. (1999). The indirect evolutionary approach to explaining fair allocations. *Games and Economic Behavior* 28(1): 13–24. DOI: 10.1006/game.1998.0691
+- Nowak, M. A., Page, K. M., & Sigmund, K. (2000). Fairness versus reason in the ultimatum game. *Science* 289(5485): 1773–1775. DOI: 10.1126/science.289.5485.1773
+- Henrich, J., Boyd, R., Bowles, S., Camerer, C., Fehr, E., Gintis, H., & McElreath, R. (2001). In search of Homo Economicus: Behavioral experiments in 15 small-scale societies. *American Economic Review* 91(2): 73–78. DOI: 10.1257/aer.91.2.73
+- **Torsell, C. (2026). Egalitarianism and evolution. *Theory and Decision*. DOI: 10.1007/s11238-026-10127-6** — *resultado central que motiva R16: aversão à inequidade prolifera em populações HE+FM sob qualquer dinâmica payoff-monotone, com aprendizado intra-geracional via fictitious play. O agente fairminded no `agents.py` é a adaptação direta da utilidade Fehr-Schmidt para o contexto WaaS.*
+- Fudenberg, D., & Levine, D. (1998). *The Theory of Learning in Games*. MIT Press. — *fictitious play e aprendizado intra-geracional como motor dinâmico.*
+- Camerer, C., & Hua Ho, T. (1999). Experience-weighted attraction learning in normal form games. *Econometrica* 67(4): 827–874. DOI: 10.1111/1468-0262.00054
+
 ## Modelagem baseada em agentes (foundational)
 
 - Grimm, V. et al. (2020). The ODD protocol for describing agent-based and other simulation models: A second update. *JASSS* 23(2): 7.

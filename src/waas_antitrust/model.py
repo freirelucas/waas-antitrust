@@ -78,6 +78,30 @@ class WaaSParametros:
     # estaria entre 0,1 e 0,5 (10–50% de um salário anual). Calibrar em R03.
     custo_legal_uw: float = 0.0
 
+    # **R16 — Inequity aversion (Torsell 2026, Fehr-Schmidt 1999)**: peso
+    # da pressão ética coletiva sobre o arquétipo "fairminded". Quando a
+    # fração de vizinhos sinalizadores no tique anterior é alta, o agente
+    # FM internaliza "calar é desigualdade moral" e tende a falar mais.
+    # Default 0 ⇒ FM degenera em racional puro. Ativar com 0,5–2 para
+    # observar o break-even ético coletivo emergente.
+    peso_inequity_aversion: float = 0.0
+
+    # **R18 — Commitment da firma (vetor de quebra D)**: probabilidade
+    # PERCEBIDA pelos trabalhadores racionais e FM de a firma efetivamente
+    # pagar a recompensa após a denúncia. Captura o problema clássico de
+    # commitment: "se a empresa não paga, eles perdem tudo". Default 1.0
+    # preserva o comportamento (W esperado = W nominal); valores realistas
+    # entre 0,5 e 0,9 dependem do regime e da reputação institucional.
+    prob_pagamento_perc: float = 1.0
+
+    # **R18 — Sanção catastrófica por descumprimento do TCC**: multa adicional
+    # (em múltiplos da sanção base) aplicada quando a firma assina TCC com
+    # ressarcimento WaaS mas depois descumpre. Em paralelo, eleva
+    # permanentemente a `p_perc` percebida pelas demais firmas (canal de
+    # aprendizado coletivo). Default 0 preserva comportamento.
+    multa_descumprimento_tcc: float = 0.0
+    p_descumprimento_tcc: float = 0.0  # prob. de a firma descumprir após assinar
+
     # Hirschman exit-with-equity (R07): cláusulas contratuais de vesting
     # acelerado por gatilho de ação coletiva. Pesos provisionais (calibrar R03).
     fracao_contratos_acelerados: float = 0.0  # fração das firmas com cláusula
@@ -102,6 +126,12 @@ class WaaSParametros:
     # Heterogeneidade conduta × ator (R08): distribuição de papéis nos
     # trabalhadores; o catálogo de condutas vem de waas_antitrust.condutas.
     distribuicao_papeis: dict[str, float] | None = None  # None ⇒ padrão big tech
+
+    # R16: distribuição dos arquétipos de comportamento dentro da firma.
+    # None ⇒ Hokamp-Pickhardt clássico (15/35/40/10/0, sem fairminded).
+    # Para ativar fairminded, passar dict com soma 1. Os cenários em
+    # `waas_antitrust.cenarios` fornecem presets calibrados.
+    distribuicao_arquetipos: dict[str, float] | None = None
 
     # Suavização Beta-Binomial em p_perc (Categoria 2 da crítica x10, Mat A):
     # estimador `(vp + α) / (n_viol + α + β)` remove singularidade em
@@ -138,6 +168,10 @@ class WaaSModel(Model):
         self.D_disc_base_tcc = params.D_disc_base_tcc
         self.p_anulacao_tcc = params.p_anulacao_tcc
         self.custo_legal_uw = params.custo_legal_uw
+        self.peso_inequity_aversion = params.peso_inequity_aversion
+        self.prob_pagamento_perc = params.prob_pagamento_perc
+        self.multa_descumprimento_tcc = params.multa_descumprimento_tcc
+        self.p_descumprimento_tcc = params.p_descumprimento_tcc
         self.rho = params.rho
         self.r_represalia = params.r_represalia
         self.F_falso = params.F_falso
@@ -217,6 +251,9 @@ class WaaSModel(Model):
         # Vetores de quebra (R15): contadores cumulativos
         self.n_tcc_anulados: int = 0  # F6: TCC anulado por re-caracterização rejeitada
         self.n_firmas_optaram_tcc_classico: int = 0  # firma preferiu TCC clássico vs. WaaS
+        # R18: firma assinou TCC, recebeu W, e descumpriu — "perdem tudo"
+        self.n_firmas_quebraram_tcc: int = 0
+        self.multa_descumprimento_acum: float = 0.0
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
@@ -255,6 +292,8 @@ class WaaSModel(Model):
                 "multa_arrecadada_acum": "multa_arrecadada_acum",
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
+                "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
+                "multa_descumprimento_acum": "multa_descumprimento_acum",
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -349,10 +388,22 @@ class WaaSModel(Model):
                 g = nx.erdos_renyi_graph(tam, 0.02, seed=grafo_seed)
             empresa.grafo_interno = g
 
+            # Distribuição padrão dos arquétipos. O quinto slot — "fairminded"
+            # (R16, Torsell 2026) — recebe 0 por default para preservar a
+            # calibração histórica de 4 tipos (Hokamp-Pickhardt 2010). Quando
+            # `peso_inequity_aversion > 0`, recomenda-se redistribuir via
+            # `params.distribuicao_arquetipos` — cenários em `cenarios.py`.
+            if self.params.distribuicao_arquetipos is None:
+                probs_arq = [0.15, 0.35, 0.40, 0.10, 0.0]
+            else:
+                probs_arq = [
+                    self.params.distribuicao_arquetipos.get(a, 0.0)
+                    for a in TrabalhadorAgent.ARQUETIPOS
+                ]
             arquetipos = self.rng.choice(
                 TrabalhadorAgent.ARQUETIPOS,
                 size=tam,
-                p=[0.15, 0.35, 0.40, 0.10],
+                p=probs_arq,
             )
             papeis_keys = list(self.distribuicao_papeis.keys())
             papeis_probs = list(self.distribuicao_papeis.values())
@@ -526,6 +577,20 @@ class WaaSModel(Model):
             if empresa.pagou_denunciantes:
                 empresa.tcc_assinado = True
                 self.custo_recompensa_acum += W_total
+                # **R18 — sanção catastrófica por descumprimento**: a firma
+                # pode, após assinar e pagar W, descumprir o TCC. Sorteio com
+                # `p_descumprimento_tcc`. Se sortear, sofre multa adicional
+                # `multa_descumprimento_tcc · sancao_base` — "se não cumpre
+                # depois de assinar, perde tudo". Captura o lado-firma do
+                # commitment problem (simétrico ao trabalhador).
+                if (
+                    self.p_descumprimento_tcc > 0.0
+                    and self.rng.random() < self.p_descumprimento_tcc
+                ):
+                    empresa.tcc_assinado = False
+                    empresa.pagou_denunciantes = False
+                    self.n_firmas_quebraram_tcc += 1
+                    self.multa_descumprimento_acum += self.multa_descumprimento_tcc * S_esp
             else:
                 # Firma decidiu não pagar W. Se há D_base > 0, ela ainda pode
                 # optar pelo TCC clássico (Art. 85, sem ressarcimento WaaS) —

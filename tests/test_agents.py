@@ -5,8 +5,16 @@ from waas_antitrust.model import WaaSModel, WaaSParametros
 
 
 def test_arquetipos_validos():
-    """Os quatro arquétipos canônicos estão definidos."""
-    assert TrabalhadorAgent.ARQUETIPOS == ("ético", "imitativo", "racional", "aleatório")
+    """Os cinco arquétipos canônicos: Hokamp-Pickhardt 2010 (quatro) +
+    fairminded (Torsell 2026, R16). FM tem default 0% para preservar a
+    calibração histórica; cenários em `waas_antitrust.cenarios` ativam."""
+    assert TrabalhadorAgent.ARQUETIPOS == (
+        "ético",
+        "imitativo",
+        "racional",
+        "aleatório",
+        "fairminded",
+    )
 
 
 def test_trabalhador_nao_observa_nao_sinaliza():

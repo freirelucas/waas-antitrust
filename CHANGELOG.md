@@ -59,6 +59,50 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R16, R17, R18 — pressupostos teóricos mais robustos** (resposta à
+  crítica do autor + PDF Torsell 2026 enviado por anexo).
+  - **R16 — Arquétipo fairminded + inequity aversion (Torsell 2026,
+    Fehr-Schmidt 1999)**: `TrabalhadorAgent.ARQUETIPOS` ganha o quinto
+    arquétipo `"fairminded"`. Em `decidir_sinal`, FM computa payoff
+    racional base + prêmio ético `α · φ_vizinhos · w_a`. Parâmetros
+    novos: `peso_inequity_aversion` (default 0 ⇒ FM degenera em racional)
+    e `distribuicao_arquetipos` (default None ⇒ Hokamp-Pickhardt
+    clássico, sem FM — preserva calibração). Preset `DISTRIBUICAO_COM_FAIRMINDED`
+    em `cenarios.py`. **Resultado central de Torsell 2026** (FM domina HE
+    sob fictitious play) motiva o modelo do **break-even ético coletivo**:
+    o ponto de virada onde calar passa a ser desigualdade moral mais
+    custosa do que falar, emergente sem hardcoding.
+  - **R17 — Cenários normativos como variantes paramétricas**: novo
+    módulo `src/waas_antitrust/cenarios.py` com 7 cenários canônicos
+    (`status_quo`, `resolucao_pura`, `resolucao_mais_portaria_mte`,
+    `lei_waas_pura`, `lei_waas_com_fundo_honorarios`,
+    `lei_waas_com_vesting_padrao`, `cenario_sancao_dura`). Dataclass
+    `Cenario` com `nome`/`descricao`/`sobrescritas`. Função
+    `aplicar_cenario(params, cenario)` retorna novo `WaaSParametros` via
+    `dataclasses.replace`. Cobertura mínima: pelo menos um cenário em
+    cada regime A/B/C; vesting padrão respeita gating jurídico R07 (só
+    em C). Trata alterações regulatórias como **cenários comparáveis e
+    reprodutíveis**, não notas textuais.
+  - **R18 — Commitment da firma + sanção catastrófica** ("se não paga,
+    perdem tudo"): dois canais simétricos de commitment. (i)
+    `prob_pagamento_perc ∈ [0,1]` — trabalhadores racionais e FM
+    descontam W esperado por essa probabilidade (commitment problem
+    clássico). (ii) `p_descumprimento_tcc` + `multa_descumprimento_tcc`
+    — firma que assina e descumpre sofre multa adicional em múltiplos da
+    sanção base. Reporters novos: `n_firmas_quebraram_tcc`,
+    `multa_descumprimento_acum`.
+  - **17 testes novos** em `tests/test_fairminded_cenarios.py`. Total:
+    88 → 105 testes. Gates verdes (ruff/black/mkdocs --strict limpos).
+  - **REFERENCES expandida** com nova seção "Inequity aversion e evolução
+    de preferências (base de R16)": Fehr-Schmidt (1999), Bolton-Ockenfels
+    (2000), Güth-Yaari (1992), Skyrms (1996), Huck-Oechssler (1999),
+    Nowak-Page-Sigmund (2000), Henrich et al. (2001), **Torsell (2026,
+    *Theory and Decision*)** com DOI verificado, Fudenberg-Levine (1998),
+    Camerer-Ho (1999).
+  - **`docs/mecanismo.md` (Ato 2)** ganha duas seções novas:
+    "O break-even ético coletivo (R16)" — derivação narrativa do canal
+    fairminded; e "Cenários normativos como variantes paramétricas
+    (R17)" — tabela dos 7 cenários e exemplo de uso programático.
 - **Pivotagem estética e argumentativa radical** (decorrente da crítica
   continuada do autor "tá muito cru ainda; falta corpo; pivotagem
   radical; conte uma história concatenada no UX"). O site foi

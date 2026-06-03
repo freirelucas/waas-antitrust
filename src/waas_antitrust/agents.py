@@ -24,11 +24,18 @@ from mesa import Agent, Model
 class TrabalhadorAgent(Agent):
     """Funcionário de uma grande empresa de tecnologia.
 
-    Arquétipos (Hokamp & Pickhardt, 2010):
-        ético     — sinaliza se severidade percebida supera limiar pessoal
-        imitativo — sinaliza se fração de vizinhos sinalizadores ≥ 30%
-        racional  — ponderação custo-benefício explícita (IR-W e IC-T)
-        aleatório — ruído uniforme com probabilidade eta
+    Arquétipos (Hokamp & Pickhardt, 2010; estendidos com **fairminded** a
+    partir de Torsell 2026 e Fehr & Schmidt 1999):
+        ético       — sinaliza se severidade percebida supera limiar pessoal
+        imitativo   — sinaliza se fração de vizinhos sinalizadores ≥ 30%
+        racional    — ponderação custo-benefício explícita (IR-W e IC-T)
+        aleatório   — ruído uniforme com probabilidade eta
+        fairminded  — IR-W com inequity aversion: além do payoff individual,
+                      penaliza a desigualdade entre "estar sinalizando" e
+                      "estar em silêncio" enquanto os pares falam.
+                      Captura o **break-even ético coletivo** (Torsell 2026):
+                      a partir de certa massa crítica, calar vira mais custoso
+                      do que falar — emerge sem hardcoding.
 
     Heterogeneidade adicional (R14, exploratório):
         anos_carreira              — tempo na firma (distrib. exponencial em P0)
@@ -38,7 +45,7 @@ class TrabalhadorAgent(Agent):
         historico_observou         — memória: nº de tiques em que observou
     """
 
-    ARQUETIPOS = ("ético", "imitativo", "racional", "aleatório")
+    ARQUETIPOS = ("ético", "imitativo", "racional", "aleatório", "fairminded")
 
     def __init__(
         self,
@@ -121,6 +128,30 @@ class TrabalhadorAgent(Agent):
 
         if self.arquetipo == "aleatório":
             return 1 if self.model.rng.random() < self.model.eta_aleatorio else 0
+
+        if self.arquetipo == "fairminded":
+            # Torsell (2026) + Fehr-Schmidt (1999): utilidade Fehr-Schmidt
+            # adaptada ao contexto WaaS. O FM agente computa o payoff racional
+            # base e SOMA uma pressão por inequity aversion proporcional à
+            # fração de pares já sinalizando. Quando os colegas estão falando
+            # e ele cala, sofre desutilidade pela desigualdade moral.
+            if s_i is None:
+                return 0
+            custo_esperado = r * self.tolerancia_represalia * 2.0 * self.w_a
+            custo_legal = getattr(self.model, "custo_legal_uw", 0.0) * self.w_a
+            # **Vetor de quebra D** (R18): commitment da firma. O W esperado
+            # é descontado pela prob. percebida de a firma efetivamente pagar
+            # após a denúncia ("se a empresa não paga, perdem tudo").
+            prob_pag = getattr(self.model, "prob_pagamento_perc", 1.0)
+            W_efetivo = W_esperado * prob_pag
+            # Pressão ética via inequity aversion (Torsell 2026, R16):
+            # `phi_vizinhos` é a fração de vizinhos sinalizadores no tique
+            # anterior. Quando alta, "estar calado" é desigualdade moral
+            # crescente; o FM internaliza isso como prêmio adicional a falar.
+            alpha = getattr(self.model, "peso_inequity_aversion", 0.0)
+            premio_etico = alpha * phi_vizinhos * self.w_a
+            ganho_liquido = W_efetivo + premio_etico - custo_esperado - custo_legal
+            return 1 if ganho_liquido > 0 else 0
 
         return 0
 
