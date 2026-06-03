@@ -1,59 +1,76 @@
-# Resultados
+<span class="ato-chip">Ato 3 de 5 · O teste</span>
 
-Esta página narra, figura por figura, o que o modelo produz. As duas primeiras
-figuras são **conceituais** (ilustram a lógica do mecanismo); a terceira é
-**saída real da simulação** — o chip ao topo de cada imagem deixa explícito
-qual é qual.
+# O que a simulação mostra
 
-## 1 · A inversão de incentivo
+O Ato 2 apresentou um desenho. Equações, exemplos numéricos, três vetores de quebra. Tudo isso vive no papel — bonito, possivelmente coerente, mas que não diz se **funciona**. Para responder, precisamos de uma máquina que rode o jogo institucional vezes seguidas, com agentes que decidem por conta própria, e meça o que sai.
 
-![Inversão da função-utilidade da conformidade.](img/01_inversao.png){ .figura-conceitual }
+É o que o modelo `waas-antitrust` faz: 20 firmas, populadas por trabalhadores heterogêneos (éticos, imitativos, racionais e aleatórios), conectados por redes intra-firma do tipo *pequeno-mundo*, observados por uma autoridade tipo CADE com capacidade limitada. Rodamos esse sistema por 40 tiques (10 anos em trimestres) em cada um dos três regimes — A, B e C — e olhamos para duas perguntas:
 
-**À esquerda**, o cálculo clássico: o custo esperado de ser punida é
-"probabilidade de ser pega × tamanho da multa". Como a probabilidade de
-detecção costuma ser baixa, a "conformidade ótima" fica numa **zona de
-impunidade** — não vale a pena investir muito em não infringir.
+1. **As empresas param de violar?** (Canal de dissuasão, Proposição 3.)
+2. **O bem-estar social sobe?** (Canal de prevenção do dano, R05.)
 
-**À direita**, sob o WaaS, o cálculo muda: a empresa compara o **desconto $D$**
-na multa (por colaborar e ressarcir) com a **recompensa $W$** que paga aos
-denunciantes. Na região clara, $D > W$ — colaborar é financeiramente melhor do
-que esconder. A linha tracejada é a fronteira.
+A figura abaixo é a saída literal do modelo. Não é estilizada, não é ilustrativa — é o que o `WaaSModel.executar()` produziu quando rodamos com a *seed* 11 e os parâmetros declarados em `scripts/gerar_figura_dissuasao.py`.
 
-## 2 · A coordenação dentro da firma
-
-![Diagrama de fase da coordenação intrafirma.](img/02_fase.png){ .figura-conceitual }
-
-Um único funcionário raramente denuncia sozinho — há medo de represália. A
-denúncia vira provável quando um número mínimo de colegas também está disposto
-(uma **massa crítica**). O eixo horizontal é a gravidade da infração; o
-vertical, quantos precisam aderir. Na região clara, a cascata de denúncias é
-quase certa; na escura, prevalece o silêncio. As estrelas marcam onde os
-Regimes B e C mirariam.
-
-## 3 · Dissuasão e bem-estar — saída real do modelo
+## A evidência principal
 
 ![Dissuasão endógena e bem-estar por regime.](img/03_dissuasao_bem_estar.png){ .figura-empirica }
 
-A simulação roda nos três regimes (20 empresas, 40 trimestres).
+### Painel (A) — o que acontece com o número de empresas violando
 
-**Painel (A)** — número de empresas violando ao longo do tempo. No Regime A
-(sem WaaS), o número **cresce** — a detecção percebida é baixa e ninguém é
-dissuadido. Nos Regimes B e C, a detecção percebida sobe e as violações **caem
-a zero** em poucos tiques: é a **dissuasão**.
+No **Regime A** — o cenário atual, sem canal de incentivo — o número de empresas violando ao longo do tempo **cresce**. Não há ninguém para denunciar, a probabilidade percebida de detecção fica baixa, e firmas que não violavam no começo começam a violar conforme entendem que o custo esperado é baixo. É a inversão clássica: violar é o que minimiza a sanção esperada, e o sistema converge para essa estratégia.
 
-**Painel (B)** — bem-estar social, medido como o negativo do custo social
-(dano causado + erros de classificação − multa arrecadada pelo Estado). Os
-Regimes B e C ficam claramente acima do Regime A — não por punirem mais, mas
-por **prevenirem** o dano.
+Nos **Regimes B e C** — com canal WaaS — o desenho do mecanismo se reverte. Como existe a possibilidade real de denúncia, a detecção percebida sobe. Firmas que antes preferiam o risco passam a não violar. Em poucos tiques, **o número de violadoras ativas cai a zero**. Isto não é imposto à mão: emerge da decisão individual de cada firma comparando $g_i$ (sua atratividade de violar) com $p$ (a detecção percebida que ela atualiza por expectativa adaptativa).
 
-!!! note "Por que medir bem-estar pelo dano, e não pelo número de punições?"
-    Se medíssemos sucesso por "número de infrações detectadas", o Regime A
-    pareceria *melhor* — afinal, há mais crime para detectar quando ninguém é
-    dissuadido. Medir pelo **dano evitado** corrige essa perversidade e credita
-    a prevenção. Os pesos exatos dessa conta seguem provisórios — ver
-    [Limitações](limitacoes.md).
+### Painel (B) — o bem-estar social
 
-## Quer reproduzir?
+O bem-estar é medido como o **negativo do custo social total** — dano causado pelas violações em curso, mais custos de erro (falsos positivos), mais custo da recompensa privadamente paga, menos a multa que retorna ao erário. Os pesos exatos seguem provisórios; estão rastreados em R05.
 
-O caminho mais rápido é o **[caderno-demo no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)**
-(roda em ~1 minuto). Para rodar localmente, veja *[Como usar](uso.md)*.
+Os Regimes B e C ficam claramente acima do Regime A. **Não por punirem mais, mas por prevenirem o dano.** É um ponto importante: se medíssemos sucesso por "número de infrações detectadas", o Regime A pareceria *melhor* — afinal, há mais crime para detectar quando ninguém é dissuadido. A perversidade dessa métrica é o que motivou a redefinição do bem-estar em R05.
+
+<div class="pull-quote" markdown>
+A direção da Proposição 3 é robusta: em 12 seeds independentes, o intervalo de confiança 95% da diferença entre Regime B e Regime A não cruza zero.
+</div>
+
+## Por que a evidência é robusta
+
+Há um pecado clássico em ABM, apontado por dois dos matemáticos da [Crítica x10](critica_x10.md): apresentar resultado de **uma única seed** como se fosse propriedade do mecanismo. Variância de seed pode produzir gráficos bonitos que não sobrevivem à reamostragem.
+
+A defesa aqui é direta. Para a comparação central — "Regime B reduz violadoras em relação ao Regime A?" — o teste `test_dissuasao_endogena_robusta_a_multi_seed` executa o modelo em 12 seeds independentes, calcula a diferença entre B e A em cada uma, e constrói um intervalo de confiança 95% via bootstrap percentílico. **O intervalo não cruza zero.** A direção da Proposição 3 não é artefato de seed.
+
+Em paralelo, a estimativa de detecção percebida `p_perc` passou por **suavização Beta-Binomial** com prior $\text{Beta}(\alpha=1, \beta=5)$ — eliminando a singularidade clássica do estimador frequencista `vp/n_violadoras` em $n=0$ e estabilizando a variância em $n$ pequeno. Estes são detalhes técnicos: a página de [Limitações](limitacoes.md) os apresenta de forma acessível.
+
+## O que muda quando ativamos os vetores de quebra
+
+Toda a evidência acima usa parâmetros conservadores: $D_{\text{base}}=0$ (todo o desconto é WaaS-específico), $p_{\text{anulação}}=0$ (nenhum TCC anulado), $c_{\text{legal}}=0$ (denunciante não paga advogado). É a calibração mais favorável ao mecanismo — e mesmo assim a evidência é direcional, não dramática.
+
+A simulação também roda nos **regimes adversariais**:
+
+- Quando $D_{\text{base}} \ge D_{\text{total}}$, a IC-F\* nunca é satisfeita. O contador `n_firmas_optaram_tcc_classico` cresce, ninguém paga recompensa, e o canal WaaS é silenciado. Em testes, $D_{\text{base}}$ intermediário reduz pagamentos proporcionalmente — propriedade desejável.
+- Quando $p_{\text{anulação}} = 1$, todo TCC-WaaS assinado é anulado. A multa cheia retorna ao erário; o Regime B colapsa para a estrutura do Regime A. O teste `test_vetor_b_p_anulacao_um_anula_todos_os_tcc` confirma.
+- Quando $c_{\text{legal}}$ é alto (5 salários anuais, por exemplo), o arquétipo racional deixa de denunciar. A sinalização cai.
+
+Estes não são bugs do mecanismo; são as condições que **falsificam** o desenho. O modelo as expõe, calibra, e mede. Esta é a postura epistêmica que o projeto adota — **dizer onde o argumento quebra é mais valioso do que esconder a quebra**.
+
+## Como reproduzir
+
+O caminho mais rápido é o **[caderno-demo no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)** — instala dependências automaticamente, roda os três regimes e gera a figura em aproximadamente um minuto. Para regenerar a figura principal localmente:
+
+```bash
+pip install -e ".[dev]"
+python scripts/gerar_figura_dissuasao.py
+```
+
+Para a análise de sensibilidade paramétrica completa (Sobol multi-seed, escala paper-grade):
+
+```bash
+python scripts/run_sobol_full.py --n-base 1024 --jobs -1 \
+  --out results/sobol_full.parquet
+```
+
+Mais opções em [Como usar](uso.md).
+
+<div class="ato-fim" markdown>
+**Fim do Ato 3.** A evidência da simulação é direcional, multi-seed, e robusta a falsificações triviais. Mas o argumento honesto também precisa enumerar o que **ainda não está sustentado** — pesos provisórios, calibração faltando, proposições que seguem como conjecturas. O Ato 4 vai a fundo nisso.
+
+[Ato 4: O que ainda falta →](limitacoes.md)
+</div>

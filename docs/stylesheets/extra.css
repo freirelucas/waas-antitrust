@@ -75,15 +75,15 @@
  * Aplicado com classe `.hero` em um bloco markdown.
  * --------------------------------------------------------------------*/
 .md-typeset .hero {
-  padding: 1.0em 1.2em 0.6em 1.2em;
-  margin: 0.4em 0 1.4em 0;
+  padding: 1.4em 1.5em 1.0em 1.5em;
+  margin: 0.6em 0 1.8em 0;
   border-left: 4px solid #27ae60;
   background: linear-gradient(180deg, #f3fbf6 0%, #ffffff 100%);
   border-radius: 0 6px 6px 0;
 }
 .md-typeset .hero p:first-of-type {
-  font-size: 1.15em;
-  line-height: 1.45;
+  font-size: 1.22em;
+  line-height: 1.5;
   color: #2c3e50;
   font-weight: 400;
   margin-top: 0.1em;
@@ -98,6 +98,131 @@
 }
 [data-md-color-scheme="slate"] .md-typeset .hero p:first-of-type {
   color: #e6e6e6;
+}
+
+/* ----------------------------------------------------------------------
+ * Pivô estético/narrativo: tipografia dramática + storytelling
+ * --------------------------------------------------------------------*/
+
+/* H1 mais leve, com letter-spacing negativo (editorial). */
+.md-typeset h1 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-top: 0.6em;
+}
+
+/* H2 com peso e respiro adicional — divide os atos. */
+.md-typeset h2 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2.6em;
+  margin-bottom: 0.6em;
+}
+
+/* Lead — parágrafo introdutório em corpo maior. Aplicado via `{ .lead }`. */
+.md-typeset .lead {
+  font-size: 1.18em;
+  line-height: 1.55;
+  color: #34495e;
+  margin: 0.4em 0 1.2em 0;
+}
+[data-md-color-scheme="slate"] .md-typeset .lead {
+  color: #d8d8d8;
+}
+
+/* Callout numérico — destaque de um valor central do argumento. */
+.md-typeset .numero-callout {
+  display: block;
+  margin: 1.8em auto;
+  text-align: center;
+  padding: 1.2em 1em;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.md-typeset .numero-callout .valor {
+  display: block;
+  font-size: 2.6em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1e8449;
+  line-height: 1.0;
+  margin-bottom: 0.2em;
+}
+.md-typeset .numero-callout .legenda {
+  display: block;
+  font-size: 0.95em;
+  color: #5d6d7e;
+  max-width: 38em;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+[data-md-color-scheme="slate"] .md-typeset .numero-callout .valor {
+  color: #2ecc71;
+}
+[data-md-color-scheme="slate"] .md-typeset .numero-callout .legenda {
+  color: #b8c5d1;
+}
+[data-md-color-scheme="slate"] .md-typeset .numero-callout {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Quote flanqueada — citação ou tese em destaque visual. */
+.md-typeset .pull-quote {
+  display: block;
+  margin: 1.6em 0;
+  padding: 0.5em 0 0.5em 1.2em;
+  border-left: 3px solid #16a085;
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #2c3e50;
+  font-style: italic;
+}
+[data-md-color-scheme="slate"] .md-typeset .pull-quote {
+  color: #d8d8d8;
+  border-left-color: #1abc9c;
+}
+
+/* Conclusão do ato — bloco final com ponte para a próxima página. */
+.md-typeset .ato-fim {
+  display: block;
+  margin: 2.4em 0 0.4em 0;
+  padding: 1.0em 1.2em;
+  background: #eafaf1;
+  border-radius: 6px;
+  border-left: 4px solid #27ae60;
+}
+.md-typeset .ato-fim p {
+  margin: 0.2em 0;
+}
+.md-typeset .ato-fim p:last-child a {
+  font-weight: 600;
+  color: #1e8449;
+  text-decoration: none;
+}
+.md-typeset .ato-fim p:last-child a:hover {
+  text-decoration: underline;
+}
+[data-md-color-scheme="slate"] .md-typeset .ato-fim {
+  background: #1f3a2a;
+  border-left-color: #2ecc71;
+}
+[data-md-color-scheme="slate"] .md-typeset .ato-fim p:last-child a {
+  color: #2ecc71;
+}
+
+/* Chip de ato — "Ato 1 de 5" no topo de cada página. */
+.md-typeset .ato-chip {
+  display: inline-block;
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #16a085;
+  font-weight: 600;
+  margin-bottom: 0.6em;
+}
+[data-md-color-scheme="slate"] .md-typeset .ato-chip {
+  color: #2ecc71;
 }
 
 /* ----------------------------------------------------------------------

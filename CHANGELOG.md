@@ -59,6 +59,55 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **Pivotagem estética e argumentativa radical** (decorrente da crítica
+  continuada do autor "tá muito cru ainda; falta corpo; pivotagem
+  radical; conte uma história concatenada no UX"). O site foi
+  reescrito como **arco narrativo em 5 atos**:
+  - **Ato 1 · O problema** (`index.md`): diagnóstico — leniência clássica
+    bate num muro em mercados digitais (abuso unilateral, sem cúmplice);
+    Art. 12 da Res. 21/2018 como oportunidade institucional já existente;
+    tabela dos 3 regimes; navegação por persona em grid cards;
+    callouts numéricos e `pull-quote` flanqueada; hook para Ato 2.
+  - **Ato 2 · O mecanismo** (`mecanismo.md`): IC-F* em prosa antes da
+    fórmula; exemplo numérico desenvolvido (R$ 1B receita ⇒ S = R$ 75M,
+    D_total = R$ 22,5M, D_base = R$ 7,5M, D_extra = R$ 15M, W = R$ 2,7M,
+    margem R$ 12,3M) com dois callouts dramáticos; três vetores de
+    quebra A/B/C com nome empírico no modelo; tabela IR-W/IC-T/IC-F*;
+    hook para Ato 3.
+  - **Ato 3 · Resultados** (`resultados.md`): a simulação como
+    *testemunho* (20 firmas, 40 trimestres); painéis (A) e (B)
+    explicados como evidência; multi-seed bootstrap CI 95% que não
+    cruza zero apresentado como segurança contra cherry-picking de
+    seed; regimes adversariais como falsificadores quantitativos;
+    como reproduzir (Colab + Sobol); hook para Ato 4.
+  - **Ato 4 · Limitações** (`limitacoes.md`): fragilidade jurídica do
+    Regime B em três frentes (re-caracterização do Art. 12, reserva
+    de lei para R07, colisão com Art. 86); calibração faltando (R03
+    contra Saito 2021, DEE/CADE 2022/2024, Wiedman-Zhu 2023); pesos
+    do bem-estar provisórios (R05); Proposições 1-3 com status
+    explícito; 5 decisões normativas R09-R13; o que **já** está
+    sustentado (simetria); hook para Ato 5.
+  - **Ato 5 · Colaborar** (`colaborar.md`, página nova): reproduzir e
+    derrubar (comandos prontos); contribuir com calibração externa
+    contra três bancos de dados específicos; discordar do desenho
+    (R09-R13 abertas); história institucional (Felipe Roquete, IPEA
+    independente); citação, licença, contato.
+  - **CSS expandido** (`docs/stylesheets/extra.css`): classes `.lead`
+    (parágrafo introdutório maior), `.numero-callout` (valor central
+    em peso 600 com legenda em 38em), `.pull-quote` (citação flanqueada
+    com borda esquerda turquesa), `.ato-fim` (bloco de conclusão verde
+    com link para próximo ato), `.ato-chip` ("Ato N de 5" em letter-spacing
+    alargado). Tipografia editorial: H1/H2 com letter-spacing negativo,
+    H2 com 2,6em de respiro superior. Modo escuro tratado em todos.
+  - **Nav reorganizada** (`mkdocs.yml`): "Ato 1 · O problema", "Ato 2 ·
+    O mecanismo", etc., como itens de primeiro nível; "Anexos" agrupa
+    Como usar, Glossário, ODD, Institutional, References, API;
+    "Desenvolvimento" mantém crítica x10, plano de melhorias,
+    decisões.
+  - `README.md` ajustado: cita "5 atos" e usa D_extra na linha do
+    incremento.
+  - Sem regressão de testes (88 verdes; ruff/black/mkdocs --strict
+    limpos).
 - **R15 — Vetores de quebra do mecanismo (resposta à crítica direta do
   autor)**. Três perguntas céticas materializadas no modelo e em uma página
   narrativa expandida (`docs/mecanismo.md`):

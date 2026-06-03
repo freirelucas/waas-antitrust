@@ -1,212 +1,138 @@
-# Como o mecanismo se sustenta (passo a passo)
+<span class="ato-chip">Ato 2 de 5 · A hipótese</span>
 
-Esta página responde de frente às perguntas que um leitor cético faz ao ouvir
-o desenho do WaaS pela primeira vez:
+# Como o mecanismo se sustenta
 
-1. **"Basta a empresa se recusar a pagar os denunciantes e pegar o desconto
-   para tudo ruir?"**
-2. **"Como vocês quantificam essa coisa?"**
-3. **"E quem paga o advogado do denunciante?"**
+A pergunta natural — e a primeira que aparece quando alguém ouve o desenho do WaaS pela primeira vez — é uma versão mais educada de **"você é ingênuo?"**:
 
-Cada seção abaixo responde a uma. Quando há um modelo computacional por trás,
-a fórmula é exposta com a aritmética em um exemplo numérico.
+> Basta a empresa se recusar a pagar os denunciantes e ainda assim pegar o desconto para tudo ruir, não?
 
-## 1 · O argumento, em uma linha
+Esta página responde de frente. Em prosa primeiro, com aritmética em seguida, e com os três pontos onde o mecanismo pode realmente quebrar mapeados — porque o argumento honesto não é "isto sempre funciona", e sim **"isto funciona sob estas condições, falha sob estas outras, e ambas estão no modelo"**.
 
-> **A empresa só obtém o desconto se ressarcir os denunciantes; o "ressarcir"
-> precisa ser comprovado; e o incremento de desconto é maior que a recompensa
-> total, dentro da faixa do Art. 12 da Resolução CADE nº 21/2018.**
+## A escolha da firma, em uma frase
 
-Tudo o que segue é uma quantificação cuidadosa dessas três condições, e uma
-discussão honesta dos pontos onde o argumento pode ruir — e por que cada um
-desses pontos é (ou não) compensado no desenho.
+A firma já foi denunciada — o gatilho de massa crítica disparou, o caso vai ao CADE. A partir daí, ela escolhe entre três caminhos. Em todos eles, paga **alguma coisa**; a diferença é a soma.
 
-## 2 · A IC-F* — o incentivo da firma a pagar
+1. **Assinar um TCC com ressarcimento WaaS** — paga a recompensa $W$ aos denunciantes e ganha o desconto cheio $D_{\text{total}}$ no acordo.
+2. **Assinar um TCC clássico** — não paga $W$, mas obtém apenas o desconto comum $D_{\text{base}}$ que o Art. 85 da Lei 12.529/2011 já oferece em qualquer TCC.
+3. **Não assinar nada** — enfrenta a sanção cheia $S$, com a probabilidade de condenação que a investigação produz.
 
-A firma decide *pagar* (assinar TCC com ressarcimento WaaS) ou *não pagar*
-(seguir caminhos alternativos). O custo de cada caminho é:
+A diferença entre os dois primeiros — entre o TCC-WaaS e o TCC clássico — é a peça que sustenta o argumento. Não é o desconto **total** $D_{\text{total}}$ que move a firma a pagar a recompensa; é o **incremento** que o canal WaaS oferece sobre o que a firma teria de qualquer jeito.
 
-| Caminho | Custo total da firma |
-|---|---|
-| **TCC-WaaS** (paga W, assina TCC com ressarcimento, Art. 12) | $S - D_{\text{total}} \cdot S + W = S(1 - D_{\text{total}}) + W$ |
-| **TCC clássico** (não paga W, assina TCC sem ressarcimento, Art. 85) | $S(1 - D_{\text{base}})$ |
-| **Sem TCC** (enfrenta o processo cheio) | $S$ (com probabilidade de condenação) |
+<div class="pull-quote" markdown>
+A firma paga os denunciantes não porque ganha um desconto. Paga porque ganha um desconto <strong>maior</strong> do que conseguiria sem isso — e maior o suficiente para cobrir a recompensa, com folga.
+</div>
 
-onde $S$ é a sanção esperada, $D_{\text{total}}$ é o desconto total elegível
-sob Art. 12 (TCC com ressarcimento WaaS), $D_{\text{base}}$ é o desconto que
-o TCC clássico (Art. 85, sem ressarcimento) já oferece, e $W$ é a recompensa
-total paga aos denunciantes.
+## A IC-F\*, em prosa antes da fórmula
 
-**A firma prefere TCC-WaaS a TCC clássico quando:**
+A condição que define quando a firma escolhe pagar tem nome em economia institucional: **incentive compatibility da firma** — escrita aqui como **IC-F\***. Em prosa direta:
+
+> A firma paga a recompensa $W$ se, e somente se, o **incremento** de desconto que o canal WaaS oferece for maior que a recompensa.
+
+Em fórmula, com $S$ sendo a sanção esperada e $D_{\text{base}}$ o desconto que o TCC clássico já garante:
 
 $$
-S(1 - D_{\text{total}}) + W < S(1 - D_{\text{base}})
+W < D_{\text{extra}} \quad \text{onde} \quad D_{\text{extra}} = D_{\text{total}} - D_{\text{base}} = (D_{\text{disc}} - D_{\text{disc, base}}) \cdot S
 $$
 
-$$
-\iff W < (D_{\text{total}} - D_{\text{base}}) \cdot S = D_{\text{extra}}
-$$
+A versão simplificada $W < D_{\text{total}}$ — usada nos artigos teóricos de leniência clássica — só funciona se assumirmos $D_{\text{base}} = 0$. Quando o TCC clássico **já** dá desconto, ignorar isso é overclaim. O modelo computacional incorpora a forma correta (parâmetro `D_disc_base_tcc` em `WaaSParametros`).
 
-**Esta é a IC-F\* correta**: a recompensa $W$ tem de ser menor que o
-**incremento** $D_{\text{extra}}$ que o canal WaaS oferece sobre o TCC
-clássico, **não** que o desconto total. O modelo computacional foi
-atualizado para usar essa formulação (parâmetro `D_disc_base_tcc` em
-`WaaSParametros`, default 0 para preservar a IC-F* simplificada
-historicamente usada nos testes; ativar para o regime adversarial).
+## Uma firma, R$ 1 bilhão de receita, 30 minutos com a calculadora
 
-### Aritmética em um exemplo
+Aritmética é o tipo de coisa que parece dura até virar familiar. Aqui está com nomes em reais.
 
-Suponha uma firma com receita afetada $R = \text{R\$}\,1$ bilhão e severidade
-$\sigma = 0{,}5$.
-
-- Sanção-base do CADE: $S_0 = 0{,}05 \cdot R = \text{R\$}\,50$ milhões.
-- Sanção esperada escalada: $S = S_0 \cdot (1 + \sigma) = \text{R\$}\,75$
-  milhões.
-- Desconto WaaS total: $D_{\text{total}} = 30\% \cdot S = \text{R\$}\,22{,}5$
-  milhões.
-- Desconto do TCC clássico (estimativa): $D_{\text{base}} = 10\% \cdot S =
-  \text{R\$}\,7{,}5$ milhões.
-- **Incremento WaaS**: $D_{\text{extra}} = D_{\text{total}} - D_{\text{base}} =
-  \text{R\$}\,15$ milhões.
-
-Para 10 denunciantes a $W_{\text{indiv}} = 1{,}5 \cdot w_a$ com
-$w_a = \text{R\$}\,180\,000$, a recompensa total é
-$W = 10 \cdot 1{,}5 \cdot 180\,000 = \text{R\$}\,2{,}7$ milhões.
-
-Como $W = 2{,}7\text{M} \ll D_{\text{extra}} = 15\text{M}$, **a firma prefere
-pagar**: a IC-F* é satisfeita.
-
-A **margem** $D_{\text{extra}} - W = 12{,}3$ milhões é o "preço" que o WaaS
-extrai do bolso da firma e devolve aos denunciantes — uma transferência
-privada, com efeito de prevenção pública.
-
-## 3 · "E se a empresa não pagar?" — três vetores de quebra
-
-A pergunta do leitor cético tem três formas concretas. Cada uma é modelada e
-testada no repositório.
-
-### Vetor A — TCC clássico já dá desconto sem WaaS
-
-**O problema.** O TCC tradicional (Lei 12.529/2011, Art. 85) **já oferece**
-desconto, independentemente de WaaS. Se esse desconto base $D_{\text{base}}$
-for próximo de $D_{\text{total}}$, o incremento $D_{\text{extra}}$ encolhe e
-a IC-F* deixa de motivar o pagamento.
-
-**Mitigação no desenho.** O Art. 12 da Resolução 21/2018 é explícito: o
-atenuante por ressarcimento das vítimas é um **acréscimo** ao desconto
-genérico do TCC. A magnitude de $D_{\text{extra}}$ depende da prática
-discricionária do CADE — e essa é a calibração que falta (R03; alvo Saito
-2021).
-
-**Mitigação no modelo.** O parâmetro `D_disc_base_tcc` em `WaaSParametros`
-permite simular o pior caso (ex.: $D_{\text{base}} = D_{\text{total}}$, em
-que ninguém paga W). O contador `n_firmas_optaram_tcc_classico` registra
-quando o vetor materializa. Falsificar essa condição equivale a perguntar
-"qual é o $D_{\text{extra}}$ mínimo para o WaaS ainda dissuadir?".
-
-### Vetor B — anulação judicial do TCC (F6 explicitado)
-
-**O problema.** A re-caracterização da recompensa como "ressarcimento" é uma
-construção jurisprudencial. O Judiciário pode rejeitá-la (controvérsia
-dogmática — ver [Análise institucional § "Quem é vítima?"](INSTITUTIONAL.md));
-se anular, a empresa fica sem o desconto e paga a sanção cheia.
-
-**Mitigação no desenho.** Esse é precisamente o **falsificador F6**, listado
-nas premissas do modelo. Mais robusto seria o **Regime C** (extensão da Lei
-13.608/2018 via Congresso), que elimina a controvérsia legal e está coberto
-no modelo como variante.
-
-**Mitigação no modelo.** O parâmetro `p_anulacao_tcc` em `WaaSParametros`
-permite calibrar a probabilidade de anulação por tique. O contador
-`n_tcc_anulados` registra as ocorrências; a multa cheia retorna ao erário
-quando o TCC é anulado. Calibrar $p_{\text{anulação}}$ falsifica F6
-quantitativamente: com $p_{\text{anulação}}$ alta, o Regime B colapsa em
-Regime A.
-
-### Vetor C — custos legais do denunciante
-
-**O problema.** O denunciante interno terá custos que o modelo histórico
-**não cobria explicitamente**: honorários advocatícios para reivindicar a
-recompensa, defesa em ação trabalhista se sofrer represália, e — em
-hipótese pior — responsabilização criminal sob Art. 86 da Lei 12.529/2011
-se for caracterizado como **partícipe** da conduta (colisão com leniência
-clássica).
-
-**Mitigação no desenho.** Três cenários institucionais distintos, e cada um
-implica calibração diferente:
-
-1. **O denunciante paga.** Cenário simples mas pouco realista; eleva o piso
-   da IR-W e desmotiva trabalhadores de baixa/média renda. Estima-se entre
-   10% e 50% de um salário anual em custas + honorários no Brasil.
-2. **A empresa cobre via TCC.** Análogo ao programa Dodd-Frank §922 da SEC,
-   em que o pagamento bruto inclui margem para o advogado. Requer cláusula
-   explícita na proposta de TCC e validação do CADE.
-3. **O Estado financia (fundo).** Análogo ao IRS Whistleblower Office. Exige
-   lei (Regime C) e dotação orçamentária; politicamente custoso.
-
-**Mitigação no modelo.** O parâmetro `custo_legal_uw` em `WaaSParametros`
-(em unidades de $w_a$) entra na IR-W do arquétipo "racional":
+Imagine uma firma com receita afetada $R = \text{R\$}\,1$ bilhão e severidade da conduta $\sigma = 0{,}5$ (no meio da escala). O CADE pratica multas-base na faixa de 0,1% a 20% da receita; usamos 5% como referência conservadora, e escalamos por $(1+\sigma)$:
 
 $$
-W \ge r \cdot \tau \cdot 2 \cdot w_a + c_{\text{legal}} \cdot w_a
+S = 0{,}05 \cdot R \cdot (1 + \sigma) = 0{,}05 \cdot 1\,000 \cdot 1{,}5 = \text{R\$}\,75\text{ milhões}.
 $$
 
-onde $\tau$ é a tolerância individual a represália (R14). Default 0
-preserva a IR-W histórica; valores realistas no Brasil ficariam entre
-**0,1 e 0,5** (10–50% de $w_a$). Calibrar contra dados de honorários
-trabalhistas é tarefa de R03.
+O desconto total a que ela teria direito num TCC com ressarcimento WaaS é, digamos, 30% — alinhado com o que o Art. 12 permite combinando com o Art. 85:
 
-## 4 · Os outros incentivos compatíveis
+$$
+D_{\text{total}} = 0{,}30 \cdot S = \text{R\$}\,22{,}5\text{ milhões}.
+$$
 
-Além da IC-F* da firma, o desenho precisa satisfazer três outras condições:
+O desconto que ela teria **mesmo sem WaaS**, só com o TCC clássico, é o que precisamos calibrar contra os dados de Saito (2021). Para este exemplo, usamos uma estimativa intermediária — 10%:
+
+$$
+D_{\text{base}} = 0{,}10 \cdot S = \text{R\$}\,7{,}5\text{ milhões}.
+$$
+
+<div class="numero-callout" markdown>
+<span class="valor">R$ 15 milhões</span>
+<span class="legenda">O incremento $D_{\text{extra}}$ — exatamente quanto a firma ganha **a mais** ao escolher o caminho WaaS em vez do TCC clássico. É contra este número, não contra os R$ 22,5 milhões totais, que a recompensa total $W$ tem de ser menor para a firma pagar.</span>
+</div>
+
+Agora o outro lado. Suponha que 10 denunciantes internos atingiram a massa crítica. Cada um receberia uma recompensa de 1,5 salários anuais — calibrada para satisfazer a participação do trabalhador (IR-W), inclusive cobrindo o custo legal individual. Com $w_a = \text{R\$}\,180\,000$ e $W_{\text{indiv}} = 1{,}5 \cdot w_a$:
+
+$$
+W = 10 \cdot 1{,}5 \cdot 180\,000 = \text{R\$}\,2{,}7\text{ milhões}.
+$$
+
+A IC-F\* fica satisfeita com folga ampla:
+
+<div class="numero-callout" markdown>
+<span class="valor">R$ 12,3 milhões</span>
+<span class="legenda">A margem que sobra na conta da firma quando ela escolhe o caminho WaaS. É o **preço** que o mecanismo extrai do bolso da empresa investigada e devolve ao bolso dos trabalhadores que falaram — uma transferência privada com efeito de prevenção pública.</span>
+</div>
+
+Tudo isso depende, evidentemente, de quanto $D_{\text{base}}$ realmente é na prática do CADE. Quando esse número aproxima-se de $D_{\text{total}}$, a margem encolhe. Quando ultrapassa, o mecanismo **deixa de funcionar** — e este é o primeiro dos três vetores que cobrimos a seguir.
+
+## Os três vetores de quebra — onde o argumento pode mesmo ruir
+
+### Vetor A: e se o TCC clássico já der desconto suficiente?
+
+Este é o cético que diz "basta a empresa não pagar e pegar o desconto". A versão tecnicamente correta da crítica é: se $D_{\text{base}}$ já cobre uma fração significativa de $D_{\text{total}}$, a margem $D_{\text{extra}}$ encolhe e a IC-F\* deixa de motivar o pagamento.
+
+O **desenho jurídico** se sustenta porque o Art. 12 da Res. 21/2018 é explícito ao tratar o ressarcimento das vítimas como **acréscimo** ao desconto genérico. A magnitude desse acréscimo é discricionária — depende da prática do CADE em cada caso. A calibração empírica desse parâmetro é precisamente o que falta em **R03** (calibração formal contra Saito 2021).
+
+O **modelo** torna isto explícito: o parâmetro `D_disc_base_tcc` em `WaaSParametros` permite simular qualquer valor de $D_{\text{base}}$, inclusive o pior caso em que $D_{\text{base}} = D_{\text{total}}$. Quando isso acontece, $D_{\text{extra}} = 0$, ninguém paga a recompensa, e o contador `n_firmas_optaram_tcc_classico` registra a quebra. Testes em `tests/test_vetores_quebra.py` cobrem o caso direcionalmente.
+
+### Vetor B: e se o Judiciário anular o TCC?
+
+A re-caracterização da recompensa como "ressarcimento das vítimas" é uma construção jurídico-finalística. O Judiciário pode rejeitá-la — e a recusa pode vir anos depois do TCC ter sido assinado, **anulando-o retroativamente**. Quando isso acontece, a empresa perde o desconto e a multa cheia retorna como crédito ao erário.
+
+Este é precisamente o **falsificador F6** declarado no desenho. A defesa institucional contra ele é dupla. Em primeiro lugar, o Regime C — extensão da Lei 13.608/2018 via Congresso — elimina a controvérsia legal, custando voto político. Em segundo, mesmo em Regime B, o risco de anulação é uma propriedade do desenho que precisa ser dimensionada, não escondida.
+
+O **modelo** torna esse risco calibrável via `p_anulacao_tcc`. Em P4, todo TCC assinado é sorteado contra essa probabilidade; quando anulado, o contador `n_tcc_anulados` registra, a multa cheia volta ao erário, e o sistema perde a coordenação que o mecanismo construía. Em testes, $p_{\text{anulação}}$ alta faz o Regime B convergir para o Regime A — um falsificador quantitativo, não verbal.
+
+### Vetor C: e os advogados dos denunciantes?
+
+Esta é uma crítica que custumeiramente passa em branco e merece resposta direta. **Sim**, o denunciante terá custos legais: advogado para reivindicar a recompensa, defesa em eventual ação trabalhista por represália, e — em hipótese pior — defesa criminal se for caracterizado como **partícipe** da conduta (a colisão dura com o Art. 86 da Lei 12.529/2011, território de leniência clássica).
+
+Três cenários institucionais são possíveis, e implicam calibrações diferentes:
+
+1. **O denunciante paga.** Eleva o piso da IR-W — a recompensa precisa ser maior para compensar. Estimativas conservadoras no Brasil colocariam o custo legal entre **10% e 50% de um salário anual**.
+2. **A empresa cobre via TCC.** Análogo ao programa Dodd-Frank §922 da SEC americana, em que o pagamento bruto pode incluir margem para honorários do advogado do denunciante. Requer cláusula explícita na proposta de TCC e aprovação do CADE.
+3. **O Estado financia via fundo.** Análogo ao IRS Whistleblower Office. Exige lei (Regime C) e dotação orçamentária — politicamente custoso, mas estruturalmente robusto.
+
+O **modelo** torna isto calibrável via `custo_legal_uw` (em unidades de $w_a$). O parâmetro entra na IR-W do arquétipo "racional" — quando o custo legal é alto, a recompensa $W$ precisa subir para o trabalhador racional ainda denunciar.
+
+## Os outros três incentivos compatíveis
+
+Além da IC-F\* da firma, o desenho precisa satisfazer simultaneamente:
 
 | Sigla | Quem | Condição | Onde no modelo |
 |---|---|---|---|
-| **IR-W** | trabalhador | $W \ge \text{custo esperado de represália} + \text{custo legal}$ | `agents.py` (`decidir_sinal` racional) |
+| **IR-W** | trabalhador | $W \ge \text{custo esperado de represália} + \text{custo legal}$ | `agents.py::decidir_sinal` (arquétipo racional) |
 | **IC-T** | trabalhador | $W$ deve compensar penalidade por falso reporte | `agents.py` (mesma função, parcela $F_{\text{falso}}$) |
-| **IC-F\*** | firma | $W < D_{\text{extra}}$ (vide §2) | `model.py` (P3) e `agents.py` (`satisfaz_ic_f_estrela` legado) |
+| **IC-F\*** | firma | $W < D_{\text{extra}}$ (vide acima) | `model.py` (P3) |
 
-A camada **Hirschman** (R07) acrescenta um quarto incentivo opcional: quando
-firmas têm cláusula contratual de vesting acelerado por gatilho de ação
-coletiva (institucionalmente disponível **só sob Regime C**, ver
-[gating jurídico](INSTITUTIONAL.md#limites-do-regime-b-reserva-de-lei)), a
-IC-F* se amplia para $W < D_{\text{extra}} + \text{custo de êxodo}$.
+A camada **Hirschman exit-with-equity** (R07) acrescenta um quarto incentivo opcional, válido apenas sob Regime C: cláusulas contratuais de vesting acelerado por gatilho de ação coletiva. Quando ativas, ampliam a IC-F\* para $W < D_{\text{extra}} + \text{custo de êxodo coletivo}$ — a firma também ganha por **não perder capital humano**, e isso ajuda a fechar o cálculo em casos marginais.
 
-## 5 · Onde isto ainda pode ruir
+## O que ainda pode ruir mesmo assim
 
-Mesmo com os três vetores acima cobertos, há **gaps de calibração** que o
-modelo não resolve sozinho — e que estão rastreados em
-[Decisões e backlog](DECISIONS.md):
+Há pendências que o modelo, sozinho, não resolve. Estão rastreadas em [Decisões e backlog](DECISIONS.md), e a lista curta é:
 
-- **R03** — calibração formal contra Saito (2021), Wiedman & Zhu (2023,
-  Dodd-Frank §922) e DEE/CADE 003/2022. Em particular, $D_{\text{base}}$ do
-  TCC clássico precisa de mediana empírica.
-- **R09** — endogeneizar $g_i(t)$ (atratividade de violar como função do
-  estado). Hoje é sorteio uniforme estático.
-- **R10** — IC-F* completa $W + p_{\text{pago}} \cdot (S - D) <
-  p_{\text{não pago}} \cdot S$, em vez da forma simplificada $W < D$.
-- **R13** — distribuição Pareto/lognormal de fatia de mercado (hoje
-  uniforme; em digital, dano é cauda longa) e três condutas-piloto com
-  fixtures.
+- **R03** — calibração formal contra Saito (2021), DEE/CADE (2022, 2024), Wiedman & Zhu (2023, Dodd-Frank §922). Em particular, $D_{\text{base}}$ precisa de mediana empírica brasileira.
+- **R09** — endogeneizar $g_i(t)$ (atratividade de violar como função do estado). Hoje é sorteio uniforme estático.
+- **R10** — IC-F\* completa $W + p_{\text{pago}} \cdot (S - D) < p_{\text{não pago}} \cdot S$, em vez da forma simplificada.
+- **R13** — distribuição Pareto/lognormal de fatia de mercado (hoje uniforme; em digital, o dano é cauda longa).
 
-A página de [Limitações](limitacoes.md) sintetiza isso em linguagem
-acessível; a [Crítica x10](critica_x10.md) detalha o que oito revisores
-externos apontaram.
+A página de [Limitações](limitacoes.md) sintetiza isso em linguagem acessível; a [Crítica x10](critica_x10.md) detalha o que oito revisores externos apontaram.
 
-## 6 · Em resumo
+<div class="ato-fim" markdown>
+**Fim do Ato 2.** Temos um desenho — com fórmula, exemplo numérico e três vetores de quebra calibráveis. Mas até aqui é tudo papel e equação. **Será que funciona em simulação?** O Ato 3 mostra o que acontece quando rodamos o modelo nos três regimes, em 20 firmas, ao longo de 40 trimestres.
 
-O argumento **não é** "a firma sempre paga porque o desconto é grande". O
-argumento **é**:
-
-1. A firma só ganha o desconto WaaS-específico se comprovar o ressarcimento
-   (Art. 12, condicional);
-2. O incremento sobre o TCC clássico ($D_{\text{extra}}$) é o que entra na
-   IC-F*, não o desconto total;
-3. Os vetores de quebra (TCC clássico capturando o desconto; anulação
-   judicial; custos legais do denunciante) **estão modelados e calibráveis**;
-4. Sob calibração razoável, o mecanismo **dissuade** (verificado com
-   bootstrap multi-seed, intervalo de confiança 95% que não cruza zero —
-   ver [Resultados](resultados.md));
-5. Sob calibração adversa, o mecanismo **degrada** — e isso é uma
-   propriedade desejável para um falsificador honesto, não um defeito a
-   ser escondido.
+[Ato 3: Resultados →](resultados.md)
+</div>

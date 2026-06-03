@@ -11,9 +11,9 @@ Esta é a pergunta provocadora por trás do mecanismo **Whistleblower-as-a-Servi
 
 **O problema.** A leniência clássica combate *cartéis* (empresas concorrentes que se combinam) porque um conspirador pode delatar o outro. Em mercados digitais, muito do abuso é *unilateral* — uma empresa dominante sozinha, sem cúmplice para delatar. Quem sabe o que acontece são os funcionários.
 
-**A ideia.** Se a empresa for investigada, ela ganha um desconto na multa ao ressarcir as vítimas — e pode usar a recompensa paga aos denunciantes como parte desse ressarcimento. Quando o desconto $D$ supera a recompensa $W$, colaborar vira negócio. Em simulação, isso **deter** a violação (Regimes B/C) e o cenário atual (A) não.
+**A ideia.** Se a empresa for investigada, ela ganha um desconto na multa ao ressarcir as vítimas — e pode usar a recompensa paga aos denunciantes como parte desse ressarcimento. Quando o **incremento** de desconto $D_{\text{extra}}$ supera a recompensa total $W$, colaborar vira negócio. Em simulação, isso **deter** a violação (Regimes B/C) e o cenário atual (A) não.
 
-📖 **Site com narrativa, resultados, limitações, crítica x10 e glossário:** <https://freirelucas.github.io/waas-antitrust/> · 🚀 **[Rodar no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)** (caderno-demo, ~1 min).
+📖 **Site narrado em 5 atos** (problema → mecanismo → resultados → limitações → colaborar): <https://freirelucas.github.io/waas-antitrust/> · 🚀 **[Rodar no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)** (caderno-demo, ~1 min).
 
 Núcleo computacional do artigo *"Rescaling Leniency Programs for Digital Markets: A Whistleblower-as-a-Service Mechanism"* (em elaboração).
 

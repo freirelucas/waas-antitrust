@@ -36,17 +36,18 @@ theme:
     - toc.integrate
 
 nav:
-  - Início: index.md
-  - Como o mecanismo se sustenta: mecanismo.md
-  - Resultados: resultados.md
-  - Limitações: limitacoes.md
-  - Como usar: uso.md
-  - Glossário: glossario.md
-  - Fundamentos:
+  - "Ato 1 · O problema": index.md
+  - "Ato 2 · O mecanismo": mecanismo.md
+  - "Ato 3 · Resultados": resultados.md
+  - "Ato 4 · Limitações": limitacoes.md
+  - "Ato 5 · Colaborar": colaborar.md
+  - Anexos:
+      - Como usar: uso.md
+      - Glossário: glossario.md
       - Modelo (protocolo ODD): ODD.md
       - Análise institucional: INSTITUTIONAL.md
       - Referências: REFERENCES.md
-  - Referência da API: api.md
+      - Referência da API: api.md
   - Desenvolvimento:
       - Crítica x10: critica_x10.md
       - Plano de melhorias: plano_melhorias.md

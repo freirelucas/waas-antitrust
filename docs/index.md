@@ -1,116 +1,94 @@
+<span class="ato-chip">Ato 1 de 5 · O problema</span>
+
 # E se a empresa pagasse para ser delatada?
 
 <div class="hero" markdown>
 
-Esta é a pergunta provocadora por trás de um mecanismo — *Whistleblower-as-a-Service*
-(WaaS) — de **denúncia interna recompensada** em antitruste de mercados digitais
-brasileiros. O incentivo é desenhado para que, ao ser investigada, **colaborar
-saia mais barato para a empresa do que continuar escondendo**.
+Em mercados digitais, a maior parte do abuso de poder é cometida por **uma empresa só**. Não há cúmplice para entregar; o conluio interno mora dentro do organograma. A leniência clássica — desenhada para cartéis de duas ou mais empresas — não tem como morder este tipo de conduta. Quem realmente vê o que acontece são os **próprios funcionários**, e hoje nada dá a eles motivo para falar.
 
-A página de **[Resultados](resultados.md)** mostra, com saída real de uma
-simulação baseada em agentes, que onde o canal WaaS existe as empresas **deixam
-de violar** ao longo do tempo — algo que o cenário atual não produz.
+Este projeto é uma tentativa de **inverter o cálculo**: e se, sob certas condições jurídicas brasileiras já existentes, a empresa investigada visse vantagem em **pagar uma recompensa** aos seus denunciantes internos — porque o desconto que ela receberia no acordo (TCC) seria maior do que essa recompensa?
 
 </div>
 
 ![Saída real do modelo: com o canal WaaS (B/C) as firmas param de violar ao longo do tempo e o bem-estar social supera o cenário atual (A).](img/03_dissuasao_bem_estar.png){ .figura-empirica }
 
-## Por onde começar
+## A leniência clássica acabou de bater num muro
+
+Por quase trinta anos, programas de leniência foram a peça-mestre do enforcement antitruste no mundo todo. A lógica é simples: dois ou mais conspiradores fizeram um cartel; quem entregar primeiro escapa da multa. Cada conspirador olha para o outro, calcula que ele pode entregá-lo a qualquer momento, e corre para a delação. O cartel **se denuncia sozinho** — é a beleza do desenho.
+
+Mas o abuso de mercado digital costuma ter **uma única empresa**. A *self-preferencing* do Google, o *anti-steering* da Apple, o *vesting* exclusivo do iFood, o *killer acquisition* da Meta. Nenhum desses casos tem uma segunda empresa cúmplice para delatar — a conduta é executada pela própria firma dominante, pelos seus próprios times.
+
+A informação existe. Está nos *commits* do engenheiro que codificou o algoritmo de ranking. Está nas *slides* da reunião onde o gerente comercial impôs a exclusividade. Está no *deck* do *corp dev* que comprou a startup-ameaça. Mas essa informação não circula porque os incentivos individuais estão errados — o trabalhador que fala arrisca o emprego, a carreira, a tranquilidade, e ganha o quê em troca? Nada de previsível, pelo menos no Brasil.
+
+<div class="pull-quote" markdown>
+A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
+</div>
+
+## A oportunidade brasileira está dentro de uma regra que já existe
+
+A maior parte do trabalho institucional para este projeto **já está feita** — só não foi conectada nestes termos.
+
+O **Art. 12 da Resolução CADE nº 21/2018** autoriza considerar o ressarcimento das vítimas como circunstância atenuante no cálculo da contribuição pecuniária do Termo de Compromisso de Cessação (TCC). A jurisprudência interna do CADE entende esse ressarcimento como uma redução real e quantificável da multa que a empresa teria de pagar.
+
+A hipótese deste projeto é direta: **a recompensa paga pela empresa aos seus denunciantes internos pode ser re-caracterizada como ressarcimento extrajudicial sob o Art. 12**. Se for, gera o atenuante. Se o atenuante for grande o suficiente, **a empresa prefere pagar a recompensa a esconder a infração** — porque o desconto que ela ganha no TCC é maior do que o cheque que assina para os denunciantes.
+
+Esta re-caracterização não é pacífica — ela é a charneira controvertida do mecanismo, e a página de [Limitações](limitacoes.md) é honesta sobre isso. Mas é uma porta institucional **que já existe**, sem precisar passar pelo Congresso.
+
+## Três cenários, do conservador ao ambicioso
+
+| Regime | O denunciante interno é recompensado? | Como seria implementado |
+|--------|---------------------------------------|-------------------------|
+| **A** — hoje | Não | situação atual: sem canal de incentivo individual |
+| **B** — via Resolução | Sim | nova resolução CADE complementar à 21/2018, **sem mudar a lei** |
+| **C** — via Lei | Sim | extensão da Lei 13.608/2018 ao antitruste — mais robusto, exige o Congresso |
+
+O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é a versão jurídicamente mais robusta — também simulada, e mais defensável em juízo. O **Regime A** é o contrafactual: o que continua acontecendo se nada mudar.
+
+## Por onde seguir nesta história
 
 <div class="grid cards" markdown>
 
--   **Curioso(a) — público em geral**
+-   **Sou cético — me convença**
 
-    Vá direto à narrativa em linguagem acessível.
+    A pergunta direta — "mas o que impede a empresa de pegar o desconto sem pagar?" — respondida com fórmulas, exemplo numérico em reais e três vetores de quebra modelados.
 
-    [Ver resultados](resultados.md) · [Glossário](glossario.md)
+    [Ato 2: Como o mecanismo se sustenta →](mecanismo.md)
 
--   **Cético(a) — "mas e se a empresa não pagar?"**
+-   **Quero ver os resultados**
 
-    A pergunta direta, respondida com fórmulas, exemplo numérico e três
-    vetores de quebra modelados explicitamente.
+    O que a simulação de 20 firmas e 40 trimestres mostra sob cada regime. Figuras, médias, intervalos de confiança 95% sobre múltiplas seeds.
 
-    [Como o mecanismo se sustenta](mecanismo.md)
+    [Ato 3: Resultados →](resultados.md)
 
--   **Formulador(a) de política · jurista**
+-   **Sou jurista / formulador(a)**
 
-    Como o mecanismo caberia na lei brasileira; o que muda no Regime B vs. C.
+    Como o mecanismo caberia nas Leis 12.529 e 13.608, na Resolução 21/2018, e onde fica a fragilidade da reserva de lei (Art. 22, I, CF).
 
-    [Análise institucional](INSTITUTIONAL.md) · [Limitações](limitacoes.md)
+    [Análise institucional →](INSTITUTIONAL.md)
 
--   **Pesquisador(a) · estudante**
+-   **Quero contribuir / discutir**
 
-    O protocolo do modelo, a API, o caderno-demo no Colab.
+    O modelo é código aberto sob CC BY-SA 4.0. Há pendências de calibração e cinco decisões normativas em aberto. Convido a discussão.
 
-    [Modelo (ODD)](ODD.md) · [API](api.md) · [Como usar](uso.md)
+    [Como usar](uso.md) · [Backlog](DECISIONS.md) · [Crítica x10](critica_x10.md)
 
 </div>
 
-## O problema
+<div class="ato-fim" markdown>
+**Fim do Ato 1.** A pergunta está posta: existe um desenho jurídico-econômico que faça a empresa **escolher** ser denunciada? A resposta detalhada, com aritmética e nomes de variáveis, está no próximo ato.
 
-Os **programas de leniência** clássicos combatem **cartéis** — combinações entre
-empresas concorrentes. Funcionam porque oferecem perdão a quem delatar primeiro:
-um conspirador entrega os outros. Em **mercados digitais**, boa parte do abuso é
-**unilateral** — uma única empresa grande prejudicando o mercado sozinha. Não há
-concorrente-cúmplice para delatar. Quem realmente sabe o que acontece são os
-**próprios funcionários**.
+[Ato 2: Como o mecanismo se sustenta →](mecanismo.md)
+</div>
 
-## A ideia: *Whistleblower-as-a-Service*
-
-Em vez de esperar a fiscalização descobrir tudo sozinha, o mecanismo cria um
-incentivo financeiro para o **denunciante interno**. A peça central é uma
-**inversão de incentivo**: a empresa, ao ser investigada, ganha um **desconto na
-multa** se ressarcir as vítimas — e pode usar a recompensa paga aos denunciantes
-como parte desse ressarcimento. **Quando o desconto excede a recompensa, virou
-negócio para a empresa colaborar.**
-
-![Inversão da função-utilidade da conformidade: à esquerda o cálculo clássico (minimizar a multa esperada); à direita, sob o WaaS, a empresa passa a buscar o desconto.](img/01_inversao.png){ .figura-conceitual }
-
-## Três cenários ("regimes")
-
-| Regime | Recompensa ao denunciante interno? | Como seria implementado |
-|--------|------------------------------------|-------------------------|
-| **A** — hoje | Não | situação atual: sem canal de incentivo individual |
-| **B** — via Resolução | Sim | nova resolução do CADE complementar à 21/2018, **sem mudar a lei** |
-| **C** — via Lei | Sim | extensão da Lei 13.608/2018 — mais robusto; exige o Congresso |
-
-A página [Análise institucional](INSTITUTIONAL.md) detalha como o **Art. 12 da
-Resolução CADE nº 21/2018** sustenta o Regime B, e por que esse caminho tem
-**limites estruturais** (reserva de lei, Art. 22, I, da Constituição) que só o
-Regime C ultrapassa.
-
-## A tese, em termos técnicos
-
-O mecanismo **inverte a função-utilidade da conformidade**: em vez de
-minimizar $p \cdot S$ (probabilidade de detecção × sanção), a empresa
-compara o **incremento** de desconto $D_{\text{extra}} = D_{\text{total}} -
-D_{\text{base}}$ que o canal WaaS oferece sobre o TCC clássico (Art. 85)
-contra a recompensa total $W$ paga aos denunciantes. A condição
-$W < D_{\text{extra}}$ (que chamamos **IC-F\***) é satisfazível no Art. 12
-da Resolução 21/2018, sustentando implementação por via infralegal
-(Regime B). [**Os detalhes — incluindo o vetor de quebra "e se a empresa
-não pagar?" — estão em uma página própria.**](mecanismo.md)
-
-A coordenação dos denunciantes tem **limiar de massa crítica**: abaixo dele,
-silêncio; acima, cascata de revelação.
-
-![Diagrama de fase da coordenação intrafirma: a região clara indica alta probabilidade de uma cascata de denúncias.](img/02_fase.png){ .figura-conceitual }
-
-!!! warning "Estado do projeto"
-    **Artigo em elaboração**. Vários resultados são direcionais e algumas
-    proposições seguem como conjecturas explícitas — ver
-    **[Limitações](limitacoes.md)** (em linguagem acessível) ou o
-    [backlog técnico](DECISIONS.md). **Não citar como resultado final.**
-
-## Como citar e como rodar
-
-- **Reproduzir em ~1 minuto**: [caderno-demo no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb).
-- **Citação estruturada**: [`CITATION.cff`](https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff) (Zenodo via release futura).
-- **Licença**: código e documentação sob CC BY-SA 4.0.
+---
 
 <small>
 [![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/)
 [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)
+
+Este repositório acompanha um **artigo acadêmico em elaboração** —
+*Rescaling Leniency Programs for Digital Markets: A Whistleblower-as-a-Service Mechanism*. Não citar como resultado final. Veja [Citação](#) no
+`CITATION.cff` para metadados estruturados (Zenodo via release futura).
 </small>
