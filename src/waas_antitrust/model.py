@@ -102,6 +102,16 @@ class WaaSParametros:
     multa_descumprimento_tcc: float = 0.0
     p_descumprimento_tcc: float = 0.0  # prob. de a firma descumprir após assinar
 
+    # **R13a — Distribuição de fatia de mercado** (resposta a Eco B/PM e à
+    # observação de que dano em digital é cauda longa, não uniforme).
+    # "uniforme" preserva 1/n_empresas (compat com testes existentes).
+    # "pareto" sorteia s_i ~ Pareto(alpha_pareto) + 1 e normaliza — α=1,16
+    # reproduz a regra 80/20 clássica; valores menores intensificam a cauda.
+    # "lognormal" sorteia s_i ~ LogNormal(0, sigma_lognormal) e normaliza.
+    distribuicao_fatia_mercado: str = "uniforme"  # "uniforme" | "pareto" | "lognormal"
+    alpha_pareto: float = 1.16  # regra 80/20; menor ⇒ cauda mais longa
+    sigma_lognormal: float = 1.0
+
     # Hirschman exit-with-equity (R07): cláusulas contratuais de vesting
     # acelerado por gatilho de ação coletiva. Pesos provisionais (calibrar R03).
     fracao_contratos_acelerados: float = 0.0  # fração das firmas com cláusula
@@ -294,6 +304,7 @@ class WaaSModel(Model):
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
                 "multa_descumprimento_acum": "multa_descumprimento_acum",
+                "hhi": self._hhi,
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -338,7 +349,41 @@ class WaaSModel(Model):
         )
 
     # ---- criação ----
+    def _sortear_fatias_mercado(self, n: int) -> list[float]:
+        """Vetor de fatias de mercado, normalizado para soma 1.
+
+        Três modos (R13a):
+        - `uniforme`: `[1/n, ..., 1/n]` (default, compat).
+        - `pareto`: `Pareto(α=alpha_pareto) + 1`, normalizado. Reflete a
+          regra 80/20 e cauda longa típica de mercados digitais.
+        - `lognormal`: `LogNormal(0, σ=sigma_lognormal)`, normalizado.
+
+        O default uniforme preserva o comportamento histórico do modelo.
+        """
+        dist = self.params.distribuicao_fatia_mercado
+        if dist == "pareto":
+            raw = self.rng.pareto(self.params.alpha_pareto, size=n) + 1.0
+        elif dist == "lognormal":
+            raw = self.rng.lognormal(mean=0.0, sigma=self.params.sigma_lognormal, size=n)
+        elif dist == "uniforme":
+            return [1.0 / n] * n
+        else:
+            raise ValueError(
+                f"distribuicao_fatia_mercado desconhecida: {dist!r}. "
+                "Válidas: 'uniforme', 'pareto', 'lognormal'."
+            )
+        total = float(raw.sum())
+        return [float(x) / total for x in raw]
+
+    def _hhi(self) -> float:
+        """Índice Herfindahl-Hirschman = Σ s_i² (concentração de mercado).
+
+        Para n firmas uniformes: HHI = 1/n. Maior ⇒ mais concentrado.
+        """
+        return float(sum(e.fatia_mercado**2 for e in self.empresas))
+
     def _criar_empresas(self, n_empresas: int, tam_medio: int) -> None:
+        fatias = self._sortear_fatias_mercado(n_empresas)
         for fid in range(n_empresas):
             tam = max(50, int(self.rng.normal(tam_medio, tam_medio * 0.3)))
             # Atratividade de violar g_i = ganho ilícito / sanção esperada (R01).
@@ -359,7 +404,7 @@ class WaaSModel(Model):
                 sigma=sigma,
                 eh_violadora=eh_v,
                 n_trabalhadores=tam,
-                fatia_mercado=1.0 / n_empresas,
+                fatia_mercado=fatias[fid],
                 R_receita=R,
                 cultura_compliance=cultura,
             )

@@ -59,6 +59,33 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R13a + R03 (primeira ponta) + Saito placeholder** — três itens
+  inter-relacionados da Frente A do roadmap (impacto/custo alto, sem
+  decisão normativa):
+  - **R13a** — `WaaSParametros.distribuicao_fatia_mercado` aceita
+    `"uniforme"` (default), `"pareto"` (α=1,16 regra 80/20) ou
+    `"lognormal"` (σ=1,0). Novo método `WaaSModel._sortear_fatias_mercado`
+    sorteia e normaliza. Reporter **HHI** (índice Herfindahl-Hirschman)
+    exposto pelo DataCollector. Novo cenário `mercado_digital_br_pareto`
+    em `cenarios.py` (8 cenários no catálogo agora — Regime C + Pareto).
+    7 testes em `tests/test_fatia_pareto.py`. Fecha o item (ii) de R13
+    (endgame do paper, Eco B).
+  - **R03 (primeira ponta)** — novo `scripts/calibrar.py`: varredura em
+    grade sobre (`taxa_observacao`, `taxa_falso_reporte`, `rho`)
+    minimizando erro quadrático relativo médio contra os 3 alvos do ODD
+    (5 leniências/ano, 47 TCC/ano, 19% DMZ) com multi-seed averaging.
+    `--grid N` e `--seeds ...`; saída tabular ou JSON. **Achado direto
+    da primeira rodada:** parâmetros default produzem ~1 TCC/ano contra
+    alvo 47 — o **gap de escala** revela dependência forte de R06
+    (reescalonar capacidade ao universo do CADE), agora documentado.
+  - **Saito placeholder** — novo módulo `src/waas_antitrust/calibracao/saito.py`
+    com docstring rigoroso, constantes a preencher
+    (`MEDIANA_DESCONTO_TCC_2012_2019`, `Q1`, `Q3`, decomposição por
+    tipo) e procedimento de extração manual da tabela principal da
+    dissertação. Função `disponivel()` + `resumo()` para diagnóstico.
+    Quando preenchido, fecha `D_disc_base_tcc` em `cenarios.py`. R03 e
+    R13 atualizados em DECISIONS refletindo o estado.
+  - Total: 105 → 112 testes; gates verdes (ruff/black/mkdocs --strict).
 - **R16, R17, R18 — pressupostos teóricos mais robustos** (resposta à
   crítica do autor + PDF Torsell 2026 enviado por anexo).
   - **R16 — Arquétipo fairminded + inequity aversion (Torsell 2026,

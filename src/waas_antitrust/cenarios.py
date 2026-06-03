@@ -142,6 +142,24 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         },
     ),
     Cenario(
+        nome="mercado_digital_br_pareto",
+        descricao=(
+            "Regime C com **fatia de mercado distribuída em Pareto** (α=1,16). "
+            "Reflete a realidade de mercados digitais brasileiros: dano "
+            "concentrado em uma cauda longa de plataformas dominantes "
+            "(iFood, Mercado Livre, Apple/Google), não distribuído "
+            "uniformemente. R13a do backlog."
+        ),
+        sobrescritas={
+            "regime": "C",
+            "D_disc_base_tcc": 0.10,
+            "p_anulacao_tcc": 0.0,
+            "custo_legal_uw": 0.20,
+            "distribuicao_fatia_mercado": "pareto",
+            "alpha_pareto": 1.16,  # regra 80/20 clássica
+        },
+    ),
+    Cenario(
         nome="cenario_sancao_dura",
         descricao=(
             "Regime C + sanção catastrófica por descumprimento do TCC: firma "
