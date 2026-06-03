@@ -43,6 +43,11 @@ class TrabalhadorAgent(Agent):
         tolerancia_represalia      — multiplicador individual do custo esperado
                                      de represália (heterogeneidade ~ N(1, 0,15))
         historico_observou         — memória: nº de tiques em que observou
+        status                     — "ativo" (default) ou "ex_funcionario";
+                                     ex-funcionário sofre `r` efetivo menor
+                                     (sem vínculo a perder) e preserva
+                                     capacidade de sinalizar via memória.
+                                     Aplicado por choques (R19, Eurace@Unibi).
     """
 
     ARQUETIPOS = ("ético", "imitativo", "racional", "aleatório", "fairminded")
@@ -70,6 +75,9 @@ class TrabalhadorAgent(Agent):
         self.observou: bool = False
         self.sinaliza_agora: bool = False
         self.historico_observou: int = 0
+        # R19: status de vínculo (afeta tolerância a represália e capacidade
+        # de sinalizar via memória, mesmo após desligamento).
+        self.status: str = "ativo"
 
     @property
     def fracao_vested_individual(self) -> float:
@@ -108,6 +116,14 @@ class TrabalhadorAgent(Agent):
 
         if self.arquetipo == "imitativo":
             return 1 if phi_vizinhos >= 0.30 else 0
+
+        # R19 — Ex-funcionário (Eurace@Unibi / hipótese layoffs como
+        # oportunidade): sem vínculo a perder, a represália efetiva é
+        # multiplicada por um fator < 1 (default 0,2). Captura "o demitido
+        # já perdeu o emprego".
+        if self.status == "ex_funcionario":
+            fator_ex = getattr(self.model, "fator_represalia_ex_funcionario", 0.2)
+            r = r * fator_ex
 
         if self.arquetipo == "racional":
             if s_i is None:

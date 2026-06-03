@@ -59,6 +59,44 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R19 — Choques exógenos discretos (Eurace@Unibi)**. Atende a "como
+  o modelo lida com choques?" + à hipótese substantiva "os layoffs
+  podem ser oportunidade?". O modelo deixa de ser estacionário-
+  estocástico e ganha um mecanismo de **eventos discretos** no tempo.
+  - **Módulo novo** `src/waas_antitrust/choques.py` com dataclass
+    `Choque(tique, tipo, magnitude, descricao)` validada e função
+    `aplicar_choque(modelo, choque)`. Quatro tipos canônicos: `layoff`
+    (converte fração de trabalhadores a `ex_funcionario`),
+    `caso_paradigmatico` (pulso em `p_perc`, efeito Schelling),
+    `campanha_cade` (eleva `rho_acuracia` da autoridade) e
+    `choque_juridico` (eleva `p_anulacao_tcc`).
+  - **`TrabalhadorAgent.status`** ∈ {`"ativo"`, `"ex_funcionario"`}.
+    Ex-funcionário tem `r` efetivo multiplicado por
+    `fator_represalia_ex_funcionario` (default 0,2 — "o demitido já
+    perdeu o emprego") e preserva capacidade de sinalizar via
+    `historico_observou > 0`. Aplica-se aos arquétipos `racional` e
+    `fairminded` em `agents.decidir_sinal`.
+  - **Quatro catálogos canônicos**: `CHOQUES_TECH_2022_2024` (ondas
+    jan/2023 e jan/2024, magnitudes 6% e 4% — calibração frouxa contra
+    layoffs.fyi); `CHOQUES_CAMPANHA_CADE_DIGITAL` (pulso DT-003/2022);
+    `CHOQUES_CASO_PARADIGMATICO_IFOOD_2023` (TCC iFood);
+    `CHOQUES_JURIDICO_ADVERSO` (decisão hipotética STJ ativando F6).
+  - **Choques aplicados no início de `step()`**, antes de P0. Reporters
+    novos: `n_ex_funcionarios`, `n_choques_layoff_aplicados`,
+    `n_choques_paradigmaticos_aplicados`.
+  - **15 testes** em `tests/test_choques.py`: validação de Choque
+    (tipo/tique/magnitude), aplicação direta de cada tipo, integração
+    pelo `step` no tique correto, modelo sem choques preserva
+    comportamento (compat), ex-funcionário tem represália efetiva
+    menor (validação direcional da hipótese substantiva), catálogos
+    executam end-to-end.
+  - **v0 simplificação documentada**: efeitos instantâneos que se
+    propagam pela dinâmica adaptativa; duração explícita fica para
+    v1. Calibração formal de magnitudes pendente em R03.
+  - **Frameworks estabelecidos referenciados**: Eurace@Unibi (Dawid et
+    al.) para choques em ABM macro; resposta à pergunta do autor
+    sobre adesão a frameworks consolidados.
+  - Total: 112 → 127 testes; ruff/black/mkdocs --strict limpos.
 - **R13a + R03 (primeira ponta) + Saito placeholder** — três itens
   inter-relacionados da Frente A do roadmap (impacto/custo alto, sem
   decisão normativa):

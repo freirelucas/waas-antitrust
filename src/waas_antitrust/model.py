@@ -10,6 +10,7 @@ import networkx as nx
 from mesa import Model
 from mesa.datacollection import DataCollector
 
+from waas_antitrust import choques as choques_mod
 from waas_antitrust import condutas as condutas_mod
 from waas_antitrust import hirschman
 from waas_antitrust.agents import AutoridadeAgent, EmpresaAgent, TrabalhadorAgent
@@ -101,6 +102,15 @@ class WaaSParametros:
     # aprendizado coletivo). Default 0 preserva comportamento.
     multa_descumprimento_tcc: float = 0.0
     p_descumprimento_tcc: float = 0.0  # prob. de a firma descumprir após assinar
+
+    # **R19 — Choques exógenos discretos** (Eurace@Unibi; resposta a "como o
+    # modelo lida com choques?"). Lista de `Choque` (módulo `choques`)
+    # aplicados in-place no início de cada step quando `choque.tique == tique`.
+    # Default None preserva o modelo estacionário-estocástico.
+    choques: tuple = ()  # type: ignore[assignment]
+    # Multiplicador da represália percebida por ex-funcionários — sem vínculo
+    # a perder, o `r` efetivo cai. Default 0,2 (perde 80% do peso).
+    fator_represalia_ex_funcionario: float = 0.2
 
     # **R13a — Distribuição de fatia de mercado** (resposta a Eco B/PM e à
     # observação de que dano em digital é cauda longa, não uniforme).
@@ -264,6 +274,14 @@ class WaaSModel(Model):
         # R18: firma assinou TCC, recebeu W, e descumpriu — "perdem tudo"
         self.n_firmas_quebraram_tcc: int = 0
         self.multa_descumprimento_acum: float = 0.0
+        # R19: contadores de choques aplicados (diagnóstico).
+        self.n_choques_layoff_aplicados: int = 0
+        self.n_choques_paradigmaticos_aplicados: int = 0
+        self.n_choques_campanha_aplicados: int = 0
+        self.n_choques_juridicos_aplicados: int = 0
+        # R19: lista de choques a aplicar; aceita tuple (catálogo) ou list.
+        self.choques: tuple = tuple(params.choques) if params.choques else ()
+        self.fator_represalia_ex_funcionario = params.fator_represalia_ex_funcionario
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
@@ -305,6 +323,9 @@ class WaaSModel(Model):
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
                 "multa_descumprimento_acum": "multa_descumprimento_acum",
                 "hhi": self._hhi,
+                "n_ex_funcionarios": self._contar_ex_funcionarios,
+                "n_choques_layoff_aplicados": "n_choques_layoff_aplicados",
+                "n_choques_paradigmaticos_aplicados": "n_choques_paradigmaticos_aplicados",
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -339,6 +360,13 @@ class WaaSModel(Model):
             1
             for c in self.autoridade.historico_casos
             if not c["eh_violadora_real"] and c["classificada_violadora"]
+        )
+
+    def _contar_ex_funcionarios(self) -> int:
+        """Total de trabalhadores com `status='ex_funcionario'` (R19)."""
+        return sum(
+            sum(1 for t in ws if t.status == "ex_funcionario")
+            for ws in self.trabalhadores_por_empresa.values()
         )
 
     def _contar_fn(self) -> int:
@@ -490,6 +518,10 @@ class WaaSModel(Model):
     # ---- step ----
     def step(self) -> None:  # noqa: C901 — orquestra as 5 fases do protocolo ODD
         self.tique += 1
+        # R19 — Choques exógenos aplicados no tique corrente, antes de P0.
+        for choque in self.choques:
+            if choque.tique == self.tique:
+                choques_mod.aplicar_choque(self, choque)
         W_ativo = self.regime in ("B", "C")
         D_ativo = self.regime in ("B", "C")
 
@@ -545,6 +577,11 @@ class WaaSModel(Model):
                 else None
             )
             for t in ws:
+                # R19 — Ex-funcionário com memória preserva capacidade de
+                # sinalizar (não depende de a firma estar violando agora).
+                if t.status == "ex_funcionario" and t.historico_observou > 0:
+                    t.observou = True
+                    continue
                 if not violando:
                     t.observou = False
                     continue
