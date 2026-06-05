@@ -30,8 +30,18 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
+from waas_antitrust.calibracao.saito import d_base_tcc_calibrado
+
 if TYPE_CHECKING:
     from waas_antitrust.model import WaaSParametros
+
+
+# Fonte única para o desconto base do TCC clássico (Lei 12.529/2011, Art. 85).
+# Consulta `calibracao/saito.py`: usa Saito (2021) se preenchido, ou cai para
+# o default histórico documentado (0,10). Quando a extração manual da tabela
+# principal de Saito for concluída, todos os cenários abaixo herdam o valor
+# real sem mudança neste módulo.
+_D_BASE_TCC: float = d_base_tcc_calibrado(default=0.10)
 
 
 @dataclass(frozen=True)
@@ -77,7 +87,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         ),
         sobrescritas={
             "regime": "B",
-            "D_disc_base_tcc": 0.10,  # TCC clássico já dá ~10% sem WaaS
+            "D_disc_base_tcc": _D_BASE_TCC,  # Saito 2021 quando disponível; senão 0,10
             "p_anulacao_tcc": 0.10,  # F6 calibrado moderadamente
         },
     ),
@@ -90,7 +100,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         ),
         sobrescritas={
             "regime": "B",
-            "D_disc_base_tcc": 0.10,
+            "D_disc_base_tcc": _D_BASE_TCC,
             "p_anulacao_tcc": 0.10,
             "r_represalia": 0.08,  # caiu de 0.15 padrão
             "custo_legal_uw": 0.15,  # caiu por proteção trabalhista
@@ -105,7 +115,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         ),
         sobrescritas={
             "regime": "C",
-            "D_disc_base_tcc": 0.10,
+            "D_disc_base_tcc": _D_BASE_TCC,
             "p_anulacao_tcc": 0.0,  # F6 eliminado: lei é robusta
             "custo_legal_uw": 0.30,  # ainda há custo, mas defesa legal facilitada
         },
@@ -119,7 +129,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         ),
         sobrescritas={
             "regime": "C",
-            "D_disc_base_tcc": 0.10,
+            "D_disc_base_tcc": _D_BASE_TCC,
             "p_anulacao_tcc": 0.0,
             "custo_legal_uw": 0.05,  # quase zero — fundo cobre quase tudo
             "prob_pagamento_perc": 0.95,  # fundo aumenta credibilidade
@@ -134,7 +144,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         ),
         sobrescritas={
             "regime": "C",
-            "D_disc_base_tcc": 0.10,
+            "D_disc_base_tcc": _D_BASE_TCC,
             "p_anulacao_tcc": 0.0,
             "custo_legal_uw": 0.20,
             "fracao_contratos_acelerados": 1.0,  # universal por desenho
@@ -152,7 +162,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         ),
         sobrescritas={
             "regime": "C",
-            "D_disc_base_tcc": 0.10,
+            "D_disc_base_tcc": _D_BASE_TCC,
             "p_anulacao_tcc": 0.0,
             "custo_legal_uw": 0.20,
             "distribuicao_fatia_mercado": "pareto",
@@ -169,7 +179,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
         ),
         sobrescritas={
             "regime": "C",
-            "D_disc_base_tcc": 0.10,
+            "D_disc_base_tcc": _D_BASE_TCC,
             "p_anulacao_tcc": 0.0,
             "custo_legal_uw": 0.20,
             "multa_descumprimento_tcc": 2.0,  # 2× a sanção base como adicional

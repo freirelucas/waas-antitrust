@@ -59,6 +59,62 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R03a — Saito (2021) extraído da fonte primária + cenários atualizados**.
+  Sequência "go saito" entregue em dois movimentos coesos:
+  1. **Infraestrutura**: `calibracao/saito.py` ganha helper
+     `d_base_tcc_calibrado()` consultado por **todos os 7 cenários
+     relevantes** via constante `_D_BASE_TCC` em `cenarios.py` — ponto
+     único de consulta substituindo as 7 ocorrências hardcoded de
+     `D_disc_base_tcc: 0.10`.
+  2. **Extração**: agente de pesquisa baixou o PDF primário
+     (Saito, Carolina, *TCC na Lei nº 12.529/11*, CADE/PNUD, 24/02/2021,
+     349 TCCs 2012-2019, URL verificada em REFERENCES) e a §3.7.7 foi
+     conferida diretamente. Achados:
+     - **Autoria corrigida**: é **Carolina Saito** (não Pedro Saito).
+     - **Mediana NÃO REPORTADA** pela autora — Saito reporta médias
+       por posição na fila, não momento central.
+     - Constantes nomeadas reais extraídas (Imagens 23 e 25,
+       p. 38-39): 1ª SG/CADE = **43,43%**, 2ª = **34,51%**,
+       3ª = **20,22%**, Tribunal/1ª = **15,00%**.
+     - Faixas codificadas do Guia CADE de TCC (11/09/2017) adicionadas
+       como fonte secundária.
+     - Marcações explícitas para o que Saito **não** reporta (mediana,
+       Q1/Q3, decomposição por tipo de conduta — a Imagem 21 traz
+       alíquota da multa, NÃO desconto: caveat documentado).
+  3. **Helper agora retorna 0,15 (média Tribunal — estimativa
+     conservadora consistente com Saito e com o teto codificado pelo
+     Guia CADE)** em vez do default histórico 0,10. Todos os 7
+     cenários afetados herdaram o novo valor automaticamente via
+     `_D_BASE_TCC` — **zero alterações em `cenarios.py`** além da
+     refatoração inicial.
+  4. **REFERENCES.md** atualizada com autoria correta + URL do PDF;
+     `calibracao/cade.py` também corrigido. 13 testes em
+     `test_saito_placeholder.py` cobrem: metadados verbatim, médias
+     por posição (Imagens 23/25), faixas Guia CADE, marcações [?],
+     helper retorna média Tribunal por default, monkeypatch da
+     mediana tem precedência. Total: 127 → 140 testes; gates limpos.
+- **R19 — Choques exógenos discretos (Eurace@Unibi)**. Preparação
+  do "go saito": `calibracao/saito.py` ganha helper
+  `d_base_tcc_calibrado(default=0.10)` que devolve `MEDIANA_DESCONTO_TCC_2012_2019`
+  quando preenchido, fallback no default quando placeholder.
+  `cenarios.py` consulta o helper via constante `_D_BASE_TCC` no topo do
+  módulo — **ponto único de consulta** substituindo as 7 ocorrências
+  hardcoded de `D_disc_base_tcc: 0.10`. Resultado: quando a extração
+  manual da tabela principal de Saito (349 TCCs CADE 2012-2019) for
+  concluída e a constante for preenchida, todos os 7 cenários
+  (`resolucao_pura`, `resolucao_mais_portaria_mte`, `lei_waas_pura`,
+  `lei_waas_com_fundo_honorarios`, `lei_waas_com_vesting_padrao`,
+  `mercado_digital_br_pareto`, `cenario_sancao_dura`) herdam o valor real
+  **sem mudança no `cenarios.py`** — basta o diff de uma linha em
+  `saito.py`. Cinco testes novos em `tests/test_saito_placeholder.py`
+  cobrem: placeholder detectado por `disponivel()`, helper retorna
+  default quando placeholder, helper retorna Saito quando preenchido
+  (via `monkeypatch`), `resumo()` descreve o estado, e
+  `N_TCC_SAITO_2012_2019 = 349` verbatim. Teste impactado
+  `test_aplicar_cenario_nao_muta_params_original` reescrito para
+  comparar contra `d_base_tcc_calibrado()` em vez do literal 0,10 —
+  invariante semântica preservada. Total: 127 → 132 testes; gates
+  verdes; HEAD sincronizada com main + origin.
 - **R19 — Choques exógenos discretos (Eurace@Unibi)**. Atende a "como
   o modelo lida com choques?" + à hipótese substantiva "os layoffs
   podem ser oportunidade?". O modelo deixa de ser estacionário-

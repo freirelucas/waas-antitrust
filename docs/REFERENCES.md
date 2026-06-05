@@ -81,7 +81,8 @@
 - Câmara dos Deputados. PL 2768/2022 — regulação econômica concorrencial de plataformas digitais. <https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2337417> — análogo nacional ao DMA europeu.
 
 ### CADE/DEE e outras fontes técnicas
-- Saito, P. (2021). *Termo de Compromisso de Cessação na Lei nº 12.529/11*. CADE/PNUD.
+- Saito, C. (24/02/2021). *TCC na Lei nº 12.529/11*. Gabinete da Presidência do CADE — resultado da Consultoria PNUD/Brasil no projeto "Melhores práticas e procedimentos de negociação de TCC" (2019-2020). 349 TCCs CADE 2012-2019. PDF verificado: <https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/TCC%20na%20Lei%20n%C2%BA%2012.52911/TCC%20na%20Lei%20n%C2%BA%2012.529-11.pdf>. — *Calibra `D_disc_base_tcc` em `calibracao/saito.py`: médias por posição na fila (SG/CADE 1ª=43,43%; 2ª=34,51%; 3ª=20,22%; Tribunal=15%). Mediana NÃO REPORTADA pela autora.*
+- CADE (11/09/2017). *Guia de Termo de Compromisso de Cessação para casos de cartel.* — Codifica faixas de desconto por posição. URL: <https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/guias-do-cade/guia-tcc-atualizado-11-09-17.pdf>
 - CADE, DEE, *Documento de Trabalho 003/2022 — Aprendizado de máquina e antitruste*. <https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/estudos-economicos/documentos-de-trabalho/2022/DOC_003-2022_Aprendizado-de-maquina-e-antitruste.pdf>
 - CADE, DEE, *Documento de Trabalho 001/2024 — Benefícios de atuação do Cade em 2023*.
 - Castro, R. M., Mundim, F. N., & Resende, G. M. (2022). *DEE/CADE — 10 anos da Lei 12.529/2011*. **[?]** RePEc: `atg/wpaper/2022060` (conferir publicação no portal CADE antes de citar verbatim).

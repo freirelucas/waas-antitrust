@@ -3,9 +3,10 @@
 Fontes primárias:
     - CADE, comunicado institucional de 06/10/2023 (109 acordos de
       leniência em 20 anos, média de cerca de 5 por ano).
-    - Saito, P. (2021). *Termo de Compromisso de Cessação na Lei nº
-      12.529/11.* CADE/PNUD. (349 TCCs analisados entre julho de 2012 e
-      dezembro de 2019, média de cerca de 47 por ano.)
+    - Saito, C. (24/02/2021). *TCC na Lei nº 12.529/11.* Gabinete da
+      Presidência do CADE — Consultoria PNUD/Brasil. (349 TCCs CADE
+      04/07/2012 a 11/12/2019, média de cerca de 47 por ano.) Ver
+      `calibracao/saito.py` para estatísticas de desconto extraídas.
     - CADE, DEE, *Documento de Trabalho 001/2024 — Benefícios de atuação
       do Cade em 2023*. (13 TCCs homologados em 2023, R$ 92,2 milhões.)
 """

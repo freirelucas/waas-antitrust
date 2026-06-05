@@ -1,74 +1,149 @@
-"""Calibração contra Saito (2021) — placeholder formal.
+"""Calibração contra Saito (2021) — "TCC na Lei nº 12.529/11".
 
-**Status: placeholder.** Os campos abaixo são *espaços de calibração*
-para a primeira ponta de R03; preenchê-los exige extração manual da
-tabela de TCCs da dissertação de Saito (verificável via repositório
-institucional CADE/PNUD). Quando preenchidos, este módulo fornece a
-mediana e a dispersão do desconto observado em TCCs CADE 2012-2019,
-calibrando `D_disc_base_tcc` no modelo.
+Fonte primária verificada (PDF baixado e seção 3.7.7 conferida):
+    Saito, Carolina (24/02/2021). *TCC na Lei nº 12.529/11.* Gabinete da
+    Presidência do CADE, resultado da Consultoria PNUD/Brasil no projeto
+    "Melhores práticas e procedimentos de negociação de TCC" (2019-2020).
+    Universo: **349 TCCs firmados entre 04/07/2012 e 11/12/2019**.
+    URL: https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/TCC%20na%20Lei%20n%C2%BA%2012.52911/TCC%20na%20Lei%20n%C2%BA%2012.529-11.pdf
 
-Fonte primária:
-    Saito, P. (2021). *Termo de Compromisso de Cessação na Lei nº
-    12.529/11.* Dissertação CADE/PNUD. 349 TCCs analisados entre julho
-    de 2012 e dezembro de 2019.
+Notas de extração (relevantes para a calibração de `D_disc_base_tcc`):
 
-Procedimento para preencher (manual):
-1. Localizar a dissertação no repositório CADE/PNUD ou via solicitação
-   LAI ao CADE/SG.
-2. Extrair, da tabela principal, o desconto percentual (sobre a
-   contribuição pecuniária) negociado em cada TCC. Saito tabula isso por
-   ano e por tipo de conduta.
-3. Calcular mediana e quartis (Q1, Q3) — o ideal seria também por tipo
-   de conduta (cartel × conduta unilateral × outras).
-4. Sobrescrever `MEDIANA_DESCONTO_TCC_2012_2019` e demais constantes;
-   remover o `None`.
+1. **Saito (2021) NÃO reporta mediana** do desconto, nem quartis ou
+   desvio-padrão. Reporta **médias por posição na fila** de
+   compromissários (Imagens 23 e 25, p. 38-39). Logo, qualquer "mediana"
+   abaixo seria construção interpretativa — e este módulo evita.
 
-Quando preenchido, este módulo será fonte primária para o parâmetro
-`D_disc_base_tcc` em `cenarios.py` (Regimes B e C). Hoje usamos
-estimativa intermediária de 10% — ver `mecanismo.md` § "Vetor de quebra A".
+2. **A decomposição por tipo de conduta NÃO está disponível para o
+   desconto**. A Imagem 21 (p. 37) traz "alíquota média por conduta", que
+   é a **taxa da multa**, não o desconto. Não confundir. Os números aqui
+   são, portanto, derivados majoritariamente de TCCs de cartel — a
+   transposição para conduta unilateral (alvo do WaaS) requer cuidado.
+
+3. **Caveat de cobertura**: em 25,88% dos Requerimentos os documentos do
+   CADE não abordam expressamente o desconto aplicado (p. 37).
+
+O helper `d_base_tcc_calibrado` retorna por padrão a média mais
+**conservadora** (Tribunal, qualquer compromissário = 15%), porque o
+WaaS opera num contexto adversarial em que a firma frequentemente não é
+a primeira a colaborar. Para análise específica de cartel-em-SG/CADE,
+usar `MEDIA_DESCONTO_SG_1A_POSICAO` (43,43%) etc. explicitamente.
 """
 
 from __future__ import annotations
 
-# Estatística central a preencher: mediana de desconto sobre contribuição
-# pecuniária nos TCCs analisados por Saito (2012-2019).
+# --- Bibliográficos -------------------------------------------------------
+
+#: Número de TCCs analisados — verbatim do título da dissertação.
+N_TCC_SAITO_2012_2019: int = 349
+
+#: Período coberto.
+PERIODO_SAITO: tuple[str, str] = ("2012-07-04", "2019-12-11")
+
+#: Autoria e data de publicação.
+AUTORIA_SAITO: str = "Carolina Saito"
+DATA_PUBLICACAO_SAITO: str = "2021-02-24"
+
+# --- Médias por posição na fila (SG/CADE), Imagem 23 p. 38 ----------------
+
+#: Desconto médio na contribuição pecuniária do TCC, segundo a posição
+#: do compromissário na fila e a fase processual SG/CADE (PA principal).
+#: Fonte: Saito (2021), Imagem 23, p. 38.
+MEDIA_DESCONTO_SG_POR_POSICAO: dict[int, float] = {
+    1: 0.4343,  # 43,43%
+    2: 0.3451,  # 34,51%
+    3: 0.2022,  # 20,22%
+    4: 0.1799,  # 17,99%
+    5: 0.1677,  # 16,77%
+    6: 0.1600,  # 16,00%
+    7: 0.1500,  # 15,00%
+    8: 0.1533,  # 15,33%
+    9: 0.1500,  # 15,00%
+}
+
+# Convenções de uso individual.
+MEDIA_DESCONTO_SG_1A_POSICAO: float = 0.4343
+MEDIA_DESCONTO_SG_2A_POSICAO: float = 0.3451
+MEDIA_DESCONTO_SG_3A_POSICAO: float = 0.2022
+
+# --- Tribunal/CADE — qualquer compromissário, Imagem 25 p. 39 -------------
+
+#: Desconto médio no Tribunal/CADE (segundo estágio processual), 1ª posição.
+#: Por jurisprudência codificada, máximo de 15% para qualquer compromissário
+#: nesta fase. Saito reporta média = 15% para 1ª posição.
+MEDIA_DESCONTO_TRIBUNAL_1A_POSICAO: float = 0.1500
+
+# --- Faixas codificadas pelo Guia CADE de TCC para cartel (jurisprudência) ----
+#: Fonte secundária verificada (Guia CADE de TCC, 11/09/2017).
+#: URL: https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/guias-do-cade/guia-tcc-atualizado-11-09-17.pdf
+FAIXAS_DESCONTO_SG_GUIA_CADE: dict[int, tuple[float, float]] = {
+    1: (0.30, 0.50),
+    2: (0.25, 0.40),
+    3: (0.0, 0.25),  # "até 25%"
+}
+FAIXAS_DESCONTO_TRIBUNAL: tuple[float, float] = (0.0, 0.15)  # "até 15%"
+
+# --- Placeholders explicitamente NÃO REPORTADOS por Saito (2021) ----------
+
+#: Mediana NÃO REPORTADA por Saito. Marcado None — não preencher sem fonte.
 MEDIANA_DESCONTO_TCC_2012_2019: float | None = None
 
-# Dispersão (quartis 25/75). Útil para varredura de sensibilidade.
+#: Quartis NÃO REPORTADOS por Saito.
 Q1_DESCONTO_TCC_2012_2019: float | None = None
 Q3_DESCONTO_TCC_2012_2019: float | None = None
 
-# Decomposição por tipo de conduta (cartel × conduta unilateral × outras).
-# Saito tabula isso; permite calibrar D_base separadamente por categoria.
+#: Decomposição por tipo de conduta NÃO REPORTADA por Saito (a Imagem 21
+#: traz alíquota de multa, não desconto). Não preencher por inferência.
 MEDIANA_DESCONTO_POR_TIPO: dict[str, float | None] = {
     "cartel": None,
     "conduta_unilateral": None,
     "outras": None,
 }
 
-# Número de TCCs cobertos (verbatim do título da dissertação).
-N_TCC_SAITO_2012_2019: int = 349
 
-# Período coberto.
-PERIODO_SAITO: tuple[str, str] = ("2012-07", "2019-12")
+# --- Helpers --------------------------------------------------------------
 
 
 def disponivel() -> bool:
-    """Indica se as constantes principais estão preenchidas (não-None)."""
+    """Indica se a mediana (não reportada) foi eventualmente fornecida
+    por extração futura ou fonte secundária.
+    """
     return MEDIANA_DESCONTO_TCC_2012_2019 is not None
+
+
+def d_base_tcc_calibrado(default: float = 0.10) -> float:
+    """Desconto base do TCC clássico (`D_disc_base_tcc`) calibrado.
+
+    Política de seleção (Saito 2021 já preenchido com dados reais):
+
+    1. Se `MEDIANA_DESCONTO_TCC_2012_2019` estiver preenchido (i.e., uma
+       mediana foi obtida via fonte alternativa ou recálculo), retorna-a.
+    2. Caso contrário, retorna a **média do Tribunal/1ª posição** = 0,15,
+       que é a estimativa mais conservadora consistente com Saito (2021)
+       e com o teto codificado pelo Guia CADE de TCC (até 15% nesta
+       fase, para qualquer compromissário).
+
+    Argumento `default` é mantido por compatibilidade com chamadas
+    anteriores, mas só é usado se nem a mediana nem a média Tribunal
+    estiverem disponíveis (situação que não deveria ocorrer com este
+    módulo preenchido). A faixa empírica útil para sensibilidade é
+    `[0,15, 0,43]` (Tribunal → 1ª posição SG/CADE).
+    """
+    if MEDIANA_DESCONTO_TCC_2012_2019 is not None:
+        return float(MEDIANA_DESCONTO_TCC_2012_2019)
+    if MEDIA_DESCONTO_TRIBUNAL_1A_POSICAO is not None:
+        return float(MEDIA_DESCONTO_TRIBUNAL_1A_POSICAO)
+    return float(default)
 
 
 def resumo() -> str:
     """Resumo textual do estado de calibração — útil para diagnóstico."""
-    if disponivel():
-        return (
-            f"Saito (2021) calibrado: mediana={MEDIANA_DESCONTO_TCC_2012_2019:.2%}, "
-            f"Q1={Q1_DESCONTO_TCC_2012_2019:.2%}, Q3={Q3_DESCONTO_TCC_2012_2019:.2%} "
-            f"sobre {N_TCC_SAITO_2012_2019} TCCs ({PERIODO_SAITO[0]} a "
-            f"{PERIODO_SAITO[1]})."
-        )
     return (
-        f"Saito (2021) ainda em placeholder. {N_TCC_SAITO_2012_2019} TCCs "
-        f"({PERIODO_SAITO[0]} a {PERIODO_SAITO[1]}) aguardando extração manual "
-        "da tabela principal. Ver docstring do módulo para procedimento."
+        f"Saito ({AUTORIA_SAITO}, {DATA_PUBLICACAO_SAITO}): "
+        f"{N_TCC_SAITO_2012_2019} TCCs ({PERIODO_SAITO[0]} a {PERIODO_SAITO[1]}). "
+        f"Médias por posição SG/CADE: 1ª={MEDIA_DESCONTO_SG_1A_POSICAO:.2%}, "
+        f"2ª={MEDIA_DESCONTO_SG_2A_POSICAO:.2%}, "
+        f"3ª={MEDIA_DESCONTO_SG_3A_POSICAO:.2%}. "
+        f"Tribunal/1ª posição={MEDIA_DESCONTO_TRIBUNAL_1A_POSICAO:.2%}. "
+        f"Mediana NÃO REPORTADA por Saito (2021); fallback usado: Tribunal."
     )

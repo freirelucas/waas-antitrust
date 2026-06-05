@@ -140,10 +140,15 @@ def test_listar_cenarios_devolve_lista_de_strings():
 
 def test_aplicar_cenario_nao_muta_params_original():
     """`aplicar_cenario` retorna nova instância, não muta a original."""
+    from waas_antitrust.calibracao.saito import d_base_tcc_calibrado
+
     p_orig = WaaSParametros(regime="B", D_disc_base_tcc=0.0)
     p_novo = aplicar_cenario(p_orig, "resolucao_pura")
     assert p_orig.D_disc_base_tcc == 0.0  # original intacto
-    assert p_novo.D_disc_base_tcc == 0.10  # novo tem a sobrescrita
+    # `resolucao_pura` consulta `saito.d_base_tcc_calibrado` (fallback 0,10
+    # quando Saito 2021 está em placeholder); a igualdade exata garante que
+    # a substituição automática quando Saito for preenchido será refletida.
+    assert p_novo.D_disc_base_tcc == d_base_tcc_calibrado()
 
 
 def test_cenario_lei_waas_com_vesting_padrao_ativa_hirschman_so_em_c():
