@@ -74,6 +74,15 @@
 
 ## Fontes brasileiras e contexto institucional
 
+### Parsing programático de normas (módulo `normas/` — T07)
+
+- **LexML Brasil** — padrão oficial brasileiro de identificação e estruturação de normas (URN-LEX + XSDs). <https://projeto.lexml.gov.br/> · resolutor: <https://www.lexml.gov.br/>
+- **Akoma Ntoso v1.0 OASIS** — padrão internacional análogo (LegalDocML). <https://docs.oasis-open.org/legaldocml/akn-core/v1.0/cs01/part1-vocabulary/akn-core-v1.0-cs01-part1-vocabulary.html>
+- **LC 95/1998** — Lei Complementar que codifica a técnica brasileira de elaboração legislativa (hierarquia Artigo → § → Inciso → Alínea → Item; usada como gramática do parser regex em `articulacao.py`).
+- **laws.africa / cobalt + bluebell** — ferramentas Python ativas para Akoma Ntoso 3.0 (cobalt para FRBR URIs, bluebell para parser texto → AKN). PT-BR não testado oficialmente; útil como referência de arquitetura. <https://github.com/laws-africa/cobalt> · <https://github.com/laws-africa/bluebell>
+- **ulysses-camara / ulysses-segmenter** — segmentador BERT/Bi-LSTM para texto legislativo PT-BR (granularidade de sentença, não estrutural). Polo acadêmico Câmara dos Deputados + NILC/USP-São Carlos. <https://github.com/ulysses-camara/ulysses-segmenter>
+- **lexml-parser-projeto-lei** — parser oficial LexML em Scala (não-Python); visa projetos de lei, não normas vigentes. <https://github.com/lexml/lexml-parser-projeto-lei>
+
 ### Lei e norma regulamentar
 - Lei 12.529/2011 (arts. 85 a 87).
 - Lei 13.608/2018, com redação dada pela Lei 13.964/2019 (arts. 4º-A, 4º-B, 4º-C).

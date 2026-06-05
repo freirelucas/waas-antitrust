@@ -1,0 +1,32 @@
+Lei nº 13.608, de 10 de janeiro de 2018 — disque-denúncia + recompensa.
+Arts. 4º-A, 4º-B e 4º-C acrescidos pela Lei nº 13.964, de 24 de dezembro
+de 2019 (Art. 15).
+
+# STATUS DE VERIFICAÇÃO
+
+- Caputs dos Arts. 4º-A, 4º-B, 4º-C: paráfrases consistentes com a
+  análise em `docs/INSTITUTIONAL.md`. Redação consolidada para teste
+  interno do parser, aguardando verificação contra DOU. NÃO citar
+  verbatim no paper sem checagem.
+- Art. 4º-C §3º: este projeto cita-o como restringindo a recompensa a
+  "crimes contra a administração pública" (charneira jurídica do
+  Caveat de escopo do R07 em DECISIONS).
+
+Fonte primária canônica: Planalto/ccivil_03 —
+http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13608.htm
+
+# URN-LEX
+urn:lex:br:federal:lei:2018-01-10;13608
+
+# TRECHOS
+
+Art. 4º-A. A União, os Estados, o Distrito Federal e os Municípios, no âmbito de suas competências, poderão estabelecer formas de recompensa pelo oferecimento de informações que sejam úteis para a prevenção, a repressão ou a apuração de crimes ou ilícitos administrativos.
+Parágrafo único. Entre as recompensas a serem estabelecidas, poderá ser instituído o pagamento de valores em espécie.
+
+Art. 4º-B. O informante que se identificar terá assegurado, pelo órgão que receber a denúncia, o sigilo dos seus dados.
+Parágrafo único. Ninguém poderá ser condenado apenas com base no depoimento prestado pelo informante, quando mantido o sigilo da sua identidade.
+
+Art. 4º-C. Além das medidas de proteção previstas na Lei nº 9.807, de 13 de julho de 1999, será assegurada ao informante proteção contra ações ou omissões praticadas em retaliação ao exercício do direito de relatar.
+§ 1º A retaliação praticada em razão das informações prestadas enseja a reparação, pelo agente retaliante, em dobro, dos eventuais danos materiais causados ao informante, sem prejuízo de danos morais.
+§ 2º Quando as informações disponibilizadas resultarem em recuperação de produto de crime contra a administração pública, poderá ser fixada recompensa em favor do informante em até 5% (cinco por cento) do valor recuperado.
+§ 3º A aplicação do disposto no § 2º deste artigo se restringe a crimes contra a administração pública.

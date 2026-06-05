@@ -1,0 +1,34 @@
+Lei nº 12.529, de 30 de novembro de 2011 — Sistema Brasileiro de Defesa
+da Concorrência.
+
+# STATUS DE VERIFICAÇÃO
+
+- Art. 85 (caput): **verbatim** da fonte primária — texto reproduzido
+  em `docs/INSTITUTIONAL.md` e referenciado por todo o projeto WaaS.
+- Demais dispositivos (Arts. 85 §§, 86, 87): **redação consolidada
+  para teste interno do parser**, aguardando verificação contra a
+  publicação oficial no Diário Oficial da União (E04 em
+  `docs/DECISIONS.md`). NÃO citar verbatim no paper sem verificação
+  prévia. Fonte primária canônica: Planalto/ccivil_03 —
+  http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12529.htm
+
+# URN-LEX
+urn:lex:br:federal:lei:2011-11-30;12529
+
+# TRECHOS
+
+Art. 85. Nos procedimentos administrativos mencionados nos incisos I, II e III do art. 48 desta Lei, o Cade poderá tomar do representado compromisso de cessação da prática sob investigação ou dos seus efeitos lesivos, sempre que, em juízo de conveniência e oportunidade, devidamente fundamentado, entender que atende aos interesses protegidos por lei.
+§ 1º Do termo de compromisso deverão constar os seguintes elementos:
+I - a especificação das obrigações do representado no sentido de não praticar a conduta investigada ou seus efeitos lesivos, bem como obrigações que julgar cabíveis;
+II - a fixação do valor da multa para o caso de descumprimento, total ou parcial, das obrigações compromissadas;
+III - a fixação do valor da contribuição pecuniária ao Fundo de Defesa de Direitos Difusos quando cabível.
+§ 2º Tratando-se da investigação da prática de infração relacionada ou decorrente das condutas previstas nos incisos I e II do § 3º do art. 36 desta Lei, entre as obrigações a que se refere o inciso I do § 1º deste artigo figurará, necessariamente, a obrigação de recolher ao Fundo de Defesa de Direitos Difusos um valor pecuniário que não poderá ser inferior ao mínimo previsto no art. 37 desta Lei.
+§ 3º A proposta de termo de compromisso de cessação de prática somente poderá ser apresentada uma única vez.
+§ 4º A proposta de termo de compromisso de cessação de prática poderá ter caráter confidencial.
+
+Art. 86. O Cade, por intermédio da Superintendência-Geral, poderá celebrar acordo de leniência, com a extinção da ação punitiva da administração pública ou a redução de 1 (um) a 2/3 (dois terços) da penalidade aplicável, nos termos deste artigo, com pessoas físicas e jurídicas que forem autoras de infração à ordem econômica, desde que colaborem efetivamente com as investigações e o processo administrativo e que dessa colaboração resulte:
+I - a identificação dos demais envolvidos na infração; e
+II - a obtenção de informações e documentos que comprovem a infração noticiada ou sob investigação.
+
+Art. 87. Nos crimes contra a ordem econômica, tipificados na Lei nº 8.137, de 27 de dezembro de 1990, e nos demais crimes diretamente relacionados à prática de cartel, a celebração de acordo de leniência, nos termos desta Lei, determina a suspensão do curso do prazo prescricional e impede o oferecimento da denúncia com relação ao agente beneficiário da leniência.
+Parágrafo único. Cumprido o acordo de leniência pelo agente, extingue-se automaticamente a punibilidade dos crimes a que se refere o caput deste artigo.

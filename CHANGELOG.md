@@ -59,6 +59,61 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **T07 — Módulo `normas/` para parsing programático** (resposta à
+  pergunta "pesquise metodologia adequada para parsear e manipular
+  norma"). Agente de pesquisa retornou diagnóstico claro: **não há
+  parser PT-BR maduro em Python para texto consolidado de leis em
+  vigor**. Caminho adotado conforme recomendação: módulo ad-hoc
+  disciplinado por LC 95/1998 + corpus local versionado em Git.
+  - **Novo `src/waas_antitrust/normas/`**:
+    * `urn.py` — dataclass `URNLex` (padrão URN-LEX do LexML Brasil)
+      + `parse_urn` + 4 URNs canônicas pré-definidas (Leis 12.529,
+      13.608, 13.964; Resolução CADE 21/2018). Resolutor LexML
+      devolve HTML/PDF — usar apenas como link de citação.
+    * `articulacao.py` — parser regex disciplinado por LC 95/1998.
+      Decompõe texto articulado em árvore `Dispositivo` (artigo →
+      parágrafo → inciso → alínea → item). Suporta `Parágrafo único`,
+      `Art. 4º-A`, incisos romanos e alíneas. Casos patológicos
+      (notas marginais, "Art. 4-bis") declarados fora de escopo.
+    * `remissoes.py` — extrator de remissões cruzadas como dataclass
+      `Remissao(artigo, paragrafo, incisos, alinea, norma_alvo,
+      trecho_capturado)`. Padrão único: "Art. 45, V e VI da Lei nº
+      12.529, de 30 de novembro de 2011" e variantes. Postura
+      conservadora: prefere perder captura ambígua a inventar.
+    * `corpus.py` — `NORMAS_INDEXADAS` mapeia URN → arquivo em
+      `data/normas/`. `carregar_norma(urn)` aceita objeto ou string.
+      Sem fetch em tempo de execução — integridade vem do Git.
+    * `cite.py` — `citar(urn, dispositivo)` e `citar_com_subitens`
+      recuperam trecho do corpus local (atende invariante CLAUDE.md
+      de citações verificáveis).
+  - **Novo `data/normas/`** com 3 textos:
+    * Lei 12.529/2011 — Arts. 85-87 (Art. 85 caput **verbatim**
+      verificado contra `INSTITUTIONAL.md`; demais marcados como
+      "redação consolidada para teste interno do parser, aguardando
+      verificação DOU" via E04).
+    * Lei 13.608/2018 — Arts. 4º-A a 4º-C (paráfrases consistentes
+      com `INSTITUTIONAL.md`; status declarado em cada arquivo).
+    * Resolução CADE 21/2018 — Art. 12 (redação consolidada; **E04
+      segue ABERTO** — verificação verbatim contra DOU é
+      pré-requisito para citação no paper).
+  - **Honestidade documental**: cada arquivo em `data/normas/` tem
+    cabeçalho `# STATUS DE VERIFICAÇÃO` declarando o que é verbatim
+    e o que é redação consolidada para teste — preserva o invariante
+    CLAUDE.md "não inventar referências".
+  - **24 testes** em `tests/test_normas.py`: URN bijeção, parser
+    decompõe Arts. 85-87 com seus parágrafos e incisos numerados
+    (I/II/III), Parágrafo único do Art. 87, Arts. 4º-A/B/C da Lei
+    13.608, remissões `art. 45, V e VI da Lei 12.529`, busca de
+    dispositivo composto (`Art. 85 § 1º`), `citar` recupera trecho
+    verbatim do caput do Art. 85.
+  - **REFERENCES.md** ganha seção "Parsing programático de normas
+    (T07)" com 6 entradas verificadas (LexML BR, Akoma Ntoso, LC
+    95/1998, laws.africa/cobalt + bluebell, ulysses-segmenter,
+    lexml-parser-projeto-lei).
+  - **DECISIONS T07** aberto com "Implementado", lista pendências
+    futuras (gerador inverso XML LexML, comparador de versões
+    consolidadas, grafo NetworkX de remissões).
+  - Total: 187 → 211 testes; ruff/black/mkdocs --strict limpos.
 - **R06 — Relatórios Integrados de Gestão (RIG) 2022-2024 calibrados**.
   Agente em background baixou os três PDFs primários (URLs HTTP 200
   em `cdn.cade.gov.br`, dezenas de MB cada), parseou com `pdftotext`

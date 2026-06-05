@@ -1,0 +1,26 @@
+Resolução CADE nº 21, de 13 de junho de 2018 — regulamenta o cálculo da
+contribuição pecuniária do TCC (Lei 12.529/2011, Art. 85).
+
+# STATUS DE VERIFICAÇÃO
+
+- Art. 12: **redação consolidada de teste**, baseada na paráfrase em
+  `docs/INSTITUTIONAL.md`: "autoriza considerar como circunstância
+  atenuante, no cálculo da contribuição pecuniária do TCC, o
+  ressarcimento extrajudicial ou judicial das vítimas (art. 45, V e
+  VI da Lei 12.529/2011)".
+- **E04 em `docs/DECISIONS.md` segue ABERTO**: verificação do texto
+  integral contra publicação no Diário Oficial é pré-requisito para
+  citação verbatim no paper. Esta é a **charneira jurídica do Regime
+  B** — não basta o sentido, precisa do verbatim.
+
+Fonte primária canônica: CADE —
+https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/normas-e-legislacao/resolucoes/Resolucao%2021_2018.pdf
+
+# URN-LEX (proposta)
+urn:lex:br:cade:resolucao:2018-06-13;21
+
+# TRECHOS
+
+Art. 12. Será considerada, como circunstância atenuante para o cálculo da contribuição pecuniária, a comprovação, pelo Compromissário, de ressarcimento extrajudicial ou judicial das vítimas, conforme disposto no art. 45, V e VI, da Lei nº 12.529, de 30 de novembro de 2011.
+§ 1º A atenuação prevista no caput poderá implicar redução do valor da contribuição pecuniária, observados os parâmetros estabelecidos por esta Resolução.
+§ 2º O ressarcimento será considerado no momento da negociação do TCC, sendo necessária a apresentação de comprovantes idôneos.
