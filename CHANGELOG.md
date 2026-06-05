@@ -59,6 +59,38 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R06 — Portal da Transparência preenchido com dados verificados**.
+  Segundo passo do padrão "go saito": após a infraestrutura, o agente
+  de pesquisa em background extraiu números de fontes primárias
+  indexadas (15 buscas em ~3 min). Constantes preenchidas em
+  `calibracao/transparencia_cade.py`:
+  - **N_SERVIDORES_TOTAL = 292** (Nota Técnica CADE 24/05/2022, via
+    Direção Concursos);
+  - **N_SERVIDORES_EFETIVOS_PROPRIOS = 34**;
+  - **EPPGG lotados = 65** de 200 cargos criados por Lei 12.529/2011
+    (déficit ≈ 67%, helper `deficit_eppgg()`);
+  - **Tribunal = 7 conselheiros** (Lei 12.529/2011 art. 6º);
+  - **ACs notificados 2024 = 712** (recorde; CADE 14/01/2025);
+  - **PAs de conduta 2023 = 14 + 5 TCC** (ConJur balanço 2023) —
+    **distinção crítica**: 712 (ACs/fusões) ≠ 14 (conduta), e é a
+    segunda categoria que o WaaS endereça;
+  - Leniências assinadas: 1 (2022), 2 (2023), 4 (2024) — Mattos Filho;
+  - Multas 2023 = R$ 114,5 mi; tempo médio AC ordinário 117d → 93,9d
+    (2023 → 2024); limiares Lei 12.529 art. 88: R$ 75 mi / R$ 750 mi.
+  - **Pendências marcadas [?]** explicitamente em campo dedicado:
+    decomposição SG/DEE (não publicada — pendente Relatório Integrado
+    de Gestão), orçamento LOA (Portal da Transparência bloqueado via
+    WebFetch, HTTP 405), contagem exata de procuradores e técnicos.
+  - **REFERENCES.md** ganha 7 fontes verificadas para R06 + a
+    pendência do Portal da Transparência marcada como `[?]`.
+  - Testes expandidos para 24 (cobrindo cada constante verificada,
+    cada marcação `[?]`, helpers de fallback, e estrutura estável).
+  - **Recomendação substantiva preservada do agente**: tratar
+    `UNIVERSO_FIRMAS_REGULADAS_ESTIMATIVA = (5.000, 20.000)` como
+    variável de varredura Sobol — universo de firmas com receita ≥
+    R$ 75 mi sob jurisdição da Lei 12.529 não tem corte primário
+    publicado.
+  - Total: 152 → 164 testes; gates limpos; main sincronizada.
 - **R06 — Infraestrutura de calibração do Portal da Transparência**.
   Atende ao próximo movimento do balanço (capacidade do CADE) e à
   sugestão do autor de usar o Portal da Transparência como fonte.

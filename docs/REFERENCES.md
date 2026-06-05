@@ -80,6 +80,16 @@
 - Resolução CADE nº 21/2018, em especial o art. 12.
 - Câmara dos Deputados. PL 2768/2022 — regulação econômica concorrencial de plataformas digitais. <https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2337417> — análogo nacional ao DMA europeu.
 
+### Capacidade institucional do CADE (R06)
+
+- CADE (14/01/2025). *Cade bate recorde de notificação de Atos de Concentração em 2024.* URL: <https://www.gov.br/cade/pt-br/assuntos/noticias/cade-bate-recorde-de-notificacao-de-atos-de-concentracao-em-2024> — 712 ACs notificados; tempo médio AC ordinário caiu de 117 (2023) para 93,9 dias.
+- CADE. *Tribunal Administrativo — Membros.* URL: <https://www.gov.br/cade/pt-br/composicao/tribunal-administrativo/membros> — 7 conselheiros estatutários (Lei 12.529/2011 art. 6º).
+- CADE. *Departamento de Estudos Econômicos (DEE).* URL: <https://www.gov.br/cade/pt-br/acesso-a-informacao/institucional/competencias/departamento-de-estudos-economicos>
+- Cordeiro, A. (30/12/2023). *Balanço da atuação do Cade em 2023 e novas perspectivas para 2024.* ConJur. URL: <https://www.conjur.com.br/2023-dez-30/balanco-da-atuacao-do-cade-e-novas-perspectivas-para-2024/> — 14 PAs + 5 TCC; 579 ACs; R$ 114,5 mi em multas; 2 leniências.
+- CADE. *Nota Técnica de Pessoal — solicitação de concurso* (24/05/2022 e 2023, reproduzidas integralmente em Direção Concursos): <https://www.direcaoconcursos.com.br/noticias/concurso-cade-solicitado-2023> e <https://www.direcaoconcursos.com.br/noticias/concurso-eppgg-cade-solicitado-2023/> — 292 servidores em exercício; 34 efetivos próprios; 65 EPPGGs lotados de 200 cargos criados.
+- Mattos Filho (2024). *Anticompetitive conduct enforcement 2024.* URL: <https://www.mattosfilho.com.br/en/unico/anticompetitive-conduct-enforcement-2024/> — 4 leniências assinadas em 2024.
+- **[?]** Portal da Transparência por órgão (`UO 30211 — CADE`): <https://portaldatransparencia.gov.br/orgaos/30211> — inacessível via WebFetch (HTTP 405); orçamento LOA pendente de verificação direta via SIOP.
+
 ### CADE/DEE e outras fontes técnicas
 - Saito, C. (24/02/2021). *TCC na Lei nº 12.529/11*. Gabinete da Presidência do CADE — resultado da Consultoria PNUD/Brasil no projeto "Melhores práticas e procedimentos de negociação de TCC" (2019-2020). 349 TCCs CADE 2012-2019. PDF verificado: <https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/TCC%20na%20Lei%20n%C2%BA%2012.52911/TCC%20na%20Lei%20n%C2%BA%2012.529-11.pdf>. — *Calibra `D_disc_base_tcc` em `calibracao/saito.py`: médias por posição na fila (SG/CADE 1ª=43,43%; 2ª=34,51%; 3ª=20,22%; Tribunal=15%). Mediana NÃO REPORTADA pela autora.*
 - CADE (11/09/2017). *Guia de Termo de Compromisso de Cessação para casos de cartel.* — Codifica faixas de desconto por posição. URL: <https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/guias-do-cade/guia-tcc-atualizado-11-09-17.pdf>
