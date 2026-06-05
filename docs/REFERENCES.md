@@ -82,6 +82,14 @@
 
 ### Capacidade institucional do CADE (R06)
 
+**Relatórios Integrados de Gestão (RIG) — fonte primária TCU**
+
+- CADE — *Relatório Integrado de Gestão 2022* (Lei 14.303/2022). Página índice: <https://www.gov.br/cade/pt-br/acesso-a-informacao/transparencia-e-prestacao-de-contas/relatorios-de-gestao>. PDF: <https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2022/RIG_2022_Cade.pdf> — 287 servidores em exercício; LOA Ação 2807 R$ 41,8 mi (executado 99,6%); 660 ACs; 103 investigações instauradas; 1 leniência + 1 Leniência Plus.
+- CADE — *Relatório Integrado de Gestão 2023* (Lei 14.535/2023). PDF: <https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2023/RIG-2023.pdf> — 311 servidores; 594 ACs; 63 investigações instauradas; 2 leniências.
+- CADE — *Relatório Integrado de Gestão 2024* (Lei 14.822/2024; publicado 25/06/2025). PDF: <https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2025/RIG%202024%20COMPLETO%202025.06.25.pdf> — **326 servidores em exercício (82% cedidos)**; **180 na área-fim**; 35 no PGPE; LOA total R$ 49,5 mi; 712 ACs (recorde); 73 investigações instauradas; 4 leniências; total cumulativo 113 leniências; multas trânsito em julgado R$ 158,18 mi nominal / R$ 29,17 mi arrecadado.
+
+**Outras fontes verificadas**
+
 - CADE (14/01/2025). *Cade bate recorde de notificação de Atos de Concentração em 2024.* URL: <https://www.gov.br/cade/pt-br/assuntos/noticias/cade-bate-recorde-de-notificacao-de-atos-de-concentracao-em-2024> — 712 ACs notificados; tempo médio AC ordinário caiu de 117 (2023) para 93,9 dias.
 - CADE. *Tribunal Administrativo — Membros.* URL: <https://www.gov.br/cade/pt-br/composicao/tribunal-administrativo/membros> — 7 conselheiros estatutários (Lei 12.529/2011 art. 6º).
 - CADE. *Departamento de Estudos Econômicos (DEE).* URL: <https://www.gov.br/cade/pt-br/acesso-a-informacao/institucional/competencias/departamento-de-estudos-economicos>

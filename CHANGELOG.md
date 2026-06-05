@@ -59,6 +59,49 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R06 — Relatórios Integrados de Gestão (RIG) 2022-2024 calibrados**.
+  Agente em background baixou os três PDFs primários (URLs HTTP 200
+  em `cdn.cade.gov.br`, dezenas de MB cada), parseou com `pdftotext`
+  e extraiu série temporal completa com **número de página verbatim**
+  para cada constante. Mudanças substantivas:
+  - **N_SERVIDORES_TOTAL: 292 → 326** (RIG 2024 substitui NT 2022).
+  - Série completa de servidores em exercício
+    `{2022: 287, 2023: 311, 2024: 326}` + fração de cedidos
+    `{2022: 0,75; 2023: 0,77; 2024: 0,82}` — alta dependência
+    crescente de pessoal cedido de outras instituições.
+  - `N_SERVIDORES_PGPE_QUADRO_PROPRIO = 35` (apenas 35 do quadro
+    permanente; ~291 são cedidos ou comissionados).
+  - **`N_SERVIDORES_AREA_FIM = 180`** (RIG 2024, p. 110) — usado como
+    proxy de SG/CADE em `N_SERVIDORES_POR_UNIDADE["superintendencia_geral"]`.
+    Caveat documentado: agregado SG + parte do DEE; para SG estrita,
+    ofício LAI ao Fala.BR/Cgesp/DAP.
+  - **Orçamento Ação 2807 série 2022-2024**: LOA total e atualizada,
+    execução próxima de 100% (99,4-99,8%) — **gargalo do CADE NÃO é
+    orçamentário**. TIC dentro de 2807: R$ 9,2 mi (22%) em 2024.
+  - **Fluxo de processos verbatim**: ACs `{660, 594, 712}`; valor
+    `{1,56; 0,91; 1,07} trilhões`; investigações SG instauradas
+    `{103, 63, 73}` (categoria ampla); concluídas `{111, 106, 89}`;
+    estoque `{247, 177, 185}`; leniências `{1, 2, 4}`; total
+    histórico **113** (substitui 109 anterior); B&A `{2, 2, 3}`;
+    16 mandados em 2024; Clique Denúncia 2024 = **3.725**; multas
+    trânsito julgado 2024 = R$ 158,18 mi nominal × R$ 29,17 mi
+    arrecadado (**gap de cobrança >80%**); tempo médio AC ordinário
+    `{125,6; 116,7; 92,1}` dias — tendência decrescente forte.
+  - Helper `servidores_sg_calibrado()` atualizado: default 50 → 180
+    (RIG); helper `capacidade_efetiva_por_tique()` agora retorna
+    **90 casos/tique** (180 × 2 / 4) — compare com estoque médio
+    observado (~200), saturação parcial consistente.
+  - Novo helper `execucao_orcamentaria_relativa(ano)` para
+    diagnóstico (relação executado / LOA atualizada).
+  - Resolvida discrepância ACs 2023: RIG = 594 é primária; ConJur =
+    579 é secundária. Usamos RIG.
+  - REFERENCES.md ganha entrada "Relatórios Integrados de Gestão"
+    com 3 PDFs verificados + página índice.
+  - Testes ampliados de 24 → 38 cobrindo série temporal completa,
+    decomposições, marcações [?] persistentes (DEE estrito,
+    procuradores, comissionados), e helpers atualizados.
+  - DECISIONS R06: movido de "Parcialmente calibrado" para
+    "Calibrado contra RIG".
 - **R02a — `jogo_global.x*` integrado ao arquétipo racional (opt-in)**.
   Fecha pendência de Mat B na crítica x10. O arquétipo "racional" pode
   agora decidir via `s_i ≥ x*` (limiar de switching de Morris-Shin)
