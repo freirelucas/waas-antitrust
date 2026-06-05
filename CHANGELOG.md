@@ -59,6 +59,28 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R02a — `jogo_global.x*` integrado ao arquétipo racional (opt-in)**.
+  Fecha pendência de Mat B na crítica x10. O arquétipo "racional" pode
+  agora decidir via `s_i ≥ x*` (limiar de switching de Morris-Shin)
+  em vez da comparação direta IR-W ↔ ganho líquido. Implementação:
+  - Novo `WaaSParametros.usar_x_estrela_no_racional: bool = False`
+    (default preserva caminho histórico — zero regressão).
+  - Em `agents.decidir_sinal`, ramo "racional" consulta a flag e, se
+    ativada, chama `jogo_global.limiar_switching(b, c, k, τ)` com:
+    `b = W_esperado/w_a`, `c = r·tol·2`, `k = model.k_rel`,
+    `τ = model.tau_ruido`. Decisão final: `s_i ≥ x*`.
+  - Lida com casos de borda: `W=0` (regime A) retorna 0;
+    `observou=False` retorna 0 (mesmo com flag ativa).
+  - 9 testes em `tests/test_jogo_global_no_racional.py`: default
+    preserva histórico; flag pode ser ativada; limiar determinístico
+    (mesmos inputs → mesma saída); limite Morris-Shin τ→0 é
+    `c·k/(b·(1−k))` exato; sinaliza acima do limiar, cala abaixo;
+    cala em `W=0` ou `observou=False`; modelo completo executa em
+    ambos os modos.
+  - DECISIONS R02a movido de "Aberto" para "Implementado (opt-in)".
+  - **Integra a Prop. 2 ao ABM**: o modelo de coordenação intra-firma
+    deixa de ser apenas heurística e passa a usar a derivação
+    analítica fechada do jogo global (R02).
 - **R06 — Portal da Transparência preenchido com dados verificados**.
   Segundo passo do padrão "go saito": após a infraestrutura, o agente
   de pesquisa em background extraiu números de fontes primárias

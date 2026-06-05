@@ -103,6 +103,14 @@ class WaaSParametros:
     multa_descumprimento_tcc: float = 0.0
     p_descumprimento_tcc: float = 0.0  # prob. de a firma descumprir após assinar
 
+    # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
+    # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
+    # do subgame de Morris-Shin (`jogo_global.limiar_switching`) como gatilho
+    # de decisão — derivação analítica em vez de comparação IR-W direta.
+    # Fecha R02a do backlog e integra a Prop. 2 ao ABM. Default False
+    # preserva o caminho histórico (IR-W ↔ ganho líquido direto).
+    usar_x_estrela_no_racional: bool = False
+
     # **R19 — Choques exógenos discretos** (Eurace@Unibi; resposta a "como o
     # modelo lida com choques?"). Lista de `Choque` (módulo `choques`)
     # aplicados in-place no início de cada step quando `choque.tique == tique`.
@@ -282,6 +290,8 @@ class WaaSModel(Model):
         # R19: lista de choques a aplicar; aceita tuple (catálogo) ou list.
         self.choques: tuple = tuple(params.choques) if params.choques else ()
         self.fator_represalia_ex_funcionario = params.fator_represalia_ex_funcionario
+        # R02a: integrar `jogo_global.x*` no arquétipo racional (opt-in).
+        self.usar_x_estrela_no_racional = params.usar_x_estrela_no_racional
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).

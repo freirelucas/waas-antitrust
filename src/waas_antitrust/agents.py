@@ -95,7 +95,7 @@ class TrabalhadorAgent(Agent):
             return None
         return sigma + self.model.rng.normal(0, tau)
 
-    def decidir_sinal(
+    def decidir_sinal(  # noqa: C901 — despacha por 5 arquétipos + 2 opt-ins
         self,
         s_i: float | None,
         phi_vizinhos: float,
@@ -128,6 +128,29 @@ class TrabalhadorAgent(Agent):
         if self.arquetipo == "racional":
             if s_i is None:
                 return 0
+            # **R02a — Jogo global** (Mat B na crítica x10): se ativado,
+            # o arquétipo racional usa o **limiar de switching único** do
+            # subgame de Morris-Shin (`jogo_global.limiar_switching`) como
+            # gatilho, em vez da comparação direta IR-W ↔ ganho líquido.
+            # Mapeamento: b = W_esperado/w_a (ganho marginal por unidade de
+            # severidade); c = r·tol·2 (custo de denúncia frustrada em
+            # unidades de w_a); k = `model.k_rel`; τ = `model.tau_ruido`.
+            # Fecha o R02a do backlog e integra Prop. 2 ao ABM.
+            if getattr(self.model, "usar_x_estrela_no_racional", False):
+                from waas_antitrust.jogo_global import limiar_switching
+
+                b = W_esperado / self.w_a if self.w_a > 0 else 0.0
+                c = r * self.tolerancia_represalia * 2.0
+                if b <= 0.0:
+                    return 0
+                try:
+                    x_estrela = limiar_switching(
+                        b=b, c=c, k=self.model.k_rel, tau=self.model.tau_ruido
+                    )
+                except ValueError:
+                    return 0
+                return 1 if s_i >= x_estrela else 0
+            # Caminho histórico (default): IR-W ↔ ganho líquido direto.
             # IR-W: W ≥ r · tol · 2·w_a (R14: tolerância individual a represália)
             custo_esperado = r * self.tolerancia_represalia * 2.0 * self.w_a
             # **Vetor de quebra C** (R15): custo legal individual do denunciante.
