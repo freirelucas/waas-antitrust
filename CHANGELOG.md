@@ -59,6 +59,34 @@ agrupado por tema. O hash de cada commit aparece entre parênteses.
   `docs/plano_melhorias.md`, com 7 categorias filtradas por "piloto automático"
   (sem decisão normativa do autor, ≤2 h, gate verde, reduz overclaim) e 1
   categoria de pendências normativas (R09–R13 a abrir).
+- **R06 — Infraestrutura de calibração do Portal da Transparência**.
+  Atende ao próximo movimento do balanço (capacidade do CADE) e à
+  sugestão do autor de usar o Portal da Transparência como fonte.
+  - Novo módulo `src/waas_antitrust/calibracao/transparencia_cade.py`
+    com estrutura formal placeholder: `N_SERVIDORES_TOTAL`,
+    `N_SERVIDORES_POR_CATEGORIA` (EPPGG/procuradores/técnicos/
+    conselheiros/cargos comissionados), `N_SERVIDORES_POR_UNIDADE`
+    (SG/CADE/DEE/Tribunal Administrativo), `ORCAMENTO_LOA_POR_ANO` e
+    `EXECUCAO_ORCAMENTARIA_POR_ANO` cobrindo 2022-2024. Tudo em `None`
+    até a extração ser concluída — marcação honesta.
+  - Helpers: `servidores_sg_calibrado(default)` (devolve SG/CADE
+    real quando preenchido; fallback no default em placeholder);
+    `capacidade_efetiva_por_tique(trimestres_por_ano,
+    casos_por_servidor_ano)` (estimativa empírica que retorna `None`
+    em placeholder, sinalizando ao chamador para usar
+    `INVESTIGACOES_ANUAIS_CADE/4`); `disponivel()` e `resumo()` para
+    diagnóstico.
+  - Padrão "go saito" replicado: agente de pesquisa em background
+    explorando Portal da Transparência, Painel Estatístico de
+    Pessoal MGISP, SIOP e fontes correlatas para preencher as
+    constantes. Quando o agente retornar, segundo commit fechará a
+    calibração com dados verificados.
+  - DECISIONS R06 atualizado refletindo a infraestrutura pronta.
+  - 12 testes em `tests/test_transparencia_cade_placeholder.py`
+    cobrem estado placeholder, fallback dos helpers, monkeypatch da
+    constante (precedência sobre default), piso de capacidade
+    (nunca cai a zero), e estabilidade da estrutura (categorias e
+    unidades canônicas). Total: 140 → 152 testes; gates limpos.
 - **R03a — Saito (2021) extraído da fonte primária + cenários atualizados**.
   Sequência "go saito" entregue em dois movimentos coesos:
   1. **Infraestrutura**: `calibracao/saito.py` ganha helper
