@@ -78,6 +78,10 @@ class TrabalhadorAgent(Agent):
         # R19: status de vínculo (afeta tolerância a represália e capacidade
         # de sinalizar via memória, mesmo após desligamento).
         self.status: str = "ativo"
+        # R20 — Posição na fila intra-firma de cooperação (sob modo_corrida).
+        # `None` até cooperar; preenchido em P1 quando `sinaliza_agora=True`.
+        self.posicao_corrida_interna: int | None = None
+        self.tique_cooperou: int | None = None
 
     @property
     def fracao_vested_individual(self) -> float:
@@ -244,6 +248,10 @@ class EmpresaAgent(Agent):
         self.sigma_potencial: float = sigma  # severidade quando ativa a violação
         self.tem_clausula_acelerada: bool = False  # vesting acelerado em ação coletiva (R07)
         self.conduta_potencial: str | None = None  # tipo de conduta se eh_violadora (R08)
+        # R20 — Corrida por leniência coletiva interna:
+        self.posicao_fila_leniencia: int | None = None
+        self.tique_atingiu_massa_critica: int | None = None
+        self.massa_critica_interna_satisfeita: bool = False
         # R14: heterogeneidade institucional / poder relativo.
         self.cultura_compliance = cultura_compliance
         self.poder_retaliacao: float = fatia_mercado  # proxy: posição dominante

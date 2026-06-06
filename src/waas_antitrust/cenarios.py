@@ -187,6 +187,27 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "prob_pagamento_perc": 0.95,  # credibilidade alta
         },
     ),
+    Cenario(
+        nome="cenario_corrida_leniencia",
+        descricao=(
+            "Regime C + leniência coletiva interna condicionada (R20). "
+            "A firma só ganha atenuante se q_min × n_trabalhadores cooperarem "
+            "internamente; desconto da firma e recompensa do trabalhador decaem "
+            "com a posição na fila — ambos calibrados contra Saito (2021). "
+            "Cria DUAS corridas acopladas: intra-firma e inter-firma. Resposta "
+            "à tese substantiva 'mercados digitais têm moat → condutas "
+            "unilaterais → corrida só pode ser intra-firma'."
+        ),
+        sobrescritas={
+            "regime": "C",
+            "modo_corrida": True,
+            "q_min_cooperacao_interna": 0.10,
+            "janela_temporal_tiques": 4,
+            "perfil_decaimento": "saito",
+            "custo_legal_uw": 0.20,
+            "prob_pagamento_perc": 0.95,
+        },
+    ),
 )
 
 

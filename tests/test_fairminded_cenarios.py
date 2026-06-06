@@ -110,11 +110,13 @@ def test_fairminded_peso_alto_acelera_cascata_etica():
 # ----------------------------------------------------------------------
 
 
-def test_catalogo_tem_8_cenarios_canonicos():
-    """R13a adicionou `mercado_digital_br_pareto`: 7 → 8 cenários."""
-    assert len(CATALOGO_CENARIOS) == 8
+def test_catalogo_tem_9_cenarios_canonicos():
+    """R13a adicionou `mercado_digital_br_pareto` (8); R20 adicionou
+    `cenario_corrida_leniencia` (9)."""
+    assert len(CATALOGO_CENARIOS) == 9
     nomes = [c.nome for c in CATALOGO_CENARIOS]
-    assert len(set(nomes)) == 8  # nomes únicos
+    assert len(set(nomes)) == 9  # nomes únicos
+    assert "cenario_corrida_leniencia" in nomes
 
 
 def test_cenarios_cobrem_status_quo_e_regimes_b_e_c():

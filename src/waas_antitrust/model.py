@@ -103,6 +103,20 @@ class WaaSParametros:
     multa_descumprimento_tcc: float = 0.0
     p_descumprimento_tcc: float = 0.0  # prob. de a firma descumprir após assinar
 
+    # **R20 — Modo corrida por leniência coletiva interna** (resposta à
+    # tese substantiva do autor: mercados digitais têm moat → condutas
+    # unilaterais → corrida não pode ser externa, só intra-firma).
+    # Sob `modo_corrida = True`, o WaaS deixa de ser incentivo isolado e
+    # vira leniência coletiva interna condicionada: firma só ganha
+    # atenuante se `q_min × n_trabalhadores` cooperarem na janela; o
+    # desconto da firma e a recompensa do trabalhador decaem com a
+    # posição na fila — ambos calibrados contra Saito (2021).
+    # Default False preserva o caminho histórico integralmente.
+    modo_corrida: bool = False
+    q_min_cooperacao_interna: float = 0.10  # fração mínima de cooperadores
+    janela_temporal_tiques: int = 4  # janela após massa crítica disparar
+    perfil_decaimento: str = "saito"  # única opção implementada
+
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
     # do subgame de Morris-Shin (`jogo_global.limiar_switching`) como gatilho
@@ -292,6 +306,20 @@ class WaaSModel(Model):
         self.fator_represalia_ex_funcionario = params.fator_represalia_ex_funcionario
         # R02a: integrar `jogo_global.x*` no arquétipo racional (opt-in).
         self.usar_x_estrela_no_racional = params.usar_x_estrela_no_racional
+        # R20 — Modo corrida + filas
+        self.modo_corrida = params.modo_corrida
+        self.q_min_cooperacao_interna = params.q_min_cooperacao_interna
+        self.janela_temporal_tiques = params.janela_temporal_tiques
+        self.perfil_decaimento = params.perfil_decaimento
+        # Importação tardia para evitar circularidade.
+        from waas_antitrust.corrida import FilaLeniencia
+
+        self.fila_leniencia: FilaLeniencia = FilaLeniencia()
+        # Filas internas por firma — preenchidas em _criar_empresas.
+        self.filas_internas: dict[int, object] = {}
+        # Contadores cumulativos para diagnóstico (R20).
+        self.n_firmas_atingiram_massa_critica_interna: int = 0
+        self.custo_recompensa_corrida_acum: float = 0.0
 
         # Capacidade da autoridade por tique: fração das empresas do sistema,
         # limitada pela vazão trimestral do CADE (INVESTIGACOES_ANUAIS_CADE / 4).
@@ -336,6 +364,10 @@ class WaaSModel(Model):
                 "n_ex_funcionarios": self._contar_ex_funcionarios,
                 "n_choques_layoff_aplicados": "n_choques_layoff_aplicados",
                 "n_choques_paradigmaticos_aplicados": "n_choques_paradigmaticos_aplicados",
+                "n_firmas_atingiram_massa_critica_interna": (
+                    "n_firmas_atingiram_massa_critica_interna"
+                ),
+                "custo_recompensa_corrida_acum": "custo_recompensa_corrida_acum",
                 "verdadeiros_positivos_acum": self._contar_vp,
                 "falsos_positivos_acum": self._contar_fp,
                 "falsos_negativos_acum": self._contar_fn,
@@ -521,6 +553,10 @@ class WaaSModel(Model):
             empresa.trabalhadores = ws
             self.trabalhadores_por_empresa[fid] = ws
             self.historia_sinais_por_empresa[fid] = []
+            # R20: cada firma tem sua fila intra-firma de cooperadores.
+            from waas_antitrust.corrida import FilaInternaCooperacao
+
+            self.filas_internas[fid] = FilaInternaCooperacao(empresa_id=fid)
 
     def _W_esperado(self, w_a: float) -> float:
         return self.W_mult * w_a
@@ -625,6 +661,14 @@ class WaaSModel(Model):
                 )
             atuais = {i for i, t in enumerate(ws) if t.sinaliza_agora}
             self.historia_sinais_por_empresa[fid].append(atuais)
+            # R20: registra cada cooperador na fila intra-firma (idempotente).
+            if self.modo_corrida:
+                fila_interna = self.filas_internas[fid]
+                for idx, t in enumerate(ws):
+                    if t.sinaliza_agora and t.posicao_corrida_interna is None:
+                        pos = fila_interna.registrar(idx, self.tique)
+                        t.posicao_corrida_interna = pos
+                        t.tique_cooperou = self.tique
 
         # P2 · massa crítica
         for fid, ws in self.trabalhadores_por_empresa.items():
@@ -636,6 +680,27 @@ class WaaSModel(Model):
                 empresa.notificada_no_periodo = True
                 empresa.n_denuncias_acum += 1  # R14: memória da firma
 
+        # P2.5 · R20: massa crítica interna + posicionamento na fila de leniência
+        if self.modo_corrida:
+            from waas_antitrust.corrida import massa_critica_interna_atingida
+
+            for fid in self.trabalhadores_por_empresa:
+                empresa = self.empresas[fid]
+                if empresa.massa_critica_interna_satisfeita:
+                    continue
+                fila_interna = self.filas_internas[fid]
+                if massa_critica_interna_atingida(
+                    n_cooperadores=len(fila_interna),
+                    n_trabalhadores=empresa.n_trabalhadores,
+                    q_min=self.q_min_cooperacao_interna,
+                ):
+                    empresa.massa_critica_interna_satisfeita = True
+                    empresa.tique_atingiu_massa_critica = self.tique
+                    empresa.posicao_fila_leniencia = self.fila_leniencia.registrar(
+                        empresa.id_empresa, self.tique
+                    )
+                    self.n_firmas_atingiram_massa_critica_interna += 1
+
         # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07).
         # **Vetor de quebra A**: a IC-F* correta compara W contra o INCREMENTO
         # de desconto que o canal WaaS oferece (`D_extra = D_total − D_base`),
@@ -645,11 +710,29 @@ class WaaSModel(Model):
             if not empresa.notificada_no_periodo:
                 continue
             disparados = [t for t in empresa.trabalhadores if t.sinaliza_agora]
-            W_total = sum(self._W_esperado(t.w_a) for t in disparados)
             S_esp = empresa.sancao_esperada()
-            D_total = self.D_disc * S_esp if D_ativo else 0.0
-            D_base = self.D_disc_base_tcc * S_esp if D_ativo else 0.0
-            D_extra = max(0.0, D_total - D_base)  # incentivo marginal do WaaS
+            # R20 — Sob modo_corrida, recompensa por trabalhador e desconto da
+            # firma são funções da posição na fila (calibradas contra Saito).
+            if self.modo_corrida and empresa.massa_critica_interna_satisfeita:
+                from waas_antitrust.corrida import decaimento_D, decaimento_W
+
+                # W por trabalhador via decaimento por posição na fila intra.
+                W_total = 0.0
+                for t in disparados:
+                    pos = t.posicao_corrida_interna or 1
+                    W_total += decaimento_W(pos, self._W_esperado(t.w_a), self.perfil_decaimento)
+                # D total via decaimento por posição inter-firma (Saito).
+                pos_firma = empresa.posicao_fila_leniencia or 1
+                d_frac = decaimento_D(pos_firma, self.perfil_decaimento)
+                D_total = d_frac * S_esp if D_ativo else 0.0
+                # Sob corrida, D_base = 0 (o desconto já vem do gradiente Saito).
+                D_base = 0.0
+                D_extra = D_total
+            else:
+                W_total = sum(self._W_esperado(t.w_a) for t in disparados)
+                D_total = self.D_disc * S_esp if D_ativo else 0.0
+                D_base = self.D_disc_base_tcc * S_esp if D_ativo else 0.0
+                D_extra = max(0.0, D_total - D_base)  # incentivo marginal do WaaS
             # Custo do êxodo se a firma não pagar (zero sem cláusula).
             w_a_medio = (
                 sum(t.w_a for t in disparados) / len(disparados) if disparados else self.w_a_base
@@ -669,6 +752,8 @@ class WaaSModel(Model):
             if empresa.pagou_denunciantes:
                 empresa.tcc_assinado = True
                 self.custo_recompensa_acum += W_total
+                if self.modo_corrida and empresa.massa_critica_interna_satisfeita:
+                    self.custo_recompensa_corrida_acum += W_total
                 # **R18 — sanção catastrófica por descumprimento**: a firma
                 # pode, após assinar e pagar W, descumprir o TCC. Sorteio com
                 # `p_descumprimento_tcc`. Se sortear, sofre multa adicional
