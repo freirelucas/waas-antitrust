@@ -1,4 +1,4 @@
-"""Testes do catálogo de condutas × atores (R08, exploratório)."""
+"""Testes do catálogo de condutas × atores (R08 + R20, exploratório)."""
 
 import pytest
 
@@ -7,6 +7,7 @@ from waas_antitrust.condutas import (
     CATALOGO,
     DISTRIBUICAO_PAPEIS_PADRAO,
     MARKETPLACE_BR,
+    N_ATORES_PRIMARIOS_NECESSARIOS,
     PAPEIS_PADRAO,
     Conduta,
     lookup_conduta,
@@ -14,11 +15,15 @@ from waas_antitrust.condutas import (
 )
 
 
-def test_catalogo_tem_9_condutas_unicas():
-    """Categoria 5 (PM): catálogo passou de 7 → 9 com adição BR (iFood, Apple)."""
+def test_catalogo_tem_28_condutas_unicas():
+    """R20/LCMC (Fase 7): expansão do catálogo de 9 → 28 condutas unilaterais
+    digitais. Famílias 1-12 cobertas: auto-preferência/visibilidade, restrições
+    de plataforma, vinculação/bundling, predação/dumping, acesso/dados/self-dealing,
+    aquisições de bloqueio, discriminação algorítmica, captura de aprendizagem,
+    manipulação de relevância, tying IA, lock-in via credentials, switching costs."""
     nomes = [c.nome for c in CATALOGO]
-    assert len(CATALOGO) == 9
-    assert len(set(nomes)) == 9  # nenhum nome duplicado
+    assert len(CATALOGO) == 28
+    assert len(set(nomes)) == 28  # nenhum nome duplicado
 
 
 def test_catalogo_inclui_condutas_brasileiras():
@@ -102,6 +107,41 @@ def test_modelo_atribui_papel_e_conduta():
     for ws in m.trabalhadores_por_empresa.values():
         for t in ws:
             assert t.papel in PAPEIS_PADRAO
+
+
+def test_n_atores_primarios_cobre_todas_condutas():
+    """R20 (LCMC): dict de q_min por conduta cobre todo o catálogo."""
+    assert set(N_ATORES_PRIMARIOS_NECESSARIOS) == {c.nome for c in CATALOGO}
+    # Toda conduta digital unilateral exige pelo menos 2 papéis primários
+    # (eng + produto, ou corpdev + jurídico, etc.) — tese do moat: nenhuma
+    # conduta no catálogo se mantém com 1 ator isolado.
+    for nome, n in N_ATORES_PRIMARIOS_NECESSARIOS.items():
+        assert n >= 2, f"{nome}: n_atores_primarios={n} < 2 contradiz tese do moat"
+
+
+def test_condutas_emergentes_pos_2024_presentes():
+    """R20 (Fase 7): após pesquisa pós-LCMC, o catálogo deve incluir
+    condutas paradigmáticas recentes do antitruste digital."""
+    nomes = {c.nome for c in CATALOGO}
+    # CJUE Google Shopping 09/2024:
+    assert "ranking_demotion_rivais" in nomes
+    # US v. Google Search — Mehta 08/2024 (Sherman §2):
+    assert "default_distribution_exclusivo" in nomes
+    # FTC v. Amazon §V (uso de dados de sellers):
+    assert "uso_dados_concorrentes" in nomes
+    # Apple Brasil TCC CADE 2025 + DMA Art. 6(4):
+    assert "sideloading_block" in nomes
+
+
+def test_familia_killer_acquisitions_inclui_reverse():
+    """R20: catálogo distingue killer (compra para neutralizar concorrente
+    nascente) de reverse killer (compra para engavetar produto que competiria
+    com linha existente) — Cunningham-Ederer-Ma 2021."""
+    nomes = {c.nome for c in CATALOGO}
+    assert "killer_acquisitions" in nomes
+    assert "reverse_killer_shelving" in nomes
+    # Aquisição de assets-chave (patentes, talento, dataset) é distinta.
+    assert "aquisicao_assets_chave" in nomes
 
 
 def test_engenheiros_observam_mais_self_preferencing():

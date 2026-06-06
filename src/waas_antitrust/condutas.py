@@ -182,7 +182,282 @@ CATALOGO: tuple[Conduta, ...] = (
             "Epic Games v. Apple (EUA 2021)",
         ),
     ),
+    # ----- 19 condutas adicionadas via R20 (pesquisa pós-LCMC) -----
+    Conduta(
+        nome="ranking_demotion_rivais",
+        descricao="Degradação algorítmica do ranking de rivais em busca ou feed.",
+        atores_primarios=("eng", "produto"),
+        atores_adjacentes=("growth",),
+        severidade_base=0.65,
+        casos_referencia=(
+            "Google Shopping (CJUE 10/09/2024)",
+            "FTC v. Amazon §VI (EUA 2023)",
+        ),
+    ),
+    Conduta(
+        nome="tying_ia_generativa",
+        descricao=(
+            "Embutir assistente de IA do operador do SO/busca/produtividade "
+            "sem opção neutra de escolha."
+        ),
+        atores_primarios=("produto", "eng"),
+        atores_adjacentes=("comercial", "juridico"),
+        severidade_base=0.65,
+        casos_referencia=(
+            "Microsoft Copilot/Bing (EC RFI 2024) [?]",
+            "Google Gemini default em Android [?]",
+        ),
+    ),
+    Conduta(
+        nome="subsidio_cruzado_ecossistema",
+        descricao=(
+            "Subsídio de produto em mercado adjacente financiado pelo monopólio "
+            "principal do ecossistema."
+        ),
+        atores_primarios=("financeiro", "growth"),
+        atores_adjacentes=("produto", "corpdev"),
+        severidade_base=0.7,
+        casos_referencia=(
+            "Khan 2017 (Amazon)",
+            "CADE Caderno Plataformas Digitais 2023",
+        ),
+    ),
+    Conduta(
+        nome="reverse_killer_shelving",
+        descricao=(
+            "Adquirir e engavetar produto que competiria com linha existente " "do adquirente."
+        ),
+        atores_primarios=("corpdev", "produto"),
+        atores_adjacentes=("eng", "financeiro"),
+        severidade_base=0.75,
+        casos_referencia=(
+            "Cunningham-Ederer-Ma JPE 2021 (mecanismo)",
+            "Crémer-Montjoye-Schweitzer EC 2019 [?]",
+        ),
+    ),
+    Conduta(
+        nome="uso_dados_concorrentes",
+        descricao=(
+            "Plataforma usa dados de sellers do próprio marketplace para "
+            "informar o desenvolvimento de produto próprio."
+        ),
+        atores_primarios=("eng", "produto"),
+        atores_adjacentes=("corpdev", "comercial"),
+        severidade_base=0.75,
+        casos_referencia=(
+            "Amazon Marketplace use of seller data (UE 2022 commitments)",
+            "FTC v. Amazon §V (EUA 2023)",
+        ),
+    ),
+    Conduta(
+        nome="mfn_inverso_algorithmic",
+        descricao=(
+            "Algoritmo que detecta paridade alheia e penaliza seller via "
+            "remoção de Buy Box ou similar."
+        ),
+        atores_primarios=("eng", "comercial"),
+        atores_adjacentes=("produto", "growth"),
+        severidade_base=0.7,
+        casos_referencia=("FTC v. Amazon §IV — Project Nessie (EUA 2023) [?]",),
+    ),
+    Conduta(
+        nome="sideloading_block",
+        descricao=(
+            "Bloquear instalação direta de apps fora da loja oficial do "
+            "operador do sistema operacional."
+        ),
+        atores_primarios=("produto", "eng"),
+        atores_adjacentes=("juridico", "design"),
+        severidade_base=0.7,
+        casos_referencia=(
+            "Apple Brasil TCC CADE 2025",
+            "DMA UE Art. 6(4) (2022)",
+            "CMA SMS Apple mobile (UK 10/2025)",
+        ),
+    ),
+    Conduta(
+        nome="multihoming_friction",
+        descricao=(
+            "Atrito técnico ou de UX que torna custoso usar serviços rivais "
+            "em paralelo ao serviço dominante."
+        ),
+        atores_primarios=("design", "eng"),
+        atores_adjacentes=("produto", "growth"),
+        severidade_base=0.55,
+        casos_referencia=(
+            "DMA UE Art. 6(7) interoperabilidade (2022)",
+            "CMA SMS Mobile Roadmap (UK 2025) [?]",
+        ),
+    ),
+    Conduta(
+        nome="degradacao_api_seletiva",
+        descricao=(
+            "Degradar performance ou SLA de API só para integradores que "
+            "competem em adjacência com a plataforma."
+        ),
+        atores_primarios=("eng", "operacoes"),
+        atores_adjacentes=("produto", "juridico"),
+        severidade_base=0.65,
+        casos_referencia=(
+            "Cornell JLPP — Pulling Up the Drawbridge (2025)",
+            "FTC v. Meta — WhitePages política descontinuada [?]",
+        ),
+    ),
+    Conduta(
+        nome="lock_in_credenciais",
+        descricao=(
+            "Forçar login do ecossistema (Apple ID, Google Account) como "
+            "pré-requisito para funcionalidades básicas."
+        ),
+        atores_primarios=("produto", "eng"),
+        atores_adjacentes=("design", "growth"),
+        severidade_base=0.55,
+        casos_referencia=(
+            "DMA UE Art. 5(7) (2022)",
+            "Crémer-Montjoye-Schweitzer EC 2019 (capítulo SSO) [?]",
+        ),
+    ),
+    Conduta(
+        nome="switching_costs_design",
+        descricao=(
+            "Exportação proprietária, fricção de migração, ausência de "
+            "portabilidade real entre serviços."
+        ),
+        atores_primarios=("eng", "produto"),
+        atores_adjacentes=("design", "juridico"),
+        severidade_base=0.55,
+        casos_referencia=(
+            "DMA UE Art. 6(9) portabilidade (2022)",
+            "GDPR Art. 20",
+            "CADE Caderno Plataformas Digitais 2023 §6",
+        ),
+    ),
+    Conduta(
+        nome="treino_ia_com_dados_concorrentes",
+        descricao=(
+            "Plataforma treina modelo de IA com dados ou conteúdo de business "
+            "users rivais sem autorização ou contrapartida."
+        ),
+        atores_primarios=("eng", "produto"),
+        atores_adjacentes=("corpdev", "juridico"),
+        severidade_base=0.75,
+        casos_referencia=(
+            "Caso emergente sem condenação antitruste consolidada [?]",
+            "NYT v. OpenAI (direito autoral, 2023)",
+        ),
+    ),
+    Conduta(
+        nome="discriminacao_algoritmica_preco",
+        descricao=(
+            "Preço personalizado ou dinâmico baseado em reputação de compra "
+            "ou vulnerabilidade do usuário."
+        ),
+        atores_primarios=("eng", "produto"),
+        atores_adjacentes=("growth", "comercial"),
+        severidade_base=0.6,
+        casos_referencia=(
+            "RealPage litigation (EUA em curso)",
+            "CMA Ticketmaster algorithmic pricing (UK 2024)",
+            "NY Algorithmic Pricing Disclosure Act (2025)",
+        ),
+    ),
+    Conduta(
+        nome="surge_predatorio",
+        descricao=(
+            "Surge pricing usado em momentos de cativação (chuva, fila, etc.) "
+            "sem alternativa real ao consumidor."
+        ),
+        atores_primarios=("eng", "operacoes"),
+        atores_adjacentes=("financeiro", "produto"),
+        severidade_base=0.5,
+        casos_referencia=(
+            "Sem condenação formal consolidada [?]",
+            "Literatura de economia digital",
+        ),
+    ),
+    Conduta(
+        nome="manipulacao_relevancia_moderacao",
+        descricao=(
+            "Shadow-banning ou deboost seletivo de concorrente ou conteúdo "
+            "crítico via moderação algorítmica."
+        ),
+        atores_primarios=("eng", "produto"),
+        atores_adjacentes=("operacoes", "juridico"),
+        severidade_base=0.6,
+        casos_referencia=("Sem condenação antitruste consolidada — preocupação regulatória [?]",),
+    ),
+    Conduta(
+        nome="exclusao_app_store_seletiva",
+        descricao=("Remoção ou atraso de aprovação de app concorrente da loja oficial."),
+        atores_primarios=("produto", "operacoes"),
+        atores_adjacentes=("juridico", "eng"),
+        severidade_base=0.7,
+        casos_referencia=(
+            "Epic v. Apple Fortnite ban 2020 (EUA)",
+            "Apple Brasil TCC CADE 2025 (critérios não-discriminatórios)",
+        ),
+    ),
+    Conduta(
+        nome="default_distribution_exclusivo",
+        descricao=(
+            "Pagamento por default de busca ou IA em SO/browser excluindo "
+            "concorrentes do canal principal de distribuição."
+        ),
+        atores_primarios=("comercial", "corpdev"),
+        atores_adjacentes=("juridico", "produto"),
+        severidade_base=0.75,
+        casos_referencia=(
+            "US v. Google Search — Mehta 05/08/2024 (Sherman §2)",
+            "CMA SMS Google Search (UK 10/10/2025)",
+        ),
+    ),
+    Conduta(
+        nome="aquisicao_assets_chave",
+        descricao=(
+            "Aquisição de patentes, talento ou dataset estratégico para travar "
+            "a entrada de rivais em mercado adjacente."
+        ),
+        atores_primarios=("corpdev", "juridico"),
+        atores_adjacentes=("eng", "financeiro"),
+        severidade_base=0.7,
+        casos_referencia=(
+            "Microsoft-OpenAI investment (EC RFI 2024)",
+            "Google-Waze 2013 (citado em Dream Big v. Google) [?]",
+        ),
+    ),
+    Conduta(
+        nome="auto_deteccao_atrasada",
+        descricao=(
+            "Compliance interna detecta a conduta mas atrasa correção até "
+            "intimação externa — torna a auto-correção uma estratégia adiada."
+        ),
+        atores_primarios=("juridico", "operacoes"),
+        atores_adjacentes=("produto", "eng"),
+        severidade_base=0.65,
+        casos_referencia=("FTC v. Amazon — Project Nessie liga/desliga sob escrutínio",),
+    ),
 )
+
+
+# ----- R20: q_min de cooperação interna por conduta -----
+#
+# Quantos papéis primários são minimamente necessários para que a
+# conduta seja executada e mantida internamente. Calibra
+# `q_min_cooperacao_interna` no `WaaSModel` quando o cenário declara
+# uma conduta específica.
+#
+# Interpretação: nenhuma conduta digital unilateral aqui catalogada
+# exige mais que 2-3 papéis primários — o que reforça a tese do
+# moat. A corrida intra-firma do WaaS visa o primeiro denunciante
+# entre 2-3 pessoas em papéis distintos, NÃO entre 10-15 cúmplices
+# externos como no cartel clássico.
+#
+# Valores são **número absoluto de atores primários** (não fração).
+# A fração `q_min` final é derivada pelo `model.py` dividindo pelo
+# tamanho médio da firma.
+N_ATORES_PRIMARIOS_NECESSARIOS: dict[str, int] = {
+    c.nome: max(2, len(c.atores_primarios)) for c in CATALOGO
+}
 
 
 def lookup_conduta(nome: str) -> Conduta:
