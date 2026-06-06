@@ -8,6 +8,27 @@ A pergunta natural — e a primeira que aparece quando alguém ouve o desenho do
 
 Esta página responde de frente. Em prosa primeiro, com aritmética em seguida, e com os três pontos onde o mecanismo pode realmente quebrar mapeados — porque o argumento honesto não é "isto sempre funciona", e sim **"isto funciona sob estas condições, falha sob estas outras, e ambas estão no modelo"**.
 
+## O macroconceito: Leniência Condicionada a Massa Crítica (LCMC)
+
+Antes da aritmética, o nome do que está em jogo. O mecanismo aqui proposto — em todas as suas versões e variantes — é uma **Leniência Condicionada a Massa Crítica interna**, abreviada **LCMC**. O conceito unifica três peças que, sozinhas, já existem na literatura ou na prática brasileira, mas que nunca foram combinadas:
+
+1. **Leniência clássica** (Spagnolo 2004; Motta-Polo 2003) entrega benefício à *primeira* a delatar — mas exige cúmplices entre firmas. Em mercados digitais com **moat** (efeitos de rede, dados acumulados, *switching costs*), o conluio que existe é **unilateral, intra-firma** — entre o engenheiro que codifica o algoritmo, o gerente de produto que aprova, o jurídico que valida. Não há segunda firma para entregar.
+2. **Massa crítica interna** (Granovetter 1978; Centola-Macy 2007; Morris-Shin 1998 em jogos globais) define um limiar de cooperação coletiva abaixo do qual ninguém fala e acima do qual a cascata é inevitável. Já era a peça que fazia o WaaS "morder" — sem `k` denunciantes, nada acontece.
+3. **Posição na fila do CADE** (Saito 2021; Guia CADE TCC 2017): a primeira compromissária recebe 43,43% de desconto sobre a sanção; a segunda 34,51%; a terceira 20,22%. **Já é gradiente empírico real**, extraído de 349 TCCs CADE 2012-2019.
+
+A LCMC combina as três: o atenuante do Art. 12 da Res. 21/2018 só é concedido **se** a firma receber cooperação de uma fração mínima de seus funcionários **dentro de** uma janela temporal — e, recebendo, ganha posição na fila inter-firma. Internamente, o mesmo gradiente Saito redistribui a recompensa entre os trabalhadores cooperadores.
+
+**Duas corridas acopladas, calibradas pelo mesmo dado empírico:**
+
+| Corrida | Quem corre | Quem mede a fila | Calibração |
+|---|---|---|---|
+| **Intra-firma** | trabalhadores cooperam internamente | `FilaInternaCooperacao` por firma | $f_W(k) = D_\text{Saito}(k)/D_\text{Saito}(1)$ |
+| **Inter-firma** | firmas formam massa crítica primeiro | `FilaLeniencia` global | $D_\text{total}(\text{pos}) = D_\text{Saito}(\text{pos}) \cdot S$ |
+
+A elegância: o **mesmo gradiente empírico do CADE** (cartel, fila clássica) calibra duas escalas distintas (firma na fila inter-firma; trabalhador na fila intra-firma). O autor não escolhe $f_W$ arbitrariamente — usa ancoragem normativa. Sob `WaaSParametros.modo_corrida = True`, o módulo `corrida.py` consome o gradiente em ambos os lados.
+
+A LCMC **não substitui** o desenho histórico do WaaS — é o *macroconceito* sob o qual o WaaS é uma forma. Sob `modo_corrida = False` (default), o caminho histórico vale; sob `modo_corrida = True`, o cenário `cenario_corrida_leniencia` em `cenarios.py` ativa a versão completa.
+
 ## A escolha da firma, em uma frase
 
 A firma já foi denunciada — o gatilho de massa crítica disparou, o caso vai ao CADE. A partir daí, ela escolhe entre três caminhos. Em todos eles, paga **alguma coisa**; a diferença é a soma.
@@ -146,6 +167,67 @@ crítica se forma. Modelar isto endogenamente é o trabalho de R16, e o
 catálogo de [cenários normativos](#) (R17) já oferece presets que ativam
 o canal.
 
+## A corrida que faltava (R20)
+
+A leniência clássica funciona porque cria uma **corrida temporal** entre cúmplices: quem entrega primeiro escapa da multa, e cada conspirador, sabendo disso, antecipa-se ao outro. O **WaaS na sua forma original não tinha esta corrida**: o gatilho de massa crítica era binário (`k` denunciantes ⇒ a firma é notificada), o desconto da firma era constante na IC-F\*, a recompensa do trabalhador era constante na IR-W. A delação era um *ato*, não uma *corrida*.
+
+Sob o moat dos mercados digitais, a corrida clássica entre firmas **não tem onde acontecer** — a conduta é unilateral, sem cúmplice externo. A única corrida possível é **intra-firma**: entre os funcionários que viram a conduta. A LCMC institucionaliza isso e acopla a uma segunda corrida — **inter-firma** — calibrando ambas pelo mesmo gradiente Saito.
+
+### Corrida intra-firma (entre trabalhadores)
+
+Dentro de cada firma, cada cooperador entra em uma `FilaInternaCooperacao` na ordem em que sinaliza. A recompensa decai com a posição $k$:
+
+$$
+W_i(k) = W_\text{base} \cdot f_W(k) \quad \text{onde} \quad f_W(k) = \frac{D_\text{Saito}(k)}{D_\text{Saito}(1)}
+$$
+
+Numericamente:
+
+| Posição $k$ | $D_\text{Saito}(k)$ | $f_W(k)$ |
+|---|---|---|
+| 1ª | 43,43% | 1,000 |
+| 2ª | 34,51% | 0,795 |
+| 3ª | 20,22% | 0,466 |
+| 4ª | 17,99% | 0,414 |
+| ≥ 9ª | 15,00% (piso Tribunal/CADE) | 0,345 |
+
+A consequência: o trabalhador racional que **espera** ver vários colegas falarem antes de falar recebe fração pequena da recompensa. Quem fala primeiro recebe o cheque cheio. A IR-W deixa de ser um limiar absoluto e vira um *jogo de ordem* — exatamente o que torna a corrida estável em leniência clássica, transposto para o microcosmo intra-firma.
+
+### Corrida inter-firma (entre firmas)
+
+A primeira firma a satisfazer o gatilho de **massa crítica interna** ($n_\text{cooperadores} \ge q_\text{min} \cdot n_\text{trabalhadores}$, com $q_\text{min}$ default $= 10\%$, calibrável por conduta via `N_ATORES_PRIMARIOS_NECESSARIOS`) entra na `FilaLeniencia` global em posição 1. A segunda em posição 2. E assim por diante.
+
+A IC-F\* deixa de comparar $W$ contra $D_\text{extra}$ constante e passa a comparar contra:
+
+$$
+D_\text{total}(\text{pos}_\text{firma}) = D_\text{Saito}(\text{pos}_\text{firma}) \cdot S
+$$
+
+Para a 1ª firma, $D_\text{total}(1) \approx 43\% \cdot S$ — IC-F\* generosa, satisfeita com folga ampla. Para a 4ª, $D_\text{total}(4) \approx 18\% \cdot S$ — a margem encolhe. Para a ≥ 9ª (ou nenhuma cooperação interna), cai ao piso de 15% e a margem pode inverter.
+
+### Consequência teórica: Proposição 1 ganha número de firmas
+
+A Proposição 1 original ("existem parâmetros em que IC-F\* é satisfeita") se transforma:
+
+> **Prop. 1 (LCMC).** Sob os parâmetros do ponto-alvo, **existe número finito $n^\star$ de firmas** que satisfazem a IC-F\* na fila inter-firma. Firmas que chegam em posição $> n^\star$ não cobrem $W$ com $D_\text{total}(\text{pos})$.
+
+Esta versão é mais forte: não diz só que "existe equilíbrio cooperativo", diz **quantas firmas correm**. A corrida ganha precisão.
+
+### Dois canais de feedback acoplam as corridas
+
+A acoplagem entre corrida intra-firma e inter-firma se dá por dois canais:
+
+1. **`p_perc` global** — quando uma firma atinge massa crítica e é notificada, a percepção de detecção em todas as outras firmas sobe (canal Schelling, choque `caso_paradigmatico` endogenizado). A trabalhadora em outra firma recalcula sua expectativa de posição final.
+2. **`W` esperado individual** — trabalhadores observando a corrida em curso (`phi_vizinhos` estendido para vizinhos inter-firma) ajustam expectativa de posição final na fila. Quem chega tarde sabe que recebe menos.
+
+A janela temporal `janela_temporal_tiques` (default 4) limita quanto tempo a firma tem para fechar o gatilho. Se nenhuma firma atinge $q_\text{min}$ na janela, todas perdem o benefício LCMC e recaem em TCC clássico — o **Vetor D (corrida vazia)** documentado em `tests/test_vetores_quebra.py`.
+
+### Saito como ancoragem normativa
+
+A escolha do gradiente $f_W$ não é arbitrária do autor — é o mesmo dado empírico que o CADE já usa para a fila clássica entre conspiradores. Reusá-lo para a fila intra-firma é a **tese substantiva da LCMC**: o microcosmo interno deve replicar a lógica de fila que o macrocosmo (CADE) já pratica.
+
+O caveat declarado em `corrida.py`: Saito reporta médias por **cartel**, não por conduta unilateral. A transposição é proxy, justificada como ponto de partida calibrável, não como verdade empírica fechada. O CADE ainda não publica TCCs de conduta unilateral decompostos por posição (pendência E04 + R03b).
+
 ## Cenários normativos como variantes paramétricas (R17)
 
 Uma das primeiras objeções honestas a um modelo deste tipo é "**e se
@@ -154,8 +236,8 @@ descrevendo a alteração — não é boa o suficiente. A versão deste projeto
 trata cada alteração normativa como um **cenário comparável**: um conjunto
 nomeado de sobrescritas de parâmetros, executável e reportável.
 
-O catálogo (módulo `waas_antitrust.cenarios`) contém sete cenários
-canônicos:
+O catálogo (módulo `waas_antitrust.cenarios`) contém **nove cenários
+canônicos**:
 
 | Cenário | Hipótese institucional |
 |---|---|
@@ -165,7 +247,9 @@ canônicos:
 | `lei_waas_pura` | Regime C — Lei 13.608/2018 estendida; F6 = 0. |
 | `lei_waas_com_fundo_honorarios` | Regime C + fundo público para honorários (análogo IRS Whistleblower Office). |
 | `lei_waas_com_vesting_padrao` | Regime C + cláusula padrão de vesting acelerado (Hirschman R07 universal); haircut IRPF+INSS realista. |
+| `mercado_digital_br_pareto` | Regime C com fatia de mercado distribuída em Pareto (α=1,16) — reflete moat de plataformas dominantes (iFood, Mercado Livre, Apple/Google). |
 | `cenario_sancao_dura` | Regime C + multa por descumprimento de TCC = 2× sanção base (R18). |
+| **`cenario_corrida_leniencia`** | **LCMC plena** — Regime C + `modo_corrida=True` + `q_min=10%` + janela 4 tiques + decaimento Saito. Ativa as duas corridas acopladas (intra-firma + inter-firma) descritas em "A corrida que faltava". |
 
 Cada cenário roda como uma chamada de função:
 
@@ -194,6 +278,8 @@ Além da IC-F\* da firma, o desenho precisa satisfazer simultaneamente:
 | **IC-F\*** | firma | $W < D_{\text{extra}}$ (vide acima) | `model.py` (P3) |
 
 A camada **Hirschman exit-with-equity** (R07) acrescenta um quarto incentivo opcional, válido apenas sob Regime C: cláusulas contratuais de vesting acelerado por gatilho de ação coletiva. Quando ativas, ampliam a IC-F\* para $W < D_{\text{extra}} + \text{custo de êxodo coletivo}$ — a firma também ganha por **não perder capital humano**, e isso ajuda a fechar o cálculo em casos marginais.
+
+Sob LCMC (R20, `modo_corrida=True`), as quatro condições ICs ganham dimensão de posição na fila — a IR-W vira $W_\text{base} \cdot f_W(k) \ge \text{custos}$ (decrescente com a ordem de cooperação intra-firma) e a IC-F\* vira $W_\text{total} < D_\text{Saito}(\text{pos}_\text{firma}) \cdot S$ (decrescente com a ordem de chegada inter-firma). É a mesma estrutura econômica; a corrida apenas torna explícito o gradiente.
 
 ## O que ainda pode ruir mesmo assim
 

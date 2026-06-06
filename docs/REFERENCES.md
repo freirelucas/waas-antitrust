@@ -61,10 +61,27 @@
 - Calvano, E., Calzolari, G., Denicolò, V., & Pastorello, S. (2021). Algorithmic collusion with imperfect monitoring. *International Journal of Industrial Organization* 79: 102712. DOI: 10.1016/j.ijindorg.2021.102712
 - Klein, T. (2021). Autonomous algorithmic collusion: Q-learning under sequential pricing. *RAND Journal of Economics* 52(3): 538–558. DOI: 10.1111/1756-2171.12383
 - Ezrachi, A., & Stucke, M. E. (2016). *Virtual Competition: The Promise and Perils of the Algorithm-Driven Economy*. Harvard University Press.
-- Cunningham, C., Ederer, F., & Ma, S. (2021). Killer acquisitions. *Journal of Political Economy* 129(3): 649–702. DOI: 10.1086/712506
+- Cunningham, C., Ederer, F., & Ma, S. (2021). Killer acquisitions. *Journal of Political Economy* 129(3): 649–702. DOI: 10.1086/712506 — *base de `reverse_killer_shelving` em `condutas.py`.*
 - Caffarra, C., Crawford, G., & Valletti, T. (2020). "How tech rolls": Potential competition and "reverse" killer acquisitions. *VoxEU/CEPR*, maio 2020. <https://cepr.org/voxeu/blogs-and-reviews/how-tech-rolls-potential-competition-and-reverse-killer-acquisitions>
 - Crémer, J., de Montjoye, Y.-A., & Schweitzer, H. (2019). *Competition Policy for the Digital Era*. European Commission. <https://op.europa.eu/en/publication-detail/-/publication/21dc175c-7b76-11e9-9f05-01aa75ed71a1>
 - Mathur, A., Acar, G., Friedman, M. J., Lucherini, E., Mayer, J., Chetty, M., & Narayanan, A. (2019). Dark patterns at scale: Findings from a crawl of 11K shopping websites. *Proceedings of the ACM on Human-Computer Interaction* 3(CSCW): art. 81. DOI: 10.1145/3359183 · arXiv: 1907.07032
+- Khan, L. (2017). Amazon's antitrust paradox. *Yale Law Journal* 126(3): 710–805. — *teoria da plataforma dominante; base de `subsidio_cruzado_ecossistema` em R20.*
+
+### Fontes regulatórias e jurisprudenciais do antitruste digital (R20 — catálogo expandido)
+
+- **Digital Markets Act (UE, Reg. 2022/1925)** — obrigações por *gatekeeper*. <https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=CELEX%3A32022R1925> — base de `sideloading_block` (Art. 6(4)), `multihoming_friction` (Art. 6(7)), `switching_costs_design` (Art. 6(9)), `lock_in_credenciais` (Art. 5(7)).
+- **Curt Justiça da UE — Google Shopping (T-612/17 / C-48/22 P, 10/09/2024).** — base de `ranking_demotion_rivais`. <https://curia.europa.eu/juris/document/document.jsf?docid=290229>
+- **US v. Google Search — Memorandum Opinion (Mehta J., D.D.C., 05/08/2024).** — confirmação Sherman §2 sobre default search distribution. Base de `default_distribution_exclusivo`.
+- **FTC v. Amazon (2023 — caso 2:23-cv-01495).** Acusação relacionada a Project Nessie (precificação algorítmica) e uso de dados de sellers do marketplace. Base de `mfn_inverso_algorithmic`, `uso_dados_concorrentes`, `auto_deteccao_atrasada`. <https://www.ftc.gov/legal-library/browse/cases-proceedings/1910116-amazoncom-inc>
+- **CMA UK — SMS Designations (Strategic Market Status, 2025):** Apple mobile (10/10/2025), Google Search (10/10/2025). Base de `sideloading_block`, `multihoming_friction`. <https://www.gov.uk/cma-cases>
+- **NYT v. OpenAI (S.D.N.Y., 2023).** — questão de treino de IA com conteúdo de terceiros. Base de `treino_ia_com_dados_concorrentes`. <https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf>
+- **RealPage litigation (em curso, EUA).** Algorithmic pricing em mercado de aluguéis. Base de `discriminacao_algoritmica_preco`.
+- **CMA Ticketmaster algorithmic pricing review (UK, 2024).** Base parcial de `discriminacao_algoritmica_preco`.
+- **NY Algorithmic Pricing Disclosure Act (2025).** Legislação estadual sobre precificação dinâmica. <https://www.nyc.gov/site/dca/businesses/consumer-protection-laws.page>
+- **CADE — Caderno Plataformas Digitais (2023).** — base de `subsidio_cruzado_ecossistema`, `switching_costs_design`. <https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/estudos-economicos/cadernos-do-cade/Plataformas%20Digitais.pdf>
+- **CADE — Apple Brasil TCC dez/2025.** — anti-steering + sideloading em iOS no Brasil. Base de `anti_steering_iap`, `sideloading_block`, `exclusao_app_store_seletiva`.
+- **Cornell Journal of Law and Public Policy — "Pulling Up the Drawbridge" (2025).** — degradação seletiva de API em plataformas. Base de `degradacao_api_seletiva`. **[?]** referência específica a confirmar.
+- **EC RFI Microsoft-OpenAI investment (2024).** — base de `aquisicao_assets_chave` e `tying_ia_generativa`. **[?]** verbatim a confirmar.
 
 ## Cibernética organizacional
 
@@ -143,10 +160,23 @@ distintivo nos seguintes pontos:
    literatura de leniência trata apenas recompensa financeira direta.
 4. **Calibração institucional brasileira granular** (Leis 12.529, 13.608,
    13.964; Resolução 21/2018; Brasscom 2024; Saito 2021; DEE/CADE 2022, 2024).
-5. **Catálogo heterogêneo conduta × papel intra-firma** (`condutas.py`): nove
-   condutas digitais (incluindo casos BR — iFood marketplace, Apple Brasil
-   2025) cruzadas com dez papéis funcionais e gradiente 3-níveis
-   primário/adjacente/distal (Near & Miceli 1985).
+5. **Catálogo heterogêneo conduta × papel intra-firma** (`condutas.py`): **vinte
+   e oito condutas digitais** (R20/Fase 7 da LCMC) cobrindo 12 famílias de
+   conduta unilateral, incluindo casos BR — iFood marketplace, Apple Brasil
+   2025 — e jurisprudência internacional pós-2024 (CJUE Google Shopping
+   09/2024, US v. Google Search 08/2024, FTC v. Amazon 2023), cruzadas com
+   dez papéis funcionais e gradiente 3-níveis primário/adjacente/distal
+   (Near & Miceli 1985). Dict `N_ATORES_PRIMARIOS_NECESSARIOS` calibra
+   `q_min_cooperacao_interna` por conduta.
+6. **Leniência Condicionada a Massa Crítica (LCMC) como macroconceito**
+   (R20): unifica leniência clássica (Spagnolo 2004; Motta-Polo 2003),
+   massa crítica (Granovetter 1978; Centola-Macy 2007; Morris-Shin 1998) e
+   gradiente Saito (2021) por posição na fila do CADE. Sob a tese do moat,
+   institucionaliza a corrida **intra-firma** (entre trabalhadores) e a
+   acopla a uma corrida **inter-firma** (entre firmas) — ambas calibradas
+   pelo **mesmo dado empírico**. Módulo `corrida.py` com `decaimento_W` e
+   `decaimento_D` consumindo `saito.MEDIA_DESCONTO_SG_POR_POSICAO`. Phase
+   P2.5 em `model.step()` opt-in via `modo_corrida: bool = False`.
 
 ## §5 · Caveat metodológico
 

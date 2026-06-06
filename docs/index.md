@@ -24,6 +24,16 @@ A informação existe. Está nos *commits* do engenheiro que codificou o algorit
 A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
 </div>
 
+## O macroconceito: Leniência Condicionada a Massa Crítica (LCMC)
+
+Em mercados digitais com **moat** (efeitos de rede, dados acumulados, *switching costs*, integração vertical), a cumplicidade existe — mas é **intra-firma**, entre o engenheiro, o produto, o jurídico, o corp dev. A inovação do mecanismo proposto é simples de enunciar:
+
+> O atenuante do TCC (Art. 12 da Res. CADE 21/2018) é concedido **se e somente se** a firma tiver, durante a investigação, recebido cooperação interna de ao menos uma fração `q_min` de seus funcionários, dentro de uma janela temporal `Δt`. O desconto efetivo é função decrescente da posição da firma na fila de leniência inter-firma; a recompensa de cada trabalhador é função decrescente da sua posição na fila de cooperação intra-firma.
+
+Em uma frase: **a corrida que a leniência clássica não consegue criar em abuso unilateral, a LCMC cria *dentro* da firma** — e acopla a uma segunda corrida entre firmas, calibrando ambas pelo gradiente empírico que o CADE já pratica (Saito 2021: 1ª compromissária ganha 43,43% de desconto, 2ª ganha 34,51%, 3ª ganha 20,22%).
+
+O WaaS é a forma operacional da LCMC. As páginas seguintes detalham o desenho e a aritmética.
+
 ## A oportunidade brasileira está dentro de uma regra que já existe
 
 A maior parte do trabalho institucional para este projeto **já está feita** — só não foi conectada nestes termos.
@@ -41,8 +51,9 @@ Esta re-caracterização não é pacífica — ela é a charneira controvertida 
 | **A** — hoje | Não | situação atual: sem canal de incentivo individual |
 | **B** — via Resolução | Sim | nova resolução CADE complementar à 21/2018, **sem mudar a lei** |
 | **C** — via Lei | Sim | extensão da Lei 13.608/2018 ao antitruste — mais robusto, exige o Congresso |
+| **C+LCMC** — via Lei + corrida | Sim, **com posição na fila** | C + leniência condicionada a `q_min` interno + decaimento Saito intra-firma e inter-firma |
 
-O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é a versão jurídicamente mais robusta — também simulada, e mais defensável em juízo. O **Regime A** é o contrafactual: o que continua acontecendo se nada mudar.
+O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é a versão jurídicamente mais robusta — também simulada, e mais defensável em juízo. O **Regime A** é o contrafactual: o que continua acontecendo se nada mudar. O **C+LCMC** é a proposta normativa mais ambiciosa — o macroconceito completo, ativo no cenário `cenario_corrida_leniencia`.
 
 ## Por onde seguir nesta história
 

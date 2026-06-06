@@ -33,9 +33,16 @@ Por tique:
   preventivo em `g_i` (Hirschman antes mesmo de qualquer denúncia).
 - **P1** — cada trabalhador observador amostra `s_i = σ + ε_i` e decide `a_i ∈ {0, 1}`.
 - **P2** — agregador conta `Σ_i a_i` na rede intra-firma; dispara se `≥ k`.
-- **P3** — empresa decide pagar denunciantes via IC-F* ampliada por Hirschman
-  (`D + custo_exodo > W`): com cláusula contratual, o custo de êxodo coletivo
-  entra na conta; sem cláusula, é a IC-F* clássica `D > W`.
+- **P2.5** — sob `modo_corrida=True` (R20/LCMC): para cada firma que atingiu
+  `n_cooperadores ≥ q_min × n_trabalhadores` na janela `Δt`, registra na
+  `FilaLeniencia` global e atribui `posicao_fila_leniencia`. Os cooperadores
+  internos já têm `posicao_corrida_interna` atribuída em P1 via
+  `FilaInternaCooperacao`.
+- **P3** — empresa decide pagar denunciantes. (i) sob modo histórico: IC-F\*
+  ampliada por Hirschman (`D + custo_exodo > W`); (ii) sob `modo_corrida=True`:
+  IC-F\* com decaimento de posição — `W_total < D_Saito(pos_firma) · S`, onde
+  `W_total = Σ decaimento_W(pos_trabalhador, W_base)` consome o gradiente Saito
+  normalizado.
 - **P4** — autoridade recebe caso (com restrição de capacidade κ).
 - **P5** — coleta de estado.
 
@@ -75,6 +82,8 @@ Sob Regime B, existem parâmetros no interior do espaço factível em que IC-F* 
 
 > **Status (v0.1.0):** a desigualdade D > W no ponto-alvo é verificada por teste de regressão (`tests/test_model.py`); as faixas jurídicas do esboço (multa, D ≤ 50%) são ilustrativas, não calibradas.
 
+> **Reformulação sob LCMC (R20):** sob `modo_corrida=True`, a Proposição 1 se transforma: **existe número finito $n^\star$ de firmas** que satisfazem a IC-F\* na fila inter-firma. Para a 1ª firma na fila, $D_\text{total}(1) \approx 43\% \cdot S$ (gradiente Saito); para a 4ª, $D_\text{total}(4) \approx 18\% \cdot S$; para a ≥ 9ª (ou nenhuma cooperação interna), cai ao piso de 15%. O esboço novo é: o número de firmas que correm é finito e calibrado contra Saito (2021). Firmas que chegam tarde recaem em TCC clássico — **Vetor D (corrida vazia)** torna isso explícito quando nenhuma firma atinge $q_\text{min}$ na janela. Teste direcional em `tests/test_corrida.py`. **Status: conjectura aberta** até calibração formal contra TCCs de conduta unilateral (E04 + R03b).
+
 ### Proposição 2 — Unicidade do equilíbrio de coordenação
 
 No limite τ → 0 do subjogo de jogo global, há equilíbrio único de switching `s*` para cada (k, W, r) na região relevante.
@@ -82,6 +91,8 @@ No limite τ → 0 do subjogo de jogo global, há equilíbrio único de switchin
 *Esboço*: aplicação direta do Teorema 1 de Morris-Shin (1998) ao jogo binário com complementaridades estratégicas. □
 
 > **Status (atualizado — R02 exploratório):** o módulo `waas_antitrust.jogo_global` deriva o limiar de switching **único** do subgame estilizado e mostra sua convergência quando τ → 0 (`tests/test_jogo_global.py`) — a seleção de equilíbrio único que a proposição afirma. **Ressalva:** é um subgame estilizado (ganho linear na severidade, massa crítica constante), **não** integrado à dinâmica de arquétipos do ABM; o contraste formal com a multiplicidade sob conhecimento comum e a generalização seguem em aberto. **Sob heterogeneidade (arquétipos × papéis, ver R08), a unicidade do equilíbrio é conjectura aberta** — não há, no nosso conhecimento, resultado fechado de Morris-Shin generalizado para esse mix; ver §2 (Pressuposto de homogeneidade).
+
+> **Reformulação sob LCMC (R20):** sob `modo_corrida=True`, o limiar $x^\star$ ganha dimensão temporal. Cada trabalhador tem $x^\star(t)$ porque a recompensa esperada cai com a posição na fila (próprio decaimento $f_W(k)$ é decrescente). Esboço novo: o limiar de cooperação é único em cada instante; a sequência $\{x^\star(t)\}_t$ é decrescente sob informação privada e converge ao limiar estático no caso degenerado. **Status: conjectura aberta** — a integração formal do `limiar_switching_temporal` ao racional sob `modo_corrida` é trabalho de R02b/R20 ainda não escrito.
 
 ### Proposição 3 — Dominância de bem-estar do Regime B sobre o Regime A
 
@@ -92,3 +103,5 @@ Para um conjunto de medida positiva de (W, D, σ), o bem-estar social esperado �
 > **Status (atualizado — R01 implementado):** o canal de **dissuasão é endógeno**: cada firma viola enquanto sua atratividade $g_i$ = ganho/sanção supera a detecção percebida $p$, que sobe por expectativa adaptativa quando o canal WaaS opera. Em simulação, os Regimes B/C reduzem as violadoras ativas a zero enquanto o Regime A as faz crescer — sustentando a **direção** da proposição (a prova formal segue como conjectura). Com **R05**, o `bem_estar` passou a ser baseado em **dano** (= −(dano + β·FP)), creditando a prevenção — os Regimes B/C superam o Regime A. Pesos provisórios; calibração formal em R03.
 
 > **Adicional (R07, exploratório):** a Hirschman exit-with-equity adiciona um **segundo canal de dissuasão** ortogonal ao WaaS — firmas com cláusulas contratuais de vesting acelerado por gatilho de ação coletiva enfrentam custo crível de êxodo do capital humano. A IC-F* da firma se amplia para `D + custo_exodo > W`, e o `g_i` preventivo recebe desconto proporcional a `peso_hirschman · p_perc`. Teste end-to-end em `tests/test_hirschman.py` confirma que firmas com cláusula cooperam mais (mais TCCs assinados) ou geram menos dano em comparação ao baseline. Parâmetros financeiros (substituição, equity, vesting) seguem padrões YC documentados; calibração formal em R03.
+
+> **Reformulação sob LCMC (R20):** sob `modo_corrida=True`, a dominância de B sobre A ganha **terceiro canal**: a **competição inter-firma acelera a detecção**. Em Regime A, dissuasão é nula. Em Regime B/C com modo_corrida, três canais: (i) R01 (detecção endógena via `p_perc`); (ii) Hirschman (R07); (iii) canal-corrida (firmas se apressam a cooperar antes da concorrente para garantir posição 1 = 43% de desconto). A dominância é mais forte, mas a calibração precisa medir os três canais separadamente. Reporters em `model.py`: `n_firmas_atingiram_massa_critica_interna`, `custo_recompensa_corrida_acum`. **Status: conjectura aberta** com testes direcionais em `tests/test_corrida.py`.

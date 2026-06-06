@@ -11,6 +11,53 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### R20 — Leniência Condicionada a Massa Crítica (LCMC): macroconceito unificador
+
+A LCMC é o **macroconceito** sob o qual o WaaS passa a ser entendido. Sob a
+tese do moat — mercados digitais geram condutas unilaterais, sem cúmplice
+externo para uma leniência clássica de Spagnolo (2004) ou Motta-Polo (2003)
+— a única corrida possível é **intra-firma**. A LCMC institucionaliza isso
+e a acopla a uma corrida **inter-firma**, ambas calibradas pelo gradiente
+empírico do CADE (Saito 2021: 1ª=43,43%; 2ª=34,51%; 3ª=20,22%).
+
+- **Fases 1-2** (núcleo + calibração Saito): novo módulo
+  `src/waas_antitrust/corrida.py` com `decaimento_D` (fila inter-firma) e
+  `decaimento_W` (fila intra-firma) consumindo
+  `saito.MEDIA_DESCONTO_SG_POR_POSICAO`; dataclasses
+  `FilaInternaCooperacao` e `FilaLeniencia`; função
+  `massa_critica_interna_atingida`. Novos `WaaSParametros`:
+  `modo_corrida: bool = False` (opt-in, preserva backward compat),
+  `q_min_cooperacao_interna`, `janela_temporal_tiques`, `perfil_decaimento`.
+  Phase P2.5 em `model.step()`. Atributos novos em `TrabalhadorAgent`
+  (`posicao_corrida_interna`, `tique_cooperou`) e `EmpresaAgent`
+  (`posicao_fila_leniencia`, `massa_critica_interna_satisfeita`). Cenário
+  canônico `cenario_corrida_leniencia` em `cenarios.py` (Regime C plena).
+  21 testes em `tests/test_corrida.py`.
+- **Fase 7** (catálogo expandido de condutas digitais): `condutas.py` de 9
+  → 28 condutas cobrindo 12 famílias (auto-preferência, restrições de
+  plataforma, vinculação, predação algorítmica, acesso/dados/self-dealing,
+  killer + reverse killer, discriminação algorítmica, captura de
+  aprendizagem, manipulação de relevância, tying IA, lock-in via
+  credentials, switching costs). Casos de referência verificados: CJUE
+  Google Shopping (09/2024), US v. Google Search Mehta (08/2024), FTC v.
+  Amazon (2023), Apple Brasil CADE (2025), DMA UE (2022), CMA UK SMS
+  (2025), Khan (2017), Crémer-Montjoye-Schweitzer (2019), Cunningham-
+  Ederer-Ma JPE (2021). Casos não consolidados marcados `[?]` no
+  docstring. Novo dict `N_ATORES_PRIMARIOS_NECESSARIOS` calibra
+  `q_min_cooperacao_interna` por conduta (nenhuma exige > 3 papéis
+  primários — confirma tese do moat). 11 → 14 testes em
+  `tests/test_condutas.py`.
+- **Harmonização documental** (Ato 1, Ato 2, ODD, DECISIONS, REFERENCES):
+  `docs/index.md` ganha seção "O macroconceito LCMC" + regime "C+LCMC"
+  na tabela; `docs/mecanismo.md` ganha seção "O macroconceito" no topo
+  e "A corrida que faltava (R20)" detalhando as duas corridas; `docs/ODD.md`
+  ganha Phase P2.5 e reformulação das Proposições 1, 2, 3 sob LCMC como
+  "conjectura aberta"; `docs/DECISIONS.md` registra R20 + atualiza R08
+  (28 condutas) + reformula R09-R11 como mais acionáveis sob LCMC;
+  `docs/REFERENCES.md` ganha bloco "Fontes regulatórias e jurisprudenciais
+  do antitruste digital" + atualiza §4 (síntese) com a LCMC como peça
+  distintiva.
+
 ### Estrutura e empacotamento
 - Descompacta o projeto do tarball para a raiz do repositório e passa a versionar os
   arquivos (`src/`, `tests/`, `docs/`, `paper/`, …) em vez do `.tar.gz` (`04eb127`).
