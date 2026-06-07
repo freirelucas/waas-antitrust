@@ -24,7 +24,7 @@ A informação existe. Está nos *commits* do engenheiro que codificou o algorit
 A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
 </div>
 
-## O macroconceito: Leniência Condicionada a Massa Crítica (LCMC)
+## O macroconceito: Leniência Condicionada à Massa Crítica (LCMC)
 
 Em mercados digitais com **moat** (efeitos de rede, dados acumulados, *switching costs*, integração vertical), a cumplicidade existe — mas é **intra-firma**, entre o engenheiro, o produto, o jurídico, o corp dev. A inovação do mecanismo proposto é simples de enunciar:
 

@@ -8,9 +8,9 @@ A pergunta natural — e a primeira que aparece quando alguém ouve o desenho do
 
 Esta página responde de frente. Em prosa primeiro, com aritmética em seguida, e com os três pontos onde o mecanismo pode realmente quebrar mapeados — porque o argumento honesto não é "isto sempre funciona", e sim **"isto funciona sob estas condições, falha sob estas outras, e ambas estão no modelo"**.
 
-## O macroconceito: Leniência Condicionada a Massa Crítica (LCMC)
+## O macroconceito: Leniência Condicionada à Massa Crítica (LCMC)
 
-Antes da aritmética, o nome do que está em jogo. O mecanismo aqui proposto — em todas as suas versões e variantes — é uma **Leniência Condicionada a Massa Crítica interna**, abreviada **LCMC**. O conceito unifica três peças que, sozinhas, já existem na literatura ou na prática brasileira, mas que nunca foram combinadas:
+Antes da aritmética, o nome do que está em jogo. O mecanismo aqui proposto — em todas as suas versões e variantes — é uma **Leniência Condicionada à Massa Crítica interna**, abreviada **LCMC**. O conceito unifica três peças que, sozinhas, já existem na literatura ou na prática brasileira, mas que nunca foram combinadas:
 
 1. **Leniência clássica** (Spagnolo 2004; Motta-Polo 2003) entrega benefício à *primeira* a delatar — mas exige cúmplices entre firmas. Em mercados digitais com **moat** (efeitos de rede, dados acumulados, *switching costs*), o conluio que existe é **unilateral, intra-firma** — entre o engenheiro que codifica o algoritmo, o gerente de produto que aprova, o jurídico que valida. Não há segunda firma para entregar.
 2. **Massa crítica interna** (Granovetter 1978; Centola-Macy 2007; Morris-Shin 1998 em jogos globais) define um limiar de cooperação coletiva abaixo do qual ninguém fala e acima do qual a cascata é inevitável. Já era a peça que fazia o WaaS "morder" — sem `k` denunciantes, nada acontece.

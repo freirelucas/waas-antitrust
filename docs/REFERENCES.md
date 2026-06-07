@@ -168,7 +168,7 @@ distintivo nos seguintes pontos:
    dez papéis funcionais e gradiente 3-níveis primário/adjacente/distal
    (Near & Miceli 1985). Dict `N_ATORES_PRIMARIOS_NECESSARIOS` calibra
    `q_min_cooperacao_interna` por conduta.
-6. **Leniência Condicionada a Massa Crítica (LCMC) como macroconceito**
+6. **Leniência Condicionada à Massa Crítica (LCMC) como macroconceito**
    (R20): unifica leniência clássica (Spagnolo 2004; Motta-Polo 2003),
    massa crítica (Granovetter 1978; Centola-Macy 2007; Morris-Shin 1998) e
    gradiente Saito (2021) por posição na fila do CADE. Sob a tese do moat,

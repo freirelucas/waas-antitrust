@@ -11,7 +11,7 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
-### R20 — Leniência Condicionada a Massa Crítica (LCMC): macroconceito unificador
+### R20 — Leniência Condicionada à Massa Crítica (LCMC): macroconceito unificador
 
 A LCMC é o **macroconceito** sob o qual o WaaS passa a ser entendido. Sob a
 tese do moat — mercados digitais geram condutas unilaterais, sem cúmplice
