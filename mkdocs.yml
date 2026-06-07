@@ -51,6 +51,7 @@ nav:
       - Referência da API: api.md
   - Desenvolvimento:
       - Crítica x10: critica_x10.md
+      - Crítica x10 v2: critica_x10_v2.md
       - Plano de melhorias: plano_melhorias.md
       - Decisões e backlog: DECISIONS.md
 
