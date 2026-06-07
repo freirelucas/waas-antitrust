@@ -11,6 +11,63 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Reframe v2 — Capital social com risco de erosão endógena (Coleman > Samuelson)
+
+Segundo commit do plano v2 pós-crítica x10 v2. Categoria v2.A: reposicionamento
+conceitual sem mudança de código. Anchora o reframe na categoria certa,
+sustentado por sociologia (Coleman, Olson, Ostrom, Heller, Elster, Chwe) e
+literatura de motivation crowding (Titmuss 1970, Frey-Jegen 2001,
+Bénabou-Tirole 2003).
+
+**Novos arquivos:**
+- `docs/bem_publico.md` — anexo conceitual; abre com leitura Samuelson e
+  desloca para Coleman (capital social com risco de erosão endógena);
+  apresenta os quatro instrumentos de internalização com reservas
+  constitucionais distintas (Art. 22 I; Art. 146 LC; Art. 5º XXXIX); fecha
+  com diagnóstico Ostrom dos 5 design principles ausentes.
+- `docs/viabilidade_regime_c.md` — atende à crítica do Cientista Político
+  v2; PL 2768/2022 parado desde 2023, agenda Câmara concentrada, Regime C
+  provavelmente infactível 2024-2027 sem crise reputacional grande.
+
+**Atualizações de documentação:**
+- `docs/index.md` — sublinha cinza em itálico abaixo da H1 ("punchline
+  jornalística + reframe acadêmico empilhados tipograficamente" per
+  Designer v2).
+- `docs/INSTITUTIONAL.md` — Regime C decomposto em Cₜ (trabalhista, Art.
+  22 I), Cᵩ (tributária-LC, Art. 146 + LRF) e Cₚ (penal, Art. 5º XXXIX);
+  nova seção "Art. 12 como reconhecimento de interesse público em
+  detecção" (Lei 9.784/99) + **Lei 12.846/2013 LAC Art. 7º VII-VIII** como
+  precedente dogmático que faltava; analogia ao IRS Whistleblower
+  rejeitada.
+- `docs/ODD.md` §2.1 — subseção "Diagnóstico Ostrom" cruzando os 8 design
+  principles de governança de commons com reporters/parâmetros do modelo:
+  3 atendidos (P1 fronteiras, P4 monitoramento, P5 sanções graduadas), 1
+  silencioso (P8), 4 ausentes (P2, P3, P6, P7).
+- `docs/limitacoes.md` — nova seção "Fragilidades do bem coletivo" com 3
+  fragilidades pós-reframe (free-riding/sub-iniciação Olson; anti-commons
+  Heller; erosão endógena Coleman); nova seção "Viabilidade política do
+  Regime C".
+- `docs/REFERENCES.md` — 4 novos blocos: "Coordenação coletiva, capital
+  social e bens coletivos" (Olson, Ostrom, Coleman, Hardin, Heller,
+  Elster, Samuelson); "Erosão de motivação por uso instrumental" (Titmuss,
+  Frey-Jegen, Bénabou-Tirole, Mussler-Macy); "Jogos globais dinâmicos"
+  (Frankel-Morris-Pauzner 2003, Angeletos-Hellwig-Pavan 2007, Chwe 2000);
+  "Ciência política da regulação" (Stigler, Wilson, McCubbins-Schwartz,
+  Carpenter-Moss, Levi, Mattli-Woods).
+- `docs/DECISIONS.md` — R21-R26 abertos: R21 operacionalizar bem
+  coletivo; R22 crédito tributário (com mapa de reservas); R23 leniência
+  criminal individual; R24 free-riding e tragédia reversa; R25 jurisdição
+  concorrente; **R26 erosão endógena por uso instrumental** (Proposição 5
+  candidata, mais ambiciosa do plano v2).
+- `docs/stylesheets/extra.css` — classes `.sublinha-tese` (sublinha cinza
+  com borda lateral) e `.chip-instrumento` (componente reutilizável para
+  os 4 instrumentos, com variante `.waas` em cor primária).
+- `mkdocs.yml` — `bem_publico.md` e `viabilidade_regime_c.md`
+  registrados em Anexos.
+
+**Verificação**: pytest 234 passed; ruff check; black --check; mkdocs
+build --strict.
+
 ### R20 — Leniência Condicionada à Massa Crítica (LCMC): macroconceito unificador
 
 A LCMC é o **macroconceito** sob o qual o WaaS passa a ser entendido. Sob a

@@ -55,6 +55,33 @@ Por tique:
 - **Estocasticidade**: ε_i, arquétipo, detecção, represália.
 - **Acoplamento por conhecimento comum**: P(massa crítica) cresce com σ por (i) `q(σ)` crescente e (ii) atualização de crenças de ordem superior.
 
+### 2.1 Diagnóstico Ostrom — 8 design principles (R21 sob reframe)
+
+Após a crítica do Sociólogo na x10 v2, a leitura do mecanismo deslocou-se de
+"bem quase-público à Samuelson" para "capital social organizacional com risco
+de erosão endógena" (Coleman 1990). Ostrom (1990, *Governing the Commons*,
+cap. 3) propôs **8 design principles** para governança sustentável de bens
+coletivos. Cruzá-los com o desenho atual do WaaS revela quais princípios o
+modelo satisfaz, quais ignora silenciosamente, e quais abrem pendências
+explícitas.
+
+| # | Princípio Ostrom | Status no WaaS | Reporter/parâmetro |
+|---|---|---|---|
+| **P1** | Fronteiras claras: quem participa do commons | **Atendido** — rede intra-firma observável a CADE via auditoria | `papel`, `condutas.observabilidade` |
+| **P2** | Congruência entre regras e condições locais | **Ausente** — não há proporcionalidade da recompensa ao dano sofrido pelo trabalhador | pendência R-novo |
+| **P3** | Arenas de escolha coletiva | **Ausente** — trabalhadores não participam do desenho da recompensa | pendência R-novo |
+| **P4** | Monitoramento por agentes responsáveis | **Atendido** — `kappa_capacidade` e `rho_acuracia` da AutoridadeAgent | reporter `n_empresas_notif` |
+| **P5** | Sanções graduadas | **Atendido** — gradiente Saito (43,43% → 34,51% → 20,22%) por posição na fila | `corrida.decaimento_D`, `decaimento_W` |
+| **P6** | Mecanismos baratos de resolução de conflito | **Ausente** — denunciante v. firma é judicial-caro (R$ honorários) | `custo_legal_uw` |
+| **P7** | Reconhecimento mínimo do direito de auto-organização | **Ausente** — vedado por dever de lealdade contratual brasileira (Art. 482 CLT) | pendência D03 + R-novo |
+| **P8** | Empreendimentos aninhados (governança multinível) | **Silencioso** — coordenação CADE-MPF-MPT é institucionalmente inexistente | cenário `eixo_jurisdicao_concorrente` (R25) |
+
+**Saldo**: 3 atendidos (P1, P4, P5), 1 silencioso (P8), 4 ausentes (P2, P3,
+P6, P7). O WaaS é, no vocabulário de Ostrom, um *commons imposto de cima*
+(top-down), não governado de baixo. A teoria prevê degradação por erosão
+endógena (Coleman 1990); o reporter `capital_social_residual_firma`
+(R26) é o instrumento de medida proposto.
+
 ## 3. Detalhes
 
 ### 3.1 Inicialização

@@ -27,9 +27,43 @@
 ## Contágio social e jogos globais
 
 - Centola, D., & Macy, M. (2007). Complex contagions and the weakness of long ties. *American Journal of Sociology* 113(3): 702–734.
-- Chwe, M. S.-Y. (2001). *Rational Ritual: Culture, Coordination, and Common Knowledge*. Princeton University Press.
+- Chwe, M. S.-Y. (2001). *Rational Ritual: Culture, Coordination, and Common Knowledge*. Princeton University Press. — *base do enquadramento "rituais públicos" como produtores de conhecimento comum; informa o caveat anti-erosão sobre instrumentalização da cooperação interna.*
 - Granovetter, M. (1978). Threshold models of collective behavior. *American Journal of Sociology* 83(6): 1420–1443.
 - Near, J. P., & Miceli, M. P. (1985). Organizational dissidence: The case of whistle-blowing. *Journal of Business Ethics* 4(1): 1–16. — *base do gradiente 3-níveis primário/adjacente/distal em R08.*
+
+## Coordenação coletiva, capital social e bens coletivos (base do reframe)
+
+- **Olson, M. (1965).** *The Logic of Collective Action: Public Goods and the Theory of Groups*. Harvard University Press. — *base do diagnóstico "grupos pequenos sustentam bens coletivos por interesse perceptível e visibilidade mútua"; informa por que massa crítica intra-firma (5-20 cooperadores) sobrevive ao argumento clássico de subprovisão.*
+- **Ostrom, E. (1990).** *Governing the Commons: The Evolution of Institutions for Collective Action*. Cambridge University Press. — *fonte dos 8 design principles de governança de commons; o ODD §"Diagnóstico Ostrom" mostra que o WaaS satisfaz 3 (P1, P4, P5) e não satisfaz 5 (P2, P3, P6, P7, P8) — pendência de pesquisa explícita.*
+- **Coleman, J. S. (1990).** *Foundations of Social Theory*. Harvard University Press. Cap. 12 ("Social Capital"). — *categoria primária do reframe: capital social como bem coletivo produzido como subproduto de relações de obrigação; previsão de destruição por uso instrumental (informa R26 e a Proposição 5 candidata).*
+- Hardin, G. (1968). The tragedy of the commons. *Science* 162(3859): 1243–1248. DOI: 10.1126/science.162.3859.1243
+- **Heller, M. A. (1998).** The tragedy of the anticommons: Property in the transition from Marx to markets. *Harvard Law Review* 111(3): 621–688. — *categoria correta para o vetor "sobre-denúncia frívola" (tragédia reversa); referência via Sociólogo na x10 v2.*
+- Elster, J. (1989). *The Cement of Society: A Study of Social Order*. Cambridge University Press. Cap. 5 (normas sociais como cimento de cooperação).
+- Samuelson, P. A. (1954). The pure theory of public expenditure. *Review of Economics and Statistics* 36(4): 387–389. — *fonte da leitura secundária (bem quase-público) que o reframe usa como ponte didática antes da categoria Coleman.*
+
+## Erosão de motivação por uso instrumental (motivation crowding)
+
+- **Titmuss, R. M. (1970).** *The Gift Relationship: From Human Blood to Social Policy*. London: Allen & Unwin. — *evidência clássica de que pagar por doação de sangue reduz a doação; base empírica do efeito erosão por uso instrumental.*
+- **Frey, B. S., & Jegen, R. (2001).** Motivation crowding theory. *Journal of Economic Surveys* 15(5): 589–611. DOI: 10.1111/1467-6419.00150 — *teoria geral da expulsão de motivação intrínseca por incentivos extrínsecos; informa R26 (erosão endógena por uso).*
+- Bénabou, R., & Tirole, J. (2003). Intrinsic and extrinsic motivation. *Review of Economic Studies* 70(3): 489–520. DOI: 10.1111/1467-937X.00253 — *formalização da tensão extrinsic-intrinsic em contratos com sinalização.*
+- Mussler, M. R., & Macy, M. W. (1997). Cooperation and the emergence of role differentiation in the dynamics of social networks. *American Sociological Review* 62(5): 695–711. **[?]** — *evidência de que recompensas coletivas preservam motivação intrínseca melhor que recompensas individualizadas; relevante para a tensão entre LCMC (decaimento Saito por posição) e salvaguardas anti-erosão.*
+
+## Jogos globais dinâmicos (resposta a Mat A v2)
+
+- Frankel, D. M., Morris, S., & Pauzner, A. (2003). Equilibrium selection in global games with strategic complementarities. *Journal of Economic Theory* 108(1): 1–44. DOI: 10.1016/S0022-0531(02)00018-2 — *arcabouço para unicidade em jogos globais dinâmicos; necessário para a reformulação rigorosa da Prop. 2 sob LCMC.*
+- Angeletos, G.-M., Hellwig, C., & Pavan, A. (2007). Dynamic global games of regime change: Learning, multiplicity, and the timing of attacks. *Econometrica* 75(3): 711–756. DOI: 10.1111/j.1468-0262.2007.00766.x — *mostra que sinal público correlacionado pode restaurar multiplicidade; alerta de Mat A v2 sobre a fila inter-firma.*
+- Chwe, M. S.-Y. (2000). Communication and coordination in social networks. *Review of Economic Studies* 67(1): 1–16. DOI: 10.1111/1467-937X.00118 — *common knowledge em redes; ponte entre Morris-Shin e Olson, citado por Mat A v2.*
+
+## Ciência política da regulação (base do reframe — Cientista Político v2)
+
+- **Stigler, G. J. (1971).** The theory of economic regulation. *Bell Journal of Economics and Management Science* 2(1): 3–21. — *teoria da captura regulatória; informa o sinal mais forte do Cientista Político v2 sobre captura no processamento.*
+- **Wilson, J. Q. (ed.) (1980).** *The Politics of Regulation*. Basic Books. — *taxonomia interesses concentrados × difusos; WaaS converte custo difuso em concentrado no bolso do trabalhador, mudando o regime de client politics para interest group politics.*
+- **McCubbins, M. D., & Schwartz, T. (1984).** Congressional oversight overlooked: Police patrols versus fire alarms. *American Journal of Political Science* 28(1): 165–179. DOI: 10.2307/2110792 — *WaaS é canal "fire alarm" (alerta pulverizado) em contraste com CADE de ofício ("police patrol"); ponto-chave do reframe.*
+- **Carpenter, D., & Moss, D. A. (eds.) (2014).** *Preventing Regulatory Capture: Special Interest Influence and How to Limit It*. Cambridge University Press. — *4 pré-requisitos contra captura: independência, transparência, sanções graduadas, accountability dupla; diagnóstico de quais o WaaS satisfaz/falha.*
+- Levi, M. (1988). *Of Rule and Revenue*. University of California Press. — *política comparada da capacidade fiscal-regulatória; informa diagnóstico do RIG 2024 sobre capacidade institucional do CADE.*
+- Mattli, W., & Woods, N. (eds.) (2009). *The Politics of Global Regulation*. Princeton University Press. — *regulação em arenas multinível; informa o cenário "jurisdição concorrente" (CADE × MPF × MPT × CGU).*
+- Mueller, B., & Pereira, C. (2002). Credibility and the design of regulatory agencies in Brazil. *Revista Brasileira de Economia* 56(3): 565–597. **[?]** — *credibilidade de autarquias regulatórias BR; informa caveats sobre captura via sabatina Senado.*
+- Pacheco, R. S. (2006). Regulação no Brasil: desenho das agências e formas de controle. *Revista de Administração Pública* 40(4): 523–543. **[?]** — *desenho institucional das agências BR; relevante para análise CADE pós-2023.*
 
 ## Inequity aversion e evolução de preferências (base de R16)
 

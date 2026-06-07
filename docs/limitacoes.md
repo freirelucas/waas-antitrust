@@ -49,6 +49,72 @@ A **Proposição 2** — unicidade do equilíbrio de coordenação no limite $\t
 
 A **Proposição 3** — dominância de bem-estar de B sobre A — está sustentada direcionalmente por simulação multi-seed com CI 95% que não cruza zero. **A prova formal segue como esboço**, não como teorema fechado.
 
+## Fragilidades do bem coletivo (pós-reframe Coleman > Samuelson)
+
+A [Crítica x10 v2](critica_x10_v2.md) acrescentou três fragilidades que
+o framing original "empresa paga" ocultava por construção. Sob o reframe
+"massa crítica de cooperação interna como capital social com risco de
+erosão endógena", elas viram parte do esqueleto epistêmico do projeto.
+
+**(i) Free-riding ainda não é modelado.** Olson 1965 mostra que grupos
+sustentam bens coletivos por *interesse perceptível* e *visibilidade
+mútua*; em grupos pequenos (5-20 cooperadores na firma típica) o problema
+não é sub-provisão, é **sub-iniciação** — ninguém quer ser o 1º. O
+decaimento Saito intra-firma é *selective incentive* compatível com
+Olson, mas o modelo não distingue custo psicológico do 1º cooperador
+($\text{custo}_{k=1}$) do dos demais ($\text{custo}_{k\ge 2}$). Os
+imitativos e fairminded sinalizam quando há $\phi_{\text{vizinhos}}$
+suficiente — mas nenhum *inicia*. R24 abre o arquétipo
+`denunciante_oportunista` (insider acionista, concorrente plantando
+informante, chantagem) e o arquétipo Olson explícito como variantes.
+
+**(ii) Tragédia reversa (anti-commons de Heller 1998).** Sobre-denúncia
+frívola — direitos de "exclusão por denúncia" fragmentados, levando à
+subutilização da estrutura do CADE. Hoje o modelo trata FP como custo
+em $\beta$ no bem-estar, mas não captura o fenômeno sistêmico:
+trabalhadores podem usar WaaS como ameaça pré-rescisão para extrair
+*severance*, transformando o canal em barganha bilateral, não em prova
+qualificada. Pendência R24.
+
+**(iii) Erosão endógena por uso instrumental.** Coleman 1990 previu que
+capital social é destruído pela sua instrumentalização. No WaaS: após
+uma rodada bem-sucedida em firma X, a comunicação informal em outras
+firmas Y, Z muda de regime — quem antes comentava livremente passa a
+auto-censurar (*chilling effect*). O modelo capta o sinal Schelling
+(`p_perc` ↑ → mais dissuasão), mas **não capta** a erosão inversa
+(`phi_baseline` ↓ → menos cooperação espontânea). Os dois efeitos
+coexistem; **falta medir qual vence em qual horizonte temporal**.
+Pendência R26 (nova), com Proposição 5 candidata: existe
+$\alpha_{\text{erosão}}^\star$ tal que para
+$\alpha_{\text{erosão}} > \alpha^\star$, Regime B/C colapsa em A após
+$N$ tiques. Literatura calibradora: Titmuss 1970 *The Gift Relationship*,
+Frey-Jegen 2001, Bénabou-Tirole 2003.
+
+**Salvaguardas anti-erosão na literatura comparada:** (a) anonimato
+forte (IRS Whistleblower Office); (b) recompensa coletiva
+(Mussler-Macy 1997); (c) janela curta (`janela_temporal_tiques` já em
+R20). Cada uma tem custo de desenho — anonimato tensiona com fila
+identificada da LCMC; recompensa coletiva mata a corrida; janela curta
+já está implementada mas serve como gatilho de massa crítica, não como
+filtro anti-erosão individual.
+
+## Viabilidade política do Regime C (2024-2027)
+
+A crítica do Cientista Político na x10 v2 trouxe outra honestidade
+material: a premissa do projeto de que "Regime C tem custo político mais
+alto mas viável" **subestima o custo** no horizonte 2024-2027. PL
+2768/2022 (análogo nacional ao DMA) está parado desde 2023; agenda da
+Câmara é concentrada em reforma tributária e arcabouço fiscal;
+antitruste digital é matéria periférica. Regime C é **provavelmente
+infactível** sem crise reputacional grande. Detalhes em
+[Viabilidade política do Regime C](viabilidade_regime_c.md).
+
+A consequência: a *advocacy* natural do projeto desloca-se de "convencer
+o Congresso" para "convencer o CADE de que B é institucionalmente
+defensável até C virar factível" — usando a Lei 12.846/2013 (LAC) Art.
+7º VII-VIII como precedente dogmático brasileiro, conforme a nova seção
+em [Análise institucional](INSTITUTIONAL.md).
+
 ## Cinco decisões normativas em aberto
 
 Há cinco pontos onde a literatura crítica converge mas o autor ainda não decidiu — porque cada decisão **altera Proposições** e exige conversa explícita, não execução automática:

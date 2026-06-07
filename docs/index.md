@@ -2,6 +2,8 @@
 
 # E se a empresa pagasse para ser delatada?
 
+<p class="sublinha-tese"><em>Porque cooperação interna em mercados digitais é capital social organizacional que o antitruste ainda não sabe internalizar — e o WaaS é um instrumento entre quatro.</em></p>
+
 <div class="hero" markdown>
 
 Em mercados digitais, a maior parte do abuso de poder é cometida por **uma empresa só**. Não há cúmplice para entregar; o conluio interno mora dentro do organograma. A leniência clássica — desenhada para cartéis de duas ou mais empresas — não tem como morder este tipo de conduta. Quem realmente vê o que acontece são os **próprios funcionários**, e hoje nada dá a eles motivo para falar.

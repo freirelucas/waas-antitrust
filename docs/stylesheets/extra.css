@@ -261,3 +261,55 @@
   background: #3a3a3a;
   color: #cfcfcf;
 }
+
+/* Crítica x10 v2 (Designer): empilhar tipograficamente punchline jornalística
+ * (H1) + reframe acadêmico (sublinha cinza em itálico) abaixo. Mantém ambas
+ * leituras — cético jornalístico continua na pista, leitor analítico já
+ * recebe o reframe.
+ */
+.sublinha-tese {
+  font-size: 1.05em;
+  font-style: italic;
+  color: #5d6d7e;
+  margin-top: -0.4em;
+  margin-bottom: 1.4em;
+  padding-left: 0.6em;
+  border-left: 3px solid #cfd8dc;
+  line-height: 1.5;
+}
+[data-md-color-scheme="slate"] .sublinha-tese {
+  color: #9aa6b2;
+  border-left-color: #4a5562;
+}
+
+/* Crítica x10 v2 (Designer): chip-instrumento reutilizável para os 4
+ * instrumentos de internalização. WaaS em cor primária (verde do tema);
+ * Hirschman, tributário, criminal em cinza-azulado uniforme.
+ * Contraste AA verificado.
+ */
+.chip-instrumento {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  margin: 0 0.2em;
+  border-radius: 0.3em;
+  font-size: 0.85em;
+  font-weight: 500;
+  background: #cfd8dc;
+  color: #2c3e50;
+  border: 1px solid #b0bec5;
+}
+.chip-instrumento.waas {
+  background: #27ae60;
+  color: #ffffff;
+  border-color: #1e8449;
+}
+[data-md-color-scheme="slate"] .chip-instrumento {
+  background: #3a4854;
+  color: #cfd8dc;
+  border-color: #4a5562;
+}
+[data-md-color-scheme="slate"] .chip-instrumento.waas {
+  background: #2ecc71;
+  color: #1a1a1a;
+  border-color: #27ae60;
+}
