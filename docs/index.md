@@ -1,116 +1,159 @@
 <span class="ato-chip">Ato 1 de 5 · O problema</span>
 
-# E se a empresa pagasse para ser delatada?
+# Quando a infração é unilateral, quem denuncia?
 
-<p class="sublinha-tese"><em>Porque cooperação interna em mercados digitais é capital social organizacional que o antitruste ainda não sabe internalizar — e o WaaS é um instrumento entre quatro.</em></p>
-
-<div class="hero" markdown>
-
-Em mercados digitais, a maior parte do abuso de poder é cometida por **uma empresa só**. Não há cúmplice para entregar; o conluio interno mora dentro do organograma. A leniência clássica — desenhada para cartéis de duas ou mais empresas — não tem como morder este tipo de conduta. Quem realmente vê o que acontece são os **próprios funcionários**, e hoje nada dá a eles motivo para falar.
-
-Este projeto é uma tentativa de **inverter o cálculo**: e se, sob certas condições jurídicas brasileiras já existentes, a empresa investigada visse vantagem em **pagar uma recompensa** aos seus denunciantes internos — porque o desconto que ela receberia no acordo (TCC) seria maior do que essa recompensa?
-
-</div>
-
-![Saída real do modelo: com o canal WaaS (B/C) as firmas param de violar ao longo do tempo e o bem-estar social supera o cenário atual (A). A cascata de **cooperação interna** dispara *antes* de qualquer firma decidir pagar — o pagamento é o instrumento que torna a cascata estável, não a causa primeira.](img/03_dissuasao_bem_estar.png){ .figura-empirica }
+<p class="sublinha-tese"><em>A resposta não está em incentivar a empresa. Está em reconhecer que a cooperação dos próprios funcionários é o bem coletivo que falta — e que pode ser internalizado por mais de um instrumento.</em></p>
 
 ## A leniência clássica acabou de bater num muro
 
-Por quase trinta anos, programas de leniência foram a peça-mestre do enforcement antitruste no mundo todo. A lógica é simples: dois ou mais conspiradores fizeram um cartel; quem entregar primeiro escapa da multa. Cada conspirador olha para o outro, calcula que ele pode entregá-lo a qualquer momento, e corre para a delação. O cartel **se denuncia sozinho** — é a beleza do desenho.
+Por quase trinta anos, programas de leniência foram a peça-mestre do enforcement antitruste. A lógica é simples: dois ou mais conspiradores fizeram um cartel; quem entregar primeiro escapa da multa. **O cartel se denuncia sozinho** — é a beleza do desenho.
 
-Mas o abuso de mercado digital costuma ter **uma única empresa**. A *self-preferencing* do Google, o *anti-steering* da Apple, o *vesting* exclusivo do iFood, o *killer acquisition* da Meta. Nenhum desses casos tem uma segunda empresa cúmplice para delatar — a conduta é executada pela própria firma dominante, pelos seus próprios times.
+Mas o abuso de mercado digital costuma ter **uma única empresa**. *Self-preferencing* do Google, *anti-steering* da Apple, exclusividade do iFood, *killer acquisition* da Meta. Não há segunda firma cúmplice para delatar; a conduta é executada pela própria firma dominante, pelos seus próprios times.
 
-A informação existe. Está nos *commits* do engenheiro que codificou o algoritmo de ranking. Está nas *slides* da reunião onde o gerente comercial impôs a exclusividade. Está no *deck* do *corp dev* que comprou a startup-ameaça. Mas essa informação não circula porque os incentivos individuais estão errados — o trabalhador que fala arrisca o emprego, a carreira, a tranquilidade, e ganha o quê em troca? Nada de previsível, pelo menos no Brasil.
+A informação existe — nos *commits* do engenheiro, nas *slides* da reunião comercial, no *deck* do *corp dev*. Mas ela não circula. Pelo Brasil de hoje, o trabalhador que fala arrisca emprego, carreira, tranquilidade, e ganha **nada de previsível** em troca.
 
 <div class="pull-quote" markdown>
 A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
 </div>
 
-## O macroconceito: Leniência Condicionada à Massa Crítica (LCMC)
+## A resposta deste projeto: LCMC
 
-Em mercados digitais com **moat** (efeitos de rede, dados acumulados, *switching costs*, integração vertical), a cumplicidade existe — mas é **intra-firma**, entre o engenheiro, o produto, o jurídico, o corp dev. A inovação do mecanismo proposto é simples de enunciar:
+Em mercados digitais com **moat**, a cumplicidade existe — mas é **intra-firma**, entre engenharia, produto, jurídico, *corp dev*. A proposta deste projeto, em uma frase:
 
-> O atenuante do TCC (Art. 12 da Res. CADE 21/2018) é concedido **se e somente se** a firma tiver, durante a investigação, recebido cooperação interna de ao menos uma fração `q_min` de seus funcionários, dentro de uma janela temporal `Δt`. O desconto efetivo é função decrescente da posição da firma na fila de leniência inter-firma; a recompensa de cada trabalhador é função decrescente da sua posição na fila de cooperação intra-firma.
+!!! tip "Leniência Condicionada à Massa Crítica (LCMC)"
 
-Em uma frase: **a corrida que a leniência clássica não consegue criar em abuso unilateral, a LCMC cria *dentro* da firma** — e acopla a uma segunda corrida entre firmas, calibrando ambas pelo gradiente empírico que o CADE já pratica (Saito 2021: 1ª compromissária ganha 43,43% de desconto, 2ª ganha 34,51%, 3ª ganha 20,22%).
+    O atenuante regulatório (Art. 12 da Res. CADE 21/2018; analogia LAC Art. 7º VII-VIII) é concedido **se e somente se** a firma tiver recebido cooperação interna de ao menos uma fração `q_min` de seus funcionários, dentro de uma janela `Δt`.
 
-O WaaS é a forma operacional da LCMC. As páginas seguintes detalham o desenho e a aritmética.
+A LCMC é **princípio regulatório**, não instrumento. Diz *o que* deve ser reconhecido como atenuante — cooperação interna de massa crítica — sem prescrever *como* essa cooperação é remunerada (se é).
 
-## A oportunidade brasileira está dentro de uma regra que já existe
+## LCMC e WaaS são coisas diferentes
 
-A maior parte do trabalho institucional para este projeto **já está feita** — só não foi conectada nestes termos.
+Esta distinção é a inovação editorial deste projeto, e ela costuma ser ignorada quando alguém confunde "LCMC" com "pagar denunciante". Não são equivalentes:
 
-O **Art. 12 da Resolução CADE nº 21/2018** autoriza considerar o ressarcimento das vítimas como circunstância atenuante no cálculo da contribuição pecuniária do Termo de Compromisso de Cessação (TCC). A jurisprudência interna do CADE entende esse ressarcimento como uma redução real e quantificável da multa que a empresa teria de pagar.
+| Configuração | LCMC ativo? | Trabalhador recebe pagamento? | Como o regulador identifica |
+|---|---|---|---|
+| **LCMC sem instrumento monetário** | Sim | Não | Reconhecimento dogmático puro (analogia LAC). Funcionários cooperam por norma; firma ganha atenuante por ter substrato cooperativo. |
+| **LCMC + WaaS (recompensa via TCC)** | Sim | Sim, pela firma | Funcionários cooperam por incentivo monetário + norma; firma paga e ganha atenuante. |
+| **LCMC + Hirschman (vesting acelerado)** | Sim | Sim, via equity | Cláusula contratual padrão dispara vesting ao gatilho de ação coletiva. Custo crível de êxodo dissuade preventivamente. |
+| **LCMC + crédito tributário** | Sim | Sim, pelo Estado | Estado financia o trabalhador por renúncia fiscal (Cᵩ; R22 stub). |
+| **LCMC + leniência criminal individual** | Sim | Não (imunidade) | Estado oferece não-persecução penal ao partícipe cooperador (Cₚ; R23 stub). |
+| **WaaS sem LCMC** | Não | Sim | Recompensa monetária pulverizada — cada denúncia individual. Sem gatilho coletivo. **Modelo histórico pré-LCMC; é o que o projeto questiona.** |
 
-A hipótese deste projeto é direta: **a recompensa paga pela empresa aos seus denunciantes internos pode ser re-caracterizada como ressarcimento extrajudicial sob o Art. 12**. Se for, gera o atenuante. Se o atenuante for grande o suficiente, **a empresa prefere pagar a recompensa a esconder a infração** — porque o desconto que ela ganha no TCC é maior do que o cheque que assina para os denunciantes.
+O **WaaS é um instrumento** — apenas um dos cinco que internalizam o capital social organizacional (Coleman 1990) que produz a cooperação. O Ato 2 detalha cada um. A página [Bem coletivo](bem_publico.md) é o anexo conceitual.
 
-Esta re-caracterização não é pacífica — ela é a charneira controvertida do mecanismo, e a página de [Limitações](limitacoes.md) é honesta sobre isso. Mas é uma porta institucional **que já existe**, sem precisar passar pelo Congresso.
+## A figura central do projeto
 
-## Três cenários, do conservador ao ambicioso
+A figura abaixo é a **saída literal** de uma execução do modelo computacional. Não é estilizada — vem do `WaaSModel.executar()`, *seed* 11, regimes A/B/C lado a lado.
 
-## Quatro instrumentos para internalizar o mesmo bem
+<figure markdown>
+  ![Dissuasão endógena e bem-estar — 3 regimes ao longo de 40 trimestres](img/03_dissuasao_bem_estar.png){ .figura-empirica }
+  <figcaption>
+    <strong>(A)</strong> Violadoras ativas ao longo do tempo. Regime A (cinza) cresce e estabiliza alto;
+    regimes B/C (verde/roxo) caem a zero em ~17 tiques. <strong>(B)</strong> Bem-estar social agregado.
+    ΔW (B sobre A) = +1363%. <br><br>
+    <em>Leitura sob LCMC:</em> a cascata de cooperação interna que faz B/C funcionarem dispara antes
+    de qualquer firma decidir pagar. O instrumento WaaS está ativo nas curvas verdes e roxas, mas o
+    fenômeno medido (queda de violadoras) é a propagação Schelling de detecção percebida, não o
+    pagamento em si.
+  </figcaption>
+</figure>
 
-Sob o reframe, o WaaS não é "a reforma" — é **um instrumento entre vários** de internalização do capital social organizacional que produz a cooperação interna. Os quatro instrumentos coexistem no modelo (alguns ainda como stubs declarativos; cada um exige reserva constitucional distinta):
+## Reproduzir esta figura em três comandos
 
-<div class="grid-instrumentos" markdown>
+Toda a página acima é gerada por código aberto sob CC BY-SA 4.0. O leitor pode reproduzir a figura central em três passos:
 
-- <span class="chip-instrumento waas">WaaS</span> **Recompensa via TCC**
-  A firma paga o denunciante; o pagamento é re-caracterizado como ressarcimento sob Art. 12 da Res. 21/2018. Cabe em **Regime B** (Resolução) ou **C** (Lei). Implementado.
+```bash
+# 1. Clonar e instalar
+git clone https://github.com/freirelucas/waas-antitrust.git
+cd waas-antitrust && pip install -e ".[dev]"
 
-- <span class="chip-instrumento">Hirschman</span> **Vesting acelerado**
-  Cláusula contratual padrão que acelera vesting de equity em gatilho de ação coletiva. Custo de êxodo crível pré-denúncia. Exige **Cₜ trabalhista** (Art. 22 I CF). Implementado.
+# 2. Rodar a varredura nos três regimes (60 segundos)
+python scripts/gerar_figura_dissuasao.py
 
-- <span class="chip-instrumento">Tributário</span> **Crédito tributário**
-  O Estado financia o denunciante por renúncia fiscal. Exige **Cᵩ tributária** (Art. 146 LC + LRF). Stub declarativo; R22.
+# 3. Saída em figuras/03_dissuasao_bem_estar.png
+```
 
-- <span class="chip-instrumento">Criminal</span> **Leniência criminal individual**
-  Redução do risco de tipificação como partícipe; análogo limitado ao Art. 86. Exige **Cₚ penal** (Art. 5º XXXIX CF). Stub declarativo; R23.
+Para inspecionar o estado interno do modelo de forma direta:
 
-</div>
+```python
+from waas_antitrust.model import WaaSModel, WaaSParametros
 
-| Regime | O denunciante interno é recompensado? | Como seria implementado |
-|--------|---------------------------------------|-------------------------|
-| **A** — hoje | Não | situação atual: sem canal de incentivo individual |
-| **B** — via Resolução | Sim (WaaS) | nova resolução CADE complementar à 21/2018, **sem mudar a lei** |
-| **C** — via Lei | Sim (WaaS + Hirschman) | extensão da Lei 13.608/2018 ao antitruste — Cₜ ordinária |
-| **C+LCMC** — via Lei + corrida | Sim, **com posição na fila** | C + leniência condicionada a `q_min` interno + decaimento Saito |
+# Regime B padrão
+m = WaaSModel(WaaSParametros(n_empresas=20, n_tiques=40, seed=11, regime="B"))
+df = m.executar()
 
-O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é a versão jurídicamente mais robusta — também simulada, e mais defensável em juízo. O **Regime A** é o contrafactual: o que continua acontecendo se nada mudar. O **C+LCMC** é a proposta normativa mais ambiciosa — o macroconceito completo, ativo no cenário `cenario_corrida_leniencia`. Os instrumentos **Tributário** e **Criminal** seriam outros sub-regimes (Cᵩ e Cₚ); ver [Bem coletivo](bem_publico.md).
+# Reporters macro (DataFrame com 40 linhas)
+print(df[["n_sinais", "n_empresas_notif", "n_violadoras_ativas",
+          "valor_dissuasao_difusa_acum", "capital_social_residual",
+          "bem_estar"]].tail())
 
-## Por onde seguir nesta história
+# Inspeção micro: arquétipos sorteados, papéis, posições na fila intra-firma
+for t in m.trabalhadores_por_empresa[0][:5]:
+    print(f"  {t.arquetipo:13s} · papel={t.papel:9s} · sinalizou={t.sinaliza_agora}")
+```
+
+A simulação produz 288 reporters em 40 colunas de pandas. Tudo é inspecionável; nada está escondido em variáveis privadas opacas. Ver [Modelagem multiagente](modelagem_multiagente.md) para a anatomia das três classes (`TrabalhadorAgent`, `EmpresaAgent`, `AutoridadeAgent`).
+
+## Três regimes jurídicos, cinco instrumentos
+
+A LCMC pode ser implementada em três regimes regulatórios distintos. Os instrumentos disponíveis dependem do regime — e cada instrumento exige reserva constitucional diferente (Art. 22 I, Art. 146 LC, Art. 5º XXXIX).
+
+| Regime | Como implementado | Instrumentos disponíveis |
+|---|---|---|
+| **A** — status quo | Sem LCMC | Nenhum |
+| **B** — Resolução CADE | Resolução complementar à 21/2018, **sem mudar a lei** | WaaS (recompensa via TCC sob Art. 12) |
+| **C** — Lei ordinária federal | Extensão da Lei 13.608/2018 ao antitruste | WaaS + Hirschman (vesting acelerado) |
+| **Cᵩ** — LC tributária | Lei complementar Art. 146 + LRF Art. 14 | + Crédito tributário ao denunciante (R22 stub) |
+| **Cₚ** — Lei penal estrita | Reserva penal Art. 5º XXXIX | + Leniência criminal individual (R23 stub) |
+
+O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é mais robusto juridicamente mas exige Congresso — e a [viabilidade política 2024-2027](viabilidade_regime_c.md) é incerta. Os sub-regimes Cᵩ e Cₚ são exploratórios.
+
+## Por onde seguir
 
 <div class="grid cards" markdown>
 
--   **Sou cético — me convença**
+-   **Quero entender o mecanismo**
 
-    A pergunta direta — "mas o que impede a empresa de pegar o desconto sem pagar?" — respondida com fórmulas, exemplo numérico em reais e três vetores de quebra modelados.
+    Como a LCMC funciona, quando o WaaS é necessário, e quando massa crítica sozinha basta. Aritmética em reais (R$ 1 bi, R$ 15 mi de incremento) + três vetores de quebra modelados.
 
-    [Ato 2: Como o mecanismo se sustenta →](mecanismo.md)
+    [Ato 2: O mecanismo →](mecanismo.md)
 
 -   **Quero ver os resultados**
 
-    O que a simulação de 20 firmas e 40 trimestres mostra sob cada regime. Figuras, médias, intervalos de confiança 95% sobre múltiplas seeds.
+    Saída literal do modelo em 20 firmas × 40 trimestres × 3 regimes. CI 95% bootstrap multi-seed. Direção da Proposição 3 não cruza zero.
 
-    [Ato 3: Resultados →](resultados.md)
+    [Ato 3: O teste →](resultados.md)
 
--   **Sou jurista / formulador(a)**
+-   **Sou jurista**
 
-    Como o mecanismo caberia nas Leis 12.529 e 13.608, na Resolução 21/2018, e onde fica a fragilidade da reserva de lei (Art. 22, I, CF).
+    Como cada instrumento cabe nas Leis 12.529/2011 + 13.608/2018 + Res. 21/2018. Decomposição do Regime C em Cₜ/Cᵩ/Cₚ. Lei 12.846/2013 (LAC) Art. 7º VII-VIII como precedente brasileiro.
 
     [Análise institucional →](INSTITUTIONAL.md)
 
--   **Quero contribuir / discutir**
+-   **Sou sociólogo ou cientista político**
 
-    O modelo é código aberto sob CC BY-SA 4.0. Há pendências de calibração e cinco decisões normativas em aberto. Convido a discussão.
+    LCMC sob lente Coleman 1990 (capital social com risco de erosão endógena) e Stigler-Carpenter-Moss (captura no processamento, não no gatilho). R21-R26 abertos.
 
-    [Como usar](uso.md) · [Backlog](DECISIONS.md) · [Crítica x10](critica_x10.md)
+    [Bem coletivo →](bem_publico.md) · [Viabilidade Regime C →](viabilidade_regime_c.md)
+
+-   **Quero rodar o código**
+
+    Instalação em 3 comandos, demo no Colab, 288 testes verdes, ruff/black/mkdocs-strict garantidos.
+
+    [Como usar →](uso.md) · [Modelagem multiagente →](modelagem_multiagente.md)
+
+-   **Quero contestar**
+
+    Crítica x10 com 10 personas (incluindo sociólogo e cientista político na v2). Plano de melhorias categorizado. Backlog com 26 R-items abertos.
+
+    [Crítica x10 v2 →](critica_x10_v2.md) · [Backlog →](DECISIONS.md)
 
 </div>
 
 <div class="ato-fim" markdown>
-**Fim do Ato 1.** A pergunta está posta: existe um desenho jurídico-econômico que faça a empresa **escolher** ser denunciada? A resposta detalhada, com aritmética e nomes de variáveis, está no próximo ato.
+**Fim do Ato 1.** A tese está posta: a cooperação interna é o bem coletivo; LCMC é o princípio; existem cinco instrumentos para internalizá-la, e o WaaS é apenas um. O Ato 2 destrincha cada um com aritmética em reais e os vetores onde o argumento pode quebrar.
 
-[Ato 2: Como o mecanismo se sustenta →](mecanismo.md)
+[Ato 2: O mecanismo →](mecanismo.md)
 </div>
 
 ---
@@ -119,9 +162,9 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 [![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/)
+[![288 testes](https://img.shields.io/badge/pytest-288%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions)
 [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)
 
 Este repositório acompanha um **artigo acadêmico em elaboração** —
-*Rescaling Leniency Programs for Digital Markets: A Whistleblower-as-a-Service Mechanism*. Não citar como resultado final. Veja [Citação](#) no
-`CITATION.cff` para metadados estruturados (Zenodo via release futura).
+*Critical Mass as a Quasi-Public Good in Antitrust Enforcement of Digital Markets*. Não citar como resultado final. Veja `CITATION.cff` para metadados estruturados (Zenodo via release futura).
 </small>

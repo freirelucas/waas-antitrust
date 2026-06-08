@@ -1,58 +1,105 @@
 <span class="ato-chip">Ato 2 de 5 · A hipótese</span>
 
-# Como o mecanismo se sustenta
+# O mecanismo, em três camadas
 
-<p class="sublinha-tese"><em>A cooperação interna é o que precisa emergir; o instrumento de pagamento à firma é só o que torna essa emergência economicamente racional.</em></p>
+<p class="sublinha-tese"><em>Primeiro o princípio (LCMC). Depois os instrumentos (cinco, dos quais o WaaS é um). Por último a aritmética da IC-F* — que só importa se o instrumento escolhido for monetário.</em></p>
 
-A pergunta natural — e a primeira que aparece quando alguém ouve o desenho do WaaS pela primeira vez — é uma versão mais educada de **"você é ingênuo?"**:
+Esta página é organizada de fora para dentro: do princípio regulatório (LCMC) → para os instrumentos disponíveis → para o detalhe matemático de cada um. A ordem importa: muita gente lê o WaaS como se ele *fosse* a LCMC. Não é. O Ato 1 separou os dois conceitos. Aqui formalizamos.
+
+## Camada 1 — LCMC como princípio (não-instrumental)
+
+A **Leniência Condicionada à Massa Crítica** (LCMC) diz uma coisa só:
+
+!!! tip "Princípio LCMC"
+
+    O atenuante regulatório é concedido **se e somente se** a firma tiver recebido cooperação interna de ao menos uma fração `q_min` de seus funcionários, dentro de uma janela temporal `Δt`. Sem `q_min × n_trabalhadores` cooperadores, o atenuante é zero, mesmo que a firma deseje pagá-los.
+
+A LCMC é **agnóstica** sobre como a cooperação interna é remunerada. Pode haver pagamento, pode não haver. O que ela exige é o **substrato cooperativo observável**. Sob a ancoragem dogmática brasileira (Lei 9.784/99 + LAC Art. 7º VII-VIII), o regulador interpreta a cooperação interna documentada como prova qualificada de "interesse público em detecção e cessação" — e calibra a contribuição pecuniária do TCC contra isso.
+
+Em código, esta camada está em `model.py` (Phase P2.5) sob a flag `modo_corrida=True`:
+
+```python
+# src/waas_antitrust/model.py — fase P2.5 (entre massa crítica e IC-F*)
+if self.modo_corrida:
+    for fid, _ws in self.trabalhadores_por_empresa.items():
+        empresa = self.empresas[fid]
+        if empresa.massa_critica_interna_satisfeita:
+            continue
+        fila_interna = self.filas_internas[fid]
+        if massa_critica_interna_atingida(
+            n_cooperadores=len(fila_interna),
+            n_trabalhadores=len(_ws),
+            q_min=self.q_min_cooperacao_interna,
+        ):
+            empresa.massa_critica_interna_satisfeita = True
+            empresa.posicao_fila_leniencia = self.fila_leniencia.registrar(fid, self.tique)
+```
+
+A função `massa_critica_interna_atingida` é pura — recebe três inteiros/floats e devolve um booleano. Nada de pagamento entra na conta. O atenuante depende SÓ disso.
+
+### A peça empírica: gradiente Saito (2021)
+
+Quando há recompensa (instrumento monetário ativo), a LCMC distribui o atenuante por posição na fila usando o **gradiente empírico Saito**, extraído de 349 TCCs CADE 2012-2019:
+
+| Posição na fila inter-firma | Desconto $D_{\text{Saito}}$ |
+|---|---|
+| 1ª | 43,43% |
+| 2ª | 34,51% |
+| 3ª | 20,22% |
+| 4ª | 17,99% |
+| 5ª | 16,77% |
+| ≥ 9ª | 15,00% (piso Tribunal) |
+
+O mesmo gradiente, normalizado por $D_{\text{Saito}}(1) = 43{,}43\%$, calibra a fila intra-firma sob `modo_corrida=True` — quem coopera em posição 1 dentro da firma recebe 100% da recompensa; em posição 2, 79,5%; em posição 3, 46,6%. A escolha *não é arbitrária*: o mesmo dado empírico do CADE calibra duas escalas.
+
+## Camada 2 — Os cinco instrumentos de internalização
+
+Sob a LCMC, o **substrato cooperativo** é o que importa. Mas a cooperação custa caro para cada trabalhador individualmente — risco de represália, custo legal, desvio da carreira. Cinco instrumentos podem compensar esse custo (cada um com reserva constitucional diferente):
+
+<div class="grid-instrumentos" markdown>
+
+- <span class="chip-instrumento waas">WaaS</span> **Firma → trabalhador (recompensa via TCC)**
+  Firma paga; pagamento entra como atenuante. Aplicação direta da IC-F\* (Camada 3 abaixo). Reserva Art. 22 I; regime B ou C.
+
+- <span class="chip-instrumento">Hirschman</span> **Firma → trabalhador (vesting acelerado)**
+  Cláusula contratual padrão; ameaça crível de êxodo coletivo dissuade preventivamente em P0 e amplia IC-F\* em P3. Reserva Art. 22 I; regime Cₜ.
+
+- <span class="chip-instrumento">Tributário</span> **Estado → trabalhador (renúncia fiscal)**
+  Análogo limitado ao IRS Whistleblower (26 U.S.C. §7623). Reserva LC + LRF; regime Cᵩ. Stub declarativo (R22).
+
+- <span class="chip-instrumento">Criminal</span> **Estado → trabalhador (imunidade penal)**
+  Não-persecução do partícipe cooperador. Reserva Art. 5º XXXIX (penal estrita); regime Cₚ. Stub declarativo (R23).
+
+- <span class="chip-instrumento">Norma</span> **Nenhum pagamento — só reconhecimento**
+  LCMC pura. O substrato cooperativo é internalizado por dever de ofício (boa fé Lei 9.784) sem instrumento monetário. Cabe em qualquer regime, mas é o caso conservador — testado pelo cenário `apenas_massa_critica_observavel`.
+
+</div>
+
+O catálogo declarativo dos 4 instrumentos monetários (mais a opção sem instrumento) está em `src/waas_antitrust/instrumentos.py`:
+
+```python
+from waas_antitrust.instrumentos import INSTRUMENTOS, instrumentos_por_regime
+
+# Quais instrumentos cabem em cada regime?
+for nome in ("A", "B", "C", "Cᵩ", "Cₚ"):
+    disponiveis = instrumentos_por_regime(nome)
+    print(f"  Regime {nome:3s}: {[i.nome for i in disponiveis]}")
+# A : []
+# B : ['recompensa_tcc_waas']
+# C : ['recompensa_tcc_waas', 'vesting_acelerado_hirschman']
+# Cᵩ: + 'credito_tributario_denunciante'
+# Cₚ: + 'leniencia_criminal_individual'
+```
+
+## Camada 3 — A aritmética da IC-F\* (instrumento WaaS)
+
+A próxima seção, em prosa primeiro, com aritmética em seguida, é específica do **instrumento WaaS** — o único que envolve a firma pagando o trabalhador diretamente. Para os outros instrumentos, a aritmética é diferente (Hirschman tem `custo_exodo_esperado` em vez de `W`, por exemplo).
+
+A pergunta natural, e a primeira que aparece quando alguém ouve o WaaS pela primeira vez, é uma versão mais educada de **"você é ingênuo?"**:
 
 > Basta a empresa se recusar a pagar os denunciantes e ainda assim pegar o desconto para tudo ruir, não?
 
-Esta página responde de frente. Em prosa primeiro, com aritmética em seguida, e com os três pontos onde o mecanismo pode realmente quebrar mapeados — porque o argumento honesto não é "isto sempre funciona", e sim **"isto funciona sob estas condições, falha sob estas outras, e ambas estão no modelo"**.
-
-## O que está realmente em jogo: cooperação interna como capital social
-
-Antes da aritmética da IC-F\*, vale dizer o que o mecanismo *não* é. O WaaS **não** é primariamente um esquema de incentivo à firma. A firma pagar denunciantes é **consequência**, não causa. O que está no centro é uma pergunta diferente:
-
-> Em mercados digitais com moat, **a conduta anticompetitiva é unilateral**. O conluio que existe vive **dentro do organograma** — entre o engenheiro, o produto, o comercial, o jurídico. Como tornar a cooperação interna desses agentes **observável institucionalmente**, dado que cada um deles paga um custo pessoal alto por falar?
-
-A massa crítica de cooperação interna é, na linguagem de **Coleman (1990,
-*Foundations of Social Theory*, cap. 12)**, **capital social organizacional**:
-bem coletivo produzido como subproduto de relações de obrigação entre pessoas
-que se conhecem e dependem umas das outras. Sem WaaS, esse capital existe mas
-fica **invisível ao regulador** — ninguém tem incentivo para externalizá-lo.
-Com WaaS, o regulador o **reconhece** como atenuante (sob o Art. 12 da Res.
-21/2018, segundo o reframe juridicamente discreto: "interesse público em
-detecção e cessação"; Lei 9.784/99 + LAC Art. 7º VII-VIII).
-
-A IC-F\* da firma, então, é **um dos instrumentos** (entre quatro: WaaS,
-vesting Hirschman, crédito tributário, leniência criminal — ver
-[bem coletivo](bem_publico.md)) que tornam essa internalização
-economicamente racional. Mas o **bem que se internaliza não é a firma
-paga** — é a cooperação que dispara antes do pagamento.
-
-Se isso parecer abstrato, a aritmética que segue ancora.
-
-## O macroconceito: Leniência Condicionada à Massa Crítica (LCMC)
-
-Antes da aritmética, o nome do que está em jogo. O mecanismo aqui proposto — em todas as suas versões e variantes — é uma **Leniência Condicionada à Massa Crítica interna**, abreviada **LCMC**. O conceito unifica três peças que, sozinhas, já existem na literatura ou na prática brasileira, mas que nunca foram combinadas:
-
-1. **Leniência clássica** (Spagnolo 2004; Motta-Polo 2003) entrega benefício à *primeira* a delatar — mas exige cúmplices entre firmas. Em mercados digitais com **moat** (efeitos de rede, dados acumulados, *switching costs*), o conluio que existe é **unilateral, intra-firma** — entre o engenheiro que codifica o algoritmo, o gerente de produto que aprova, o jurídico que valida. Não há segunda firma para entregar.
-2. **Massa crítica interna** (Granovetter 1978; Centola-Macy 2007; Morris-Shin 1998 em jogos globais) define um limiar de cooperação coletiva abaixo do qual ninguém fala e acima do qual a cascata é inevitável. Já era a peça que fazia o WaaS "morder" — sem `k` denunciantes, nada acontece.
-3. **Posição na fila do CADE** (Saito 2021; Guia CADE TCC 2017): a primeira compromissária recebe 43,43% de desconto sobre a sanção; a segunda 34,51%; a terceira 20,22%. **Já é gradiente empírico real**, extraído de 349 TCCs CADE 2012-2019.
-
-A LCMC combina as três: o atenuante do Art. 12 da Res. 21/2018 só é concedido **se** a firma receber cooperação de uma fração mínima de seus funcionários **dentro de** uma janela temporal — e, recebendo, ganha posição na fila inter-firma. Internamente, o mesmo gradiente Saito redistribui a recompensa entre os trabalhadores cooperadores.
-
-**Duas corridas acopladas, calibradas pelo mesmo dado empírico:**
-
-| Corrida | Quem corre | Quem mede a fila | Calibração |
-|---|---|---|---|
-| **Intra-firma** | trabalhadores cooperam internamente | `FilaInternaCooperacao` por firma | $f_W(k) = D_\text{Saito}(k)/D_\text{Saito}(1)$ |
-| **Inter-firma** | firmas formam massa crítica primeiro | `FilaLeniencia` global | $D_\text{total}(\text{pos}) = D_\text{Saito}(\text{pos}) \cdot S$ |
-
-A elegância: o **mesmo gradiente empírico do CADE** (cartel, fila clássica) calibra duas escalas distintas (firma na fila inter-firma; trabalhador na fila intra-firma). O autor não escolhe $f_W$ arbitrariamente — usa ancoragem normativa. Sob `WaaSParametros.modo_corrida = True`, o módulo `corrida.py` consome o gradiente em ambos os lados.
-
-A LCMC **não substitui** o desenho histórico do WaaS — é o *macroconceito* sob o qual o WaaS é uma forma. Sob `modo_corrida = False` (default), o caminho histórico vale; sob `modo_corrida = True`, o cenário `cenario_corrida_leniencia` em `cenarios.py` ativa a versão completa.
+A resposta está nas três subseções que seguem: a IC-F\* em prosa, em fórmula, e em exemplo numérico (R$ 1 bi de receita). Com três pontos onde o argumento pode quebrar.
 
 ## A escolha da firma, em uma frase
 
@@ -81,6 +128,43 @@ W < D_{\text{extra}} \quad \text{onde} \quad D_{\text{extra}} = D_{\text{total}}
 $$
 
 A versão simplificada $W < D_{\text{total}}$ — usada nos artigos teóricos de leniência clássica — só funciona se assumirmos $D_{\text{base}} = 0$. Quando o TCC clássico **já** dá desconto, ignorar isso é overclaim. O modelo computacional incorpora a forma correta (parâmetro `D_disc_base_tcc` em `WaaSParametros`).
+
+### A IC-F\* no código
+
+A função que decide se a firma paga está em `model.py` (Phase P3). Em pseudocódigo (omitindo a camada Hirschman e a corrida LCMC):
+
+```python
+# src/waas_antitrust/model.py — fase P3, decisão da firma sob instrumento WaaS
+S = sancao_esperada(empresa)                       # sanção cheia (R$)
+D_total = self.params.D_disc * S                   # desconto TCC-WaaS
+D_base = self.params.D_disc_base_tcc * S           # desconto TCC clássico (Art. 85)
+D_extra = max(0.0, D_total - D_base)               # incremento que o WaaS oferece
+
+W_total = sum(self._W_esperado(t.w_a) for t in disparados)  # recompensa total
+
+# IC-F* simplificada (default; modo histórico):
+empresa.pagou_denunciantes = D_extra > W_total
+
+# IC-F* ampliada por Hirschman (R07):
+custo_exodo = hirschman.custo_exodo_esperado(...)
+empresa.pagou_denunciantes = (D_extra + custo_exodo) > W_total
+```
+
+Sob `modo_corrida=True` (LCMC + WaaS), a fórmula muda — $D_{\text{total}}$ deixa de ser constante e passa a depender da posição da firma na fila inter-firma:
+
+```python
+# src/waas_antitrust/model.py — fase P3 sob modo_corrida
+from waas_antitrust.corrida import decaimento_D, decaimento_W
+
+pos_firma = empresa.posicao_fila_leniencia
+d_frac = decaimento_D(pos_firma, perfil="saito")  # 1ª=0,4343; 2ª=0,3451; ...
+D_total = d_frac * S
+
+W_total = sum(decaimento_W(t.posicao_corrida_interna, W_base, "saito")
+              for t in disparados)
+```
+
+A diferença entre o caminho histórico e o caminho LCMC fica explícita: no histórico, todo trabalhador recebe `W_base`; sob LCMC, a recompensa decai com a posição na fila intra-firma, e o desconto da firma decai com a posição inter-firma. **Duas filas, um gradiente empírico**.
 
 ## Uma firma, R$ 1 bilhão de receita, 30 minutos com a calculadora
 
