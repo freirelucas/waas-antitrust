@@ -54,6 +54,19 @@ def test_viz_stubs_levantam_not_implemented(modulo):
         mod.gerar_figura()
 
 
+def test_painel_macro_gera_figura():
+    """`painel_macro.gerar_figura` retorna (Figure, [4 Axes]) do painel 2×2.
+    Tela de simulação macro: detecção global, massa crítica, bem-estar,
+    capital social residual."""
+    from waas_antitrust.viz import painel_macro
+
+    aplicar_estilo()
+    fig, axes = painel_macro.gerar_figura()
+    assert fig is not None
+    assert len(axes) == 4
+    plt.close(fig)
+
+
 def test_erosao_gera_figura():
     """`erosao.gerar_figura` retorna (Figure, Axes) com 3 trajetórias de
     `capital_social_residual` (alpha=0/0.2/0.5). Implementada no Commit 9

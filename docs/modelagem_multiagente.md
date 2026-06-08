@@ -319,6 +319,21 @@ são *namedtuple-like* públicos. Convenção do projeto: **inspeção
 direta** é preferível a métodos getter; agentes são objetos de dados +
 uma decisão.
 
+## Tela de simulação — painel macro
+
+O módulo `viz/painel_macro.py` produz uma tela 2×2 com as quatro
+trajetórias-chave do sistema:
+
+![Painel macro 2×2. **(a)** detecção percebida global `p_perc` (sinal Schelling — sobe com cada notificação). **(b)** firmas que atingiram massa crítica interna ao longo do tempo (LCMC R20). **(c)** bem-estar substantivo `-(dano + β·FP + γ·custo + δ_ex·exodo − δ_mu·multa)/w_a`. **(d)** capital social residual sob risco de erosão Coleman (R26, com `alpha_erosao=0.2`).](img/06_painel_macro.png){ .figura-empirica }
+
+A leitura sob reframe: as quatro trajetórias contam a história inteira do
+mecanismo em uma única visualização. (a) e (b) são o **lado positivo** —
+detecção sobe, massa crítica forma. (c) é o **saldo agregado**. (d) é a
+**fragilidade Coleman** — quanto do substrato de capital social ainda
+existe ao final do horizonte. Quando alpha_erosao é alto, (d) decresce
+abaixo de 0,5 e (b) eventualmente para de crescer — a Proposição 5
+candidata se materializa visualmente.
+
 ## Onde olhar a seguir
 
 - [Ato 2 (mecanismo)](mecanismo.md) — a intuição econômica das ICs e
