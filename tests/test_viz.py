@@ -54,6 +54,42 @@ def test_viz_stubs_levantam_not_implemented(modulo):
         mod.gerar_figura()
 
 
+def test_painel_micro_gera_figura():
+    """`painel_micro.gerar_figura(modelo, fid)` retorna painel 2×2 da firma."""
+    from waas_antitrust.model import WaaSModel, WaaSParametros
+    from waas_antitrust.viz import painel_micro
+
+    aplicar_estilo()
+    m = WaaSModel(
+        WaaSParametros(
+            n_empresas=3,
+            tam_medio_empresa=50,
+            n_tiques=3,
+            seed=11,
+            regime="B",
+            modo_corrida=True,
+        )
+    )
+    m.executar()
+    fig, axes = painel_micro.gerar_figura(m, fid=0)
+    assert fig is not None
+    assert len(axes) == 4
+    plt.close(fig)
+
+
+def test_painel_micro_firma_invalida_levanta():
+    """`gerar_figura` levanta ValueError se firma não existe."""
+    import pytest
+
+    from waas_antitrust.model import WaaSModel, WaaSParametros
+    from waas_antitrust.viz import painel_micro
+
+    m = WaaSModel(WaaSParametros(n_empresas=2, tam_medio_empresa=30, n_tiques=1, seed=7))
+    m.executar()
+    with pytest.raises(ValueError, match="firma 999"):
+        painel_micro.gerar_figura(m, fid=999)
+
+
 def test_painel_macro_gera_figura():
     """`painel_macro.gerar_figura` retorna (Figure, [4 Axes]) do painel 2×2.
     Tela de simulação macro: detecção global, massa crítica, bem-estar,

@@ -334,6 +334,18 @@ existe ao final do horizonte. Quando alpha_erosao é alto, (d) decresce
 abaixo de 0,5 e (b) eventualmente para de crescer — a Proposição 5
 candidata se materializa visualmente.
 
+## Tela de simulação — painel micro
+
+Complementar ao macro: o módulo `viz/painel_micro.py` foca em UMA firma
+específica e mostra o que acontece dentro dela.
+
+![Painel micro 2×2 da firma 0. **(a)** trabalhadores que sinalizaram por arquétipo (ético, imitativo, racional, aleatório, fairminded, oportunista). **(b)** trabalhadores que sinalizaram por papel funcional (eng, produto, design, etc.) — observabilidade depende de papel × conduta. **(c)** estado da firma em quatro flags (violadora, notificada, massa crítica interna, TCC assinado). **(d)** fila intra-firma sob LCMC — cada ponto é uma posição de cooperação no tique em que foi registrada.](img/07_painel_micro.png){ .figura-empirica }
+
+Útil para depurar **por que** uma firma específica forma (ou não) massa
+crítica: as distribuições de arquétipo e papel em (a) e (b) explicam,
+junto com a conduta_potencial da firma, se as ICs individuais permitem
+ou não a cascata.
+
 ## Onde olhar a seguir
 
 - [Ato 2 (mecanismo)](mecanismo.md) — a intuição econômica das ICs e
