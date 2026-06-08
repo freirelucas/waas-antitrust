@@ -95,7 +95,74 @@ Esse risco dogmático é a charneira do falsificador **F6** (re-caracterização
 sujeita a validação judicial) e da decisão **D06** (análise dogmática
 detalhada da figura "vítima-empregado", ver `DECISIONS.md`).
 
-## Art. 12 como reconhecimento de interesse público em detecção (reframe v2)
+## Canal de depósito condicional como procedimento administrativo (reframe v3)
+
+!!! tip "Atualização — correção radical (aprendizados_v3.md)"
+
+    A LCMC corretamente compreendida **não** depende da re-caracterização
+    do pagamento como ressarcimento sob Art. 12. Depende apenas de
+    Resolução CADE regulamentando **procedimento de recepção qualificada**
+    de denúncias condicionais (Art. 4º, II e III da Lei 12.529/2011 c/c
+    Lei 9.784/99, Art. 5º e segs.). A § "Art. 12 como reconhecimento de
+    interesse público" abaixo continua relevante para o **instrumento
+    WaaS** (recompensa via TCC pós-instauração), mas NÃO é a base
+    dogmática do canal.
+
+### O que muda na ancoragem jurídica
+
+Sob a versão corrigida do mecanismo, a Resolução CADE proposta tem
+objeto bem mais discreto:
+
+- **Não** cria categoria sancionatória nova (atenuante por bem público).
+- **Não** força re-caracterização finalística controversa de "ressarcimento".
+- **Estrutura** o procedimento de recepção de denúncias: define o
+  formulário, a condição de abertura (`q_min · n` co-depósitos
+  compatíveis dentro de `Δt`), a custódia do escrow, a regra de
+  abertura simultânea, o sigilo até abertura.
+
+Bases legais explícitas:
+
+- **Art. 4º, II e III, Lei 12.529/2011**: o CADE tem atribuição para
+  "decidir sobre a existência de infração à ordem econômica e aplicar
+  as penalidades previstas em lei" (II) e "instaurar processo
+  administrativo, presidir, instruir e julgar" (III). Disso decorre,
+  inferencialmente, a competência para regulamentar **como receber**
+  as denúncias que disparam essa instauração.
+- **Lei 9.784/99**, Art. 5º e Art. 6º: princípios de publicidade,
+  motivação, eficiência e razoabilidade no procedimento administrativo
+  federal. A custódia em escrow é compatível com Art. 24 (sigilo
+  decorrente de interesse público).
+- **Lei 13.608/2018** (com redação Lei 13.964/2019), Art. 4º-B e 4º-C:
+  proteção do denunciante (anonimato), aplicável transversalmente.
+
+O risco F6 (anulação judicial da re-caracterização) **cai materialmente**:
+o que está sob controle judicial é a **regularidade do procedimento**, não
+uma criação de categoria dogmática nova. Há precedente abundante de o
+Judiciário deferir ao regulador discricionariedade procedimental
+(Lei 9.784/99 Art. 2º, parágrafo único, IX, *desvio de finalidade* como
+limite; mas não há desvio aqui — o canal serve à finalidade institucional
+do CADE).
+
+### Instrumentos monetários permanecem com suas bases próprias
+
+Quando o canal abre e o procedimento é instaurado, os instrumentos
+monetários se acoplam **com suas próprias bases legais** — não mais como
+o coração do desenho, mas como acessórios:
+
+- **WaaS (recompensa via TCC)**: re-caracterização sob Art. 12 da Res.
+  21/2018. A § abaixo segue válida para este instrumento, em sua
+  função acessória.
+- **Hirschman**: lei ordinária federal (Cₜ), com gating do R07.
+- **Crédito tributário**: lei complementar Art. 146 (Cᵩ), R22 stub.
+- **Leniência criminal individual**: reserva penal estrita Art. 5º
+  XXXIX (Cₚ), R23 stub.
+
+Cada instrumento pode ser adotado isoladamente ou em conjunto. Nenhum
+é necessário para o canal funcionar.
+
+---
+
+## Art. 12 como reconhecimento de interesse público em detecção (versão v2, agora aplicável só ao instrumento WaaS)
 
 A crítica do Adv A na x10 v2 trouxe correção dogmática material. A
 re-caracterização atual ("recompensa = ressarcimento das vítimas") apoia-se

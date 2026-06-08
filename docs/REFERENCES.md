@@ -31,7 +31,16 @@
 - Granovetter, M. (1978). Threshold models of collective behavior. *American Journal of Sociology* 83(6): 1420–1443.
 - Near, J. P., & Miceli, M. P. (1985). Organizational dissidence: The case of whistle-blowing. *Journal of Business Ethics* 4(1): 1–16. — *base do gradiente 3-níveis primário/adjacente/distal em R08.*
 
-## Coordenação coletiva, capital social e bens coletivos (base do reframe)
+## Information escrows e denúncia condicional (correção radical v3 — base do mecanismo)
+
+- **Ayres, I., & Unkovic, C. (2012).** Information escrows. *Michigan Law Review* 111(2): 145–196. URL: <https://repository.law.umich.edu/mlr/vol111/iss2/2/> — *base teórica do canal de depósito condicional do CADE; depósito de informação revelada sob regra ex-ante por terceiro confiável.*
+- **Callisto** (Project Callisto). <https://www.callisto.org> — *plataforma operacional de denúncia condicional de assédio sexual em campus universitário nos EUA; identidade da vítima é revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem. Paralelo prático direto do canal LCMC.*
+- Mungan, M. C., & Klick, J. (2014). Discounting and criminals' implied risk preferences. *Review of Law & Economics* 10(3): 273–297. **[?]** — *aplicação de escrows em direito penal; relevante para o instrumento "leniência criminal individual" (R23).*
+- Mungan, M. C., & Klick, J. (2016). Identifying criminals' risk preferences. *Indiana Law Journal* 91(3): 791–816. **[?]**
+- **Lei 12.529/2011, Art. 4º, II e III** — atribuições do CADE para "decidir sobre a existência de infração à ordem econômica" e "instaurar processo administrativo, presidir, instruir e julgar". *Base legal direta da Resolução proposta para regulamentar o canal de recepção condicional.*
+- **Lei 9.784/99**, Art. 5º e Art. 6º — princípios do procedimento administrativo federal; Art. 24 — sigilo decorrente de interesse público. Base supletiva para a custódia em escrow.
+
+## Coordenação coletiva, capital social e bens coletivos (leitura analítica secundária)
 
 - **Olson, M. (1965).** *The Logic of Collective Action: Public Goods and the Theory of Groups*. Harvard University Press. — *base do diagnóstico "grupos pequenos sustentam bens coletivos por interesse perceptível e visibilidade mútua"; informa por que massa crítica intra-firma (5-20 cooperadores) sobrevive ao argumento clássico de subprovisão.*
 - **Ostrom, E. (1990).** *Governing the Commons: The Evolution of Institutions for Collective Action*. Cambridge University Press. — *fonte dos 8 design principles de governança de commons; o ODD §"Diagnóstico Ostrom" mostra que o WaaS satisfaz 3 (P1, P4, P5) e não satisfaz 5 (P2, P3, P6, P7, P8) — pendência de pesquisa explícita.*

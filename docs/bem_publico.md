@@ -15,14 +15,47 @@
 Esta página é o **anexo conceitual** do projeto. Ela responde a uma
 pergunta que o leitor curioso faz depois do [Ato 2](mecanismo.md): de
 que tipo de coisa é "massa crítica de cooperação interna" — e por que
-a recompensa via TCC é apenas **um** instrumento de internalização?
+a recompensa via TCC é apenas **um** instrumento incremental?
+
+!!! warning "Atualização — correção radical pós-`aprendizados_v3.md`"
+
+    A leitura "capital social com risco de erosão endógena" (Coleman 1990)
+    abaixo é **moldura analítica secundária** sob a versão corrigida do
+    mecanismo. O **mecanismo central** é o **canal de depósito condicional
+    (information escrow)** operado pelo CADE — Ayres & Unkovic (2012,
+    *Michigan Law Review* 111:145), análogo prático Callisto (callisto.org).
+    O canal resolve Olson 1965 **direto na estrutura** (sub-iniciação
+    eliminada por construção), sem precisar que capital social pré-exista.
+    Ver [aprendizados_v3.md](aprendizados_v3.md) para o detalhamento.
+
+## A leitura primária correta — information escrow (Ayres & Unkovic 2012)
+
+A categoria correta para o mecanismo proposto é **information escrow**: um
+depósito de informação revelada condicionalmente, sob regra estabelecida
+*ex-ante* por um terceiro confiável. Ayres & Unkovic (2012) formalizaram a
+ideia em direito; a aplicação prática mais conhecida é o **Callisto**
+([callisto.org](https://www.callisto.org)), plataforma usada em campus
+universitário para denúncia de assédio sexual: identidade da vítima é
+revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem.
+
+Sob LCMC corrigida, o CADE opera o escrow. O trabalhador deposita uma
+denúncia com cláusula de abertura condicional. As denúncias ficam em
+escrow até `q_min · n` co-depósitos do mesmo setor/firma. Quando o gatilho
+é atingido, todas se abrem simultaneamente.
+
+A vantagem estrutural: o problema clássico de Olson (1965) — sub-iniciação,
+"ninguém quer ser o primeiro" — é resolvido **direto no canal**, sem
+precisar modelar capital social pré-existente, sem precisar dogmática
+constitutiva nova, e sem precisar instrumento monetário.
+
+## Leituras secundárias (úteis como lente, não como mecanismo)
 
 A resposta tem duas camadas, e é importante começar pela segunda — não
 pela primeira.
 
 ![A cooperação interna emerge por cascata. A curva mostra a fração cumulativa de trabalhadores cooperando ao longo de 40 trimestres; quando ela cruza o gatilho `q_min` (LCMC, R20), a firma atinge massa crítica interna e ganha posição na fila de leniência. O pagamento via TCC vem **depois** desta cascata — não antes. Esta é a leitura sob reframe.](img/04_cascata.png){ .figura-conceitual }
 
-## A primeira leitura — bem quase-público (Samuelson 1954)
+### Bem quase-público (Samuelson 1954)
 
 A leitura econômica clássica é a mais óbvia. Samuelson (*Pure Theory of
 Public Expenditure*, 1954) classifica bens em dois eixos:
@@ -39,7 +72,7 @@ contínua entre pares).
 Esta leitura é útil para enquadrar o problema na linguagem econômica
 familiar. Ela tem **limites importantes**, que a segunda leitura expõe.
 
-## A segunda leitura — capital social com risco de erosão (Coleman 1990)
+### Capital social com risco de erosão (Coleman 1990)
 
 ![Trajetórias de `capital_social_residual` para três valores de `alpha_erosao` (R26). Sem erosão (preto, $\\alpha=0$), o capital social fica constante em 1.0. Com erosão moderada (verde, $\\alpha=0.2$), degrada lentamente. Com erosão forte (vermelho, $\\alpha=0.5$), colapsa em poucos tiques. A Proposição 5 candidata afirma que existe $\\alpha^\\star$ tal que para $\\alpha > \\alpha^\\star$, o Regime B colapsa em A após N tiques.](img/05_erosao_coleman.png){ .figura-empirica }
 
