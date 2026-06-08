@@ -2,6 +2,8 @@
 
 # Como o mecanismo se sustenta
 
+<p class="sublinha-tese"><em>A cooperação interna é o que precisa emergir; o instrumento de pagamento à firma é só o que torna essa emergência economicamente racional.</em></p>
+
 A pergunta natural — e a primeira que aparece quando alguém ouve o desenho do WaaS pela primeira vez — é uma versão mais educada de **"você é ingênuo?"**:
 
 > Basta a empresa se recusar a pagar os denunciantes e ainda assim pegar o desconto para tudo ruir, não?

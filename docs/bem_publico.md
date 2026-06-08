@@ -1,5 +1,17 @@
 # Bem coletivo, capital social, instrumentos de internalização
 
+<div class="grid-instrumentos" markdown>
+
+- <span class="chip-instrumento waas">WaaS</span> **Recompensa via TCC** — firma → trabalhador, sob Art. 12 da Res. 21/2018. Reserva ordinária. Implementado em `model.py` P3.
+
+- <span class="chip-instrumento">Hirschman</span> **Vesting acelerado** — firma (via equity) → trabalhador. Reserva Cₜ trabalhista. Implementado em `hirschman.py`.
+
+- <span class="chip-instrumento">Tributário</span> **Crédito tributário** — Estado → trabalhador (renúncia fiscal). Reserva Cᵩ tributária (LC + LRF). Stub declarativo (R22).
+
+- <span class="chip-instrumento">Criminal</span> **Leniência criminal individual** — Estado → trabalhador (não-persecução). Reserva Cₚ penal estrita. Stub declarativo (R23).
+
+</div>
+
 Esta página é o **anexo conceitual** do projeto. Ela responde a uma
 pergunta que o leitor curioso faz depois do [Ato 2](mecanismo.md): de
 que tipo de coisa é "massa crítica de cooperação interna" — e por que

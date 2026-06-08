@@ -313,3 +313,36 @@
   color: #1a1a1a;
   border-color: #27ae60;
 }
+
+/* Crítica x10 v2 (Designer): grid-instrumentos para sumário visual 2×2 dos
+ * quatro instrumentos de internalização (WaaS, Hirschman, Tributário, Criminal).
+ * Munzner "small multiples" — leitor reconhece família, não objeto isolado.
+ */
+.grid-instrumentos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 1.5em 0;
+}
+.grid-instrumentos ul,
+.grid-instrumentos > p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.grid-instrumentos li {
+  background: #f5f7fa;
+  border-left: 3px solid #cfd8dc;
+  border-radius: 0.25em;
+  padding: 0.8em 1em;
+  list-style: none;
+}
+[data-md-color-scheme="slate"] .grid-instrumentos li {
+  background: #2a3138;
+  border-left-color: #4a5562;
+}
+@media (max-width: 600px) {
+  .grid-instrumentos {
+    grid-template-columns: 1fr;
+  }
+}

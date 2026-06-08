@@ -12,7 +12,7 @@ Este projeto é uma tentativa de **inverter o cálculo**: e se, sob certas condi
 
 </div>
 
-![Saída real do modelo: com o canal WaaS (B/C) as firmas param de violar ao longo do tempo e o bem-estar social supera o cenário atual (A).](img/03_dissuasao_bem_estar.png){ .figura-empirica }
+![Saída real do modelo: com o canal WaaS (B/C) as firmas param de violar ao longo do tempo e o bem-estar social supera o cenário atual (A). A cascata de **cooperação interna** dispara *antes* de qualquer firma decidir pagar — o pagamento é o instrumento que torna a cascata estável, não a causa primeira.](img/03_dissuasao_bem_estar.png){ .figura-empirica }
 
 ## A leniência clássica acabou de bater num muro
 
@@ -48,14 +48,34 @@ Esta re-caracterização não é pacífica — ela é a charneira controvertida 
 
 ## Três cenários, do conservador ao ambicioso
 
+## Quatro instrumentos para internalizar o mesmo bem
+
+Sob o reframe, o WaaS não é "a reforma" — é **um instrumento entre vários** de internalização do capital social organizacional que produz a cooperação interna. Os quatro instrumentos coexistem no modelo (alguns ainda como stubs declarativos; cada um exige reserva constitucional distinta):
+
+<div class="grid-instrumentos" markdown>
+
+- <span class="chip-instrumento waas">WaaS</span> **Recompensa via TCC**
+  A firma paga o denunciante; o pagamento é re-caracterizado como ressarcimento sob Art. 12 da Res. 21/2018. Cabe em **Regime B** (Resolução) ou **C** (Lei). Implementado.
+
+- <span class="chip-instrumento">Hirschman</span> **Vesting acelerado**
+  Cláusula contratual padrão que acelera vesting de equity em gatilho de ação coletiva. Custo de êxodo crível pré-denúncia. Exige **Cₜ trabalhista** (Art. 22 I CF). Implementado.
+
+- <span class="chip-instrumento">Tributário</span> **Crédito tributário**
+  O Estado financia o denunciante por renúncia fiscal. Exige **Cᵩ tributária** (Art. 146 LC + LRF). Stub declarativo; R22.
+
+- <span class="chip-instrumento">Criminal</span> **Leniência criminal individual**
+  Redução do risco de tipificação como partícipe; análogo limitado ao Art. 86. Exige **Cₚ penal** (Art. 5º XXXIX CF). Stub declarativo; R23.
+
+</div>
+
 | Regime | O denunciante interno é recompensado? | Como seria implementado |
 |--------|---------------------------------------|-------------------------|
 | **A** — hoje | Não | situação atual: sem canal de incentivo individual |
-| **B** — via Resolução | Sim | nova resolução CADE complementar à 21/2018, **sem mudar a lei** |
-| **C** — via Lei | Sim | extensão da Lei 13.608/2018 ao antitruste — mais robusto, exige o Congresso |
-| **C+LCMC** — via Lei + corrida | Sim, **com posição na fila** | C + leniência condicionada a `q_min` interno + decaimento Saito intra-firma e inter-firma |
+| **B** — via Resolução | Sim (WaaS) | nova resolução CADE complementar à 21/2018, **sem mudar a lei** |
+| **C** — via Lei | Sim (WaaS + Hirschman) | extensão da Lei 13.608/2018 ao antitruste — Cₜ ordinária |
+| **C+LCMC** — via Lei + corrida | Sim, **com posição na fila** | C + leniência condicionada a `q_min` interno + decaimento Saito |
 
-O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é a versão jurídicamente mais robusta — também simulada, e mais defensável em juízo. O **Regime A** é o contrafactual: o que continua acontecendo se nada mudar. O **C+LCMC** é a proposta normativa mais ambiciosa — o macroconceito completo, ativo no cenário `cenario_corrida_leniencia`.
+O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é a versão jurídicamente mais robusta — também simulada, e mais defensável em juízo. O **Regime A** é o contrafactual: o que continua acontecendo se nada mudar. O **C+LCMC** é a proposta normativa mais ambiciosa — o macroconceito completo, ativo no cenário `cenario_corrida_leniencia`. Os instrumentos **Tributário** e **Criminal** seriam outros sub-regimes (Cᵩ e Cₚ); ver [Bem coletivo](bem_publico.md).
 
 ## Por onde seguir nesta história
 

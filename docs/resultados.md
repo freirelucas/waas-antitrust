@@ -13,7 +13,7 @@ A figura abaixo é a saída literal do modelo. Não é estilizada, não é ilust
 
 ## A evidência principal
 
-![Dissuasão endógena e bem-estar por regime.](img/03_dissuasao_bem_estar.png){ .figura-empirica }
+![Dissuasão endógena e bem-estar por regime. **Eixo:** violadoras ativas e bem-estar social ao longo de 40 trimestres em regime A (sem WaaS), B (Resolução), C (Lei). **Leitura sob reframe:** o que a figura mostra é o resultado de uma **cascata de cooperação interna** disparar; o pagamento via TCC é o instrumento que estabiliza a cascata, não a causa primeira. **Caveat:** apenas o instrumento WaaS aparece aqui — Hirschman, tributário e criminal não são comparados nesta varredura.](img/03_dissuasao_bem_estar.png){ .figura-empirica }
 
 ### Painel (A) — o que acontece com o número de empresas violando
 
