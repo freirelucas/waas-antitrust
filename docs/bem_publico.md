@@ -41,6 +41,9 @@ familiar. Ela tem **limites importantes**, que a segunda leitura expõe.
 
 ## A segunda leitura — capital social com risco de erosão (Coleman 1990)
 
+![Trajetórias de `capital_social_residual` para três valores de `alpha_erosao` (R26). Sem erosão (preto, $\\alpha=0$), o capital social fica constante em 1.0. Com erosão moderada (verde, $\\alpha=0.2$), degrada lentamente. Com erosão forte (vermelho, $\\alpha=0.5$), colapsa em poucos tiques. A Proposição 5 candidata afirma que existe $\\alpha^\\star$ tal que para $\\alpha > \\alpha^\\star$, o Regime B colapsa em A após N tiques.](img/05_erosao_coleman.png){ .figura-empirica }
+
+
 A crítica x10 v2 (Sociólogo) trouxe uma reformulação mais precisa.
 Coleman (*Foundations of Social Theory*, 1990, cap. 12) define **capital
 social** como bem coletivo **produzido como subproduto de relações de

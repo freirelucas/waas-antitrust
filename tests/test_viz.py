@@ -54,6 +54,20 @@ def test_viz_stubs_levantam_not_implemented(modulo):
         mod.gerar_figura()
 
 
+def test_erosao_gera_figura():
+    """`erosao.gerar_figura` retorna (Figure, Axes) com 3 trajetórias de
+    `capital_social_residual` (alpha=0/0.2/0.5). Implementada no Commit 9
+    do reframe v2 (R26 Coleman)."""
+    from waas_antitrust.viz import erosao
+
+    aplicar_estilo()
+    fig, ax = erosao.gerar_figura(n_tiques=10, seed=7)
+    assert fig is not None
+    assert ax is not None
+    assert "Capital social" in ax.get_ylabel()
+    plt.close(fig)
+
+
 def test_cascata_gera_figura():
     """`cascata.gerar_figura` retorna (Figure, Axes) com a curva sigmoidal
     de formação de massa crítica + linhas de gatilho q_min e k_rel.
