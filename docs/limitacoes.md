@@ -2,6 +2,8 @@
 
 # O que ainda não está sustentado
 
+<p class="sublinha-tese"><em>O reframe não resolve fragilidades — apenas as nomeia melhor; sob a lente Coleman, novas fragilidades aparecem que o framing "empresa paga" ocultava.</em></p>
+
 O Ato 3 fechou com evidência direcional para o canal de dissuasão. Mas seria desonesto parar aí. Este projeto é um **artigo em elaboração**, e existem pontos onde a alegação ainda não tem cobertura — alguns por calibração faltando, outros por escolha teórica que precisa de revisão, outros por restrição estrutural do desenho jurídico. Esta página enumera cada um deles e diz, na medida do possível, **o que faria a alegação sustentar-se**.
 
 A postura é simples: **dizer onde o argumento ainda não fecha é mais útil ao leitor do que esconder a dobra**. O backlog técnico completo está em [Decisões e backlog](DECISIONS.md); o que segue é a versão para humanos.
