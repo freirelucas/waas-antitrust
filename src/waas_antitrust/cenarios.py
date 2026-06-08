@@ -222,6 +222,112 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "prob_pagamento_perc": 0.95,
         },
     ),
+    # ----- Cenários novos sob reframe v2 (R21-R25) -----
+    Cenario(
+        nome="apenas_massa_critica_observavel",
+        descricao=(
+            "Regime A + dispara `notificada` mas a firma não tem instrumento "
+            "de pagar (D_disc=0). Testa a hipótese 'massa crítica sem "
+            "instrumento de internalização se perde no caminho'. **Falsificador "
+            "F7** (Eco A v2): se o sinal Schelling sobrevive à invisibilidade do "
+            "instrumento, há valor próprio na cooperação coletiva — não é só "
+            "decoração do incentivo monetário."
+        ),
+        sobrescritas={
+            "regime": "A",
+            "D_disc": 0.0,
+            "fracao_violadoras": 0.5,
+            "taxa_observacao": 0.5,  # capacidade de massa crítica forma
+        },
+    ),
+    Cenario(
+        nome="dois_instrumentos_acoplados",
+        descricao=(
+            "Regime C + WaaS + Hirschman simultâneos com `modo_corrida=True`. "
+            "Mede substituição perversa (crowding out à la Frey-Jegen 2001): "
+            "firmas adotam o instrumento mais barato e mata os outros, "
+            "perdendo a sinalização pública? Convergência Eco A v2."
+        ),
+        sobrescritas={
+            "regime": "C",
+            "D_disc_base_tcc": _D_BASE_TCC,
+            "p_anulacao_tcc": 0.0,
+            "fracao_contratos_acelerados": 1.0,
+            "aliquota_tributaria_vesting": 0.40,
+            "modo_corrida": True,
+            "q_min_cooperacao_interna": 0.10,
+            "perfil_decaimento": "saito",
+        },
+    ),
+    Cenario(
+        nome="credito_tributario_puro",
+        descricao=(
+            "Regime C + crédito tributário como instrumento principal (R22, "
+            "exploratório). Stub: usa `aliquota_tributaria_vesting` baixa "
+            "(0.10) como proxy de incentivo tributário ao trabalhador. **Cᵩ "
+            "exige LC + LRF** — ver `INSTITUTIONAL.md` decomposição de Regime "
+            "C. Apenas placeholder até R22 ser implementado de fato."
+        ),
+        sobrescritas={
+            "regime": "C",
+            "D_disc_base_tcc": _D_BASE_TCC,
+            "p_anulacao_tcc": 0.0,
+            "fracao_contratos_acelerados": 1.0,  # Hirschman como veículo proxy
+            "aliquota_tributaria_vesting": 0.10,  # baixa = subsídio tributário
+            "prob_pagamento_perc": 0.95,
+        },
+    ),
+    Cenario(
+        nome="leniencia_criminal_individual",
+        descricao=(
+            "Regime C + leniência criminal individual (R23, exploratório, "
+            "stub). Estado defende; custo legal individual ~0; F6 eliminado. "
+            "**Cₚ exige reserva penal estrita** Art. 5º XXXIX CF; colisão com "
+            "Art. 86 da Lei 12.529 e Art. 4º-C §3º da Lei 13.608. Apenas "
+            "placeholder até R23 ser implementado."
+        ),
+        sobrescritas={
+            "regime": "C",
+            "D_disc_base_tcc": _D_BASE_TCC,
+            "p_anulacao_tcc": 0.0,
+            "custo_legal_uw": 0.02,  # quase zero — Estado defende
+            "prob_pagamento_perc": 0.95,
+        },
+    ),
+    Cenario(
+        nome="captura_processamento_cade",
+        descricao=(
+            "Regime B com capacidade institucional do CADE estrangulada "
+            "(R-Cient. Político v2). Reduz `kappa_relativa` da autoridade para "
+            "modelar o gargalo de 180 servidores área-fim (RIG 2024); espera-se "
+            "que a seleção discricionária vire ponto ótimo de captura. Resposta "
+            "ao sinal mais forte do Cient. Político na x10 v2."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "D_disc_base_tcc": _D_BASE_TCC,
+            "p_anulacao_tcc": 0.10,
+            "taxa_capacidade": 0.10,  # capacidade muito limitada (180 servidores RIG 2024)
+        },
+    ),
+    Cenario(
+        nome="uso_adversarial_oportunista",
+        descricao=(
+            "Regime B + 20% de trabalhadores oportunistas (R24, x10 v2). "
+            "Testa robustez do mecanismo contra uso adversarial (insider "
+            "acionista, concorrente, chantagem, hedge fund ativista). "
+            "Calibração: Dyck-Morse-Zingales 2010 ~17% em SEC; 20% como limite "
+            "superior. Espera-se aumento em `n_tcc_anulados` (falsos positivos) "
+            "e queda em `bem_estar`."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "D_disc_base_tcc": _D_BASE_TCC,
+            "p_anulacao_tcc": 0.10,
+            "distribuicao_arquetipos": DISTRIBUICAO_COM_OPORTUNISTAS,
+            "taxa_falso_reporte": 0.15,  # oportunistas elevam FP base
+        },
+    ),
 )
 
 
