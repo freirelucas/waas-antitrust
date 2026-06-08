@@ -117,6 +117,16 @@ class WaaSParametros:
     janela_temporal_tiques: int = 4  # janela após massa crítica disparar
     perfil_decaimento: str = "saito"  # única opção implementada
 
+    # **R26 — Erosão endógena por uso instrumental (Sociólogo v2 + Coleman 1990).**
+    # Sob reframe v2, capital social organizacional é destruído pela sua
+    # instrumentalização. A cada notificação em firma X, a comunicação
+    # informal em outras firmas pode degradar — chilling effect. O parâmetro
+    # `alpha_erosao` em [0, 1] controla a fração de degradação por notificação;
+    # default 0 = sem erosão (preserva comportamento histórico). Proposição 5
+    # candidata: existe `alpha_erosao*` tal que B/C colapsa em A após N tiques.
+    # Literatura calibradora: Titmuss 1970, Frey-Jegen 2001, Bénabou-Tirole 2003.
+    alpha_erosao: float = 0.0
+
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
     # do subgame de Morris-Shin (`jogo_global.limiar_switching`) como gatilho
@@ -292,6 +302,17 @@ class WaaSModel(Model):
         # Set de empresas já notificadas: usado para evitar double-counting
         # no termo de externalidade (firmas que viraram VP já estão em `dano`).
         self._empresas_ja_notificadas: set[int] = set()
+        # v2.B.4 (Sociólogo v2, R26): capital social residual com risco de
+        # erosão por uso instrumental (Coleman 1990). A previsão Coleman é que
+        # após uma rodada bem-sucedida de denúncia em firma X, a comunicação
+        # informal em outras firmas Y, Z muda de regime — chilling effect
+        # sobre cooperação espontânea. Proxy: fração de pares (`phi_vizinhos`)
+        # como capital social ativo agregado pelas firmas. Erosão é controlada
+        # por `alpha_erosao` (default 0 = sem erosão; Proposição 5 candidata).
+        self.capital_social_residual: float = 1.0  # baseline normalizado [0, 1]
+        self.alpha_erosao: float = getattr(params, "alpha_erosao", 0.0)
+        # Histórico do reporter (para auditoria + figura).
+        self.capital_social_residual_hist: list[float] = []
         # Hirschman (R07): firmas sob ameaça materializada de êxodo e custo agregado.
         self.n_firmas_sob_ameaca_exodo: int = 0
         self.custo_exodo_acum: float = 0.0
@@ -368,6 +389,9 @@ class WaaSModel(Model):
                 "multa_arrecadada_acum": "multa_arrecadada_acum",
                 # v2.D.1 (Eco B v2, R21): externalidade erga omnes do bem coletivo.
                 "valor_dissuasao_difusa_acum": "valor_dissuasao_difusa_acum",
+                # v2.B.4 (Sociólogo v2, R26): capital social residual com risco
+                # de erosão por uso instrumental (Coleman 1990).
+                "capital_social_residual": "capital_social_residual",
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
@@ -643,6 +667,19 @@ class WaaSModel(Model):
         )
         overcharge_proxy = 0.18  # Connor-Lande mediana — calibrar em R03
         self.valor_dissuasao_difusa_acum += delta_p * n_nao_notificadas * overcharge_proxy
+        # v2.B.4 (Sociólogo v2, R26): erosão do capital social residual.
+        # Cada notificação nova no tique reduz `capital_social_residual` por
+        # `alpha_erosao` aplicado sobre a fração de firmas notificadas. Proxy
+        # do chilling effect Coleman: instrumentalização degrada substrato.
+        # Quando `alpha_erosao = 0` (default), `capital_social_residual = 1.0`
+        # constante — preserva comportamento histórico.
+        if self.alpha_erosao > 0.0:
+            n_notif_novas = self._contar_notificadas()
+            fracao_erosao = n_notif_novas / max(1, len(self.empresas)) if n_notif_novas > 0 else 0.0
+            self.capital_social_residual = max(
+                0.0, self.capital_social_residual * (1.0 - self.alpha_erosao * fracao_erosao)
+            )
+        self.capital_social_residual_hist.append(self.capital_social_residual)
         for fid, ws in self.trabalhadores_por_empresa.items():
             empresa = self.empresas[fid]
             violando = empresa.eh_violadora
