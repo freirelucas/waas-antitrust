@@ -2,7 +2,15 @@
 
 # Como contribuir, discordar, ou simplesmente conversar
 
-A versão honesta deste projeto é: **um artigo em elaboração, com cinco pendências normativas explícitas, um vão de calibração que precisa de quem entenda do CADE pós-2020, e três proposições teóricas que pediriam mais matemática**. Nada disso vai se resolver no monólogo do autor. Esta página enumera as três formas concretas pelas quais alguém pode entrar no jogo.
+<p class="sublinha-tese"><em>Pesquisadores das tradições Olson-Ostrom-Coleman + Stigler-Carpenter-Moss agora têm pontos de entrada explícitos — R21-R26 abertos no backlog.</em></p>
+
+A versão honesta deste projeto é: **um artigo em elaboração, com cinco pendências normativas explícitas (R09-R11), seis R-items abertos do reframe v2 (R21-R26), um vão de calibração que precisa de quem entenda do CADE pós-2020, e cinco proposições teóricas (a Prop. 5 é a mais recente — Coleman 1990) que pediriam mais matemática**. Nada disso vai se resolver no monólogo do autor. Esta página enumera as formas concretas pelas quais alguém pode entrar no jogo.
+
+## Sob o reframe v2, três comunidades novas têm convite explícito
+
+- **Sociólogos da coordenação coletiva** (Olson, Ostrom, Coleman, Elster, Chwe) — a Proposição 5 candidata (Coleman: erosão endógena do capital social) é falsificável via `tests/test_erosao_coleman.py`. Veja `docs/bem_publico.md`.
+- **Cientistas políticos da regulação** (Stigler, Wilson, McCubbins-Schwartz, Carpenter-Moss) — `docs/viabilidade_regime_c.md` documenta a infactibilidade política do Regime C 2024-2027; o cenário `captura_processamento_cade` modela o gargalo de 180 servidores área-fim do CADE (RIG 2024).
+- **Behavioral ethicists / psicometristas** — o arquétipo `oportunista` (R24) é primeira aproximação; calibração contra Dyck-Morse-Zingales 2010 e elaboração com Big Five / Dark Triad / Fehr-Schmidt α/β individual é pendência aberta.
 
 ## Reproduzir, verificar, derrubar
 

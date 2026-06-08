@@ -282,10 +282,30 @@ refinamento:
   incumbente como sistema acoplado. Decisão também em D-KA (a abrir).
 - **Comportamento individual mais fino (Big Five / Dark Triad /
   Fehr-Schmidt α/β individual).** O arquétipo `fairminded` já abre a
-  porta para preferências de fairness; uma generalização seria
-  parametrizar α individual e introduzir traços de personalidade como
-  modulador da observabilidade e da inclinação a denunciar. Decisão em
-  D-PERS (a abrir).
+  porta para preferências de fairness; o **`oportunista` (R24, reframe v2)**
+  abre a porta para personalidades extrativas. Generalização futura
+  seria parametrizar α individual e introduzir traços de personalidade
+  como modulador da observabilidade e da inclinação a denunciar.
+  Decisão em D-PERS (a abrir).
+
+### Status atualizado pós-reframe v2
+
+A classe `TrabalhadorAgent` agora tem **seis arquétipos** (ético,
+imitativo, racional, aleatório, fairminded, oportunista). A classe
+`EmpresaAgent` ganhou os reporters `valor_dissuasao_difusa_acum`
+(externalidade erga omnes, v2.D.1) e `capital_social_residual` (R26
+Coleman); o segundo é controlado pelo parâmetro `alpha_erosao`
+(default 0 = sem erosão).
+
+Novos módulos vinculados ao modelo de agentes:
+- `instrumentos.py` (R21 + Eco A v2): taxonomia declarativa dos 4
+  instrumentos de internalização (WaaS, Hirschman, tributário stub,
+  criminal stub) com reservas constitucionais Cₜ/Cᵩ/Cₚ.
+- `viz/painel_macro.py` e `viz/painel_micro.py` (Designer v2): telas
+  de simulação 2×2 macro (sistema agregado) e micro (uma firma) —
+  ver figuras 06 e 07 no site.
+- `viz/cascata.py` e `viz/erosao.py` (Designer v2): figuras conceitual
+  e empírica do fenômeno emergente (4 e 5 no site).
 
 Esses três pontos são a parte da pesquisa de fundo em curso no momento
 desta edição.
