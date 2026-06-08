@@ -11,6 +11,41 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Encerramento da sessão reframe v2 — `aprendizados_v2.md`
+
+Página `docs/aprendizados_v2.md` consolida os aprendizados estruturais
+da longa sessão que produziu 20 commits de reframe v2 (`5a51f72` até
+`6d904b0`). Serve como memória institucional para sessões futuras:
+
+- **Cronologia** dos 20 commits com hashes e descrições.
+- **Três aprendizados teóricos centrais**: LCMC ≠ WaaS; Coleman >
+  Samuelson; captura no processamento (não no gatilho).
+- **Aprendizados técnicos**: opt-in via flag preserva backward compat;
+  reporters em 3 categorias semânticas; Regime C decomposto em
+  Cₜ/Cᵩ/Cₚ; Saito calibra duas escalas; caveat Frankel-Morris-Pauzner
+  para Morris-Shin dinâmico.
+- **Aprendizados editoriais**: empilhar tipograficamente (não
+  substituir); transparência ao código nos 5 Atos; bug do alt-text
+  com markdown; admonition `!!! tip` para princípios.
+- **Aprendizados de processo**: x10 v1 → v2 trouxe sociólogo +
+  cientista político; commits curtos + sync main 4-way imediato;
+  background research em paralelo com main work.
+- **Backlog que segue aberto**: R09-R11 (herdados v1), R21-R26 (novos
+  v2), itens fora de escopo (paper completo, refator P3, x10 v3).
+- **Recomendações para sessões futuras**: 6 itens estruturais para
+  preservar o padrão.
+
+Estatística final da sessão:
+- 20 commits no reframe v2 (`5a51f72` → `6d904b0`)
+- pytest: 234 → 288 testes (+54)
+- cenários: 9 → 15
+- arquétipos: 5 → 6 (+ oportunista R24)
+- módulos novos: `instrumentos.py`, `viz/{cascata,erosao,painel_macro,painel_micro}.py`
+- páginas docs novas: `bem_publico.md`, `viabilidade_regime_c.md`, `critica_x10_v2.md`, `aprendizados_v2.md`
+- referências bibliográficas novas: 16
+
+Registrada em `mkdocs.yml` na seção Desenvolvimento.
+
 ### Reframe v2 — Sprint A → Sprint B (commits consolidados)
 
 **Commits 4-13 sumário** (cada um com seu próprio bloco no commit log):
