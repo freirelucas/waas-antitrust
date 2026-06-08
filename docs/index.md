@@ -2,7 +2,7 @@
 
 # Quando a infração é unilateral, quem denuncia?
 
-<p class="sublinha-tese"><em>A resposta não está em incentivar a empresa. Está em reconhecer que a cooperação dos próprios funcionários é o bem coletivo que falta — e que pode ser internalizado por mais de um instrumento.</em></p>
+<p class="sublinha-tese"><em>A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um <strong>canal de depósito condicional</strong> onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".</em></p>
 
 ## A leniência clássica acabou de bater num muro
 
@@ -16,30 +16,35 @@ A informação existe — nos *commits* do engenheiro, nas *slides* da reunião 
 A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
 </div>
 
-## A resposta deste projeto: LCMC
+## A resposta deste projeto: LCMC como canal de depósito condicional
 
-Em mercados digitais com **moat**, a cumplicidade existe — mas é **intra-firma**, entre engenharia, produto, jurídico, *corp dev*. A proposta deste projeto, em uma frase:
+Em mercados digitais com **moat**, a cumplicidade existe — mas é **intra-firma**, entre engenharia, produto, jurídico, *corp dev*. O problema central não é "como punir a firma" nem "como pagar o denunciante"; é **como resolver a coordenação dos trabalhadores que veem a conduta mas não querem brigar a luta sozinhos**.
 
-!!! tip "Leniência Condicionada à Massa Crítica (LCMC)"
+A proposta deste projeto, em uma frase:
 
-    O atenuante regulatório (Art. 12 da Res. CADE 21/2018; analogia LAC Art. 7º VII-VIII) é concedido **se e somente se** a firma tiver recebido cooperação interna de ao menos uma fração `q_min` de seus funcionários, dentro de uma janela `Δt`.
+!!! tip "LCMC — canal de depósito condicional"
 
-A LCMC é **princípio regulatório**, não instrumento. Diz *o que* deve ser reconhecido como atenuante — cooperação interna de massa crítica — sem prescrever *como* essa cooperação é remunerada (se é).
+    O **CADE opera um canal qualificado de recepção de denúncias** com cláusula de abertura condicional. O trabalhador entrega ao CADE sua denúncia com prova específica e diz: *"esta denúncia só é instaurada se houver ao menos `q_min · n` outros trabalhadores do mesmo setor/firma que também depositarem denúncias compatíveis dentro de uma janela `Δt`"*. As denúncias ficam em **escrow** — não notificam a firma, não viram processo, não vazam — até que o gatilho de massa crítica seja atingido. Quando o é, **todas se abrem simultaneamente**: ninguém foi o primeiro isoladamente.
 
-## LCMC e WaaS são coisas diferentes
+A LCMC é **mecanismo de coordenação**, não de pagamento. Resolve diretamente o problema clássico de Olson (1965): em grupos pequenos, ninguém quer arcar sozinho com o risco de denunciar; cada um espera o outro. O canal de depósito condicional **elimina sub-iniciação por construção** — a denúncia individual nunca fica exposta enquanto a massa crítica não se forma.
 
-Esta distinção é a inovação editorial deste projeto, e ela costuma ser ignorada quando alguém confunde "LCMC" com "pagar denunciante". Não são equivalentes:
+O análogo prático mais próximo é a plataforma **[Callisto](https://www.callisto.org)** (callisto.org), que opera nos Estados Unidos para denúncias de assédio sexual em campus universitário: a identidade de uma vítima só é revelada ao mesmo agressor se duas ou mais denúncias coincidirem. Em direito, o conceito teórico é **information escrow** (Ayres & Unkovic, *Michigan Law Review* 111:145, 2012). Em estrutura de pagamento, o paralelo é o **Kickstarter all-or-nothing**: o pledge só cobra se a meta de apoiadores é atingida.
 
-| Configuração | LCMC ativo? | Trabalhador recebe pagamento? | Como o regulador identifica |
+## O que vem depois da abertura — instrumentos
+
+Quando o canal abre (massa crítica atingida), o procedimento administrativo se instaura: a firma é notificada com prova qualificada e coletiva; o CADE conduz a investigação; eventualmente assina TCC ou aplica multa. Esta parte usa o ferramental jurídico **já existente** — Art. 85 (TCC), Art. 86 (leniência), Art. 45 (dosimetria).
+
+**Os instrumentos monetários abaixo são incrementos** ao canal — aumentam a probabilidade de adesão, não são o mecanismo central. Sem nenhum deles, o canal ainda funciona; com eles, opera com taxas de adesão maiores.
+
+| Instrumento incremental | Quem paga | Para quem | Quando |
 |---|---|---|---|
-| **LCMC sem instrumento monetário** | Sim | Não | Reconhecimento dogmático puro (analogia LAC). Funcionários cooperam por norma; firma ganha atenuante por ter substrato cooperativo. |
-| **LCMC + WaaS (recompensa via TCC)** | Sim | Sim, pela firma | Funcionários cooperam por incentivo monetário + norma; firma paga e ganha atenuante. |
-| **LCMC + Hirschman (vesting acelerado)** | Sim | Sim, via equity | Cláusula contratual padrão dispara vesting ao gatilho de ação coletiva. Custo crível de êxodo dissuade preventivamente. |
-| **LCMC + crédito tributário** | Sim | Sim, pelo Estado | Estado financia o trabalhador por renúncia fiscal (Cᵩ; R22 stub). |
-| **LCMC + leniência criminal individual** | Sim | Não (imunidade) | Estado oferece não-persecução penal ao partícipe cooperador (Cₚ; R23 stub). |
-| **WaaS sem LCMC** | Não | Sim | Recompensa monetária pulverizada — cada denúncia individual. Sem gatilho coletivo. **Modelo histórico pré-LCMC; é o que o projeto questiona.** |
+| **WaaS — recompensa via TCC** | Firma | Trabalhador | Ex-post: firma paga sob TCC; pagamento re-caracterizado como ressarcimento (Art. 12 Res. 21/2018) |
+| **Hirschman — vesting acelerado** | Firma (via equity) | Trabalhador | Ex-ante: cláusula contratual dispara ao gatilho de ação coletiva |
+| **Crédito tributário** | Estado (renúncia fiscal) | Trabalhador | Pós-instauração (R22 stub) |
+| **Leniência criminal individual** | Estado (não-persecução) | Trabalhador-partícipe | Pós-instauração (R23 stub) |
+| **Nenhum — só o canal** | — | — | O canal funciona pela coordenação per se |
 
-O **WaaS é um instrumento** — apenas um dos cinco que internalizam o capital social organizacional (Coleman 1990) que produz a cooperação. O Ato 2 detalha cada um. A página [Bem coletivo](bem_publico.md) é o anexo conceitual.
+A linha **"Nenhum — só o canal"** é a configuração mais conservadora juridicamente: o canal exige apenas regulamentação por Resolução CADE de procedimento de recepção (Art. 4º, II e III da Lei 12.529 c/c Lei 9.784/99). Não cria categoria sancionatória nova; estrutura *como o CADE recebe* informação. O risco de anulação judicial (F6) cai materialmente.
 
 ## A figura central do projeto
 
@@ -51,10 +56,10 @@ A figura abaixo é a **saída literal** de uma execução do modelo computaciona
     <strong>(A)</strong> Violadoras ativas ao longo do tempo. Regime A (cinza) cresce e estabiliza alto;
     regimes B/C (verde/roxo) caem a zero em ~17 tiques. <strong>(B)</strong> Bem-estar social agregado.
     ΔW (B sobre A) = +1363%. <br><br>
-    <em>Leitura sob LCMC:</em> a cascata de cooperação interna que faz B/C funcionarem dispara antes
-    de qualquer firma decidir pagar. O instrumento WaaS está ativo nas curvas verdes e roxas, mas o
-    fenômeno medido (queda de violadoras) é a propagação Schelling de detecção percebida, não o
-    pagamento em si.
+    <em>Leitura sob LCMC corrigida:</em> a queda de violadoras em B/C é resultado de <strong>denúncias coletivas
+    abrindo do escrow</strong>. Cada vez que o canal abre, o sinal Schelling se propaga (detecção percebida
+    sobe em todas as firmas). O instrumento WaaS está ativo nas curvas verdes/roxas como incentivo
+    incremental à adesão ao canal — não é a causa primeira da queda.
   </figcaption>
 </figure>
 
