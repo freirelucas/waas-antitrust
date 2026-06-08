@@ -23,9 +23,10 @@ from waas_antitrust.model import WaaSModel, WaaSParametros
 
 
 def test_fairminded_esta_no_catalogo_de_arquetipos():
-    """ARQUETIPOS agora inclui fairminded (Torsell 2026, Fehr-Schmidt 1999)."""
+    """ARQUETIPOS agora inclui fairminded (Torsell 2026, Fehr-Schmidt 1999) +
+    oportunista (R24, x10 v2 — Cient. Político + Sociólogo)."""
     assert "fairminded" in TrabalhadorAgent.ARQUETIPOS
-    assert len(TrabalhadorAgent.ARQUETIPOS) == 5
+    assert len(TrabalhadorAgent.ARQUETIPOS) == 6
 
 
 def test_distribuicao_arquetipos_default_preserva_4_tipos():

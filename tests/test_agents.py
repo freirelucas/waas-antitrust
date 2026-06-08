@@ -5,15 +5,17 @@ from waas_antitrust.model import WaaSModel, WaaSParametros
 
 
 def test_arquetipos_validos():
-    """Os cinco arquétipos canônicos: Hokamp-Pickhardt 2010 (quatro) +
-    fairminded (Torsell 2026, R16). FM tem default 0% para preservar a
-    calibração histórica; cenários em `waas_antitrust.cenarios` ativam."""
+    """Seis arquétipos canônicos: Hokamp-Pickhardt 2010 (quatro) +
+    fairminded (Torsell 2026, R16) + oportunista (R24, x10 v2 — Cient.
+    Político + Sociólogo). FM e oportunista têm default 0% para preservar
+    a calibração histórica; cenários em `waas_antitrust.cenarios` ativam."""
     assert TrabalhadorAgent.ARQUETIPOS == (
         "ético",
         "imitativo",
         "racional",
         "aleatório",
         "fairminded",
+        "oportunista",
     )
 
 

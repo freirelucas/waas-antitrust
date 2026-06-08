@@ -11,6 +11,63 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Reframe v2 — Mat A (limiar Saito por posição) + arquétipo oportunista
+
+Terceiro commit do Sprint A do plano v2 pós-x10 v2. Primeiro código que
+materializa críticas convergentes da rodada — duas categorias do plano v2.
+
+**Categoria v2.G — Mat A: oferta escalonada do bem coletivo (jogo global)**
+
+- `src/waas_antitrust/jogo_global.py` ganha `limiar_switching_por_posicao(b, c,
+  k_rel, posicao_trabalhador, tau, perfil)` e `familia_limiares_por_posicao`.
+  Sob LCMC, o ganho marginal vira `b_k = decaimento_W(k) · b` — cada posição
+  na fila intra-firma tem seu próprio limiar Morris-Shin. A "oferta do bem
+  coletivo" é escalonada por posição, não monolítica.
+- Docstring do módulo ganha § "Extensão LCMC (Mat A v2 — R20)" com a
+  fórmula `x*_k(τ)` derivada e caveat formal Frankel-Morris-Pauzner 2003 /
+  Angeletos-Hellwig-Pavan 2007: a unicidade Morris-Shin clássica não se
+  estende automaticamente; sob LCMC com fila inter-firma correlacionada
+  (sinal público), a Proposição 2 reformulada vira conjectura aberta.
+- 6 novos testes em `tests/test_jogo_global.py`: posição 1 = limiar base;
+  monotonicidade `x*_1 < x*_2 < x*_3`; n* finito explícito; piso Tribunal
+  posições ≥ 9; validação de input.
+
+**Categoria v2.B.1 — Arquétipo `denunciante_oportunista` (R24)**
+
+- `TrabalhadorAgent.ARQUETIPOS` agora tem 6 tipos: + "oportunista".
+  Convergência tripla na x10 v2 — Cient. Político (uso adversarial: insider
+  acionista, concorrente, chantagem, hedge fund); Sociólogo (anti-commons
+  Heller 1998); Mat B (desertor estratégico Granovetter).
+- `decidir_sinal` ganha branch `oportunista` ANTES do guard `observou`.
+  Utilidade puramente extrativa: `u = W_efetivo - prob_falso · sancao_calunia`.
+  `prob_falso = 0.7` se não observou (planta denúncia); `0.3` se observou
+  (qualidade da prova maior). Sanção de calúnia (Art. 340 CP) calibrada em
+  `0.5 · w_a`. **NÃO consulta** represália nem `phi_vizinhos` —
+  comportamento extrativo isolado, ortogonal à pressão social.
+- Novo preset `DISTRIBUICAO_COM_OPORTUNISTAS` em `cenarios.py` (20% de
+  oportunistas, limite superior do reportado por Dyck-Morse-Zingales 2010
+  ~17% de motivação financeira direta em denúncias SEC).
+- Default `distribuicao_arquetipos=None` mantém oportunista em 0% —
+  preserva backward compat estrita.
+- 9 novos testes em `tests/test_oportunista.py`: catálogo; ativação por
+  preset; sinaliza com W alto sem observar; não sinaliza com W baixo;
+  prob_falso menor se observou; modelo end-to-end roda; preset soma 1.0;
+  comportamento independente de phi_vizinhos.
+
+**Atualizações de catálogo de testes**:
+- `tests/test_agents.py::test_arquetipos_validos` — 5 → 6 arquétipos.
+- `tests/test_fairminded_cenarios.py::test_fairminded_esta_no_catalogo` — 5 → 6.
+
+Verificação: pytest 249 passed (234 + 15 novos); ruff check; black --check;
+mkdocs build --strict.
+
+Postura epistêmica: o oportunista é arquétipo de teste de robustez do
+mecanismo, não recomendação. Sob `DISTRIBUICAO_COM_OPORTUNISTAS`, simula-se
+o que aconteceria se o WaaS fosse adotado em uma população com fração
+adversarial calibrada. Falsificador F7 candidato: se sob 20% de
+oportunistas o mecanismo degrada acima de tolerância, há necessidade de
+salvaguardas (anonimato, recompensa coletiva, janela curta).
+
 ### Reframe v2 — Capital social com risco de erosão endógena (Coleman > Samuelson)
 
 Segundo commit do plano v2 pós-crítica x10 v2. Categoria v2.A: reposicionamento

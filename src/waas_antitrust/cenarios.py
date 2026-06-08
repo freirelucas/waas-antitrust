@@ -67,6 +67,20 @@ DISTRIBUICAO_COM_FAIRMINDED: dict[str, float] = {
     "aleatório": 0.10,
 }
 
+#: Distribuição com fração calibrada de denunciantes oportunistas (R24,
+#: Cient. Político v2 + Sociólogo v2). Dyck-Morse-Zingales (2010) reportam
+#: ~17% de motivação financeira direta em denúncias SEC; usamos 20% como
+#: limite superior para teste de robustez do mecanismo contra uso adversarial
+#: (insider acionista, concorrente, chantagem pré-rescisão, hedge fund ativista).
+DISTRIBUICAO_COM_OPORTUNISTAS: dict[str, float] = {
+    "ético": 0.10,
+    "imitativo": 0.30,
+    "racional": 0.30,
+    "fairminded": 0.10,
+    "aleatório": 0.00,
+    "oportunista": 0.20,
+}
+
 
 #: Sete cenários canônicos para varredura comparativa.
 CATALOGO_CENARIOS: tuple[Cenario, ...] = (

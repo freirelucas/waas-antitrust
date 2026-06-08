@@ -50,7 +50,7 @@ class TrabalhadorAgent(Agent):
                                      Aplicado por choques (R19, Eurace@Unibi).
     """
 
-    ARQUETIPOS = ("ético", "imitativo", "racional", "aleatório", "fairminded")
+    ARQUETIPOS = ("ético", "imitativo", "racional", "aleatório", "fairminded", "oportunista")
 
     def __init__(
         self,
@@ -112,6 +112,21 @@ class TrabalhadorAgent(Agent):
         O custo esperado de represália é modulado por `tolerancia_represalia`
         (R14): trabalhadores mais tolerantes ao risco têm custo efetivo menor.
         """
+        if self.arquetipo == "oportunista":
+            # R24 (Cient. Político v2 + Sociólogo v2): uso adversarial do WaaS.
+            # NÃO requer `observou=True` — o oportunista (insider acionista,
+            # concorrente, chantagem pré-rescisão, hedge fund ativista) pode
+            # plantar denúncia sem ter observado a conduta. Utilidade puramente
+            # extrativa: ganho = W_efetivo - prob_falso · sancao_calunia.
+            prob_pag = getattr(self.model, "prob_pagamento_perc", 1.0)
+            W_efetivo = W_esperado * prob_pag
+            # Quanto menos observou, maior o risco de caracterização como falso
+            # reporte (denúncia caluniosa Art. 340 CP).
+            prob_falso_subjetiva = 0.7 if not self.observou else 0.3
+            sancao_calunia = self.w_a * 0.5
+            ganho_extrativo = W_efetivo - prob_falso_subjetiva * sancao_calunia
+            return 1 if ganho_extrativo > 0 else 0
+
         if not self.observou:
             return 0
 

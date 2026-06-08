@@ -504,12 +504,14 @@ class WaaSModel(Model):
             empresa.grafo_interno = g
 
             # Distribuição padrão dos arquétipos. O quinto slot — "fairminded"
-            # (R16, Torsell 2026) — recebe 0 por default para preservar a
-            # calibração histórica de 4 tipos (Hokamp-Pickhardt 2010). Quando
-            # `peso_inequity_aversion > 0`, recomenda-se redistribuir via
-            # `params.distribuicao_arquetipos` — cenários em `cenarios.py`.
+            # (R16, Torsell 2026) — e o sexto slot — "oportunista" (R24, Cient.
+            # Político v2 + Sociólogo v2) — recebem 0 por default para preservar
+            # a calibração histórica de 4 tipos (Hokamp-Pickhardt 2010). Quando
+            # `peso_inequity_aversion > 0` ou `fracao_oportunistas > 0`,
+            # recomenda-se redistribuir via `params.distribuicao_arquetipos` —
+            # cenários em `cenarios.py`.
             if self.params.distribuicao_arquetipos is None:
-                probs_arq = [0.15, 0.35, 0.40, 0.10, 0.0]
+                probs_arq = [0.15, 0.35, 0.40, 0.10, 0.0, 0.0]
             else:
                 probs_arq = [
                     self.params.distribuicao_arquetipos.get(a, 0.0)
