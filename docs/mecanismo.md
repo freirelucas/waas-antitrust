@@ -2,19 +2,23 @@
 
 # O mecanismo, em três camadas
 
-<p class="sublinha-tese"><em>Primeiro o princípio (LCMC). Depois os instrumentos (cinco, dos quais o WaaS é um). Por último a aritmética da IC-F* — que só importa se o instrumento escolhido for monetário.</em></p>
+<p class="sublinha-tese"><em>Primeiro o canal (depósito condicional CADE). Depois a coordenação que isso resolve (Olson sem sub-iniciação). Por último os instrumentos incrementais — todos opcionais.</em></p>
 
-Esta página é organizada de fora para dentro: do princípio regulatório (LCMC) → para os instrumentos disponíveis → para o detalhe matemático de cada um. A ordem importa: muita gente lê o WaaS como se ele *fosse* a LCMC. Não é. O Ato 1 separou os dois conceitos. Aqui formalizamos.
+Esta página é organizada de fora para dentro: do **mecanismo de recepção qualificada** (canal de depósito condicional) → para o **problema de coordenação** que ele resolve → para os **instrumentos incrementais** que aumentam adesão sem serem essenciais. A ordem importa: muita gente lê o WaaS como se ele *fosse* a LCMC. Não é. O Ato 1 separou os dois conceitos. Aqui formalizamos.
 
-## Camada 1 — LCMC como princípio (não-instrumental)
+## Camada 1 — O canal de depósito condicional (coração do mecanismo)
 
-A **Leniência Condicionada à Massa Crítica** (LCMC) diz uma coisa só:
+A **Leniência Condicionada à Massa Crítica** (LCMC) é um *information escrow* operado pelo CADE:
 
-!!! tip "Princípio LCMC"
+!!! tip "Princípio LCMC — canal de depósito condicional"
 
-    O atenuante regulatório é concedido **se e somente se** a firma tiver recebido cooperação interna de ao menos uma fração `q_min` de seus funcionários, dentro de uma janela temporal `Δt`. Sem `q_min × n_trabalhadores` cooperadores, o atenuante é zero, mesmo que a firma deseje pagá-los.
+    O **CADE recebe denúncias com cláusula de abertura condicional**. O trabalhador deposita sua denúncia (texto livre + prova específica) com a condição: *"esta denúncia só é instaurada se houver ≥ `q_min · n_trab` outros depósitos compatíveis do mesmo setor/firma dentro de `Δt` tiques"*. Enquanto o gatilho não é atingido, **a denúncia fica em escrow**: a firma não é notificada, a denúncia não vira processo, a identidade do trabalhador não é revelada. Quando o gatilho é atingido, **todas as denúncias se abrem simultaneamente** — e ninguém foi o primeiro isoladamente.
 
-A LCMC é **agnóstica** sobre como a cooperação interna é remunerada. Pode haver pagamento, pode não haver. O que ela exige é o **substrato cooperativo observável**. Sob a ancoragem dogmática brasileira (Lei 9.784/99 + LAC Art. 7º VII-VIII), o regulador interpreta a cooperação interna documentada como prova qualificada de "interesse público em detecção e cessação" — e calibra a contribuição pecuniária do TCC contra isso.
+O mecanismo resolve **diretamente** o problema clássico de Olson (1965): sub-iniciação ("ninguém quer ser o primeiro") é eliminada por construção. A denúncia individual nunca fica exposta sozinha — ou se acopla a outras e se abre coletivamente, ou permanece em escrow indefinidamente. Sem instrumento monetário, sem ressarcimento controverso, sem categoria dogmática nova: apenas **procedimento administrativo de recepção qualificada**, ancorado em Art. 4º II/III da Lei 12.529/2011 c/c Lei 9.784/99.
+
+O análogo prático mais próximo é o **[Callisto](https://www.callisto.org)** (callisto.org), que opera nos EUA para denúncias de assédio sexual em campus universitário: identidade da vítima é revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem. O conceito teórico é **information escrow** (Ayres & Unkovic, *Michigan Law Review* 111:145, 2012). A intuição estrutural é **Kickstarter all-or-nothing**.
+
+Em código, a Phase P2 já existe como gatilho de massa crítica; a Phase P2.5 (R20) já registra firmas que atingiram massa crítica interna. O que falta — e fica em **R27** como pendência futura — é mover o agente que mantém o escrow do `EmpresaAgent` para um `CanalAgent` ou `AutoridadeAgent` estendida:
 
 Em código, esta camada está em `model.py` (Phase P2.5) sob a flag `modo_corrida=True`:
 
@@ -35,11 +39,25 @@ if self.modo_corrida:
             empresa.posicao_fila_leniencia = self.fila_leniencia.registrar(fid, self.tique)
 ```
 
-A função `massa_critica_interna_atingida` é pura — recebe três inteiros/floats e devolve um booleano. Nada de pagamento entra na conta. O atenuante depende SÓ disso.
+A função `massa_critica_interna_atingida` é pura — recebe três inteiros/floats e devolve um booleano. Nada de pagamento entra na conta. **O canal opera independentemente de qualquer instrumento monetário.**
+
+## Camada 2 — A coordenação que o canal resolve
+
+O canal não cria cooperação onde não havia; **resolve o jogo de coordenação** que torna a cooperação racionalmente difícil. Olson (1965, *Logic of Collective Action*) mostrou que mesmo em grupos pequenos onde todos sairiam melhor cooperando, cada agente individual prefere esperar: ninguém quer ser o primeiro a arcar com o risco. Granovetter (1978) generalizou via limiares heterogêneos; Centola-Macy (2007) mostraram que contágio complexo exige reforço local.
+
+O escrow muda a estrutura informacional do jogo. Sob canal de depósito condicional:
+
+- O trabalhador **não escolhe entre "denunciar isolado" e "calar"**. Escolhe entre "depositar (com risco zero enquanto não houver coorrespondência)" e "calar".
+- Como o depósito **não expõe nada** enquanto o gatilho não é atingido, o custo individual cai a praticamente zero (custo de redigir + depositar).
+- Quando há coorrespondência, todos abrem simultaneamente — **a coordenação foi resolvida por agregação institucional**, não por confiança horizontal informal.
+
+Esta diferença é radical em relação à formulação anterior do projeto, que dependia de capital social organizacional (Coleman 1990) sendo *internalizado* pelo regulador. Sob o canal correto, o regulador **não precisa** que o capital social pré-exista: a coordenação acontece via depósito paralelo no canal, sem necessidade de comunicação horizontal entre os depositantes.
+
+R26 (erosão endógena Coleman) segue válido apenas como sub-caso — se o CADE publica taxas agregadas de depósito no canal, pode haver leak parcial que afeta a comunicação informal subsequente. Mas o **caso geral é independente** desse risco.
 
 ### A peça empírica: gradiente Saito (2021)
 
-Quando há recompensa (instrumento monetário ativo), a LCMC distribui o atenuante por posição na fila usando o **gradiente empírico Saito**, extraído de 349 TCCs CADE 2012-2019:
+Quando há recompensa (instrumento monetário ativo, **incremental ao canal**), a LCMC distribui o atenuante por posição na fila usando o **gradiente empírico Saito**, extraído de 349 TCCs CADE 2012-2019:
 
 | Posição na fila inter-firma | Desconto $D_{\text{Saito}}$ |
 |---|---|
@@ -52,7 +70,9 @@ Quando há recompensa (instrumento monetário ativo), a LCMC distribui o atenuan
 
 O mesmo gradiente, normalizado por $D_{\text{Saito}}(1) = 43{,}43\%$, calibra a fila intra-firma sob `modo_corrida=True` — quem coopera em posição 1 dentro da firma recebe 100% da recompensa; em posição 2, 79,5%; em posição 3, 46,6%. A escolha *não é arbitrária*: o mesmo dado empírico do CADE calibra duas escalas.
 
-## Camada 2 — Os cinco instrumentos de internalização
+## Camada 3 — Os cinco instrumentos incrementais
+
+A LCMC funciona **sem nenhum** dos instrumentos abaixo — o canal sozinho resolve a coordenação. Os instrumentos aumentam a *probabilidade de adesão* ao canal, oferecendo benefício ao depositante. Cada um tem reserva constitucional distinta e pode ser adotado isoladamente ou em combinação.
 
 Sob a LCMC, o **substrato cooperativo** é o que importa. Mas a cooperação custa caro para cada trabalhador individualmente — risco de represália, custo legal, desvio da carreira. Cinco instrumentos podem compensar esse custo (cada um com reserva constitucional diferente):
 
@@ -91,9 +111,9 @@ for nome in ("A", "B", "C", "Cᵩ", "Cₚ"):
 # Cₚ: + 'leniencia_criminal_individual'
 ```
 
-## Camada 3 — A aritmética da IC-F\* (instrumento WaaS)
+## Camada 4 — A aritmética da IC-F\* (sob instrumento WaaS)
 
-A próxima seção, em prosa primeiro, com aritmética em seguida, é específica do **instrumento WaaS** — o único que envolve a firma pagando o trabalhador diretamente. Para os outros instrumentos, a aritmética é diferente (Hirschman tem `custo_exodo_esperado` em vez de `W`, por exemplo).
+A próxima seção é específica do **instrumento WaaS** — o único que envolve a firma pagando o trabalhador diretamente, *depois* que o canal abriu e o procedimento foi instaurado. Para os outros instrumentos, a aritmética é diferente (Hirschman tem `custo_exodo_esperado` em vez de `W`, por exemplo). Para a configuração "canal sem instrumento", esta camada **não se aplica**.
 
 A pergunta natural, e a primeira que aparece quando alguém ouve o WaaS pela primeira vez, é uma versão mais educada de **"você é ingênuo?"**:
 
