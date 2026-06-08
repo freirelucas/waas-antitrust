@@ -11,6 +11,79 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Reframe v2 — Sprint A → Sprint B (commits consolidados)
+
+**Commits 4-13 sumário** (cada um com seu próprio bloco no commit log):
+
+- **Commit 4 (93d0b44, v2.H)** — UX visual: chip-instrumento aplicado em
+  `index.md` (grid 2×2 dos 4 instrumentos) e `bem_publico.md` (topo);
+  sublinha-tese em `mecanismo.md`; caption tripla em figura 03; CSS
+  `.grid-instrumentos` + `.chip-instrumento` em `extra.css`.
+
+- **Commit 5 (340e6ce, v2.C)** — 6 cenários novos no catálogo (9→15):
+  `apenas_massa_critica_observavel`, `dois_instrumentos_acoplados`,
+  `credito_tributario_puro` (stub R22), `leniencia_criminal_individual`
+  (stub R23), `captura_processamento_cade`, `uso_adversarial_oportunista`.
+  10 testes em `test_cenarios_v2.py`.
+
+- **Commit 6 (1d06131, v2.H)** — `viz/cascata.py` implementado (stub→
+  real). Figura `04_cascata.png` da formação de massa crítica como
+  cascata sigmoidal Granovetter-Centola-Macy. Inserida em `bem_publico.md`.
+
+- **Commit 7 (659fc5d, v2.D.1)** — Externalidade erga omnes: novo
+  reporter `valor_dissuasao_difusa_acum` no modelo; `calcular_bem_estar`
+  ganha kwarg `dissuasao_difusa`; `PESOS_BEM_ESTAR` ganha
+  `epsilon_dissuasao_difusa`. Calibrado contra Connor-Lande 17-19%
+  overcharge. 7 testes em `test_externalidade.py`.
+
+- **Commit 8 (5d9a5e6, v2.B.4 / R26)** — Erosão endógena por uso
+  instrumental (Sociólogo v2, Coleman 1990): parâmetro `alpha_erosao`,
+  reporter `capital_social_residual`, Proposição 5 candidata operacionalizada.
+  6 testes em `test_erosao_coleman.py`. R-item mais ambicioso do reframe.
+
+- **Commit 9 (edaa81b)** — `viz/erosao.py`: figura `05_erosao_coleman.png`
+  com 3 trajetórias de capital social (alpha=0/0.2/0.5). Materializa a
+  Proposição 5 candidata visualmente.
+
+- **Commit 10 (9aaffc9)** — Ato 2 (`mecanismo.md`) ganha § "O que está
+  realmente em jogo: cooperação interna como capital social" pré-IC-F*.
+  Reframe narrativo MVP do PM v2 entregue.
+
+- **Commit 11 (5a73bec, v2.C.1)** — Novo módulo declarativo
+  `instrumentos.py` com taxonomia dos 4 instrumentos canônicos: WaaS
+  (implementado), Hirschman (implementado), tributário (stub R22),
+  criminal (stub R23). 12 testes em `test_instrumentos.py`. Convergência
+  Eco A + Adv B v2.
+
+- **Commit 12 (8d9cd21, v2.H)** — Tela de simulação macro:
+  `viz/painel_macro.py` produz painel 2×2 com p_perc, massa crítica
+  cumulativa, bem-estar, capital social residual. Figura
+  `06_painel_macro.png`. Inserida em `modelagem_multiagente.md`.
+
+- **Commit 13 (44e1225, v2.H)** — Tela de simulação micro:
+  `viz/painel_micro.py(modelo, fid)` produz painel 2×2 intra-firma com
+  arquétipos, papéis, estado, fila LCMC. Figura `07_painel_micro.png`.
+
+**Saldo do Sprint A + Sprint B parcial**:
+- pytest: 234 → 288 (+54 testes)
+- Reporters novos: `valor_dissuasao_difusa_acum`,
+  `capital_social_residual`
+- Arquétipos: 5 → 6 (+ oportunista)
+- Cenários: 9 → 15 (+6 v2)
+- Figuras novas no site: 4 (cascata, erosão Coleman, painel macro,
+  painel micro)
+- Novos R-items: R21-R26 (R26 = Proposição 5 candidata Coleman)
+- Módulos novos: `instrumentos.py`, `viz/cascata.py`,
+  `viz/erosao.py`, `viz/painel_macro.py`, `viz/painel_micro.py`
+- Novas referências em REFERENCES.md: Olson, Ostrom, Coleman, Hardin,
+  Heller, Samuelson, Titmuss, Frey-Jegen, Bénabou-Tirole, Stigler,
+  Wilson, McCubbins-Schwartz, Carpenter-Moss, Frankel-Morris-Pauzner,
+  Angeletos-Hellwig-Pavan, Chwe.
+
+**Fora do escopo (decisão PM v2)**: refator estrutural completo do P3;
+paper main.tex (escopo restrito a alterações narrativas em commit
+futuro); x10 v3 com behavioral ethicist + econometrista.
+
 ### Reframe v2 — Mat A (limiar Saito por posição) + arquétipo oportunista
 
 Terceiro commit do Sprint A do plano v2 pós-x10 v2. Primeiro código que

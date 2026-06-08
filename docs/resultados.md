@@ -2,9 +2,11 @@
 
 # O que a simulação mostra
 
+<p class="sublinha-tese"><em>Cooperação interna emerge antes do pagamento, e ela é o que dissuade.</em></p>
+
 O Ato 2 apresentou um desenho. Equações, exemplos numéricos, três vetores de quebra. Tudo isso vive no papel — bonito, possivelmente coerente, mas que não diz se **funciona**. Para responder, precisamos de uma máquina que rode o jogo institucional vezes seguidas, com agentes que decidem por conta própria, e meça o que sai.
 
-É o que o modelo `waas-antitrust` faz: 20 firmas, populadas por trabalhadores heterogêneos (éticos, imitativos, racionais e aleatórios), conectados por redes intra-firma do tipo *pequeno-mundo*, observados por uma autoridade tipo CADE com capacidade limitada. Rodamos esse sistema por 40 tiques (10 anos em trimestres) em cada um dos três regimes — A, B e C — e olhamos para duas perguntas:
+É o que o modelo `waas-antitrust` faz: 20 firmas, populadas por trabalhadores heterogêneos (**ético, imitativo, racional, aleatório, fairminded** e — sob reframe v2 — **oportunista**), conectados por redes intra-firma do tipo *pequeno-mundo*, observados por uma autoridade tipo CADE com capacidade limitada. Rodamos esse sistema por 40 tiques (10 anos em trimestres) em cada um dos três regimes — A, B e C — e olhamos para duas perguntas:
 
 1. **As empresas param de violar?** (Canal de dissuasão, Proposição 3.)
 2. **O bem-estar social sobe?** (Canal de prevenção do dano, R05.)
