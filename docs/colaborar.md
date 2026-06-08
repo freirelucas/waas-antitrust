@@ -17,20 +17,62 @@ A versão honesta deste projeto é: **um artigo em elaboração, com cinco pend�
 O caminho mais útil — e mais barato — é **rodar o modelo, contestar a calibração e tentar quebrar a conclusão**. Tudo está aberto sob CC BY-SA 4.0.
 
 ```bash
-# 60 segundos no Colab, com tudo instalado
+# Caminho rápido — Colab, instalação automática
 # https://colab.research.google.com/github/freirelucas/waas-antitrust/
 #   blob/main/notebooks/WaaS_demo.ipynb
 
-# Localmente, para mexer no código
+# Caminho local — para mexer no código
 git clone https://github.com/freirelucas/waas-antitrust.git
 cd waas-antitrust
 pip install -e ".[dev]"
-pytest                                            # 88 testes
+pytest -x -q -m "not slow"                        # 288 testes (~25s)
 python scripts/gerar_figura_dissuasao.py          # figura 03 do site
 python scripts/run_sobol_full.py --n-base 1024    # varredura paramétrica
 ```
 
-Os parâmetros adversariais — `D_disc_base_tcc`, `p_anulacao_tcc`, `custo_legal_uw` — estão expostos em `WaaSParametros`. Calibrar com seus números preferidos é uma chamada de função. Se a direção da Proposição 3 quebrar sob calibração que você considera realista, **abra uma issue** — isto é exatamente o que o projeto precisa.
+Os parâmetros adversariais — `D_disc_base_tcc`, `p_anulacao_tcc`, `custo_legal_uw`, `alpha_erosao`, `taxa_capacidade` — estão expostos em `WaaSParametros`. Calibrar com seus números preferidos é uma chamada de função.
+
+### Receitas concretas de contestação
+
+**Cético do Mecanismo (Eco A v1):** "se o TCC clássico já dá desconto, ninguém paga". Reproduzível:
+
+```python
+from waas_antitrust.model import WaaSModel, WaaSParametros
+
+# Calibrar D_base contra a sua mediana empírica preferida
+m = WaaSModel(WaaSParametros(
+    n_empresas=20, n_tiques=40, seed=11, regime="B",
+    D_disc=0.30,
+    D_disc_base_tcc=0.20,   # ⇐ você escolhe; teste com 0.10, 0.20, 0.28
+))
+df = m.executar()
+# Compare n_firmas_optaram_tcc_classico e n_pagou em função de D_disc_base_tcc
+```
+
+**Cético da Calibração (R03):** "Saito 2021 dá outra mediana, refaça a varredura". Reproduzível:
+
+```python
+# Edite src/waas_antitrust/calibracao/saito.py com sua mediana
+# (mantenha fonte primária no docstring)
+# Rode o pipeline:
+python scripts/calibrar.py --metrica dano_acumulado --seeds 12
+```
+
+**Cético do Sociólogo (R26):** "WaaS destrói o capital social que tenta extrair". Reproduzível:
+
+```python
+# alpha_erosao calibra a velocidade de erosão Coleman
+for alpha in (0.0, 0.2, 0.5, 0.8):
+    m = WaaSModel(WaaSParametros(
+        n_empresas=20, n_tiques=40, seed=11, regime="B",
+        alpha_erosao=alpha,
+    ))
+    df = m.executar()
+    print(f"α={alpha}: capital_social_final={df['capital_social_residual'].iloc[-1]:.3f}, "
+          f"dano={df['dano_acumulado'].max()}")
+```
+
+Se a direção da Proposição 3 (ou 5) quebrar sob calibração que você considera realista, **abra uma issue com o output** — isto é exatamente o que o projeto precisa para sair do plausível e entrar no ajustado.
 
 ## Contribuir com calibração ou texto
 

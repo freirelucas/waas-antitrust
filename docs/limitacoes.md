@@ -129,16 +129,89 @@ Há cinco pontos onde a literatura crítica converge mas o autor ainda não deci
 
 Estão registrados em [DECISIONS.md](DECISIONS.md). Cada um tem origem, autor crítico, e arquivos-alvo.
 
+## Como falsificar cada uma destas limitações em código
+
+A vantagem editorial deste projeto é que **toda limitação aqui listada é endereçável por código aberto** — cada uma tem um parâmetro `WaaSParametros`, um reporter, ou um teste de regressão que materializa o ponto fraco. O leitor cético tem caminho direto para reproduzir o pior caso.
+
+| Limitação | Parâmetro / reporter | Como rodar |
+|---|---|---|
+| Re-caracterização "ressarcimento" controvertida (F6) | `p_anulacao_tcc` | `WaaSParametros(p_anulacao_tcc=1.0)` ⇒ todo TCC-WaaS anulado ⇒ Regime B colapsa em A |
+| Reserva de lei do Regime B sobre vesting | `fracao_contratos_acelerados` | sob Regime A ou B, valor > 0 é forçado a 0 com `UserWarning` |
+| Colisão com leniência clássica Art. 86 | `custo_legal_uw` | calibrar custo legal do partícipe; teste em `tests/test_vetores_quebra.py` |
+| Pesos do bem-estar não calibrados | `PESOS_BEM_ESTAR` em `sobol/execucao.py` | dict editável; cada peso documentado com literatura calibradora |
+| Free-riding / sub-iniciação Olson | arquétipo `oportunista` (R24) | `DISTRIBUICAO_COM_OPORTUNISTAS` em `cenarios.py` |
+| Anti-commons (sobre-denúncia frívola) | `taxa_falso_reporte` + `n_tcc_anulados` | cenário `uso_adversarial_oportunista` |
+| Erosão Coleman (Proposição 5 candidata) | `alpha_erosao` (R26) | `tests/test_erosao_coleman.py::test_proposicao_5_candidata_direcional` |
+| Capacidade institucional CADE (Cient. Pol. v2) | `taxa_capacidade` | cenário `captura_processamento_cade` |
+| Viabilidade política Regime C 2024-2027 | n/a | documental ([viabilidade_regime_c.md](viabilidade_regime_c.md)) |
+
+Reproduzir o pior caso da fragilidade F6 (Vetor B):
+
+```python
+from waas_antitrust.model import WaaSModel, WaaSParametros
+
+# Configuração "Regime B com Judiciário hostil": todo TCC-WaaS é anulado
+m = WaaSModel(WaaSParametros(
+    n_empresas=20, n_tiques=40, seed=11, regime="B",
+    p_anulacao_tcc=1.0,    # 100% das vezes que a firma assina, é anulado
+))
+df = m.executar()
+print(f"TCCs assinados: {df['n_tcc_assinados'].max()}")
+print(f"TCCs anulados: {df['n_tcc_anulados'].max()}")
+print(f"Dano acumulado: {df['dano_acumulado'].max()}")
+# Resultado esperado: dano ~ Regime A, multa retorna ao erário
+```
+
+Reproduzir a Proposição 5 candidata (erosão Coleman):
+
+```python
+# Comparar bem-estar sob alpha_erosao=0 vs alpha_erosao=0.5
+from waas_antitrust.model import WaaSModel, WaaSParametros
+
+base = dict(n_empresas=20, n_tiques=40, seed=11, regime="B",
+            fracao_violadoras=0.7, taxa_observacao=0.6)
+
+df_sem = WaaSModel(WaaSParametros(**base, alpha_erosao=0.0)).executar()
+df_com = WaaSModel(WaaSParametros(**base, alpha_erosao=0.5)).executar()
+
+print(f"capital_social final  α=0.0: {df_sem['capital_social_residual'].iloc[-1]:.3f}")
+print(f"capital_social final  α=0.5: {df_com['capital_social_residual'].iloc[-1]:.3f}")
+print(f"dano_acumulado        α=0.0: {df_sem['dano_acumulado'].max()}")
+print(f"dano_acumulado        α=0.5: {df_com['dano_acumulado'].max()}")
+# Se Proposição 5 vale, dano sob α=0.5 > dano sob α=0 após N tiques
+```
+
+Reproduzir o teste de uso adversarial (oportunistas):
+
+```python
+from waas_antitrust.cenarios import aplicar_cenario, lookup_cenario
+from waas_antitrust.model import WaaSModel, WaaSParametros
+
+p = aplicar_cenario(
+    WaaSParametros(n_empresas=20, n_tiques=40, seed=11),
+    "uso_adversarial_oportunista",
+)
+df = WaaSModel(p).executar()
+print(f"falsos positivos acumulados: {df['falsos_positivos_acum'].max()}")
+print(f"TCCs anulados: {df['n_tcc_anulados'].max()}")
+# 20% de oportunistas ⇒ FP elevado, TCCs anulados crescem
+```
+
+Cada uma das nove limitações da tabela acima tem caminho de reprodução em ≤ 10 linhas de Python. Esta é a postura editorial do projeto: **se você acha que o argumento quebra, rode o código que mostra a quebra**.
+
 ## O que já está sustentado
 
-Em respeito à simetria, vale dizer o que **não** está nesta lista — o que sobreviveu à pressão da crítica e à reamostragem:
+Em respeito à simetria, vale dizer o que **não** está nesta lista — o que sobreviveu à pressão da crítica, à reamostragem multi-seed e ao reframe v2:
 
-- A **inversão de incentivo** ($D > W$ no ponto-alvo) é verificável e tem teste automatizado pontual.
-- A **dissuasão** (empresas param de violar) é produzida pelo próprio modelo, multi-seed, com CI 95% não cruzando zero.
-- O **bem-estar substantivo** credita a prevenção (incorpora custo do dano, custo de êxodo de Hirschman, multa arrecadada pelo Estado), em vez de premiar detecção.
-- A **coordenação tipo jogo global** tem versão analítica fechada e testada (limiar único de switching em $\tau \to 0$).
-- O **gating jurídico do R07** está implementado — o modelo recusa $\text{fracao\_contratos\_acelerados} > 0$ em Regimes A e B.
-- O **catálogo de 9 condutas** com gradiente 3-níveis (Near & Miceli) inclui casos brasileiros (iFood marketplace, Apple anti-steering).
+- **Princípio LCMC separado de instrumento WaaS** (reframe v2): a página [Bem coletivo](bem_publico.md) explicita que a Leniência Condicionada à Massa Crítica pode existir sem pagamento monetário.
+- **Inversão de incentivo** ($D > W$ no ponto-alvo) é verificável e tem teste automatizado pontual em `tests/test_vetores_quebra.py`.
+- **Dissuasão** (empresas param de violar) é produzida pelo próprio modelo, multi-seed, com CI 95% não cruzando zero — `test_dissuasao_endogena_robusta_a_multi_seed`.
+- **Bem-estar substantivo** credita a prevenção (dano evitado), custo de êxodo Hirschman, multa arrecadada pelo erário, e — sob `epsilon_dissuasao_difusa > 0` — externalidade erga omnes (R21/v2.D.1).
+- **Coordenação tipo jogo global** tem versão analítica fechada e testada em `jogo_global.py` (limiar único $x^\star$ em $\tau \to 0$). Sob LCMC, o limiar vira família $\{x^\star_k\}$ por posição na fila (Mat A v2).
+- **Gating jurídico do R07** está implementado — Regime A/B rejeita `fracao_contratos_acelerados > 0` com `UserWarning` citando Art. 22 I CF.
+- **Catálogo de 28 condutas** unilaterais digitais com gradiente 3-níveis Near & Miceli (inclui casos brasileiros: iFood marketplace, Apple anti-steering, e jurisprudência internacional pós-2024).
+- **Capital social residual** (R26 Coleman) operacionalizado como reporter; Proposição 5 candidata falsificável em `tests/test_erosao_coleman.py`.
+- **Taxonomia declarativa de 4 instrumentos** (`src/waas_antitrust/instrumentos.py`) com reservas constitucionais Cₜ/Cᵩ/Cₚ.
 
 <div class="ato-fim" markdown>
 **Fim do Ato 4.** A honestidade não destrói o argumento; encurta o caminho para sustentá-lo. Há trabalho de calibração, trabalho jurídico e cinco decisões normativas em aberto. Se você quer ajudar — discordar, calibrar, escrever, criticar — o Ato 5 mostra como.
