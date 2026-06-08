@@ -39,7 +39,6 @@ def test_fase_gera_figura():
         "adversarial",
         "bootstrap",
         "cade",
-        "cascata",
         "falsificacao",
         "internacional",
         "painel",
@@ -48,7 +47,24 @@ def test_fase_gera_figura():
     ],
 )
 def test_viz_stubs_levantam_not_implemented(modulo):
-    """Os 9 stubs de viz (ainda no caderno) levantam NotImplementedError."""
+    """Os 8 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
+    `cascata` foi implementada no reframe v2 (Commit 6) e ganhou teste próprio."""
     mod = importlib.import_module(f"waas_antitrust.viz.{modulo}")
     with pytest.raises(NotImplementedError):
         mod.gerar_figura()
+
+
+def test_cascata_gera_figura():
+    """`cascata.gerar_figura` retorna (Figure, Axes) com a curva sigmoidal
+    de formação de massa crítica + linhas de gatilho q_min e k_rel.
+    Implementada no Commit 6 do reframe v2."""
+    from waas_antitrust.viz import cascata
+
+    aplicar_estilo()
+    fig, ax = cascata.gerar_figura(n_tiques=20, q_min=0.10, k_rel=0.05, seed=7)
+    assert fig is not None
+    assert ax is not None
+    # Eixos com label e título corretos.
+    assert "Tique" in ax.get_xlabel()
+    assert "cooperando" in ax.get_ylabel().lower()
+    plt.close(fig)

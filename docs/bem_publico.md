@@ -20,6 +20,8 @@ a recompensa via TCC é apenas **um** instrumento de internalização?
 A resposta tem duas camadas, e é importante começar pela segunda — não
 pela primeira.
 
+![A cooperação interna emerge por cascata. A curva mostra a fração cumulativa de trabalhadores cooperando ao longo de 40 trimestres; quando ela cruza o gatilho `q_min` (LCMC, R20), a firma atinge massa crítica interna e ganha posição na fila de leniência. O pagamento via TCC vem **depois** desta cascata — não antes. Esta é a leitura sob reframe.](img/04_cascata.png){ .figura-conceitual }
+
 ## A primeira leitura — bem quase-público (Samuelson 1954)
 
 A leitura econômica clássica é a mais óbvia. Samuelson (*Pure Theory of
