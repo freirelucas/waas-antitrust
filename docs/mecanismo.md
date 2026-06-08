@@ -10,6 +10,29 @@ A pergunta natural — e a primeira que aparece quando alguém ouve o desenho do
 
 Esta página responde de frente. Em prosa primeiro, com aritmética em seguida, e com os três pontos onde o mecanismo pode realmente quebrar mapeados — porque o argumento honesto não é "isto sempre funciona", e sim **"isto funciona sob estas condições, falha sob estas outras, e ambas estão no modelo"**.
 
+## O que está realmente em jogo: cooperação interna como capital social
+
+Antes da aritmética da IC-F\*, vale dizer o que o mecanismo *não* é. O WaaS **não** é primariamente um esquema de incentivo à firma. A firma pagar denunciantes é **consequência**, não causa. O que está no centro é uma pergunta diferente:
+
+> Em mercados digitais com moat, **a conduta anticompetitiva é unilateral**. O conluio que existe vive **dentro do organograma** — entre o engenheiro, o produto, o comercial, o jurídico. Como tornar a cooperação interna desses agentes **observável institucionalmente**, dado que cada um deles paga um custo pessoal alto por falar?
+
+A massa crítica de cooperação interna é, na linguagem de **Coleman (1990,
+*Foundations of Social Theory*, cap. 12)**, **capital social organizacional**:
+bem coletivo produzido como subproduto de relações de obrigação entre pessoas
+que se conhecem e dependem umas das outras. Sem WaaS, esse capital existe mas
+fica **invisível ao regulador** — ninguém tem incentivo para externalizá-lo.
+Com WaaS, o regulador o **reconhece** como atenuante (sob o Art. 12 da Res.
+21/2018, segundo o reframe juridicamente discreto: "interesse público em
+detecção e cessação"; Lei 9.784/99 + LAC Art. 7º VII-VIII).
+
+A IC-F\* da firma, então, é **um dos instrumentos** (entre quatro: WaaS,
+vesting Hirschman, crédito tributário, leniência criminal — ver
+[bem coletivo](bem_publico.md)) que tornam essa internalização
+economicamente racional. Mas o **bem que se internaliza não é a firma
+paga** — é a cooperação que dispara antes do pagamento.
+
+Se isso parecer abstrato, a aritmética que segue ancora.
+
 ## O macroconceito: Leniência Condicionada à Massa Crítica (LCMC)
 
 Antes da aritmética, o nome do que está em jogo. O mecanismo aqui proposto — em todas as suas versões e variantes — é uma **Leniência Condicionada à Massa Crítica interna**, abreviada **LCMC**. O conceito unifica três peças que, sozinhas, já existem na literatura ou na prática brasileira, mas que nunca foram combinadas:
