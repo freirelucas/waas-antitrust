@@ -280,8 +280,18 @@ class WaaSModel(Model):
         # Dissuasão endógena (R01): detecção percebida e contagem de violadoras ativas.
         self._g_max = params.p_deteccao_prior / max(1e-6, 1.0 - params.fracao_violadoras)
         self.p_perc: float = params.p_deteccao_prior
+        self.p_perc_0: float = params.p_deteccao_prior  # baseline para v2.D.1
         self.n_violadoras_ativas: int = 0
         self.dano_acumulado: int = 0  # Σ violadoras ativas por tique (proxy de dano social)
+        # v2.D.1 (Eco B v2, R21): externalidade erga omnes do bem coletivo.
+        # Acumula (p_perc_t - p_perc_0) × n_empresas_não_notificadas × overcharge.
+        # Mede dissuasão difusa: firmas que CADE/MPF nunca investigariam mas
+        # passam a ser dissuadidas pelo sinal Schelling. Calibrado contra
+        # Connor-Lande 17-19% overcharge mediano.
+        self.valor_dissuasao_difusa_acum: float = 0.0
+        # Set de empresas já notificadas: usado para evitar double-counting
+        # no termo de externalidade (firmas que viraram VP já estão em `dano`).
+        self._empresas_ja_notificadas: set[int] = set()
         # Hirschman (R07): firmas sob ameaça materializada de êxodo e custo agregado.
         self.n_firmas_sob_ameaca_exodo: int = 0
         self.custo_exodo_acum: float = 0.0
@@ -356,6 +366,8 @@ class WaaSModel(Model):
                 "custo_exodo_acum": "custo_exodo_acum",
                 "dano_economico_acum": "dano_economico_acum",
                 "multa_arrecadada_acum": "multa_arrecadada_acum",
+                # v2.D.1 (Eco B v2, R21): externalidade erga omnes do bem coletivo.
+                "valor_dissuasao_difusa_acum": "valor_dissuasao_difusa_acum",
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
@@ -382,6 +394,12 @@ class WaaSModel(Model):
         )
 
     def _contar_notificadas(self) -> int:
+        # v2.D.1: aproveita o reporter para atualizar `_empresas_ja_notificadas`
+        # (set acumulado de firmas que foram notificadas em algum tique). Mantém
+        # `valor_dissuasao_difusa_acum` apenas creditando firmas NUNCA notificadas.
+        for e in self.empresas:
+            if e.notificada_no_periodo:
+                self._empresas_ja_notificadas.add(e.unique_id)
         return sum(1 for e in self.empresas if e.notificada_no_periodo)
 
     def _contar_tcc(self) -> int:
@@ -614,6 +632,17 @@ class WaaSModel(Model):
         # com fatias heterogêneas (Pareto/lognormal — pendente em R03/E05), uma
         # violação de firma de 40% conta muito mais que uma de 2%.
         self.dano_economico_acum += sum(e.fatia_mercado for e in self.empresas if e.eh_violadora)
+        # v2.D.1 (Eco B v2, R21): externalidade erga omnes do bem coletivo.
+        # (p_perc_t - p_perc_0) > 0 indica que a aprendizagem do sistema sobre
+        # detecção subiu — firmas não-notificadas se beneficiam dessa dissuasão
+        # difusa. Calibrado contra Connor-Lande overcharge mediano 17-19%.
+        # Mitigação double-counting: SÓ conta empresas que jamais foram notificadas.
+        delta_p = max(0.0, self.p_perc - self.p_perc_0)
+        n_nao_notificadas = sum(
+            1 for e in self.empresas if e.unique_id not in self._empresas_ja_notificadas
+        )
+        overcharge_proxy = 0.18  # Connor-Lande mediana — calibrar em R03
+        self.valor_dissuasao_difusa_acum += delta_p * n_nao_notificadas * overcharge_proxy
         for fid, ws in self.trabalhadores_por_empresa.items():
             empresa = self.empresas[fid]
             violando = empresa.eh_violadora

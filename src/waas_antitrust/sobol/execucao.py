@@ -28,6 +28,9 @@ PESOS_BEM_ESTAR: dict[str, float] = {
     "gamma_recompensa": 0.0,  # peso do custo de recompensa (normalizado por w_a)
     "delta_exodo": 0.5,  # peso do custo de êxodo materializado (normalizado por w_a)
     "delta_multa": 1.0,  # peso da multa arrecadada pelo Estado (normalizado por w_a)
+    # v2.D.1 (Eco B v2): externalidade erga omnes do bem coletivo.
+    # Default 0 preserva compatibilidade; ativar com epsilon > 0 sob reframe.
+    "epsilon_dissuasao_difusa": 0.0,
 }
 
 
@@ -39,29 +42,44 @@ def calcular_bem_estar(
     pesos: dict[str, float] | None = None,
     custo_exodo: float = 0.0,
     multa_arrecadada: float = 0.0,
+    dissuasao_difusa: float = 0.0,
 ) -> float:
-    """Bem-estar social = −(dano + β·FP + γ·custo + δ_ex·exodo − δ_mu·multa)/w_a.
+    """Bem-estar social com termo de externalidade erga omnes (v2.D).
+
+    Fórmula:
+        bem_estar = −(dano + β·FP + γ·custo + δ_ex·exodo
+                      − δ_mu·multa − ε·dissuasao_difusa) / w_a
 
     `dano` = Σ violadoras ativas por tique (R01) ou `dano_economico_acum`
     (ponderado por fatia de mercado, Categoria 3); ambos creditam a PREVENÇÃO.
     `custo_exodo` (Hirschman, R07) é custo social de perda de capital humano
-    transitória; `multa_arrecadada` é receita do erário (entra com sinal +,
-    creditando o bem-estar). Pesos normativos provisórios (calibrar em R03).
+    transitória; `multa_arrecadada` é receita do erário (entra com sinal +).
 
-    Os argumentos `custo_exodo` e `multa_arrecadada` têm default 0 para
-    preservar compatibilidade com chamadores anteriores; quando omitidos,
-    a fórmula colapsa em `−(dano + β·FP + γ·custo/w_a)`.
+    **v2.D.1 (Eco B v2, R21):** `dissuasao_difusa` é a externalidade
+    positiva erga omnes do bem coletivo de massa crítica — calibrada como
+    `Σ (p_perc_t − p_perc_0) · n_empresas_não_notificadas · overcharge`.
+    Conta a dissuasão difusa que o WaaS gera sobre firmas que CADE/MPF
+    jamais investigaria. Default 0 (compat); ativar via `pesos`.
+
+    Mitigação de double-counting: o termo `dano` já desconta violadoras
+    ativas, então `dissuasao_difusa` deve usar apenas firmas que **jamais**
+    foram notificadas — não as que viraram VP no estoque.
+
+    Pesos normativos provisórios (calibrar em R03 contra Connor-Lande
+    overcharge mediano 17-19%).
     """
     pesos = pesos or PESOS_BEM_ESTAR
     custo_norm = custo_recompensa / w_a_base if w_a_base else 0.0
     exodo_norm = custo_exodo / w_a_base if w_a_base else 0.0
     multa_norm = multa_arrecadada / w_a_base if w_a_base else 0.0
+    dissuasao_norm = dissuasao_difusa / w_a_base if w_a_base else 0.0
     return -(
         dano
         + pesos["beta_fp"] * fp
         + pesos["gamma_recompensa"] * custo_norm
         + pesos.get("delta_exodo", 0.0) * exodo_norm
         - pesos.get("delta_multa", 0.0) * multa_norm
+        - pesos.get("epsilon_dissuasao_difusa", 0.0) * dissuasao_norm
     )
 
 
