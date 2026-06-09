@@ -26,7 +26,15 @@ a recompensa via TCC é apenas **um** instrumento incremental?
     *Michigan Law Review* 111:145), análogo prático Callisto (callisto.org).
     O canal resolve Olson 1965 **direto na estrutura** (sub-iniciação
     eliminada por construção), sem precisar que capital social pré-exista.
-    Ver [aprendizados_v3.md](aprendizados_v3.md) para o detalhamento.
+
+    - Detalhamento da correção: ver §"A analogia conceitual correta" em
+      [aprendizados_v3.md](aprendizados_v3.md).
+    - Forma canônica dos termos ("depósito condicional", "escrow",
+      "canal"): ver [terminologia canônica](TERMINOLOGIA.md).
+    - As duas leituras abaixo (Samuelson e Coleman) servem para
+      **diagnosticar fragilidades** (bem coletivo difícil de
+      internalizar; erosão por uso instrumental), **não** para sustentar
+      o mecanismo.
 
 ## A leitura primária correta — information escrow (Ayres & Unkovic 2012)
 

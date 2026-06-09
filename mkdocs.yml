@@ -44,6 +44,7 @@ nav:
   - Anexos:
       - Como usar: uso.md
       - Glossário: glossario.md
+      - Terminologia canônica: TERMINOLOGIA.md
       - Bem coletivo e instrumentos: bem_publico.md
       - Modelagem multiagente: modelagem_multiagente.md
       - Modelo (protocolo ODD): ODD.md
