@@ -58,34 +58,71 @@ constitutiva nova, e sem precisar instrumento monetário.
 
 ## Leituras secundárias (úteis como lente, não como mecanismo)
 
+!!! note "Como ler as duas seções abaixo"
+
+    As duas leituras — Samuelson (bem quase-público) e Coleman (capital
+    social com risco de erosão) — não sustentam o **desenho** do
+    mecanismo. Elas servem para **diagnosticar fragilidades** sob duas
+    perspectivas distintas:
+
+    - **Samuelson** ajuda a entender *por que* a cooperação interna é
+      difícil de internalizar via mercados (não-excluível parcialmente,
+      não-rival entre autoridades). Útil como ponte didática para
+      leitores com background em economia clássica.
+    - **Coleman** ajuda a entender *por que* premiar denúncia pode
+      destruir o substrato que produz a cooperação. Motiva a
+      Proposição 5 candidata (R26), falsificável via `alpha_erosao`.
+
+    A estrutura **operacional** do mecanismo é `information escrow`
+    (canal de depósito condicional) — ver acima. As leituras abaixo
+    são **diagnósticas**, não constitutivas.
+
 A resposta tem duas camadas, e é importante começar pela segunda — não
 pela primeira.
 
 ![A cooperação interna emerge por cascata. A curva mostra a fração cumulativa de trabalhadores cooperando ao longo de 40 trimestres; quando ela cruza o gatilho `q_min` (LCMC, R20), a firma atinge massa crítica interna e ganha posição na fila de leniência. O pagamento via TCC vem **depois** desta cascata — não antes. Esta é a leitura sob reframe.](img/04_cascata.png){ .figura-conceitual }
 
-### Bem quase-público (Samuelson 1954)
+### Bem quase-público (Samuelson 1954) — ponte didática
 
-A leitura econômica clássica é a mais óbvia. Samuelson (*Pure Theory of
-Public Expenditure*, 1954) classifica bens em dois eixos:
+> Esta seção é uma **moldura analítica secundária**. Não descreve o
+> mecanismo proposto; serve para situar o problema na linguagem
+> econômica clássica antes de passar para Coleman e, depois, para o
+> mecanismo correto (canal de depósito condicional).
+
+A leitura econômica clássica seria classificar a cooperação interna
+como **bem quase-público** à Samuelson (*Pure Theory of Public
+Expenditure*, 1954). Em dois eixos:
 
 - **Rivalidade no consumo** — o consumo por A reduz o disponível para B?
 - **Excluibilidade** — é possível impedir B de consumir mesmo sem pagar?
 
-Massa crítica de cooperação interna se posiciona como **bem quase-público**:
-não-rival (o CADE pode reconhecer a cooperação sem reduzir a capacidade
-de o MPF ou MPT também reconhecerem) e parcialmente excluível (só observável
-a quem tem acesso à rede intra-firma, mas dentro dela a observação é
-contínua entre pares).
+Massa crítica de cooperação interna seria, sob Samuelson, **não-rival**
+(o CADE pode reconhecer a cooperação sem reduzir a capacidade de o MPF
+ou MPT também reconhecerem) e **parcialmente excluível** (só observável
+a quem tem acesso à rede intra-firma).
 
-Esta leitura é útil para enquadrar o problema na linguagem econômica
-familiar. Ela tem **limites importantes**, que a segunda leitura expõe.
+A leitura é útil para entender *por que* o mercado tende a sub-prover
+essa cooperação — mas **não explica como remediar**. A correção via
+information escrow (canal de depósito condicional) opera por mecanismo
+estruturalmente diferente: não internaliza o bem, **resolve o jogo de
+coordenação que torna sua provisão difícil**.
 
-### Capital social com risco de erosão (Coleman 1990)
+### Capital social com risco de erosão (Coleman 1990) — diagnóstico da Proposição 5 candidata
+
+> Esta seção é uma **moldura analítica secundária** que diagnostica uma
+> fragilidade do mecanismo. Não descreve o mecanismo proposto; descreve
+> *por que* qualquer instrumento monetário acoplado ao canal de
+> depósito condicional pode ter custo oculto (erosão do substrato
+> cooperativo informal).
 
 ![Trajetórias de `capital_social_residual` para três valores de `alpha_erosao` (R26). Sem erosão (preto, $\\alpha=0$), o capital social fica constante em 1.0. Com erosão moderada (verde, $\\alpha=0.2$), degrada lentamente. Com erosão forte (vermelho, $\\alpha=0.5$), colapsa em poucos tiques. A Proposição 5 candidata afirma que existe $\\alpha^\\star$ tal que para $\\alpha > \\alpha^\\star$, o Regime B colapsa em A após N tiques.](img/05_erosao_coleman.png){ .figura-empirica }
 
 
-A crítica x10 v2 (Sociólogo) trouxe uma reformulação mais precisa.
+A crítica x10 v2 (Sociólogo) trouxe a reformulação que originou esta
+moldura. Sob v2, capital social era apresentado como **eixo central** do
+projeto. Sob v3 (correção radical do autor — ver
+[aprendizados_v3.md](aprendizados_v3.md)), permanece como **diagnóstico
+de um risco residual**, não como mecanismo.
 Coleman (*Foundations of Social Theory*, 1990, cap. 12) define **capital
 social** como bem coletivo **produzido como subproduto de relações de
 obrigação** entre pessoas que se conhecem e dependem umas das outras.
