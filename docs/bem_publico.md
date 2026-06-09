@@ -80,7 +80,12 @@ constitutiva nova, e sem precisar instrumento monetário.
 A resposta tem duas camadas, e é importante começar pela segunda — não
 pela primeira.
 
-![A cooperação interna emerge por cascata. A curva mostra a fração cumulativa de trabalhadores cooperando ao longo de 40 trimestres; quando ela cruza o gatilho `q_min` (LCMC, R20), a firma atinge massa crítica interna e ganha posição na fila de leniência. O pagamento via TCC vem **depois** desta cascata — não antes. Esta é a leitura sob reframe.](img/04_cascata.png){ .figura-conceitual }
+<figure markdown>
+  ![Cascata sigmoidal de formação de massa crítica ao longo de 40 tiques](img/04_cascata.png){ .figura-conceitual }
+  <figcaption>
+    A cooperação interna emerge por cascata. A curva mostra a fração cumulativa de trabalhadores cooperando ao longo de 40 trimestres; quando ela cruza o gatilho <code>q_min</code> (LCMC, R20), a firma atinge massa crítica interna e ganha posição na fila de leniência. O pagamento via TCC vem <strong>depois</strong> desta cascata — não antes. Esta é a leitura sob reframe.
+  </figcaption>
+</figure>
 
 ### Bem quase-público (Samuelson 1954) — ponte didática
 
@@ -115,7 +120,12 @@ coordenação que torna sua provisão difícil**.
 > depósito condicional pode ter custo oculto (erosão do substrato
 > cooperativo informal).
 
-![Trajetórias de `capital_social_residual` para três valores de `alpha_erosao` (R26). Sem erosão (preto, $\\alpha=0$), o capital social fica constante em 1.0. Com erosão moderada (verde, $\\alpha=0.2$), degrada lentamente. Com erosão forte (vermelho, $\\alpha=0.5$), colapsa em poucos tiques. A Proposição 5 candidata afirma que existe $\\alpha^\\star$ tal que para $\\alpha > \\alpha^\\star$, o Regime B colapsa em A após N tiques.](img/05_erosao_coleman.png){ .figura-empirica }
+<figure markdown>
+  ![Trajetórias de capital social residual sob três valores de alpha_erosao em Regime B](img/05_erosao_coleman.png){ .figura-empirica }
+  <figcaption>
+    Trajetórias de <code>capital_social_residual</code> para três valores de <code>alpha_erosao</code> (R26). Sem erosão (preto, $\alpha=0$), o capital social fica constante em 1.0. Com erosão moderada (verde, $\alpha=0.2$), degrada lentamente. Com erosão forte (vermelho, $\alpha=0.5$), colapsa em poucos tiques. A Proposição 5 candidata afirma que existe $\alpha^\star$ tal que para $\alpha > \alpha^\star$, o Regime B colapsa em A após N tiques.
+  </figcaption>
+</figure>
 
 
 A crítica x10 v2 (Sociólogo) trouxe a reformulação que originou esta

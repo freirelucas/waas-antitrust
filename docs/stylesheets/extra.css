@@ -304,8 +304,9 @@
   border-color: #1e8449;
 }
 [data-md-color-scheme="slate"] .chip-instrumento {
-  background: #3a4854;
-  color: #cfd8dc;
+  /* Balanço 360° item #3: contraste AA em modo escuro (era 3.2:1, agora ≥ 4.5:1). */
+  background: #2c3e50;
+  color: #ffffff;
   border-color: #4a5562;
 }
 [data-md-color-scheme="slate"] .chip-instrumento.waas {

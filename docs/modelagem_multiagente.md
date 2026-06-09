@@ -344,7 +344,12 @@ uma decisão.
 O módulo `viz/painel_macro.py` produz uma tela 2×2 com as quatro
 trajetórias-chave do sistema:
 
-![Painel macro 2×2. **(a)** detecção percebida global `p_perc` (sinal Schelling — sobe com cada notificação). **(b)** firmas que atingiram massa crítica interna ao longo do tempo (LCMC R20). **(c)** bem-estar substantivo `-(dano + β·FP + γ·custo + δ_ex·exodo − δ_mu·multa)/w_a`. **(d)** capital social residual sob risco de erosão Coleman (R26, com `alpha_erosao=0.2`).](img/06_painel_macro.png){ .figura-empirica }
+<figure markdown>
+  ![Painel macro 2x2 com p_perc, massa crítica, bem-estar e capital social residual](img/06_painel_macro.png){ .figura-empirica }
+  <figcaption>
+    Painel macro 2×2. <strong>(a)</strong> detecção percebida global <code>p_perc</code> (sinal Schelling — sobe com cada notificação). <strong>(b)</strong> firmas que atingiram massa crítica interna ao longo do tempo (LCMC R20). <strong>(c)</strong> bem-estar substantivo <code>-(dano + β·FP + γ·custo + δ_ex·exodo − δ_mu·multa)/w_a</code>. <strong>(d)</strong> capital social residual sob risco de erosão Coleman (R26, com <code>alpha_erosao=0.2</code>).
+  </figcaption>
+</figure>
 
 A leitura sob reframe: as quatro trajetórias contam a história inteira do
 mecanismo em uma única visualização. (a) e (b) são o **lado positivo** —
@@ -359,7 +364,12 @@ candidata se materializa visualmente.
 Complementar ao macro: o módulo `viz/painel_micro.py` foca em UMA firma
 específica e mostra o que acontece dentro dela.
 
-![Painel micro 2×2 da firma 0. **(a)** trabalhadores que sinalizaram por arquétipo (ético, imitativo, racional, aleatório, fairminded, oportunista). **(b)** trabalhadores que sinalizaram por papel funcional (eng, produto, design, etc.) — observabilidade depende de papel × conduta. **(c)** estado da firma em quatro flags (violadora, notificada, massa crítica interna, TCC assinado). **(d)** fila intra-firma sob LCMC — cada ponto é uma posição de cooperação no tique em que foi registrada.](img/07_painel_micro.png){ .figura-empirica }
+<figure markdown>
+  ![Painel micro 2x2 de uma firma com arquétipos, papéis, estado e fila LCMC](img/07_painel_micro.png){ .figura-empirica }
+  <figcaption>
+    Painel micro 2×2 da firma 0. <strong>(a)</strong> trabalhadores que sinalizaram por arquétipo (ético, imitativo, racional, aleatório, fairminded, oportunista). <strong>(b)</strong> trabalhadores que sinalizaram por papel funcional (eng, produto, design, etc.) — observabilidade depende de papel × conduta. <strong>(c)</strong> estado da firma em quatro flags (violadora, notificada, massa crítica interna, TCC assinado). <strong>(d)</strong> fila intra-firma sob LCMC — cada ponto é uma posição de cooperação no tique em que foi registrada.
+  </figcaption>
+</figure>
 
 Útil para depurar **por que** uma firma específica forma (ou não) massa
 crítica: as distribuições de arquétipo e papel em (a) e (b) explicam,
