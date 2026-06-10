@@ -113,15 +113,20 @@ for nome in ("A", "B", "C", "Cᵩ", "Cₚ"):
 
 ## Camada 4 — A aritmética da IC-F\* (sob instrumento WaaS)
 
-A próxima seção é específica do **instrumento WaaS** — o único que envolve a firma pagando o trabalhador diretamente, *depois* que o canal abriu e o procedimento foi instaurado. Para os outros instrumentos, a aritmética é diferente (Hirschman tem `custo_exodo_esperado` em vez de `W`, por exemplo). Para a configuração "canal sem instrumento", esta camada **não se aplica**.
+> **Quando esta camada se aplica.** A próxima seção é específica do
+> **instrumento WaaS** — o único que envolve a firma pagando o trabalhador
+> diretamente, *depois* que o canal abriu e o procedimento foi instaurado.
+> Para os outros instrumentos, a aritmética é diferente (Hirschman tem
+> `custo_exodo_esperado` em vez de `W`, por exemplo). Para a configuração
+> "canal sem instrumento", esta camada **não se aplica**.
 
 A pergunta natural, e a primeira que aparece quando alguém ouve o WaaS pela primeira vez, é uma versão mais educada de **"você é ingênuo?"**:
 
 > Basta a empresa se recusar a pagar os denunciantes e ainda assim pegar o desconto para tudo ruir, não?
 
-A resposta está nas três subseções que seguem: a IC-F\* em prosa, em fórmula, e em exemplo numérico (R$ 1 bi de receita). Com três pontos onde o argumento pode quebrar.
+A resposta está nas três subseções que seguem: **4.1 a escolha em prosa; 4.2 a fórmula da IC-F\*; 4.3 um exemplo numérico em R$ 1 bi de receita.** Com três pontos (sub-§ 4.4-4.6) onde o argumento pode quebrar.
 
-## A escolha da firma, em uma frase
+### 4.1 A escolha da firma, em uma frase
 
 A firma já foi denunciada — o gatilho de massa crítica disparou, o caso vai ao CADE. A partir daí, ela escolhe entre três caminhos. Em todos eles, paga **alguma coisa**; a diferença é a soma.
 
@@ -135,7 +140,7 @@ A diferença entre os dois primeiros — entre o TCC-WaaS e o TCC clássico — 
 A firma paga os denunciantes não porque ganha um desconto. Paga porque ganha um desconto <strong>maior</strong> do que conseguiria sem isso — e maior o suficiente para cobrir a recompensa, com folga.
 </div>
 
-## A IC-F\*, em prosa antes da fórmula
+### 4.2 A IC-F\*, em prosa antes da fórmula
 
 A condição que define quando a firma escolhe pagar tem nome em economia institucional: **incentive compatibility da firma** — escrita aqui como **IC-F\***. Em prosa direta:
 
@@ -149,7 +154,7 @@ $$
 
 A versão simplificada $W < D_{\text{total}}$ — usada nos artigos teóricos de leniência clássica — só funciona se assumirmos $D_{\text{base}} = 0$. Quando o TCC clássico **já** dá desconto, ignorar isso é overclaim. O modelo computacional incorpora a forma correta (parâmetro `D_disc_base_tcc` em `WaaSParametros`).
 
-### A IC-F\* no código
+#### A IC-F\* no código
 
 A função que decide se a firma paga está em `model.py` (Phase P3). Em pseudocódigo (omitindo a camada Hirschman e a corrida LCMC):
 
@@ -186,7 +191,7 @@ W_total = sum(decaimento_W(t.posicao_corrida_interna, W_base, "saito")
 
 A diferença entre o caminho histórico e o caminho LCMC fica explícita: no histórico, todo trabalhador recebe `W_base`; sob LCMC, a recompensa decai com a posição na fila intra-firma, e o desconto da firma decai com a posição inter-firma. **Duas filas, um gradiente empírico**.
 
-## Uma firma, R$ 1 bilhão de receita, 30 minutos com a calculadora
+### 4.3 Uma firma, R$ 1 bilhão de receita, 30 minutos com a calculadora
 
 Aritmética é o tipo de coisa que parece dura até virar familiar. Aqui está com nomes em reais.
 
@@ -228,9 +233,9 @@ A IC-F\* fica satisfeita com folga ampla:
 
 Tudo isso depende, evidentemente, de quanto $D_{\text{base}}$ realmente é na prática do CADE. Quando esse número aproxima-se de $D_{\text{total}}$, a margem encolhe. Quando ultrapassa, o mecanismo **deixa de funcionar** — e este é o primeiro dos três vetores que cobrimos a seguir.
 
-## Os três vetores de quebra — onde o argumento pode mesmo ruir
+### 4.4 Os três vetores de quebra — onde o argumento pode mesmo ruir
 
-### Vetor A: e se o TCC clássico já der desconto suficiente?
+#### Vetor A: e se o TCC clássico já der desconto suficiente?
 
 Este é o cético que diz "basta a empresa não pagar e pegar o desconto". A versão tecnicamente correta da crítica é: se $D_{\text{base}}$ já cobre uma fração significativa de $D_{\text{total}}$, a margem $D_{\text{extra}}$ encolhe e a IC-F\* deixa de motivar o pagamento.
 
@@ -238,7 +243,7 @@ O **desenho jurídico** se sustenta porque o Art. 12 da Res. 21/2018 é explíci
 
 O **modelo** torna isto explícito: o parâmetro `D_disc_base_tcc` em `WaaSParametros` permite simular qualquer valor de $D_{\text{base}}$, inclusive o pior caso em que $D_{\text{base}} = D_{\text{total}}$. Quando isso acontece, $D_{\text{extra}} = 0$, ninguém paga a recompensa, e o contador `n_firmas_optaram_tcc_classico` registra a quebra. Testes em `tests/test_vetores_quebra.py` cobrem o caso direcionalmente.
 
-### Vetor B: e se o Judiciário anular o TCC?
+#### Vetor B: e se o Judiciário anular o TCC?
 
 A re-caracterização da recompensa como "ressarcimento das vítimas" é uma construção jurídico-finalística. O Judiciário pode rejeitá-la — e a recusa pode vir anos depois do TCC ter sido assinado, **anulando-o retroativamente**. Quando isso acontece, a empresa perde o desconto e a multa cheia retorna como crédito ao erário.
 
@@ -246,7 +251,7 @@ Este é precisamente o **falsificador F6** declarado no desenho. A defesa instit
 
 O **modelo** torna esse risco calibrável via `p_anulacao_tcc`. Em P4, todo TCC assinado é sorteado contra essa probabilidade; quando anulado, o contador `n_tcc_anulados` registra, a multa cheia volta ao erário, e o sistema perde a coordenação que o mecanismo construía. Em testes, $p_{\text{anulação}}$ alta faz o Regime B convergir para o Regime A — um falsificador quantitativo, não verbal.
 
-### Vetor C: e os advogados dos denunciantes?
+#### Vetor C: e os advogados dos denunciantes?
 
 Esta é uma crítica que custumeiramente passa em branco e merece resposta direta. **Sim**, o denunciante terá custos legais: advogado para reivindicar a recompensa, defesa em eventual ação trabalhista por represália, e — em hipótese pior — defesa criminal se for caracterizado como **partícipe** da conduta (a colisão dura com o Art. 86 da Lei 12.529/2011, território de leniência clássica).
 

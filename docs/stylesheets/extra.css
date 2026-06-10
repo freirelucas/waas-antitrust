@@ -347,3 +347,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Balanço 360° item #8: hierarquia visual de H4 em páginas longas.
+ * Sub-subseções (####) ganham cor cinza-azulada distinta + margem maior
+ * para respiração; quebra a parede de texto em Atos com aritmética
+ * densa (notadamente Camada 4 de mecanismo.md). */
+.md-typeset h4 {
+  color: #5d6d7e;
+  font-size: 0.95em;
+  font-weight: 600;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+}
+[data-md-color-scheme="slate"] .md-typeset h4 {
+  color: #9aa6b2;
+}
+
+/* Balanço 360° item #M2: responsividade ampliada para telas < 480px.
+ * numero-callout em 2.6em fica agressivo em iPhone SE — reduz e
+ * permite reflow vertical. */
+@media (max-width: 480px) {
+  .numero-callout .valor {
+    font-size: 1.8em;
+  }
+  .hero {
+    padding: 1em;
+  }
+}
