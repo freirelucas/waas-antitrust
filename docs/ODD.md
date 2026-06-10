@@ -121,6 +121,26 @@ No limite τ → 0 do subjogo de jogo global, há equilíbrio único de switchin
 
 > **Reformulação sob LCMC (R20):** sob `modo_corrida=True`, o limiar $x^\star$ ganha dimensão temporal. Cada trabalhador tem $x^\star(t)$ porque a recompensa esperada cai com a posição na fila (próprio decaimento $f_W(k)$ é decrescente). Esboço novo: o limiar de cooperação é único em cada instante; a sequência $\{x^\star(t)\}_t$ é decrescente sob informação privada e converge ao limiar estático no caso degenerado. **Status: conjectura aberta** — a integração formal do `limiar_switching_temporal` ao racional sob `modo_corrida` é trabalho de R02b/R20 ainda não escrito.
 
+#### R02b — Contraste numérico multiplicidade × unicidade (balanço 360° item #5)
+
+O contraste central de Morris-Shin (1998) é entre **conhecimento comum**
+(múltiplos equilíbrios; resultado clássico de jogos de coordenação) e
+**informação privada** (equilíbrio único; resultado de Morris-Shin).
+A figura abaixo exibe os dois ramos explicitamente:
+
+<figure markdown>
+  ![Painel 1x2 mostrando múltiplos equilíbrios sob conhecimento comum e equilíbrio único sob informação privada](img/09_multiplicidade_unicidade.png){ .figura-conceitual }
+  <figcaption>
+    R02b — contraste explicit. <strong>(A)</strong> Conhecimento comum: melhor-resposta em formato S admite 3 equilíbrios (trivial, intermediário instável, cooperativo). <strong>(B)</strong> Informação privada: limiar $x^\star(\tau)$ converge ao limite Morris-Shin quando $\tau \to 0$, selecionando equilíbrio único. <strong>Caveat</strong> (Mat A v2): sob LCMC com fila inter-firma, Angeletos-Hellwig-Pavan (2007) mostraram que sinal público correlacionado pode restaurar multiplicidade; a figura ilustra apenas o subgame estilizado homogêneo.
+  </figcaption>
+</figure>
+
+A figura é o "ponto de fé" da Proposição 2 que estava ausente antes do
+balanço 360°: ela mostra visualmente que **a unicidade Morris-Shin
+não é evidência sem o contraste com a multiplicidade que ela seleciona**.
+Sob heterogeneidade (R02c) e sob LCMC dinâmica (R20), a generalização
+deste contraste segue como conjectura aberta.
+
 ### Proposição 3 — Dominância de bem-estar do Regime B sobre o Regime A
 
 Para um conjunto de medida positiva de (W, D, σ), o bem-estar social esperado é estritamente maior sob Regime B do que sob Regime A.

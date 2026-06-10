@@ -148,3 +148,19 @@ def test_proposicao_5_gera_figura():
     assert "Capital social" in axes[0].get_ylabel()
     assert "Dano" in axes[1].get_ylabel() or "dano" in axes[1].get_ylabel().lower()
     plt.close(fig)
+
+
+def test_multiplicidade_unicidade_gera_figura():
+    """`multiplicidade_unicidade.gerar_figura` retorna (Figure, [Axes, Axes])
+    com painel 1×2 do contraste Morris-Shin: múltiplos equilíbrios sob
+    conhecimento comum × equilíbrio único sob informação privada.
+    Atende R02b do balanço 360° (item #5)."""
+    from waas_antitrust.viz import multiplicidade_unicidade
+
+    aplicar_estilo()
+    fig, axes = multiplicidade_unicidade.gerar_figura(
+        b=2.0, c=1.0, k=0.2, taus=(0.0, 0.1, 0.3, 0.5)
+    )
+    assert fig is not None
+    assert len(axes) == 2
+    plt.close(fig)
