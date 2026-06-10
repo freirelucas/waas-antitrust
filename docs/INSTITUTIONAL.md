@@ -162,34 +162,54 @@ Cada instrumento pode ser adotado isoladamente ou em conjunto. Nenhum
 
 ---
 
-## Art. 12 como reconhecimento de interesse público em detecção (versão v2, agora aplicável só ao instrumento WaaS)
+## Art. 12 como reconhecimento de interesse público em detecção (aplicável apenas ao instrumento WaaS)
 
-A crítica do Adv A na x10 v2 trouxe correção dogmática material. A
-re-caracterização atual ("recompensa = ressarcimento das vítimas") apoia-se
-em construção *finalística* sobre o Art. 12 da Resolução 21/2018 — argumento
-defensável mas sujeito a F6 (anulação judicial). O reframe original — que
-falava em "atenuante por contribuição a bem público de detecção" — **agravava**
-o problema ao criar categoria *constitutiva* sem ancoragem expressa.
+> Esta seção trata da fundamentação dogmática do **instrumento WaaS**
+> (recompensa via TCC). Sob v3, o **canal de depósito condicional**
+> não depende dela — usa o Art. 4º da Lei 12.529 e a Lei 9.784/99
+> como base procedimental autônoma (ver § acima). A presente seção
+> sobrevive porque o instrumento WaaS, quando acoplado ao canal,
+> precisa de uma base própria para a re-caracterização do pagamento
+> como atenuante na contribuição pecuniária do TCC.
 
-A formulação dogmática disponível no direito sancionador administrativo
-brasileiro é mais discreta:
+### Problema dogmático
+
+A jurisprudência interna do CADE trata o Art. 12 da Resolução 21/2018
+como autorização para considerar o **ressarcimento das vítimas** como
+circunstância atenuante na dosimetria do TCC. O conceito de "vítima"
+remete ao Art. 45, V e VI, da Lei 12.529/2011 — categoria *coletiva*
+(consumidores, concorrentes, erário). Tratar a recompensa paga ao
+**denunciante interno** como "ressarcimento da vítima coletiva" é
+construção *finalística* (pelo papel funcional na produção da prova),
+não dogmática (pelo nexo de causalidade com o dano).
+
+Sob revisão judicial, essa re-caracterização pode ser rejeitada
+(falsificador F6). O reframe v2 — substituir por "atenuante por
+contribuição a bem público de detecção" — **agravava** o problema ao
+criar categoria *constitutiva* sem ancoragem expressa na Lei 12.529
+nem em precedente brasileiro.
+
+### Solução dogmática
+
+A formulação disponível no direito sancionador administrativo
+brasileiro é mais discreta. Em vez de criar categoria nova, usa
+princípio existente como **base de fundamentação** para a discricionariedade
+do CADE em reconhecer cooperação interna:
 
 > **Interesse público em detecção e cessação** (Lei 9.784/99, Art. 2º,
 > parágrafo único, IV — "atuação segundo padrões éticos de probidade,
 > decoro e boa-fé"; e XIII — "interpretação da norma administrativa da
 > forma que melhor garanta o atendimento do fim público a que se dirige").
 
-Não cria categoria nova; usa princípio existente como base de
-fundamentação para a atenuante já prevista no Art. 12. O reframe
-**não substitui** a leitura "ressarcimento finalístico" — a complementa
-com um princípio de direito administrativo que sustenta a discricionariedade
-do CADE em reconhecer cooperação interna como bem juridicamente relevante.
+Não cria atenuante novo; sustenta a discricionariedade do CADE em
+*reconhecer* cooperação interna como circunstância relevante na
+dosimetria já prevista no Art. 45 V/VI e na atenuante do Art. 12.
 
-### O precedente que faltava: Lei 12.846/2013 (LAC) Art. 7º VII-VIII
+### Defesa do argumento
 
-O **precedente brasileiro mais relevante** para o reframe — ausente das
-versões anteriores deste documento — é a Lei Anticorrupção (Lei
-12.846/2013), Art. 7º, VII e VIII:
+O argumento se defende em três flancos:
+
+**(i) Precedente brasileiro: Lei 12.846/2013 (LAC) Art. 7º VII-VIII.**
 
 > Art. 7º Serão levados em consideração na aplicação das sanções: (...)
 > VII — a cooperação da pessoa jurídica para a apuração das infrações;
@@ -199,25 +219,42 @@ versões anteriores deste documento — é a Lei Anticorrupção (Lei
 > jurídica.
 
 A LAC **já trata mecanismos de detecção interna como bem juridicamente
-relevante para dosimetria**. Esse é exatamente o tipo de reconhecimento
-institucional que o WaaS antitruste busca. A construção do reframe é
-defensável como **extensão analógica do princípio da LAC ao enforcement
-antitruste**, com vantagens dogmáticas claras:
+relevante para dosimetria**. A construção do reframe é defensável como
+**extensão analógica do princípio da LAC ao enforcement antitruste**:
 
-- LAC é lei ordinária federal (já passou pelo Congresso), removendo a
+- LAC é lei ordinária federal já aprovada pelo Congresso — remove a
   fragilidade de "criar categoria por resolução".
 - O Decreto 11.129/2022 (regulamenta a LAC) detalha os critérios de
-  *programa de integridade* — vocabulário que cabe à cooperação interna
-  WaaS sem forçar a barra.
+  *programa de integridade* — vocabulário que cabe à cooperação
+  interna WaaS sem forçar a barra.
 - O CGU/AGU já desenvolveram metodologia de avaliação de programas de
   integridade que pode ser adaptada à avaliação de "massa crítica
   qualificada" no antitruste.
 
-Essa âncora dogmática mitiga **parcialmente** o F6 mas não o elimina — a
-analogia LAC → antitruste é defensável, não pacífica. A pendência
-**E04** (verbatim do Art. 12 da Resolução 21/2018 contra o Diário Oficial)
-permanece obrigatória; o reframe não a resolve, apenas reposiciona o
-argumento.
+**(ii) Ancoragem em princípios administrativos.** Lei 9.784/99 IV +
+XIII (acima) sustentam a *discricionariedade* do CADE em reconhecer a
+cooperação. Não há criação de tipo sancionatório; há *interpretação*
+de princípio existente.
+
+**(iii) Compatibilidade com a charneira atual.** O reframe **não
+substitui** a leitura "ressarcimento finalístico" do Art. 12 — a
+complementa. Se um juiz aceitar a leitura finalística, ótimo; se
+rejeitar, a fundamentação alternativa via interesse público + LAC
+permanece como caminho dogmático ainda defensável.
+
+### Risco residual
+
+A ancoragem dogmática mitiga **parcialmente** o F6 mas não o elimina —
+a analogia LAC → antitruste é defensável, não pacífica. A pendência
+**E04** (verbatim do Art. 12 da Resolução 21/2018 contra o Diário
+Oficial) permanece obrigatória; este reframe não a resolve, apenas
+reposiciona o argumento.
+
+**Sob a tese v3**, a fragilidade F6 perde força central: o canal de
+depósito condicional (mecanismo coração) não depende da
+re-caracterização. Apenas o instrumento WaaS (incremento) carrega a
+fragilidade — e o autor pode escolher implementar a LCMC sem WaaS,
+mantendo o canal sob Resolução procedimental.
 
 ## Decisão de design não-trivial
 
