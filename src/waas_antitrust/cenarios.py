@@ -5,15 +5,20 @@ parâmetros do `WaaSModel`. A motivação vem da crítica do autor: tratar
 alterações normativas como **cenários comparáveis**, não como notas de
 rodapé textuais.
 
-Os sete cenários cobrem o espectro de:
+O catálogo cobre o espectro de:
 
-- **Status quo** (Regime A, sem qualquer alteração);
+- **Status quo BR** (Regime A, sem qualquer alteração);
 - **Resolução pura** (Regime B atual — Art. 12 da Res. CADE 21/2018);
 - **Resolução + portaria MTE** (B com proteção trabalhista reforçada);
 - **Lei WaaS pura** (Regime C — extensão da Lei 13.608/2018);
 - **Lei WaaS com fundo público de honorários** (Estado paga advogado);
 - **Lei WaaS com cláusula padrão de vesting acelerado** (Hirschman R07);
-- **Sanção catastrófica** (qualquer regime + multa por descumprimento do TCC).
+- **Sanção catastrófica** (qualquer regime + multa por descumprimento do TCC);
+- **Cenários v2 R21-R25** (massa crítica observável, dois instrumentos,
+  crédito tributário, leniência criminal, captura processamento, uso
+  adversarial);
+- **Variantes EUA/UE R28** (DOJ-ATR Rewards Program 2025; DMA Whistleblower
+  Tool 2024) — generalidade do mecanismo a partir da pesquisa de fundo 2026.
 
 Cada cenário é um dict de **sobrescritas** de parâmetros — aplicar via
 `aplicar_cenario(params, cenario_id)` produz um novo `WaaSParametros` com
@@ -326,6 +331,54 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "p_anulacao_tcc": 0.10,
             "distribuicao_arquetipos": DISTRIBUICAO_COM_OPORTUNISTAS,
             "taxa_falso_reporte": 0.15,  # oportunistas elevam FP base
+        },
+    ),
+    # ----- Cenários R28 — generalidade EUA/UE (pesquisa de fundo 2026) -----
+    Cenario(
+        nome="eua_doj_atr_rewards_2025",
+        descricao=(
+            "**Variante EUA** — DOJ-ATR Whistleblower Rewards Program "
+            "(jul/2025) em parceria com USPS, **instituído administrativamente** "
+            "sem lei nova federal. Hospedagem em Regime C porque a base "
+            "estatutária Dodd-Frank §922 (SEC) torna a recompensa juridicamente "
+            "robusta (sem F6). Faixa 15-30% sobre multas ≥ US$ 1 milhão; "
+            "primeiro prêmio US$ 1 milhão em 29/jan/2026. `prob_pagamento_perc` "
+            "calibrado em 0.225 (média da faixa); `custo_legal_uw` moderado "
+            "(USPS coleta mas não financia defesa); LCMC `modo_corrida` ATIVO "
+            "porque DOJ-ATR opera lógica de fila. Pendência [?]: calibrar "
+            "`taxa_capacidade` do DOJ contra orçamento ATR FY2025."
+        ),
+        sobrescritas={
+            "regime": "C",
+            "D_disc_base_tcc": _D_BASE_TCC,
+            "p_anulacao_tcc": 0.0,  # robustez estatutária Dodd-Frank §922
+            "custo_legal_uw": 0.15,  # USPS coleta; defesa por conta do denunciante
+            "prob_pagamento_perc": 0.225,  # média da faixa 15-30%
+            "modo_corrida": True,
+            "q_min_cooperacao_interna": 0.10,
+            "perfil_decaimento": "saito",  # extrapolado; calibrar contra DOJ-ATR
+        },
+    ),
+    Cenario(
+        nome="ue_dma_whistleblower_tool_2024",
+        descricao=(
+            "**Variante UE** — DMA Whistleblower Tool (30/abr/2024), canal "
+            "anônimo para violações dos Arts. 5/6/7 do Reg. 2022/1925, **SEM "
+            "componente de recompensa**. Hospedagem em Regime A porque a UE "
+            "regulou via Diretiva 2019/1937 (proteção horizontal anti-represália) "
+            "sem incentivo monetário. Vetor empírico contra o qual o BR pode ser "
+            "comparado: proteção forte sem recompensa basta? `r_represalia` "
+            "calibrado baixo (proteção horizontal robusta); `D_disc=0` (sem "
+            "instrumento de internalização); `p_perc` moderada (Schelling via "
+            "publicidade DG-COMP). Pendência [?]: calibrar `taxa_capacidade` "
+            "DG-COMP contra orçamento DG-COMP 2024."
+        ),
+        sobrescritas={
+            "regime": "A",  # sem recompensa, só proteção
+            "D_disc": 0.0,  # sem instrumento de internalização monetária
+            "r_represalia": 0.05,  # proteção horizontal Diretiva 2019/1937
+            "custo_legal_uw": 0.10,  # proteção facilita defesa
+            "fracao_violadoras": 0.5,  # mantém termo de comparação com BR
         },
     ),
 )

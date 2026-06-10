@@ -128,3 +128,54 @@ def test_descricoes_cenarios_v2_citam_personas():
         assert (
             marcador in c.descricao
         ), f"cenário {nome} deve citar {marcador!r}; descrição: {c.descricao[:120]}"
+
+
+# ---------------------------------------------------------------------
+# Cenários R28 — generalidade EUA/UE (pesquisa de fundo 2026)
+# ---------------------------------------------------------------------
+
+
+def test_eua_doj_atr_rewards_2025_calibra_faixa_15_30():
+    """DOJ-ATR Whistleblower Rewards Program (jul/2025): 15-30% sobre multas
+    ≥ US$ 1 milhão. `prob_pagamento_perc` deve refletir média 0.225."""
+    p = aplicar_cenario(WaaSParametros(), "eua_doj_atr_rewards_2025")
+    assert p.regime == "C"  # Dodd-Frank §922 base estatutária robusta
+    assert p.p_anulacao_tcc == 0.0  # sem F6
+    assert p.prob_pagamento_perc == 0.225  # média 15-30%
+    assert p.modo_corrida is True  # LCMC ativa
+
+
+def test_ue_dma_whistleblower_tool_2024_sem_recompensa():
+    """DMA Whistleblower Tool (30/abr/2024): proteção sem recompensa. Vetor
+    empírico contra o qual o BR pode ser comparado."""
+    p = aplicar_cenario(WaaSParametros(), "ue_dma_whistleblower_tool_2024")
+    assert p.regime == "A"  # sem componente de recompensa
+    assert p.D_disc == 0.0  # sem instrumento de internalização monetária
+    assert p.r_represalia < 0.10  # proteção horizontal Diretiva 2019/1937
+
+
+def test_cenarios_r28_executam_end_to_end():
+    """Smoke: ambos os cenários R28 rodam o modelo sem erro."""
+    p_base = WaaSParametros(n_empresas=4, tam_medio_empresa=30, n_tiques=3, seed=59)
+    for nome in ("eua_doj_atr_rewards_2025", "ue_dma_whistleblower_tool_2024"):
+        p = aplicar_cenario(p_base, nome)
+        df = WaaSModel(p).executar()
+        assert len(df) >= 1
+
+
+def test_cenarios_r28_no_catalogo():
+    """Ambos os cenários R28 estão presentes em CATALOGO_CENARIOS."""
+    nomes_r28 = {"eua_doj_atr_rewards_2025", "ue_dma_whistleblower_tool_2024"}
+    nomes_catalogo = {c.nome for c in CATALOGO_CENARIOS}
+    assert nomes_r28.issubset(nomes_catalogo), f"faltam cenários R28: {nomes_r28 - nomes_catalogo}"
+
+
+def test_descricoes_cenarios_r28_citam_marco_normativo():
+    """Auditável: cada cenário R28 deve citar o marco normativo de origem."""
+    marcos = {
+        "eua_doj_atr_rewards_2025": "Dodd-Frank",
+        "ue_dma_whistleblower_tool_2024": "2019/1937",
+    }
+    for nome, marco in marcos.items():
+        c = lookup_cenario(nome)
+        assert marco in c.descricao, f"cenário {nome} deve citar {marco!r}"

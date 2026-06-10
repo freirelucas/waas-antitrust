@@ -111,20 +111,25 @@ def test_fairminded_peso_alto_acelera_cascata_etica():
 # ----------------------------------------------------------------------
 
 
-def test_catalogo_tem_15_cenarios_canonicos():
+def test_catalogo_tem_17_cenarios_canonicos():
     """R13a adicionou `mercado_digital_br_pareto` (8); R20 adicionou
     `cenario_corrida_leniencia` (9); reframe v2 adicionou 6 cenários
     (apenas_massa_critica_observavel, dois_instrumentos_acoplados,
     credito_tributario_puro, leniencia_criminal_individual,
-    captura_processamento_cade, uso_adversarial_oportunista) = 15."""
-    assert len(CATALOGO_CENARIOS) == 15
+    captura_processamento_cade, uso_adversarial_oportunista) = 15.
+    R28 (pesquisa de fundo 2026) adicionou 2 cenários
+    (eua_doj_atr_rewards_2025, ue_dma_whistleblower_tool_2024) = 17."""
+    assert len(CATALOGO_CENARIOS) == 17
     nomes = [c.nome for c in CATALOGO_CENARIOS]
-    assert len(set(nomes)) == 15  # nomes únicos
+    assert len(set(nomes)) == 17  # nomes únicos
     assert "cenario_corrida_leniencia" in nomes
     # Cenários novos do reframe v2
     assert "apenas_massa_critica_observavel" in nomes
     assert "dois_instrumentos_acoplados" in nomes
     assert "uso_adversarial_oportunista" in nomes
+    # Cenários R28 — generalidade EUA/UE
+    assert "eua_doj_atr_rewards_2025" in nomes
+    assert "ue_dma_whistleblower_tool_2024" in nomes
 
 
 def test_cenarios_cobrem_status_quo_e_regimes_b_e_c():

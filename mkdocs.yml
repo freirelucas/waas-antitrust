@@ -50,6 +50,7 @@ nav:
       - Modelo ABM (detalhe + parâmetros): modelo_abm.md
       - Modelo (protocolo ODD): ODD.md
       - Análise institucional: INSTITUTIONAL.md
+      - Generalidade (EUA e UE): internacional.md
       - Viabilidade política do Regime C: viabilidade_regime_c.md
       - Referências: REFERENCES.md
       - Referência da API: api.md
