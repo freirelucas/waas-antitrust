@@ -127,6 +127,18 @@ class WaaSParametros:
     # Literatura calibradora: Titmuss 1970, Frey-Jegen 2001, Bénabou-Tirole 2003.
     alpha_erosao: float = 0.0
 
+    # **R27 — Canal de depósito condicional explícito** (correção radical v3,
+    # balanço 360° item #1; Ayres-Unkovic 2012 *Michigan L. Rev.* 111:145).
+    # Sob `usar_escrow_explicito=True`, o `AutoridadeAgent.escrow_denuncias`
+    # mantém explicitamente o escrow de denúncias condicionais; quando massa
+    # crítica é atingida em uma firma, **todas as denúncias se abrem
+    # simultaneamente** via `abrir_escrow_se_massa_critica`. Sob default
+    # `False`, o escrow é mantido implicitamente em P2.5 do WaaSModel —
+    # comportamento idêntico ao histórico. Refator é SEMÂNTICO (não muda
+    # resultado bit-a-bit); explicita que o CADE é o portador do escrow,
+    # não a firma.
+    usar_escrow_explicito: bool = False
+
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
     # do subgame de Morris-Shin (`jogo_global.limiar_switching`) como gatilho
@@ -337,6 +349,9 @@ class WaaSModel(Model):
         self.fator_represalia_ex_funcionario = params.fator_represalia_ex_funcionario
         # R02a: integrar `jogo_global.x*` no arquétipo racional (opt-in).
         self.usar_x_estrela_no_racional = params.usar_x_estrela_no_racional
+        # R27: canal de depósito condicional explícito (opt-in; default preserva
+        # comportamento histórico onde o escrow é implícito em P2.5).
+        self.usar_escrow_explicito = getattr(params, "usar_escrow_explicito", False)
         # R20 — Modo corrida + filas
         self.modo_corrida = params.modo_corrida
         self.q_min_cooperacao_interna = params.q_min_cooperacao_interna
@@ -392,6 +407,11 @@ class WaaSModel(Model):
                 # v2.B.4 (Sociólogo v2, R26): capital social residual com risco
                 # de erosão por uso instrumental (Coleman 1990).
                 "capital_social_residual": "capital_social_residual",
+                # R27 (balanço 360° item #1): reporters do canal de depósito
+                # condicional explícito. Sob `usar_escrow_explicito=False`,
+                # ambos ficam em 0 (compat).
+                "n_denuncias_em_escrow": self._contar_denuncias_em_escrow,
+                "n_aberturas_simultaneas_acum": self._contar_aberturas_simultaneas,
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
@@ -445,6 +465,20 @@ class WaaSModel(Model):
             for c in self.autoridade.historico_casos
             if not c["eh_violadora_real"] and c["classificada_violadora"]
         )
+
+    def _contar_denuncias_em_escrow(self) -> int:
+        """R27: total de denúncias condicionais ainda em escrow (não-abertas).
+
+        Sob `usar_escrow_explicito=False`, sempre 0 — o escrow é implícito
+        em P2.5. Sob `True`, conta `n_denuncias_em_escrow` do AutoridadeAgent.
+        """
+        return getattr(self.autoridade, "n_denuncias_em_escrow", 0)
+
+    def _contar_aberturas_simultaneas(self) -> int:
+        """R27: total cumulativo de aberturas simultâneas (massa crítica
+        atingida ⇒ todas as denúncias depositadas para a firma se abrem
+        ao mesmo tempo). Sob `usar_escrow_explicito=False`, sempre 0."""
+        return getattr(self.autoridade, "n_aberturas_simultaneas_acum", 0)
 
     def _contar_ex_funcionarios(self) -> int:
         """Total de trabalhadores com `status='ex_funcionario'` (R19)."""
@@ -744,6 +778,24 @@ class WaaSModel(Model):
             empresa.notificada_no_periodo = False
             n_sig = sum(1 for t in ws if t.sinaliza_agora)
             k_req = max(1, int(self.k_rel * empresa.n_trabalhadores))
+
+            # R27: sob `usar_escrow_explicito=True`, cada sinal do tique vira
+            # um DEPÓSITO CONDICIONAL no escrow do CADE (não notifica a firma
+            # imediatamente). A abertura simultânea é decidida em P2.5 quando
+            # massa crítica intra-firma for atingida.
+            if W_ativo and self.usar_escrow_explicito:
+                for t in ws:
+                    if t.sinaliza_agora:
+                        # Qualidade da prova varia por papel × conduta (já
+                        # implícita na probabilidade de observação); aqui
+                        # registramos depósito com qualidade base 0.5.
+                        self.autoridade.depositar_condicional(
+                            id_empresa=fid,
+                            id_trabalhador=getattr(t, "unique_id", 0),
+                            qualidade_prova=0.5,
+                            tique=self.tique,
+                        )
+
             if W_ativo and n_sig >= k_req:
                 empresa.notificada_no_periodo = True
                 empresa.n_denuncias_acum += 1  # R14: memória da firma
@@ -768,6 +820,17 @@ class WaaSModel(Model):
                         empresa.id_empresa, self.tique
                     )
                     self.n_firmas_atingiram_massa_critica_interna += 1
+
+        # P2.5b · R27: abertura simultânea do escrow quando massa crítica é
+        # atingida em uma firma. Sob `usar_escrow_explicito=False`, é no-op.
+        if self.usar_escrow_explicito:
+            for fid in self.trabalhadores_por_empresa:
+                empresa = self.empresas[fid]
+                self.autoridade.abrir_escrow_se_massa_critica(
+                    id_empresa=fid,
+                    q_min=self.q_min_cooperacao_interna,
+                    n_trabalhadores_firma=empresa.n_trabalhadores,
+                )
 
         # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07).
         # **Vetor de quebra A**: a IC-F* correta compara W contra o INCREMENTO
@@ -848,6 +911,9 @@ class WaaSModel(Model):
                     self.custo_exodo_acum += c_exodo
 
         # P4 · intervenção da autoridade
+        # R27: sob `usar_escrow_explicito=True`, os casos das firmas notificadas
+        # já foram injetados via `abrir_escrow_se_massa_critica` em P2.5b.
+        # P4 trata apenas dos canais residuais (auto-detecção + falso reporte).
         for empresa in self.empresas:
             if not empresa.notificada_no_periodo:
                 # canal residual independente (auto-detecção)
@@ -861,6 +927,9 @@ class WaaSModel(Model):
                     and self.rng.random() < self.taxa_falso_reporte
                 ):
                     self.autoridade.receber_caso(empresa, 0.15, identidades_protegidas=True)
+                continue
+            if self.usar_escrow_explicito:
+                # Caso já foi injetado via escrow em P2.5b — não duplicar.
                 continue
             qualidade = 0.9 if empresa.pagou_denunciantes else 0.6
             id_prot = not empresa.pagou_denunciantes

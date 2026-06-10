@@ -297,6 +297,17 @@ class AutoridadeAgent(Agent):
                              Captura especialização institucional (CGAA/CADE
                              Departamento de Estudos Econômicos sobre digital).
                              Default 0 preserva o comportamento original.
+
+    R27 (correção radical v3 — balanço 360° item #1):
+        escrow_denuncias — dict mapeando id_empresa → list[DepositoCondicional].
+                           Sob `usar_escrow_explicito=True`, o CADE mantém
+                           explicitamente o escrow de denúncias condicionais
+                           (Ayres-Unkovic 2012; análogo Callisto). Quando massa
+                           crítica é atingida em uma firma, TODAS as denúncias
+                           depositadas para aquela firma se abrem
+                           simultaneamente. Sob `usar_escrow_explicito=False`
+                           (default), o escrow é mantido implicitamente em P2.5
+                           do WaaSModel — comportamento idêntico ao histórico.
     """
 
     def __init__(
@@ -312,6 +323,14 @@ class AutoridadeAgent(Agent):
         self.prioridade_digital = prioridade_digital
         self.casos_neste_tique: list[dict] = []
         self.historico_casos: list[dict] = []
+        # R27: escrow de denúncias condicionais por firma.
+        # Cada entrada é uma lista de depósitos pendentes (não-abertos);
+        # quando massa crítica é atingida na firma, os depósitos se "abrem"
+        # simultaneamente e a firma é notificada.
+        self.escrow_denuncias: dict[int, list[dict]] = {}
+        # Contadores expostos via reporters do modelo.
+        self.n_denuncias_em_escrow: int = 0
+        self.n_aberturas_simultaneas_acum: int = 0
 
     def receber_caso(
         self,
@@ -328,6 +347,79 @@ class AutoridadeAgent(Agent):
                 "tique": self.model.tique,
             }
         )
+
+    # --- R27: API explícita do canal de depósito condicional ---
+
+    def depositar_condicional(
+        self,
+        id_empresa: int,
+        id_trabalhador: int,
+        qualidade_prova: float,
+        tique: int,
+    ) -> None:
+        """Trabalhador deposita uma denúncia condicional no escrow do CADE.
+
+        A denúncia fica em escrow (não notifica a firma, não vira processo)
+        até que massa crítica seja atingida via `abrir_escrow_se_massa_critica`.
+        Análogo Callisto / information escrow (Ayres-Unkovic 2012).
+
+        Sob `usar_escrow_explicito=True` em `WaaSParametros`, o
+        `WaaSModel.step()` chama este método em P1/P2 em vez de manter o
+        escrow implicitamente. Backward compat estrita.
+        """
+        if id_empresa not in self.escrow_denuncias:
+            self.escrow_denuncias[id_empresa] = []
+        self.escrow_denuncias[id_empresa].append(
+            {
+                "id_trabalhador": id_trabalhador,
+                "qualidade_prova": qualidade_prova,
+                "tique_deposito": tique,
+            }
+        )
+        self.n_denuncias_em_escrow += 1
+
+    def abrir_escrow_se_massa_critica(
+        self,
+        id_empresa: int,
+        q_min: float,
+        n_trabalhadores_firma: int,
+    ) -> bool:
+        """Se massa crítica intra-firma foi atingida, **abre simultaneamente**
+        todas as denúncias depositadas para `id_empresa` e devolve True.
+
+        Caso contrário, mantém o escrow e devolve False. Esta é a "abertura
+        simultânea" da LCMC v3 — implementa o all-or-nothing do canal de
+        depósito condicional.
+        """
+        depositos = self.escrow_denuncias.get(id_empresa, [])
+        if n_trabalhadores_firma <= 0:
+            return False
+        fracao = len(depositos) / n_trabalhadores_firma
+        if fracao >= q_min and depositos:
+            # Abertura simultânea: os N depósitos colapsam em UM caso aceito
+            # pelo CADE (semântica: massa crítica é prova qualificada da
+            # firma, não N casos independentes). A qualidade da prova é
+            # a média dos depósitos — quanto mais cooperadores, melhor
+            # a confiança média.
+            empresa = self.model.empresas[id_empresa]
+            qualidade_media = sum(d["qualidade_prova"] for d in depositos) / len(depositos)
+            self.casos_neste_tique.append(
+                {
+                    "id_empresa": id_empresa,
+                    "eh_violadora_real": empresa.eh_violadora,
+                    "qualidade_prova": qualidade_media,
+                    "id_protegidas": True,  # canal preserva identidade
+                    "tique": self.model.tique,
+                    "via_escrow": True,
+                    "n_cooperadores": len(depositos),
+                }
+            )
+            self.n_aberturas_simultaneas_acum += 1
+            self.n_denuncias_em_escrow -= len(depositos)
+            # Escrow daquela firma é esvaziado após abertura.
+            self.escrow_denuncias[id_empresa] = []
+            return True
+        return False
 
     def processar_casos(self) -> list[dict]:
         aceitos = self.casos_neste_tique[: self.capacidade]
