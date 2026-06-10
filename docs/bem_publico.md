@@ -133,6 +133,30 @@ moldura. Sob v2, capital social era apresentado como **eixo central** do
 projeto. Sob v3 (correção radical do autor — ver
 [aprendizados_v3.md](aprendizados_v3.md)), permanece como **diagnóstico
 de um risco residual**, não como mecanismo.
+
+### A Proposição 5 candidata em multi-seed
+
+O painel abaixo testa empiricamente a Proposição 5 candidata em
+multi-seed (5 seeds, horizonte 40 tiques). À esquerda, o capital social
+residual ao longo do tempo para 4 valores de $\alpha_\text{erosão}$;
+o envelope cinza ao redor de cada média é ±1 desvio-padrão entre seeds.
+À direita, o dano acumulado relativo ao baseline $\alpha=0$ — quanto
+mais alto fica acima de 1.0, mais a erosão custou em violações
+adicionais não dissuadidas:
+
+<figure markdown>
+  ![Painel 1x2 da Proposição 5 candidata: capital social residual e dano relativo](img/08_proposicao_5.png){ .figura-empirica }
+  <figcaption>
+    Proposição 5 candidata sob multi-seed. <strong>(A)</strong> Capital social residual para 4 valores de $\alpha_\text{erosão}$ (média entre 5 seeds, ± 1 std); linha pontilhada em 0.5 é patamar crítico hipotético (calibrar em R03). <strong>(B)</strong> Dano acumulado relativo ao baseline $\alpha=0$. Se Coleman estiver direcionalmente certo, o painel B mostra crescimento monotônico com $\alpha$. Linha tracejada em 1.0 é o baseline. A leitura epistêmica: o painel apresenta evidência direcional, não calibrada — o valor crítico $\alpha^\star$ permanece como conjectura aberta (R26).
+  </figcaption>
+</figure>
+
+A leitura sob v3: o painel (B) mostra que mesmo erosão moderada
+($\alpha=0.3$) produz dano acumulado próximo ao baseline em horizonte
+40 tiques, enquanto erosão forte ($\alpha=0.7$) produz crescimento
+detectável. O efeito **existe direcionalmente** mas a magnitude
+absoluta é pequena no setup atual. A calibração formal contra dados
+históricos (R03) decidirá se a Proposição 5 é verificada ou rejeitada.
 Coleman (*Foundations of Social Theory*, 1990, cap. 12) define **capital
 social** como bem coletivo **produzido como subproduto de relações de
 obrigação** entre pessoas que se conhecem e dependem umas das outras.

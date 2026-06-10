@@ -131,3 +131,20 @@ def test_cascata_gera_figura():
     assert "Tique" in ax.get_xlabel()
     assert "cooperando" in ax.get_ylabel().lower()
     plt.close(fig)
+
+
+def test_proposicao_5_gera_figura():
+    """`proposicao_5.gerar_figura` retorna (Figure, [Axes, Axes]) com painel
+    1×2 multi-seed: capital social residual + dano relativo ao baseline.
+    Implementada no item #7 do Tier MÉDIA do balanço 360°."""
+    from waas_antitrust.viz import proposicao_5
+
+    aplicar_estilo()
+    # Configuração reduzida para teste rápido (~ 2s)
+    fig, axes = proposicao_5.gerar_figura(n_tiques=10, seeds=(11, 23), alphas=(0.0, 0.5))
+    assert fig is not None
+    assert len(axes) == 2
+    # Painel A é capital social, painel B é dano relativo
+    assert "Capital social" in axes[0].get_ylabel()
+    assert "Dano" in axes[1].get_ylabel() or "dano" in axes[1].get_ylabel().lower()
+    plt.close(fig)
