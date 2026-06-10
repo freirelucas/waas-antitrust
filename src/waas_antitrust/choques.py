@@ -21,11 +21,16 @@ duração explícita fica para v1):
 - **choque_juridico**: pulso em `p_anulacao_tcc`. Captura decisão
   jurisprudencial adversa que eleva risco F6 permanentemente.
 
-Três catálogos canônicos:
+Cinco catálogos canônicos:
 
 - `CHOQUES_TECH_2022_2024` — ondas de layoff jan/2023 e jan/2024
   (calibração frouxa contra layoffs.fyi para o setor tech BR;
-  magnitudes ainda em ordem de grandeza).
+  magnitudes ainda em ordem de grandeza). Causalidade CÍCLICA
+  (overhiring pandêmico + aperto monetário).
+- `CHOQUES_TECH_2024_2025_AI_RESTRUCTURING` — ondas Q4/2024 e 2025-26
+  com causalidade ESTRUTURAL (IA-eficiência + pivot estratégico).
+  Pesquisa de fundo 2026: 40% das vagas eliminadas não são reabertas
+  (AlixPartners 2025). Salesforce, SAP, Intel, Cisco, Meta Reality Labs.
 - `CHOQUES_CAMPANHA_CADE_DIGITAL` — pulso de prioridade digital no
   CADE-DEE pós DT-003/2022.
 - `CHOQUES_CASO_PARADIGMATICO_IFOOD_2023` — TCC iFood publicado.
@@ -73,6 +78,14 @@ class Choque:
     tipo: str
     magnitude: float
     descricao: str = ""
+    # Pesquisa de fundo 2026 (autor): a causalidade declarada dos layoffs
+    # tech mudou de cíclica ("overhiring pandêmico"; 2022-2023) para
+    # estrutural ("AI efficiency restructuring"; 2024-2025). Distinguir
+    # facilita análise heterogênea de magnitude e padrão de propagação.
+    # Valores aceitos (não-validados): "overhiring_pandemico", "aperto_monetario",
+    # "ai_efficiency", "pivot_estrategico", "campanha_regulatoria",
+    # "decisao_judicial". Default "" preserva compat.
+    causa_declarada: str = ""
 
     def __post_init__(self) -> None:
         if self.tipo not in TIPOS_VALIDOS:
@@ -122,9 +135,16 @@ def aplicar_choque(modelo: WaaSModel, choque: Choque) -> None:
 # Catálogos canônicos — calibração ainda frouxa (R03)
 # ---------------------------------------------------------------------
 
-#: Duas ondas grandes de layoff em tech 2022-2024.
+#: Duas ondas grandes de layoff em tech 2022-2024 (causalidade CÍCLICA).
 #: Magnitudes em ordem de grandeza de layoffs.fyi para o setor; calibrar
 #: contra a série específica de BR em R03.
+#:
+#: **Pesquisa de fundo 2026**: 2022-2024 totalizou ~579 mil demissões
+#: globais (165 mi 2022 + 262 mi 2023 + 152 mi 2024); ondas dominadas por
+#: Meta nov/2022 (11k, 13%), Twitter nov/2022 (3,7k, 50%), Amazon nov/2022
+#: (10k), Google jan/2023 (12k, 6%), Microsoft jan/2023 (10k, 5%).
+#: Brasscom 2024 indica EXPANSÃO LÍQUIDA do setor TIC BR (+4,5% formal),
+#: mas com cortes específicos em iFood, PicPay, Loft, Neon, C6, PagSeguro.
 CHOQUES_TECH_2022_2024: tuple[Choque, ...] = (
     Choque(
         tique=4,
@@ -133,6 +153,7 @@ CHOQUES_TECH_2022_2024: tuple[Choque, ...] = (
         descricao=(
             "Onda jan/2023 (Meta, Google, Amazon, Microsoft globais; " "subsidiárias BR atingidas)."
         ),
+        causa_declarada="overhiring_pandemico",
     ),
     Choque(
         tique=8,
@@ -142,6 +163,40 @@ CHOQUES_TECH_2022_2024: tuple[Choque, ...] = (
             "Onda jan/2024 (continuação da contração global; ajuste "
             "pós-bolha de contratação 2021)."
         ),
+        causa_declarada="aperto_monetario",
+    ),
+)
+
+#: Onda de demissões 2024-2026 com causalidade ESTRUTURAL (AI restructuring).
+#: Pesquisa de fundo 2026 confirma mudança qualitativa: 40% das vagas
+#: eliminadas NÃO são reabertas (AlixPartners 2025), apontando substituição
+#: por automação/IA. Empresas declararam explicitamente "AI efficiency":
+#: Salesforce 8k (Q4/2024), SAP até 8k + €2bi/ano em IA, Intel 15k (~15%),
+#: Cisco 4k (~5%), Meta Reality Labs 1k (10% RL) + 3,6k geral 2025-26.
+#: Hipótese: o trabalhador demitido por "IA-eficiência" tem mais conhecimento
+#: técnico de algoritmos e dados → qualidade de prova potencialmente maior.
+CHOQUES_TECH_2024_2025_AI_RESTRUCTURING: tuple[Choque, ...] = (
+    Choque(
+        tique=12,
+        tipo="layoff",
+        magnitude=0.05,
+        descricao=(
+            "Onda Q4/2024 — primeiras demissões EXPLICITAMENTE atribuídas a "
+            "IA-eficiência: Salesforce, SAP, Intel, Cisco. ~40% das vagas "
+            "não são reabertas (AlixPartners 2025)."
+        ),
+        causa_declarada="ai_efficiency",
+    ),
+    Choque(
+        tique=16,
+        tipo="layoff",
+        magnitude=0.04,
+        descricao=(
+            "Onda 2025-26 — pivot estratégico Meta Reality Labs → IA "
+            "hardware; reestruturação por capacidade de modelo. Atinge "
+            "engenharia de pesquisa e produto sênior."
+        ),
+        causa_declarada="pivot_estrategico",
     ),
 )
 
@@ -189,6 +244,7 @@ def listar_catalogos() -> dict[str, tuple[Choque, ...]]:
     """Nomes dos catálogos canônicos disponíveis."""
     return {
         "tech_2022_2024": CHOQUES_TECH_2022_2024,
+        "tech_2024_2025_ai_restructuring": CHOQUES_TECH_2024_2025_AI_RESTRUCTURING,
         "campanha_cade_digital": CHOQUES_CAMPANHA_CADE_DIGITAL,
         "caso_paradigmatico_ifood_2023": CHOQUES_CASO_PARADIGMATICO_IFOOD_2023,
         "juridico_adverso": CHOQUES_JURIDICO_ADVERSO,

@@ -250,19 +250,31 @@ for alpha in (0.0, 0.1, 0.3, 0.7):
     print(f"α={alpha:.1f}: capital_social_final={final:.3f}, dano={dano}")
 ```
 
-### 4.6 Choques exógenos (R19) — layoffs tech 2023
+### 4.6 Choques exógenos (R19) — layoffs tech 2022-2026
+
+Hoje há **cinco catálogos canônicos** em `choques.py`. As ondas tech estão divididas por causalidade:
 
 ```python
-from waas_antitrust.choques import CHOQUES_TECH_2022_2024
+from waas_antitrust.choques import (
+    CHOQUES_TECH_2022_2024,                # cíclica: overhiring + juros
+    CHOQUES_TECH_2024_2025_AI_RESTRUCTURING,  # estrutural: IA-eficiência
+)
 
-m = WaaSModel(WaaSParametros(
-    n_empresas=20, n_tiques=40, seed=11, regime="B",
-    choques=CHOQUES_TECH_2022_2024,
-))
-df = m.executar()
-print(f"Ex-funcionários no fim: {df['n_ex_funcionarios'].iloc[-1]}")
-print(f"Sinais de ex-funcionários: contribuem para 'n_sinais' total")
+# Comparar dois regimes de choque sob mesmo seed
+for nome, catalogo in [
+    ("cíclico", CHOQUES_TECH_2022_2024),
+    ("AI-estrutural", CHOQUES_TECH_2024_2025_AI_RESTRUCTURING),
+]:
+    m = WaaSModel(WaaSParametros(
+        n_empresas=20, n_tiques=40, seed=11, regime="B",
+        choques=catalogo,
+    ))
+    df = m.executar()
+    print(f"{nome:13s}: ex-funcionários={df['n_ex_funcionarios'].iloc[-1]}, "
+          f"sinais={df['n_sinais'].sum()}")
 ```
+
+Pesquisa de fundo (2026): 2022-2024 foi causalidade **cíclica** (overhiring pandêmico + aperto monetário); 2024-2025 é **estrutural** (IA-eficiência: ~40% das vagas eliminadas não são reabertas — AlixPartners 2025). O campo `causa_declarada` distingue as duas eras em `Choque`.
 
 ### 4.7 Customizar `distribuicao_arquetipos` arbitrária
 

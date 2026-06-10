@@ -63,10 +63,12 @@ def test_catalogo_tech_2022_2024_tem_dois_choques():
     assert all(c.tipo == "layoff" for c in CHOQUES_TECH_2022_2024)
 
 
-def test_listar_catalogos_devolve_quatro_chaves():
+def test_listar_catalogos_devolve_cinco_chaves():
+    """Pesquisa de fundo 2026 adicionou `tech_2024_2025_ai_restructuring`."""
     catalogos = listar_catalogos()
     assert set(catalogos.keys()) == {
         "tech_2022_2024",
+        "tech_2024_2025_ai_restructuring",
         "campanha_cade_digital",
         "caso_paradigmatico_ifood_2023",
         "juridico_adverso",
@@ -226,3 +228,62 @@ def test_catalogos_paradigmatico_campanha_e_juridico_executam():
         )
         df = m.executar()
         assert len(df) == 12  # sanity
+
+
+# ---------------------------------------------------------------------
+# Pesquisa de fundo 2026 — catálogo AI restructuring + causa_declarada
+# ---------------------------------------------------------------------
+
+
+def test_catalogo_ai_restructuring_existe_e_tem_dois_pulsos():
+    """Novo catálogo 2024-2025 com causalidade ESTRUTURAL (IA), distinta
+    da causalidade CÍCLICA do catálogo 2022-2024."""
+    from waas_antitrust.choques import CHOQUES_TECH_2024_2025_AI_RESTRUCTURING
+
+    assert len(CHOQUES_TECH_2024_2025_AI_RESTRUCTURING) == 2
+    assert all(c.tipo == "layoff" for c in CHOQUES_TECH_2024_2025_AI_RESTRUCTURING)
+
+
+def test_causa_declarada_distingue_eras():
+    """Choques 2022-2024 declaram causa cíclica; 2024-2025 declaram causa
+    estrutural (IA). Permite análise heterogênea de magnitude."""
+    from waas_antitrust.choques import (
+        CHOQUES_TECH_2022_2024,
+        CHOQUES_TECH_2024_2025_AI_RESTRUCTURING,
+    )
+
+    causas_ciclicas = {c.causa_declarada for c in CHOQUES_TECH_2022_2024}
+    causas_estruturais = {c.causa_declarada for c in CHOQUES_TECH_2024_2025_AI_RESTRUCTURING}
+    assert causas_ciclicas == {"overhiring_pandemico", "aperto_monetario"}
+    assert causas_estruturais == {"ai_efficiency", "pivot_estrategico"}
+    # Universos disjuntos: a era 2024-2025 NÃO usa categorias cíclicas.
+    assert causas_ciclicas.isdisjoint(causas_estruturais)
+
+
+def test_causa_declarada_default_vazia_preserva_compat():
+    """Choque construído sem `causa_declarada` mantém string vazia (compat)."""
+    from waas_antitrust.choques import Choque
+
+    c = Choque(tique=1, tipo="layoff", magnitude=0.1)
+    assert c.causa_declarada == ""
+
+
+def test_catalogo_ai_restructuring_executa_sem_erro():
+    """Modelo end-to-end com o novo catálogo roda."""
+    from waas_antitrust.choques import CHOQUES_TECH_2024_2025_AI_RESTRUCTURING
+    from waas_antitrust.model import WaaSModel, WaaSParametros
+
+    m = WaaSModel(
+        WaaSParametros(
+            n_empresas=4,
+            tam_medio_empresa=40,
+            n_tiques=20,
+            seed=53,
+            regime="B",
+            choques=CHOQUES_TECH_2024_2025_AI_RESTRUCTURING,
+        )
+    )
+    df = m.executar()
+    assert len(df) == 20
+    # Os 2 pulsos do catálogo devem ter sido aplicados (tique 12 e 16).
+    assert df["n_choques_layoff_aplicados"].max() >= 2
