@@ -179,3 +179,49 @@ def test_descricoes_cenarios_r28_citam_marco_normativo():
     for nome, marco in marcos.items():
         c = lookup_cenario(nome)
         assert marco in c.descricao, f"cenário {nome} deve citar {marco!r}"
+
+
+# ---------------------------------------------------------------------
+# R27-i — Canal puro + R26 — Erosão Coleman (fechamento do backlog v3)
+# ---------------------------------------------------------------------
+
+
+def test_apenas_canal_sem_instrumento_isola_o_canal():
+    """R27-i: cenário aciona `usar_escrow_explicito=True` e zera o
+    instrumento monetário dos dois lados (`W_mult=0`, `D_disc=0`)."""
+    p = aplicar_cenario(WaaSParametros(), "apenas_canal_sem_instrumento")
+    assert p.regime == "B"
+    assert p.usar_escrow_explicito is True
+    assert p.W_mult == 0.0
+    assert p.D_disc == 0.0
+    # Rodada curta executa e expõe colunas do escrow.
+    p_curto = aplicar_cenario(
+        WaaSParametros(n_empresas=4, tam_medio_empresa=40, n_tiques=3, seed=43),
+        "apenas_canal_sem_instrumento",
+    )
+    df = WaaSModel(p_curto).executar()
+    assert "n_denuncias_em_escrow" in df.columns
+    assert "n_aberturas_simultaneas_acum" in df.columns
+
+
+def test_erosao_coleman_adversarial_degrada_capital_social():
+    """R26: cenário com `alpha_erosao=0.5` reduz `capital_social_residual`
+    abaixo de 1.0 quando há notificação; baseline `resolucao_pura` permanece
+    em 1.0."""
+    p_base = WaaSParametros(
+        n_empresas=8,
+        tam_medio_empresa=120,
+        n_tiques=20,
+        seed=47,
+        fracao_violadoras=0.7,
+        taxa_observacao=0.6,
+    )
+    df_baseline = WaaSModel(aplicar_cenario(p_base, "resolucao_pura")).executar()
+    df_erosao = WaaSModel(aplicar_cenario(p_base, "erosao_coleman_adversarial")).executar()
+    cap_baseline_final = float(df_baseline["capital_social_residual"].iloc[-1])
+    cap_erosao_final = float(df_erosao["capital_social_residual"].iloc[-1])
+    assert cap_baseline_final == 1.0  # sem alpha_erosao, residual constante
+    assert cap_erosao_final < 1.0, (
+        f"esperado capital_social_residual < 1.0 sob alpha_erosao=0.5; "
+        f"obtido {cap_erosao_final:.3f} (baseline {cap_baseline_final:.3f})"
+    )

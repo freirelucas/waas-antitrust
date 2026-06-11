@@ -111,17 +111,19 @@ def test_fairminded_peso_alto_acelera_cascata_etica():
 # ----------------------------------------------------------------------
 
 
-def test_catalogo_tem_17_cenarios_canonicos():
+def test_catalogo_tem_19_cenarios_canonicos():
     """R13a adicionou `mercado_digital_br_pareto` (8); R20 adicionou
     `cenario_corrida_leniencia` (9); reframe v2 adicionou 6 cenários
     (apenas_massa_critica_observavel, dois_instrumentos_acoplados,
     credito_tributario_puro, leniencia_criminal_individual,
     captura_processamento_cade, uso_adversarial_oportunista) = 15.
     R28 (pesquisa de fundo 2026) adicionou 2 cenários
-    (eua_doj_atr_rewards_2025, ue_dma_whistleblower_tool_2024) = 17."""
-    assert len(CATALOGO_CENARIOS) == 17
+    (eua_doj_atr_rewards_2025, ue_dma_whistleblower_tool_2024) = 17.
+    R27-i adicionou `apenas_canal_sem_instrumento`; R26 adicionou
+    `erosao_coleman_adversarial` = 19."""
+    assert len(CATALOGO_CENARIOS) == 19
     nomes = [c.nome for c in CATALOGO_CENARIOS]
-    assert len(set(nomes)) == 17  # nomes únicos
+    assert len(set(nomes)) == 19  # nomes únicos
     assert "cenario_corrida_leniencia" in nomes
     # Cenários novos do reframe v2
     assert "apenas_massa_critica_observavel" in nomes
@@ -130,6 +132,9 @@ def test_catalogo_tem_17_cenarios_canonicos():
     # Cenários R28 — generalidade EUA/UE
     assert "eua_doj_atr_rewards_2025" in nomes
     assert "ue_dma_whistleblower_tool_2024" in nomes
+    # Cenários canal puro R27-i + erosão Coleman R26
+    assert "apenas_canal_sem_instrumento" in nomes
+    assert "erosao_coleman_adversarial" in nomes
 
 
 def test_cenarios_cobrem_status_quo_e_regimes_b_e_c():

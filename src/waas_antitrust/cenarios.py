@@ -19,6 +19,9 @@ O catálogo cobre o espectro de:
   adversarial);
 - **Variantes EUA/UE R28** (DOJ-ATR Rewards Program 2025; DMA Whistleblower
   Tool 2024) — generalidade do mecanismo a partir da pesquisa de fundo 2026.
+- **Canal puro R27-i + erosão Coleman R26** (`apenas_canal_sem_instrumento`,
+  `erosao_coleman_adversarial`) — fechamento do backlog da correção v3:
+  testar o canal sem instrumento monetário e medir erosão endógena.
 
 Cada cenário é um dict de **sobrescritas** de parâmetros — aplicar via
 `aplicar_cenario(params, cenario_id)` produz um novo `WaaSParametros` com
@@ -379,6 +382,52 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "r_represalia": 0.05,  # proteção horizontal Diretiva 2019/1937
             "custo_legal_uw": 0.10,  # proteção facilita defesa
             "fracao_violadoras": 0.5,  # mantém termo de comparação com BR
+        },
+    ),
+    # ----- R26/R27 — canal puro + erosão Coleman (fechamento do backlog v3) -----
+    Cenario(
+        nome="apenas_canal_sem_instrumento",
+        descricao=(
+            "**Caso base R27-i** (correção radical v3): o canal de depósito "
+            "condicional do CADE opera SOZINHO, sem qualquer instrumento "
+            "monetário acoplado. `W_mult=0` zera a recompensa e `D_disc=0` zera "
+            "o desconto do TCC — a IR-W do arquétipo racional nunca fecha e a "
+            "IC-F* da firma nunca fecha. Os depósitos vêm exclusivamente do "
+            "arquétipo ético (sinaliza independentemente de W) e cascateiam "
+            "via imitativos. Par comparável com `apenas_massa_critica_observavel` "
+            "(F7, sinal sem canal em Regime A) — aqui há canal explícito em "
+            "Regime B. Testa: 'o canal sozinho carrega o mecanismo?' "
+            "(Ayres-Unkovic 2012; análogo Callisto)."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "W_mult": 0.0,
+            "D_disc": 0.0,
+            "q_min_cooperacao_interna": 0.10,
+            "fracao_violadoras": 0.5,
+            "taxa_observacao": 0.5,
+        },
+    ),
+    Cenario(
+        nome="erosao_coleman_adversarial",
+        descricao=(
+            "**Falsificação R26 — Proposição 5 candidata**: `resolucao_pura` "
+            "(Regime B padrão pós-Saito 2021) + erosão endógena Coleman "
+            "(`alpha_erosao=0.5`). Cada notificação reduz multiplicativamente "
+            "o `capital_social_residual` — captura a tese substantiva de que "
+            "instrumentalizar a denúncia destrói o substrato cooperativo que a "
+            "produz (Coleman 1990 *Foundations of Social Theory* cap. 12). "
+            "Calibração α=0.5 alinhada à base de falsificação em "
+            "`test_erosao_coleman.py` e `viz/proposicao_5.py`. Literatura: "
+            "Titmuss 1970 *The Gift Relationship*; Frey-Jegen 2001 *motivation "
+            "crowding*; Bénabou-Tirole 2003 *intrinsic-extrinsic crowding-out*."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "D_disc_base_tcc": _D_BASE_TCC,
+            "p_anulacao_tcc": 0.10,
+            "alpha_erosao": 0.5,
         },
     ),
 )

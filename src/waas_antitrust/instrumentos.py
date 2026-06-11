@@ -1,9 +1,15 @@
 """Instrumentos de internalização do capital social (R21 + Eco A + Adv B v2).
 
-Módulo **declarativo**: define a taxonomia dos 4 instrumentos sob o reframe
-v2. Não introduz lógica nova de modelo — referencia as implementações
-existentes (`model.py` P3 para WaaS, `hirschman.py` para Hirschman) ou
-marca como stub (crédito tributário, leniência criminal individual).
+Módulo **declarativo**: define a taxonomia do **canal base** + **4 instrumentos**
+sob a correção radical v3. Não introduz lógica nova de modelo — referencia as
+implementações existentes (`agents.py`/`model.py` P2/P2.5b para o canal,
+`model.py` P3 para WaaS, `hirschman.py` para Hirschman) ou marca como stub
+(crédito tributário, leniência criminal individual).
+
+Sob a correção v3 (Ayres-Unkovic 2012; análogo Callisto), o **canal de
+depósito condicional operado pelo CADE** é o mecanismo BASE — não paga, não
+puni, apenas armazena denúncias condicionais até massa crítica intra-firma.
+Os 4 instrumentos monetários são **acoplamentos opcionais** ao canal.
 
 Atende à convergência forte da x10 v2:
 
@@ -49,8 +55,36 @@ class Instrumento:
     status: str
 
 
-#: Catálogo declarativo dos 4 instrumentos canônicos do reframe v2.
+#: Catálogo declarativo: canal base (v3) + 4 instrumentos canônicos do reframe v2.
 INSTRUMENTOS: tuple[Instrumento, ...] = (
+    Instrumento(
+        nome="canal_deposito_condicional",
+        descricao=(
+            "**Mecanismo BASE da LCMC v3**: canal procedimental do CADE que "
+            "recebe denúncias condicionais (depósitos em escrow) e só as abre "
+            "quando massa crítica intra-firma é atingida (q_min · n co-depósitos). "
+            "Não paga, não pune — é a infraestrutura de coordenação sem a qual "
+            "qualquer instrumento monetário acoplado opera no vácuo. Análogo "
+            "operacional: Callisto (callisto.org), em uso desde 2015 em "
+            "universidades americanas para assédio sexual. Os 4 instrumentos "
+            "abaixo são **acoplamentos opcionais** ao canal."
+        ),
+        reserva_constitucional=(
+            "Sem reserva específica — base autônoma em Art. 4º II/III da Lei "
+            "12.529/2011 (atribuição do CADE: instaurar processo, propor TCC) "
+            "c/c Lei 9.784/99 (procedimento administrativo federal)"
+        ),
+        regime_minimo="B",
+        fonte_primaria=(
+            "Ayres & Unkovic 2012 *Michigan L. Rev.* 111:145 (information escrow); "
+            "análogo Callisto (callisto.org); Lei 12.529/2011 Art. 4º + Lei 9.784/99"
+        ),
+        modulo_implementacao=(
+            "agents.py (AutoridadeAgent.escrow_denuncias, R27) + "
+            "model.py (P2 deposita, P2.5b expira e abre)"
+        ),
+        status="implementado",
+    ),
     Instrumento(
         nome="recompensa_tcc_waas",
         descricao=(
@@ -133,25 +167,32 @@ def lookup_instrumento(nome: str) -> Instrumento:
     raise KeyError(f"instrumento desconhecido: {nome!r}. Válidos: {nomes_validos}")
 
 
-def instrumentos_por_regime(regime: str) -> list[Instrumento]:
-    """Lista os instrumentos hospitáveis em um dado regime (incluindo
-    sub-regimes Cₜ/Cᵩ/Cₚ).
+#: Hierarquia de regimes — chave para resolver hospedagem por `regime_minimo`.
+_NIVEL_REGIME: dict[str, int] = {
+    "A": 0,
+    "B": 1,
+    "C": 2,
+    "Cₜ": 2,
+    "Ct": 2,
+    "Cᵩ": 3,
+    "Cf": 3,
+    "Cₚ": 4,
+    "Cp": 4,
+}
 
-    Heurística simples:
-    - Regime A: nenhum
-    - Regime B: apenas recompensa_tcc_waas
+
+def instrumentos_por_regime(regime: str) -> list[Instrumento]:
+    """Lista entradas hospitáveis em um dado regime (canal + instrumentos),
+    derivando o nível de cada entrada do campo `regime_minimo`.
+
+    Hierarquia:
+    - Regime A: nenhum (canal exige base infralegal mínima — Regime B)
+    - Regime B: canal_deposito_condicional + recompensa_tcc_waas
     - Regime C / Cₜ: + vesting_acelerado_hirschman
     - Regime Cᵩ: + credito_tributario_denunciante
     - Regime Cₚ: + leniencia_criminal_individual
     """
-    if regime == "A":
-        return []
-    if regime == "B":
-        return [INSTRUMENTOS[0]]
-    if regime in ("C", "Cₜ", "Ct"):
-        return [INSTRUMENTOS[0], INSTRUMENTOS[1]]
-    if regime in ("Cᵩ", "Cf"):
-        return list(INSTRUMENTOS[:3])
-    if regime in ("Cₚ", "Cp"):
-        return list(INSTRUMENTOS)
-    raise ValueError(f"regime desconhecido: {regime!r}. Use A, B, C, Cₜ, Cᵩ, Cₚ.")
+    if regime not in _NIVEL_REGIME:
+        raise ValueError(f"regime desconhecido: {regime!r}. Use A, B, C, Cₜ, Cᵩ, Cₚ.")
+    nivel = _NIVEL_REGIME[regime]
+    return [i for i in INSTRUMENTOS if _NIVEL_REGIME[i.regime_minimo.split()[0]] <= nivel]
