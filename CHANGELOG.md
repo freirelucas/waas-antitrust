@@ -11,6 +11,44 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Rodada "código ABM + redação + UX" — R27 fechado, R26 parcialmente fechado
+
+Quatro commits que fecham o backlog v3 do canal de depósito condicional,
+implantam o cenário canônico da erosão Coleman e atualizam a redação e a
+UX do site.
+
+- **`feat(escrow): janela de expiração de depósitos condicionais (R27-ii)`**
+  (`149ec77`). `AutoridadeAgent.expirar_depositos_condicionais(tique_atual,
+  janela)` remove depósitos com idade ≥ `janela` tiques; novo
+  `janela_escrow_tiques: int = 0` em `WaaSParametros` (Δt da definição
+  LCMC v3); reporter `n_depositos_expirados_acum`. Chamado em P2.5b ANTES
+  da abertura. `janela=0` é no-op (escrow eterno, leitura Callisto). 7
+  testes novos.
+- **`feat(instrumentos,cenarios): canal base + 2 cenários canônicos (R27-i/iii,
+  R26)`** (`59e2f5f`). Entrada `canal_deposito_condicional` em primeira
+  posição de `INSTRUMENTOS` (Regime B; base autônoma Art. 4º Lei 12.529
+  c/c Lei 9.784/99). `instrumentos_por_regime` refatorado para derivar
+  nível de `regime_minimo`. Cenários `apenas_canal_sem_instrumento`
+  (R27-i: canal sem instrumento monetário) e `erosao_coleman_adversarial`
+  (R26: `resolucao_pura` + `alpha_erosao=0.5`).
+- **`docs: mecanismo R27 atualizado, figuras 01/02 no Ato 2, contagens reais`**
+  (`21d7e38`). Camada 1 de `mecanismo.md` reescrita com a API real do
+  `AutoridadeAgent`; figuras 01_inversao e 02_fase integradas no Ato 2
+  (Camadas 4 e 2 respectivamente) com `.figura-conceitual` + alt-text
+  WCAG. Banner v2→v3 em `aprendizados_v2.md`. Glossário ganha entradas
+  para canal e abertura simultânea. 4ª receita "Cético do canal" em
+  `colaborar.md`. R27 → Fechado em DECISIONS; R26 → Parcialmente fechado.
+  Contagens reais propagadas em todos os docs (31→34 colunas, 288→324
+  testes, 9/15→19 cenários, 4→5 entradas).
+- **`ux(site): nav agrupada, responsividade móvel, roadmap de figuras,
+  mini-sumário`**. Anexos do nav agrupado em "Teoria e modelo" /
+  "Direito e instituições" / "Referência" (sub-seções colapsáveis).
+  Nova `docs/roadmap_figuras.md` documenta 9 figuras publicadas + 8
+  stubs em backlog T01. CSS: correção de bug de especificidade na media
+  query 480px + breakpoint completo (h1, h2, pull-quote, ato-fim,
+  numero-callout, sublinha-tese, chip-instrumento, grid.cards).
+  Mini-sumário no topo de `modelo_abm.md` com 8 âncoras §1-§8.
+
 ### Encerramento da sessão reframe v2 — `aprendizados_v2.md`
 
 Página `docs/aprendizados_v2.md` consolida os aprendizados estruturais

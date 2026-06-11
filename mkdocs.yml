@@ -43,21 +43,25 @@ nav:
   - "Ato 5 · Colaborar": colaborar.md
   - Anexos:
       - Como usar: uso.md
-      - Glossário: glossario.md
-      - Terminologia canônica: TERMINOLOGIA.md
-      - Bem coletivo e instrumentos: bem_publico.md
-      - Modelagem multiagente: modelagem_multiagente.md
-      - Modelo ABM (detalhe + parâmetros): modelo_abm.md
-      - Modelo (protocolo ODD): ODD.md
-      - Análise institucional: INSTITUTIONAL.md
-      - Generalidade (EUA e UE): internacional.md
-      - Viabilidade política do Regime C: viabilidade_regime_c.md
-      - Referências: REFERENCES.md
-      - Referência da API: api.md
+      - Teoria e modelo:
+          - Bem coletivo e instrumentos: bem_publico.md
+          - Modelagem multiagente: modelagem_multiagente.md
+          - Modelo ABM (detalhe + parâmetros): modelo_abm.md
+          - Modelo (protocolo ODD): ODD.md
+      - Direito e instituições:
+          - Análise institucional: INSTITUTIONAL.md
+          - Generalidade (EUA e UE): internacional.md
+          - Viabilidade política do Regime C: viabilidade_regime_c.md
+      - Referência:
+          - Glossário: glossario.md
+          - Terminologia canônica: TERMINOLOGIA.md
+          - Referências: REFERENCES.md
+          - Referência da API: api.md
   - Desenvolvimento:
       - Crítica x10: critica_x10.md
       - Crítica x10 v2: critica_x10_v2.md
       - Plano de melhorias: plano_melhorias.md
+      - Roadmap de figuras: roadmap_figuras.md
       - Aprendizados (sessão reframe v2): aprendizados_v2.md
       - Aprendizados (correção radical v3): aprendizados_v3.md
       - Decisões e backlog: DECISIONS.md

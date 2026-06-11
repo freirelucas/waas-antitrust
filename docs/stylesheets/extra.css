@@ -365,12 +365,54 @@
 
 /* Balanço 360° item #M2: responsividade ampliada para telas < 480px.
  * numero-callout em 2.6em fica agressivo em iPhone SE — reduz e
- * permite reflow vertical. */
+ * permite reflow vertical.
+ *
+ * Os seletores são prefixados com `.md-typeset` para vencerem a
+ * especificidade das regras base (que usam o mesmo prefixo). Sem o
+ * prefixo, as regras desta media query nunca ganham. */
 @media (max-width: 480px) {
-  .numero-callout .valor {
+  .md-typeset .numero-callout .valor {
     font-size: 1.8em;
   }
-  .hero {
+  .md-typeset .numero-callout {
+    padding: 0.9em 0.5em;
+  }
+  .md-typeset .hero {
     padding: 1em;
+  }
+  .md-typeset h1 {
+    font-size: 1.55em;
+  }
+  .md-typeset h2 {
+    font-size: 1.25em;
+    margin-top: 2em;
+  }
+  .md-typeset .pull-quote {
+    font-size: 1em;
+    padding-left: 0.8em;
+  }
+  .md-typeset .ato-fim {
+    padding: 0.8em 0.9em;
+  }
+  .md-typeset .sublinha-tese {
+    font-size: 0.98em;
+  }
+  .md-typeset .chip-instrumento {
+    font-size: 0.8em;
+    padding: 0.1em 0.5em;
+  }
+}
+
+/* Cards de navegação: padding mais econômico em telas pequenas e hover
+ * só em dispositivos com ponteiro fino (evita translateY "grudado" em
+ * toque). */
+@media (max-width: 600px) {
+  .md-typeset .grid.cards > ul > li {
+    padding: 0.8em 0.9em;
+  }
+}
+@media (hover: none) {
+  .md-typeset .grid.cards > ul > li:hover {
+    transform: none;
   }
 }

@@ -2,6 +2,17 @@
 
 <p class="sublinha-tese"><em>Três classes de agente, ~40 parâmetros, 324 testes, opt-in por flag. Tudo inspecionável. Esta página é o guia completo para abrir o capô, ler, calibrar e quebrar.</em></p>
 
+| § | Seção | O que tem |
+|---|---|---|
+| [§1](#1-a-historia-do-modelo-em-um-paragrafo) | A história em um parágrafo | Da formulação original v1 à correção v3 |
+| [§2](#2-anatomia-rapida) | Anatomia rápida | Três classes, fases P0-P5 e reporters |
+| [§3](#3-tabela-completa-de-parametros-waasparametros) | Tabela de ~40 parâmetros | `WaaSParametros` linha a linha, com defaults |
+| [§4](#4-como-alterar-parametros-7-receitas-python) | 7 receitas Python | Como mudar regime, ativar escrow, varrer Sobol |
+| [§5](#5-atalho-19-cenarios-canonicos) | 19 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
+| [§6](#6-a-saida-do-modelo-34-reporters) | 34 reporters | As colunas do DataFrame agrupadas por categoria |
+| [§7](#7-cookbook-reprodutivel-5-receitas-avancadas) | Cookbook avançado | Calibração Saito, choques layoff, multi-seed CI |
+| [§8](#8-postura-epistemica) | Postura epistêmica | Backward compat estrita; opt-in por flag |
+
 Esta é a aba dedicada ao **modelo computacional**: o que é, como evoluiu, como se mexe nos parâmetros, como se lê a saída. Para a anatomia conceitual das 3 classes (Trabalhador, Empresa, Autoridade) e a discussão de "o que não é agente, e por quê", veja [Modelagem multiagente](modelagem_multiagente.md). Para o protocolo ODD formal, veja [Modelo (ODD)](ODD.md).
 
 ## 1. A história do modelo, em um parágrafo
