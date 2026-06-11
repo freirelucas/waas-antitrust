@@ -139,6 +139,14 @@ class WaaSParametros:
     # não a firma.
     usar_escrow_explicito: bool = False
 
+    # **R27-ii — Janela de expiração do depósito condicional** (Δt da definição
+    # LCMC v3). Quando > 0, depósitos com idade ≥ `janela_escrow_tiques` tiques
+    # são removidos do escrow no início de cada P2.5b (antes da abertura). É a
+    # janela do **depósito individual** — distinta de `janela_temporal_tiques`
+    # (R20, janela agregada da corrida pós-massa-crítica). Default 0 preserva
+    # comportamento histórico (escrow eterno, leitura Callisto).
+    janela_escrow_tiques: int = 0
+
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
     # do subgame de Morris-Shin (`jogo_global.limiar_switching`) como gatilho
@@ -352,6 +360,9 @@ class WaaSModel(Model):
         # R27: canal de depósito condicional explícito (opt-in; default preserva
         # comportamento histórico onde o escrow é implícito em P2.5).
         self.usar_escrow_explicito = getattr(params, "usar_escrow_explicito", False)
+        # R27-ii: janela de expiração do depósito individual (Δt). Default 0
+        # = escrow eterno (leitura Callisto).
+        self.janela_escrow_tiques = getattr(params, "janela_escrow_tiques", 0)
         # R20 — Modo corrida + filas
         self.modo_corrida = params.modo_corrida
         self.q_min_cooperacao_interna = params.q_min_cooperacao_interna
@@ -412,6 +423,7 @@ class WaaSModel(Model):
                 # ambos ficam em 0 (compat).
                 "n_denuncias_em_escrow": self._contar_denuncias_em_escrow,
                 "n_aberturas_simultaneas_acum": self._contar_aberturas_simultaneas,
+                "n_depositos_expirados_acum": self._contar_depositos_expirados,
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
@@ -479,6 +491,12 @@ class WaaSModel(Model):
         atingida ⇒ todas as denúncias depositadas para a firma se abrem
         ao mesmo tempo). Sob `usar_escrow_explicito=False`, sempre 0."""
         return getattr(self.autoridade, "n_aberturas_simultaneas_acum", 0)
+
+    def _contar_depositos_expirados(self) -> int:
+        """R27-ii: total cumulativo de depósitos removidos por expiração via
+        `janela_escrow_tiques`. Sob `usar_escrow_explicito=False` ou
+        `janela_escrow_tiques=0`, sempre 0 (compat)."""
+        return getattr(self.autoridade, "n_depositos_expirados_acum", 0)
 
     def _contar_ex_funcionarios(self) -> int:
         """Total de trabalhadores com `status='ex_funcionario'` (R19)."""
@@ -824,6 +842,12 @@ class WaaSModel(Model):
         # P2.5b · R27: abertura simultânea do escrow quando massa crítica é
         # atingida em uma firma. Sob `usar_escrow_explicito=False`, é no-op.
         if self.usar_escrow_explicito:
+            # R27-ii: expira depósitos antigos ANTES da abertura — depósito
+            # vencido não pode contar para a fração de massa crítica.
+            self.autoridade.expirar_depositos_condicionais(
+                tique_atual=self.tique,
+                janela=self.janela_escrow_tiques,
+            )
             for fid in self.trabalhadores_por_empresa:
                 empresa = self.empresas[fid]
                 self.autoridade.abrir_escrow_se_massa_critica(

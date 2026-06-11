@@ -227,3 +227,87 @@ def test_isinstance_autoridade_agent():
     """Sanidade: `m.autoridade` é `AutoridadeAgent`."""
     m = WaaSModel(WaaSParametros(n_empresas=2, tam_medio_empresa=20, n_tiques=1, seed=3))
     assert isinstance(m.autoridade, AutoridadeAgent)
+
+
+# ---------------------------------------------------------------------
+# R27-ii — Expiração de depósitos via `janela_escrow_tiques`
+# ---------------------------------------------------------------------
+
+
+def test_janela_escrow_tiques_default_zero_compat():
+    """Default `janela_escrow_tiques == 0` preserva o comportamento histórico
+    (escrow eterno, leitura Callisto)."""
+    p = WaaSParametros()
+    assert p.janela_escrow_tiques == 0
+    m = WaaSModel(p)
+    assert m.janela_escrow_tiques == 0
+
+
+def test_expirar_com_janela_zero_e_no_op():
+    """`janela <= 0` deve devolver 0 e preservar o escrow intacto."""
+    m = WaaSModel(WaaSParametros(n_empresas=2, tam_medio_empresa=20, n_tiques=1, seed=5))
+    m.autoridade.depositar_condicional(id_empresa=0, id_trabalhador=1, qualidade_prova=0.5, tique=0)
+    n = m.autoridade.expirar_depositos_condicionais(tique_atual=10, janela=0)
+    assert n == 0
+    assert m.autoridade.n_denuncias_em_escrow == 1
+    assert len(m.autoridade.escrow_denuncias[0]) == 1
+
+
+def test_expirar_remove_depositos_velhos():
+    """Depósito feito em t=0 expira quando `tique_atual - tique_deposito >= janela`."""
+    m = WaaSModel(WaaSParametros(n_empresas=2, tam_medio_empresa=20, n_tiques=1, seed=7))
+    m.autoridade.depositar_condicional(id_empresa=0, id_trabalhador=1, qualidade_prova=0.5, tique=0)
+    n = m.autoridade.expirar_depositos_condicionais(tique_atual=4, janela=4)
+    assert n == 1
+    assert m.autoridade.escrow_denuncias[0] == []
+    assert m.autoridade.n_denuncias_em_escrow == 0
+    assert m.autoridade.n_depositos_expirados_acum == 1
+
+
+def test_expirar_preserva_depositos_dentro_da_janela():
+    """Idade < janela ⇒ depósito permanece."""
+    m = WaaSModel(WaaSParametros(n_empresas=2, tam_medio_empresa=20, n_tiques=1, seed=9))
+    m.autoridade.depositar_condicional(id_empresa=0, id_trabalhador=1, qualidade_prova=0.5, tique=0)
+    n = m.autoridade.expirar_depositos_condicionais(tique_atual=3, janela=4)
+    assert n == 0
+    assert len(m.autoridade.escrow_denuncias[0]) == 1
+    assert m.autoridade.n_denuncias_em_escrow == 1
+
+
+def test_expirar_idades_mistas_remove_so_velhos():
+    """Mistura t=0 (velho) e t=3 (novo) com janela=4 e tique_atual=4 ⇒ só
+    o velho expira."""
+    m = WaaSModel(WaaSParametros(n_empresas=2, tam_medio_empresa=20, n_tiques=1, seed=11))
+    m.autoridade.depositar_condicional(id_empresa=0, id_trabalhador=1, qualidade_prova=0.5, tique=0)
+    m.autoridade.depositar_condicional(id_empresa=0, id_trabalhador=2, qualidade_prova=0.7, tique=3)
+    n = m.autoridade.expirar_depositos_condicionais(tique_atual=4, janela=4)
+    assert n == 1
+    assert len(m.autoridade.escrow_denuncias[0]) == 1
+    assert m.autoridade.escrow_denuncias[0][0]["id_trabalhador"] == 2
+    assert m.autoridade.n_denuncias_em_escrow == 1
+
+
+def test_expirar_impede_abertura_de_massa_critica():
+    """Se todos os depósitos expiram, a abertura simultânea não dispara."""
+    m = WaaSModel(WaaSParametros(n_empresas=2, tam_medio_empresa=100, n_tiques=1, seed=13))
+    for i in range(12):  # 12% > q_min=0.10
+        m.autoridade.depositar_condicional(
+            id_empresa=0, id_trabalhador=i, qualidade_prova=0.5, tique=0
+        )
+    m.autoridade.expirar_depositos_condicionais(tique_atual=10, janela=4)
+    assert m.autoridade.n_depositos_expirados_acum == 12
+    abriu = m.autoridade.abrir_escrow_se_massa_critica(
+        id_empresa=0, q_min=0.10, n_trabalhadores_firma=100
+    )
+    assert abriu is False
+    assert m.autoridade.n_aberturas_simultaneas_acum == 0
+
+
+def test_reporter_expirados_existe_no_dataframe():
+    """End-to-end: `n_depositos_expirados_acum` aparece no DataFrame; sob
+    defaults é constante 0."""
+    df = WaaSModel(
+        WaaSParametros(n_empresas=3, tam_medio_empresa=40, n_tiques=3, seed=17)
+    ).executar()
+    assert "n_depositos_expirados_acum" in df.columns
+    assert int(df["n_depositos_expirados_acum"].max()) == 0

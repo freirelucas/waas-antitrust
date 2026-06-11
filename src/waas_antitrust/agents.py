@@ -307,7 +307,13 @@ class AutoridadeAgent(Agent):
                            depositadas para aquela firma se abrem
                            simultaneamente. Sob `usar_escrow_explicito=False`
                            (default), o escrow é mantido implicitamente em P2.5
-                           do WaaSModel — comportamento idêntico ao histórico.
+                           do WaaSModel.
+        expirar_depositos_condicionais — método que remove depósitos com idade
+                           ≥ `janela` tiques (R27-ii). Chamado em P2.5b antes
+                           da abertura. `janela <= 0` é no-op (escrow eterno,
+                           leitura Callisto). Distinto de `janela_temporal_tiques`
+                           (R20, janela da corrida pós-massa-crítica): é o "Δt"
+                           da definição LCMC v3 — escopo individual do depósito.
     """
 
     def __init__(
@@ -331,6 +337,8 @@ class AutoridadeAgent(Agent):
         # Contadores expostos via reporters do modelo.
         self.n_denuncias_em_escrow: int = 0
         self.n_aberturas_simultaneas_acum: int = 0
+        # R27-ii: depósitos removidos por expiração (`janela_escrow_tiques`).
+        self.n_depositos_expirados_acum: int = 0
 
     def receber_caso(
         self,
@@ -377,6 +385,31 @@ class AutoridadeAgent(Agent):
             }
         )
         self.n_denuncias_em_escrow += 1
+
+    def expirar_depositos_condicionais(self, tique_atual: int, janela: int) -> int:
+        """Remove do escrow os depósitos com idade ≥ `janela` tiques; devolve
+        quantos expiraram.
+
+        `janela <= 0` é no-op (escrow eterno — compat e leitura Callisto).
+        Idade do depósito é `tique_atual - tique_deposito`; depósitos do tique
+        corrente nunca expiram (idade 0). Esta é a janela individual do depósito
+        (R27-ii) — distinta de `janela_temporal_tiques` (R20, agregada).
+
+        Deve ser chamada UMA vez por tique, no início de P2.5b, ANTES de
+        `abrir_escrow_se_massa_critica` — depósito vencido não pode contar
+        para a fração de massa crítica.
+        """
+        if janela <= 0:
+            return 0
+        n_expirados = 0
+        for id_empresa, depositos in self.escrow_denuncias.items():
+            mantidos = [d for d in depositos if tique_atual - d["tique_deposito"] < janela]
+            n_expirados += len(depositos) - len(mantidos)
+            self.escrow_denuncias[id_empresa] = mantidos
+        if n_expirados:
+            self.n_denuncias_em_escrow -= n_expirados
+            self.n_depositos_expirados_acum += n_expirados
+        return n_expirados
 
     def abrir_escrow_se_massa_critica(
         self,
