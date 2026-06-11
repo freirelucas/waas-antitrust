@@ -94,11 +94,18 @@ Frey-Jegen 2001, Bénabou-Tirole 2003.
 
 **Salvaguardas anti-erosão na literatura comparada:** (a) anonimato
 forte (IRS Whistleblower Office); (b) recompensa coletiva
-(Mussler-Macy 1997); (c) janela curta (`janela_temporal_tiques` já em
-R20). Cada uma tem custo de desenho — anonimato tensiona com fila
-identificada da LCMC; recompensa coletiva mata a corrida; janela curta
-já está implementada mas serve como gatilho de massa crítica, não como
-filtro anti-erosão individual.
+(Mussler-Macy 1997); (c) janela curta. Cada uma tem custo de desenho —
+anonimato tensiona com fila identificada da LCMC; recompensa coletiva
+mata a corrida. A **janela curta** existe agora em dois níveis distintos
+no modelo: `janela_temporal_tiques` (R20) opera no nível **agregado** —
+prazo após a massa crítica disparar para a fila inter-firma fechar;
+`janela_escrow_tiques` (R27-ii) opera no nível **individual** — Δt de
+expiração de cada depósito condicional antes de a massa crítica ser
+atingida. O filtro anti-erosão individual deixou de ser lacuna de
+implementação; **medir empiricamente seu efeito anti-erosão segue
+aberto em R26** — o cenário canônico `erosao_coleman_adversarial`
+permite varrer o par (`alpha_erosao`, `janela_escrow_tiques`) em busca
+da combinação que estabiliza o capital social residual.
 
 ## Viabilidade política do Regime C (2024-2027)
 
@@ -211,7 +218,7 @@ Em respeito à simetria, vale dizer o que **não** está nesta lista — o que s
 - **Gating jurídico do R07** está implementado — Regime A/B rejeita `fracao_contratos_acelerados > 0` com `UserWarning` citando Art. 22 I CF.
 - **Catálogo de 28 condutas** unilaterais digitais com gradiente 3-níveis Near & Miceli (inclui casos brasileiros: iFood marketplace, Apple anti-steering, e jurisprudência internacional pós-2024).
 - **Capital social residual** (R26 Coleman) operacionalizado como reporter; Proposição 5 candidata falsificável em `tests/test_erosao_coleman.py`.
-- **Taxonomia declarativa de 4 instrumentos** (`src/waas_antitrust/instrumentos.py`) com reservas constitucionais Cₜ/Cᵩ/Cₚ.
+- **Taxonomia declarativa de 5 entradas** (`src/waas_antitrust/instrumentos.py`) — canal base v3 + 4 instrumentos com reservas constitucionais Cₜ/Cᵩ/Cₚ.
 
 <div class="ato-fim" markdown>
 **Fim do Ato 4.** A honestidade não destrói o argumento; encurta o caminho para sustentá-lo. Há trabalho de calibração, trabalho jurídico e cinco decisões normativas em aberto. Se você quer ajudar — discordar, calibrar, escrever, criticar — o Ato 5 mostra como.

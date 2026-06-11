@@ -1,5 +1,16 @@
 # Aprendizados consolidados — sessão de reframe v2
 
+!!! warning "Documento histórico (v2) — superado pela correção v3"
+
+    Este documento registra a sessão de **reframe v2** (massa crítica como
+    capital social organizacional à la Coleman). A leitura primária do
+    mecanismo foi posteriormente revisada na **correção radical v3** —
+    canal de depósito condicional operado pelo CADE como mecanismo central
+    (Ayres-Unkovic 2012; análogo Callisto). A leitura Coleman permanece como
+    moldura analítica secundária com risco de erosão (R26). Para a versão
+    canônica em vigor, ler [`aprendizados_v3.md`](aprendizados_v3.md);
+    este documento é mantido como memória institucional.
+
 Esta página registra os **aprendizados estruturais** da longa sessão que
 levou o projeto da formulação original ("WaaS = recompensar denúncia interna")
 ao reframe v2 ("massa crítica como capital social organizacional; WaaS é um

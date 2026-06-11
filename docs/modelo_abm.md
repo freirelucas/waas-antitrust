@@ -1,6 +1,6 @@
 # O modelo ABM em detalhe
 
-<p class="sublinha-tese"><em>Três classes de agente, ~40 parâmetros, 288 testes, opt-in por flag. Tudo inspecionável. Esta página é o guia completo para abrir o capô, ler, calibrar e quebrar.</em></p>
+<p class="sublinha-tese"><em>Três classes de agente, ~40 parâmetros, 324 testes, opt-in por flag. Tudo inspecionável. Esta página é o guia completo para abrir o capô, ler, calibrar e quebrar.</em></p>
 
 Esta é a aba dedicada ao **modelo computacional**: o que é, como evoluiu, como se mexe nos parâmetros, como se lê a saída. Para a anatomia conceitual das 3 classes (Trabalhador, Empresa, Autoridade) e a discussão de "o que não é agente, e por quê", veja [Modelagem multiagente](modelagem_multiagente.md). Para o protocolo ODD formal, veja [Modelo (ODD)](ODD.md).
 
@@ -34,14 +34,14 @@ P3  → empresa decide pagar denunciantes via IC-F*; ramos: (a) simplificada;
       (b) + Hirschman (D+exodo > W); (c) + LCMC (decaimento Saito).
 P4  → autoridade recebe casos (capacidade κ); aplica acurácia ρ; sorteia
       anulação se p_anulacao_tcc > 0 (Vetor B/F6).
-P5  → coleta de estado (31 reporters → DataFrame).
+P5  → coleta de estado (34 reporters → DataFrame).
 ```
 
-Sob a tese corrigida v3, P2 e P2.5 deveriam estar conceitualmente dentro do `AutoridadeAgent` (escrow). Hoje rodam no `WaaSModel.step()` direto. R27 é refator de **nomes**, não de lógica.
+Sob a tese corrigida v3, o `AutoridadeAgent` carrega explicitamente o escrow (R27, `usar_escrow_explicito=True`) e a expiração individual de cada depósito (R27-ii, `janela_escrow_tiques`). O caminho histórico (default `False`) preserva o escrow implícito em P2.5 — comportamento bit-a-bit idêntico.
 
-### 31 reporters em 3 categorias semânticas
+### 34 reporters em 3 categorias semânticas
 
-Os 31 reporters do `DataCollector` agrupam-se em:
+Os 34 reporters do `DataCollector` agrupam-se em:
 
 - **Massa crítica** (substrato LCMC): `n_sinais`, `n_empresas_notif`, `n_firmas_atingiram_massa_critica_interna`, `n_violadoras_ativas`, `dano_acumulado`, `dano_economico_acum`, `valor_dissuasao_difusa_acum`, `capital_social_residual`, `hhi`.
 - **Instrumentos** (uso dos cinco): `n_tcc_assinados`, `n_pagou`, `custo_recompensa_acum`, `custo_exodo_acum`, `custo_recompensa_corrida_acum`, `n_firmas_sob_ameaca_exodo`, `n_ex_funcionarios`.
@@ -297,7 +297,7 @@ df = m.executar()
 
 A soma do dict precisa ser 1.0 (não validado em runtime, mas o `rng.choice` quebra silenciosamente se não for).
 
-## 5. Atalho: 15 cenários canônicos
+## 5. Atalho: 19 cenários canônicos
 
 Em vez de configurar parâmetros manualmente, use `aplicar_cenario(base, nome)`:
 
@@ -308,7 +308,7 @@ for nome in listar_cenarios():
     print(f"  {nome}")
 ```
 
-Os 15 cenários disponíveis (cada um é um conjunto pré-configurado de sobrescritas):
+Os 19 cenários disponíveis (cada um é um conjunto pré-configurado de sobrescritas):
 
 | Cenário | Eixo |
 |---|---|
@@ -327,10 +327,14 @@ Os 15 cenários disponíveis (cada um é um conjunto pré-configurado de sobresc
 | `leniencia_criminal_individual` | C + leniência criminal (R23 stub) |
 | `captura_processamento_cade` | B + `taxa_capacidade=0.10` (gargalo CADE) |
 | `uso_adversarial_oportunista` | B + 20% oportunistas (R24) |
+| `eua_doj_atr_rewards_2025` | Variante EUA — Regime C + faixa 15–30% (R28) |
+| `ue_dma_whistleblower_tool_2024` | Variante UE — Regime A + proteção horizontal sem recompensa (R28) |
+| `apenas_canal_sem_instrumento` | Canal puro (R27-i) — Regime B + `usar_escrow_explicito=True`, sem instrumento monetário |
+| `erosao_coleman_adversarial` | Falsificação R26 — `resolucao_pura` + `alpha_erosao=0.5` |
 
-## 6. A saída do modelo — 31 reporters
+## 6. A saída do modelo — 34 reporters
 
-Após `model.executar()`, o `DataFrame` tem **uma linha por tique** e 31 colunas. Tabela resumida:
+Após `model.executar()`, o `DataFrame` tem **uma linha por tique** e 34 colunas. Tabela resumida:
 
 | Reporter | Tipo | Categoria | Quando relevante |
 |---|---|---|---|

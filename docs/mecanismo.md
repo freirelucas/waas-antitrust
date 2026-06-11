@@ -18,28 +18,43 @@ O mecanismo resolve **diretamente** o problema clássico de Olson (1965): sub-in
 
 O análogo prático mais próximo é o **[Callisto](https://www.callisto.org)** (callisto.org), que opera nos EUA para denúncias de assédio sexual em campus universitário: identidade da vítima é revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem. O conceito teórico é **information escrow** (Ayres & Unkovic, *Michigan Law Review* 111:145, 2012). A intuição estrutural é **Kickstarter all-or-nothing**.
 
-Em código, a Phase P2 já existe como gatilho de massa crítica; a Phase P2.5 (R20) já registra firmas que atingiram massa crítica interna. O que falta — e fica em **R27** como pendência futura — é mover o agente que mantém o escrow do `EmpresaAgent` para um `CanalAgent` ou `AutoridadeAgent` estendida:
-
-Em código, esta camada está em `model.py` (Phase P2.5) sob a flag `modo_corrida=True`:
+Em código, o canal é implementado em duas camadas. **R20 (`modo_corrida`)** registra firmas que atingiram massa crítica agregada — sem rastrear identidade individual do depositante. **R27 (`usar_escrow_explicito`)** carrega o escrow individual no `AutoridadeAgent`: cada sinal vira um depósito identificado, e a abertura simultânea colapsa N depósitos em um caso processual único. O parâmetro `janela_escrow_tiques` é o "Δt" da definição LCMC — quantos tiques um depósito permanece no escrow antes de expirar (default `0` = escrow eterno, leitura Callisto).
 
 ```python
-# src/waas_antitrust/model.py — fase P2.5 (entre massa crítica e IC-F*)
-if self.modo_corrida:
-    for fid, _ws in self.trabalhadores_por_empresa.items():
-        empresa = self.empresas[fid]
-        if empresa.massa_critica_interna_satisfeita:
-            continue
-        fila_interna = self.filas_internas[fid]
-        if massa_critica_interna_atingida(
-            n_cooperadores=len(fila_interna),
-            n_trabalhadores=len(_ws),
-            q_min=self.q_min_cooperacao_interna,
-        ):
-            empresa.massa_critica_interna_satisfeita = True
-            empresa.posicao_fila_leniencia = self.fila_leniencia.registrar(fid, self.tique)
+# src/waas_antitrust/agents.py — AutoridadeAgent (R27)
+class AutoridadeAgent(Agent):
+    # ... self.escrow_denuncias: dict[int, list[dict]] = {}
+
+    def depositar_condicional(self, id_empresa, id_trabalhador,
+                              qualidade_prova, tique) -> None:
+        """Trabalhador deposita denúncia condicional no escrow do CADE."""
+
+    def expirar_depositos_condicionais(self, tique_atual, janela) -> int:
+        """Remove depósitos com idade >= janela. janela <= 0 é no-op."""
+
+    def abrir_escrow_se_massa_critica(self, id_empresa, q_min,
+                                      n_trabalhadores_firma) -> bool:
+        """Abertura simultânea quando massa crítica é atingida."""
 ```
 
-A função `massa_critica_interna_atingida` é pura — recebe três inteiros/floats e devolve um booleano. Nada de pagamento entra na conta. **O canal opera independentemente de qualquer instrumento monetário.**
+O `WaaSModel.step()` ativa o caminho v3 via flag opt-in:
+
+```python
+# src/waas_antitrust/model.py — fase P2.5b (R27)
+if self.usar_escrow_explicito:
+    self.autoridade.expirar_depositos_condicionais(
+        tique_atual=self.tique, janela=self.janela_escrow_tiques
+    )
+    for fid in self.trabalhadores_por_empresa:
+        empresa = self.empresas[fid]
+        self.autoridade.abrir_escrow_se_massa_critica(
+            id_empresa=fid,
+            q_min=self.q_min_cooperacao_interna,
+            n_trabalhadores_firma=empresa.n_trabalhadores,
+        )
+```
+
+As funções de canal são puras na lógica e idempotentes por tique. **Nada de pagamento entra na conta — o canal opera independentemente de qualquer instrumento monetário.** O cenário canônico `apenas_canal_sem_instrumento` testa exatamente essa propriedade: `W_mult=0`, `D_disc=0`, `usar_escrow_explicito=True`, Regime B.
 
 ## Camada 2 — A coordenação que o canal resolve
 
@@ -54,6 +69,11 @@ O escrow muda a estrutura informacional do jogo. Sob canal de depósito condicio
 Esta diferença é radical em relação à formulação anterior do projeto, que dependia de capital social organizacional (Coleman 1990) sendo *internalizado* pelo regulador. Sob o canal correto, o regulador **não precisa** que o capital social pré-exista: a coordenação acontece via depósito paralelo no canal, sem necessidade de comunicação horizontal entre os depositantes.
 
 R26 (erosão endógena Coleman) segue válido apenas como sub-caso — se o CADE publica taxas agregadas de depósito no canal, pode haver leak parcial que afeta a comunicação informal subsequente. Mas o **caso geral é independente** desse risco.
+
+<figure markdown>
+![Heurística do jogo global: probabilidade de cascata cooperativa em função do ruído σ e da massa crítica k/n, com regiões dos regimes A, B e C marcadas](img/02_fase.png){ .figura-conceitual }
+<figcaption>Heurística do jogo global (Morris-Shin 1998). Probabilidade de cascata cooperativa em função do ruído e da massa crítica relativa; as três zonas marcadas correspondem aos regimes A, B e C.</figcaption>
+</figure>
 
 ### A peça empírica: gradiente Saito (2021)
 
@@ -91,22 +111,23 @@ Sob a LCMC, o **substrato cooperativo** é o que importa. Mas a cooperação cus
   Não-persecução do partícipe cooperador. Reserva Art. 5º XXXIX (penal estrita); regime Cₚ. Stub declarativo (R23).
 
 - <span class="chip-instrumento">Norma</span> **Nenhum pagamento — só reconhecimento**
-  LCMC pura. O substrato cooperativo é internalizado por dever de ofício (boa fé Lei 9.784) sem instrumento monetário. Cabe em qualquer regime, mas é o caso conservador — testado pelo cenário `apenas_massa_critica_observavel`.
+  LCMC pura. O substrato cooperativo é internalizado por dever de ofício (boa fé Lei 9.784) sem instrumento monetário. Dois cenários canônicos cobrem essa configuração: `apenas_massa_critica_observavel` (sinal sem canal explícito, Regime A) e `apenas_canal_sem_instrumento` (canal explícito do CADE sem pagamento, Regime B + `usar_escrow_explicito=True`).
 
 </div>
 
-O catálogo declarativo dos 4 instrumentos monetários (mais a opção sem instrumento) está em `src/waas_antitrust/instrumentos.py`:
+O catálogo declarativo das **5 entradas** — o canal base (sem pagamento) + os 4 instrumentos monetários — está em `src/waas_antitrust/instrumentos.py`:
 
 ```python
 from waas_antitrust.instrumentos import INSTRUMENTOS, instrumentos_por_regime
 
-# Quais instrumentos cabem em cada regime?
+# Quais entradas cabem em cada regime?
 for nome in ("A", "B", "C", "Cᵩ", "Cₚ"):
     disponiveis = instrumentos_por_regime(nome)
     print(f"  Regime {nome:3s}: {[i.nome for i in disponiveis]}")
 # A : []
-# B : ['recompensa_tcc_waas']
-# C : ['recompensa_tcc_waas', 'vesting_acelerado_hirschman']
+# B : ['canal_deposito_condicional', 'recompensa_tcc_waas']
+# C : ['canal_deposito_condicional', 'recompensa_tcc_waas',
+#       'vesting_acelerado_hirschman']
 # Cᵩ: + 'credito_tributario_denunciante'
 # Cₚ: + 'leniencia_criminal_individual'
 ```
@@ -232,6 +253,11 @@ A IC-F\* fica satisfeita com folga ampla:
 </div>
 
 Tudo isso depende, evidentemente, de quanto $D_{\text{base}}$ realmente é na prática do CADE. Quando esse número aproxima-se de $D_{\text{total}}$, a margem encolhe. Quando ultrapassa, o mecanismo **deixa de funcionar** — e este é o primeiro dos três vetores que cobrimos a seguir.
+
+<figure markdown>
+![Inversão da função-utilidade da firma sob WaaS: painel A mostra o ganho líquido com e sem TCC; painel B mostra a margem D-extra menos W com o ponto-alvo W=1,5 w_a e D=30% da sanção](img/01_inversao.png){ .figura-conceitual }
+<figcaption>Inversão da função-utilidade da firma sob o instrumento WaaS. Painel A — ganho líquido com e sem o TCC com ressarcimento. Painel B — margem $D_{\text{extra}} - W$ em função da fatia de mercado, com o ponto-alvo $W = 1{,}5 \cdot w_a$ e $D = 30\%$ da sanção base assinalado.</figcaption>
+</figure>
 
 ### 4.4 Os três vetores de quebra — onde o argumento pode mesmo ruir
 
@@ -370,8 +396,10 @@ descrevendo a alteração — não é boa o suficiente. A versão deste projeto
 trata cada alteração normativa como um **cenário comparável**: um conjunto
 nomeado de sobrescritas de parâmetros, executável e reportável.
 
-O catálogo (módulo `waas_antitrust.cenarios`) contém **nove cenários
-canônicos**:
+O catálogo (módulo `waas_antitrust.cenarios`) contém **19 cenários
+canônicos**. A tabela abaixo lista os 9 que cobrem a malha institucional
+brasileira inicial; os outros 10 (reframe v2, generalidade EUA/UE,
+canal puro, erosão Coleman) estão em [`modelo_abm.md`](modelo_abm.md) §5.
 
 | Cenário | Hipótese institucional |
 |---|---|
@@ -384,6 +412,8 @@ canônicos**:
 | `mercado_digital_br_pareto` | Regime C com fatia de mercado distribuída em Pareto (α=1,16) — reflete moat de plataformas dominantes (iFood, Mercado Livre, Apple/Google). |
 | `cenario_sancao_dura` | Regime C + multa por descumprimento de TCC = 2× sanção base (R18). |
 | **`cenario_corrida_leniencia`** | **LCMC plena** — Regime C + `modo_corrida=True` + `q_min=10%` + janela 4 tiques + decaimento Saito. Ativa as duas corridas acopladas (intra-firma + inter-firma) descritas em "A corrida que faltava". |
+| **`apenas_canal_sem_instrumento`** | **Canal puro (R27-i)** — Regime B + `usar_escrow_explicito=True` + `W_mult=0` + `D_disc=0`. Isola o canal: testa se sozinho carrega o mecanismo. |
+| **`erosao_coleman_adversarial`** | **Falsificação R26** — `resolucao_pura` + `alpha_erosao=0.5`. Operacionaliza a Proposição 5 candidata (instrumentalizar denúncia destrói o substrato cooperativo). |
 
 Cada cenário roda como uma chamada de função:
 

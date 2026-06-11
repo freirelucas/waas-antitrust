@@ -28,6 +28,11 @@ sem saber qual é a "oficial".
 - **Sinônimo não recomendado**: "atenuante condicional" (carrega o
   framing v1 errado — a condição está no *canal de recepção*, não no
   *atenuante regulatório*)
+- **Parâmetros no código**: `usar_escrow_explicito: bool` (ativa o
+  caminho v3 do canal explícito; default `False` preserva o caminho
+  histórico); `janela_escrow_tiques: int` (Δt da definição LCMC — quantos
+  tiques um depósito permanece no escrow antes de expirar; default `0` =
+  escrow eterno, leitura Callisto)
 
 ### LCMC (sigla)
 

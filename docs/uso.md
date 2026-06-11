@@ -38,7 +38,7 @@ from waas_antitrust.model import WaaSModel, WaaSParametros
 params = WaaSParametros(regime="B", seed=42, n_tiques=40)
 df = WaaSModel(params).executar()
 
-# DataFrame com 40 linhas × 31 colunas
+# DataFrame com 40 linhas × 34 colunas
 print(df[["n_sinais", "n_violadoras_ativas", "dano_acumulado",
           "capital_social_residual", "valor_dissuasao_difusa_acum"]].tail())
 ```
@@ -66,7 +66,7 @@ print(f"firmas que atingiram massa crítica interna: "
       f"{df['n_firmas_atingiram_massa_critica_interna'].max()}")
 ```
 
-15 cenários canônicos disponíveis (incluindo os 6 do reframe v2):
+19 cenários canônicos disponíveis (incluindo os 6 do reframe v2, os 2 do R28 EUA/UE e os 2 do canal puro + erosão Coleman):
 
 ```python
 from waas_antitrust.cenarios import listar_cenarios
@@ -174,7 +174,7 @@ waas-sobol --n-base 1024 --jobs -1 --out results/sobol_full.parquet
 Antes de propor PR, rodar:
 
 ```bash
-pytest -x -q -m "not slow" tests/   # 288 testes, ~25s
+pytest -x -q -m "not slow" tests/   # 324 testes, ~25s
 ruff check src/ tests/ scripts/
 black --check src/ tests/ scripts/
 mkdocs build --strict               # site sem warnings
@@ -192,8 +192,8 @@ python .claude/skills/run-waas-antitrust/driver.py --out /tmp/waas-driver
 src/waas_antitrust/
 ├── agents.py              # TrabalhadorAgent, EmpresaAgent, AutoridadeAgent
 ├── model.py               # WaaSModel + WaaSParametros (~30 params)
-├── cenarios.py            # 15 cenários canônicos + aplicar_cenario
-├── instrumentos.py        # 4 instrumentos declarativos (v2.C.1)
+├── cenarios.py            # 19 cenários canônicos + aplicar_cenario
+├── instrumentos.py        # 5 entradas: canal base (v3) + 4 instrumentos
 ├── corrida.py             # FilaInternaCooperacao + FilaLeniencia (LCMC)
 ├── hirschman.py           # custo_exodo_esperado (R07)
 ├── condutas.py            # 28 condutas digitais × 10 papéis

@@ -64,14 +64,19 @@ Três fatos brutos saltam:
 
 ## A anatomia dos reporters
 
-O DataFrame tem **31 colunas**. Para legibilidade, o projeto agrupa em três categorias semânticas:
+O DataFrame tem **34 colunas**. Para legibilidade, este guia agrupa abaixo em três categorias semânticas (apresentação documental — o `DataCollector` não declara as tuplas):
 
 ```python
-# src/waas_antitrust/model.py — três blocos de reporters
+# Agrupamento documental (não declarado em src/waas_antitrust/model.py).
+# Os reporters reais estão no `DataCollector` do WaaSModel.__init__.
+
 _REPORTERS_MASSA_CRITICA = (
     "n_sinais",                                  # trabalhadores que sinalizaram
     "n_empresas_notif",                          # firmas que receberam notificação
     "n_firmas_atingiram_massa_critica_interna",  # gatilho LCMC R20
+    "n_denuncias_em_escrow",                     # escrow R27 (canal explícito)
+    "n_aberturas_simultaneas_acum",              # abertura all-or-nothing R27
+    "n_depositos_expirados_acum",                # janela_escrow_tiques (R27-ii)
     "n_violadoras_ativas",                       # estoque de firmas violando
     "dano_acumulado",                            # Σ violadoras·tique
     "valor_dissuasao_difusa_acum",               # externalidade erga omnes (v2.D.1)
@@ -204,7 +209,7 @@ cd waas-antitrust && pip install -e ".[dev]"
 # Figura 03 (a deste Ato)
 python scripts/gerar_figura_dissuasao.py
 
-# Suite completa de testes (288 testes, ~25s)
+# Suite completa de testes (324 testes, ~25s)
 pytest -x -q -m "not slow" tests/
 
 # Varredura Sobol paper-grade (várias horas)

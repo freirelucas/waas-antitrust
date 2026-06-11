@@ -143,7 +143,7 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
 -   **Quero rodar o código**
 
-    Instalação em 3 comandos, demo no Colab, 288 testes verdes, ruff/black/mkdocs-strict garantidos.
+    Instalação em 3 comandos, demo no Colab, 324 testes verdes, ruff/black/mkdocs-strict garantidos.
 
     [Como usar →](uso.md) · [Modelagem multiagente →](modelagem_multiagente.md)
 
@@ -167,7 +167,7 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 [![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
 [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/)
-[![288 testes](https://img.shields.io/badge/pytest-288%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions)
+[![324 testes](https://img.shields.io/badge/pytest-324%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions)
 [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)
 
 Este repositório acompanha um **artigo acadêmico em elaboração** —

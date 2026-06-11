@@ -74,6 +74,40 @@ for alpha in (0.0, 0.2, 0.5, 0.8):
 
 Se a direção da Proposição 3 (ou 5) quebrar sob calibração que você considera realista, **abra uma issue com o output** — isto é exatamente o que o projeto precisa para sair do plausível e entrar no ajustado.
 
+### Receita 4 — cético do canal (R27)
+
+"O escrow explícito muda os resultados? Por que então a flag existe?"
+
+```python
+from waas_antitrust.model import WaaSModel, WaaSParametros
+
+base = dict(
+    n_empresas=20, tam_medio_empresa=200, n_tiques=20,
+    seed=29, regime="B", fracao_violadoras=0.7,
+)
+for explicito in (False, True):
+    df = WaaSModel(WaaSParametros(**base, usar_escrow_explicito=explicito)).executar()
+    print(
+        f"escrow_explicito={explicito}: "
+        f"em_escrow={df['n_denuncias_em_escrow'].max()}, "
+        f"aberturas={df['n_aberturas_simultaneas_acum'].max()}, "
+        f"dano={df['dano_acumulado'].iloc[-1]:.1f}"
+    )
+
+# Sub-receita 4b: varrer a janela de expiração (Δt) e medir
+# quantos depósitos morrem antes da massa crítica.
+for janela in (0, 2, 4, 8):
+    df = WaaSModel(WaaSParametros(
+        **base, usar_escrow_explicito=True, janela_escrow_tiques=janela
+    )).executar()
+    print(
+        f"janela={janela}: expirados={df['n_depositos_expirados_acum'].max()}, "
+        f"aberturas={df['n_aberturas_simultaneas_acum'].max()}"
+    )
+```
+
+Sob a leitura v3 (Ayres-Unkovic 2012; análogo Callisto), o caminho histórico (escrow implícito em `EmpresaAgent`) e o caminho explícito (`AutoridadeAgent.escrow_denuncias`) devem produzir resultados muito próximos em P0/P1/P2 — diferenças significativas no horizonte longo indicam acoplamento não documentado que vale investigação. A varredura de `janela_escrow_tiques` é o canal de falsificação para a hipótese "janela curta como salvaguarda anti-erosão" (limitação Coleman, R26).
+
 ## Contribuir com calibração ou texto
 
 Há três bancos de dados externos contra os quais o modelo precisa ser ajustado, e o autor não conseguiu acesso a todos sozinho:
