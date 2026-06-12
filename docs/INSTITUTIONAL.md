@@ -42,6 +42,51 @@ A analogia ao **IRS Whistleblower Office** (26 U.S.C. §7623) é **inaplicável*
 
 A viabilidade política dos sub-regimes Cᵩ e Cₚ no horizonte 2024-2027 está documentada em [Viabilidade política do Regime C](viabilidade_regime_c.md). Cₜ tem janela aberta (vesting toca discurso de "proteção do trabalhador"); Cᵩ e Cₚ enfrentam barreiras dogmáticas e fiscais que tornam tramitação improvável sem crise reputacional grande.
 
+### Transposição comparada — decomposição EUA e UE (R28)
+
+A decomposição em reservas constitucionais é específica do arranjo
+brasileiro; transpor a LCMC exige refazer o exercício para cada
+jurisdição. Os marcos de 2024-2025 (ver [Generalidade — EUA e
+UE](internacional.md)) permitem a primeira aproximação:
+
+| Eixo | Brasil | EUA (federal) | UE |
+|---|---|---|---|
+| **Canal** (depósito condicional) | Base autônoma: Art. 4º Lei 12.529 c/c Lei 9.784/99 — ato administrativo do CADE | Via administrativa demonstrada: DOJ-ATR Rewards Program instituído em jul/2025 **sem lei nova**, em parceria com o USPS | Via administrativa demonstrada: DMA Whistleblower Tool (abr/2024) operado pela Comissão sob o Reg. (UE) 2022/1925 — **sem** componente de escrow condicional |
+| **Recompensa** | Regime B (re-caracterização Art. 12, sujeita a F6) ou Cᵩ (LC + LRF) | Fundo estatutário robusto: Dodd-Frank §922 (15 U.S.C. §78u-6) consolidou o template 10–30% — o DOJ-ATR opera 15–30% **sem** equivalente do risco F6 | **Inexistente**: a Diretiva (UE) 2019/1937 dá proteção horizontal anti-represália, não incentivo monetário |
+| **Proteção anti-represália** | Lei 13.608/2018 (escopo restrito a "crimes contra a administração pública") | Estatutos setoriais (p.ex. Dodd-Frank para o eixo SEC) | Diretiva (UE) 2019/1937 — horizontal, transposta pelos Estados-membros |
+
+Três leituras institucionais decorrem da tabela:
+
+1. **A via administrativa do DOJ-ATR é o paralelo funcional do Regime B
+   brasileiro** — programa de recompensa criado por ato administrativo,
+   sem lei nova. A diferença material: o fundo estatutário americano
+   (Dodd-Frank §922 como template já validado) elimina o equivalente do
+   falsificador F6; no Brasil, a re-caracterização sob o Art. 12 ainda
+   aguarda teste judicial. Por isso a tag `regime="EUA"` mapeia para a
+   **mecânica C** (robustez), embora a **via** seja análoga à B.
+2. **A UE demonstra o contrafactual do mecanismo**: canal + proteção,
+   sem recompensa e sem massa crítica. A tag `regime="UE"` mapeia para
+   a **mecânica A** porque, do ponto de vista do modelo, nenhum
+   instrumento de internalização opera — o DMA Tool recebe denúncias
+   individuais anônimas, não depósitos condicionais. Se a tese
+   substantiva do projeto estiver certa (proteção sem incentivo é
+   insuficiente para coordenação intra-firma), o desenho europeu
+   sub-produzirá denúncias qualificadas em condutas unilaterais — uma
+   predição comparada falsificável.
+3. **A decomposição em sub-regimes não viaja**: Cₜ/Cᵩ/Cₚ respondem a
+   reservas constitucionais brasileiras. Nos EUA, o eixo tributário tem
+   precedente próprio (IRS Whistleblower Office sob *taxing power*) e o
+   eixo penal corre pela discricionariedade de persecução do DOJ; na UE,
+   a competência concorrencial é da Comissão, mas matéria penal e
+   trabalhista permanece dos Estados-membros — qualquer acoplamento
+   além do canal exigiria análise por Estado. Esta assimetria é o
+   conteúdo institucional da afirmação "a LCMC é generalizável, os
+   acoplamentos não necessariamente".
+
+Pendência rastreada em R28: calibração de `taxa_capacidade` contra os
+orçamentos DOJ-ATR (FY2025) e DG-COMP (2024) — sem ela, as comparações
+de volume entre jurisdições no modelo são apenas direcionais.
+
 ## Limites do Regime B (reserva de lei)
 
 Mesmo aceitando a re-caracterização da recompensa como ressarcimento, há uma
