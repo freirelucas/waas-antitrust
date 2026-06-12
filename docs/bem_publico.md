@@ -155,8 +155,32 @@ A leitura sob v3: o painel (B) mostra que mesmo erosão moderada
 ($\alpha=0.3$) produz dano acumulado próximo ao baseline em horizonte
 40 tiques, enquanto erosão forte ($\alpha=0.7$) produz crescimento
 detectável. O efeito **existe direcionalmente** mas a magnitude
-absoluta é pequena no setup atual. A calibração formal contra dados
-históricos (R03) decidirá se a Proposição 5 é verificada ou rejeitada.
+absoluta é pequena no setup atual.
+
+### Falsificação numérica da forma forte (jun/2026)
+
+Varredura dedicada em `scripts/varredura_alpha_erosao.py` (10 seeds × 8
+valores de $\alpha_\text{erosão}$ × 40 tiques; resultados em
+`results/alpha_erosao_grade.parquet`) **refuta a forma forte da
+Proposição 5 candidata** na configuração testada:
+
+<figure markdown>
+  ![Painel 1x2 da falsificação da Prop. 5 candidata: dano acumulado por alpha contra piso A e capital social residual final](img/10_alpha_erosao_limiar.png){ .figura-empirica }
+  <figcaption>
+    Falsificação numérica da Proposição 5 candidata (forma forte). <strong>(A)</strong> Mediana de <code>dano_acumulado</code> por $\alpha_\text{erosão}$ no Regime B (banda IC bootstrap 95%) contra o piso do Regime A (linha tracejada). <strong>(B)</strong> Mediana de <code>capital_social_residual</code> final. O substrato cooperativo (B) <strong>sim</strong> é erodido por $\alpha$ crescente — a forma fraca de Coleman se confirma. Mas o dano agregado (A) permanece ~8× menor que o piso A até $\alpha=0.9$: a dissuasão endógena (R01) compensa a erosão do substrato no nível agregado. A forma forte da Proposição 5 ("B colapsa em A") <strong>não se materializa</strong> nesta grade.
+  </figcaption>
+</figure>
+
+A implicação é dupla: (i) o reframe Coleman segue **descritivamente
+correto** — a instrumentalização erode mensuravelmente o substrato
+cooperativo; (ii) mas o efeito agregado é **dominado pela dissuasão
+endógena** — uma firma com `p_perc` elevada acaba violando menos mesmo
+com o substrato erodido. A Proposição 5, sob v3, deve ser **rebaixada
+para forma fraca**: "instrumentalizar erode o substrato", sem afirmação
+forte sobre colapso de regime.
+
+A calibração formal contra dados históricos (R03) decidirá se a
+Proposição 5 (forma fraca) é verificada ou rejeitada.
 Coleman (*Foundations of Social Theory*, 1990, cap. 12) define **capital
 social** como bem coletivo **produzido como subproduto de relações de
 obrigação** entre pessoas que se conhecem e dependem umas das outras.

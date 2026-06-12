@@ -214,13 +214,25 @@ construção: a abertura simultânea elimina o equilíbrio de silêncio induzido
 custo individual de represália suportado em isolamento.
 \end{proposition}
 
-\begin{proposition}[Erosão Coleman --- candidata]
-Existe um $\alpha^*_{\text{erosão}} > 0$ tal que, para $\alpha_{\text{erosão}} >
-\alpha^*$, o regime~B colapsa em A após $N$ ciclos. A operacionalização do
-parâmetro \texttt{alpha\_erosao} sobre a fração de notificações por ciclo
-\citep{coleman1990foundations, ostrom1990governing} permite testar a hipótese
-sem resolver formalmente sua existência.
+\begin{proposition}[Erosão Coleman --- forma fraca]
+A instrumentalização da denúncia interna erode o substrato cooperativo
+intra-firma: o capital social residual decai monotonicamente em
+$\alpha_{\text{erosão}}$. A operacionalização do parâmetro
+\texttt{alpha\_erosao} sobre a fração de notificações por ciclo
+\citep{coleman1990foundations, ostrom1990governing} permite verificar
+a hipótese empiricamente.
 \end{proposition}
+
+\paragraph{Refutação numérica da forma forte.} A formulação inicial da
+Proposição~5 (``existe $\alpha^*$ tal que, para $\alpha > \alpha^*$, o
+Regime~B colapsa em A''; rastreada em R26) foi falsificada por varredura
+em grade (10 seeds $\times$ 8 valores de $\alpha \in [0, 0{,}9]$ $\times$
+40 ciclos): a mediana do dano em B fica em $\sim 53$ contra piso A em
+$\sim 425$ (fator 8$\times$ menor), estável até $\alpha = 0{,}9$. A
+dissuasão endógena (R01) compensa a erosão do substrato no nível
+agregado. A Proposição~5 é portanto rebaixada para a forma fraca acima;
+a forma forte fica registrada como conjectura refutada na configuração
+testada.
 
 \paragraph{Status (v0.2.0).} A Proposição~1 é verificada por teste de regressão
 no ponto-alvo ($D > W$). A Proposição~2 ganhou figura computacional dedicada

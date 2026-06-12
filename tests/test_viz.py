@@ -150,6 +150,49 @@ def test_proposicao_5_gera_figura():
     plt.close(fig)
 
 
+def test_alpha_erosao_limiar_gera_figura(tmp_path):
+    """`alpha_erosao_limiar.gerar_figura` lê parquet e produz painel 1×2 da
+    falsificação numérica da Proposição 5 candidata."""
+    import pandas as pd
+
+    from waas_antitrust.viz import alpha_erosao_limiar
+
+    # Mini-parquet sintético: 2 alphas × 3 seeds × 2 regimes
+    registros = []
+    for seed in (1, 2, 3):
+        registros.append(
+            {
+                "alpha_erosao": 0.0,
+                "seed": seed,
+                "regime": "A",
+                "dano_acumulado": 100.0 + seed,
+                "capital_social_residual": 1.0,
+                "n_tcc_assinados": 0,
+            }
+        )
+    for alpha in (0.0, 0.5):
+        for seed in (1, 2, 3):
+            registros.append(
+                {
+                    "alpha_erosao": alpha,
+                    "seed": seed,
+                    "regime": "B",
+                    "dano_acumulado": 30.0 + seed + alpha * 5,
+                    "capital_social_residual": max(0.1, 1.0 - alpha),
+                    "n_tcc_assinados": 1,
+                }
+            )
+    df = pd.DataFrame(registros)
+    parquet = tmp_path / "alpha_erosao_grade_mini.parquet"
+    df.to_parquet(parquet, index=False)
+
+    aplicar_estilo()
+    fig, axes = alpha_erosao_limiar.gerar_figura(parquet_path=parquet)
+    assert fig is not None
+    assert len(axes) == 2
+    plt.close(fig)
+
+
 def test_multiplicidade_unicidade_gera_figura():
     """`multiplicidade_unicidade.gerar_figura` retorna (Figure, [Axes, Axes])
     com painel 1×2 do contraste Morris-Shin: múltiplos equilíbrios sob
