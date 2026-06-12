@@ -34,7 +34,6 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 from waas_antitrust.model import WaaSModel, WaaSParametros
@@ -81,7 +80,9 @@ def executar_uma(
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     ap.add_argument("--alphas", type=float, nargs="+", default=list(DEFAULT_ALPHAS))
     ap.add_argument("--seeds", type=int, nargs="+", default=list(DEFAULT_SEEDS))
     ap.add_argument("--tiques", type=int, default=40)
@@ -142,7 +143,9 @@ def main() -> None:
     print(f"{'A':<8} {'-':>6} {ic_a.mediana:>12.2f} {ic_a.inferior:>12.2f} {ic_a.superior:>12.2f}")
     medianas_b: dict[float, float] = {}
     for alpha in args.alphas:
-        danos = df[(df["regime"] == "B") & (df["alpha_erosao"] == alpha)]["dano_acumulado"].to_list()
+        danos = df[(df["regime"] == "B") & (df["alpha_erosao"] == alpha)][
+            "dano_acumulado"
+        ].to_list()
         ic = bootstrap_ci(danos, n_bootstrap=1000, seed=int(alpha * 1000))
         medianas_b[alpha] = ic.mediana
         print(
