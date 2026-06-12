@@ -1,7 +1,5 @@
 """Testes das visualizações."""
 
-import importlib
-
 import matplotlib
 import pytest
 
@@ -33,12 +31,16 @@ def test_fase_gera_figura():
     plt.close(fig)
 
 
-def test_viz_stub_painel_levanta_not_implemented():
-    """O último stub de viz (`painel`, síntese 3×3 — ainda no caderno §3)
-    levanta NotImplementedError."""
-    mod = importlib.import_module("waas_antitrust.viz.painel")
-    with pytest.raises(NotImplementedError):
-        mod.gerar_figura()
+def test_painel_sintese_gera_figura():
+    """`painel.gerar_figura` compõe a figura-síntese 2×3 (T01 fechado).
+    Config reduzida para teste rápido."""
+    from waas_antitrust.viz import painel
+
+    aplicar_estilo()
+    fig, axes = painel.gerar_figura(seeds=(11,), n_tiques=4)
+    assert fig is not None
+    assert len(axes) == 6
+    plt.close(fig)
 
 
 def test_falsificacao_gera_figura():
@@ -90,7 +92,6 @@ def test_painel_micro_gera_figura():
 
 def test_painel_micro_firma_invalida_levanta():
     """`gerar_figura` levanta ValueError se firma não existe."""
-    import pytest
 
     from waas_antitrust.model import WaaSModel, WaaSParametros
     from waas_antitrust.viz import painel_micro

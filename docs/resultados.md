@@ -242,3 +242,14 @@ Caminho mais rápido para inspecionar sem instalar: **[caderno-demo no Colab](ht
 
 [Ato 4: O que ainda falta →](limitacoes.md)
 </div>
+
+## A tese em seis células
+
+Para quem precisa da história inteira em uma figura (`viz/painel.py`):
+
+<figure markdown>
+  ![Painel 2x3 com dano por regime, violadoras ativas, massa crítica LCMC, canal de depósito, erosão Coleman e dano nas 5 variantes institucionais](img/18_painel_sintese.png){ .figura-empirica }
+  <figcaption>
+    Painel-síntese, mediana de 3 seeds × 16 tiques. <strong>(A)</strong> dano acumulado: A cresce linear; B/C achatam. <strong>(B)</strong> violadoras ativas caem sob dissuasão endógena (R01). <strong>(C)</strong> fração de firmas com massa crítica interna satura sob LCMC. <strong>(D)</strong> o canal de depósito condicional operando: escrow oscila, aberturas acumulam (R27). <strong>(E)</strong> erosão Coleman na forma fraca: substrato decai com $\alpha=0{,}5$ (R26). <strong>(F)</strong> generalidade R28: a variante UE (sem recompensa) replica o regime A; a variante EUA replica o C.
+  </figcaption>
+</figure>

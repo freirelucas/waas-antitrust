@@ -19,7 +19,7 @@ Toda figura no site recebe um dos dois selos via CSS:
 A distinção é importante para que jornalista e jurista não confundam o
 que é argumento pedagógico com o que é evidência de simulação.
 
-## Figuras publicadas (17)
+## Figuras publicadas (18)
 
 | # | Arquivo | Módulo gerador | Página de uso | Classe |
 |---|---|---|---|---|
@@ -40,28 +40,28 @@ que é argumento pedagógico com o que é evidência de simulação.
 | 15 | `docs/img/15_adversarial_oportunistas.png` | `viz/adversarial.py` | `limitacoes.md` | empírica |
 | 16 | `docs/img/16_falsificacao_vetores.png` | `viz/falsificacao.py` | `resultados.md` | empírica |
 | 17 | `docs/img/17_variedade_papeis.png` | `viz/variedade.py` | `modelagem_multiagente.md` | empírica |
+| 18 | `docs/img/18_painel_sintese.png` | `viz/painel.py` | `resultados.md` | empírica |
 
 Cada PNG está abaixo de 200 KB e usa a paleta `cividis` cego-amigável
 (`viz/paleta.py`). Todas as figuras seguem o padrão
 `<figure markdown>...<figcaption>...</figcaption></figure>` com alt-text
 abaixo de 125 caracteres (WCAG 2.1 AA).
 
-## Stubs em backlog (1)
+## Stubs em backlog (0) — T01 fechado
 
-Resta um único stub em `src/waas_antitrust/viz/` que levanta
-`NotImplementedError` (tarefa **T01** em `DECISIONS.md`). Saíram da
-lista em jun/2026: `sankey.py` (11), `bootstrap.py` (12),
+Em jun/2026 todos os 8 stubs originais foram migrados do caderno para
+módulos do pacote: `sankey.py` (figura 11), `bootstrap.py` (12),
 `internacional.py` (13), `cade.py` (14), `adversarial.py` (15),
-`falsificacao.py` (16) e `variedade.py` (17).
+`falsificacao.py` (16), `variedade.py` (17) e `painel.py` (18, a
+figura-síntese 2×3). A tarefa **T01** de `DECISIONS.md` está fechada;
+o caderno `WaaS_caderno_v2.ipynb` deixa de ser a referência canônica
+de visualizações.
 
-| Stub | O que mostrará | Implementação canônica hoje |
-|---|---|---|
-| `viz/painel.py` | Painel geral 3×3 do reframe v2 com massa crítica, instrumentos e robustez lado a lado (alvo: figura síntese para abstract). | Caderno §3 (agregação manual dos macro/micro hoje). |
-
-Nota sobre o `falsificacao.py` implementado: a taxonomia que se
-materializou no repositório são os **vetores de quebra A-E** (+F6/F7
+Nota sobre o `falsificacao.py`: a taxonomia que se materializou no
+repositório são os **vetores de quebra A-E** (+F6/F7
 jurídico-institucionais), não a numeração F1-F7 originalmente
-imaginada — a figura 16 executa os 5 vetores contra baseline.
+imaginada para o stub — a figura 16 executa os 5 vetores contra
+baseline.
 
 ## Política de figuras
 

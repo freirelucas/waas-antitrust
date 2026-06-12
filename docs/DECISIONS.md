@@ -17,7 +17,7 @@ Decisões rastreadas que afetam o desenho do mecanismo ou a arquitetura do códi
 
 | # | Decisão | Status | Observação |
 |---|---|---|---|
-| T01 | Migrar viz 3 a 11 do caderno para módulos | aberta | Hoje só inversão e fase têm módulo. |
+| T01 | Migrar viz 3 a 11 do caderno para módulos | **fechada (jun/2026)** | Todos os 18 módulos de `viz/` implementados com `gerar_figura(...)` + teste; 18 figuras publicadas no site (mapa em `roadmap_figuras.md`). O caderno deixa de ser referência canônica de visualizações. |
 | T02 | Adotar Mesa 3.x space classes para a rede intra-firma | aberta | Hoje uso direto de NetworkX. |
 | T03 | Integração contínua com Zenodo | aberta | Workflow `.github/workflows/release.yml` pronto; falta vincular conta. |
 | T04 | Adicionar DVC para versionamento de dados brutos | aberta | Pasta `data/raw/` reservada. |
