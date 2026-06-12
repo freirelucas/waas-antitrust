@@ -170,6 +170,15 @@ Isso elimina a singularidade clássica do estimador frequencista `vp/n_violadora
 A direção da Proposição 3 é robusta: em 12 seeds independentes, o intervalo de confiança 95% da diferença entre Regime B e Regime A não cruza zero.
 </div>
 
+A mesma técnica, agora em figura dedicada (`viz/bootstrap.py`):
+
+<figure markdown>
+  ![Painel 1x2 com mediana e IC bootstrap 95% de dano acumulado e bem-estar por regime A, B e C](img/12_bootstrap_regimes.png){ .figura-empirica }
+  <figcaption>
+    Mediana + IC bootstrap 95% sobre 12 seeds × 20 tiques. <strong>(A)</strong> Dano acumulado: Regimes B e C reduzem o dano frente a A por margem que sobrevive à reamostragem — os intervalos não se sobrepõem. <strong>(B)</strong> Bem-estar social (<code>calcular_bem_estar</code>: dano + falsos positivos + custo de recompensa + custo de êxodo − multa arrecadada, em unidades de salário anual). A barra de erro é o IC percentílico da mediana via <code>robustez.bootstrap_ci</code> — mesma infraestrutura dos testes de regressão.
+  </figcaption>
+</figure>
+
 ## Os vetores de quebra — quando o mecanismo falha
 
 Toda a evidência acima usa parâmetros conservadores: $D_{\text{base}}=0$, $p_{\text{anulação}}=0$, $c_{\text{legal}}=0$. É a calibração mais favorável ao mecanismo. A simulação também roda nos **regimes adversariais**:

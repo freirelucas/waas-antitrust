@@ -37,16 +37,14 @@ def test_fase_gera_figura():
     "modulo",
     [
         "adversarial",
-        "bootstrap",
         "cade",
         "falsificacao",
-        "internacional",
         "painel",
         "variedade",
     ],
 )
 def test_viz_stubs_levantam_not_implemented(modulo):
-    """Os 7 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
+    """Os 5 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
     `cascata` foi implementada no reframe v2 (Commit 6) e ganhou teste próprio."""
     mod = importlib.import_module(f"waas_antitrust.viz.{modulo}")
     with pytest.raises(NotImplementedError):
@@ -146,6 +144,30 @@ def test_proposicao_5_gera_figura():
     # Painel A é capital social, painel B é dano relativo
     assert "Capital social" in axes[0].get_ylabel()
     assert "Dano" in axes[1].get_ylabel() or "dano" in axes[1].get_ylabel().lower()
+    plt.close(fig)
+
+
+def test_bootstrap_gera_figura():
+    """`bootstrap.gerar_figura` retorna painel 1×2 (dano + bem-estar por
+    regime com IC bootstrap). Config reduzida para teste rápido."""
+    from waas_antitrust.viz import bootstrap
+
+    aplicar_estilo()
+    fig, axes = bootstrap.gerar_figura(seeds=(11, 23, 37), n_tiques=4)
+    assert fig is not None
+    assert len(axes) == 2
+    plt.close(fig)
+
+
+def test_internacional_gera_figura():
+    """`internacional.gerar_figura` retorna painel 1×2 da comparação
+    3 jurisdições (R28). Config reduzida para teste rápido."""
+    from waas_antitrust.viz import internacional
+
+    aplicar_estilo()
+    fig, axes = internacional.gerar_figura(seeds=(11, 23), n_tiques=5)
+    assert fig is not None
+    assert len(axes) == 2
     plt.close(fig)
 
 

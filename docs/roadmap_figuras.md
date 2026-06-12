@@ -19,7 +19,7 @@ Toda figura no site recebe um dos dois selos via CSS:
 A distinção é importante para que jornalista e jurista não confundam o
 que é argumento pedagógico com o que é evidência de simulação.
 
-## Figuras publicadas (11)
+## Figuras publicadas (13)
 
 | # | Arquivo | Módulo gerador | Página de uso | Classe |
 |---|---|---|---|---|
@@ -34,29 +34,30 @@ que é argumento pedagógico com o que é evidência de simulação.
 | 09 | `docs/img/09_multiplicidade_unicidade.png` | `viz/multiplicidade_unicidade.py` | `ODD.md` | conceitual |
 | 10 | `docs/img/10_alpha_erosao_limiar.png` | `viz/alpha_erosao_limiar.py` | `bem_publico.md` | empírica |
 | 11 | `docs/img/11_sankey_corrida_lcmc.png` | `viz/sankey.py` | `mecanismo.md` | empírica |
+| 12 | `docs/img/12_bootstrap_regimes.png` | `viz/bootstrap.py` | `resultados.md` | empírica |
+| 13 | `docs/img/13_internacional_3jurisdicoes.png` | `viz/internacional.py` | `internacional.md` | empírica |
 
 Cada PNG está abaixo de 200 KB e usa a paleta `cividis` cego-amigável
 (`viz/paleta.py`). Todas as figuras seguem o padrão
 `<figure markdown>...<figcaption>...</figcaption></figure>` com alt-text
 abaixo de 125 caracteres (WCAG 2.1 AA).
 
-## Stubs em backlog (7)
+## Stubs em backlog (5)
 
 Cada stub é um módulo de 24 linhas em `src/waas_antitrust/viz/` que
 levanta `NotImplementedError` ao ser chamado, com mensagem explícita
 que a implementação canônica ainda vive no caderno
 `notebooks/WaaS_caderno_v2.ipynb`. A migração desses módulos para o
-pacote é a tarefa **T01** em `DECISIONS.md`. O `sankey.py` foi
-implementado em jun/2026 e saiu desta lista (figura 11).
+pacote é a tarefa **T01** em `DECISIONS.md`. Saíram desta lista em
+jun/2026: `sankey.py` (figura 11), `bootstrap.py` (figura 12) e
+`internacional.py` (figura 13).
 
 | Stub | O que mostrará | Implementação canônica hoje |
 |---|---|---|
 | `viz/painel.py` | Painel geral 3×3 do reframe v2 com massa crítica, instrumentos e robustez lado a lado (alvo: figura síntese para abstract). | Caderno §3 (agregação manual dos macro/micro hoje). |
-| `viz/bootstrap.py` | Intervalos de confiança multi-seed (`robustez.bootstrap_ci`) para `dano_acumulado` e `bem_estar` por regime, com sombreamento. | Caderno §10 + `robustez.py`. |
 | `viz/cade.py` | Série temporal CADE 2018-2024 da capacidade (`taxa_capacidade` calibrada contra RIG 2024) e dos TCCs assinados — ponte para a calibração R06. | Caderno §8 + `calibracao/cade.py`. |
 | `viz/adversarial.py` | Tela do cenário `uso_adversarial_oportunista` (R24): FP por fração de oportunistas, com bandas multi-seed. | Caderno §7. |
 | `viz/falsificacao.py` | Mapa F1–F7 dos falsificadores (Adv A v2 + autor) — qual cenário aciona qual flag, com hits/misses por tique. | Caderno §9 + `cenarios.py`. |
-| `viz/internacional.py` | Comparação 3-jurisdições (BR, EUA-DOJ-ATR, UE-DMA) — dano evitado, bem-estar, capital social residual por jurisdição. | Caderno §11 + `cenarios.py` (R28). |
 | `viz/variedade.py` | Curva de amplificação de variedade (Ashby/Beer) sob diferentes distribuições de papéis (`BIGTECH_MADURA` vs. `MARKETPLACE_BR`). | Caderno §5 + `condutas.py`. |
 
 ## Política de figuras

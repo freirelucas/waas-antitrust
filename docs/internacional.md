@@ -70,6 +70,18 @@ Variante calibrada contra o DMA Whistleblower Tool:
   recompensa é suficiente?** Cruzar com a Proposição 2 (massa crítica)
   responde por simulação.
 
+## A comparação em figura
+
+O módulo `viz/internacional.py` materializa a comparação direcional em
+multi-seed:
+
+<figure markdown>
+  ![Painel 1x2 da comparação de dano acumulado entre BR status quo, EUA DOJ-ATR 2025 e UE DMA Tool 2024](img/13_internacional_3jurisdicoes.png){ .figura-empirica }
+  <figcaption>
+    Comparação direcional 3 jurisdições, 8 seeds × 24 tiques. <strong>(A)</strong> Trajetória mediana de <code>dano_acumulado</code> com banda interquartílica. <strong>(B)</strong> Dano final com IC bootstrap 95%. A variante EUA (DOJ-ATR: recompensa 15–30% + LCMC ativa) domina; a variante UE (DMA Tool: proteção sem recompensa) fica entre o status quo BR e a variante EUA — consistente com a tese substantiva de que proteção sem incentivo é insuficiente. <strong>Caveat</strong>: capacidade institucional NÃO calibrada (pendência R28); leituras de volume absoluto não são confiáveis, apenas direcionais.
+  </figcaption>
+</figure>
+
 ## Como rodar
 
 ```python
