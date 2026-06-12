@@ -10,7 +10,7 @@
 | [§4](#4-como-alterar-parametros-7-receitas-python) | 7 receitas Python | Como mudar regime, ativar escrow, varrer Sobol |
 | [§5](#5-atalho-19-cenarios-canonicos) | 19 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
 | [§6](#6-a-saida-do-modelo-34-reporters) | 34 reporters | As colunas do DataFrame agrupadas por categoria |
-| [§7](#7-cookbook-reprodutivel-5-receitas-avancadas) | Cookbook avançado | Calibração Saito, choques layoff, multi-seed CI |
+| [§7](#7-cookbook-reprodutivel-6-receitas-avancadas) | Cookbook avançado | Calibração Saito, choques layoff, multi-seed CI, mapa λ×Hirschman |
 | [§8](#8-postura-epistemica) | Postura epistêmica | Backward compat estrita; opt-in por flag |
 
 Esta é a aba dedicada ao **modelo computacional**: o que é, como evoluiu, como se mexe nos parâmetros, como se lê a saída. Para a anatomia conceitual das 3 classes (Trabalhador, Empresa, Autoridade) e a discussão de "o que não é agente, e por quê", veja [Modelagem multiagente](modelagem_multiagente.md). Para o protocolo ODD formal, veja [Modelo (ODD)](ODD.md).
@@ -379,7 +379,7 @@ Após `model.executar()`, o `DataFrame` tem **uma linha por tique** e 34 colunas
 | `n_choques_paradigmaticos_aplicados` | int | robustez | sob R19 |
 | `regime` | str | meta | sempre |
 
-## 7. Cookbook reprodutível — 5 receitas avançadas
+## 7. Cookbook reprodutível — 6 receitas avançadas
 
 ### Receita 1: reproduzir a figura 03 do site
 
@@ -449,6 +449,24 @@ print(indices)
 # Paper-grade (várias horas)
 # $ waas-sobol --n-base 1024 --jobs -1 --out results/sobol_full.parquet
 ```
+
+### Receita 6: mapa de regime em (λ × peso_hirschman) — resposta ao Mat A
+
+Os dois laços de retroalimentação do modelo — dissuasório (λ, R01) e
+contratual (peso_hirschman, R07) — poderiam, em tese, produzir
+bifurcações no acoplamento. O mapa empírico varre a grade e diagnostica:
+
+```bash
+python scripts/mapa_lambda_hirschman.py --grade 5 --seeds 11 23 37
+# grava results/mapa_lambda_hirschman.parquet + docs/img/19_mapa_lambda_hirschman.png
+```
+
+<figure markdown>
+  ![Heatmap do dano acumulado sobre a grade lambda × peso_hirschman em Regime C](img/19_mapa_lambda_hirschman.png){ .figura-empirica }
+  <figcaption>
+    Mapa de regime em (λ × peso_hirschman), Regime C com Hirschman universal, mediana de 3 seeds × 20 tiques. O dano decai monotonicamente em AMBOS os eixos — os dois laços são substitutos parciais — e o laço contratual domina: <code>peso_hirschman ≥ 0,8</code> zera o dano para qualquer λ. Sem evidência de transição abrupta nesta resolução (salto máximo entre células vizinhas = 26 contra amplitude total 58): o mapa empírico não acusa bifurcação; a análise formal (autovalores do jacobiano) segue como trabalho futuro.
+  </figcaption>
+</figure>
 
 ## 8. Postura epistêmica
 
