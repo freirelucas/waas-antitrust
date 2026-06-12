@@ -228,24 +228,49 @@ Proposição~5 (``existe $\alpha^*$ tal que, para $\alpha > \alpha^*$, o
 Regime~B colapsa em A''; rastreada em R26) foi falsificada por varredura
 em grade (10 seeds $\times$ 8 valores de $\alpha \in [0, 0{,}9]$ $\times$
 40 ciclos): a mediana do dano em B fica em $\sim 53$ contra piso A em
-$\sim 425$ (fator 8$\times$ menor), estável até $\alpha = 0{,}9$. A
-dissuasão endógena (R01) compensa a erosão do substrato no nível
-agregado. A Proposição~5 é portanto rebaixada para a forma fraca acima;
-a forma forte fica registrada como conjectura refutada na configuração
-testada.
+$\sim 425$ (fator 8$\times$ menor), estável até $\alpha = 0{,}9$
+(Figura~\ref{fig:erosao}). A dissuasão endógena (R01) compensa a erosão
+do substrato no nível agregado. A Proposição~5 é portanto rebaixada para
+a forma fraca acima; a forma forte fica registrada como conjectura
+refutada na configuração testada.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{03_alpha_erosao_limiar}
+  \caption{Falsificação numérica da forma forte da Proposição~5
+  (10 seeds $\times$ 8 valores de $\alpha_{\text{erosão}}$ $\times$ 40
+  ciclos; bandas = IC bootstrap 95\%). \emph{Esquerda:} dano acumulado em
+  Regime~B por $\alpha$ contra o piso do Regime~A (tracejado) --- sem
+  cruzamento até $\alpha = 0{,}9$. \emph{Direita:} o capital social
+  residual decai monotonicamente --- a forma fraca (erosão do substrato)
+  se confirma.}
+  \label{fig:erosao}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{04_sankey_lcmc}
+  \caption{Fluxo agregado da corrida LCMC sob canal de depósito
+  condicional explícito (cenário canônico, 10 firmas $\times$ 120
+  trabalhadores $\times$ 15 ciclos): sinais $\to$ depósitos em escrow
+  $\to$ aberturas simultâneas $\to$ TCCs assinados. Evidência
+  construtiva da Proposição~4.}
+  \label{fig:sankey}
+\end{figure}
 
 \paragraph{Status (v0.2.0).} A Proposição~1 é verificada por teste de regressão
 no ponto-alvo ($D > W$). A Proposição~2 ganhou figura computacional dedicada
 (multiplicidade × unicidade Morris-Shin); a unicidade sob heterogeneidade
 segue conjectura aberta. A Proposição~3 segue conjectura, sustentada por
-varredura de Sobol direcional. A Proposição~4 é verificada por construção do
-canal (abertura simultânea) e exercitada por cenário canônico
-\texttt{apenas\_canal\_sem\_instrumento}. A Proposição~5 é candidata, com
-operacionalização via parâmetro \texttt{alpha\_erosao} e cenário canônico
-\texttt{erosao\_coleman\_adversarial}; sua falsificação numérica exige varredura
-multi-seed dedicada (rastreada em R26 / DECISIONS.md). Os itens de pesquisa que
-sustentariam plenamente cada proposição estão rastreados no backlog
-(R01--R28) do repositório.
+varredura de Sobol direcional e por intervalo de confiança bootstrap multi-seed
+que não cruza zero. A Proposição~4 é verificada por construção do canal
+(abertura simultânea; Figura~\ref{fig:sankey}) e exercitada por cenário
+canônico \texttt{apenas\_canal\_sem\_instrumento}. A Proposição~5 tem a forma
+forte \emph{refutada} pela varredura dedicada (Figura~\ref{fig:erosao}) e a
+forma fraca verificada; o que pode reverter o veredicto --- erosão propagada
+por rede inter-firma e calibração de $\alpha$ contra dados reais --- está
+rastreado em R26. Os itens de pesquisa que sustentariam plenamente cada
+proposição estão rastreados no backlog (R01--R28) do repositório.
 
 \section{Enquadramento cibernético}
 % Ashby; Conant-Ashby; VSM de Beer; Hood-Margetts NATO
