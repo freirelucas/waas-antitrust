@@ -56,6 +56,13 @@ if self.usar_escrow_explicito:
 
 As funções de canal são puras na lógica e idempotentes por tique. **Nada de pagamento entra na conta — o canal opera independentemente de qualquer instrumento monetário.** O cenário canônico `apenas_canal_sem_instrumento` testa exatamente essa propriedade: `W_mult=0`, `D_disc=0`, `usar_escrow_explicito=True`, Regime B.
 
+<figure markdown>
+  ![Sankey do fluxo agregado da corrida LCMC: sinais → depósitos no escrow → aberturas simultâneas → TCCs assinados](img/11_sankey_corrida_lcmc.png){ .figura-empirica }
+  <figcaption>
+    Fluxo agregado da corrida LCMC sob <code>cenario_corrida_leniencia</code> com <code>usar_escrow_explicito=True</code> (10 firmas × 120 trabalhadores × 15 ciclos, seed=2026). 72 sinais viraram 36 depósitos condicionais; 7 firmas atingiram massa crítica intra-firma; 36 depósitos se abriram simultaneamente em casos qualificados; 8 firmas optaram pelo TCC com ressarcimento WaaS. A figura é evidência da Proposição 4 (R20) por construção do canal.
+  </figcaption>
+</figure>
+
 ## Camada 2 — A coordenação que o canal resolve
 
 O canal não cria cooperação onde não havia; **resolve o jogo de coordenação** que torna a cooperação racionalmente difícil. Olson (1965, *Logic of Collective Action*) mostrou que mesmo em grupos pequenos onde todos sairiam melhor cooperando, cada agente individual prefere esperar: ninguém quer ser o primeiro a arcar com o risco. Granovetter (1978) generalizou via limiares heterogêneos; Centola-Macy (2007) mostraram que contágio complexo exige reforço local.

@@ -25,7 +25,6 @@ from __future__ import annotations
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 from matplotlib.axes import Axes
 from matplotlib.figure import Figure
@@ -50,7 +49,9 @@ def gerar_figura(
     capital_sup: list[float] = []
     for alpha in alphas:
         sub = df[(df["regime"] == "B") & (df["alpha_erosao"] == alpha)]
-        ic_dano = bootstrap_ci(sub["dano_acumulado"].to_list(), n_bootstrap=1000, seed=int(alpha * 1000))
+        ic_dano = bootstrap_ci(
+            sub["dano_acumulado"].to_list(), n_bootstrap=1000, seed=int(alpha * 1000)
+        )
         medianas_b.append(ic_dano.mediana)
         ci_inf_b.append(ic_dano.inferior)
         ci_sup_b.append(ic_dano.superior)
@@ -70,7 +71,12 @@ def gerar_figura(
     # Painel A: dano por alpha vs piso A
     ax_a.fill_between(alphas, ci_inf_b, ci_sup_b, color=PALETA["B"], alpha=0.18)
     ax_a.plot(alphas, medianas_b, marker="o", color=PALETA["B"], label="Regime B (mediana, IC 95%)")
-    ax_a.axhline(ic_a.mediana, color=PALETA["A"], linestyle="--", label=f"Regime A (piso, mediana = {ic_a.mediana:.0f})")
+    ax_a.axhline(
+        ic_a.mediana,
+        color=PALETA["A"],
+        linestyle="--",
+        label=f"Regime A (piso, mediana = {ic_a.mediana:.0f})",
+    )
     ax_a.set_xlabel(r"$\alpha_{\mathrm{erosão}}$")
     ax_a.set_ylabel("Dano acumulado (final)")
     ax_a.set_title("(A) Prop. 5 forte: B não atravessa A")
@@ -79,7 +85,9 @@ def gerar_figura(
 
     # Painel B: substrato cooperativo erodido
     ax_b.fill_between(alphas, capital_inf, capital_sup, color=PALETA["cade"], alpha=0.18)
-    ax_b.plot(alphas, capital_med, marker="s", color=PALETA["cade"], label="Capital social residual final")
+    ax_b.plot(
+        alphas, capital_med, marker="s", color=PALETA["cade"], label="Capital social residual final"
+    )
     ax_b.axhline(1.0, color="grey", linestyle=":", alpha=0.5, label="Baseline alpha=0")
     ax_b.set_xlabel(r"$\alpha_{\mathrm{erosão}}$")
     ax_b.set_ylabel("Capital social residual")

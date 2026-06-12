@@ -42,12 +42,11 @@ def test_fase_gera_figura():
         "falsificacao",
         "internacional",
         "painel",
-        "sankey",
         "variedade",
     ],
 )
 def test_viz_stubs_levantam_not_implemented(modulo):
-    """Os 8 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
+    """Os 7 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
     `cascata` foi implementada no reframe v2 (Commit 6) e ganhou teste próprio."""
     mod = importlib.import_module(f"waas_antitrust.viz.{modulo}")
     with pytest.raises(NotImplementedError):
@@ -147,6 +146,27 @@ def test_proposicao_5_gera_figura():
     # Painel A é capital social, painel B é dano relativo
     assert "Capital social" in axes[0].get_ylabel()
     assert "Dano" in axes[1].get_ylabel() or "dano" in axes[1].get_ylabel().lower()
+    plt.close(fig)
+
+
+def test_sankey_gera_figura_com_fluxos_sinteticos():
+    """`sankey.gerar_figura(fluxos=...)` aceita um dict de fluxos pré-calculados
+    (sem rodar modelo) e produz uma Figure. R20 Fase 6."""
+    from waas_antitrust.viz import sankey
+
+    aplicar_estilo()
+    fluxos = {
+        "sinais": 72,
+        "depositos": 36,
+        "firmas_mc": 7,
+        "aberturas": 36,
+        "tccs": 8,
+        "em_escrow": 0,
+        "expirados": 0,
+    }
+    fig, ax = sankey.gerar_figura(fluxos=fluxos)
+    assert fig is not None
+    assert ax is not None
     plt.close(fig)
 
 

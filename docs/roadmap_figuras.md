@@ -19,7 +19,7 @@ Toda figura no site recebe um dos dois selos via CSS:
 A distinção é importante para que jornalista e jurista não confundam o
 que é argumento pedagógico com o que é evidência de simulação.
 
-## Figuras publicadas (9)
+## Figuras publicadas (11)
 
 | # | Arquivo | Módulo gerador | Página de uso | Classe |
 |---|---|---|---|---|
@@ -32,23 +32,25 @@ que é argumento pedagógico com o que é evidência de simulação.
 | 07 | `docs/img/07_painel_micro.png` | `viz/painel_micro.py` | `modelagem_multiagente.md` | empírica |
 | 08 | `docs/img/08_proposicao_5.png` | `viz/proposicao_5.py` | `bem_publico.md` | empírica |
 | 09 | `docs/img/09_multiplicidade_unicidade.png` | `viz/multiplicidade_unicidade.py` | `ODD.md` | conceitual |
+| 10 | `docs/img/10_alpha_erosao_limiar.png` | `viz/alpha_erosao_limiar.py` | `bem_publico.md` | empírica |
+| 11 | `docs/img/11_sankey_corrida_lcmc.png` | `viz/sankey.py` | `mecanismo.md` | empírica |
 
 Cada PNG está abaixo de 200 KB e usa a paleta `cividis` cego-amigável
 (`viz/paleta.py`). Todas as figuras seguem o padrão
 `<figure markdown>...<figcaption>...</figcaption></figure>` com alt-text
 abaixo de 125 caracteres (WCAG 2.1 AA).
 
-## Stubs em backlog (8)
+## Stubs em backlog (7)
 
 Cada stub é um módulo de 24 linhas em `src/waas_antitrust/viz/` que
 levanta `NotImplementedError` ao ser chamado, com mensagem explícita
 que a implementação canônica ainda vive no caderno
 `notebooks/WaaS_caderno_v2.ipynb`. A migração desses módulos para o
-pacote é a tarefa **T01** em `DECISIONS.md`.
+pacote é a tarefa **T01** em `DECISIONS.md`. O `sankey.py` foi
+implementado em jun/2026 e saiu desta lista (figura 11).
 
 | Stub | O que mostrará | Implementação canônica hoje |
 |---|---|---|
-| `viz/sankey.py` | Fluxos da corrida LCMC: trabalhadores → posição na fila → recompensa Saito (intra-firma) e firmas → posição na fila → desconto Saito (inter-firma). | Caderno §6 + `corrida.py` (lógica pura disponível). |
 | `viz/painel.py` | Painel geral 3×3 do reframe v2 com massa crítica, instrumentos e robustez lado a lado (alvo: figura síntese para abstract). | Caderno §3 (agregação manual dos macro/micro hoje). |
 | `viz/bootstrap.py` | Intervalos de confiança multi-seed (`robustez.bootstrap_ci`) para `dano_acumulado` e `bem_estar` por regime, com sombreamento. | Caderno §10 + `robustez.py`. |
 | `viz/cade.py` | Série temporal CADE 2018-2024 da capacidade (`taxa_capacidade` calibrada contra RIG 2024) e dos TCCs assinados — ponte para a calibração R06. | Caderno §8 + `calibracao/cade.py`. |
