@@ -17,16 +17,16 @@
 
 \title{Rescaling Leniency Programs for Digital Markets:\\
 A Whistleblower-as-a-Service Mechanism}
-\author{L.\thanks{IPEA, Coordenação de Estudos da Governança e Implementação da Transformação Digital. As opiniões expressas neste artigo não vinculam o Instituto.}}
+\author{L.\thanks{O autor mantém o repositório \texttt{waas-antitrust} de forma independente; as opiniões aqui expressas não vinculam qualquer instituição.}}
 \date{\today}
 
 \begin{document}
 \maketitle
 
-\begin{center}\textbf{Rascunho de trabalho (v0.1.0) --- não citar.}\end{center}
+\begin{center}\textbf{Rascunho de trabalho (v0.2.0) --- não citar.}\end{center}
 
 \begin{abstract}
-O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. A intuição é uma inversão da função-utilidade da conformidade corporativa: ao invés de minimizar a sanção esperada $p \cdot S$, a empresa passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação e $W$ é a recompensa total paga aos denunciantes internos. A condição $D > W$ é satisfazível na jurisprudência atual da Resolução CADE nº 21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos o mecanismo e simulamos um modelo baseado em agentes com três populações (denunciantes, empresa, autoridade) --- a assessoria jurídica é tratada como intermediário transparente, não como jogador estratégico --- com varredura de Sobol em oito dimensões. A análise identifica a região robusta de política e parametriza a simulação com ordens de grandeza da série do CADE (109 acordos de leniência em 20 anos); não há calibração formal contra esses alvos nesta versão.
+O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. O núcleo do desenho é um \emph{canal de depósito condicional} operado pela autoridade antitruste --- \emph{information escrow} no sentido de \citet{ayres2012information}, com análogo prático em \citet{callisto}: o trabalhador deposita uma denúncia que permanece em escrow até que uma massa crítica $q_{\min}\cdot n$ de co-depositantes da mesma firma se forme. O canal resolve por construção o dilema clássico do denunciante interno isolado e dispensa a coordenação simultânea entre conspiradores externos que a leniência clássica pressupõe. Ao canal são acoplados, opcionalmente, instrumentos de internalização --- recompensa via TCC, êxodo coletivo \emph{à la} Hirschman, crédito tributário, leniência criminal individual. Quando a recompensa é o acoplamento ativo, a aritmética sobre a firma passa a maximizar a margem $D - W$, com $D$ o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação (TCC) e $W$ a recompensa total paga aos denunciantes; a fronteira IC-F* ($D > W$) é satisfazível na jurisprudência atual da Resolução CADE nº~21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos a Leniência Condicionada à Massa Crítica (LCMC) que estrutura o canal, simulamos um modelo baseado em agentes com três populações (trabalhadores, empresa, autoridade) e varredura de Sobol em oito dimensões, e identificamos a região robusta de política. Marcos institucionais recentes --- DOJ-ATR Whistleblower Rewards Program (jul./2025, parceria com o USPS) e DMA Whistleblower Tool da Comissão Europeia (abr./2024) --- fornecem validação independente da transponibilidade do desenho. A parametrização usa ordens de grandeza da série do CADE e do gradiente de descontos por posição na fila reportado por \citet{saito2021tcc}; não há calibração formal contra esses alvos nesta versão.
 \end{abstract}
 
 \section{Introdução}
@@ -37,78 +37,140 @@ harrington2015when}. Sua eficácia, porém, pressupõe um \emph{cartel} --- cond
 coordenada entre concorrentes cuja instabilidade interna a leniência explora. Em
 mercados digitais, parte central das condutas potencialmente anticompetitivas é
 \emph{unilateral} (autopreferência, venda casada, recusa de acesso), sem co-conspirador
-com incentivo a delatar. A leniência clássica, desenhada para o dilema do prisioneiro
-entre firmas, perde tração onde o conhecimento relevante reside \emph{dentro} de uma
-única firma, com seus empregados.
+com incentivo a delatar \citep{cremer2019competition}. A leniência clássica, desenhada
+para o dilema do prisioneiro entre firmas, perde tração onde o conhecimento relevante
+reside \emph{dentro} de uma única firma, com seus empregados.
 
 Este artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS), que desloca o
 incentivo da delação do concorrente para o \emph{denunciante interno}. A evidência
 empírica indica que empregados são uma das principais fontes de detecção de fraude
 corporativa \citep{dyck2010blows} e que recompensas --- não apenas a redução de
 penalidades --- ampliam materialmente a delação \citep{bigoni2012fines,
-aubert2006impact}. A contribuição teórica do WaaS é uma \emph{inversão da
-função-utilidade da conformidade}: em vez de minimizar a sanção esperada $p \cdot S$, a
-firma passa a maximizar a margem $D - W$, em que $D$ é o desconto sobre a contribuição
-pecuniária do Termo de Compromisso de Cessação (TCC) e $W$ é a recompensa total paga aos
-denunciantes internos (Figura~\ref{fig:inversao}). Quando $D > W$ --- condição que
-denominamos IC-F* --- a própria firma tem incentivo a financiar a revelação, e o
-enforcement deixa de depender exclusivamente da capacidade investigativa da autoridade.
+aubert2006impact}. O núcleo do desenho, contudo, não é a recompensa; é o
+\emph{canal de depósito condicional} operado pela autoridade. Um trabalhador isolado
+não se identifica antes de saber se outros se identificarão --- problema clássico de
+ação coletiva sob assimetria de informação \citep{olson1965logic, granovetter1978threshold}.
+O canal resolve isso institucionalizando o que \citet{ayres2012information} chamam de
+\emph{information escrow}: o depósito permanece selado até que um gatilho de massa
+crítica $q_{\min}\cdot n$ se concretize sobre a mesma firma, e só então as identidades
+e provas são abertas simultaneamente para o procedimento antitruste. O análogo prático
+direto é a plataforma \citet{callisto}, em operação nos EUA desde 2015 para denúncias
+condicionais de assédio em campus.
+
+Ao canal são acoplados, opcionalmente, \emph{instrumentos de internalização} que
+financeiram a revelação. Quando o acoplamento é a recompensa via TCC, emerge a
+aritmética que dá nome ao mecanismo: a firma compara a margem
+$D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do TCC e $W$ é a
+recompensa total paga aos denunciantes internos (Figura~\ref{fig:inversao}). Quando
+$D > W$ --- condição que denominamos IC-F* --- a própria firma tem incentivo a
+financiar a revelação, e o enforcement deixa de depender exclusivamente da capacidade
+investigativa da autoridade. Os demais acoplamentos (Hirschman, crédito tributário,
+leniência criminal individual) atuam sobre regimes constitucionais distintos e ficam
+documentados como sub-regimes $C_t/C_\varphi/C_p$.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{01_inversao_utilidade}
-  \caption{Inversão da função-utilidade da conformidade. À esquerda, o regime clássico
-  (Regime~A): a firma minimiza a sanção esperada $p\cdot S$ e a conformidade ótima reside
-  na zona de baixa detecção. À direita, sob WaaS (Regimes~B/C), a firma maximiza a margem
-  $D - W$; a fronteira IC-F* ($D = W$) separa a região em que pagar os denunciantes é
-  individualmente racional. \emph{Figura ilustrativa; as magnitudes relativas $S/W$ são
-  discutidas na Seção~\ref{sec:mecanismo}.}}
+  \caption{Inversão da função-utilidade da conformidade sob o acoplamento
+  ``recompensa via TCC''. À esquerda, o regime clássico (Regime~A): a firma minimiza
+  a sanção esperada $p\cdot S$ e a conformidade ótima reside na zona de baixa
+  detecção. À direita, sob WaaS (Regimes~B/C), a firma maximiza a margem $D - W$; a
+  fronteira IC-F* ($D = W$) separa a região em que pagar os denunciantes é
+  individualmente racional. \emph{Figura ilustrativa; as magnitudes relativas $S/W$
+  são discutidas na Seção~\ref{sec:mecanismo}.}}
   \label{fig:inversao}
 \end{figure}
 
-Sustentamos que IC-F* é satisfazível \emph{de lege lata} na Resolução CADE nº~21/2018
-(Regime~B), permitindo implementação por via infralegal, e discutimos uma via legal mais
-robusta (Regime~C). % TODO: ancorar a falha da leniência digital em Crémer, de Montjoye & Schweitzer (2019) — inserir no refs.bib.
+Sustentamos que IC-F* é satisfazível \emph{de lege lata} na Resolução CADE
+nº~21/2018 \citep{res21cade} para o acoplamento monetário (Regime~B), permitindo
+implementação por via infralegal, e discutimos uma via legal mais robusta (Regime~C,
+via extensão da Lei nº~13.608/2018 \citep{lei13608}). O \emph{canal} em si, contudo,
+tem base autônoma no Art.~4º, II e III, da Lei nº~12.529/2011 \citep{lei12529} c/c a
+Lei nº~9.784/1999 \citep{lei9784} --- o CADE pode disciplinar procedimento de
+recepção qualificada de denúncias condicionais sem nova lei e sem depender da
+re-caracterização do Art.~12.
 
 \section{Falha estrutural da leniência clássica em mercados digitais}
-% Crémer-de Montjoye-Schweitzer (2019); DMA; argumento sobre conduta unilateral
+
+A leniência clássica é uma tecnologia de ruptura de cartéis: explora a instabilidade
+interna do dilema do prisioneiro entre conspiradores externos. Mas as condutas
+identificadas como prioritárias em mercados digitais \citep{cremer2019competition}
+--- autopreferência, restrições verticais sobre desenvolvedores, recusa de acesso a
+dados, predação algorítmica, vinculação --- são predominantemente unilaterais. Não
+há co-conspirador externo a quem oferecer imunidade. A informação relevante reside
+em pequenos núcleos técnicos da firma (engenharia de produto, ranking, ad-tech,
+acquisitions), tipicamente 2--3 papéis primários. O número absoluto de pessoas com
+conhecimento qualificado é pequeno; a coordenação \emph{intra-firma} é o problema,
+não a coordenação \emph{inter-firma}.
+
+A intuição-chave do canal de depósito condicional é trocar de jogo: se a
+coordenação simultânea não emerge espontaneamente, o canal a fabrica como
+serviço público --- assim como Kickstarter fabrica financiamento condicional
+\emph{all-or-nothing} para projetos que jamais arrancariam de doadores isolados.
+Marcos contemporâneos confirmam a transponibilidade do desenho: o
+\citet{dmatool2024} oferece canal anônimo, sem recompensa, para violações do
+Regulamento (UE) 2022/1925; a \citet{directive20191937} fornece proteção horizontal
+anti-represália; o \citet{dojatr2025} institui o primeiro programa federal
+antitruste de recompensa, 15--30\% sobre multas $\geq$~US\$~1~milhão, com primeiro
+prêmio pago em janeiro de 2026 --- precedente direto para o caminho
+infralegal-recompensado análogo ao Regime~B.
 
 \section{Blocos construtivos de desenho de mecanismos}
-% Spagnolo (2004); Aubert-Rey-Kovacic (2006); Kovacic (2001); Dodd-Frank §922
+% Spagnolo (2004); Aubert-Rey-Kovacic (2006); Dodd-Frank §922 \citep{doddfrank922}
 
 \section{Análise comparada de programas existentes}
-% SEC, FCA, DOJ Antitrust 2025, EU DMA Art. 27, UK CMA, KFTC, CADE, Lei 13.608
+% SEC \citep{doddfrank922}, FCA, DOJ-ATR \citep{dojatr2025}, DMA \citep{dmatool2024}, Diretiva \citep{directive20191937}, UK CMA, KFTC, CADE \citep{cade2023leniencias}, Lei 13.608 \citep{lei13608}
 
 \section{O mecanismo WaaS}
 \label{sec:mecanismo}
 
-O WaaS opera em quatro fases sequenciais. (P1) \emph{Sinalização}: cada empregado que
+O WaaS opera em cinco fases sequenciais. (P1)~\emph{Sinalização}: cada empregado que
 observa indício de violação recebe um sinal privado ruidoso e decide, segundo seu
-arquétipo \citep{hokamp2010income}, se reporta. (P2) \emph{Massa crítica}: a plataforma
-agrega os sinais na rede intrafirma e dispara quando o número de reportes atinge um
-limiar $k$ --- dinâmica de coordenação cuja seleção de equilíbrio é \emph{inspirada} no
-jogo global de \citet{morris1998unique} e cuja difusão aproxima o contágio complexo de
-\citet{centola2007complex} sobre redes de mundo pequeno. (P3) \emph{Decisão da firma}:
-disparado o gatilho, a firma compara o desconto $D$ com a recompensa total $W$ e paga
-quando IC-F* ($D > W$) é satisfeita. (P4) \emph{Autoridade}: o caso chega ao CADE,
-sujeito a uma restrição de capacidade $\kappa$ no espírito de \citet{harrington2015when}
-e a uma acurácia que cresce com a qualidade da prova.
+arquétipo \citep{hokamp2010income}, se reporta. (P2)~\emph{Depósito condicional}: o
+empregado que decide reportar não envia uma denúncia tradicional --- deposita uma
+denúncia condicional no escrow operado pela autoridade, \emph{à la}
+\citet{ayres2012information}; o depósito é selado, e a firma não é notificada.
+(P2.5)~\emph{Abertura simultânea}: o canal verifica, a cada ciclo, se a fração de
+co-depósitos sobre a mesma firma atingiu o gatilho de massa crítica
+$q_{\min}\cdot n$; se sim, todos os depósitos da firma se abrem simultaneamente
+(\emph{all-or-nothing}), colapsando em um único caso de prova qualificada.
+(P3)~\emph{Decisão da firma}: aberto o caso, sob o acoplamento monetário, a firma
+compara o desconto $D$ com a recompensa total $W$ e paga quando IC-F* ($D > W$) é
+satisfeita. (P4)~\emph{Autoridade}: o caso é instaurado, sujeito a uma restrição de
+capacidade $\kappa$ no espírito de \citet{harrington2015when} e a uma acurácia que
+cresce com a qualidade da prova. A dinâmica de coordenação subjacente ao gatilho de
+P2.5 é \emph{inspirada} no jogo global de \citet{morris1998unique} e aproxima o
+contágio complexo de \citet{centola2007complex} sobre redes de mundo pequeno.
 
-A charneira jurídica do Regime~B é o Art.~12 da Resolução CADE nº~21/2018, que autoriza
-considerar o ressarcimento das vítimas como circunstância atenuante no cálculo da
-contribuição pecuniária do TCC (Art.~85 da Lei nº~12.529/2011). A recompensa paga pela
-firma aos denunciantes \emph{pode ser} re-caracterizada como ressarcimento extrajudicial
---- e essa re-caracterização é juridicamente controvertida, sujeita a validação
-posterior pelo Judiciário (falsificador F6) ---, gerando o desconto $D$ sem mudança
-legal. O Regime~C estende a Lei nº~13.608/2018 (com a
-redação da Lei nº~13.964/2019) ao enforcement antitruste, com percentual explícito de
-recompensa --- maior robustez jurídica ao custo de via legislativa. O Regime~A é a
-situação atual, sem canal de incentivo individual.
-% TODO: citar verbatim o texto integral do Art. 12 da Res. 21/2018 (conferir no Diário Oficial, E04).
+A charneira jurídica do Regime~B, para o acoplamento monetário, é o Art.~12 da
+Resolução CADE nº~21/2018 \citep{res21cade}, que autoriza considerar o ressarcimento
+das vítimas como circunstância atenuante no cálculo da contribuição pecuniária do
+TCC (Art.~85 da Lei nº~12.529/2011). O texto vigente do Art.~12 é o seguinte:
 
-A dinâmica de coordenação da fase~P2 é ilustrada na Figura~\ref{fig:fase}: a
-probabilidade de cascata cresce com a severidade percebida $\sigma$ e cai com o limiar
-relativo $k/n$, definindo uma fronteira entre silêncio e revelação.
+\begin{quote}\small
+\textit{``Art. 12. A vantagem auferida ou pretendida e o efetivo prejuízo causado
+serão considerados, entre outros fatores, na fixação do valor da contribuição
+pecuniária, observado o disposto no art. 85 da Lei nº~12.529, de 2011. \S~1º Será
+considerada como circunstância atenuante, para fins do disposto no caput deste
+artigo, o efetivo ressarcimento extrajudicial ou judicial das vítimas pelo
+representado, na forma do art. 45, V e VI da Lei nº~12.529, de 2011.''}
+\end{quote}
+
+A recompensa paga pela firma aos denunciantes \emph{pode ser} re-caracterizada como
+ressarcimento extrajudicial sob este dispositivo --- e essa re-caracterização é
+juridicamente controvertida, sujeita a validação posterior pelo Judiciário
+(falsificador F6) ---, gerando o desconto $D$ sem mudança legal. O Regime~C estende
+a Lei nº~13.608/2018 (com a redação da Lei nº~13.964/2019) \citep{lei13608} ao
+enforcement antitruste, com percentual explícito de recompensa --- maior robustez
+jurídica ao custo de via legislativa. O Regime~A é a situação atual, sem canal de
+incentivo individual. Crucialmente: o \emph{canal} em si dispensa o Art.~12, com
+base autônoma no Art.~4º da Lei nº~12.529/2011 \citep{lei12529} c/c a Lei
+nº~9.784/1999 \citep{lei9784}; o Art.~12 é necessário apenas para o acoplamento
+monetário-recompensa.
+
+A dinâmica de coordenação da fase P2.5 é ilustrada na Figura~\ref{fig:fase}: a
+probabilidade de cascata cresce com a severidade percebida $\sigma$ e cai com o
+limiar relativo $k/n$, definindo uma fronteira entre silêncio e revelação.
 
 \begin{figure}[t]
   \centering
@@ -116,42 +178,71 @@ relativo $k/n$, definindo uma fronteira entre silêncio e revelação.
   \caption{Diagrama de fase da coordenação intrafirma (heurística inspirada em
   \citealp{morris1998unique}). A região verde indica alta probabilidade de cascata
   ($P(\sum a_i \geq k)\to 1$); as estrelas marcam os pontos-alvo dos Regimes B e C.
-  \emph{O modelo computacional usa limiares heurísticos, não o equilíbrio fechado do jogo
-  global --- ver Limitações.}}
+  \emph{O modelo computacional usa limiares heurísticos, não o equilíbrio fechado
+  do jogo global --- ver Limitações.}}
   \label{fig:fase}
 \end{figure}
 
 \section{Modelo baseado em agentes e teste de estresse}
-% Composição Harrington-Chang + Morris-Shin + Chwe
+% Composição Harrington-Chang + Morris-Shin + Chwe; canal de depósito condicional
 
 \subsection{Proposições}
+
 \begin{proposition}[Viabilidade IC do caminho ``empresa paga'']
-Sob Regime B, existem parâmetros no interior do espaço factível em que IC-F* ($D > W$) e IR-W são satisfeitas estritamente.
+Sob Regime B com acoplamento monetário ativo e canal de depósito condicional
+operante, existem parâmetros no interior do espaço factível em que IC-F* ($D > W$)
+e IR-W são satisfeitas estritamente.
 \end{proposition}
 
 \begin{proposition}[Unicidade do equilíbrio de coordenação]
-No limite $\tau \to 0$ do subjogo de jogo global, há equilíbrio único de \textit{switching} $s^*$ para cada $(k, W, r)$ na região relevante.
+No limite $\tau \to 0$ do subjogo de jogo global, há equilíbrio único de
+\textit{switching} $s^*$ para cada $(k, W, r)$ na região relevante; sob
+heterogeneidade de arquétipos e papéis, a unicidade é conjectura aberta.
 \end{proposition}
 
 \begin{proposition}[Dominância de bem-estar do Regime B]
-Para um conjunto de medida positiva de $(W, D, \sigma)$, o bem-estar social esperado é estritamente maior sob Regime B do que sob Regime A.
+Para um conjunto de medida positiva de $(W, D, \sigma)$, o bem-estar social
+esperado é estritamente maior sob Regime B do que sob Regime A.
 \end{proposition}
 
-\paragraph{Status (v0.1.0).} As Proposições~2 e~3 são, nesta versão,
-\emph{conjecturas}: o modelo computacional usa limiares heurísticos (não resolve o jogo
-global nem varre $\tau\to 0$) e o tipo da firma é fixo (não há dissuasão endógena). A
-Proposição~1 é verificada por teste de regressão no ponto-alvo ($D > W$). Os itens de
-pesquisa que sustentariam plenamente cada proposição estão rastreados no backlog
-(R01--R06) do repositório.
+\begin{proposition}[Coordenação via canal de depósito condicional (LCMC)]
+Para qualquer regime de internalização (B ou C), a probabilidade de uma firma com
+violação real ser objeto de caso instaurado é estritamente maior sob canal de
+depósito condicional com abertura simultânea do que sob denúncias individuais
+isoladas, fixados $q_{\min}$, $n$ e a distribuição de arquétipos. Verificada por
+construção: a abertura simultânea elimina o equilíbrio de silêncio induzido pelo
+custo individual de represália suportado em isolamento.
+\end{proposition}
+
+\begin{proposition}[Erosão Coleman --- candidata]
+Existe um $\alpha^*_{\text{erosão}} > 0$ tal que, para $\alpha_{\text{erosão}} >
+\alpha^*$, o regime~B colapsa em A após $N$ ciclos. A operacionalização do
+parâmetro \texttt{alpha\_erosao} sobre a fração de notificações por ciclo
+\citep{coleman1990foundations, ostrom1990governing} permite testar a hipótese
+sem resolver formalmente sua existência.
+\end{proposition}
+
+\paragraph{Status (v0.2.0).} A Proposição~1 é verificada por teste de regressão
+no ponto-alvo ($D > W$). A Proposição~2 ganhou figura computacional dedicada
+(multiplicidade × unicidade Morris-Shin); a unicidade sob heterogeneidade
+segue conjectura aberta. A Proposição~3 segue conjectura, sustentada por
+varredura de Sobol direcional. A Proposição~4 é verificada por construção do
+canal (abertura simultânea) e exercitada por cenário canônico
+\texttt{apenas\_canal\_sem\_instrumento}. A Proposição~5 é candidata, com
+operacionalização via parâmetro \texttt{alpha\_erosao} e cenário canônico
+\texttt{erosao\_coleman\_adversarial}; sua falsificação numérica exige varredura
+multi-seed dedicada (rastreada em R26 / DECISIONS.md). Os itens de pesquisa que
+sustentariam plenamente cada proposição estão rastreados no backlog
+(R01--R28) do repositório.
 
 \section{Enquadramento cibernético}
 % Ashby; Conant-Ashby; VSM de Beer; Hood-Margetts NATO
 
 \section{Pré-condição sociológica}
-% Google Walkout; AWU; Haugen; NLRB
+% Google Walkout; AWU; Haugen; NLRB --- Olson 1965 \citep{olson1965logic}
 
 \section{Tradução política para o Brasil}
-% Caminho via Resolução; caminho via Lei; coordenação CADE-CGU-MPF
+% Caminho via Resolução; caminho via Lei; coordenação CADE-CGU-MPF; comparação com DOJ-ATR \citep{dojatr2025} e DMA \citep{dmatool2024}
 
 \section{Conclusão}
 
