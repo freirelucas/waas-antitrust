@@ -11,6 +11,65 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Rodada "consolidação pré-submissão" — Prop. 5 falsificada, T01 fechado, R28 quase fechado
+
+Doze commits que convergem paper e site sob v3, produzem dois achados
+empíricos materiais e zeram o backlog de visualizações.
+
+**Achados científicos:**
+
+- **Proposição 5 candidata FALSIFICADA na forma forte** (`80d1224`).
+  Varredura 10 seeds × 8 alphas × 40 tiques
+  (`scripts/varredura_alpha_erosao.py`): dano em Regime B fica ~8× abaixo
+  do piso A estável até `alpha_erosao=0.9` — a dissuasão endógena (R01)
+  domina a erosão Coleman no agregado. Forma fraca (substrato erode)
+  confirmada. Figura 10; Prop. 5 do paper rebaixada para forma fraca.
+- **Análise de identificabilidade R03 dissolve o "conflito" de alvos**
+  (`f62a690`). 175 rodadas 1D: `rho` não move alvo nenhum (sai da função
+  objetivo); o "gap de escala" era artefato de não-normalização
+  (N\* ≈ 1.567 firmas como predição falsificável); o alvo DMZ 19% é
+  não-identificável por construção (canal único de detecção). A
+  calibração colapsa para 1 alvo × 2 parâmetros dominantes.
+- **Mapa de regime (λ × peso_hirschman)** (`24feb0d`): dano decai
+  monotonicamente nos dois eixos; laços substitutos parciais com
+  dominância do contratual; sem evidência de bifurcação na grade
+  (resposta ao Mat A; análise formal segue futura).
+
+**Convergência paper ↔ site:**
+
+- `paper/main.tex` v0.1.0 → v0.2.0 sob v3 (`c6ae1fc`, `b597d80`):
+  abstract/Introdução/§Mecanismo reescritos com canal de depósito
+  condicional como núcleo; fase P2.5 explícita; Art. 12 citado verbatim
+  (fecha TODO E04); Proposições 4 (canal, por construção) e 5 (forma
+  fraca + refutação da forte) adicionadas; +15 entradas em `refs.bib`;
+  4 figuras em PDF regeneráveis via `scripts/gerar_figs_paper.py`
+  (`fe40d7d`).
+- Banner histórico v2 no `WaaS_caderno_v2.ipynb` (`34f8ace`) remetendo
+  a `aprendizados_v3.md`; o demo segue como gate de CI.
+
+**Backlog visual zerado (T01 FECHADO):**
+
+- 8 stubs implementados em sequência: `sankey` (11, `32bde84`),
+  `bootstrap` (12) e `internacional` (13) (`fb2afe7`), `cade` (14) e
+  `adversarial` (15) (`3e581be`), `falsificacao` (16) e `variedade`
+  (17) (`6e36e32`), `painel` (18, figura-síntese 2×3) (`5304996`).
+  19 figuras publicadas no site; mapa completo em `roadmap_figuras.md`.
+
+**R28 (generalidade EUA/UE) quase fechado:**
+
+- Tags jurisdicionais nativas `regime="EUA"/"UE"` com
+  `REGIME_EQUIVALENTE` + `regime_declarado` + validação `ValueError`
+  (`5feea03`); equivalência bit-a-bit EUA≡C testada.
+- § "Transposição comparada" em `INSTITUTIONAL.md` (`583c9e2`): a via
+  administrativa do DOJ-ATR como paralelo funcional do Regime B sem o
+  F6; a UE como contrafactual falsificável; "a LCMC é generalizável,
+  os acoplamentos não necessariamente". Resta: calibração de capacidade
+  DOJ-ATR/DG-COMP + paper extension.
+
+**Prosa:** achados incorporados ao Ato 4 (`0d6c3e1`) — veredicto
+parcial da erosão Coleman e sub-§ de identificabilidade em
+`limitacoes.md`.
+
 ### Rodada "código ABM + redação + UX" — R27 fechado, R26 parcialmente fechado
 
 Quatro commits que fecham o backlog v3 do canal de depósito condicional,

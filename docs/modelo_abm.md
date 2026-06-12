@@ -1,6 +1,6 @@
 # O modelo ABM em detalhe
 
-<p class="sublinha-tese"><em>Três classes de agente, ~40 parâmetros, 324 testes, opt-in por flag. Tudo inspecionável. Esta página é o guia completo para abrir o capô, ler, calibrar e quebrar.</em></p>
+<p class="sublinha-tese"><em>Três classes de agente, ~40 parâmetros, 331 testes, opt-in por flag. Tudo inspecionável. Esta página é o guia completo para abrir o capô, ler, calibrar e quebrar.</em></p>
 
 | § | Seção | O que tem |
 |---|---|---|

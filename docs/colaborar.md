@@ -25,7 +25,7 @@ O caminho mais útil — e mais barato — é **rodar o modelo, contestar a cali
 git clone https://github.com/freirelucas/waas-antitrust.git
 cd waas-antitrust
 pip install -e ".[dev]"
-pytest -x -q -m "not slow"                        # 288 testes (~25s)
+pytest -x -q -m "not slow"                        # 331 testes (~25s)
 python scripts/gerar_figura_dissuasao.py          # figura 03 do site
 python scripts/run_sobol_full.py --n-base 1024    # varredura paramétrica
 ```

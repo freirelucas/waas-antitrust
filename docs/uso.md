@@ -24,7 +24,7 @@ python3.12 -m venv .venv
 pip install -e ".[dev]"
 ```
 
-Validar que tudo instalou (deve mostrar `288 passed`):
+Validar que tudo instalou (deve mostrar `331 passed`):
 
 ```bash
 pytest -x -q -m "not slow" tests/
@@ -174,7 +174,7 @@ waas-sobol --n-base 1024 --jobs -1 --out results/sobol_full.parquet
 Antes de propor PR, rodar:
 
 ```bash
-pytest -x -q -m "not slow" tests/   # 324 testes, ~25s
+pytest -x -q -m "not slow" tests/   # 331 testes, ~25s
 ruff check src/ tests/ scripts/
 black --check src/ tests/ scripts/
 mkdocs build --strict               # site sem warnings
