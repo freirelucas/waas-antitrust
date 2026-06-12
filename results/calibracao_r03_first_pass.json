@@ -1,0 +1,57 @@
+[
+  {
+    "parametros": {
+      "taxa_observacao": 0.1,
+      "taxa_falso_reporte": 0.05,
+      "rho": 0.55
+    },
+    "score": 15.069480401283368,
+    "leniencias_anuais": 0.8400000000000001,
+    "tcc_anual": 0.8400000000000001,
+    "fracao_vp_internas": 0.8852649769585254
+  },
+  {
+    "parametros": {
+      "taxa_observacao": 0.5,
+      "taxa_falso_reporte": 0.05,
+      "rho": 0.55
+    },
+    "score": 15.208016894713293,
+    "leniencias_anuais": 0.5599999999999999,
+    "tcc_anual": 0.5599999999999999,
+    "fracao_vp_internas": 0.8838883669521967
+  },
+  {
+    "parametros": {
+      "taxa_observacao": 0.5,
+      "taxa_falso_reporte": 0.05,
+      "rho": 0.65
+    },
+    "score": 15.208016894713293,
+    "leniencias_anuais": 0.5599999999999999,
+    "tcc_anual": 0.5599999999999999,
+    "fracao_vp_internas": 0.8838883669521967
+  },
+  {
+    "parametros": {
+      "taxa_observacao": 0.5,
+      "taxa_falso_reporte": 0.02,
+      "rho": 0.55
+    },
+    "score": 15.445159800378956,
+    "leniencias_anuais": 0.58,
+    "tcc_anual": 0.58,
+    "fracao_vp_internas": 0.8909304049026756
+  },
+  {
+    "parametros": {
+      "taxa_observacao": 0.5,
+      "taxa_falso_reporte": 0.005,
+      "rho": 0.55
+    },
+    "score": 15.474118787272271,
+    "leniencias_anuais": 0.6,
+    "tcc_anual": 0.6,
+    "fracao_vp_internas": 0.8931103508597115
+  }
+]
