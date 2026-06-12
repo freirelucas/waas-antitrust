@@ -32,6 +32,34 @@ A simulação produz direção e magnitude, mas os parâmetros são **plausívei
 
 Calibração formal contra esses três alvos está em **R03** — a pendência mais importante do backlog.
 
+### O que a análise de identificabilidade já mostrou (jun/2026)
+
+Antes de otimizar, é preciso saber **o que é otimizável**. A terceira
+rodada de R03 (`scripts/identificabilidade_r03.py`, 175 rodadas 1D)
+decompôs o aparente conflito entre os alvos em três achados:
+
+1. **Sensibilidade**: o volume de TCC/ano responde a `fracao_violadoras`
+   (Δ mediana 1,6), `taxa_capacidade` e `k_rel` (0,8 cada) — e **não
+   responde a `rho`** (Δ = 0,000; acurácia afeta precisão, não volume).
+   `rho` deve sair da função objetivo de calibração.
+2. **O "gap de escala" era artefato de não-normalização**: o alvo de
+   47 TCC/ano é do universo CADE inteiro; o modelo simula 20 firmas.
+   Invertendo a normalização, o modelo seria consistente com um universo
+   de **N\* ≈ 1.567 firmas** sob jurisdição ativa — uma predição
+   falsificável contra o número real (pendência empírica; não estimado
+   aqui para não inventar dado).
+3. **O alvo DMZ (19% de detecção por empregados) é não-identificável por
+   construção**: o modelo tem um único canal de detecção (o trabalhador),
+   então a fração interna simulada é ~100% e nenhum parâmetro atual a
+   move para 19%. O alvo mede composição *entre* canais (auditoria,
+   mídia, concorrentes) que o modelo não representa — ele deve sair da
+   função objetivo até que canais exógenos de detecção sejam modelados.
+
+A consequência prática: a calibração formal de R03 tem **um alvo
+operacional** (volume reescalonado por N\*) e **dois parâmetros
+dominantes** (`fracao_violadoras`, `taxa_capacidade`) — problema bem
+mais tratável do que a forma original com 3 alvos × 3 parâmetros.
+
 ## Os pesos do bem-estar são provisórios
 
 O bem-estar social é definido como $-(\text{dano} + \beta \cdot \text{FP} + \gamma \cdot \text{custo recompensa} + \delta_{\text{ex}} \cdot \text{êxodo} - \delta_{\text{mu}} \cdot \text{multa arrecadada}) / w_a$. Os defaults usados nos gráficos — $\beta=1$, $\gamma=0$, $\delta_{\text{ex}}=0{,}5$, $\delta_{\text{mu}}=1$ — são **normativos**, não calibrados. Ancorar cada um requer:
@@ -78,19 +106,28 @@ trabalhadores podem usar WaaS como ameaça pré-rescisão para extrair
 *severance*, transformando o canal em barganha bilateral, não em prova
 qualificada. Pendência R24.
 
-**(iii) Erosão endógena por uso instrumental.** Coleman 1990 previu que
-capital social é destruído pela sua instrumentalização. No WaaS: após
-uma rodada bem-sucedida em firma X, a comunicação informal em outras
-firmas Y, Z muda de regime — quem antes comentava livremente passa a
-auto-censurar (*chilling effect*). O modelo capta o sinal Schelling
-(`p_perc` ↑ → mais dissuasão), mas **não capta** a erosão inversa
-(`phi_baseline` ↓ → menos cooperação espontânea). Os dois efeitos
-coexistem; **falta medir qual vence em qual horizonte temporal**.
-Pendência R26 (nova), com Proposição 5 candidata: existe
-$\alpha_{\text{erosão}}^\star$ tal que para
+**(iii) Erosão endógena por uso instrumental — agora com veredicto
+parcial.** Coleman 1990 previu que capital social é destruído pela sua
+instrumentalização. No WaaS: após uma rodada bem-sucedida em firma X, a
+comunicação informal em outras firmas Y, Z muda de regime — quem antes
+comentava livremente passa a auto-censurar (*chilling effect*). A
+Proposição 5 candidata formalizava o pior caso: existe
+$\alpha_{\text{erosão}}^\star$ tal que, para
 $\alpha_{\text{erosão}} > \alpha^\star$, Regime B/C colapsa em A após
-$N$ tiques. Literatura calibradora: Titmuss 1970 *The Gift Relationship*,
-Frey-Jegen 2001, Bénabou-Tirole 2003.
+$N$ tiques. **A varredura empírica de jun/2026 falsificou a forma
+forte**: em grade 10 seeds × 8 alphas × 40 tiques
+(`scripts/varredura_alpha_erosao.py`; figura em
+[`bem_publico.md`](bem_publico.md)), o dano em Regime B fica ~8× abaixo
+do piso A **estável até $\alpha = 0{,}9$** — a dissuasão endógena domina
+a erosão no agregado, mesmo com o substrato cooperativo quase zerado.
+A **forma fraca** se confirma: o `capital_social_residual` decai
+monotonicamente em $\alpha$. A leitura honesta: a objeção de Coleman é
+descritivamente correta (o substrato erode), mas, na configuração
+testada, **não derruba a ordenação de regimes**. O que ainda pode
+reverter o veredicto: erosão propagada por rede inter-firma
+(`phi_baseline` ↓ em vizinhas — não modelada) e calibração de
+$\alpha$ contra dados reais (R03). Literatura calibradora: Titmuss
+1970 *The Gift Relationship*, Frey-Jegen 2001, Bénabou-Tirole 2003.
 
 **Salvaguardas anti-erosão na literatura comparada:** (a) anonimato
 forte (IRS Whistleblower Office); (b) recompensa coletiva
