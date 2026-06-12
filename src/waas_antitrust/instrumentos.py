@@ -168,6 +168,9 @@ def lookup_instrumento(nome: str) -> Instrumento:
 
 
 #: Hierarquia de regimes — chave para resolver hospedagem por `regime_minimo`.
+#: Tags jurisdicionais R28: "EUA" hospeda como C (Dodd-Frank §922 dá base
+#: estatutária equivalente); "UE" hospeda como A (DMA Tool é canal anônimo
+#: individual SEM recompensa nem escrow LCMC — nenhuma entrada se aplica).
 _NIVEL_REGIME: dict[str, int] = {
     "A": 0,
     "B": 1,
@@ -178,6 +181,8 @@ _NIVEL_REGIME: dict[str, int] = {
     "Cf": 3,
     "Cₚ": 4,
     "Cp": 4,
+    "EUA": 2,
+    "UE": 0,
 }
 
 
@@ -191,6 +196,7 @@ def instrumentos_por_regime(regime: str) -> list[Instrumento]:
     - Regime C / Cₜ: + vesting_acelerado_hirschman
     - Regime Cᵩ: + credito_tributario_denunciante
     - Regime Cₚ: + leniencia_criminal_individual
+    - Tags R28: "EUA" hospeda como C; "UE" hospeda como A
     """
     if regime not in _NIVEL_REGIME:
         raise ValueError(f"regime desconhecido: {regime!r}. Use A, B, C, Cₜ, Cᵩ, Cₚ.")

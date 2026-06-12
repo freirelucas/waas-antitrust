@@ -21,6 +21,18 @@ if TYPE_CHECKING:
     import pandas as pd
 
 
+#: R28 — tags jurisdicionais aceitas além de A/B/C. Cada tag mapeia para a
+#: mecânica institucional equivalente; a tag original fica em
+#: `WaaSModel.regime_declarado` para auditoria e relatórios.
+REGIME_EQUIVALENTE: dict[str, str] = {
+    "EUA": "C",  # DOJ-ATR Rewards Program 2025 sob base Dodd-Frank §922
+    "UE": "A",  # DMA Whistleblower Tool: canal anônimo SEM recompensa/LCMC
+}
+
+#: Regimes aceitos por `WaaSParametros.regime`.
+REGIMES_VALIDOS: frozenset[str] = frozenset({"A", "B", "C", "EUA", "UE"})
+
+
 @dataclass
 class WaaSParametros:
     """Contêiner de parâmetros do modelo.
@@ -56,7 +68,10 @@ class WaaSParametros:
     densidade: float = 0.10  # reescrita Watts-Strogatz
 
     # Regime institucional
-    regime: str = "B"  # "A", "B" ou "C"
+    # "A", "B", "C" ou as tags jurisdicionais R28 "EUA"/"UE" (ver
+    # REGIME_EQUIVALENTE — a tag mapeia para a mecânica equivalente e fica
+    # preservada em `WaaSModel.regime_declarado`).
+    regime: str = "B"
 
     # Calibração
     fracao_violadoras: float = 0.30
@@ -233,7 +248,21 @@ class WaaSModel(Model):
         super().__init__(rng=params.seed)
         self.params = params
 
-        self.regime = params.regime
+        # R28: tags jurisdicionais explícitas. "EUA" e "UE" são rótulos
+        # institucionais que mapeiam para a mecânica A/B/C equivalente:
+        #   "EUA" → "C" (recompensa com base estatutária robusta —
+        #            Dodd-Frank §922 / DOJ-ATR Rewards Program 2025);
+        #   "UE"  → "A" (DMA Whistleblower Tool é canal individual anônimo
+        #            SEM recompensa e SEM escrow LCMC — Diretiva 2019/1937
+        #            dá proteção, não incentivo).
+        # `regime_declarado` preserva a tag original para auditoria;
+        # `regime` carrega a mecânica e mantém todo o downstream intacto.
+        if params.regime not in REGIMES_VALIDOS:
+            raise ValueError(
+                f"regime desconhecido: {params.regime!r}. " f"Válidos: {sorted(REGIMES_VALIDOS)}."
+            )
+        self.regime_declarado = params.regime
+        self.regime = REGIME_EQUIVALENTE.get(params.regime, params.regime)
         self.W_mult = params.W_mult
         self.k_rel = params.k_rel
         self.D_disc = params.D_disc

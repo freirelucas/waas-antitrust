@@ -117,17 +117,31 @@ for nome in ("status_quo", "eua_doj_atr_rewards_2025", "ue_dma_whistleblower_too
    funcionando há ~10 anos no contexto universitário, validando a
    exequibilidade do desenho v3.
 
+## Tags jurisdicionais nativas
+
+Desde jun/2026, `WaaSParametros.regime` aceita as tags `"EUA"` e `"UE"`
+nativamente. Cada tag mapeia para a mecânica institucional equivalente
+via `model.REGIME_EQUIVALENTE` e fica preservada em
+`WaaSModel.regime_declarado` para auditoria:
+
+| Tag | Mecânica | Justificativa |
+|---|---|---|
+| `"EUA"` | C | Dodd-Frank §922 / DOJ-ATR dão base estatutária robusta à recompensa (sem F6). Equivalência **bit-a-bit** com `regime="C"` testada em `tests/test_cenarios_v2.py`. |
+| `"UE"` | A | O DMA Tool é canal individual anônimo **sem** recompensa e **sem** escrow LCMC; a Diretiva 2019/1937 dá proteção, não incentivo. |
+
+`instrumentos_por_regime("EUA")` hospeda as mesmas entradas que C;
+`instrumentos_por_regime("UE")` devolve vazio — nenhuma entrada LCMC se
+aplica ao desenho europeu atual.
+
 ## Próximos passos (R28 em DECISIONS)
 
 O R28 está **parcialmente fechado**. As ações restantes:
 
-1. Generalizar `WaaSParametros.regime` para aceitar `"EUA"` e `"UE"` como
-   tags explícitas (hoje, os cenários reaproveitam A/B/C com sobrescritas).
-2. Calibrar `taxa_capacidade` para o DOJ-ATR e DG-COMP contra orçamentos
+1. Calibrar `taxa_capacidade` para o DOJ-ATR e DG-COMP contra orçamentos
    públicos (FY2025 e 2024 respectivamente).
-3. Documentar em [`INSTITUTIONAL.md`](INSTITUTIONAL.md) uma decomposição
+2. Documentar em [`INSTITUTIONAL.md`](INSTITUTIONAL.md) uma decomposição
    EUA/UE análoga ao Cₜ/Cᵩ/Cₚ brasileiro.
-4. Abrir publicações comparadas (paper extension) com simulações 3-jurisdições.
+3. Abrir publicações comparadas (paper extension) com simulações 3-jurisdições.
 
 ## Bibliografia institucional
 

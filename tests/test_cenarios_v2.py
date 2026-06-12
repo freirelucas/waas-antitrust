@@ -139,7 +139,7 @@ def test_eua_doj_atr_rewards_2025_calibra_faixa_15_30():
     """DOJ-ATR Whistleblower Rewards Program (jul/2025): 15-30% sobre multas
     ≥ US$ 1 milhão. `prob_pagamento_perc` deve refletir média 0.225."""
     p = aplicar_cenario(WaaSParametros(), "eua_doj_atr_rewards_2025")
-    assert p.regime == "C"  # Dodd-Frank §922 base estatutária robusta
+    assert p.regime == "EUA"  # tag R28; mecânica C (Dodd-Frank §922)
     assert p.p_anulacao_tcc == 0.0  # sem F6
     assert p.prob_pagamento_perc == 0.225  # média 15-30%
     assert p.modo_corrida is True  # LCMC ativa
@@ -149,9 +149,63 @@ def test_ue_dma_whistleblower_tool_2024_sem_recompensa():
     """DMA Whistleblower Tool (30/abr/2024): proteção sem recompensa. Vetor
     empírico contra o qual o BR pode ser comparado."""
     p = aplicar_cenario(WaaSParametros(), "ue_dma_whistleblower_tool_2024")
-    assert p.regime == "A"  # sem componente de recompensa
+    assert p.regime == "UE"  # tag R28; mecânica A (sem recompensa)
     assert p.D_disc == 0.0  # sem instrumento de internalização monetária
     assert p.r_represalia < 0.10  # proteção horizontal Diretiva 2019/1937
+
+
+# ---------------------------------------------------------------------
+# R28 — tags jurisdicionais "EUA"/"UE" no WaaSParametros.regime
+# ---------------------------------------------------------------------
+
+
+def test_tag_eua_mapeia_mecanica_c_e_preserva_declarado():
+    """Tag "EUA" mapeia para mecânica C; `regime_declarado` preserva a tag."""
+    m = WaaSModel(WaaSParametros(n_empresas=3, tam_medio_empresa=30, n_tiques=1, regime="EUA"))
+    assert m.regime == "C"
+    assert m.regime_declarado == "EUA"
+
+
+def test_tag_ue_mapeia_mecanica_a_e_preserva_declarado():
+    """Tag "UE" mapeia para mecânica A (DMA Tool: sem recompensa/LCMC)."""
+    m = WaaSModel(WaaSParametros(n_empresas=3, tam_medio_empresa=30, n_tiques=1, regime="UE"))
+    assert m.regime == "A"
+    assert m.regime_declarado == "UE"
+
+
+def test_regime_invalido_levanta_value_error():
+    """Regime fora de REGIMES_VALIDOS levanta ValueError com mensagem clara."""
+    import pytest
+
+    with pytest.raises(ValueError, match="regime desconhecido"):
+        WaaSModel(WaaSParametros(n_empresas=3, tam_medio_empresa=30, n_tiques=1, regime="X"))
+
+
+def test_tag_eua_equivale_bit_a_bit_a_regime_c():
+    """Mesma seed: regime="EUA" produz DataFrame idêntico a regime="C"
+    (a tag é rótulo institucional, não mecânica nova)."""
+    base = dict(n_empresas=5, tam_medio_empresa=60, n_tiques=6, seed=73)
+    df_c = WaaSModel(WaaSParametros(**base, regime="C")).executar()
+    df_eua = WaaSModel(WaaSParametros(**base, regime="EUA")).executar()
+    assert df_c.equals(df_eua), "tag EUA deveria ser equivalente bit-a-bit à mecânica C"
+
+
+def test_regimes_abc_preservam_comportamento_historico():
+    """Compat: A/B/C seguem aceitos e `regime_declarado` coincide com `regime`."""
+    for r in ("A", "B", "C"):
+        m = WaaSModel(WaaSParametros(n_empresas=3, tam_medio_empresa=30, n_tiques=1, regime=r))
+        assert m.regime == r
+        assert m.regime_declarado == r
+
+
+def test_instrumentos_por_regime_aceita_tags_r28():
+    """`instrumentos_por_regime` resolve tags: EUA hospeda como C; UE como A."""
+    from waas_antitrust.instrumentos import instrumentos_por_regime
+
+    nomes_eua = {i.nome for i in instrumentos_por_regime("EUA")}
+    assert "canal_deposito_condicional" in nomes_eua
+    assert "vesting_acelerado_hirschman" in nomes_eua  # nível C
+    assert instrumentos_por_regime("UE") == []  # DMA Tool não hospeda entradas LCMC
 
 
 def test_cenarios_r28_executam_end_to_end():

@@ -352,7 +352,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "`taxa_capacidade` do DOJ contra orçamento ATR FY2025."
         ),
         sobrescritas={
-            "regime": "C",
+            "regime": "EUA",  # tag R28: mecânica C via REGIME_EQUIVALENTE
             "D_disc_base_tcc": _D_BASE_TCC,
             "p_anulacao_tcc": 0.0,  # robustez estatutária Dodd-Frank §922
             "custo_legal_uw": 0.15,  # USPS coleta; defesa por conta do denunciante
@@ -377,7 +377,7 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "DG-COMP contra orçamento DG-COMP 2024."
         ),
         sobrescritas={
-            "regime": "A",  # sem recompensa, só proteção
+            "regime": "UE",  # tag R28: mecânica A via REGIME_EQUIVALENTE
             "D_disc": 0.0,  # sem instrumento de internalização monetária
             "r_represalia": 0.05,  # proteção horizontal Diretiva 2019/1937
             "custo_legal_uw": 0.10,  # proteção facilita defesa
