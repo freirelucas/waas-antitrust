@@ -19,7 +19,7 @@ Toda figura no site recebe um dos dois selos via CSS:
 A distinção é importante para que jornalista e jurista não confundam o
 que é argumento pedagógico com o que é evidência de simulação.
 
-## Figuras publicadas (15)
+## Figuras publicadas (17)
 
 | # | Arquivo | Módulo gerador | Página de uso | Classe |
 |---|---|---|---|---|
@@ -38,27 +38,30 @@ que é argumento pedagógico com o que é evidência de simulação.
 | 13 | `docs/img/13_internacional_3jurisdicoes.png` | `viz/internacional.py` | `internacional.md` | empírica |
 | 14 | `docs/img/14_cade_capacidade.png` | `viz/cade.py` | `limitacoes.md` | empírica (dados RIG/TCU) |
 | 15 | `docs/img/15_adversarial_oportunistas.png` | `viz/adversarial.py` | `limitacoes.md` | empírica |
+| 16 | `docs/img/16_falsificacao_vetores.png` | `viz/falsificacao.py` | `resultados.md` | empírica |
+| 17 | `docs/img/17_variedade_papeis.png` | `viz/variedade.py` | `modelagem_multiagente.md` | empírica |
 
 Cada PNG está abaixo de 200 KB e usa a paleta `cividis` cego-amigável
 (`viz/paleta.py`). Todas as figuras seguem o padrão
 `<figure markdown>...<figcaption>...</figcaption></figure>` com alt-text
 abaixo de 125 caracteres (WCAG 2.1 AA).
 
-## Stubs em backlog (3)
+## Stubs em backlog (1)
 
-Cada stub é um módulo de 24 linhas em `src/waas_antitrust/viz/` que
-levanta `NotImplementedError` ao ser chamado, com mensagem explícita
-que a implementação canônica ainda vive no caderno
-`notebooks/WaaS_caderno_v2.ipynb`. A migração desses módulos para o
-pacote é a tarefa **T01** em `DECISIONS.md`. Saíram desta lista em
-jun/2026: `sankey.py` (11), `bootstrap.py` (12), `internacional.py` (13),
-`cade.py` (14) e `adversarial.py` (15).
+Resta um único stub em `src/waas_antitrust/viz/` que levanta
+`NotImplementedError` (tarefa **T01** em `DECISIONS.md`). Saíram da
+lista em jun/2026: `sankey.py` (11), `bootstrap.py` (12),
+`internacional.py` (13), `cade.py` (14), `adversarial.py` (15),
+`falsificacao.py` (16) e `variedade.py` (17).
 
 | Stub | O que mostrará | Implementação canônica hoje |
 |---|---|---|
 | `viz/painel.py` | Painel geral 3×3 do reframe v2 com massa crítica, instrumentos e robustez lado a lado (alvo: figura síntese para abstract). | Caderno §3 (agregação manual dos macro/micro hoje). |
-| `viz/falsificacao.py` | Mapa F1–F7 dos falsificadores (Adv A v2 + autor) — qual cenário aciona qual flag, com hits/misses por tique. | Caderno §9 + `cenarios.py`. |
-| `viz/variedade.py` | Curva de amplificação de variedade (Ashby/Beer) sob diferentes distribuições de papéis (`BIGTECH_MADURA` vs. `MARKETPLACE_BR`). | Caderno §5 + `condutas.py`. |
+
+Nota sobre o `falsificacao.py` implementado: a taxonomia que se
+materializou no repositório são os **vetores de quebra A-E** (+F6/F7
+jurídico-institucionais), não a numeração F1-F7 originalmente
+imaginada — a figura 16 executa os 5 vetores contra baseline.
 
 ## Política de figuras
 

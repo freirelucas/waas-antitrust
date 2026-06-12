@@ -33,20 +33,36 @@ def test_fase_gera_figura():
     plt.close(fig)
 
 
-@pytest.mark.parametrize(
-    "modulo",
-    [
-        "falsificacao",
-        "painel",
-        "variedade",
-    ],
-)
-def test_viz_stubs_levantam_not_implemented(modulo):
-    """Os 3 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
-    `cascata` foi implementada no reframe v2 (Commit 6) e ganhou teste próprio."""
-    mod = importlib.import_module(f"waas_antitrust.viz.{modulo}")
+def test_viz_stub_painel_levanta_not_implemented():
+    """O último stub de viz (`painel`, síntese 3×3 — ainda no caderno §3)
+    levanta NotImplementedError."""
+    mod = importlib.import_module("waas_antitrust.viz.painel")
     with pytest.raises(NotImplementedError):
         mod.gerar_figura()
+
+
+def test_falsificacao_gera_figura():
+    """`falsificacao.gerar_figura` executa os 5 vetores de quebra A-E.
+    Config reduzida para teste rápido."""
+    from waas_antitrust.viz import falsificacao
+
+    aplicar_estilo()
+    fig, axes = falsificacao.gerar_figura(seeds=(11,), n_tiques=3)
+    assert fig is not None
+    assert len(axes) == 5
+    plt.close(fig)
+
+
+def test_variedade_gera_figura():
+    """`variedade.gerar_figura` compara presets de distribuição de papéis.
+    Config reduzida para teste rápido."""
+    from waas_antitrust.viz import variedade
+
+    aplicar_estilo()
+    fig, axes = variedade.gerar_figura(seeds=(11, 23), n_tiques=3)
+    assert fig is not None
+    assert len(axes) == 2
+    plt.close(fig)
 
 
 def test_painel_micro_gera_figura():

@@ -208,6 +208,15 @@ print(f"firmas que escolheram TCC clássico: {df['n_firmas_optaram_tcc_classico'
 
 Estes não são bugs do mecanismo; são as condições que **falsificam** o desenho. Esta é a postura epistêmica do projeto: **dizer onde o argumento quebra é mais valioso do que esconder a quebra**.
 
+A tabela inteira, executada (`viz/falsificacao.py`):
+
+<figure markdown>
+  ![Grid 1x5 com cada vetor de quebra A-E disparando o reporter respectivo contra o baseline](img/16_falsificacao_vetores.png){ .figura-empirica }
+  <figcaption>
+    Mapa de falsificabilidade — os 5 vetores executados (mediana de 3 seeds × 10 tiques, Regime B). Cada mini-painel compara o baseline (verde) com o vetor ativado (vermelho) no reporter que o detecta: Vetor A enche o TCC clássico; B anula os TCC-WaaS; C derruba a soma de sinais (custo legal 5·w_a, critério do teste de regressão); D zera a massa crítica; E colapsa o capital social residual. Cada fragilidade declarada no Ato 4 é um botão reproduzível.
+  </figcaption>
+</figure>
+
 ## Reproduzir tudo em 60 segundos
 
 ```bash

@@ -92,6 +92,17 @@ explicitamente quais papéis são primários/adjacentes para cada conduta —
 ver `N_ATORES_PRIMARIOS_NECESSARIOS` em `condutas.py` para a calibração
 do gatilho de massa crítica por conduta.
 
+A consequência cibernética (variedade requisitada, Ashby 1956): a
+**distribuição de papéis** da firma determina a variedade efetiva que o
+canal recruta. A figura compara os dois presets:
+
+<figure markdown>
+  ![Painel 1x2 comparando sinais e verdadeiros positivos entre os presets BIGTECH_MADURA e MARKETPLACE_BR](img/17_variedade_papeis.png){ .figura-empirica }
+  <figcaption>
+    Variedade efetiva por distribuição de papéis, 5 seeds × 12 tiques em Regime B. <strong>(A)</strong> Σ de sinais no horizonte; <strong>(B)</strong> verdadeiros positivos acumulados. O preset <code>MARKETPLACE_BR</code> (operações-pesada, perfil iFood/Mercado Livre) e o <code>BIGTECH_MADURA</code> (engenharia-pesada) recrutam variedades distintas — a divergência é a justificativa empírica do item E05 (calibrar a distribuição contra organogramas reais).
+  </figcaption>
+</figure>
+
 ### Decisão de sinalização (P1)
 
 A função `decidir_sinal(...)` em `agents.py` é o coração comportamental.
