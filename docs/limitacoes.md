@@ -60,6 +60,16 @@ operacional** (volume reescalonado por N\*) e **dois parâmetros
 dominantes** (`fracao_violadoras`, `taxa_capacidade`) — problema bem
 mais tratável do que a forma original com 3 alvos × 3 parâmetros.
 
+Os dados primários contra os quais essa calibração corre estão
+visualizados abaixo (RIG/TCU 2022-2024 + comunicado CADE 2023):
+
+<figure markdown>
+  ![Painel 1x2 com fluxo investigativo SG 2022-2024 e leniências acumuladas 2003-2023 do CADE](img/14_cade_capacidade.png){ .figura-empirica }
+  <figcaption>
+    Dados primários da capacidade investigativa real. <strong>(A)</strong> Investigações SG instauradas (63–103/ano), concluídas (89–111/ano) e estoque (177–247) em 2022-2024, com a força de trabalho anotada (287–326 servidores em exercício; 180 na área-fim) — fonte RIG/TCU, parseada em <code>calibracao/transparencia_cade.py</code>. <strong>(B)</strong> Leniências acumuladas 2003-2023: 109 acordos em 20 anos (comunicado CADE 2023). A vazão real é a âncora do reescalonamento de <code>taxa_capacidade</code> (R06) e do alvo de volume (R03).
+  </figcaption>
+</figure>
+
 ## Os pesos do bem-estar são provisórios
 
 O bem-estar social é definido como $-(\text{dano} + \beta \cdot \text{FP} + \gamma \cdot \text{custo recompensa} + \delta_{\text{ex}} \cdot \text{êxodo} - \delta_{\text{mu}} \cdot \text{multa arrecadada}) / w_a$. Os defaults usados nos gráficos — $\beta=1$, $\gamma=0$, $\delta_{\text{ex}}=0{,}5$, $\delta_{\text{mu}}=1$ — são **normativos**, não calibrados. Ancorar cada um requer:
@@ -104,7 +114,16 @@ subutilização da estrutura do CADE. Hoje o modelo trata FP como custo
 em $\beta$ no bem-estar, mas não captura o fenômeno sistêmico:
 trabalhadores podem usar WaaS como ameaça pré-rescisão para extrair
 *severance*, transformando o canal em barganha bilateral, não em prova
-qualificada. Pendência R24.
+qualificada. Pendência R24 — **com primeira medição visual**: a varredura
+abaixo varre a fração de oportunistas de 0% a 30% (calibração DMZ 2010:
+~17% na SEC) e mostra o custo sistêmico em FP e dano.
+
+<figure markdown>
+  ![Painel 1x2 com falsos positivos e dano acumulado por fração de trabalhadores oportunistas](img/15_adversarial_oportunistas.png){ .figura-empirica }
+  <figcaption>
+    Custo sistêmico do uso adversarial (R24), 5 seeds × 12 tiques em Regime B. <strong>(A)</strong> Falsos positivos acumulados crescem com a fração de oportunistas — o canal absorve ruído extrativo. <strong>(B)</strong> Dano acumulado: a dissuasão resiste na faixa DMZ (~17%, linha pontilhada), mas o leitor deve notar que o modelo ainda não representa o uso do canal como barganha bilateral pré-rescisão — esta figura mede apenas o ruído de denúncias frívolas, um subconjunto do fenômeno de Heller.
+  </figcaption>
+</figure>
 
 **(iii) Erosão endógena por uso instrumental — agora com veredicto
 parcial.** Coleman 1990 previu que capital social é destruído pela sua

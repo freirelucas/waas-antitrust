@@ -36,15 +36,13 @@ def test_fase_gera_figura():
 @pytest.mark.parametrize(
     "modulo",
     [
-        "adversarial",
-        "cade",
         "falsificacao",
         "painel",
         "variedade",
     ],
 )
 def test_viz_stubs_levantam_not_implemented(modulo):
-    """Os 5 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
+    """Os 3 stubs de viz remanescentes (ainda no caderno) levantam NotImplementedError.
     `cascata` foi implementada no reframe v2 (Commit 6) e ganhou teste próprio."""
     mod = importlib.import_module(f"waas_antitrust.viz.{modulo}")
     with pytest.raises(NotImplementedError):
@@ -144,6 +142,29 @@ def test_proposicao_5_gera_figura():
     # Painel A é capital social, painel B é dano relativo
     assert "Capital social" in axes[0].get_ylabel()
     assert "Dano" in axes[1].get_ylabel() or "dano" in axes[1].get_ylabel().lower()
+    plt.close(fig)
+
+
+def test_cade_gera_figura():
+    """`cade.gerar_figura` plota séries primárias RIG/TCU (sem simulação)."""
+    from waas_antitrust.viz import cade
+
+    aplicar_estilo()
+    fig, axes = cade.gerar_figura()
+    assert fig is not None
+    assert len(axes) == 2
+    plt.close(fig)
+
+
+def test_adversarial_gera_figura():
+    """`adversarial.gerar_figura` varre fração de oportunistas (R24).
+    Config reduzida para teste rápido."""
+    from waas_antitrust.viz import adversarial
+
+    aplicar_estilo()
+    fig, axes = adversarial.gerar_figura(fracoes=(0.0, 0.2), seeds=(11, 23), n_tiques=3)
+    assert fig is not None
+    assert len(axes) == 2
     plt.close(fig)
 
 
