@@ -70,6 +70,48 @@
   border-color: #555;
 }
 
+/* Sub-status para figuras empíricas: distingue (i) calibrado contra
+ * dado externo, (ii) direcional/sob configuração não-calibrada, e
+ * (iii) achado negativo (falsificação). Usar como segunda classe:
+ *
+ *   ![…](img/12_bootstrap.png){ .figura-empirica .status-calibrado }
+ *   ![…](img/13_internacional.png){ .figura-empirica .status-direcional }
+ *   ![…](img/10_alpha_erosao_limiar.png){ .figura-empirica .status-falsificacao }
+ */
+.figura-empirica.status-calibrado::after,
+.figura-empirica.status-direcional::after,
+.figura-empirica.status-falsificacao::after {
+  position: absolute;
+  bottom: -10px;
+  right: 12px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  font-weight: 600;
+  font-family: var(--md-text-font-family, sans-serif);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.figura-empirica.status-calibrado::after {
+  content: "Calibrado";
+  background: #1e6c39;
+  color: white;
+}
+.figura-empirica.status-direcional::after {
+  content: "Direcional";
+  background: #f5a623;
+  color: #1a1a1a;
+}
+.figura-empirica.status-falsificacao::after {
+  content: "Achado negativo";
+  background: #c0392b;
+  color: white;
+}
+[data-md-color-scheme="slate"] .figura-empirica.status-direcional::after {
+  background: #d49118;
+  color: #1a1a1a;
+}
+
 /* ----------------------------------------------------------------------
  * Hero da home — pergunta-tese + lead em destaque acima da dobra.
  * Aplicado com classe `.hero` em um bloco markdown.

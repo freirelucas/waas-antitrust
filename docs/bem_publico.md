@@ -165,7 +165,7 @@ valores de $\alpha_\text{erosão}$ × 40 tiques; resultados em
 Proposição 5 candidata** na configuração testada:
 
 <figure markdown>
-  ![Painel 1x2 da falsificação da Prop. 5 candidata: dano acumulado por alpha contra piso A e capital social residual final](img/10_alpha_erosao_limiar.png){ .figura-empirica }
+  ![Painel 1x2 da falsificação da Prop. 5 candidata: dano acumulado por alpha contra piso A e capital social residual final](img/10_alpha_erosao_limiar.png){ .figura-empirica .status-falsificacao }
   <figcaption>
     Falsificação numérica da Proposição 5 candidata (forma forte). <strong>(A)</strong> Mediana de <code>dano_acumulado</code> por $\alpha_\text{erosão}$ no Regime B (banda IC bootstrap 95%) contra o piso do Regime A (linha tracejada). <strong>(B)</strong> Mediana de <code>capital_social_residual</code> final. O substrato cooperativo (B) <strong>sim</strong> é erodido por $\alpha$ crescente — a forma fraca de Coleman se confirma. Mas o dano agregado (A) permanece ~8× menor que o piso A até $\alpha=0.9$: a dissuasão endógena (R01) compensa a erosão do substrato no nível agregado. A forma forte da Proposição 5 ("B colapsa em A") <strong>não se materializa</strong> nesta grade.
   </figcaption>

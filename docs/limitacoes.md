@@ -76,7 +76,7 @@ Os dados primários contra os quais essa calibração corre estão
 visualizados abaixo (RIG/TCU 2022-2024 + comunicado CADE 2023):
 
 <figure markdown>
-  ![Painel 1x2 com fluxo investigativo SG 2022-2024 e leniências acumuladas 2003-2023 do CADE](img/14_cade_capacidade.png){ .figura-empirica }
+  ![Painel 1x2 com fluxo investigativo SG 2022-2024 e leniências acumuladas 2003-2023 do CADE](img/14_cade_capacidade.png){ .figura-empirica .status-calibrado }
   <figcaption>
     Dados primários da capacidade investigativa real. <strong>(A)</strong> Investigações SG instauradas (63–103/ano), concluídas (89–111/ano) e estoque (177–247) em 2022-2024, com a força de trabalho anotada (287–326 servidores em exercício; 180 na área-fim) — fonte RIG/TCU, parseada em <code>calibracao/transparencia_cade.py</code>. <strong>(B)</strong> Leniências acumuladas 2003-2023: 109 acordos em 20 anos (comunicado CADE 2023). A vazão real é a âncora do reescalonamento de <code>taxa_capacidade</code> (R06) e do alvo de volume (R03).
   </figcaption>

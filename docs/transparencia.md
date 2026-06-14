@@ -7,6 +7,27 @@ figura empírica foi produzida. A intenção é dar ao leitor o que ele
 precisa para **refutar** o projeto numericamente — não convencê-lo de
 que tudo está fechado.
 
+## Convenção visual nas figuras
+
+Toda figura do site carrega chips de status para evitar leitura ambígua:
+
+- Borda **tracejada cinza** + chip "Ilustrativo" — figura conceitual
+  (Camada de argumentação visual; sem simulação).
+- Borda **sólida verde** + chip "Resultado da simulação" — figura
+  produzida pelo modelo; abaixo, um segundo chip pode aparecer:
+    - **CALIBRADO** (verde escuro) — eixos ancorados em dado externo
+      verificado (Saito 2021, RIG/TCU). Figura 14 é exemplo.
+    - **DIRECIONAL** (amarelo) — multi-seed multi-cenário, mas a
+      configuração não está calibrada formalmente; ler magnitude com
+      reserva. Figuras 12 e 13 são exemplos.
+    - **ACHADO NEGATIVO** (vermelho) — figura que **refuta** uma
+      hipótese candidata declarada (não que ilustra o erro do modelo).
+      Figura 10 é exemplo (falsifica a Prop. 5 forte).
+
+A ausência de sub-chip indica figura empírica em configuração padrão,
+sem alegação de calibração além das fontes primárias do modelo
+(Brasscom 2024, RIG/TCU para capacidade, Saito 2021 para descontos).
+
 ## Status das proposições (por evidência)
 
 | # | Proposição | Estado | Evidência primária | Onde |
