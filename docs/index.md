@@ -8,9 +8,14 @@
 
 Por quase trinta anos, programas de leniência foram a peça-mestre do enforcement antitruste. A lógica é simples: dois ou mais conspiradores fizeram um cartel; quem entregar primeiro escapa da multa. **O cartel se denuncia sozinho** — é a beleza do desenho.
 
-Mas o abuso de mercado digital costuma ter **uma única empresa**. *Self-preferencing* do Google, *anti-steering* da Apple, exclusividade do iFood, *killer acquisition* da Meta. Não há segunda firma cúmplice para delatar; a conduta é executada pela própria firma dominante, pelos seus próprios times.
+Em mercados digitais, no entanto, o abuso costuma vir de **uma única empresa** — sem cúmplice externo para delatar. Quatro exemplos do noticiário recente:
 
-A informação existe — nos *commits* do engenheiro, nas *slides* da reunião comercial, no *deck* do *corp dev*. Mas ela não circula. Pelo Brasil de hoje, o trabalhador que fala arrisca emprego, carreira, tranquilidade, e ganha **nada de previsível** em troca.
+- O Google rebaixando concorrentes em buscas para favorecer o próprio comparador de preços (*self-preferencing*).
+- A Apple proibindo que o app Spotify mencione opções de pagamento fora da App Store (*anti-steering*).
+- O iFood mantendo cláusulas de exclusividade que impedem restaurantes de operar com concorrentes.
+- O Facebook (Meta) comprando o Instagram para neutralizar uma plataforma rival emergente (*killer acquisition* — aquisição cujo propósito é eliminar o concorrente, não absorvê-lo).
+
+A informação sobre essas práticas existe **dentro da própria empresa** — em conversas no Slack, na ata da reunião do comitê de produto, no slide-deck do time de aquisições. Mas ela não chega ao CADE. No Brasil de hoje, o trabalhador que falaria arrisca emprego, carreira, tranquilidade — e ganha **nada de previsível** em troca.
 
 <div class="pull-quote" markdown>
 A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
@@ -18,7 +23,7 @@ A leniência só funciona quando há cumplicidade entre firmas. Quando a infraç
 
 ## A resposta deste projeto: LCMC como canal de depósito condicional
 
-Em mercados digitais com **moat**, a cumplicidade existe — mas é **intra-firma**, entre engenharia, produto, jurídico, *corp dev*. O problema central não é "como punir a firma" nem "como pagar o denunciante"; é **como resolver a coordenação dos trabalhadores que veem a conduta mas não querem brigar a luta sozinhos**.
+Em mercados digitais com **fosso competitivo profundo** (uma plataforma dominante cercada de barreiras estruturais — efeitos de rede, dados acumulados, integração vertical — que tornam a entrada de concorrente quase impossível), a cumplicidade na infração existe **dentro da própria empresa**: entre os times de engenharia, produto, jurídico e aquisições. O problema central não é "como punir a firma" nem "como pagar o denunciante" — é **como resolver a coordenação dos trabalhadores que veem a conduta mas não querem brigar a luta sozinhos**.
 
 A proposta deste projeto, em uma frase:
 
@@ -26,7 +31,7 @@ A proposta deste projeto, em uma frase:
 
     O **CADE opera um canal qualificado de recepção de denúncias** com cláusula de abertura condicional. O trabalhador entrega ao CADE sua denúncia com prova específica e diz: *"esta denúncia só é instaurada se houver ao menos `q_min · n` outros trabalhadores do mesmo setor/firma que também depositarem denúncias compatíveis dentro de uma janela `Δt`"*. As denúncias ficam em **escrow** — não notificam a firma, não viram processo, não vazam — até que o gatilho de massa crítica seja atingido. Quando o é, **todas se abrem simultaneamente**: ninguém foi o primeiro isoladamente.
 
-A LCMC é **mecanismo de coordenação**, não de pagamento. Resolve diretamente o problema clássico de Olson (1965): em grupos pequenos, ninguém quer arcar sozinho com o risco de denunciar; cada um espera o outro. O canal de depósito condicional **elimina sub-iniciação por construção** — a denúncia individual nunca fica exposta enquanto a massa crítica não se forma.
+A LCMC é **mecanismo de coordenação**, não de pagamento. Resolve diretamente um problema clássico estudado por Mancur Olson em 1965: em grupos pequenos, ninguém quer ser o primeiro a se expor; cada um prefere esperar o outro começar. O canal de depósito condicional **elimina esse impasse por construção** — a denúncia individual nunca fica exposta sozinha enquanto a massa crítica não se forma.
 
 Para entender de onde vem essa ideia, três paralelos rápidos:
 
@@ -40,7 +45,7 @@ O nome acadêmico desse desenho é **escrow de informação condicional** ou *in
 
 ## O que vem depois da abertura — instrumentos
 
-Quando o canal abre (massa crítica atingida), o procedimento administrativo se instaura: a firma é notificada com prova qualificada e coletiva; o CADE conduz a investigação; eventualmente assina TCC ou aplica multa. Esta parte usa o ferramental jurídico **já existente** — Art. 85 (TCC), Art. 86 (leniência), Art. 45 (dosimetria).
+Quando o canal abre (massa crítica atingida), o procedimento administrativo se instaura: a firma é notificada com prova qualificada e coletiva; o CADE conduz a investigação; eventualmente assina um **TCC** (Termo de Compromisso de Cessação — espécie de acordo em que a firma admite cessar a conduta em troca de redução da multa) ou aplica a multa cheia. Esta parte usa o ferramental jurídico **já existente** na Lei 12.529/2011 — Art. 85 (regras do TCC), Art. 86 (leniência clássica para cartéis), Art. 45 (critérios para calcular a multa final, em jargão jurídico "dosimetria").
 
 **Os instrumentos monetários abaixo são incrementos** ao canal — aumentam a probabilidade de adesão, não são o mecanismo central. Sem nenhum deles, o canal ainda funciona; com eles, opera com taxas de adesão maiores.
 
@@ -52,7 +57,7 @@ Quando o canal abre (massa crítica atingida), o procedimento administrativo se 
 | **Leniência criminal individual** | Estado (não-persecução) | Trabalhador-partícipe | Pós-instauração (R23 stub) |
 | **Nenhum — só o canal** | — | — | O canal funciona pela coordenação per se |
 
-A linha **"Nenhum — só o canal"** é a configuração mais conservadora juridicamente: o canal exige apenas regulamentação por Resolução CADE de procedimento de recepção (Art. 4º, II e III da Lei 12.529 c/c Lei 9.784/99). Não cria categoria sancionatória nova; estrutura *como o CADE recebe* informação. O risco de anulação judicial (F6) cai materialmente.
+A linha **"Nenhum — só o canal"** é a configuração mais conservadora juridicamente: o canal exige apenas uma Resolução do CADE regulamentando o **procedimento de como receber denúncias condicionais** (com base no Art. 4º, II e III da Lei 12.529/2011 combinado com a Lei 9.784/99, que rege o processo administrativo federal). Não cria nova categoria de punição; apenas estrutura *como o CADE recebe* informação. O risco de o Judiciário anular essa Resolução depois — que o projeto chama de **falsificador F6** e analisa em detalhe no [Ato 4 · Limitações](limitacoes.md) — cai materialmente.
 
 ## A figura central do projeto
 
