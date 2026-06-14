@@ -28,7 +28,15 @@ A proposta deste projeto, em uma frase:
 
 A LCMC é **mecanismo de coordenação**, não de pagamento. Resolve diretamente o problema clássico de Olson (1965): em grupos pequenos, ninguém quer arcar sozinho com o risco de denunciar; cada um espera o outro. O canal de depósito condicional **elimina sub-iniciação por construção** — a denúncia individual nunca fica exposta enquanto a massa crítica não se forma.
 
-O análogo prático mais próximo é a plataforma **[Callisto](https://www.callisto.org)** (callisto.org), que opera nos Estados Unidos para denúncias de assédio sexual em campus universitário: a identidade de uma vítima só é revelada ao mesmo agressor se duas ou mais denúncias coincidirem. Em direito, o conceito teórico é **information escrow** (Ayres & Unkovic, *Michigan Law Review* 111:145, 2012). Em estrutura de pagamento, o paralelo é o **Kickstarter all-or-nothing**: o pledge só cobra se a meta de apoiadores é atingida.
+Para entender de onde vem essa ideia, três paralelos rápidos:
+
+- **Kickstarter**. Quando você apoia um projeto no Kickstarter, seu cartão só é cobrado se o projeto atingir a meta de apoiadores. Se a meta não é atingida, ninguém paga e nenhum projeto começa. A LCMC funciona igual, mas com denúncias: a sua denúncia só "cobra" — vira processo no CADE — se outros trabalhadores da mesma empresa também depositarem. Senão, ninguém é exposto.
+
+- **Callisto** ([callisto.org](https://www.callisto.org)). Plataforma americana onde estudantes universitárias podem registrar denúncias de assédio sexual: o nome da vítima só é revelado ao agressor citado se **outra** estudante tiver citado o **mesmo** agressor. Sem coincidência, o registro permanece anônimo. Existe na prática desde 2015 — não é hipótese.
+
+- **Caixa-cofre com regra de abertura**. Imagine uma caixa-cofre operada por um terceiro confiável. Você coloca um envelope com a denúncia e uma instrução: "só abrir esta caixa quando houver ao menos cinco envelopes parecidos contra a mesma empresa". A caixa pode esperar meses. Quando atinge cinco, todos se abrem juntos. Ninguém foi o primeiro a se expor.
+
+O nome acadêmico desse desenho é **escrow de informação condicional** ou *information escrow* — formalizado por Ian Ayres e Cait Unkovic (Yale Law School) em artigo de 2012 na *Michigan Law Review*, vol. 111, p. 145. A LCMC aplica este desenho ao antitruste brasileiro, com o CADE como o "terceiro confiável" que opera a caixa-cofre.
 
 ## O que vem depois da abertura — instrumentos
 

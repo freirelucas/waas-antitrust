@@ -16,7 +16,34 @@ A **Leniência Condicionada à Massa Crítica** (LCMC) é um *information escrow
 
 O mecanismo resolve **diretamente** o problema clássico de Olson (1965): sub-iniciação ("ninguém quer ser o primeiro") é eliminada por construção. A denúncia individual nunca fica exposta sozinha — ou se acopla a outras e se abre coletivamente, ou permanece em escrow indefinidamente. Sem instrumento monetário, sem ressarcimento controverso, sem categoria dogmática nova: apenas **procedimento administrativo de recepção qualificada**, ancorado em Art. 4º II/III da Lei 12.529/2011 c/c Lei 9.784/99.
 
-O análogo prático mais próximo é o **[Callisto](https://www.callisto.org)** (callisto.org), que opera nos EUA para denúncias de assédio sexual em campus universitário: identidade da vítima é revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem. O conceito teórico é **information escrow** (Ayres & Unkovic, *Michigan Law Review* 111:145, 2012). A intuição estrutural é **Kickstarter all-or-nothing**.
+### Três paralelos para situar a ideia
+
+Quem nunca leu Ayres-Unkovic (formalizadores da ideia em Yale Law School) encontra
+**três paralelos** no cotidiano que descrevem a mesma estrutura:
+
+- **Kickstarter**. No Kickstarter, o cartão de crédito do apoiador só é cobrado se
+  o projeto atingir a meta de apoiadores; senão, ninguém paga e o projeto não começa.
+  É o desenho *all-or-nothing*: ou todos cooperam e o projeto sai, ou ninguém é
+  exposto financeiramente. A LCMC aplica o mesmo desenho à denúncia: a denúncia
+  individual só "cobra" — vira processo — se outras forem depositadas; senão, nada
+  acontece e ninguém aparece.
+- **Callisto** ([callisto.org](https://www.callisto.org)). Plataforma americana, em
+  operação desde 2015, onde estudantes universitárias registram denúncias de
+  assédio. O nome de uma vítima só é revelado se **outra** vítima identificar o
+  **mesmo** agressor — coincidência libera; isolamento mantém anonimato. É a prova
+  prática de que o desenho funciona em produção, não só em paper.
+- **Caixa-cofre operada por terceiro confiável.** Imagine envelopes com denúncias
+  entregues a uma caixa-cofre operada por uma instituição neutra — no nosso caso,
+  o CADE. Cada envelope vem com a instrução: "abra esta caixa apenas quando houver
+  ao menos N envelopes parecidos contra a mesma empresa". A caixa pode esperar
+  meses. Quando atinge N, **todos** os envelopes se abrem juntos. Ninguém foi o
+  primeiro a se expor.
+
+O nome acadêmico desse desenho é *information escrow* — depósito de informação sob
+condição de abertura pré-acordada, com terceiro confiável como custodiante. A
+formalização contemporânea está em Ayres & Unkovic (2012), *Information Escrows*,
+*Michigan Law Review* vol. 111 p. 145; a aplicação ao antitruste brasileiro com o
+CADE como custodiante é a contribuição deste projeto.
 
 Em código, o canal é implementado em duas camadas. **R20 (`modo_corrida`)** registra firmas que atingiram massa crítica agregada — sem rastrear identidade individual do depositante. **R27 (`usar_escrow_explicito`)** carrega o escrow individual no `AutoridadeAgent`: cada sinal vira um depósito identificado, e a abertura simultânea colapsa N depósitos em um caso processual único. O parâmetro `janela_escrow_tiques` é o "Δt" da definição LCMC — quantos tiques um depósito permanece no escrow antes de expirar (default `0` = escrow eterno, leitura Callisto).
 
