@@ -103,55 +103,55 @@ A simulação produz 288 reporters em 40 colunas de pandas. Tudo é inspecionáv
 
 A LCMC pode ser implementada em três regimes regulatórios distintos. Os instrumentos disponíveis dependem do regime — e cada instrumento exige reserva constitucional diferente (Art. 22 I, Art. 146 LC, Art. 5º XXXIX).
 
-| Regime | Como implementado | Instrumentos disponíveis |
-|---|---|---|
-| **A** — status quo | Sem LCMC | Nenhum |
-| **B** — Resolução CADE | Resolução complementar à 21/2018, **sem mudar a lei** | WaaS (recompensa via TCC sob Art. 12) |
-| **C** — Lei ordinária federal | Extensão da Lei 13.608/2018 ao antitruste | WaaS + Hirschman (vesting acelerado) |
-| **Cᵩ** — LC tributária | Lei complementar Art. 146 + LRF Art. 14 | + Crédito tributário ao denunciante (R22 stub) |
-| **Cₚ** — Lei penal estrita | Reserva penal Art. 5º XXXIX | + Leniência criminal individual (R23 stub) |
+| Regime | Como implementado | Status normativo | Instrumentos disponíveis |
+|---|---|---|---|
+| **A** — status quo | Sem LCMC | — | Nenhum |
+| **B** — Resolução CADE | Resolução complementar à 21/2018, **sem mudar a lei** | **de lege lata** (interpretação infralegal) | WaaS (recompensa via TCC sob Art. 12) |
+| **C** — Lei ordinária federal | Extensão da Lei 13.608/2018 ao antitruste | **de lege ferenda** (lei nova) | WaaS + Hirschman (vesting acelerado) |
+| **Cᵩ** — LC tributária | Lei complementar Art. 146 + LRF Art. 14 | **de lege ferenda** (LC + LRF) | + Crédito tributário (R22 stub) |
+| **Cₚ** — Lei penal estrita | Reserva penal Art. 5º XXXIX | **de lege ferenda** (lei penal) | + Leniência criminal individual (R23 stub) |
 
-O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho. O **Regime C** é mais robusto juridicamente mas exige Congresso — e a [viabilidade política 2024-2027](viabilidade_regime_c.md) é incerta. Os sub-regimes Cᵩ e Cₚ são exploratórios.
+O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho com a Resolução 21/2018 vigente. O **Regime C** é mais robusto juridicamente mas exige Congresso — e a [viabilidade política 2024-2027](viabilidade_regime_c.md) é incerta. Os sub-regimes Cᵩ e Cₚ são exploratórios.
 
-## Por onde seguir
+## Por onde seguir — entrada por papel profissional
 
 <div class="grid cards" markdown>
 
--   **Quero entender o mecanismo**
+-   **Jornalista**
 
-    Como a LCMC funciona, quando o WaaS é necessário, e quando massa crítica sozinha basta. Aritmética em reais (R$ 1 bi, R$ 15 mi de incremento) + três vetores de quebra modelados.
+    O lead em 30s, comparação BR×EUA×UE em 1 figura, autor e contato.
 
-    [Ato 2: O mecanismo →](mecanismo.md)
+    [Kit de imprensa →](imprensa.md) · [Generalidade EUA e UE →](internacional.md)
 
--   **Quero ver os resultados**
+-   **Advogado / advogada**
 
-    Saída literal do modelo em 20 firmas × 40 trimestres × 3 regimes. CI 95% bootstrap multi-seed. Direção da Proposição 3 não cruza zero.
+    Litígio: vetores jurídicos atacáveis (F6, reserva de lei, custo legal). Público: base autônoma Art. 4º Lei 12.529 + Lei 9.784/99. Compliance: implicações corporativas.
 
-    [Ato 3: O teste →](resultados.md)
+    [Análise institucional →](INSTITUTIONAL.md) · [Limitações §jurídica →](limitacoes.md)
 
--   **Sou jurista**
+-   **Economista**
 
-    Como cada instrumento cabe nas Leis 12.529/2011 + 13.608/2018 + Res. 21/2018. Decomposição do Regime C em Cₜ/Cᵩ/Cₚ. Lei 12.846/2013 (LAC) Art. 7º VII-VIII como precedente brasileiro.
+    Equações em uma tela (IC-F\* nas 3 formas, bem-estar, calibração formal R03 com $(0{,}323; 0{,}481)$). Reprodução com seeds explícitas.
 
-    [Análise institucional →](INSTITUTIONAL.md)
+    [Formulário matemático →](formulario.md) · [Transparência →](transparencia.md)
 
--   **Sou sociólogo ou cientista político**
+-   **Autoridade**
 
-    LCMC sob lente Coleman 1990 (capital social com risco de erosão endógena) e Stigler-Carpenter-Moss (captura no processamento, não no gatilho). R21-R26 abertos.
+    Decisor (CADE/PFE): tabela A/B/C com status normativo + base legal autônoma. Operacional (SG): fluxograma processual. Técnico (DEE): calibração com sensibilidade a N\*.
 
-    [Bem coletivo →](bem_publico.md) · [Viabilidade Regime C →](viabilidade_regime_c.md)
+    [Análise institucional →](INSTITUTIONAL.md) · [Procedimento administrativo →](procedimento_cade.md)
 
--   **Quero rodar o código**
+-   **Big Tech (PM, engenharia, compliance)**
 
-    Instalação em 3 comandos, demo no Colab, 331 testes verdes, ruff/black/mkdocs-strict garantidos.
+    Aritmética em R$ por receita da empresa, arquitetura do modelo, exposição esperada. Cenário canônico `eua_doj_atr_rewards_2025` para comparação direta com Dodd-Frank §922.
 
-    [Como usar →](uso.md) · [Modelagem multiagente →](modelagem_multiagente.md)
+    [Ato 2 · O mecanismo →](mecanismo.md) · [Modelo ABM (detalhe) →](modelo_abm.md)
 
--   **Quero contestar**
+-   **Academia / sociedade civil**
 
-    Crítica x10 com 10 personas (incluindo sociólogo e cientista político na v2). Plano de melhorias categorizado. Backlog com 26 R-items abertos.
+    LCMC sob lente Ostrom-Coleman-Olson. Falsificação numérica da Prop. 5 forte. 18 figuras com seeds reproduzíveis. Como contestar em código.
 
-    [Crítica x10 v2 →](critica_x10_v2.md) · [Backlog →](DECISIONS.md)
+    [Bem coletivo →](bem_publico.md) · [Como contestar →](colaborar.md)
 
 </div>
 
