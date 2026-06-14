@@ -1,0 +1,21 @@
+{
+  "fracao_violadoras": 0.3225,
+  "taxa_capacidade": 0.48124999999999996,
+  "tcc_anual_simulado": 0.56,
+  "tcc_anual_alvo": 0.5998723675813656,
+  "erro_relativo": 0.06646808510638284,
+  "n_iteracoes": 8,
+  "n_universo_assumido": 1567.0,
+  "n_estrela_implicito": 1678.5714285714284,
+  "ic_inf_tcc": 0.2,
+  "ic_sup_tcc": 0.9,
+  "seeds": [
+    11,
+    23,
+    37,
+    41,
+    53
+  ],
+  "n_empresas_modelo": 20,
+  "n_tiques": 40
+}

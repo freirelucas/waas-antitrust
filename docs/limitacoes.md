@@ -60,6 +60,18 @@ operacional** (volume reescalonado por N\*) e **dois parâmetros
 dominantes** (`fracao_violadoras`, `taxa_capacidade`) — problema bem
 mais tratável do que a forma original com 3 alvos × 3 parâmetros.
 
+A calibração formal, executada (`scripts/calibrar_formal.py`,
+`scipy.optimize.minimize(method="Nelder-Mead")`, 5 seeds): Nelder-Mead
+converge em 8 iterações ao ponto ótimo **(0,323; 0,481)**, produzindo
+**0,56 TCC/ano simulado** (IC bootstrap 95%: [0,200; 0,900]) contra
+alvo normalizado **0,60** — **erro relativo final de 6,65%**. O alvo
+está dentro do IC do modelo: a calibração é **consistente com os
+dados disponíveis dado o N\* assumido**. O `N★` implícito sobe
+levemente para **1.679 firmas** (vs 1.567 da identificabilidade) —
+predição falsificável contra o número real de firmas sob jurisdição
+ativa do CADE (pendência empírica). Resultados em
+`results/calibracao_formal_r03.json`.
+
 Os dados primários contra os quais essa calibração corre estão
 visualizados abaixo (RIG/TCU 2022-2024 + comunicado CADE 2023):
 
