@@ -118,10 +118,86 @@ prêmio pago em janeiro de 2026 --- precedente direto para o caminho
 infralegal-recompensado análogo ao Regime~B.
 
 \section{Blocos construtivos de desenho de mecanismos}
-% Spagnolo (2004); Aubert-Rey-Kovacic (2006); Dodd-Frank §922 \citep{doddfrank922}
+
+O desenho da LCMC combina três blocos de literatura distintos. Primeiro, a teoria
+de leniência ótima de \citet{spagnolo2004divide}, que mostra como descontos
+progressivos por posição na fila sustentam delação em equilíbrio bayesiano-perfeito
+em cartéis com população finita; transpomos o gradiente de descontos para a fila
+intra-firma calibrada empiricamente por \citet{saito2021tcc} (1ª posição: 43,43\%
+de desconto médio na Superintendência Geral do CADE; 2ª: 34,51\%; 3ª: 20,22\%; piso
+de 15\% a partir da 9ª). Segundo, os blocos analíticos de
+\citet{aubert2006impact}, que formalizam a coexistência de programas de leniência
+com recompensa direta ao denunciante e identificam condições suficientes para
+complementaridade entre os dois instrumentos; emprestamos a estrutura do payoff do
+denunciante interno mas substituímos a noção de delação unilateral pela de
+\emph{depósito condicional}. Terceiro, o template institucional do Dodd-Frank \S922
+\citep{doddfrank922} --- que estabeleceu pagamento de 10--30\% sobre multas
+SEC superiores a US\$~1~milhão e gerou jurisprudência judicial robusta sobre
+re-caracterização do pagamento como ressarcimento à entidade lesada
+(\emph{relator-style} sob a False Claims Act é o paralelo doutrinário). A
+transposição ao antitruste digital exige adaptações específicas: a SEC opera sob
+\emph{taxing power} federal sem reserva penal, enquanto o CADE atravessa três
+competências constitucionais brasileiras (concorrencial, tributária quando ativada
+Cᵩ, e penal quando ativada Cₚ), cada uma com sua reserva --- mapa institucional
+detalhado em \S5.
+
+A novidade não está nos blocos individualmente, mas no seu acoplamento sob
+um \emph{escrow institucional}: a fila ordenada \emph{à la} Spagnolo só dispara
+quando a massa crítica \emph{à la} \citet{ayres2012information} é atingida no
+escrow. As recompensas \emph{à la} Aubert-Rey-Kovacic decaem com a posição via
+gradiente Saito, mas o pagamento total à $k$-ésima posição só existe se
+$k \geq q_{\min}\cdot n$. Esta combinação --- fila condicional com gatilho de
+massa crítica --- é o que distingue a LCMC dos programas existentes.
 
 \section{Análise comparada de programas existentes}
-% SEC \citep{doddfrank922}, FCA, DOJ-ATR \citep{dojatr2025}, DMA \citep{dmatool2024}, Diretiva \citep{directive20191937}, UK CMA, KFTC, CADE \citep{cade2023leniencias}, Lei 13.608 \citep{lei13608}
+
+A Tabela~\ref{tab:comparada} sintetiza cinco programas contemporâneos ao longo
+de três eixos: presença de \emph{canal} qualificado de recepção; presença de
+\emph{recompensa monetária}; base normativa do instrumento (lei estatutária,
+regulação infralegal, ou diretiva supranacional).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cinco programas contemporâneos de delação institucional.}
+\label{tab:comparada}
+\begin{tabular}{lccl}
+\toprule
+Programa & Canal & Recompensa & Base normativa \\
+\midrule
+SEC Whistleblower (EUA, 2010) & ✓ & 10--30\% & Dodd-Frank \S922 \citep{doddfrank922} \\
+DOJ-ATR Rewards (EUA, 2025) & ✓ & 15--30\% & Resolução administrativa \citep{dojatr2025} \\
+DMA Whistleblower Tool (UE, 2024) & ✓ & --- & Reg.~(UE) 2022/1925 \citep{dmatool2024} \\
+Diretiva (UE) 2019/1937 & --- & --- & Diretiva supranacional \citep{directive20191937} \\
+CADE/leniência (BR) & --- & --- (imunidade) & Lei 12.529 Art.~86 \\
+\midrule
+\textbf{LCMC proposta (BR)} & \textbf{✓ (escrow)} & \textbf{opcional} & \textbf{Resolução CADE (Art.~4º Lei 12.529 + Lei 9.784)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Quatro observações estratégicas decorrem da tabela. (i) Apenas dois programas
+oferecem ambos canal qualificado \emph{e} recompensa monetária --- SEC e DOJ-ATR ---
+e ambos operam em jurisdição com \emph{taxing power} federal robusto;
+\citet{lei12529} brasileira é estruturalmente análoga à DMA em escopo, mas
+distinta em mecanismo (BR não tem canal anônimo equivalente). (ii) A
+arquitetura UE separa explicitamente proteção (Diretiva 2019/1937, horizontal) e
+canal (DMA Tool, setorial) --- arquitetura que preserva proteção anti-represália
+mesmo onde recompensa não é institucionalmente viável.
+(iii) O programa DOJ-ATR --- instituído em julho de 2025 sob a forma de
+Resolução administrativa em parceria com o USPS, sem necessidade de novo
+texto estatutário --- é o paralelo institucional mais próximo do Regime~B
+brasileiro proposto: ambos operam o canal por ato infralegal sob autoridade
+preexistente. (iv) Nenhum programa atual combina canal de depósito condicional
+com massa crítica \emph{intra-firma} como gatilho; o desenho do Callisto
+universitário \citep{callisto} é o análogo operacional mais próximo, mas seu
+domínio (assédio sexual em campus) é estruturalmente distinto do antitruste.
+
+A LCMC ocupa, portanto, um espaço ainda vazio na taxonomia: canal de depósito
+condicional com massa crítica intra-firma, opcionalmente acoplado a recompensa
+via TCC, sob via infralegal. Esse posicionamento permite implementação no
+horizonte regulatório brasileiro 2024--2027 sem dependência de nova lei
+federal (analisada em detalhe em \S\ref{sec:traducao_politica}).
 
 \section{O mecanismo WaaS}
 \label{sec:mecanismo}
@@ -186,7 +262,44 @@ limiar relativo $k/n$, definindo uma fronteira entre silêncio e revelação.
 \end{figure}
 
 \section{Modelo baseado em agentes e teste de estresse}
-% Composição Harrington-Chang + Morris-Shin + Chwe; canal de depósito condicional
+\label{sec:limitacoes}
+
+A análise empírica da LCMC usa modelo baseado em agentes (\emph{agent-based
+model}, ABM) com três classes de agente --- \texttt{TrabalhadorAgent},
+\texttt{EmpresaAgent}, \texttt{AutoridadeAgent} --- implementado em Mesa~3.x.
+O \texttt{TrabalhadorAgent} observa conduta com probabilidade dependente do
+papel (gradiente Near-Miceli em 3 níveis: primário 1,0; adjacente 0,5;
+distal 0,1) e decide depositar segundo seis arquétipos comportamentais
+(ético, imitativo, racional, fairminded, aleatório, oportunista) inspirados
+em \citet{hokamp2010income}. O \texttt{EmpresaAgent} carrega cultura de
+conformidade, conduta potencial específica, e decide cooperação com canal
+quando a aritmética da IC-F\* fecha. O \texttt{AutoridadeAgent} mantém o
+escrow de depósitos condicionais e processa casos sob restrição de
+capacidade $\kappa$ no espírito de \citet{harrington2015when}.
+
+A integração das três populações é dinâmica adaptativa em horizonte
+discreto, com seis fases por tique: (P0) atualização de detecção percebida
+e ganhos $g_i$ preventivos; (P1) sinalização individual; (P2) depósito
+condicional ao escrow; (P2.5) verificação do gatilho de massa crítica
+intra-firma e abertura simultânea quando $q_{\min}\cdot n$ é atingido; (P3)
+decisão da firma sob IC-F\*; (P4) processamento pela autoridade. A
+ortogonalidade entre o canal (P2/P2.5) e os instrumentos de internalização
+(P3) é o que sustenta a tese substantiva de que LCMC é mecanismo de
+coordenação, com instrumentos como acoplamentos opcionais. A
+operacionalização do gatilho de massa crítica é \emph{inspirada} no
+limiar de \emph{switching} do jogo global de \citet{morris1998unique} mas
+não derivada formalmente dele --- o ABM usa heurística operacional sobre
+a fração $q_{\min}\cdot n$ de cooperadores, não o equilíbrio fechado em
+$\tau\to 0$.
+
+A calibração formal segue duas dimensões. O gradiente de descontos
+intra-firma e inter-firma é calibrado verbatim contra \citet{saito2021tcc}
+(349 TCCs do CADE 2012--2019, médias por posição SG/CADE conferidas a partir
+da fonte primária). A capacidade institucional é calibrada contra os
+Relatórios Integrados de Gestão TCU/CADE 2022--2024 (180 servidores na
+área-fim, 73 investigações instauradas em 2024, 109 leniências acumuladas em
+20 anos). Os demais parâmetros do modelo seguem ordens de grandeza
+plausíveis com pendência de calibração formal em R03.
 
 \subsection{Proposições}
 
@@ -275,15 +388,180 @@ rastreado em R26. Os itens de pesquisa que sustentariam plenamente cada
 proposição estão rastreados no backlog (R01--R28) do repositório.
 
 \section{Enquadramento cibernético}
-% Ashby; Conant-Ashby; VSM de Beer; Hood-Margetts NATO
+
+A LCMC pode ser lida em termos de variedade requisitada \citep{ashby1956introduction}.
+O teorema de Conant-Ashby (\citealp{conant1970good}) estabelece que todo regulador
+eficaz deve conter, em alguma forma, um modelo do sistema regulado: a variedade
+do regulador precisa igualar ou exceder a variedade do regulado. No antitruste
+clássico, o CADE é o regulador e a firma é o regulado --- e a variedade interna
+da firma digital moderna (centenas de produtos, milhares de algoritmos, dezenas
+de práticas de monetização) excede ordens de magnitude a variedade investigativa
+da autoridade (180 servidores na área-fim em 2024, conforme RIG/TCU). A
+defasagem de variedade é o mecanismo profundo por trás da seleção subdeterminada
+das condutas instauradas: o CADE não escolhe \emph{quais} firmas investigar; o
+universo das firmas que poderiam ser investigadas é tão maior que sua capacidade
+que toda escolha é, por construção, captura discricionária.
+
+A LCMC amplifica a variedade do regulador recrutando sensores internos à própria
+firma --- trabalhadores cujo conhecimento do produto, do ranking, do
+\emph{corp dev} é, por construção, equivalente ou superior ao do regulador
+externo. O canal de depósito condicional é o operador de variedade-amplificação
+proposto por \citet{beer1972brain} em outro contexto: estrutura de \emph{System
+3} (controle operacional) que importa variedade do \emph{System 1} (operação)
+sem destruir a autonomia de cada subsistema. O escrow preserva a autonomia
+individual (denúncia isolada não vira processo); a abertura simultânea
+realiza a importação de variedade ao sistema regulatório.
+
+Esta leitura cibernética sugere uma explicação para por que a leniência clássica
+falha em mercados digitais sem requerer hipóteses fortes sobre captura ou
+politização: a variedade do regulador é estruturalmente insuficiente, e a
+LCMC é um mecanismo de \emph{amplificação} (não substituição) de variedade
+investigativa.
 
 \section{Pré-condição sociológica}
-% Google Walkout; AWU; Haugen; NLRB --- Olson 1965 \citep{olson1965logic}
+
+A viabilidade empírica da LCMC depende de fenômeno sociológico contemporâneo
+distinto do que sustentava a leniência clássica. Programas de leniência
+operam sobre conspiradores externos cuja relação contratual com a firma é
+explicitamente cooperativa-criminosa; o desenho assume que a delação é
+individualmente racional sob risco de cooperação assimétrica. A LCMC opera
+sobre \emph{trabalhadores regulares} da firma, cuja relação contratual é
+trabalhista convencional, e cuja decisão de denunciar não é cooperação
+assimétrica em conspiração mas \emph{abandono parcial da lealdade institucional}
+em favor de norma externa.
+
+O fenômeno emergiu visivelmente na década de 2018--2024 em empresas de
+tecnologia: o Google Walkout de novembro de 2018 (cerca de 20.000 trabalhadores
+em mais de 50 escritórios protestando contra acordos extrajudiciais em casos
+de assédio); a sindicalização da Alphabet Workers Union em janeiro de 2021;
+as denúncias internas de Frances Haugen sobre Facebook/Meta em 2021 --- todas
+exibem o padrão de denúncia interna coletiva por motivação principalmente
+ética, com proteção legal limitada e sem recompensa monetária associada. A
+literatura sociológica clássica de \citet{olson1965logic} previu este
+fenômeno como ocorrência marginal em grupos pequenos com interesse perceptível;
+a tradução para o contexto contemporâneo de empresas de plataforma de grande
+escala \citep{cremer2019competition} sugere que o número absoluto de
+trabalhadores com motivação ética suficiente para depositar pode ser pequeno
+(5--20 por firma) mas não-nulo, o que é exatamente a faixa que o
+$q_{\min}\cdot n$ da LCMC pretende mobilizar.
+
+A condição NLRB (National Labor Relations Board, EUA) sobre ação coletiva
+protegida --- \emph{Section~7 protected activity} --- e seu paralelo
+trabalhista brasileiro (CLT Art.~543, sobre proteção do dirigente sindical,
+e Art.~462 \S2º, sobre vedação a desconto salarial por ato de cidadania) são
+o substrato normativo trabalhista contemporâneo do qual a LCMC se beneficia
+sem depender exclusivamente. A LCMC não requer mudança trabalhista nova; opera
+sobre proteção pré-existente, com escrow como amplificador.
 
 \section{Tradução política para o Brasil}
-% Caminho via Resolução; caminho via Lei; coordenação CADE-CGU-MPF; comparação com DOJ-ATR \citep{dojatr2025} e DMA \citep{dmatool2024}
+\label{sec:traducao_politica}
+
+A implementação da LCMC no Brasil enfrenta duas portas regulatórias distintas.
+A porta infralegal --- Regime B --- consiste em Resolução complementar à
+Resolução CADE n.º 21/2018 que institucionalize o procedimento administrativo
+de depósito condicional como recepção qualificada de denúncia ao amparo do
+Art.~4º (II e III) da Lei 12.529/2011, combinado com a Lei 9.784/99 sobre
+processo administrativo federal. A porta legal --- Regime~C --- consiste em
+extensão da Lei n.º 13.608/2018 (com a redação da Lei n.º 13.964/2019) ao
+enforcement antitruste, criando percentual estatutário explícito de
+recompensa ao denunciante.
+
+A análise da viabilidade política 2024--2027 sugere assimetria notável entre
+as duas portas. O Regime~B depende exclusivamente de decisão administrativa
+do CADE; sua viabilidade é função (i) da prioridade interna do tema na
+agenda do Conselho, (ii) da capacidade institucional do DEE e SG para
+operacionalizar o canal, e (iii) da aceitação judicial da
+re-caracterização do pagamento como ressarcimento sob o Art.~12 da Resolução
+21/2018 (falsificador F6 explicitado em \S\ref{sec:limitacoes}). Nenhuma destas
+três condições requer alteração legislativa; todas estão sob arbítrio
+administrativo do CADE ou de revisão judicial subsequente.
+
+O Regime~C, em contraste, requer aprovação congressual em um horizonte
+político fragmentado: o Congresso brasileiro 2024--2027 tem agenda
+concentrada em reforma tributária e PL 2768/2022 (telecomunicações)
+está parado desde 2023; o cenário base é de baixa probabilidade de
+tramitação de projeto novo de antitruste estatutário. A análise detalhada
+em \texttt{viabilidade\_regime\_c.md} do repositório associado conclui que
+o Regime~C é \emph{provavelmente infactível} no horizonte 2024--2027 salvo
+crise reputacional grande envolvendo plataformas digitais e CADE.
+
+A coordenação inter-institucional CADE--CGU--MPF é segunda dimensão da
+tradução política. O canal LCMC do CADE coexistiria com o canal de
+denúncia anticorrupção da CGU sob a Lei 12.846/2013 (LAC) e com a
+persecução criminal sob a Lei 8.137 conduzida pelo MPF; cada canal
+opera competência distinta e proteção distinta ao depositante. A
+proposta deste projeto é \emph{não} colocá-los em concorrência, mas
+preservar especialização por matéria, com mecanismo de cross-referral
+(o trabalhador que deposita matéria de competência mista é encaminhado
+ao canal de competência primária).
+
+A comparação com a trajetória DOJ-ATR \citep{dojatr2025} é instrutiva. O
+Departamento de Justiça americano instituiu seu programa de recompensa
+antitruste em julho de 2025 sob a forma de Resolução administrativa em
+parceria com o USPS --- exatamente a estrutura institucional do
+Regime~B brasileiro proposto: ato infralegal sob autoridade preexistente,
+sem dependência de nova lei. O sucesso (primeiro prêmio pago em janeiro
+de 2026) sugere que a via infralegal é viável institucionalmente quando
+adotada com decisão administrativa firme. A DMA Whistleblower Tool da
+Comissão Europeia \citep{dmatool2024} é precedente complementar para a
+via canal-sem-recompensa --- particularmente relevante se a
+re-caracterização do Art.~12 enfrentar resistência judicial.
 
 \section{Conclusão}
+
+Este artigo propôs a Leniência Condicionada à Massa Crítica (LCMC) como
+mecanismo de \emph{coordenação} (não de pagamento) para o enforcement
+antitruste de mercados digitais brasileiros. Cinco resultados sustentam a
+proposta. (i) A leniência clássica é estruturalmente inadequada para
+condutas unilaterais, dominantes em plataformas digitais. (ii) O canal de
+depósito condicional --- \emph{information escrow} de
+\citet{ayres2012information} aplicado ao antitruste --- resolve a
+sub-iniciação coletiva por construção, eliminando o equilíbrio de silêncio
+sem requerer recompensa monetária. (iii) Sobre o canal, instrumentos de
+internalização (recompensa via TCC; vesting acelerado de Hirschman;
+crédito tributário; leniência criminal individual) são acoplamentos
+opcionais com reservas constitucionais distintas, cada um analisável
+separadamente. (iv) A implementação infralegal sob Regime~B é viável
+\emph{de lege lata} pela base autônoma do Art.~4º da Lei 12.529 combinado
+com a Lei 9.784/99, sem dependência da re-caracterização controvertida do
+Art.~12 da Resolução 21/2018; o paralelo institucional do DOJ-ATR
+\citep{dojatr2025} confirma a viabilidade da via administrativa. (v) O
+modelo computacional desenvolvido para análise de robustez identifica
+cinco vetores de quebra mensuráveis (TCC clássico absorvente; anulação
+judicial; custo legal individual; massa crítica inalcançável; erosão
+Coleman do substrato cooperativo), cada um com parâmetro falsificável e
+teste de regressão associado --- a forma forte da Proposição~5 sobre
+erosão Coleman foi explicitamente \emph{refutada} pela varredura
+multi-seed dedicada (Figura~\ref{fig:erosao}).
+
+Os limites da contribuição são reconhecidos. A calibração formal de R03
+identifica $N^\star \approx 1\,679$ firmas como predição falsificável a
+verificar contra o universo CADE real; a Proposição~2 sob heterogeneidade
+de arquétipos e papéis segue conjectura aberta; doze citações marcadas
+\texttt{[?]} no repositório aguardam verificação contra fonte primária. A
+viabilidade política do Regime~C no horizonte 2024--2027 é baixa; a
+viabilidade do Regime~B depende de decisão administrativa do CADE não
+anunciada nem em consulta pública. A análise comparada com programas
+existentes (\S4) sugere que o desenho ocupa nicho ainda vazio na
+taxonomia institucional contemporânea --- canal de depósito condicional
+com massa crítica intra-firma sob via infralegal --- de modo que a
+contribuição substantiva é localizar e formalizar este nicho, não
+demonstrar sua superioridade incondicional sobre alternativas em
+qualquer cenário.
+
+A análise futura deve perseguir três frentes. Empírica: confirmar ou
+refutar $N^\star$ contra cadastro CADE de firmas sob jurisdição ativa;
+calibrar $\alpha_{\text{erosão}}$ contra evidência longitudinal de
+denúncia em jurisdições com programas estabelecidos (SEC, DOJ-ATR após
+2026, DMA). Teórica: fechar a unicidade do equilíbrio sob heterogeneidade
+(Proposição~2c); investigar formalmente as condições de não-bifurcação no
+acoplamento $(\lambda, \beta_H)$ entre laços dissuasório e contratual.
+Institucional: redigir, em sede acadêmica, minuta de Resolução
+complementar à 21/2018 que articule procedimento de depósito condicional
+sem assumir competência regulatória --- contribuição que este artigo
+declina por não-vinculação política do autor, mas que segue como pendência
+para trabalho futuro coordenado com pesquisadores de direito
+administrativo.
 
 \bibliographystyle{apalike}
 \bibliography{refs}
