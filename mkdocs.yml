@@ -84,6 +84,7 @@ nav:
   - Anexos:
       - Como usar: uso.md
       - "Brincar com o modelo (interativo)": brincar.md
+      - "Comandos e scripts (CLI)": comandos.md
       - Transparência epistêmica: transparencia.md
       - Kit de imprensa: imprensa.md
       - Formulário matemático: formulario.md
@@ -100,6 +101,7 @@ nav:
           - Compliance corporativo (especulativo): compliance_corporativo.md
           - Generalidade (EUA e UE): internacional.md
           - Viabilidade política do Regime C: viabilidade_regime_c.md
+          - "Módulo `normas/` (parser LexML BR)": normas.md
       - Referência:
           - Glossário: glossario.md
           - Terminologia canônica: TERMINOLOGIA.md
