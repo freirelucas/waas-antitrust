@@ -7,7 +7,7 @@
 | [§1](#1-a-historia-do-modelo-em-um-paragrafo) | A história em um parágrafo | Da formulação original v1 à correção v3 |
 | [§2](#2-anatomia-rapida) | Anatomia rápida | Três classes, fases P0-P5 e reporters |
 | [§3](#3-tabela-completa-de-parametros-waasparametros) | Tabela de ~40 parâmetros | `WaaSParametros` linha a linha, com defaults |
-| [§4](#4-como-alterar-parametros-7-receitas-python) | 7 receitas Python | Como mudar regime, ativar escrow, varrer Sobol |
+| [§4](#4-como-alterar-parametros-manipulabilidade-7-receitas) | Manipulabilidade + 7 receitas | Tabela de flags opt-in + Python para mudar regime, ativar escrow, varrer Sobol |
 | [§5](#5-atalho-19-cenarios-canonicos) | 19 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
 | [§6](#6-a-saida-do-modelo-34-reporters) | 34 reporters | As colunas do DataFrame agrupadas por categoria |
 | [§7](#7-cookbook-reprodutivel-6-receitas-avancadas) | Cookbook avançado | Calibração Saito, choques layoff, multi-seed CI, mapa λ×Hirschman |
@@ -180,7 +180,46 @@ Tabela exaustiva agrupada por **função semântica**. Todos os parâmetros são
 | `fracao_violadoras` | float | 0.30 | calibrar contra Saito (R03) |
 | `delta_leniencia` | float | 0.5 | parâmetro auxiliar — desuso |
 
-## 4. Como alterar parâmetros — 7 receitas Python
+## 4. Como alterar parâmetros — manipulabilidade + 7 receitas
+
+### 4.0 Manipulabilidade — opt-in flags em uma tabela
+
+Toda extensão do modelo entrou via flag opt-in com **default que
+preserva o comportamento histórico bit-a-bit**. A tabela documenta o
+que cada flag faz, o que é preciso para ativá-la, e qual figura do
+site visualiza o efeito:
+
+| Flag (`WaaSParametros`) | Default | O que ativa | Visualização |
+|---|---|---|---|
+| `regime` | `"B"` | A, B, C, EUA, UE (tags R28 resolvem em `regime_declarado`) | 12, 13, 18 |
+| `modo_corrida` | `False` | LCMC (R20): fila inter-firma + gradiente Saito intra-firma | 11 |
+| `q_min_cooperacao_interna` | `0.10` | fração mínima de cooperadores p/ massa crítica intra-firma | 04, 11 |
+| `janela_temporal_tiques` | `4` | janela após massa crítica para fila inter-firma fechar | — |
+| `usar_escrow_explicito` | `False` | R27: `AutoridadeAgent.escrow_denuncias` ativo | 11, 18 |
+| `janela_escrow_tiques` | `0` | Δt de expiração do depósito condicional (0 = eterno) | — |
+| `usar_x_estrela_no_racional` | `False` | R02a: arquétipo racional decide via `x*` do jogo global | 09 |
+| `alpha_erosao` | `0.0` | R26 Coleman: erosão do capital social residual | 05, 08, 10 |
+| `peso_inequity_aversion` | `0.0` | R16 fairminded ativo (Fehr-Schmidt) | — |
+| `peso_hirschman` | `0.3` | R07: desconto preventivo `g_i` pelo êxodo (Regime C) | 19 |
+| `fracao_contratos_acelerados` | `0.0` | R07: vesting universal (forçado p/ 0 em A/B por reserva de lei) | — |
+| `prob_pagamento_perc` | `1.0` | R18: probabilidade percebida de a firma pagar W | 13 |
+| `p_descumprimento_tcc` | `0.0` | R18: prob. de a firma quebrar o TCC | — |
+| `multa_descumprimento_tcc` | `0.0` | R18: sanção catastrófica adicional | — |
+| `D_disc_base_tcc` | `0.0` | R15 Vetor A: desconto que TCC clássico já dá | 16 |
+| `p_anulacao_tcc` | `0.0` | R15 Vetor B / F6: prob. de anulação judicial | 16 |
+| `custo_legal_uw` | `0.0` | R15 Vetor C: custo legal individual do denunciante | 16 |
+| `taxa_falso_reporte` | `0.02` | R04: prob. de reporte errôneo/malicioso | 15 |
+| `distribuicao_arquetipos` | `None` | preset c/ `oportunista` (R24) ou `fairminded` (R16) | 15, 18 |
+| `distribuicao_papeis` | `None` | `BIGTECH_MADURA` / `MARKETPLACE_BR` (R08, E05) | 17 |
+| `distribuicao_fatia_mercado` | `"uniforme"` | `"pareto"` com `alpha_pareto` (R13a) | — |
+| `choques` | `()` | catálogos de `choques.py` (R19) — layoff, paradigmático, CADE | — |
+| `prioridade_digital` | `0.0` | R14 autoridade: especialização em mercados digitais | — |
+
+Convenção: cada extensão tem (i) flag em `WaaSParametros` com default
+"desligado"; (ii) teste de regressão que verifica equivalência bit-a-bit
+com o caminho histórico; (iii) reporter novo no DataCollector quando
+introduz estado observável. **Backward compat estrita auditada por
+teste**, não documentada por boa-fé.
 
 ### 4.1 Mínimo viável
 
