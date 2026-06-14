@@ -19,7 +19,7 @@ Toda figura no site recebe um dos dois selos via CSS:
 A distinção é importante para que jornalista e jurista não confundam o
 que é argumento pedagógico com o que é evidência de simulação.
 
-## Figuras publicadas (19)
+## Figuras publicadas (21)
 
 | # | Arquivo | Módulo gerador | Página de uso | Classe |
 |---|---|---|---|---|
@@ -42,6 +42,8 @@ que é argumento pedagógico com o que é evidência de simulação.
 | 17 | `docs/img/17_variedade_papeis.png` | `viz/variedade.py` | `modelagem_multiagente.md` | empírica |
 | 18 | `docs/img/18_painel_sintese.png` | `viz/painel.py` | `resultados.md` | empírica |
 | 19 | `docs/img/19_mapa_lambda_hirschman.png` | `scripts/mapa_lambda_hirschman.py` | `modelo_abm.md` | empírica |
+| 20 | `docs/img/20_choques_5_catalogos.png` | `viz/choques.py` | `choques.md` | empírica |
+| 21 | `docs/img/21_identificabilidade_r03.png` | `viz/identificabilidade.py` | `transparencia.md` | empírica (calibrado) |
 
 Cada PNG está abaixo de 200 KB e usa a paleta `cividis` cego-amigável
 (`viz/paleta.py`). Todas as figuras seguem o padrão

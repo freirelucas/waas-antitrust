@@ -51,6 +51,15 @@ sem alegação de calibração além das fontes primárias do modelo
 | **Distribuição de papéis** | LinkedIn/organogramas | em aberto (E05) | dois presets (`BIGTECH_MADURA`, `MARKETPLACE_BR`); figura 17 |
 | **`taxa_capacidade` DOJ-ATR/DG-COMP** | orçamentos federais EUA/UE | em aberto (R28) | cenários EUA/UE usam defaults BR; comparações direcionais apenas |
 
+### A identificabilidade visualizada (175 rodadas 1D)
+
+<figure markdown>
+  ![Painel 2x4 da sensibilidade 1D de 7 parâmetros sobre o alvo de TCC/ano, com cada eixo mostrando mediana + IQR sobre 5 seeds e veredicto MOVE ALVO ou ORTOGONAL — SAI](img/21_identificabilidade_r03.png){ .figura-empirica .status-calibrado }
+  <figcaption>
+    Sensibilidade 1D do alvo de volume (TCC/ano simulado) sob 7 parâmetros (175 rodadas: 7 × 5 valores × 5 seeds, Regime B). Verde = MOVE ALVO; laranja = move pouco; vermelho = ORTOGONAL (Δ mediana = 0 — sai da função objetivo). O achado decisivo: <code>rho</code> (acurácia da autoridade) <strong>não move o alvo de volume</strong> e foi corretamente removido da função objetivo de calibração; <code>fracao_violadoras</code> (Δ = 1,6) e <code>taxa_capacidade</code> (Δ = 0,8) e <code>k_rel</code> (Δ = 0,8) dominam — o problema R03 reduz a 2 parâmetros operacionais.
+  </figcaption>
+</figure>
+
 ## Configuração das 19 figuras
 
 Cada figura tem **seeds** explícitas, **horizonte** e **cenário de

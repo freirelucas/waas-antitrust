@@ -91,6 +91,8 @@ nav:
           - Bem coletivo e instrumentos: bem_publico.md
           - Modelagem multiagente: modelagem_multiagente.md
           - Modelo ABM (detalhe + parâmetros): modelo_abm.md
+          - Catálogo de condutas digitais (28): condutas.md
+          - Catálogos de choques institucionais (R19): choques.md
           - Modelo (protocolo ODD): ODD.md
       - Direito e instituições:
           - Análise institucional: INSTITUTIONAL.md

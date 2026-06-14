@@ -185,6 +185,57 @@ def test_adversarial_gera_figura():
     plt.close(fig)
 
 
+def test_choques_gera_figura():
+    """`choques.gerar_figura` produz painel 2×3 dos 5 catálogos vs baseline.
+    Config reduzida para teste rápido."""
+    from waas_antitrust.viz import choques
+
+    aplicar_estilo()
+    fig, axes = choques.gerar_figura(seeds=(11,), n_tiques=4)
+    assert fig is not None
+    assert len(axes) == 6
+    plt.close(fig)
+
+
+def test_identificabilidade_gera_figura(tmp_path):
+    """`identificabilidade.gerar_figura` lê parquet e produz painel 2×4 da
+    sensibilidade 1D R03. Usa mini-parquet sintético para isolar o teste."""
+    import pandas as pd
+
+    from waas_antitrust.viz import identificabilidade
+
+    registros = []
+    for nome_param in ("fracao_violadoras", "taxa_capacidade", "rho"):
+        for valor in (0.1, 0.3, 0.6):
+            for seed in (1, 2):
+                # rho ortogonal (Δ=0), fracao_violadoras move muito, taxa_capacidade
+                # move pouco
+                if nome_param == "rho":
+                    tcc = 0.5
+                elif nome_param == "fracao_violadoras":
+                    tcc = valor * 3.0
+                else:
+                    tcc = valor * 1.0
+                registros.append(
+                    {
+                        "parametro": nome_param,
+                        "valor": valor,
+                        "seed": seed,
+                        "tcc_anual": tcc,
+                        "fracao_vp_internas": 0.99,
+                    }
+                )
+    df = pd.DataFrame(registros)
+    parquet = tmp_path / "identif.parquet"
+    df.to_parquet(parquet, index=False)
+
+    aplicar_estilo()
+    fig, axes = identificabilidade.gerar_figura(parquet_path=parquet)
+    assert fig is not None
+    assert len(axes) >= 7
+    plt.close(fig)
+
+
 def test_bootstrap_gera_figura():
     """`bootstrap.gerar_figura` retorna painel 1×2 (dano + bem-estar por
     regime com IC bootstrap). Config reduzida para teste rápido."""
