@@ -1,39 +1,78 @@
-site_name: waas-antitrust
+site_name: WaaS-antitrust
+site_url: https://freirelucas.github.io/waas-antitrust/
 site_description: >-
-  Modelo baseado em agentes para o mecanismo Whistleblower-as-a-Service no
-  enforcement antitruste de mercados digitais no Brasil.
+  Leniência Condicionada à Massa Crítica para mercados digitais brasileiros —
+  canal de depósito condicional operado pelo CADE, com 341 testes,
+  19 figuras reproduzíveis e calibração formal sobre o problema reduzido.
 site_author: "L."
 repo_url: https://github.com/freirelucas/waas-antitrust
 repo_name: freirelucas/waas-antitrust
 edit_uri: edit/main/docs/
-copyright: "Código e documentação sob CC BY-SA 4.0."
+copyright: >-
+  Código e documentação sob CC BY-SA 4.0 ·
+  <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> ·
+  <a href="https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb">brincar</a>
 
 theme:
   name: material
   language: pt-BR
+  font:
+    text: Inter
+    code: JetBrains Mono
   icon:
     repo: fontawesome/brands/github
+    logo: material/shield-key
+    annotation: material/arrow-right-circle
+    admonition:
+      note: material/lightbulb-on-outline
+      tip: material/check-circle-outline
+      warning: material/alert-octagon-outline
+      danger: material/skull-crossbones-outline
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: green
       accent: teal
       toggle:
         icon: material/weather-night
         name: Mudar para o modo escuro
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: green
       accent: teal
       toggle:
         icon: material/weather-sunny
         name: Mudar para o modo claro
   features:
+    - announce.dismiss
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
     - navigation.top
     - navigation.footer
-    - navigation.tracking
+    - navigation.path
+    - navigation.indexes
+    - navigation.prune
     - content.code.copy
+    - content.code.annotate
     - content.action.edit
+    - content.action.view
+    - content.tabs.link
+    - content.tooltips
     - search.suggest
-    - toc.integrate
+    - search.highlight
+    - search.share
+    - toc.follow
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/freirelucas/waas-antitrust
+      name: Repositório no GitHub
+    - icon: fontawesome/brands/google
+      link: https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb
+      name: Brincar no Colab
+  generator: false
 
 nav:
   - "Ato 1 · O problema": index.md

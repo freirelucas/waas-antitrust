@@ -1,6 +1,40 @@
+<div class="hero" markdown>
 <span class="ato-chip">Ato 1 de 5 · O problema</span>
 
 # Quando a infração é unilateral, quem denuncia?
+
+<p class="lead">A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é <strong>de uma firma só</strong> — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e <em>corp dev</em>, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.</p>
+
+<div class="hero-cta" markdown>
+[Ato 2: O mecanismo →](mecanismo.md){ .md-button .md-button--primary }
+[Brincar com o modelo](brincar.md){ .md-button }
+[Paper](paper.md){ .md-button }
+</div>
+</div>
+
+<div class="kpi-row" markdown>
+
+<div class="kpi-card" markdown>
+**R$ 12,3 mi**
+<small>margem da firma sob TCC-WaaS<br/>para receita de R\$ 1 bi</small>
+</div>
+
+<div class="kpi-card" markdown>
+**1.679 firmas**
+<small>universo CADE implícito<br/>após calibração formal R03</small>
+</div>
+
+<div class="kpi-card" markdown>
+**+1.363%**
+<small>ΔW de Regime B sobre A<br/>em bem-estar agregado</small>
+</div>
+
+<div class="kpi-card" markdown>
+**341 testes**
+<small>verdes em ~25s · 19 figuras<br/>reproduzíveis bit-a-bit</small>
+</div>
+
+</div>
 
 <p class="sublinha-tese"><em>A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um <strong>canal de depósito condicional</strong> onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".</em></p>
 
@@ -33,13 +67,31 @@ A proposta deste projeto, em uma frase:
 
 A LCMC é **mecanismo de coordenação**, não de pagamento. Resolve diretamente um problema clássico estudado por Mancur Olson em 1965: em grupos pequenos, ninguém quer ser o primeiro a se expor; cada um prefere esperar o outro começar. O canal de depósito condicional **elimina esse impasse por construção** — a denúncia individual nunca fica exposta sozinha enquanto a massa crítica não se forma.
 
-Para entender de onde vem essa ideia, três paralelos rápidos:
+Para entender de onde vem essa ideia, três paralelos do cotidiano. Cada um descreve a mesma estrutura por um ângulo diferente:
 
-- **Kickstarter**. Quando você apoia um projeto no Kickstarter, seu cartão só é cobrado se o projeto atingir a meta de apoiadores. Se a meta não é atingida, ninguém paga e nenhum projeto começa. A LCMC funciona igual, mas com denúncias: a sua denúncia só "cobra" — vira processo no CADE — se outros trabalhadores da mesma empresa também depositarem. Senão, ninguém é exposto.
+=== ":material-rocket-launch: Kickstarter"
 
-- **Callisto** ([callisto.org](https://www.callisto.org)). Plataforma americana onde estudantes universitárias podem registrar denúncias de assédio sexual: o nome da vítima só é revelado ao agressor citado se **outra** estudante tiver citado o **mesmo** agressor. Sem coincidência, o registro permanece anônimo. Existe na prática desde 2015 — não é hipótese.
+    Quando você apoia um projeto no Kickstarter, seu cartão **só é cobrado se o projeto atingir a meta** de apoiadores. Se a meta não é atingida, ninguém paga e nenhum projeto começa.
 
-- **Caixa-cofre com regra de abertura**. Imagine uma caixa-cofre operada por um terceiro confiável. Você coloca um envelope com a denúncia e uma instrução: "só abrir esta caixa quando houver ao menos cinco envelopes parecidos contra a mesma empresa". A caixa pode esperar meses. Quando atinge cinco, todos se abrem juntos. Ninguém foi o primeiro a se expor.
+    A LCMC funciona igual, mas com denúncias: a sua denúncia só "cobra" — vira processo no CADE — se outros trabalhadores da mesma empresa também depositarem. Se não houver coincidência suficiente, ninguém é exposto e nenhum processo se abre.
+
+    É o desenho *all-or-nothing*: ou todos cooperam e o projeto sai, ou ninguém é exposto financeiramente.
+
+=== ":material-shield-account: Callisto"
+
+    [Callisto](https://www.callisto.org) é uma plataforma americana em operação **desde 2015** onde estudantes universitárias registram denúncias de assédio sexual.
+
+    O nome de uma vítima só é revelado se **outra** vítima identificar o **mesmo** agressor. Sem coincidência, o registro permanece anônimo. Coincidência libera; isolamento mantém anonimato.
+
+    É a prova prática de que o desenho funciona em produção, não só em paper. A LCMC adapta o mesmo padrão para denúncia antitruste.
+
+=== ":material-treasure-chest: Caixa-cofre"
+
+    Imagine envelopes com denúncias entregues a uma caixa-cofre operada por uma instituição neutra — no nosso caso, o CADE.
+
+    Cada envelope vem com a instrução: *"abra esta caixa apenas quando houver ao menos N envelopes parecidos contra a mesma empresa"*. A caixa pode esperar meses. Quando atinge N, **todos** os envelopes se abrem juntos.
+
+    Ninguém foi o primeiro a se expor. A LCMC implementa esta caixa-cofre no procedimento administrativo do CADE.
 
 O nome acadêmico desse desenho é **escrow de informação condicional** ou *information escrow* — formalizado por Ian Ayres e Cait Unkovic (Yale Law School) em artigo de 2012 na *Michigan Law Review*, vol. 111, p. 145. A LCMC aplica este desenho ao antitruste brasileiro, com o CADE como o "terceiro confiável" que opera a caixa-cofre.
 
@@ -130,41 +182,53 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
 <div class="grid cards" markdown>
 
--   **Jornalista**
+-   :material-newspaper-variant-outline:{ .lg .middle } **Jornalista**
 
-    O lead em 30s, comparação BR×EUA×UE em 1 figura, autor e contato.
+    ---
 
-    [Kit de imprensa →](imprensa.md) · [Generalidade EUA e UE →](internacional.md)
+    O lead em 30s, comparação BR × EUA × UE em uma figura, autor e contato. Sem jargão jurídico em primeira linha.
 
--   **Advogado / advogada**
+    [:octicons-arrow-right-24: Kit de imprensa](imprensa.md) · [Generalidade EUA/UE](internacional.md)
 
-    Litígio: vetores jurídicos atacáveis (F6, reserva de lei, custo legal). Público: base autônoma Art. 4º Lei 12.529 + Lei 9.784/99. Compliance: implicações corporativas.
+-   :material-scale-balance:{ .lg .middle } **Advogado · advogada**
 
-    [Análise institucional →](INSTITUTIONAL.md) · [Limitações §jurídica →](limitacoes.md)
+    ---
 
--   **Economista**
+    Litígio: vetores atacáveis (F6, reserva de lei, custo legal). Público: base autônoma Art. 4º + Lei 9.784/99. Compliance: implicações corporativas.
 
-    Equações em uma tela (IC-F\* nas 3 formas, bem-estar, calibração formal R03 com $(0{,}323; 0{,}481)$). Reprodução com seeds explícitas.
+    [:octicons-arrow-right-24: Análise institucional](INSTITUTIONAL.md) · [Limitações §jurídica](limitacoes.md)
 
-    [Formulário matemático →](formulario.md) · [Transparência →](transparencia.md)
+-   :material-calculator-variant-outline:{ .lg .middle } **Economista**
 
--   **Autoridade**
+    ---
 
-    Decisor (CADE/PFE): tabela A/B/C com status normativo + base legal autônoma. Operacional (SG): fluxograma processual. Técnico (DEE): calibração com sensibilidade a N\*.
+    IC-F\* nas 3 formas, bem-estar, calibração formal R03 em $(0{,}323; 0{,}481)$. Reprodução com seeds explícitas e bootstrap CI.
 
-    [Análise institucional →](INSTITUTIONAL.md) · [Procedimento administrativo →](procedimento_cade.md)
+    [:octicons-arrow-right-24: Formulário matemático](formulario.md) · [Transparência](transparencia.md)
 
--   **Big Tech (PM, engenharia, compliance)**
+-   :material-shield-key-outline:{ .lg .middle } **Autoridade**
 
-    Aritmética em R$ por receita da empresa, arquitetura do modelo, exposição esperada. Cenário canônico `eua_doj_atr_rewards_2025` para comparação direta com Dodd-Frank §922.
+    ---
 
-    [Ato 2 · O mecanismo →](mecanismo.md) · [Compliance corporativo →](compliance_corporativo.md) · [Brincar com o modelo →](brincar.md)
+    Decisor (CADE/PFE): tabela A/B/C com status normativo e base autônoma. Operacional (SG): fluxograma processual. Técnico (DEE): calibração com sensibilidade a N\*.
 
--   **Academia / sociedade civil**
+    [:octicons-arrow-right-24: Análise institucional](INSTITUTIONAL.md) · [Procedimento (CADE)](procedimento_cade.md)
 
-    LCMC sob lente Ostrom-Coleman-Olson. Falsificação numérica da Prop. 5 forte. 18 figuras com seeds reproduzíveis. Como contestar em código.
+-   :material-domain:{ .lg .middle } **Big Tech**
 
-    [Bem coletivo →](bem_publico.md) · [Como contestar →](colaborar.md)
+    ---
+
+    Aritmética em R\$ por receita da empresa, arquitetura do modelo, exposição esperada. Cenário canônico EUA DOJ-ATR para comparação direta com Dodd-Frank §922.
+
+    [:octicons-arrow-right-24: Mecanismo](mecanismo.md) · [Compliance corporativo](compliance_corporativo.md) · [Brincar](brincar.md)
+
+-   :material-school-outline:{ .lg .middle } **Academia · sociedade civil**
+
+    ---
+
+    LCMC sob lente Ostrom-Coleman-Olson. Falsificação numérica da Prop. 5 forte. 19 figuras com seeds reproduzíveis. Como contestar em código.
+
+    [:octicons-arrow-right-24: Bem coletivo](bem_publico.md) · [Como contestar](colaborar.md)
 
 </div>
 
