@@ -145,7 +145,7 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
     Aritmética em R$ por receita da empresa, arquitetura do modelo, exposição esperada. Cenário canônico `eua_doj_atr_rewards_2025` para comparação direta com Dodd-Frank §922.
 
-    [Ato 2 · O mecanismo →](mecanismo.md) · [Modelo ABM (detalhe) →](modelo_abm.md)
+    [Ato 2 · O mecanismo →](mecanismo.md) · [Compliance corporativo →](compliance_corporativo.md)
 
 -   **Academia / sociedade civil**
 
