@@ -13,7 +13,7 @@ edit_uri: edit/main/docs/
 copyright: >-
   Código e documentação sob CC BY-SA 4.0 ·
   <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> ·
-  <a href="https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb">brincar</a>
+  <a href="brincar/">brincar in-browser</a>
 
 theme:
   name: material
@@ -72,9 +72,9 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/freirelucas/waas-antitrust
       name: Repositório no GitHub
-    - icon: fontawesome/brands/google
-      link: https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb
-      name: Brincar no Colab
+    - icon: material/play-box-outline
+      link: brincar/
+      name: Brincar in-browser
   generator: false
 
 nav:
@@ -157,3 +157,4 @@ extra_css:
 extra_javascript:
   - javascripts/mathjax.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/simulador.js

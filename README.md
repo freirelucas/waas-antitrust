@@ -9,10 +9,10 @@
 *Aplicada ao antitruste de mercados digitais brasileiros*
 
 [![Site](https://img.shields.io/badge/site-freirelucas.github.io%2Fwaas--antitrust-1e8449?style=for-the-badge&logo=readthedocs&logoColor=white)](https://freirelucas.github.io/waas-antitrust/)
-[![Brincar no Colab](https://img.shields.io/badge/brincar%20no%20Colab-rodar%20o%20modelo-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb)
+[![Brincar in-browser](https://img.shields.io/badge/brincar%20in--browser-simulador%20JS-27AE60?style=for-the-badge&logo=googlechrome&logoColor=white)](https://freirelucas.github.io/waas-antitrust/brincar/)
 [![Paper](https://img.shields.io/badge/paper-rascunho%20v0.2.0-blue?style=for-the-badge&logo=overleaf&logoColor=white)](https://github.com/freirelucas/waas-antitrust/blob/main/paper/main.tex)
 
-[![CI](https://img.shields.io/badge/pytest-343%20passed-brightgreen?style=flat-square)](https://github.com/freirelucas/waas-antitrust/actions)
+[![CI](https://img.shields.io/badge/pytest-354%20passed-brightgreen?style=flat-square)](https://github.com/freirelucas/waas-antitrust/actions)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue?style=flat-square)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
 [![Mesa](https://img.shields.io/badge/mesa-3.x-green?style=flat-square)](https://mesa.readthedocs.io/)
@@ -85,7 +85,7 @@ O **WaaS é apenas um dos cinco instrumentos**. Quando ele é o acoplamento ativ
 | 🏛️ **Autoridade** | [Procedimento administrativo](https://freirelucas.github.io/waas-antitrust/procedimento_cade/) | Fluxograma 7 etapas + sigilo Lei 9.784 Art. 24 |
 | 🏢 **Big Tech** | [Compliance corporativo](https://freirelucas.github.io/waas-antitrust/compliance_corporativo/) | Aritmética R$ + 4 vetores corporativos materiais |
 | 🎓 **Academia** | [Paper](https://freirelucas.github.io/waas-antitrust/paper/) · [Bem coletivo](https://freirelucas.github.io/waas-antitrust/bem_publico/) | Ostrom-Coleman-Olson + falsificação Prop. 5 forte |
-| 🧪 **Curiosa/o** | [Brincar com o modelo](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb) | 12 sliders + painel 2×2 em ~30s por simulação |
+| 🧪 **Curiosa/o** | [Brincar in-browser](https://freirelucas.github.io/waas-antitrust/brincar/) | 13 sliders + 4 gráficos em tempo real, sem download — implementa R27/R29 |
 
 ## Instalação em 3 comandos
 
@@ -108,8 +108,8 @@ pip install "waas-antitrust @ git+https://github.com/freirelucas/waas-antitrust.
 ## Fluxos típicos
 
 ```bash
-# 1. Brincar interativamente (Colab ou local com ipywidgets)
-jupyter notebook notebooks/WaaS_brincar.ipynb
+# 1. Brincar interativamente — abre o simulador in-browser, sem instalação
+open https://freirelucas.github.io/waas-antitrust/brincar/
 
 # 2. Reproduzir os 3 achados científicos da rodada de jun/2026
 python scripts/varredura_alpha_erosao.py     # falsifica Prop. 5 forte
@@ -185,6 +185,6 @@ Código e documentação sob [Creative Commons Atribuição-CompartilhaIgual 4.0
 
 *Proposição acadêmica independente. O autor mantém este repositório sem vinculação institucional formal a CADE, IPEA ou qualquer organização privada.*
 
-[Site MkDocs](https://freirelucas.github.io/waas-antitrust/) · [Brincar no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb) · [Paper](https://github.com/freirelucas/waas-antitrust/blob/main/paper/main.tex) · [Backlog](https://freirelucas.github.io/waas-antitrust/DECISIONS/)
+[Site MkDocs](https://freirelucas.github.io/waas-antitrust/) · [Brincar in-browser](https://freirelucas.github.io/waas-antitrust/brincar/) · [Paper](https://github.com/freirelucas/waas-antitrust/blob/main/paper/main.tex) · [Backlog](https://freirelucas.github.io/waas-antitrust/DECISIONS/)
 
 </div>

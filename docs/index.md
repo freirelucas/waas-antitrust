@@ -4,11 +4,11 @@
 
 A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é **de uma firma só** — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e *corp dev*, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.
 
-[**▶ Ato 2: O mecanismo**](mecanismo.md) · [🧪 Brincar com o modelo](brincar.md) · [📄 Paper](paper.md)
+[**▶ Ato 2: O mecanismo**](mecanismo.md) · [🧪 Brincar in-browser](brincar.md) · [📄 Paper](paper.md)
 
-| R\$ 12,3 mi | 1.679 firmas | +1.363% | 343 testes |
+| R\$ 12,3 mi | 1.679 firmas | +1.363% | 354 testes |
 |:---:|:---:|:---:|:---:|
-| **margem da firma sob TCC-WaaS** para receita de R\$ 1 bi | **universo CADE implícito** após calibração formal R03 | **ΔW de Regime B sobre A** em bem-estar agregado | **verdes em ~25s** · 21 figuras reproduzíveis |
+| **margem da firma sob TCC-WaaS** para receita de R\$ 1 bi | **universo CADE implícito** após calibração formal R03 | **ΔW de Regime B sobre A** em bem-estar agregado | **verdes em ~38s** · 22 figuras reproduzíveis |
 
 > *A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um **canal de depósito condicional** onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".*
 
@@ -143,6 +143,6 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
 ---
 
-[![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE) [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/) [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/) [![343 testes](https://img.shields.io/badge/pytest-343%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions) [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb)
+[![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE) [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/) [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/) [![354 testes](https://img.shields.io/badge/pytest-354%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions) [![Brincar in-browser](https://img.shields.io/badge/brincar-in--browser-27AE60)](brincar.md)
 
 Este repositório acompanha um **artigo acadêmico em elaboração** — *Leniency Conditional on Critical Mass: A Conditional-Deposit Channel for Unilateral Conduct in Digital Markets*. Não citar como resultado final. Veja `CITATION.cff` para metadados estruturados (Zenodo via release futura).

@@ -952,3 +952,170 @@
 .md-typeset > h2 + p + table tr:hover td {
   background: rgba(39, 174, 96, 0.04);
 }
+
+/* ============================================================================
+ * Simulador in-browser (docs/brincar.md, docs/javascripts/simulador.js)
+ * ========================================================================= */
+.sim-painel {
+  background: linear-gradient(135deg, #f8fdf9 0%, #eef9f3 100%);
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 6px 22px rgba(20, 45, 30, 0.05);
+}
+[data-md-color-scheme="slate"] .sim-painel {
+  background: linear-gradient(135deg, #1f2a25 0%, #1c2520 100%);
+  border-color: rgba(46, 204, 113, 0.25);
+}
+.sim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sim-grupo {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(39, 174, 96, 0.1);
+}
+[data-md-color-scheme="slate"] .sim-grupo {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(46, 204, 113, 0.15);
+}
+.sim-grupo strong {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #16a085;
+  margin-bottom: 0.55rem;
+}
+[data-md-color-scheme="slate"] .sim-grupo strong {
+  color: #58d68d;
+}
+.sim-grupo label {
+  display: block;
+  font-size: 0.85rem;
+  margin: 0.45rem 0;
+  color: #2c3e50;
+}
+[data-md-color-scheme="slate"] .sim-grupo label {
+  color: #d5dbdb;
+}
+.sim-grupo label span {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #27ae60;
+  margin-left: 0.25rem;
+}
+.sim-grupo input[type="range"],
+.sim-grupo select {
+  display: block;
+  width: 100%;
+  margin-top: 0.2rem;
+}
+.sim-grupo select {
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: white;
+  font-size: 0.9rem;
+}
+[data-md-color-scheme="slate"] .sim-grupo select {
+  background: #1a2521;
+  color: #ecf0f1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.sim-grupo input[type="checkbox"] {
+  margin-right: 0.4rem;
+}
+.sim-acoes {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.8rem 0 1rem;
+  flex-wrap: wrap;
+}
+.sim-acoes button {
+  background: linear-gradient(135deg, #27ae60, #16a085);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.28);
+}
+.sim-acoes button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(39, 174, 96, 0.38);
+}
+.sim-acoes #sim-tempo {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  font-variant-numeric: tabular-nums;
+}
+.sim-graficos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+.sim-graficos canvas {
+  width: 100%;
+  height: auto;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+[data-md-color-scheme="slate"] .sim-graficos canvas {
+  background: #161e1b;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+@media (max-width: 700px) {
+  .sim-graficos {
+    grid-template-columns: 1fr;
+  }
+}
+.sim-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.sim-kpi {
+  background: rgba(39, 174, 96, 0.08);
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border-left: 3px solid #27ae60;
+  display: flex;
+  flex-direction: column;
+}
+.sim-kpi strong {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #16a085;
+  margin-bottom: 0.2rem;
+}
+.sim-kpi span {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2c3e50;
+  font-variant-numeric: tabular-nums;
+}
+[data-md-color-scheme="slate"] .sim-kpi {
+  background: rgba(46, 204, 113, 0.1);
+}
+[data-md-color-scheme="slate"] .sim-kpi strong {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .sim-kpi span {
+  color: #ecf0f1;
+}
