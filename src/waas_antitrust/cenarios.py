@@ -430,6 +430,33 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "alpha_erosao": 0.5,
         },
     ),
+    # ----- R29 — Janela de adesão pós-abertura com desconto progressivo -----
+    Cenario(
+        nome="cascata_adesao_progressiva",
+        descricao=(
+            "**Caso base R29**: canal de depósito condicional + janela de "
+            "adesão pós-abertura de 10 tiques + desconto progressivo por classe "
+            "(faixas 100%/70%/50%/30%/10%). Quando uma firma atinge massa "
+            "crítica e seu escrow é aberto, abre-se a oferta para os demais "
+            "trabalhadores da MESMA firma aderirem à classe dos lenientes — "
+            "quem chega primeiro recebe desconto maior; quem não aderir até o "
+            "fim da janela permanece no escrow comum (sujeito a expiração "
+            "R27-ii). Cascata pós-coordenação que espelha o Art. 86 da Lei "
+            "12.529/2011 (fila de leniência) operada DENTRO da firma já aberta. "
+            "Calibrado para firmas médias (q_min=0,10) e taxa de observação "
+            "moderada; mede o sub-produto observável `n_aderentes_pos_abertura_acum`."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "janela_escrow_tiques": 8,
+            "janela_adesao_pos_abertura": 10,
+            "descontos_faixas_adesao": (1.0, 0.7, 0.5, 0.3, 0.1),
+            "q_min_cooperacao_interna": 0.10,
+            "fracao_violadoras": 0.5,
+            "taxa_observacao": 0.5,
+        },
+    ),
 )
 
 

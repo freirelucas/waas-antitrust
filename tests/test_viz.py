@@ -31,6 +31,16 @@ def test_fase_gera_figura():
     plt.close(fig)
 
 
+def test_cascata_adesao_gera_figura():
+    """R29 — janela de adesão pós-abertura com desconto progressivo."""
+    from waas_antitrust.viz import cascata_adesao
+
+    aplicar_estilo()
+    fig, ax = cascata_adesao.gerar_figura()
+    assert fig is not None
+    plt.close(fig)
+
+
 def test_painel_sintese_gera_figura():
     """`painel.gerar_figura` compõe a figura-síntese 2×3 (T01 fechado).
     Config reduzida para teste rápido."""
