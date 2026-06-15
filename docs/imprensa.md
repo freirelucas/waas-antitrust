@@ -70,7 +70,7 @@ unilateral típica (auto-preferência, p. ex.), com multa esperada de 5% da rece
 
 O cálculo detalhado, com os 3 cenários de quem paga o custo legal e os 3 vetores de
 quebra (TCC clássico já dá o desconto; Judiciário anula; custo legal proíbe), está
-em [`mecanismo.md` Camada 4](mecanismo.md#camada-4-a-aritmetica-da-ic-f-sob-instrumento-waas).
+em [`mecanismo.md` Camada 4](mecanismo.md#a-ic-f-sob-instrumento-waas).
 
 ---
 

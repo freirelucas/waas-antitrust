@@ -1,12 +1,13 @@
 # O mecanismo, em três camadas
 
-**Ato 2 de 5 · A hipótese**
+<p class="deck">Primeiro o canal (depósito condicional CADE). Depois a coordenação que isso resolve (Olson sem sub-iniciação). Por último os instrumentos incrementais — todos opcionais.</p>
 
-<p class="sublinha-tese"><em>Primeiro o canal (depósito condicional CADE). Depois a coordenação que isso resolve (Olson sem sub-iniciação). Por último os instrumentos incrementais — todos opcionais.</em></p>
+<p class="byline"><em>Ato 2 de 5</em> · A hipótese · rascunho v0.2.0</p>
 
-Esta página é organizada de fora para dentro: do **mecanismo de recepção qualificada** (canal de depósito condicional) → para o **problema de coordenação** que ele resolve → para os **instrumentos incrementais** que aumentam adesão sem serem essenciais. A ordem importa: muita gente lê o WaaS como se ele *fosse* a LCMC. Não é. O Ato 1 separou os dois conceitos. Aqui formalizamos.
+<p class="lede">Esta página é organizada de fora para dentro: do <strong>mecanismo de recepção qualificada</strong> (canal de depósito condicional) para o <strong>problema de coordenação</strong> que ele resolve, e por fim para os <strong>instrumentos incrementais</strong> que aumentam adesão sem serem essenciais. A ordem importa: muita gente lê o WaaS como se ele <em>fosse</em> a LCMC. Não é. O Ato 1 separou os dois conceitos. Aqui formalizamos.</p>
 
-## Camada 1 — O canal de depósito condicional (coração do mecanismo)
+<span class="kicker">Camada 1 · Coração</span>
+## O canal de depósito condicional
 
 A **Leniência Condicionada à Massa Crítica** (LCMC) é um *information escrow* operado pelo CADE:
 
@@ -88,7 +89,8 @@ As funções de canal são puras na lógica e idempotentes por tique. **Nada de 
   </figcaption>
 </figure>
 
-## Camada 2 — A coordenação que o canal resolve
+<span class="kicker">Camada 2 · Coordenação</span>
+## A coordenação que o canal resolve
 
 O canal não cria cooperação onde não havia; **resolve o jogo de coordenação** que torna a cooperação racionalmente difícil. Olson (1965, *Logic of Collective Action*) mostrou que mesmo em grupos pequenos onde todos sairiam melhor cooperando, cada agente individual prefere esperar: ninguém quer ser o primeiro a arcar com o risco. Granovetter (1978) generalizou via limiares heterogêneos; Centola-Macy (2007) mostraram que contágio complexo exige reforço local.
 
@@ -122,7 +124,8 @@ Quando há recompensa (instrumento monetário ativo, **incremental ao canal**), 
 
 O mesmo gradiente, normalizado por $D_{\text{Saito}}(1) = 43{,}43\%$, calibra a fila intra-firma sob `modo_corrida=True` — quem coopera em posição 1 dentro da firma recebe 100% da recompensa; em posição 2, 79,5%; em posição 3, 46,6%. A escolha *não é arbitrária*: o mesmo dado empírico do CADE calibra duas escalas.
 
-## Camada 3 — Os cinco instrumentos incrementais
+<span class="kicker">Camada 3 · Incrementos</span>
+## Os cinco instrumentos incrementais
 
 A LCMC funciona **sem nenhum** dos instrumentos abaixo — o canal sozinho resolve a coordenação. Os instrumentos aumentam a *probabilidade de adesão* ao canal, oferecendo benefício ao depositante. Cada um tem reserva constitucional distinta e pode ser adotado isoladamente ou em combinação.
 
@@ -153,7 +156,8 @@ for nome in ("A", "B", "C", "Cᵩ", "Cₚ"):
 # Cₚ: + 'leniencia_criminal_individual'
 ```
 
-## Camada 4 — A aritmética da IC-F\* (sob instrumento WaaS)
+<span class="kicker">Camada 4 · Aritmética</span>
+## A IC-F\* sob instrumento WaaS
 
 > **Quando esta camada se aplica.** A próxima seção é específica do
 > **instrumento WaaS** — o único que envolve a firma pagando o trabalhador
@@ -348,7 +352,8 @@ crítica se forma. Modelar isto endogenamente é o trabalho de R16, e o
 catálogo de [cenários normativos](#) (R17) já oferece presets que ativam
 o canal.
 
-## Camada 5 — Janela de adesão pós-abertura com desconto progressivo (R29)
+<span class="kicker">Camada 5 · Cascata</span>
+## Janela de adesão pós-abertura com desconto progressivo (R29)
 
 A LCMC clássica resolve o problema de quem dá o primeiro passo: ninguém é o primeiro, porque o canal espera todos. Mas quando a massa crítica é atingida e o bloco se abre, sobra ainda **uma decisão aberta para o resto dos trabalhadores da firma**: o que fazer com quem viu a conduta mas não depositou a tempo? A regra R29 oferece a esses retardatários **uma janela de dez tiques para aderir à classe dos lenientes** com desconto decrescente por ordem de chegada — uma versão pós-coordenação da fila clássica do Art. 86 da Lei nº 12.529/2011.
 

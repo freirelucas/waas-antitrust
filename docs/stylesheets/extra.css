@@ -1362,3 +1362,262 @@
   background: linear-gradient(90deg, #27ae60, #16a085);
   border-radius: 2px;
 }
+
+/* ============================================================================
+ * Banho de loja jornalístico-estilístico (jun/2026)
+ * Tipografia editorial: Playfair Display (manchetes) + Source Serif (deck)
+ * + estrutura jornal: kicker · deck · byline · lede com drop cap · pull-quote
+ * Material Inter (corpo) é preservado para legibilidade
+ * ========================================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap");
+
+/* Manchetes em serif editorial — H1/H2/H3 do conteúdo principal */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-family: "Playfair Display", "Source Serif 4", Georgia, "Times New Roman",
+    serif;
+  letter-spacing: -0.012em;
+}
+.md-typeset h1 {
+  font-weight: 900;
+  font-size: 2.6rem;
+  line-height: 1.05;
+  margin-bottom: 0.4rem;
+}
+.md-typeset h2 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.18;
+}
+.md-typeset h3 {
+  font-weight: 700;
+  font-size: 1.32rem;
+  line-height: 1.22;
+}
+@media (max-width: 720px) {
+  .md-typeset h1 {
+    font-size: 2.05rem;
+  }
+  .md-typeset h2 {
+    font-size: 1.45rem;
+  }
+}
+
+/* Kicker — etiqueta de seção tipo "editorial / análise / breaking" acima do H2 */
+.md-typeset .kicker {
+  display: inline-block;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #16a085;
+  background: linear-gradient(180deg, #eafaf2 0%, #d7f3e3 100%);
+  padding: 0.28rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.55rem;
+  position: relative;
+  top: -0.1rem;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+}
+[data-md-color-scheme="slate"] .md-typeset .kicker {
+  color: #58d68d;
+  background: linear-gradient(180deg, #1f3329 0%, #1a2820 100%);
+  border-color: rgba(46, 204, 113, 0.3);
+}
+.md-typeset .kicker + h1,
+.md-typeset .kicker + h2,
+.md-typeset .kicker + h3 {
+  margin-top: 0.25rem;
+}
+
+/* Deck — strapline editorial sob o H1 (italico serif, leve, separador) */
+.md-typeset .deck {
+  font-family: "Source Serif 4", "Playfair Display", Georgia, serif;
+  font-size: 1.32rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #3d5a4b;
+  line-height: 1.42;
+  margin: 0.25rem 0 1.1rem;
+  padding-bottom: 1.05rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  max-width: 760px;
+}
+[data-md-color-scheme="slate"] .md-typeset .deck {
+  color: #b5c4bd;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Byline · dateline jornalístico */
+.md-typeset .byline {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7f8c8d;
+  font-weight: 700;
+  margin: 0.2rem 0 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.md-typeset .byline::before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, #27ae60, #16a085);
+  border-radius: 1px;
+}
+.md-typeset .byline em {
+  font-style: normal;
+  color: #16624c;
+  font-weight: 800;
+}
+[data-md-color-scheme="slate"] .md-typeset .byline em {
+  color: #58d68d;
+}
+
+/* Lede — primeiro parágrafo da matéria com drop cap clássico */
+.md-typeset .lede {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.18rem;
+  line-height: 1.55;
+  color: #243030;
+  margin: 0.6rem 0 1.4rem;
+}
+.md-typeset .lede::first-letter {
+  float: left;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 900;
+  font-size: 4.6em;
+  line-height: 0.84;
+  margin: 0.06em 0.14em -0.08em 0;
+  color: #16624c;
+  background: linear-gradient(180deg, #16a085, #16624c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-md-color-scheme="slate"] .md-typeset .lede {
+  color: #e1e8e5;
+}
+[data-md-color-scheme="slate"] .md-typeset .lede::first-letter {
+  background: linear-gradient(180deg, #58d68d, #27ae60);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pull-quote jornalístico — citação destacada (estilo NYT / FSP) */
+.md-typeset .pull-quote-jornal {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.55rem;
+  line-height: 1.32;
+  color: #16624c;
+  text-align: center;
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 1.6rem 1rem 1.4rem;
+  position: relative;
+}
+.md-typeset .pull-quote-jornal::before,
+.md-typeset .pull-quote-jornal::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #27ae60, transparent);
+  margin: 0 auto;
+}
+.md-typeset .pull-quote-jornal::before {
+  margin-bottom: 1.1rem;
+}
+.md-typeset .pull-quote-jornal::after {
+  margin-top: 1.1rem;
+}
+.md-typeset .pull-quote-jornal cite {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7f8c8d;
+  margin-top: 0.9rem;
+}
+[data-md-color-scheme="slate"] .md-typeset .pull-quote-jornal {
+  color: #d5e8df;
+}
+
+/* Dado em destaque — caixa lateral estilo "by the numbers" */
+.md-typeset .dado-destaque {
+  background: linear-gradient(160deg, #f9fdfb 0%, #f0f9f4 100%);
+  border-left: 4px solid #27ae60;
+  padding: 1.1rem 1.3rem 1rem;
+  margin: 1.6rem 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: #2c3e50;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 4px 14px rgba(20, 45, 30, 0.05);
+}
+.md-typeset .dado-destaque strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 900;
+  font-size: 2rem;
+  color: #16624c;
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+}
+[data-md-color-scheme="slate"] .md-typeset .dado-destaque {
+  background: linear-gradient(160deg, #1f2925 0%, #1a201d 100%);
+  color: #d5dbdb;
+}
+[data-md-color-scheme="slate"] .md-typeset .dado-destaque strong {
+  color: #58d68d;
+}
+
+/* Regra jornal — separador entre matérias (substitui o <hr> bruto) */
+.md-typeset hr {
+  border: 0;
+  height: auto;
+  margin: 2.4rem 0;
+  text-align: center;
+  position: relative;
+}
+.md-typeset hr::after {
+  content: "◆ ◆ ◆";
+  display: block;
+  letter-spacing: 1.2em;
+  font-size: 0.6rem;
+  color: rgba(39, 174, 96, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+[data-md-color-scheme="slate"] .md-typeset hr::after {
+  color: rgba(88, 214, 141, 0.55);
+}
+
+/* Subtítulo seccional (H3) ganha pequena barra verde */
+.md-typeset h3 {
+  position: relative;
+  padding-left: 0.85rem;
+}
+.md-typeset h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  bottom: 0.18em;
+  width: 3px;
+  background: linear-gradient(180deg, #27ae60, #16a085);
+  border-radius: 2px;
+}

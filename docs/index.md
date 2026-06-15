@@ -1,8 +1,10 @@
 # Quando a infração é unilateral, quem denuncia?
 
-**Ato 1 de 5 · O problema**
+<p class="deck">Como destravar a denúncia interna em mercados digitais com um canal de depósito condicional operado pelo CADE — sem nova lei, sem dependência de cúmplice externo, com cinco instrumentos opcionais para internalizar a cooperação.</p>
 
-A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é **de uma firma só** — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e *corp dev*, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.
+<p class="byline"><em>L.</em> · Rascunho v0.2.0 · jun/2026</p>
+
+<p class="lede">A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é <strong>de uma firma só</strong> — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e <em>corp dev</em>, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.</p>
 
 [**▶ Ato 2: O mecanismo**](mecanismo.md) · [🧪 Brincar in-browser](brincar.md) · [📄 Paper](paper.md)
 
@@ -10,8 +12,9 @@ A leniência clássica acabou de bater num muro. Em mercados digitais, a infraç
 |:---:|:---:|:---:|:---:|
 | **margem da firma sob TCC-WaaS** para receita de R\$ 1 bi | **universo CADE implícito** após calibração formal R03 | **ΔW de Regime B sobre A** em bem-estar agregado | **verdes em ~31s** · 23 figuras reproduzíveis |
 
-> *A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um **canal de depósito condicional** onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".*
+<p class="pull-quote-jornal">A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um canal de depósito condicional onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".<cite>Tese central · LCMC</cite></p>
 
+<span class="kicker">Ato 1 · O problema</span>
 ## A leniência clássica acabou de bater num muro
 
 Por quase trinta anos, programas de leniência foram a peça-mestre do enforcement antitruste. A lógica é simples: dois ou mais conspiradores fizeram um cartel; quem entregar primeiro escapa da multa. **O cartel se denuncia sozinho** — é a beleza do desenho.
@@ -27,6 +30,7 @@ A informação sobre essas práticas existe **dentro da própria empresa** — e
 
 > A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
 
+<span class="kicker">A tese</span>
 ## A resposta: LCMC como canal de depósito condicional
 
 Em mercados digitais com **fosso competitivo profundo** (uma plataforma dominante cercada de barreiras estruturais — efeitos de rede, dados acumulados, integração vertical — que tornam a entrada de concorrente quase impossível), a cumplicidade na infração existe **dentro da própria empresa**: entre os times de engenharia, produto, jurídico e aquisições. O problema central não é "como punir a firma" nem "como pagar o denunciante" — é **como resolver a coordenação dos trabalhadores que veem a conduta mas não querem brigar a luta sozinhos**.
@@ -49,6 +53,7 @@ Cada um descreve a mesma estrutura por um ângulo diferente.
 
 O nome acadêmico desse desenho é **escrow de informação condicional** ou *information escrow* — formalizado por Ian Ayres e Cait Unkovic (Yale Law School) em artigo de 2012 na *Michigan Law Review*, vol. 111, p. 145. A LCMC aplica este desenho ao antitruste brasileiro, com o CADE como o "terceiro confiável" que opera a caixa-cofre.
 
+<span class="kicker">Os incrementos</span>
 ## O que vem depois da abertura — instrumentos opcionais
 
 Quando o canal abre (massa crítica atingida), o procedimento administrativo se instaura: a firma é notificada com prova qualificada e coletiva; o CADE conduz a investigação; eventualmente assina um **TCC** (Termo de Compromisso de Cessação — espécie de acordo em que a firma admite cessar a conduta em troca de redução da multa) ou aplica a multa cheia. Esta parte usa o ferramental jurídico **já existente** na Lei 12.529/2011 — Art. 85 (regras do TCC), Art. 86 (leniência clássica para cartéis), Art. 45 (critérios para calcular a multa final, em jargão jurídico "dosimetria").
@@ -65,6 +70,7 @@ Quando o canal abre (massa crítica atingida), o procedimento administrativo se 
 
 A linha **"Nenhum — só o canal"** é a configuração mais conservadora juridicamente: o canal exige apenas uma Resolução do CADE regulamentando o **procedimento de como receber denúncias condicionais** (com base no Art. 4º, II e III da Lei 12.529/2011 combinado com a Lei 9.784/99, que rege o processo administrativo federal). Não cria nova categoria de punição; apenas estrutura *como o CADE recebe* informação. O risco de o Judiciário anular essa Resolução depois — que o projeto chama de **falsificador F6** e analisa em detalhe no [Ato 4 · Limitações](limitacoes.md) — cai materialmente.
 
+<span class="kicker">Saída literal do modelo</span>
 ## A figura central
 
 A figura abaixo é a **saída literal** de uma execução do modelo computacional. Não é estilizada — vem do `WaaSModel.executar()`, *seed* 11, regimes A/B/C lado a lado.
@@ -73,8 +79,14 @@ A figura abaixo é a **saída literal** de uma execução do modelo computaciona
 
 **(A)** Violadoras ativas ao longo do tempo: regime A (cinza) cresce e estabiliza alto; regimes B/C (verde/roxo) caem a zero em ~17 tiques. **(B)** Bem-estar social agregado. ΔW (B sobre A) = +1363%.
 
+<aside class="dado-destaque" markdown>
+<strong>+1.363%</strong>
+Ganho de bem-estar agregado do Regime B (Resolução CADE) sobre o status quo, em uma rodada multi-seed do modelo. O segundo degrau — sinergia internacional R30 — soma a esse ganho um adicional medido no [`internacional.md`](internacional.md).
+</aside>
+
 *Leitura sob LCMC corrigida:* a queda de violadoras em B/C é resultado de **denúncias coletivas abrindo do escrow**. Cada vez que o canal abre, o sinal Schelling se propaga (detecção percebida sobe em todas as firmas). O instrumento WaaS está ativo nas curvas verdes/roxas como incentivo incremental à adesão ao canal — não é a causa primeira da queda.
 
+<span class="kicker">Reprodutibilidade</span>
 ## Reproduzir esta figura em três comandos
 
 Toda a página acima é gerada por código aberto sob CC BY-SA 4.0. O leitor pode reproduzir a figura central em três passos:
@@ -110,6 +122,7 @@ for t in m.trabalhadores_por_empresa[0][:5]:
 
 A simulação produz 34 reporters em colunas de pandas. Tudo é inspecionável; nada está escondido em variáveis privadas opacas. Ver [Modelagem multiagente](modelagem_multiagente.md) para a anatomia das três classes (`TrabalhadorAgent`, `EmpresaAgent`, `AutoridadeAgent`).
 
+<span class="kicker">Arquitetura institucional</span>
 ## Três regimes jurídicos, cinco instrumentos
 
 A LCMC pode ser implementada em três regimes regulatórios distintos. Os instrumentos disponíveis dependem do regime — e cada instrumento exige reserva constitucional diferente (Art. 22 I, Art. 146 LC, Art. 5º XXXIX).
@@ -124,6 +137,7 @@ A LCMC pode ser implementada em três regimes regulatórios distintos. Os instru
 
 O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho com a Resolução 21/2018 vigente. O **Regime C** é mais robusto juridicamente mas exige Congresso — e a [viabilidade política 2024-2027](viabilidade_regime_c.md) é incerta. Os sub-regimes Cᵩ e Cₚ são exploratórios.
 
+<span class="kicker">Editoria · roteiros</span>
 ## Por onde seguir — entrada por papel profissional
 
 <div class="persona-grade" markdown>
