@@ -45,6 +45,7 @@ que é argumento pedagógico com o que é evidência de simulação.
 | 20 | `docs/img/20_choques_5_catalogos.png` | `viz/choques.py` | `choques.md` | empírica |
 | 21 | `docs/img/21_identificabilidade_r03.png` | `viz/identificabilidade.py` | `transparencia.md` | empírica (calibrado) |
 | 22 | `docs/img/22_cascata_adesao_r29.png` | `viz/cascata_adesao.py` | `mecanismo.md` (Camada 5) | conceitual |
+| 23 | `docs/img/23_sinergia_internacional_r30.png` | `viz/sinergia_internacional.py` | `internacional.md` | empírica (direcional) |
 
 Cada PNG está abaixo de 200 KB e usa a paleta `cividis` cego-amigável
 (`viz/paleta.py`). Todas as figuras seguem o padrão

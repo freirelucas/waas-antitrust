@@ -99,6 +99,56 @@ for nome in ("status_quo", "eua_doj_atr_rewards_2025", "ue_dma_whistleblower_too
           f"bem_estar={df['bem_estar'].iloc[-1]:.2f}")
 ```
 
+## E se todas as autoridades adotassem LCMC ao mesmo tempo?
+
+A pergunta natural depois de enquadrar BR, EUA e UE como variantes paramétricas do mesmo modelo é: **se todas as autoridades antitruste do mundo adotassem LCMC simultaneamente, haveria sinergias?** A R30 modela essa hipótese com duas alavancas independentes e testáveis.
+
+A primeira alavanca é **consolidação cross-jurisdicional do escrow**. Big Tech opera, por desenho, em múltiplas jurisdições — uma engenheira de busca da Google trabalha no mesmo *self-preferencing* em São Paulo, Mountain View e Dublin. Sob LCMC descoordenada, cada autoridade exige sua própria massa crítica local: a engenheira em São Paulo precisa que 10% das engenheiras de São Paulo depositem; em Mountain View, mais 10% das engenheiras de Mountain View; em Dublin, mais 10% das de Dublin. **Sob LCMC consolidada**, os depósitos em qualquer jurisdição contam para o gatilho global do grupo econômico — se 10% das engenheiras *somadas* das três jurisdições depositarem, o canal abre em todas simultaneamente. Paralelo institucional direto: o **MoU bilateral CADE-DOJ-ATR de 2019**, o **acordo DG-COMP-CADE de 2009** e o **ICN MoU de 2001** já preveem o compartilhamento de informação sob acordos de cooperação; a LCMC consolidada apenas formaliza o gatilho coordenado.
+
+A segunda alavanca é **amplificação Schelling internacional**. Cada abertura de bloco em qualquer jurisdição vira notícia: comunicado conjunto da DG-COMP, *press release* do DOJ-ATR, painel do ICN. A R30 modela esse efeito como um boost na detecção percebida `p_perc` em todas as outras firmas globalmente — captura o canal de aprendizado que faz com que uma decisão da DG-COMP contra a Apple eleve, materialmente, a probabilidade percebida de ação no CADE contra a Apple BR.
+
+![Sinergia entre autoridades internacionais sob LCMC global](img/23_sinergia_internacional_r30.png)
+
+A figura mostra os três regimes lado a lado em uma rodada multi-seed: status quo (sem LCMC), LCMC descoordenada (cada autoridade local rodando isolada) e LCMC global coordenada (consolidação cross-jurisdicional + amplificação Schelling). O painel (A) mostra a trajetória de violadoras ativas; o painel (B) decompõe o ΔW agregado em dois degraus — o ganho da LCMC local e o **segundo degrau de sinergia** que só aparece quando há coordenação.
+
+### Casos materiais hoje em curso
+
+A operacionalidade da R30 não é especulativa. Três condutas anticompetitivas estão sendo investigadas, em paralelo e sem coordenação formal, em três ou mais jurisdições:
+
+| Conduta | Empresa | Jurisdições em paralelo |
+|---|---|---|
+| *Self-preferencing* em busca | Google | DOJ (US v. Google Search, decisão 2024) · DG-COMP (Google Shopping, multa €2,42 bi de 2017 mantida em 2024) · CADE (Ato 08700.005536/2018-31) |
+| *Anti-steering* no App Store | Apple | DOJ (US v. Apple, 2024) · DMA-DG-COMP (descumprimento Art. 5(4)) · JFTC (Provisional Measures 2021) · CADE (PA 08700.000018/2023-49) |
+| *Killer acquisition* (Instagram) | Meta | FTC v. Meta (2020-) · CMA UK (Phase 2 decision 2022) · DG-COMP (informal 2020) |
+
+Em todas essas frentes, a evidência que sustenta os procedimentos é parcialmente comum — *e-mails* internos, *decks* de produto, depoimentos de ex-funcionários. Sob LCMC global, uma engenheira que depositou denúncia no CADE poderia ver sua denúncia contar como prova adicional para o caso DOJ se o DOJ adotasse LCMC. Isso reduz a barreira individual para todas as autoridades simultaneamente.
+
+### Os três fenômenos esperados
+
+1. **Cascata global de aberturas.** Sob coordenação, a primeira abertura em qualquer jurisdição reduz o limiar para a abertura nas demais — observa-se na simulação como queda mais íngreme de violadoras ativas comparada à LCMC descoordenada.
+2. **Risco de *forum shopping* por firmas.** Empresas podem antecipar o canal mais "friendly" (Cₛ tributário em UE?) e correr para um TCC local antes que o gatilho global feche. A LCMC coordenada **não elimina** esse risco — o que faz é encurtar a janela disponível para a corrida.
+3. **Substituibilidade vs complementaridade.** Se as autoridades aceitam o **caso aberto em qualquer jurisdição** como prova qualificada (substituível), o ganho é máximo; se exigem reconfirmação local (complementar), o ganho é o efeito Schelling apenas. A R30 modela o caso complementar (cada firma aberta entra como caso local separado); o ganho substitutivo é cota superior teórica.
+
+### Como rodar a comparação
+
+```python
+from waas_antitrust.cenarios import aplicar_cenario
+from waas_antitrust.model import WaaSModel, WaaSParametros
+
+p_base = WaaSParametros(n_tiques=30, seed=2026)
+
+for nome in ("lcmc_global_descoordenada", "lcmc_global_coordenada"):
+    p = aplicar_cenario(p_base, nome)
+    df = WaaSModel(p).executar()
+    print(
+        f"{nome:32s}  dano_final={df['dano_acumulado'].iloc[-1]:6.1f}  "
+        f"aberturas_grupo={df['n_aberturas_consolidadas_grupo_acum'].iloc[-1]:.0f}  "
+        f"boosts_intl={df['n_boosts_coordenacao_intl_acum'].iloc[-1]:.0f}"
+    )
+```
+
+A figura `23_sinergia_internacional_r30.png` é gerada por `viz/sinergia_internacional.py` e é a primeira figura que materializa a hipótese da sinergia em uma rodada concreta — não é estilizada, sai diretamente do modelo.
+
 ## Caveats da transposição
 
 1. **Capacidade institucional não calibrada.** `taxa_capacidade` para o DOJ-ATR

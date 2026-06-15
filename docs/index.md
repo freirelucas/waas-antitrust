@@ -6,9 +6,9 @@ A leniência clássica acabou de bater num muro. Em mercados digitais, a infraç
 
 [**▶ Ato 2: O mecanismo**](mecanismo.md) · [🧪 Brincar in-browser](brincar.md) · [📄 Paper](paper.md)
 
-| R\$ 12,3 mi | 1.679 firmas | +1.363% | 354 testes |
+| R\$ 12,3 mi | 1.679 firmas | +1.363% | 364 testes |
 |:---:|:---:|:---:|:---:|
-| **margem da firma sob TCC-WaaS** para receita de R\$ 1 bi | **universo CADE implícito** após calibração formal R03 | **ΔW de Regime B sobre A** em bem-estar agregado | **verdes em ~38s** · 22 figuras reproduzíveis |
+| **margem da firma sob TCC-WaaS** para receita de R\$ 1 bi | **universo CADE implícito** após calibração formal R03 | **ΔW de Regime B sobre A** em bem-estar agregado | **verdes em ~31s** · 23 figuras reproduzíveis |
 
 > *A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um **canal de depósito condicional** onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".*
 
@@ -126,14 +126,51 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
 ## Por onde seguir — entrada por papel profissional
 
-| Você é | Comece por | Em ~1 clique |
-|---|---|---|
-| 📰 **Jornalista** | [Kit de imprensa](imprensa.md) · [Generalidade EUA/UE](internacional.md) | 3 leads + 6 números com fonte + autor e contato |
-| ⚖️ **Advogada/o** | [Análise institucional](INSTITUTIONAL.md) · [Limitações §jurídica](limitacoes.md) | Base autônoma Art. 4º + vetores atacáveis F6, reserva de lei |
-| 📐 **Economista** | [Formulário matemático](formulario.md) · [Transparência](transparencia.md) | IC-F\* nas 3 formas + bem-estar + calibração formal R03 |
-| 🏛️ **Autoridade** | [Análise institucional](INSTITUTIONAL.md) · [Procedimento (CADE)](procedimento_cade.md) | Tabela A/B/C + fluxograma processual + sensibilidade a N\* |
-| 🏢 **Big Tech** | [Mecanismo](mecanismo.md) · [Compliance corporativo](compliance_corporativo.md) · [Brincar](brincar.md) | Aritmética R\$ + 4 vetores corporativos + cenário EUA DOJ-ATR |
-| 🎓 **Academia · sociedade civil** | [Bem coletivo](bem_publico.md) · [Como contestar](colaborar.md) | LCMC sob Ostrom-Coleman-Olson + Prop. 5 forte refutada |
+<div class="persona-grade" markdown>
+
+<a class="persona-card jornalista" href="imprensa.md" markdown>
+<span class="persona-icone">📰</span>
+**Jornalista**
+3 leads · 6 números com fonte · autor e contato
+<span class="persona-cta">Kit de imprensa →</span>
+</a>
+
+<a class="persona-card advogado" href="INSTITUTIONAL.md" markdown>
+<span class="persona-icone">⚖️</span>
+**Advogada/o**
+Base autônoma Art. 4º · vetores F6 e reserva de lei
+<span class="persona-cta">Análise institucional →</span>
+</a>
+
+<a class="persona-card economista" href="formulario.md" markdown>
+<span class="persona-icone">📐</span>
+**Economista**
+IC-F\* nas 3 formas · bem-estar · calibração R03
+<span class="persona-cta">Formulário matemático →</span>
+</a>
+
+<a class="persona-card autoridade" href="procedimento_cade.md" markdown>
+<span class="persona-icone">🏛️</span>
+**Autoridade**
+Tabela A/B/C · fluxograma processual · sensibilidade
+<span class="persona-cta">Procedimento CADE →</span>
+</a>
+
+<a class="persona-card bigtech" href="compliance_corporativo.md" markdown>
+<span class="persona-icone">🏢</span>
+**Big Tech**
+Aritmética R\$ · 4 vetores corporativos · DOJ-ATR
+<span class="persona-cta">Compliance corporativo →</span>
+</a>
+
+<a class="persona-card academia" href="bem_publico.md" markdown>
+<span class="persona-icone">🎓</span>
+**Academia · sociedade civil**
+LCMC sob Ostrom-Coleman-Olson · Prop. 5 refutada
+<span class="persona-cta">Bem coletivo →</span>
+</a>
+
+</div>
 
 ---
 
@@ -143,6 +180,6 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
 ---
 
-[![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE) [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/) [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/) [![354 testes](https://img.shields.io/badge/pytest-354%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions) [![Brincar in-browser](https://img.shields.io/badge/brincar-in--browser-27AE60)](brincar.md)
+[![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE) [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/) [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/) [![364 testes](https://img.shields.io/badge/pytest-364%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions) [![Brincar in-browser](https://img.shields.io/badge/brincar-in--browser-27AE60)](brincar.md)
 
 Este repositório acompanha um **artigo acadêmico em elaboração** — *Leniency Conditional on Critical Mass: A Conditional-Deposit Channel for Unilateral Conduct in Digital Markets*. Não citar como resultado final. Veja `CITATION.cff` para metadados estruturados (Zenodo via release futura).

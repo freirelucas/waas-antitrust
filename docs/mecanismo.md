@@ -446,7 +446,7 @@ descrevendo a alteração — não é boa o suficiente. A versão deste projeto
 trata cada alteração normativa como um **cenário comparável**: um conjunto
 nomeado de sobrescritas de parâmetros, executável e reportável.
 
-O catálogo (módulo `waas_antitrust.cenarios`) contém **20 cenários
+O catálogo (módulo `waas_antitrust.cenarios`) contém **22 cenários
 canônicos**. A tabela abaixo lista os 9 que cobrem a malha institucional
 brasileira inicial; os outros 10 (reframe v2, generalidade EUA/UE,
 canal puro, erosão Coleman) estão em [`modelo_abm.md`](modelo_abm.md) §5.

@@ -11,6 +11,23 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Rodada "R30 + banho de loja" — jun/2026
+
+Cinco commits que respondem "e se todas as autoridades adotassem LCMC?"
+com modelo formal, cenários canônicos e figura empírica, e fazem um
+redesign visual do site.
+
+- **R30 — Sinergia entre autoridades internacionais** (`2cf9750`). Duas
+  alavancas: (i) consolidação cross-jurisdicional do escrow via grupos
+  econômicos (paralelo MoU bilateral CADE-DOJ-ATR 2019, DG-COMP-CADE
+  2009, ICN MoU 2001); (ii) coordenação internacional como amplificação
+  do sinal Schelling erga omnes (paralelo notícia ICN/OECD).
+  Reporters novos `n_aberturas_consolidadas_grupo_acum` e
+  `n_boosts_coordenacao_intl_acum`. 2 cenários canônicos
+  (`lcmc_global_coordenada` / `_descoordenada`); 9 testes; figura
+  `23_sinergia_internacional_r30.png`. Catálogo 20→22 cenários,
+  reporters 36→38, testes 354→364.
+
 ### Rodada "R29 + simulador in-browser" — jun/2026
 
 Três commits que adicionam a regra de cascata pós-coordenação ao modelo,

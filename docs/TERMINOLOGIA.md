@@ -83,6 +83,23 @@ sem saber qual é a "oficial".
   v3 porque concentrava a leitura no lado da firma; o canal abre
   *para o CADE*, e a firma é notificada como consequência.
 
+### Sinergia entre autoridades internacionais (R30)
+
+- **Significado canônico**: adoção COORDENADA da LCMC por múltiplas
+  autoridades antitruste, operando como **mecanismo único distribuído**.
+  Duas alavancas: (i) consolidação cross-jurisdicional do escrow via
+  grupos econômicos (paralelo MoU bilateral); (ii) amplificação Schelling
+  internacional (paralelo ICN/OECD).
+- **Sinônimos aceitos**: "LCMC global", "LCMC inter-autoridades",
+  "canal distribuído".
+- **Parâmetros no código**: `grupos_economicos: tuple | None = None`,
+  `usar_escrow_consolidado_grupo: bool = False`,
+  `coordenacao_internacional: float = 0.0`.
+- **Cenários canônicos**: `lcmc_global_coordenada` (sinergia ligada);
+  `lcmc_global_descoordenada` (contrafactual, cada autoridade isolada).
+- **Reporters**: `n_aberturas_consolidadas_grupo_acum`,
+  `n_boosts_coordenacao_intl_acum`.
+
 ### Janela de adesão pós-abertura (R29)
 
 - **Significado canônico**: janela de `janela_adesao_pos_abertura`

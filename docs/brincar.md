@@ -155,7 +155,7 @@ python scripts/varredura_alpha_erosao.py
 # Calibração formal R03 (Nelder-Mead, 5 sementes)
 python scripts/calibrar_formal.py
 
-# Todas as 22 figuras do site
+# Todas as 23 figuras do site
 python scripts/regerar_todas_as_figuras.py
 ```
 
