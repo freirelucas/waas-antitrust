@@ -186,6 +186,29 @@ sessões.
 
 ---
 
+## 7 · Convergências da simulação por personas (jun/2026)
+
+A [revisão por personas](revisao_personas.md) flagra três pontos
+convergentes entre 3+ perfis profissionais — gravidade média, ainda
+abertos:
+
+- **§7.1 Autoria visível no site (jornalista, acadêmica).** Identificação
+  só por "L." no byline é obstáculo prático para citação. Página
+  `/sobre` ou rodapé do hero deveria expor autor + vinculação +
+  contato (sem depender do leitor abrir o CITATION.cff).
+- **§7.2 Sensibilidade do `β` do bem-estar (economista, acadêmica).**
+  $W = -(\text{dano} + \beta \cdot FP)$ com $\beta$ provisório.
+  Adicionar varredura unidimensional de $\beta$ análoga à de
+  `alpha_erosao` (`scripts/varredura_alpha_erosao.py`).
+- **§7.3 Página `/operacional` (conselheiro CADE, compliance Big Tech).**
+  Gap entre "modelo formal" e "operação institucional amanhã":
+  cláusulas contratuais defensivas afetadas, compatibilidade
+  dosimétrica Art. 45, fluxo de Resolução nova vs Res. 21/2018 atual,
+  papel da CGAA. Hoje `procedimento_cade.md` é leitura formal, não
+  operacional.
+
+---
+
 **Conexão com decisões:** este documento sintetiza pontos identificados
 em revisão de tom (jun/2026). Itens com gravidade `alta` ou `média`
 viram entradas no [`DECISIONS.md`](DECISIONS.md) quando engajados.
