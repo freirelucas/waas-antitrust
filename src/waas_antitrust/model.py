@@ -162,6 +162,20 @@ class WaaSParametros:
     # comportamento histórico (escrow eterno, leitura Callisto).
     janela_escrow_tiques: int = 0
 
+    # **R29 — Janela de adesão pós-abertura com desconto progressivo por classe.**
+    # Quando uma firma atinge massa crítica e o escrow é aberto, abre-se uma
+    # janela de `janela_adesao_pos_abertura` tiques durante a qual trabalhadores
+    # da MESMA firma que NÃO depositaram ainda podem aderir à "classe dos
+    # lenientes" e receber desconto progressivo por ordem de chegada. Espelha
+    # a fila clássica da Lei 12.529/2011 Art. 86 (Spagnolo 2004), mas operada
+    # DENTRO da firma já aberta — incentivo de cascata pós-coordenação.
+    # `descontos_faixas_adesao[k]` é o fator aplicado ao W (recompensa) para
+    # quem aderir na k-ésima posição da fila pós-abertura; posição ≥ N usa o
+    # último elemento. Default `janela_adesao_pos_abertura=0` desliga o
+    # mecanismo (compat estrita).
+    janela_adesao_pos_abertura: int = 0
+    descontos_faixas_adesao: tuple = (1.0, 0.7, 0.5, 0.3, 0.1)
+
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
     # do subgame de Morris-Shin (`jogo_global.limiar_switching`) como gatilho
@@ -392,6 +406,12 @@ class WaaSModel(Model):
         # R27-ii: janela de expiração do depósito individual (Δt). Default 0
         # = escrow eterno (leitura Callisto).
         self.janela_escrow_tiques = getattr(params, "janela_escrow_tiques", 0)
+        # R29: janela de adesão pós-abertura com desconto progressivo. Default
+        # 0 desliga o mecanismo (compat estrita).
+        self.janela_adesao_pos_abertura = getattr(params, "janela_adesao_pos_abertura", 0)
+        self.descontos_faixas_adesao = tuple(
+            getattr(params, "descontos_faixas_adesao", (1.0, 0.7, 0.5, 0.3, 0.1))
+        )
         # R20 — Modo corrida + filas
         self.modo_corrida = params.modo_corrida
         self.q_min_cooperacao_interna = params.q_min_cooperacao_interna
@@ -453,6 +473,10 @@ class WaaSModel(Model):
                 "n_denuncias_em_escrow": self._contar_denuncias_em_escrow,
                 "n_aberturas_simultaneas_acum": self._contar_aberturas_simultaneas,
                 "n_depositos_expirados_acum": self._contar_depositos_expirados,
+                # R29: janela de adesão pós-abertura. Sob
+                # `janela_adesao_pos_abertura=0`, ambos ficam em 0 (compat).
+                "n_aderentes_pos_abertura_acum": self._contar_aderentes_pos_abertura,
+                "n_blocos_em_janela_adesao_acum": self._contar_blocos_em_janela_adesao,
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
@@ -526,6 +550,17 @@ class WaaSModel(Model):
         `janela_escrow_tiques`. Sob `usar_escrow_explicito=False` ou
         `janela_escrow_tiques=0`, sempre 0 (compat)."""
         return getattr(self.autoridade, "n_depositos_expirados_acum", 0)
+
+    def _contar_aderentes_pos_abertura(self) -> int:
+        """R29: total cumulativo de adesões pós-abertura via janela de
+        desconto progressivo. Sob `janela_adesao_pos_abertura=0`, sempre 0."""
+        return getattr(self.autoridade, "n_aderentes_pos_abertura_acum", 0)
+
+    def _contar_blocos_em_janela_adesao(self) -> int:
+        """R29: total cumulativo de blocos que entraram em janela de adesão
+        (firmas em que massa crítica disparou e a janela foi aberta). Sob
+        `janela_adesao_pos_abertura=0`, sempre 0."""
+        return getattr(self.autoridade, "n_blocos_em_janela_adesao_acum", 0)
 
     def _contar_ex_funcionarios(self) -> int:
         """Total de trabalhadores com `status='ex_funcionario'` (R19)."""
@@ -879,11 +914,32 @@ class WaaSModel(Model):
             )
             for fid in self.trabalhadores_por_empresa:
                 empresa = self.empresas[fid]
-                self.autoridade.abrir_escrow_se_massa_critica(
+                abriu = self.autoridade.abrir_escrow_se_massa_critica(
                     id_empresa=fid,
                     q_min=self.q_min_cooperacao_interna,
                     n_trabalhadores_firma=empresa.n_trabalhadores,
                 )
+                # R29: registra bloco em janela de adesão se acabou de abrir.
+                if abriu and self.janela_adesao_pos_abertura > 0:
+                    self.autoridade.registrar_bloco_em_adesao(
+                        id_empresa=fid,
+                        tique_abertura=self.tique,
+                    )
+
+        # P2.5c · R29: janela de adesão pós-abertura com desconto progressivo.
+        # Para cada bloco aberto dentro da janela ativa, oferece adesão a
+        # trabalhadores da MESMA firma que ainda não cooperaram. Desconto
+        # decai conforme `descontos_faixas_adesao`. Sob `janela_adesao_pos_abertura=0`
+        # é no-op (compat estrita).
+        if self.usar_escrow_explicito and self.janela_adesao_pos_abertura > 0:
+            self.autoridade.processar_adesao_pos_abertura(
+                tique_atual=self.tique,
+                janela=self.janela_adesao_pos_abertura,
+                descontos=self.descontos_faixas_adesao,
+                trabalhadores_por_empresa=self.trabalhadores_por_empresa,
+                W_max=self._W_esperado(1.0),
+                custo_represalia=self.r_represalia,
+            )
 
         # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07).
         # **Vetor de quebra A**: a IC-F* correta compara W contra o INCREMENTO

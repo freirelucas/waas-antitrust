@@ -314,6 +314,27 @@ class AutoridadeAgent(Agent):
                            leitura Callisto). Distinto de `janela_temporal_tiques`
                            (R20, janela da corrida pós-massa-crítica): é o "Δt"
                            da definição LCMC v3 — escopo individual do depósito.
+
+    R29 (janela de adesão pós-abertura com desconto progressivo por classe):
+        blocos_em_janela_adesao — dict mapeando id_empresa → registro de janela
+                           de adesão aberta. Quando uma firma atinge massa
+                           crítica e o escrow é aberto, abre-se uma janela de
+                           `janela_adesao_pos_abertura` tiques. Trabalhadores
+                           da MESMA firma que ainda não cooperaram podem aderir
+                           à "classe dos lenientes" e receber desconto
+                           progressivo por ordem de chegada — espelha a fila
+                           de leniência clássica (Spagnolo 2004), mas operada
+                           DENTRO da firma já aberta. Quem aderir na posição
+                           0..N-1 da fila pós-abertura recebe o fator do
+                           respectivo elemento de `descontos_faixas_adesao`;
+                           quem não aderir até o fim da janela permanece no
+                           escrow geral (sujeito à expiração R27-ii).
+        registrar_bloco_em_adesao — chamado pelo `WaaSModel` quando
+                           `abrir_escrow_se_massa_critica` devolve True;
+                           inicia a janela.
+        processar_adesao_pos_abertura — para cada bloco em janela ativa,
+                           processa adesões de candidatos elegíveis no tique
+                           atual; expira blocos cuja janela já se fechou.
     """
 
     def __init__(
@@ -339,6 +360,14 @@ class AutoridadeAgent(Agent):
         self.n_aberturas_simultaneas_acum: int = 0
         # R27-ii: depósitos removidos por expiração (`janela_escrow_tiques`).
         self.n_depositos_expirados_acum: int = 0
+        # R29: janela de adesão pós-abertura. Cada chave é um id_empresa que
+        # teve massa crítica atingida; o registro guarda o tique de abertura,
+        # os depositantes originais (faixa 0 = imunidade total) e a lista de
+        # aderentes posteriores (faixas 1..N, desconto decrescente).
+        self.blocos_em_janela_adesao: dict[int, dict] = {}
+        # Contadores cumulativos expostos via reporters do modelo.
+        self.n_aderentes_pos_abertura_acum: int = 0
+        self.n_blocos_em_janela_adesao_acum: int = 0
 
     def receber_caso(
         self,
@@ -449,10 +478,109 @@ class AutoridadeAgent(Agent):
             )
             self.n_aberturas_simultaneas_acum += 1
             self.n_denuncias_em_escrow -= len(depositos)
+            # R29: guarda snapshot dos depositantes originais ANTES de esvaziar
+            # — eles ocupam a faixa 0 (imunidade total) por terem feito a
+            # massa crítica acontecer.
+            self._depositantes_originais_da_ultima_abertura = list(depositos)
             # Escrow daquela firma é esvaziado após abertura.
             self.escrow_denuncias[id_empresa] = []
             return True
         return False
+
+    # --- R29: janela de adesão pós-abertura com desconto progressivo ---
+
+    def registrar_bloco_em_adesao(
+        self,
+        id_empresa: int,
+        tique_abertura: int,
+    ) -> None:
+        """Registra um bloco recém-aberto como elegível à janela de adesão.
+
+        Os depositantes originais (que dispararam a massa crítica) ficam na
+        faixa 0 — imunidade total. A janela de adesão fica aberta por
+        `janela_adesao_pos_abertura` tiques; quem aderir nessa janela entra
+        nas faixas 1..N com desconto decrescente. Quem não aderir permanece
+        no escrow geral e está sujeito à expiração R27-ii.
+
+        Deve ser chamado pelo `WaaSModel` imediatamente após
+        `abrir_escrow_se_massa_critica` devolver True.
+        """
+        depositantes_originais = getattr(self, "_depositantes_originais_da_ultima_abertura", [])
+        self.blocos_em_janela_adesao[id_empresa] = {
+            "tique_abertura": tique_abertura,
+            "depositantes_originais": list(depositantes_originais),
+            "aderentes_pos_abertura": [],
+        }
+        self.n_blocos_em_janela_adesao_acum += 1
+        # Limpa o slot para evitar vazamento para próxima abertura.
+        self._depositantes_originais_da_ultima_abertura = []
+
+    def processar_adesao_pos_abertura(
+        self,
+        tique_atual: int,
+        janela: int,
+        descontos: tuple,
+        trabalhadores_por_empresa: dict,
+        W_max: float,
+        custo_represalia: float,
+    ) -> int:
+        """Para cada bloco em janela ativa, oferece adesão a trabalhadores da
+        MESMA firma que ainda não fizeram parte da leniência.
+
+        Decisão econômica simplificada: aderem todos cujo `fator_desconto *
+        W_max > custo_represalia` (IR-W projetada para a faixa atual).
+        Aderentes entram na próxima posição da fila pós-abertura; saem do
+        escrow caso ainda tivessem depósito ali. Devolve total de novos
+        aderentes neste tique.
+
+        `janela <= 0` é no-op; `descontos` vazio também é no-op.
+        Chamado em P2.5c do `WaaSModel` UMA vez por tique, APÓS as aberturas
+        do tique e ANTES de P3 — o desconto de adesão é apurado quando a
+        firma decide sobre TCC.
+        """
+        if janela <= 0 or not descontos:
+            return 0
+        total_neste_tique = 0
+        for id_empresa, registro in list(self.blocos_em_janela_adesao.items()):
+            idade = tique_atual - registro["tique_abertura"]
+            if idade >= janela:
+                # Janela vencida: bloco sai do estado "em adesão" mas o
+                # registro de aderentes acumulados permanece (a firma ainda
+                # será notificada/processada em P3 com o gradiente apurado).
+                # Apenas removemos do dicionário ativo.
+                del self.blocos_em_janela_adesao[id_empresa]
+                continue
+            ws = trabalhadores_por_empresa.get(id_empresa, [])
+            if not ws:
+                continue
+            ja_dentro = {d.get("id_trabalhador") for d in registro["depositantes_originais"]} | {
+                a["id_trabalhador"] for a in registro["aderentes_pos_abertura"]
+            }
+            for t in ws:
+                tid = getattr(t, "unique_id", None)
+                if tid in ja_dentro:
+                    continue
+                posicao = len(registro["aderentes_pos_abertura"])
+                faixa = min(len(descontos) - 1, posicao)
+                fator = descontos[faixa]
+                if fator <= 0:
+                    continue
+                # IR-W projetada para a faixa atual: aderir só se o desconto
+                # esperado supera o custo de represália percebido.
+                if fator * W_max <= custo_represalia:
+                    continue
+                registro["aderentes_pos_abertura"].append(
+                    {
+                        "id_trabalhador": tid,
+                        "faixa": faixa,
+                        "fator_desconto": fator,
+                        "tique_adesao": tique_atual,
+                    }
+                )
+                self.n_aderentes_pos_abertura_acum += 1
+                total_neste_tique += 1
+                ja_dentro.add(tid)
+        return total_neste_tique
 
     def processar_casos(self) -> list[dict]:
         aceitos = self.casos_neste_tique[: self.capacidade]
