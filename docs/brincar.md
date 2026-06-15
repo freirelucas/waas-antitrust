@@ -103,6 +103,17 @@ A comparação é sempre **Regime A (status quo) vs o regime escolhido** na mesm
 
 </div>
 
+## O que cada controle muda
+
+| Controle | Efeito mecânico | Onde no código Python |
+|---|---|---|
+| **Regime** | Liga (B/C/EUA) ou desliga (A) a recompensa W e o canal. Tag em `params.regime`. | `WaaSParametros.regime` |
+| **Canal LCMC (R27)** | Liga `AutoridadeAgent.escrow_denuncias` explícito; depósitos não-abertos ficam selados até massa crítica. | `usar_escrow_explicito` |
+| **Janela de adesão R29** | Habilita a cascata pós-abertura: trabalhadores da firma aberta aderem por ordem para desconto decrescente (100/70/50/30/10%). | `janela_adesao_pos_abertura` |
+| **Janela de expiração escrow (R27-ii)** | Tempo máximo (em tiques) que um depósito individual fica selado antes de expirar. 0 = escrow eterno (Callisto). | `janela_escrow_tiques` |
+| **q_min** | Fração mínima de depositantes na firma para o gatilho de abertura simultânea. | `q_min_cooperacao_interna` |
+| **alpha_erosao (R26)** | Cada notificação corrói o substrato cooperativo (Coleman 1990; Titmuss 1970). | `alpha_erosao` |
+
 ## Cinco experimentos sugeridos
 
 Cada um exige um único ajuste em relação ao default e fica pronto em <1 s no
@@ -128,17 +139,6 @@ seu navegador.
    UE. UE replica A no comportamento agregado (proteção horizontal Diretiva
    2019/1937 sem recompensa); EUA aproxima C (Dodd-Frank §922 reproduzido por
    ato administrativo DOJ-ATR em 2025).
-
-## O que cada controle muda
-
-| Controle | Efeito mecânico | Onde no código Python |
-|---|---|---|
-| **Regime** | Liga (B/C/EUA) ou desliga (A) a recompensa W e o canal. Tag em `params.regime`. | `WaaSParametros.regime` |
-| **Canal LCMC (R27)** | Liga `AutoridadeAgent.escrow_denuncias` explícito; depósitos não-abertos ficam selados até massa crítica. | `usar_escrow_explicito` |
-| **Janela de adesão R29** | Habilita a cascata pós-abertura: trabalhadores da firma aberta aderem por ordem para desconto decrescente (100/70/50/30/10%). | `janela_adesao_pos_abertura` |
-| **Janela de expiração escrow (R27-ii)** | Tempo máximo (em tiques) que um depósito individual fica selado antes de expirar. 0 = escrow eterno (Callisto). | `janela_escrow_tiques` |
-| **q_min** | Fração mínima de depositantes na firma para o gatilho de abertura simultânea. | `q_min_cooperacao_interna` |
-| **alpha_erosao (R26)** | Cada notificação corrói o substrato cooperativo (Coleman 1990; Titmuss 1970). | `alpha_erosao` |
 
 ## Quero o modelo cheio
 
