@@ -430,6 +430,59 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "alpha_erosao": 0.5,
         },
     ),
+    # ----- R30 — Sinergia entre autoridades internacionais (LCMC global) -----
+    Cenario(
+        nome="lcmc_global_coordenada",
+        descricao=(
+            "**Caso base R30 — coordenação internacional plena**: 6 firmas "
+            "em 2 grupos econômicos multinacionais (firmas 0/1/2 no grupo 0; "
+            "3/4/5 no grupo 1). Cada grupo representa uma Big Tech operando "
+            "em 3 jurisdições distintas. Sob `usar_escrow_consolidado_grupo="
+            "True`, depósitos contra firmas do mesmo grupo são somados para o "
+            "gatilho de massa crítica — paralelo direto de MoU bilateral "
+            "(CADE-DOJ-ATR 2019; DG-COMP-CADE 2009) ou de coordenação via "
+            "ICN MoU 2001. `coordenacao_internacional=0.6` amplifica o sinal "
+            "Schelling erga omnes (cada abertura eleva `p_perc` globalmente "
+            "— efeito notícia ICN/OECD). Hipótese central: adesão simultânea "
+            "das jurisdições gera **dissuasão superlinear** comparado à "
+            "adoção descoordenada (`lcmc_global_descoordenada`)."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "usar_escrow_consolidado_grupo": True,
+            "coordenacao_internacional": 0.6,
+            "grupos_economicos": (0, 0, 0, 1, 1, 1),
+            "n_empresas": 6,
+            "q_min_cooperacao_interna": 0.08,
+            "fracao_violadoras": 0.6,
+            "taxa_observacao": 0.5,
+        },
+    ),
+    Cenario(
+        nome="lcmc_global_descoordenada",
+        descricao=(
+            "**Contrafactual R30 — adoção isolada por jurisdição**: mesma "
+            "topologia que `lcmc_global_coordenada` (6 firmas, hipotéticas "
+            "subsidiárias em 3 jurisdições para 2 multinacionais) mas com "
+            "`usar_escrow_consolidado_grupo=False` e "
+            "`coordenacao_internacional=0`. Cada autoridade roda seu canal "
+            "LCMC localmente, sem MoU bilateral, sem ICN. Mede o GANHO "
+            "MARGINAL da coordenação: ΔW(coordenada) − ΔW(descoordenada). "
+            "Par de teste para a hipótese de sinergia superlinear."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "usar_escrow_consolidado_grupo": False,
+            "coordenacao_internacional": 0.0,
+            "grupos_economicos": (0, 0, 0, 1, 1, 1),
+            "n_empresas": 6,
+            "q_min_cooperacao_interna": 0.08,
+            "fracao_violadoras": 0.6,
+            "taxa_observacao": 0.5,
+        },
+    ),
     # ----- R29 — Janela de adesão pós-abertura com desconto progressivo -----
     Cenario(
         nome="cascata_adesao_progressiva",

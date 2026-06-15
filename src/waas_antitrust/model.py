@@ -176,6 +176,28 @@ class WaaSParametros:
     janela_adesao_pos_abertura: int = 0
     descontos_faixas_adesao: tuple = (1.0, 0.7, 0.5, 0.3, 0.1)
 
+    # **R30 — Sinergia entre autoridades internacionais (LCMC global coordenada).**
+    # Modela o cenário "e se todas as autoridades antitruste adotassem LCMC".
+    # Duas alavancas independentes:
+    #   (i) `grupos_economicos`: list[int] de tamanho `n_empresas` mapeando
+    #       cada firma a um grupo econômico. Firmas no mesmo grupo (jurisdições
+    #       diferentes da mesma multinacional) podem consolidar depósitos sob
+    #       `usar_escrow_consolidado_grupo=True`: a massa crítica é avaliada
+    #       no NÍVEL DO GRUPO (sum de depósitos / sum de trabalhadores), e a
+    #       abertura simultânea aciona todas as firmas do grupo de uma vez —
+    #       paralelo direto da cooperação inter-autoridades via MoU bilateral
+    #       (CADE-DOJ-ATR 2019; DG-COMP-CADE 2009).
+    #  (ii) `coordenacao_internacional ∈ [0, 1]`: fator que amplifica o sinal
+    #       Schelling erga omnes (R21/v2.D.1). Cada abertura em qualquer firma
+    #       eleva `p_perc` em TODAS as outras firmas por `coordenacao * delta`,
+    #       capturando o efeito ICN/OECD de notícias e comunicados conjuntos.
+    # Default `grupos_economicos=None` (cada firma é seu grupo);
+    # `usar_escrow_consolidado_grupo=False` e `coordenacao_internacional=0.0`
+    # preservam o comportamento histórico bit-a-bit.
+    grupos_economicos: tuple | None = None
+    usar_escrow_consolidado_grupo: bool = False
+    coordenacao_internacional: float = 0.0
+
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
     # do subgame de Morris-Shin (`jogo_global.limiar_switching`) como gatilho
@@ -412,6 +434,27 @@ class WaaSModel(Model):
         self.descontos_faixas_adesao = tuple(
             getattr(params, "descontos_faixas_adesao", (1.0, 0.7, 0.5, 0.3, 0.1))
         )
+        # R30: sinergia entre autoridades internacionais. Grupos econômicos
+        # consolidam depósitos (proxy de MoU bilateral / cooperação ICN);
+        # coordenacao_internacional amplifica o sinal Schelling erga omnes.
+        # Default: cada firma em seu próprio grupo (sem consolidação) +
+        # coordenação 0 (sem amplificação) ⇒ comportamento histórico.
+        grupos_param = getattr(params, "grupos_economicos", None)
+        if grupos_param is None:
+            self.grupos_economicos = tuple(range(params.n_empresas))
+        else:
+            self.grupos_economicos = tuple(grupos_param)
+        if len(self.grupos_economicos) != params.n_empresas:
+            raise ValueError(
+                "grupos_economicos deve ter tamanho n_empresas "
+                f"({params.n_empresas}); recebido {len(self.grupos_economicos)}."
+            )
+        self.usar_escrow_consolidado_grupo = getattr(params, "usar_escrow_consolidado_grupo", False)
+        self.coordenacao_internacional = float(getattr(params, "coordenacao_internacional", 0.0))
+        # R30: contador cumulativo de aberturas consolidadas a nível de grupo.
+        self.n_aberturas_consolidadas_grupo_acum: int = 0
+        # R30: contador de boosts erga omnes aplicados via coordenação intl.
+        self.n_boosts_coordenacao_intl_acum: int = 0
         # R20 — Modo corrida + filas
         self.modo_corrida = params.modo_corrida
         self.q_min_cooperacao_interna = params.q_min_cooperacao_interna
@@ -477,6 +520,11 @@ class WaaSModel(Model):
                 # `janela_adesao_pos_abertura=0`, ambos ficam em 0 (compat).
                 "n_aderentes_pos_abertura_acum": self._contar_aderentes_pos_abertura,
                 "n_blocos_em_janela_adesao_acum": self._contar_blocos_em_janela_adesao,
+                # R30: sinergia entre autoridades internacionais. Sob
+                # `usar_escrow_consolidado_grupo=False` e
+                # `coordenacao_internacional=0.0`, ambos ficam em 0 (compat).
+                "n_aberturas_consolidadas_grupo_acum": ("n_aberturas_consolidadas_grupo_acum"),
+                "n_boosts_coordenacao_intl_acum": "n_boosts_coordenacao_intl_acum",
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
@@ -721,6 +769,80 @@ class WaaSModel(Model):
     def _W_esperado(self, w_a: float) -> float:
         return self.W_mult * w_a
 
+    # ---- R30: sinergia entre autoridades internacionais ----
+
+    def _firmas_por_grupo(self) -> dict[int, list[int]]:
+        """Indexa firmas por grupo econômico para reuso (R30)."""
+        out: dict[int, list[int]] = {}
+        for fid, grupo in enumerate(self.grupos_economicos):
+            out.setdefault(grupo, []).append(fid)
+        return out
+
+    def _gatilho_grupo_atingido(self, fids: list[int]) -> bool:
+        """Soma depósitos e trabalhadores; True se massa crítica consolidada."""
+        if len(fids) < 2:
+            return False
+        total_deposito = sum(len(self.autoridade.escrow_denuncias.get(fid, [])) for fid in fids)
+        total_trab = sum(self.empresas[fid].n_trabalhadores for fid in fids)
+        if total_trab <= 0 or total_deposito <= 0:
+            return False
+        return total_deposito / total_trab >= self.q_min_cooperacao_interna
+
+    def _abrir_escrow_consolidado_por_grupo(self) -> set[int]:
+        """Dispara abertura simultânea no NÍVEL DO GRUPO ECONÔMICO.
+
+        Para cada grupo, soma depósitos e trabalhadores de todas as firmas
+        do grupo. Se `fracao_grupo = sum(depósitos) / sum(trabalhadores) >=
+        q_min`, **todas as firmas do grupo** com depósito não-vazio têm seu
+        escrow aberto simultaneamente — emula a abertura coordenada por
+        MoU bilateral (CADE-DOJ-ATR 2019; DG-COMP-CADE 2009; ICN MoU 2001).
+
+        Devolve o set de ids de firmas que foram abertas via gatilho de
+        grupo (para o caller pular o passo individual).
+        """
+        abertas: set[int] = set()
+        for fids in self._firmas_por_grupo().values():
+            if not self._gatilho_grupo_atingido(fids):
+                continue
+            abertas_neste_grupo: set[int] = set()
+            for fid in fids:
+                if not self.autoridade.escrow_denuncias.get(fid):
+                    continue
+                abriu = self.autoridade.abrir_escrow_se_massa_critica(
+                    id_empresa=fid,
+                    q_min=0.0,  # gatilho já validado no nível do grupo
+                    n_trabalhadores_firma=self.empresas[fid].n_trabalhadores,
+                )
+                if abriu:
+                    abertas_neste_grupo.add(fid)
+            if abertas_neste_grupo:
+                abertas.update(abertas_neste_grupo)
+                self.n_aberturas_consolidadas_grupo_acum += 1
+        return abertas
+
+    def _aplicar_coordenacao_internacional(self, abertas_via_grupo: set[int]) -> None:
+        """Boost erga omnes da detecção percebida `p_perc` proporcional ao
+        nº de aberturas no tique corrente (individuais + consolidadas).
+
+        Captura o efeito ICN/OECD: cada caso aberto em qualquer jurisdição
+        sob LCMC vira notícia e eleva a percepção de detecção em todas as
+        firmas globalmente. O boost é multiplicativo sobre o gap residual
+        de detecção (1 - p_perc) e capado pelo limite `_g_max` do R01.
+        """
+        n_aberturas_tique = sum(1 for e in self.empresas if e.notificada_no_periodo) + len(
+            abertas_via_grupo
+        )
+        if n_aberturas_tique <= 0:
+            return
+        # Fator de boost: coordenação × log(1 + nº aberturas) — saturação
+        # natural para evitar dominar a dinâmica.
+        import math
+
+        boost = self.coordenacao_internacional * math.log1p(n_aberturas_tique) * 0.05
+        novo = min(self._g_max, self.p_perc + boost * (1 - self.p_perc))
+        self.p_perc = novo
+        self.n_boosts_coordenacao_intl_acum += 1
+
     # ---- step ----
     def step(self) -> None:  # noqa: C901 — orquestra as 5 fases do protocolo ODD
         self.tique += 1
@@ -912,7 +1034,24 @@ class WaaSModel(Model):
                 tique_atual=self.tique,
                 janela=self.janela_escrow_tiques,
             )
+            # R30: sob `usar_escrow_consolidado_grupo=True`, primeiro tenta
+            # abertura consolidada em nível de GRUPO ECONÔMICO. Grupos com
+            # massa crítica consolidada disparam abertura simultânea em TODAS
+            # as firmas do grupo (paralelo de cooperação inter-autoridades).
+            # Firmas já abertas pelo gatilho consolidado ficam marcadas e o
+            # passo individual seguinte as ignora.
+            abertas_via_grupo: set[int] = set()
+            if self.usar_escrow_consolidado_grupo:
+                abertas_via_grupo = self._abrir_escrow_consolidado_por_grupo()
             for fid in self.trabalhadores_por_empresa:
+                if fid in abertas_via_grupo:
+                    # Já aberta pelo gatilho consolidado.
+                    if self.janela_adesao_pos_abertura > 0:
+                        self.autoridade.registrar_bloco_em_adesao(
+                            id_empresa=fid,
+                            tique_abertura=self.tique,
+                        )
+                    continue
                 empresa = self.empresas[fid]
                 abriu = self.autoridade.abrir_escrow_se_massa_critica(
                     id_empresa=fid,
@@ -925,6 +1064,11 @@ class WaaSModel(Model):
                         id_empresa=fid,
                         tique_abertura=self.tique,
                     )
+            # R30: amplificação Schelling internacional. Cada abertura no
+            # tique (individual + consolidada) eleva `p_perc` em todas as
+            # OUTRAS firmas por um fator proporcional a `coordenacao_internacional`.
+            if self.coordenacao_internacional > 0:
+                self._aplicar_coordenacao_internacional(abertas_via_grupo)
 
         # P2.5c · R29: janela de adesão pós-abertura com desconto progressivo.
         # Para cada bloco aberto dentro da janela ativa, oferece adesão a

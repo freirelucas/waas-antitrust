@@ -41,6 +41,17 @@ def test_cascata_adesao_gera_figura():
     plt.close(fig)
 
 
+def test_sinergia_internacional_gera_figura():
+    """R30 — sinergia entre autoridades internacionais (LCMC global)."""
+    from waas_antitrust.viz import sinergia_internacional
+
+    aplicar_estilo()
+    fig, axes = sinergia_internacional.gerar_figura(seed=2026, n_tiques=8)
+    assert fig is not None
+    assert len(axes) == 2
+    plt.close(fig)
+
+
 def test_painel_sintese_gera_figura():
     """`painel.gerar_figura` compõe a figura-síntese 2×3 (T01 fechado).
     Config reduzida para teste rápido."""
