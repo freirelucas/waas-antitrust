@@ -2,15 +2,11 @@
 
 <p class="sublinha-tese"><em>Da clonagem ao primeiro DataFrame em ≤ 60 segundos; da configuração de cenário customizado em ≤ 10 linhas.</em></p>
 
-Este guia operacional cobre quatro perfis de uso: **leigo** (Colab, sem instalar nada), **cético** (rodar localmente e contestar), **calibrador** (ajustar parâmetros contra dados reais), e **desenvolvedor** (escrever testes e propor PR).
+Este guia operacional cobre quatro perfis de uso: **leigo** (simulador in-browser, sem instalar), **cético** (rodar localmente e contestar), **calibrador** (ajustar parâmetros contra dados reais), e **desenvolvedor** (escrever testes e propor PR).
 
-## Caminho rápido — Colab (sem instalar)
+## Caminho rápido — simulador in-browser
 
-Abra o caderno-demo no Google Colab:
-
-[**colab.research.google.com/.../WaaS_demo.ipynb**](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)
-
-Primeira célula instala dependências; a segunda executa um cenário canônico; a terceira plota a figura 03. Tempo total: ~60 segundos.
+Para uma primeira aproximação sem instalação, abra o [simulador interativo](brincar.md): roda no navegador, 13 sliders, atualização em <300 ms por rodada. É uma versão reduzida do modelo Python (P1–P4), suficiente para entender qualitativamente o efeito do canal e da janela de adesão; os achados científicos do projeto vêm do modelo cheio rodado localmente (próxima seção).
 
 ## Instalação local
 

@@ -17,15 +17,14 @@ A versão honesta deste projeto é: **um artigo em elaboração, com cinco pend�
 O caminho mais útil — e mais barato — é **rodar o modelo, contestar a calibração e tentar quebrar a conclusão**. Tudo está aberto sob CC BY-SA 4.0.
 
 ```bash
-# Caminho rápido — Colab, instalação automática
-# https://colab.research.google.com/github/freirelucas/waas-antitrust/
-#   blob/main/notebooks/WaaS_demo.ipynb
+# Caminho rápido — sem instalar nada, no navegador:
+# https://freirelucas.github.io/waas-antitrust/brincar/
 
 # Caminho local — para mexer no código
 git clone https://github.com/freirelucas/waas-antitrust.git
 cd waas-antitrust
 pip install -e ".[dev]"
-pytest -x -q -m "not slow"                        # 331 testes (~25s)
+pytest -x -q -m "not slow"                        # 364 testes (~31s)
 python scripts/gerar_figura_dissuasao.py          # figura 03 do site
 python scripts/run_sobol_full.py --n-base 1024    # varredura paramétrica
 ```

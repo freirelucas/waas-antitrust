@@ -235,7 +235,7 @@ python scripts/run_sobol_full.py --n-base 1024 --jobs -1 \
   --out results/sobol_full.parquet
 ```
 
-Caminho mais rápido para inspecionar sem instalar: **[caderno-demo no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)** — instala dependências automaticamente, roda os três regimes e gera a figura em aproximadamente um minuto.
+Para uma primeira aproximação sem instalar, o [simulador in-browser](brincar.md) reproduz qualitativamente as séries do painel (A) e (C) com sliders ajustáveis em <300 ms por rodada — útil para comparação direcional, não para os números absolutos do paper.
 
 <div class="ato-fim" markdown>
 **Fim do Ato 3.** Os dados do modelo são reproduzíveis bit a bit. A direção da Proposição 3 é robusta a multi-seed. Os vetores de quebra são auditáveis. Mas o argumento honesto também precisa enumerar o que **ainda não está sustentado** — pesos provisórios, calibração faltando, proposições que seguem como conjecturas. O Ato 4 vai a fundo nisso.

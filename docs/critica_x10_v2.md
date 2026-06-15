@@ -1,5 +1,7 @@
 # Crítica x10 v2 — pós-reframe "massa crítica como bem quase-público"
 
+> **Documento histórico (v2).** Esta página registra a segunda rodada de revisão crítica, posterior ao reframe v2 ("massa crítica como bem quase-público") mas anterior à correção radical v3 ("LCMC como canal de depósito condicional"). Para o estado atual, ver [Aprendizados v3](aprendizados_v3.md), [Mecanismo](mecanismo.md) e [Limitações](limitacoes.md).
+
 Segunda rodada de revisão crítica, motivada pelo reframe central do projeto:
 o autor desloca a centralidade narrativa de **"empresa paga pela delação"**
 (IC-F\*) para **"criação de massa crítica de cooperação interna como bem

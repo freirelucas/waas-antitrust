@@ -103,9 +103,7 @@ waas-sobol --n-base 1024 --jobs -1 --out results/sobol_full.parquet
 
 ### Quero brincar interativamente
 
-Abra `notebooks/WaaS_brincar.ipynb` no [Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb)
-ou localmente com `jupyter notebook`. Ver [`brincar.md`](brincar.md) para
-detalhes dos 12 sliders disponíveis.
+Abra o [simulador in-browser](brincar.md): roda no navegador, 13 sliders, atualização em <300 ms. Para a versão Python plena (sem aproximações), abra `notebooks/WaaS_brincar.ipynb` localmente com `jupyter notebook`.
 
 ### Quero rodar testes
 

@@ -1,5 +1,7 @@
 # Crítica x10 — síntese do recrutamento especialista
 
+> **Documento histórico (v1).** Esta página registra a primeira rodada de revisão crítica, anterior ao reframe v2 ("massa crítica como bem quase-público") e à correção v3 ("LCMC como canal de depósito condicional"). Para o estado atual do projeto, ver [Mecanismo](mecanismo.md) e [Limitações](limitacoes.md); para a rodada subsequente de crítica, ver [Crítica x10 v2](critica_x10_v2.md); para a correção radical, ver [Aprendizados v3](aprendizados_v3.md).
+
 Recrutei 8 especialistas em paralelo (2 matemáticos, 2 economistas, 2 advogados,
 1 designer, 1 product manager) para revisão crítica do projeto. Esta página
 consolida as convergências e divergências, e remete ao [Plano de
