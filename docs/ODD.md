@@ -77,10 +77,11 @@ explícitas.
 | **P8** | Empreendimentos aninhados (governança multinível) | **Silencioso** — coordenação CADE-MPF-MPT é institucionalmente inexistente | cenário `eixo_jurisdicao_concorrente` (R25) |
 
 **Saldo**: 3 atendidos (P1, P4, P5), 1 silencioso (P8), 4 ausentes (P2, P3,
-P6, P7). O WaaS é, no vocabulário de Ostrom, um *commons imposto de cima*
-(top-down), não governado de baixo. A teoria prevê degradação por erosão
-endógena (Coleman 1990); o reporter `capital_social_residual_firma`
-(R26) é o instrumento de medida proposto.
+P6, P7). A **LCMC** (canal de depósito condicional + instrumentos
+opcionais de internalização) é, no vocabulário de Ostrom, um *commons
+imposto de cima* (top-down), não governado de baixo. A teoria prevê
+degradação por erosão endógena (Coleman 1990); o reporter
+`capital_social_residual_firma` (R26) é o instrumento de medida proposto.
 
 ## 3. Detalhes
 
@@ -147,7 +148,7 @@ Para um conjunto de medida positiva de (W, D, σ), o bem-estar social esperado �
 
 *Esboço*: a diferença se decompõe em três canais — dissuasão (Regime B eleva p_detecção), substituição (alguns trabalhadores que silenciariam passam a denunciar) e custo (recompensa privadamente financiada). □
 
-> **Status (atualizado — R01 implementado):** o canal de **dissuasão é endógeno**: cada firma viola enquanto sua atratividade $g_i$ = ganho/sanção supera a detecção percebida $p$, que sobe por expectativa adaptativa quando o canal WaaS opera. Em simulação, os Regimes B/C reduzem as violadoras ativas a zero enquanto o Regime A as faz crescer — sustentando a **direção** da proposição (a prova formal segue como conjectura). Com **R05**, o `bem_estar` passou a ser baseado em **dano** (= −(dano + β·FP)), creditando a prevenção — os Regimes B/C superam o Regime A. Pesos provisórios; calibração formal em R03.
+> **Status (atualizado — R01 implementado):** o canal de **dissuasão é endógeno**: cada firma viola enquanto sua atratividade $g_i$ = ganho/sanção supera a detecção percebida $p$, que sobe por expectativa adaptativa quando o canal LCMC opera. Em simulação, os Regimes B/C reduzem as violadoras ativas a zero enquanto o Regime A as faz crescer — sustentando a **direção** da proposição (a prova formal segue como conjectura). Com **R05**, o `bem_estar` passou a ser baseado em **dano** (= −(dano + β·FP)), creditando a prevenção — os Regimes B/C superam o Regime A. Pesos provisórios; calibração formal em R03.
 
 > **Adicional (R07, exploratório):** a Hirschman exit-with-equity adiciona um **segundo canal de dissuasão** ortogonal ao WaaS — firmas com cláusulas contratuais de vesting acelerado por gatilho de ação coletiva enfrentam custo crível de êxodo do capital humano. A IC-F* da firma se amplia para `D + custo_exodo > W`, e o `g_i` preventivo recebe desconto proporcional a `peso_hirschman · p_perc`. Teste end-to-end em `tests/test_hirschman.py` confirma que firmas com cláusula cooperam mais (mais TCCs assinados) ou geram menos dano em comparação ao baseline. Parâmetros financeiros (substituição, equity, vesting) seguem padrões YC documentados; calibração formal em R03.
 

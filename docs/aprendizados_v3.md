@@ -176,3 +176,30 @@ criminal — todos são incrementos. Sem nenhum deles, o canal ainda
 opera; com eles, opera com taxas de adesão maiores.
 
 Esta página fica como referência canônica do entendimento corrigido.
+
+## Pós-script (jun/2026) — R29 e R30
+
+Após o fechamento desta página, duas extensões foram acopladas ao canal
+de depósito condicional sem alterar o entendimento de fundo:
+
+- **R29 — Janela de adesão pós-abertura com desconto progressivo por
+  classe.** Quando uma firma atinge massa crítica e o escrow é aberto,
+  abre-se uma janela de `janela_adesao_pos_abertura` tiques durante a
+  qual trabalhadores da mesma firma que ainda não cooperaram podem
+  aderir à classe dos lenientes e receber desconto progressivo por
+  ordem de chegada. Espelha o Art. 86 da Lei 12.529/2011 (Spagnolo
+  2004) operado dentro da firma já aberta. Detalhada na Camada 5 do
+  [`mecanismo.md`](mecanismo.md).
+
+- **R30 — Sinergia entre autoridades internacionais.** Modela "e se
+  todas as autoridades adotassem LCMC ao mesmo tempo?" com duas
+  alavancas: (i) consolidação cross-jurisdicional do escrow via grupos
+  econômicos (paralelo MoU bilateral CADE-DOJ-ATR 2019, DG-COMP-CADE
+  2009, ICN MoU 2001); (ii) coordenação internacional como
+  amplificação do sinal Schelling erga omnes. Detalhada em
+  [`internacional.md`](internacional.md).
+
+Nenhuma das duas altera o coração — ambas são extensões do canal já
+descrito. R29 estende o gradiente Saito *dentro* da firma aberta;
+R30 estende a noção de "firma" para "grupo econômico" e o sinal
+Schelling para o nível inter-jurisdicional.

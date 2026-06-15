@@ -1917,3 +1917,60 @@
   font-weight: 800;
   color: #16624c;
 }
+
+/* Atenuação do painel do simulador (jun/2026) — alinha à atenuação
+ * editorial: gradient verde → fundo branco com borda discreta */
+.sim-painel {
+  background: #fbfcfc;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+}
+[data-md-color-scheme="slate"] .sim-painel {
+  background: #161e1b;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.sim-grupo {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+[data-md-color-scheme="slate"] .sim-grupo {
+  background: rgba(255, 255, 255, 0.02);
+}
+.sim-grupo strong {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+.sim-acoes button {
+  background: #27ae60;
+  box-shadow: none;
+  font-weight: 500;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+}
+.sim-acoes button:hover {
+  background: #16a085;
+  transform: none;
+  box-shadow: 0 2px 6px rgba(39, 174, 96, 0.25);
+}
+.sim-kpi {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-left: 3px solid #27ae60;
+  box-shadow: none;
+}
+.sim-kpi strong {
+  font-size: 0.68rem;
+}
+.sim-kpi span {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+[data-md-color-scheme="slate"] .sim-kpi {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-left-color: #27ae60;
+}
+[data-md-color-scheme="slate"] .sim-kpi span {
+  color: #ecf0f1;
+}

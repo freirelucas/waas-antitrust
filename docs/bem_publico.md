@@ -248,7 +248,7 @@ de Ostrom (*Governing the Commons*, 1990) que o WaaS **não** satisfaz:
 - **P7 (reconhecimento mínimo do direito de auto-organização)**: vedado por dever de lealdade contratual brasileira.
 - **P8 (empreendimentos aninhados)**: coordenação CADE-MPF-MPT é institucionalmente inexistente.
 
-O WaaS é, no vocabulário de Ostrom, um *commons imposto de cima*
+A LCMC é, no vocabulário de Ostrom, um *commons imposto de cima*
 (top-down), não governado de baixo. A teoria prevê degradação. O reframe
 não esconde isso; explicita que esse é o eixo de pesquisa aberto e
 documenta como falsificadores futuros.
