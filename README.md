@@ -1,89 +1,168 @@
-# E se a empresa pagasse para ser delatada? · `waas-antitrust`
+<div align="center">
 
-[![CC BY-SA 4.0](https://img.shields.io/badge/license-CC%20BY--SA%204.0-blue.svg)](LICENSE)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
-[![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/)
-[![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)
+# WaaS-antitrust
 
-Esta é a pergunta provocadora por trás do mecanismo **Whistleblower-as-a-Service (WaaS)** — incentivo financeiro para o denunciante interno em antitruste de mercados digitais brasileiros. O repositório implementa o mecanismo num **modelo baseado em agentes** (Mesa 3.x) e o testa com **análise de sensibilidade de Sobol** (SALib).
+### Leniência Condicionada à Massa Crítica para mercados digitais
 
-![Saída real do modelo: com o canal WaaS (B/C) as firmas param de violar ao longo do tempo e o bem-estar social supera o cenário atual (A).](docs/img/03_dissuasao_bem_estar.png)
+**Canal de depósito condicional · operado pelo CADE · sem necessidade de lei nova**
 
-**O problema.** A leniência clássica combate *cartéis* (empresas concorrentes que se combinam) porque um conspirador pode delatar o outro. Em mercados digitais, muito do abuso é *unilateral* — uma empresa dominante sozinha, sem cúmplice para delatar. Quem sabe o que acontece são os funcionários.
+[![Site MkDocs](https://img.shields.io/badge/site-freirelucas.github.io%2Fwaas--antitrust-1e8449?style=for-the-badge&logo=readthedocs&logoColor=white)](https://freirelucas.github.io/waas-antitrust/)
+[![Brincar no Colab](https://img.shields.io/badge/brincar%20no%20Colab-rodar%20o%20modelo-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb)
+[![Paper](https://img.shields.io/badge/paper-rascunho%20v0.2.0-blue?style=for-the-badge&logo=overleaf&logoColor=white)](https://github.com/freirelucas/waas-antitrust/blob/main/paper/main.tex)
 
-**A ideia.** Se a empresa for investigada, ela ganha um desconto na multa ao ressarcir as vítimas — e pode usar a recompensa paga aos denunciantes como parte desse ressarcimento. Quando o **incremento** de desconto $D_{\text{extra}}$ supera a recompensa total $W$, colaborar vira negócio. Em simulação, isso **deter** a violação (Regimes B/C) e o cenário atual (A) não.
+[![CI](https://img.shields.io/badge/pytest-343%20passed-brightgreen?style=flat-square)](https://github.com/freirelucas/waas-antitrust/actions)
+[![Licença](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue?style=flat-square)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.12+-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Mesa](https://img.shields.io/badge/mesa-3.x-green?style=flat-square)](https://mesa.readthedocs.io/)
 
-📖 **Site narrado em 5 atos** (problema → mecanismo → resultados → limitações → colaborar): <https://freirelucas.github.io/waas-antitrust/> · 🚀 **[Rodar no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb)** (caderno-demo, ~1 min).
+</div>
 
-Núcleo computacional do artigo *"Rescaling Leniency Programs for Digital Markets: A Whistleblower-as-a-Service Mechanism"* (em elaboração).
+---
 
-## Início rápido
+## A pergunta
+
+Em mercados digitais, **o abuso vem de uma firma só**: auto-preferência do Google, *anti-steering* da Apple, exclusividade do iFood, *killer acquisition* da Meta. Não há cúmplice externo para delatar. A leniência clássica — que sempre foi a peça-mestre do enforcement antitruste — não funciona.
+
+A informação existe **dentro da própria empresa**: no Slack do time de produto, na ata do comitê de aquisições, no slide-deck da reunião comercial. Mas ela não circula. No Brasil de hoje, o trabalhador que falaria arrisca emprego, carreira, tranquilidade — e ganha **nada de previsível** em troca.
+
+## A resposta deste projeto
+
+A **Leniência Condicionada à Massa Crítica (LCMC)** é um *canal de depósito condicional* operado pelo CADE. Em três paralelos:
+
+|  |  |
+|---|---|
+| 🎯 **Kickstarter** | seu cartão só é cobrado se o projeto atingir a meta de apoiadores |
+| 🛡️ **Callisto** ([callisto.org](https://www.callisto.org)) | em operação nos EUA desde 2015 — denúncia de assédio só revela o nome se outra vítima identificar o **mesmo** agressor |
+| 📦 **Caixa-cofre** | envelopes com denúncias só abrem quando há ao menos N envelopes parecidos contra a mesma empresa |
+
+O nome acadêmico desse desenho é ***information escrow***, formalizado por **Ian Ayres e Cait Unkovic** (Yale Law School) em *Michigan Law Review* 111:145 (2012). A LCMC aplica esse desenho ao antitruste brasileiro, com o CADE como o "terceiro confiável" que opera a caixa-cofre.
+
+A novidade institucional: **base normativa autônoma** no Art. 4º, II e III da Lei 12.529/2011 c/c Lei 9.784/99 — o CADE pode disciplinar o procedimento **sem lei nova** e sem depender da re-caracterização do Art. 12 da Resolução 21/2018.
+
+## Os números
+
+<div align="center">
+
+| **R$ 12,3 mi** | **1.679 firmas** | **+1.363%** | **343 testes** |
+|:---:|:---:|:---:|:---:|
+| margem da firma sob TCC-WaaS para receita de R$ 1 bi | universo CADE implícito após calibração formal R03 | ΔW de Regime B sobre A em bem-estar agregado | verdes em ~25s · 21 figuras reproduzíveis |
+
+</div>
+
+## A figura central
+
+![Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres, saída direta do WaaSModel.executar()](docs/img/03_dissuasao_bem_estar.png)
+
+> **Saída literal** do modelo, *seed* 11, regimes A/B/C lado a lado. **(A)** Violadoras ativas ao longo do tempo: regime A (cinza) cresce e estabiliza alto; regimes B/C (verde/roxo) caem a zero em ~17 tiques. **(B)** Bem-estar social agregado. ΔW (B sobre A) = +1363%. **Reprodução em 60 segundos**: `python scripts/gerar_figura_dissuasao.py`.
+
+## Para quem é
+
+| Você é | Comece por | Em ~1 clique |
+|---|---|---|
+| 📰 **Jornalista** | [Kit de imprensa](https://freirelucas.github.io/waas-antitrust/imprensa/) | 3 leads + 6 números com fonte + autor e contato |
+| ⚖️ **Advogada/o** | [Análise institucional](https://freirelucas.github.io/waas-antitrust/INSTITUTIONAL/) | Base autônoma Art. 4º + vetores atacáveis F6, reserva de lei |
+| 📐 **Economista** | [Formulário matemático](https://freirelucas.github.io/waas-antitrust/formulario/) | IC-F* nas 3 formas + bem-estar + calibração formal R03 |
+| 🏛️ **Autoridade** | [Procedimento administrativo](https://freirelucas.github.io/waas-antitrust/procedimento_cade/) | Fluxograma 7 etapas + sigilo Lei 9.784 Art. 24 |
+| 🏢 **Big Tech** | [Compliance corporativo](https://freirelucas.github.io/waas-antitrust/compliance_corporativo/) | Aritmética R$ + 4 vetores corporativos materiais |
+| 🎓 **Academia** | [Paper](https://freirelucas.github.io/waas-antitrust/paper/) · [Bem coletivo](https://freirelucas.github.io/waas-antitrust/bem_publico/) | Ostrom-Coleman-Olson + falsificação Prop. 5 forte |
+| 🧪 **Curiosa/o** | [Brincar com o modelo](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb) | 12 sliders + painel 2×2 em ~30s por simulação |
+
+## Instalação em 3 comandos
 
 Requer **Python 3.12+** (`mesa>=3.5`).
 
 ```bash
-# Clonar e instalar em modo desenvolvimento
 git clone https://github.com/freirelucas/waas-antitrust.git
-cd waas-antitrust
-pip install -e ".[dev]"
+cd waas-antitrust && pip install -e ".[dev]"
+pytest -x -q  # 343 testes em ~25s
 ```
 
-Para usar apenas como biblioteca, sem clonar:
+Para usar como biblioteca, sem clonar:
 
 ```bash
 pip install "waas-antitrust @ git+https://github.com/freirelucas/waas-antitrust.git"
 ```
 
-Em seguida:
+## Fluxos típicos
 
 ```bash
-pytest                                   # testes
-jupyter lab notebooks/WaaS_demo.ipynb    # caderno-demo (ou abra no Colab pelo badge acima)
+# 1. Brincar interativamente (Colab ou local com ipywidgets)
+jupyter notebook notebooks/WaaS_brincar.ipynb
 
-# Varredura Sobol completa (paper-grade) e figuras
-python scripts/run_sobol_full.py --n-base 1024 --jobs -1 --out results/sobol_full.parquet
-waas-figuras --out figuras/ --formato todos
+# 2. Reproduzir os 3 achados científicos da rodada de jun/2026
+python scripts/varredura_alpha_erosao.py     # falsifica Prop. 5 forte
+python scripts/identificabilidade_r03.py     # decompõe os 3 alvos do R03
+python scripts/calibrar_formal.py            # calibração Nelder-Mead
+                                             # → (0.323; 0.481), erro rel. 6.65%
+
+# 3. Regerar todas as 21 figuras do site (5-10 min)
+python scripts/regerar_todas_as_figuras.py
+
+# 4. Varredura Sobol paper-grade (várias horas)
+waas-sobol --n-base 1024 --jobs -1 --out results/sobol_full.parquet
+
+# 5. Compilar o paper
+python scripts/gerar_figs_paper.py
+cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```
 
-## Documentação
-
-- **Site**: <https://freirelucas.github.io/waas-antitrust/> — gerado com MkDocs Material e publicado pelo workflow `docs.yml` (requer GitHub Pages habilitado no repositório).
-- **Caderno no Colab**: [abrir](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_demo.ipynb) — instala as dependências automaticamente no ambiente do Colab.
-- **Paper**: `paper/main.tex` (rascunho) — compilado a PDF pelo workflow `paper.yml`.
-- **Backlog de pesquisa**: `docs/DECISIONS.md` (R01–R08 implementados como exploratório; R09–R14 abertos para conversa explícita).
-- **Curadoria de revisores externos**: `docs/critica_x10.md` (8 especialistas em paralelo, com plano de melhorias em piloto automático).
-
-## Estrutura
+## Estrutura do código
 
 ```
 waas-antitrust/
-├── src/waas_antitrust/        # Pacote Python instalável
-│   ├── agents.py              # Três classes de agentes (MBA)
-│   ├── model.py               # WaaSModel + parâmetros
-│   ├── viz/                   # viz como módulo: inversão e fase (demais no caderno)
-│   ├── sobol/                 # Varredura paramétrica
-│   └── calibracao/            # Dados CADE e Brasscom
-├── tests/                     # pytest + nbval
-├── notebooks/                 # Caderno reprodutível
-├── scripts/                   # Execuções longas (Sobol assíncrono)
-├── figuras/                   # PNG + SVG versionados
-├── paper/                     # LaTeX + bib
-└── docs/                      # ODD, análise jurídica, referências
+├── src/waas_antitrust/
+│   ├── agents.py            # TrabalhadorAgent, EmpresaAgent, AutoridadeAgent
+│   ├── model.py             # WaaSModel + WaaSParametros (40+ campos opt-in)
+│   ├── cenarios.py          # 19 cenários canônicos (status quo, EUA, UE, …)
+│   ├── condutas.py          # 28 condutas digitais com casos verificados
+│   ├── choques.py           # 5 catálogos de choque (Tech 2022-2024, IA 2024-25, …)
+│   ├── corrida.py           # LCMC (R20) — gradiente Saito intra/inter-firma
+│   ├── hirschman.py         # Exit-with-equity (R07)
+│   ├── instrumentos.py      # 5 entradas: canal + 4 instrumentos opcionais
+│   ├── normas/              # Parser LexML BR (T07 fechado, 540 linhas)
+│   ├── sobol/               # Varredura paramétrica (joblib paralelo)
+│   ├── calibracao/          # Saito 2021, RIG/TCU 2022-2024, Brasscom 2024
+│   └── viz/                 # 20 módulos: gerar_figura(...) → 21 PNGs em docs/img/
+├── scripts/                 # 10 scripts (calibração, varreduras, geração)
+├── tests/                   # 343 testes + nbval
+├── notebooks/               # WaaS_demo (CI) + WaaS_brincar (interativo)
+├── data/normas/             # Corpus LexML (Lei 12.529, 13.608, Res. 21/2018)
+├── paper/                   # LaTeX + bib (25 citações; rascunho v0.2.0)
+└── docs/                    # MkDocs Material — 27 páginas + 21 figuras
 ```
 
-## Citação
+## Achados científicos protegidos por teste
 
-Veja `CITATION.cff` para metadados estruturados (Zenodo-compatível).
+`tests/test_achados_rodada.py` é o gate de regressão dos 5 achados centrais:
+
+- **Prop. 5 forte falsificada empiricamente** (varredura 10 seeds × 8 alphas × 40 tiques): dano em Regime B fica ~8× abaixo do piso A estável até $\alpha = 0{,}9$
+- **Prop. 5 fraca verificada**: capital social residual decai monotonicamente com $\alpha$
+- **Calibração formal R03**: ponto ótimo $(f_v, t_c) = (0{,}323; 0{,}481)$ produz 0,56 TCC/ano contra alvo normalizado 0,60 (erro 6,65%)
+- **Identificabilidade dissolvida**: 175 rodadas 1D mostram `rho` ortogonal ao alvo; sai da função objetivo
+- **Mapa $(\lambda, \beta_H)$**: sem evidência de bifurcação na grade — Mat A resolvido empiricamente
+
+Cada achado é descrito em [`docs/limitacoes.md`](https://freirelucas.github.io/waas-antitrust/limitacoes/) e [`docs/transparencia.md`](https://freirelucas.github.io/waas-antitrust/transparencia/).
+
+## Como citar
+
+`CITATION.cff` na raiz contém metadados estruturados. DOI Zenodo após congelamento da versão de submissão.
 
 ```
-L. (2026). waas-antitrust: agent-based model for Whistleblower-as-a-Service
-in digital antitrust enforcement (v1.0) [Software]. Zenodo. https://doi.org/...
+L. (2026). WaaS-antitrust: agent-based model for the Leniency Conditional on
+Critical Mass mechanism in Brazilian digital antitrust enforcement.
+URL: https://github.com/freirelucas/waas-antitrust
 ```
 
 ## Licença
 
 Código e documentação sob [Creative Commons Atribuição-CompartilhaIgual 4.0 Internacional](LICENSE) (CC BY-SA 4.0).
 
-## Articulação institucional
+---
 
-Este repositório é mantido independentemente da posição institucional do autor (IPEA/DIEST/COGIT). As opiniões aqui expressas não comprometem o IPEA.
+<div align="center">
+
+*Proposição acadêmica independente. O autor mantém este repositório sem vinculação institucional formal a CADE, IPEA ou qualquer organização privada.*
+
+[Site MkDocs](https://freirelucas.github.io/waas-antitrust/) · [Brincar no Colab](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb) · [Paper](https://github.com/freirelucas/waas-antitrust/blob/main/paper/main.tex) · [Backlog](https://freirelucas.github.io/waas-antitrust/DECISIONS/)
+
+</div>

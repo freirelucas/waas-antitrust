@@ -4,7 +4,9 @@
 
 A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é **de uma firma só** — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e *corp dev*, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.
 
-[Ato 2: O mecanismo →](mecanismo.md){ .md-button .md-button--primary } [Brincar com o modelo](brincar.md){ .md-button } [Paper](paper.md){ .md-button }
+[**▶ Ato 2: O mecanismo**](mecanismo.md) ·
+[🧪 Brincar com o modelo](brincar.md) ·
+[📄 Paper](paper.md)
 
 | R\$ 12,3 mi | 1.679 firmas | +1.363% | 343 testes |
 |:---:|:---:|:---:|:---:|

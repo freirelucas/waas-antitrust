@@ -1,9 +1,10 @@
 site_name: WaaS-antitrust
 site_url: https://freirelucas.github.io/waas-antitrust/
 site_description: >-
-  Leniência Condicionada à Massa Crítica para mercados digitais brasileiros —
-  canal de depósito condicional operado pelo CADE, com 341 testes,
-  19 figuras reproduzíveis e calibração formal sobre o problema reduzido.
+  Leniência Condicionada à Massa Crítica para o antitruste de mercados
+  digitais — canal de depósito condicional operado pelo CADE, sem lei nova.
+  Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis,
+  calibração formal R03 no ponto (0,323; 0,481).
 site_author: "L."
 repo_url: https://github.com/freirelucas/waas-antitrust
 repo_name: freirelucas/waas-antitrust
@@ -15,6 +16,7 @@ copyright: >-
 
 theme:
   name: material
+  custom_dir: docs/overrides
   language: pt-BR
   font:
     text: Inter

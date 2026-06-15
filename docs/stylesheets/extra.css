@@ -886,3 +886,69 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ----------------------------------------------------------------------
+ * Row de CTAs no Ato 1 — primeiro parágrafo após o lead, contendo 3
+ * links separados por · vira botões grandes no Material e degrada
+ * para linha de links comum em ambientes raw (GitHub UI).
+ * --------------------------------------------------------------------*/
+.md-typeset > h1:first-of-type + p + p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7em;
+  align-items: center;
+  margin: 1.6em 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  line-height: 1.5;
+  color: inherit;
+}
+.md-typeset > h1:first-of-type + p + p a {
+  display: inline-block;
+  padding: 0.65em 1.1em;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(39, 174, 96, 0.4);
+  color: #1e8449;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+.md-typeset > h1:first-of-type + p + p a:first-child {
+  background: linear-gradient(135deg, #27ae60, #16a085);
+  border-color: transparent;
+  color: white;
+}
+.md-typeset > h1:first-of-type + p + p a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(39, 174, 96, 0.25);
+}
+.md-typeset > h1:first-of-type + p + p a:first-child:hover {
+  filter: brightness(1.08);
+}
+/* Hide the · separators between the buttons. */
+.md-typeset > h1:first-of-type + p + p {
+  /* preserva o conteúdo mas o flex layout absorve os "·" automaticamente
+   * porque ficam como text nodes entre os <a>; estilizamos para ficarem
+   * discretos */
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type + p + p a {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(46, 204, 113, 0.4);
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type + p + p a:first-child {
+  background: linear-gradient(135deg, #27ae60, #16a085);
+  color: white;
+}
+
+/* ----------------------------------------------------------------------
+ * Tabela "Para quem é isso" no Ato 1 e na home — tabelas de 3 colunas
+ * com primeira coluna de emoji+persona ganham hover sutil
+ * --------------------------------------------------------------------*/
+.md-typeset > h2 + table tr:hover td,
+.md-typeset > h2 + p + table tr:hover td {
+  background: rgba(39, 174, 96, 0.04);
+}
