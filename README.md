@@ -1,12 +1,14 @@
 <div align="center">
 
-# WaaS-antitrust
+# LCMC
 
-### Leniência Condicionada à Massa Crítica para mercados digitais
+### Leniência Condicionada à Massa Crítica
 
 **Canal de depósito condicional · operado pelo CADE · sem necessidade de lei nova**
 
-[![Site MkDocs](https://img.shields.io/badge/site-freirelucas.github.io%2Fwaas--antitrust-1e8449?style=for-the-badge&logo=readthedocs&logoColor=white)](https://freirelucas.github.io/waas-antitrust/)
+*Aplicada ao antitruste de mercados digitais brasileiros*
+
+[![Site](https://img.shields.io/badge/site-freirelucas.github.io%2Fwaas--antitrust-1e8449?style=for-the-badge&logo=readthedocs&logoColor=white)](https://freirelucas.github.io/waas-antitrust/)
 [![Brincar no Colab](https://img.shields.io/badge/brincar%20no%20Colab-rodar%20o%20modelo-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/freirelucas/waas-antitrust/blob/main/notebooks/WaaS_brincar.ipynb)
 [![Paper](https://img.shields.io/badge/paper-rascunho%20v0.2.0-blue?style=for-the-badge&logo=overleaf&logoColor=white)](https://github.com/freirelucas/waas-antitrust/blob/main/paper/main.tex)
 
@@ -25,9 +27,11 @@ Em mercados digitais, **o abuso vem de uma firma só**: auto-preferência do Goo
 
 A informação existe **dentro da própria empresa**: no Slack do time de produto, na ata do comitê de aquisições, no slide-deck da reunião comercial. Mas ela não circula. No Brasil de hoje, o trabalhador que falaria arrisca emprego, carreira, tranquilidade — e ganha **nada de previsível** em troca.
 
-## A resposta deste projeto
+## A resposta: LCMC
 
-A **Leniência Condicionada à Massa Crítica (LCMC)** é um *canal de depósito condicional* operado pelo CADE. Em três paralelos:
+A **Leniência Condicionada à Massa Crítica (LCMC)** é um *canal de depósito condicional* operado pelo CADE. O trabalhador deposita uma denúncia que **só se abre** quando outros trabalhadores da mesma firma também depositarem. Sem cooperação suficiente, ninguém é exposto. Com cooperação, todas as denúncias se abrem simultaneamente.
+
+Em três paralelos:
 
 |  |  |
 |---|---|
@@ -37,7 +41,23 @@ A **Leniência Condicionada à Massa Crítica (LCMC)** é um *canal de depósito
 
 O nome acadêmico desse desenho é ***information escrow***, formalizado por **Ian Ayres e Cait Unkovic** (Yale Law School) em *Michigan Law Review* 111:145 (2012). A LCMC aplica esse desenho ao antitruste brasileiro, com o CADE como o "terceiro confiável" que opera a caixa-cofre.
 
-A novidade institucional: **base normativa autônoma** no Art. 4º, II e III da Lei 12.529/2011 c/c Lei 9.784/99 — o CADE pode disciplinar o procedimento **sem lei nova** e sem depender da re-caracterização do Art. 12 da Resolução 21/2018.
+**Base normativa autônoma**: Art. 4º, II e III da Lei 12.529/2011 c/c Lei 9.784/99 — o CADE pode disciplinar o procedimento **sem lei nova** e sem depender da re-caracterização do Art. 12 da Resolução 21/2018.
+
+## A LCMC é um mecanismo de coordenação, não de pagamento
+
+A LCMC resolve o problema clássico de Olson (1965): em grupos pequenos, ninguém quer ser o primeiro a se expor; cada um prefere esperar o outro começar. O canal **elimina esse impasse por construção** — a denúncia individual nunca fica exposta sozinha enquanto a massa crítica não se forma.
+
+**Acoplados opcionalmente ao canal**, cinco instrumentos de internalização podem amplificar a adesão:
+
+| Instrumento | Quem paga · Para quem · Como |
+|---|---|
+| **Canal puro (LCMC sem instrumento)** | Configuração mais conservadora: só o procedimento administrativo do CADE. Sem categoria sancionatória nova. Risco F6 (anulação judicial) cai materialmente |
+| **WaaS — recompensa via TCC** | Firma paga trabalhador; pagamento re-caracterizado como ressarcimento sob Art. 12 Res. 21/2018 |
+| **Hirschman — vesting acelerado** | Firma paga via equity; gatilho contratual de ação coletiva (R07, requer Regime C) |
+| **Crédito tributário** | Estado paga via renúncia fiscal (R22 stub; requer LC + LRF) |
+| **Leniência criminal individual** | Estado oferece não-persecução (R23 stub; reserva penal estrita Art. 5º XXXIX CF) |
+
+O **WaaS é apenas um dos cinco instrumentos**. Quando ele é o acoplamento ativo, emerge a aritmética IC-F\*: a firma compara desconto $D$ contra recompensa $W$. Mas o canal LCMC funciona **mesmo sem nenhum instrumento monetário** — operando puramente pela coordenação que o escrow institucionaliza.
 
 ## Os números
 
@@ -45,15 +65,15 @@ A novidade institucional: **base normativa autônoma** no Art. 4º, II e III da 
 
 | **R$ 12,3 mi** | **1.679 firmas** | **+1.363%** | **343 testes** |
 |:---:|:---:|:---:|:---:|
-| margem da firma sob TCC-WaaS para receita de R$ 1 bi | universo CADE implícito após calibração formal R03 | ΔW de Regime B sobre A em bem-estar agregado | verdes em ~25s · 21 figuras reproduzíveis |
+| margem da firma sob TCC-WaaS (instrumento monetário) para receita de R$ 1 bi | universo CADE implícito após calibração formal R03 | ΔW de Regime B sobre A em bem-estar agregado | verdes em ~25s · 21 figuras reproduzíveis |
 
 </div>
 
 ## A figura central
 
-![Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres, saída direta do WaaSModel.executar()](docs/img/03_dissuasao_bem_estar.png)
+![Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres, saída direta do modelo executado](docs/img/03_dissuasao_bem_estar.png)
 
-> **Saída literal** do modelo, *seed* 11, regimes A/B/C lado a lado. **(A)** Violadoras ativas ao longo do tempo: regime A (cinza) cresce e estabiliza alto; regimes B/C (verde/roxo) caem a zero em ~17 tiques. **(B)** Bem-estar social agregado. ΔW (B sobre A) = +1363%. **Reprodução em 60 segundos**: `python scripts/gerar_figura_dissuasao.py`.
+> **Saída literal** do modelo, *seed* 11, regimes A/B/C lado a lado. **(A)** Violadoras ativas ao longo do tempo: regime A (cinza) cresce e estabiliza alto; regimes B/C (verde/roxo) caem a zero em ~17 tiques sob LCMC ativa. **(B)** Bem-estar social agregado. ΔW (B sobre A) = +1363%. **Reprodução em 60 segundos**: `python scripts/gerar_figura_dissuasao.py`.
 
 ## Para quem é
 
@@ -61,7 +81,7 @@ A novidade institucional: **base normativa autônoma** no Art. 4º, II e III da 
 |---|---|---|
 | 📰 **Jornalista** | [Kit de imprensa](https://freirelucas.github.io/waas-antitrust/imprensa/) | 3 leads + 6 números com fonte + autor e contato |
 | ⚖️ **Advogada/o** | [Análise institucional](https://freirelucas.github.io/waas-antitrust/INSTITUTIONAL/) | Base autônoma Art. 4º + vetores atacáveis F6, reserva de lei |
-| 📐 **Economista** | [Formulário matemático](https://freirelucas.github.io/waas-antitrust/formulario/) | IC-F* nas 3 formas + bem-estar + calibração formal R03 |
+| 📐 **Economista** | [Formulário matemático](https://freirelucas.github.io/waas-antitrust/formulario/) | IC-F\* nas 3 formas + bem-estar + calibração formal R03 |
 | 🏛️ **Autoridade** | [Procedimento administrativo](https://freirelucas.github.io/waas-antitrust/procedimento_cade/) | Fluxograma 7 etapas + sigilo Lei 9.784 Art. 24 |
 | 🏢 **Big Tech** | [Compliance corporativo](https://freirelucas.github.io/waas-antitrust/compliance_corporativo/) | Aritmética R$ + 4 vetores corporativos materiais |
 | 🎓 **Academia** | [Paper](https://freirelucas.github.io/waas-antitrust/paper/) · [Bem coletivo](https://freirelucas.github.io/waas-antitrust/bem_publico/) | Ostrom-Coleman-Olson + falsificação Prop. 5 forte |
@@ -83,6 +103,8 @@ Para usar como biblioteca, sem clonar:
 pip install "waas-antitrust @ git+https://github.com/freirelucas/waas-antitrust.git"
 ```
 
+> O **pacote Python** mantém o nome `waas_antitrust` por compatibilidade — o nome do conceito central evoluiu para LCMC, mas renomear o pacote quebraria toda a base de código existente.
+
 ## Fluxos típicos
 
 ```bash
@@ -92,8 +114,7 @@ jupyter notebook notebooks/WaaS_brincar.ipynb
 # 2. Reproduzir os 3 achados científicos da rodada de jun/2026
 python scripts/varredura_alpha_erosao.py     # falsifica Prop. 5 forte
 python scripts/identificabilidade_r03.py     # decompõe os 3 alvos do R03
-python scripts/calibrar_formal.py            # calibração Nelder-Mead
-                                             # → (0.323; 0.481), erro rel. 6.65%
+python scripts/calibrar_formal.py            # calibração Nelder-Mead → (0.323; 0.481)
 
 # 3. Regerar todas as 21 figuras do site (5-10 min)
 python scripts/regerar_todas_as_figuras.py
@@ -111,21 +132,22 @@ cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```
 waas-antitrust/
 ├── src/waas_antitrust/
-│   ├── agents.py            # TrabalhadorAgent, EmpresaAgent, AutoridadeAgent
+│   ├── agents.py            # TrabalhadorAgent · EmpresaAgent · AutoridadeAgent
+│   │                        # (Autoridade carrega o escrow LCMC: R27)
 │   ├── model.py             # WaaSModel + WaaSParametros (40+ campos opt-in)
-│   ├── cenarios.py          # 19 cenários canônicos (status quo, EUA, UE, …)
-│   ├── condutas.py          # 28 condutas digitais com casos verificados
-│   ├── choques.py           # 5 catálogos de choque (Tech 2022-2024, IA 2024-25, …)
 │   ├── corrida.py           # LCMC (R20) — gradiente Saito intra/inter-firma
-│   ├── hirschman.py         # Exit-with-equity (R07)
-│   ├── instrumentos.py      # 5 entradas: canal + 4 instrumentos opcionais
+│   ├── cenarios.py          # 19 cenários canônicos (status quo, EUA, UE, …)
+│   ├── instrumentos.py      # 5 entradas: canal LCMC + 4 instrumentos opcionais
+│   ├── condutas.py          # 28 condutas digitais com casos verificados
+│   ├── choques.py           # 5 catálogos de choque (Tech cíclico vs IA estrutural)
+│   ├── hirschman.py         # Exit-with-equity (R07, instrumento opcional)
 │   ├── normas/              # Parser LexML BR (T07 fechado, 540 linhas)
 │   ├── sobol/               # Varredura paramétrica (joblib paralelo)
 │   ├── calibracao/          # Saito 2021, RIG/TCU 2022-2024, Brasscom 2024
 │   └── viz/                 # 20 módulos: gerar_figura(...) → 21 PNGs em docs/img/
 ├── scripts/                 # 10 scripts (calibração, varreduras, geração)
 ├── tests/                   # 343 testes + nbval
-├── notebooks/               # WaaS_demo (CI) + WaaS_brincar (interativo)
+├── notebooks/               # WaaS_demo (CI) + WaaS_brincar (12 sliders)
 ├── data/normas/             # Corpus LexML (Lei 12.529, 13.608, Res. 21/2018)
 ├── paper/                   # LaTeX + bib (25 citações; rascunho v0.2.0)
 └── docs/                    # MkDocs Material — 27 páginas + 21 figuras
@@ -148,8 +170,8 @@ Cada achado é descrito em [`docs/limitacoes.md`](https://freirelucas.github.io/
 `CITATION.cff` na raiz contém metadados estruturados. DOI Zenodo após congelamento da versão de submissão.
 
 ```
-L. (2026). WaaS-antitrust: agent-based model for the Leniency Conditional on
-Critical Mass mechanism in Brazilian digital antitrust enforcement.
+L. (2026). LCMC: Leniency Conditional on Critical Mass — a conditional-deposit
+channel for unilateral conduct in Brazilian digital markets (agent-based model).
 URL: https://github.com/freirelucas/waas-antitrust
 ```
 
