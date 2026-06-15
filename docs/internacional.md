@@ -1,10 +1,10 @@
 # Generalidade do mecanismo
 
-<p class="deck">EUA e UE como variantes paramétricas do mesmo desenho: três marcos institucionais que apareceram em 2024–2025 reposicionam a LCMC de proposição brasileira a tese transponível para qualquer jurisdição com autoridade administrativa antitruste.</p>
+<p class="deck">EUA e UE tratados como variantes paramétricas do mesmo modelo, à luz de três marcos institucionais aparecidos em 2024–2025 que indicam a generalidade do mecanismo. A leitura primária — canal de depósito condicional operado pela autoridade administrativa — é compatível com cada jurisdição; o que muda são os instrumentos de internalização disponíveis em cada arcabouço normativo.</p>
 
 <p class="byline"><em>Análise internacional</em> · pesquisa de fundo jan/2026 · atualizada jun/2026</p>
 
-<p class="lede">A pesquisa de fundo de janeiro de 2026 verificou três marcos institucionais que <strong>não existiam quando o modelo foi escrito</strong> e que confirmam, de fora, a generalidade da LCMC. Cada marco aparece aqui como <strong>variante paramétrica do mesmo agente-modelo</strong> — não como teoria distinta. A leitura primária permanece a do canal de depósito condicional operado pela autoridade (Ayres-Unkovic 2012; Callisto); a leitura institucional brasileira (Art. 12 da Res. CADE 21/2018; Cₜ/Cᵩ/Cₚ) permanece em <a href="INSTITUTIONAL.md"><code>INSTITUTIONAL.md</code></a>.</p>
+<p class="lede">A pesquisa de fundo de janeiro de 2026 verificou três marcos institucionais relevantes para a leitura comparada da LCMC. Cada marco aparece aqui como variante paramétrica do mesmo agente-modelo — não como teoria distinta. A leitura primária permanece a do canal de depósito condicional operado pela autoridade (Ayres-Unkovic 2012; Callisto 2015); a leitura institucional brasileira (Art. 12 da Res. CADE 21/2018; Cₜ/Cᵩ/Cₚ) permanece em <a href="INSTITUTIONAL.md"><code>INSTITUTIONAL.md</code></a>. A R30 (seção final) examina a hipótese de adoção coordenada e os limites do exercício.</p>
 
 <span class="kicker">Marcos · 2024–2025</span>
 ## Sumário dos três marcos
@@ -111,7 +111,7 @@ A segunda alavanca é **amplificação Schelling internacional**. Cada abertura 
 
 A figura mostra os três regimes lado a lado em uma rodada multi-seed: status quo (sem LCMC), LCMC descoordenada (cada autoridade local rodando isolada) e LCMC global coordenada (consolidação cross-jurisdicional + amplificação Schelling). O painel (A) mostra a trajetória de violadoras ativas; o painel (B) decompõe o ΔW agregado em dois degraus — o ganho da LCMC local e o **segundo degrau de sinergia** que só aparece quando há coordenação.
 
-<p class="pull-quote-jornal">A LCMC global não substitui as autoridades nacionais. Ela costura, por baixo, a única peça que falta às investigações paralelas de hoje: uma engenheira em São Paulo, outra em Mountain View, uma terceira em Dublin, depositando contra o mesmo grupo econômico, sem ter que ser cada uma a primeira em sua jurisdição.<cite>Tese R30 · sinergia inter-autoridades</cite></p>
+A hipótese de fundo da R30 é que a LCMC coordenada não substitui as autoridades nacionais. Ela apenas costura uma peça que falta às investigações paralelas em curso hoje: a possibilidade de que uma engenheira em São Paulo, outra em Mountain View e uma terceira em Dublin depositem denúncias contra o mesmo grupo econômico sem que cada uma precise ser a primeira em sua jurisdição. O efeito empírico do exercício na simulação está documentado na figura acima; os limites do que a simulação pode dizer estão no [Caveats da transposição](#caveats-da-transposicao) abaixo.
 
 ### Casos materiais hoje em curso
 

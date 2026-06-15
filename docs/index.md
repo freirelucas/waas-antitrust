@@ -1,18 +1,18 @@
 # Quando a infração é unilateral, quem denuncia?
 
-<p class="deck">Como destravar a denúncia interna em mercados digitais com um canal de depósito condicional operado pelo CADE — sem nova lei, sem dependência de cúmplice externo, com cinco instrumentos opcionais para internalizar a cooperação.</p>
+<p class="deck">Proposta acadêmica de um canal de depósito condicional (<em>information escrow</em>) operado pelo CADE para destravar a denúncia interna em mercados digitais — onde a infração é tipicamente de uma firma só, sem cúmplice externo a quem oferecer leniência clássica.</p>
 
-<p class="byline"><em>L.</em> · Rascunho v0.2.0 · jun/2026</p>
+<p class="byline"><em>L.</em> · Rascunho v0.2.0 · jun/2026 · CC BY-SA 4.0</p>
 
-<p class="lede">A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é <strong>de uma firma só</strong> — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e <em>corp dev</em>, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.</p>
+<p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a LCMC — desenhada para esse domínio.</p>
 
-[**▶ Ato 2: O mecanismo**](mecanismo.md) · [🧪 Brincar in-browser](brincar.md) · [📄 Paper](paper.md)
+[Ato 2 · O mecanismo](mecanismo.md) · [Simulador in-browser](brincar.md) · [Paper](paper.md)
 
 | R\$ 12,3 mi | 1.679 firmas | +1.363% | 364 testes |
 |:---:|:---:|:---:|:---:|
-| **margem da firma sob TCC-WaaS** para receita de R\$ 1 bi | **universo CADE implícito** após calibração formal R03 | **ΔW de Regime B sobre A** em bem-estar agregado | **verdes em ~31s** · 23 figuras reproduzíveis |
+| margem da firma sob TCC-WaaS para receita de R\$ 1 bi (cenário ilustrativo) | universo CADE implícito após calibração formal R03 (predição falsificável) | ΔW do Regime B sobre o A em bem-estar agregado (rodada multi-seed) | verdes em ~31 s · 23 figuras reproduzíveis · `mkdocs --strict` limpa |
 
-<p class="pull-quote-jornal">A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um canal de depósito condicional onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".<cite>Tese central · LCMC</cite></p>
+> **Princípio LCMC.** O CADE recebe denúncias com cláusula de abertura condicional e as mantém em escrow até que uma fração mínima `q_min · n` de trabalhadores da mesma firma também tenha depositado denúncias compatíveis. Quando o gatilho é atingido, todas as denúncias se abrem simultaneamente; antes disso, nenhuma é exposta. O problema clássico de "ninguém quer ser o primeiro" (Olson 1965) é eliminado por construção.
 
 <span class="kicker">Ato 1 · O problema</span>
 ## A leniência clássica acabou de bater num muro

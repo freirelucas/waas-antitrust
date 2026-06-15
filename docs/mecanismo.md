@@ -1,12 +1,12 @@
 # O mecanismo, em três camadas
 
-<p class="deck">Primeiro o canal (depósito condicional CADE). Depois a coordenação que isso resolve (Olson sem sub-iniciação). Por último os instrumentos incrementais — todos opcionais.</p>
+<p class="deck">Descrição do mecanismo da LCMC organizada do canal de recepção qualificada para o problema de coordenação que ele resolve, e por último para os instrumentos opcionais de internalização — o instrumento monetário <em>Whistleblower-as-a-Service</em> entre eles.</p>
 
 <p class="byline"><em>Ato 2 de 5</em> · A hipótese · rascunho v0.2.0</p>
 
-<p class="lede">Esta página é organizada de fora para dentro: do <strong>mecanismo de recepção qualificada</strong> (canal de depósito condicional) para o <strong>problema de coordenação</strong> que ele resolve, e por fim para os <strong>instrumentos incrementais</strong> que aumentam adesão sem serem essenciais. A ordem importa: muita gente lê o WaaS como se ele <em>fosse</em> a LCMC. Não é. O Ato 1 separou os dois conceitos. Aqui formalizamos.</p>
+<p class="lede">Esta página é organizada de fora para dentro: do mecanismo de recepção qualificada (canal de depósito condicional) para o problema de coordenação que ele resolve, e por fim para os instrumentos incrementais que aumentam adesão sem serem essenciais. A ordem importa: parte da literatura interna do projeto leu, em versões anteriores, o WaaS como sinônimo da LCMC. Não é. O Ato 1 separou os dois conceitos; aqui formalizamos a distinção e detalhamos cada uma das cinco camadas.</p>
 
-<span class="kicker">Camada 1 · Coração</span>
+<span class="kicker">Camada 1 · Canal</span>
 ## O canal de depósito condicional
 
 A **Leniência Condicionada à Massa Crítica** (LCMC) é um *information escrow* operado pelo CADE:
