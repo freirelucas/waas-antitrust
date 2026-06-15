@@ -10,11 +10,19 @@ on:
       - ".github/workflows/docs.yml"
   workflow_dispatch:
 
+# Permissões para o modelo Pages-via-Actions.
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+# Garante uma única execução por ref; cancela a anterior se outra começar.
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,8 +38,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[docs]"
 
-      - name: Construir (modo estrito)
-        run: mkdocs build --strict
+      - name: Construir o site (modo estrito)
+        run: mkdocs build --strict --site-dir _site
 
+      - name: Garantir que Jekyll não interfira
+        run: touch _site/.nojekyll
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefato do Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Publicar no GitHub Pages
-        run: mkdocs gh-deploy --force
+        id: deployment
+        uses: actions/deploy-pages@v4
