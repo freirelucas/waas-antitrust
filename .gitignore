@@ -66,3 +66,4 @@ paper/figs/*.svg
 # Outros
 .env
 *.log
+.cache/
