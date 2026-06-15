@@ -388,70 +388,187 @@ rastreado em R26. Os itens de pesquisa que sustentariam plenamente cada
 proposição estão rastreados no backlog (R01--R28) do repositório.
 
 \section{Enquadramento cibernético}
+\label{sec:cibernetica}
 
-A LCMC pode ser lida em termos de variedade requisitada \citep{ashby1956introduction}.
-O teorema de Conant-Ashby (\citealp{conant1970good}) estabelece que todo regulador
-eficaz deve conter, em alguma forma, um modelo do sistema regulado: a variedade
-do regulador precisa igualar ou exceder a variedade do regulado. No antitruste
-clássico, o CADE é o regulador e a firma é o regulado --- e a variedade interna
-da firma digital moderna (centenas de produtos, milhares de algoritmos, dezenas
-de práticas de monetização) excede ordens de magnitude a variedade investigativa
-da autoridade (180 servidores na área-fim em 2024, conforme RIG/TCU). A
-defasagem de variedade é o mecanismo profundo por trás da seleção subdeterminada
-das condutas instauradas: o CADE não escolhe \emph{quais} firmas investigar; o
-universo das firmas que poderiam ser investigadas é tão maior que sua capacidade
-que toda escolha é, por construção, captura discricionária.
+\subsection{A Lei da Variedade Requisitada}
 
-A LCMC amplifica a variedade do regulador recrutando sensores internos à própria
-firma --- trabalhadores cujo conhecimento do produto, do ranking, do
-\emph{corp dev} é, por construção, equivalente ou superior ao do regulador
-externo. O canal de depósito condicional é o operador de variedade-amplificação
-proposto por \citet{beer1972brain} em outro contexto: estrutura de \emph{System
-3} (controle operacional) que importa variedade do \emph{System 1} (operação)
-sem destruir a autonomia de cada subsistema. O escrow preserva a autonomia
-individual (denúncia isolada não vira processo); a abertura simultânea
-realiza a importação de variedade ao sistema regulatório.
+A Lei da Variedade Requisitada, enunciada por \citet{ashby1956introduction} em
+\emph{An Introduction to Cybernetics}, estabelece que apenas variedade pode
+absorver variedade: todo regulador eficaz de um sistema deve conter, em sua
+organização interna, repertório de estados distinguíveis pelo menos compatível
+com o repertório do sistema regulado. Variedade, no vocabulário ashbyano, é a
+cardinalidade do conjunto de estados que um sistema pode ocupar; regular
+significa selecionar, na intersecção entre os estados acessíveis e os estados
+admissíveis, um subconjunto compatível com o critério normativo do regulador.
+Quando a variedade interna do regulador é estritamente menor que a do regulado,
+parte do espaço de estados escapa por necessidade estrutural à supervisão ---
+não por falha de diligência, mas por restrição informacional intrínseca ao
+acoplamento entre os dois sistemas.
 
-Esta leitura cibernética sugere uma explicação para por que a leniência clássica
-falha em mercados digitais sem requerer hipóteses fortes sobre captura ou
-politização: a variedade do regulador é estruturalmente insuficiente, e a
-LCMC é um mecanismo de \emph{amplificação} (não substituição) de variedade
-investigativa.
+\subsection{O teorema de Conant-Ashby}
+
+\citet{conant1970good} reforçam a Lei da Variedade Requisitada com proposição
+mais exigente: \emph{todo regulador eficaz de um sistema deve ser um modelo
+desse sistema}. A eficácia regulatória não decorre apenas de capacidade
+computacional bruta, mas da existência, interna ao regulador, de uma
+representação isomorfa --- no nível relevante --- ao sistema regulado. Sob esta
+lente, qualquer assimetria entre a estrutura cognitiva do regulador e a
+estrutura operacional do regulado define um teto à supervisão factível,
+independentemente do volume de recursos materiais alocados.
+
+\subsection{Aplicação ao antitruste digital}
+
+A firma de plataforma contemporânea opera centenas de produtos interdependentes,
+milhares de subsistemas algorítmicos de ranqueamento, recomendação e leilão
+publicitário, dezenas de modalidades distintas de monetização e aquisição
+(\emph{corp dev}, \emph{killer acquisitions}, integração vertical via API
+proprietária). Cada subsistema gera estados operacionais distinguíveis do ponto
+de vista da licitude antitruste mas internamente opacos para qualquer
+observador externo. A área-fim da Superintendência Geral do CADE contava, em
+2024, com aproximadamente 180 servidores (RIG/TCU 2024). A defasagem entre a
+variedade interna da firma regulada e a variedade investigativa da autoridade
+é, portanto, de várias ordens de magnitude. Esta defasagem fornece explicação
+estrutural --- e não psicológica nem político-institucional --- para a seleção
+subdeterminada das condutas instauradas: o universo de condutas potencialmente
+investigáveis excede de tal forma a capacidade do regulador que toda escolha
+agregada aproxima-se de uma amostragem com forte componente discricionário.
+
+\subsection{A LCMC como amplificador de variedade}
+
+A LCMC, lida ciberneticamente, não substitui o regulador externo nem amplia seu
+efetivo --- amplifica a variedade efetiva do sistema regulatório por recrutamento
+de sensores internos à firma. Os trabalhadores que operam o produto, calibram o
+ranking, executam o \emph{corp dev} ou desenham a política de monetização
+dispõem, por construção da divisão operacional do trabalho, de representação
+interna do subsistema relevante equivalente ou superior à do regulador externo.
+O canal de depósito condicional realiza a operação que \citet{beer1972brain},
+no \emph{Brain of the Firm}, designa de \emph{System~3} no Modelo de Sistemas
+Viáveis: estrutura de controle operacional que importa variedade do
+\emph{System~1} (operação cotidiana) sem destruir a autonomia subsistêmica.
+A importação ocorre por isomorfismo parcial e seletivo, sem captura integral do
+estado operacional --- preserva a integridade funcional da unidade observada ao
+mesmo tempo em que injeta seu repertório de estados no aparato regulatório.
+
+\subsection{Escrow e preservação da autonomia individual}
+
+O escrow é o mecanismo concreto que torna a amplificação compatível com a
+autonomia do trabalhador. O depósito isolado não dispara procedimento --- preserva
+o trabalhador da exposição prematura e da represália individualizada que, em
+contexto de leniência clássica, sinaliza a defecção a co-conspiradores
+identificáveis. A abertura simultânea, condicionada ao gatilho $q_{\min}\cdot n$,
+é o momento em que a variedade interna acumulada no escrow é convertida em
+variedade disponível ao regulador. A condição $q_{\min}\cdot n$ não é cota
+arbitrária: corresponde ao limiar abaixo do qual a importação de variedade seria
+insuficiente para distinguir conduta sistêmica de incidente isolado, e acima do
+qual o sinal agregado torna-se qualitativamente distinto da soma das observações
+individuais.
+
+\subsection{Implicação metodológica}
+
+A leitura cibernética justifica por que a falha da leniência clássica em
+mercados digitais não exige hipóteses sobre captura, politização ou má-fé da
+autoridade. A defasagem de variedade é estrutural; explica a sub-iniciação sem
+recurso a explicações motivacionais ou político-institucionais. A LCMC
+posiciona-se, em consequência, como mecanismo de \emph{amplificação} da
+variedade investigativa --- não de substituição da autoridade. Esta distinção é
+analiticamente relevante: amplificar variedade preserva a alocação
+constitucional de competência entre regulador, regulado e Judiciário, ao passo
+que substituí-la implicaria reformulação institucional cuja viabilidade
+política é distinta da viabilidade técnica do mecanismo aqui proposto.
 
 \section{Pré-condição sociológica}
+\label{sec:sociologia}
 
-A viabilidade empírica da LCMC depende de fenômeno sociológico contemporâneo
-distinto do que sustentava a leniência clássica. Programas de leniência
-operam sobre conspiradores externos cuja relação contratual com a firma é
-explicitamente cooperativa-criminosa; o desenho assume que a delação é
-individualmente racional sob risco de cooperação assimétrica. A LCMC opera
-sobre \emph{trabalhadores regulares} da firma, cuja relação contratual é
-trabalhista convencional, e cuja decisão de denunciar não é cooperação
-assimétrica em conspiração mas \emph{abandono parcial da lealdade institucional}
-em favor de norma externa.
+\subsection{Conspirador externo e trabalhador regular}
 
-O fenômeno emergiu visivelmente na década de 2018--2024 em empresas de
-tecnologia: o Google Walkout de novembro de 2018 (cerca de 20.000 trabalhadores
-em mais de 50 escritórios protestando contra acordos extrajudiciais em casos
-de assédio); a sindicalização da Alphabet Workers Union em janeiro de 2021;
-as denúncias internas de Frances Haugen sobre Facebook/Meta em 2021 --- todas
-exibem o padrão de denúncia interna coletiva por motivação principalmente
-ética, com proteção legal limitada e sem recompensa monetária associada. A
-literatura sociológica clássica de \citet{olson1965logic} previu este
-fenômeno como ocorrência marginal em grupos pequenos com interesse perceptível;
-a tradução para o contexto contemporâneo de empresas de plataforma de grande
-escala \citep{cremer2019competition} sugere que o número absoluto de
-trabalhadores com motivação ética suficiente para depositar pode ser pequeno
-(5--20 por firma) mas não-nulo, o que é exatamente a faixa que o
-$q_{\min}\cdot n$ da LCMC pretende mobilizar.
+A leniência clássica opera sobre um sujeito sociológico bem determinado: o
+conspirador externo, vinculado à firma por relação contratual cooperativa de
+natureza criminosa, cuja cooperação com a autoridade é tecnicamente uma defecção
+dentro de um dilema do prisioneiro pré-existente entre concorrentes. O cálculo
+é de cooperação assimétrica sob risco mútuo, e o aparato de incentivos exige
+apenas que a imunidade seja preferível, no nó de decisão individual, à
+manutenção da conspiração. A LCMC desloca-se para um sujeito qualitativamente
+distinto: o trabalhador regular da firma, cuja relação contratual é trabalhista
+convencional e cuja decisão de depositar não pertence ao registro da defecção
+em conspiração, mas ao registro do abandono parcial da lealdade institucional
+em favor de norma externa. O conteúdo psicológico, o substrato normativo e o
+horizonte de represália são distintos em natureza, não apenas em grau --- e o
+desenho institucional precisa acomodá-los como tais. O depósito não é confissão
+de cumplicidade; é exercício de dissenso normativo no interior de relação
+contratual cuja conformidade legal é, em princípio, presumida.
 
-A condição NLRB (National Labor Relations Board, EUA) sobre ação coletiva
-protegida --- \emph{Section~7 protected activity} --- e seu paralelo
-trabalhista brasileiro (CLT Art.~543, sobre proteção do dirigente sindical,
-e Art.~462 \S2º, sobre vedação a desconto salarial por ato de cidadania) são
-o substrato normativo trabalhista contemporâneo do qual a LCMC se beneficia
-sem depender exclusivamente. A LCMC não requer mudança trabalhista nova; opera
-sobre proteção pré-existente, com escrow como amplificador.
+\subsection{O fenômeno empírico 2018--2024}
+
+A janela 2018--2024 oferece evidência observacional de que o sujeito requerido
+pela LCMC existe empiricamente em empresas de plataforma. O Google Walkout, em
+novembro de 2018, mobilizou aproximadamente vinte mil trabalhadores em mais de
+cinquenta escritórios em protesto contra a prática de acordos extrajudiciais
+sigilosos em casos de assédio --- exercício de ação coletiva sem recompensa
+monetária associada e sob proteção jurídica limitada. A constituição da
+\emph{Alphabet Workers Union} em janeiro de 2021 é o primeiro caso documentado
+de sindicalização em escala relevante numa firma do núcleo da indústria de
+plataforma. As denúncias internas de Frances Haugen sobre o Facebook/Meta em
+2021, conduzidas sob a proteção restrita do \emph{SEC Whistleblower Office} e
+com vazamento subsequente de documentos internos, completam o quadro. Cada
+episódio exibe padrão recorrente: denúncia interna coletiva motivada
+principalmente por consideração ética, sob proteção legal limitada e sem
+contrapartida pecuniária estruturada. O padrão observado é tanto evidência da
+existência do sujeito quanto diagnóstico da insuficiência do instrumental
+institucional disponível para canalizar sua disposição.
+
+\subsection{Olson e a faixa numérica relevante}
+
+\citet{olson1965logic}, em \emph{The Logic of Collective Action}, previu o
+fenômeno da ação coletiva por motivação ética como ocorrência marginal,
+restrita a grupos pequenos em que o interesse comum seja suficientemente
+perceptível para superar o cálculo do carona. A transposição ao contexto das
+plataformas digitais contemporâneas sugere que o número absoluto de
+trabalhadores eticamente motivados por firma é pequeno em termos relativos ---
+da ordem de cinco a vinte por firma de porte relevante --- mas estritamente
+não-nulo. Esta é precisamente a faixa numérica que o gatilho $q_{\min}\cdot n$
+da LCMC pretende mobilizar. O canal de depósito condicional não pressupõe
+mobilização majoritária; pressupõe a existência de uma minoria eticamente
+motivada cuja coordenação simultânea é impedida não pela escassez do
+contingente, mas pela ausência de instrumento que sincronize a revelação. O
+ponto olsoniano é menos uma profecia pessimista sobre ação coletiva do que uma
+cartografia das condições estruturais sob as quais ela ocorre --- e o escrow
+é desenho institucional que torna parte dessas condições endógena.
+
+\subsection{Substrato normativo trabalhista}
+
+A LCMC se beneficia de substrato normativo pré-existente, sem dele depender
+exclusivamente. Nos Estados Unidos, o \emph{National Labor Relations Board}
+reconhece, sob a \emph{Section~7 protected activity} do \emph{National Labor
+Relations Act}, a proteção da ação coletiva concertada para mútuo apoio em
+condições de trabalho --- cobertura que se estende, doutrinariamente, a formas
+de denúncia interna concertada. No Brasil, o Art.~543 da Consolidação das Leis
+do Trabalho protege o dirigente sindical contra retaliação direta, e o Art.~462,
+\S2º, veda o desconto salarial por ato de cidadania, o que inclui o exercício de
+denúncia a órgão público. Estes dispositivos não bastam para induzir a denúncia
+em isolamento --- a represália informal, a marginalização interna e a sanção
+reputacional ficam fora de sua cobertura ---, mas constituem substrato sobre o
+qual o escrow opera como amplificador, sincronizando revelações que, isoladas,
+seriam absorvidas pela retaliação individualizada. A LCMC não requer reforma
+trabalhista prévia: incorpora a proteção horizontal existente e a complementa
+com sincronia temporal.
+
+\subsection{Implicação para Hirschman}
+
+O quadro de \citet{hirschman1970exit} articula três respostas ao declínio
+institucional: saída (\emph{exit}), voz (\emph{voice}) e lealdade
+(\emph{loyalty}). Em firmas de plataforma com custos elevados de transição
+profissional e forte captura reputacional pelo empregador, o trade-off entre
+voz e saída tende a deslocar o trabalhador para o silêncio ou para a saída
+prematura sem voz. O depósito condicional configura uma forma de voz coletiva
+cujo custo individual é diferido: o trabalhador deposita sem se expor, e a
+exposição só ocorre quando coordenada com co-depositantes da mesma firma. Em
+consequência, a LCMC eleva a viabilidade da opção de voz sem exigir o custo
+prévio de saída nem o sacrifício individual da lealdade institucional. Esta
+reconfiguração do trade-off voz-saída é, sociologicamente, o que distingue o
+depósito condicional da denúncia tradicional: o canal não pede que o trabalhador
+escolha entre fidelidade e protesto, mas viabiliza um protesto cuja própria
+condição de eficácia é a sincronia com pares motivados pelo mesmo registro
+normativo.
 
 \section{Tradução política para o Brasil}
 \label{sec:traducao_politica}
@@ -509,59 +626,78 @@ re-caracterização do Art.~12 enfrentar resistência judicial.
 
 \section{Conclusão}
 
+\subsection{Cinco resultados sustentando a proposta}
+
 Este artigo propôs a Leniência Condicionada à Massa Crítica (LCMC) como
-mecanismo de \emph{coordenação} (não de pagamento) para o enforcement
+mecanismo de \emph{coordenação} --- não de pagamento --- para o enforcement
 antitruste de mercados digitais brasileiros. Cinco resultados sustentam a
-proposta. (i) A leniência clássica é estruturalmente inadequada para
-condutas unilaterais, dominantes em plataformas digitais. (ii) O canal de
-depósito condicional --- \emph{information escrow} de
-\citet{ayres2012information} aplicado ao antitruste --- resolve a
-sub-iniciação coletiva por construção, eliminando o equilíbrio de silêncio
-sem requerer recompensa monetária. (iii) Sobre o canal, instrumentos de
-internalização (recompensa via TCC; vesting acelerado de Hirschman;
-crédito tributário; leniência criminal individual) são acoplamentos
-opcionais com reservas constitucionais distintas, cada um analisável
-separadamente. (iv) A implementação infralegal sob Regime~B é viável
-\emph{de lege lata} pela base autônoma do Art.~4º da Lei 12.529 combinado
-com a Lei 9.784/99, sem dependência da re-caracterização controvertida do
-Art.~12 da Resolução 21/2018; o paralelo institucional do DOJ-ATR
-\citep{dojatr2025} confirma a viabilidade da via administrativa. (v) O
-modelo computacional desenvolvido para análise de robustez identifica
-cinco vetores de quebra mensuráveis (TCC clássico absorvente; anulação
-judicial; custo legal individual; massa crítica inalcançável; erosão
-Coleman do substrato cooperativo), cada um com parâmetro falsificável e
-teste de regressão associado --- a forma forte da Proposição~5 sobre
-erosão Coleman foi explicitamente \emph{refutada} pela varredura
-multi-seed dedicada (Figura~\ref{fig:erosao}).
+proposta. Primeiro, a leniência clássica é estruturalmente inadequada para
+condutas unilaterais, predominantes em plataformas digitais: a tecnologia de
+ruptura do dilema do prisioneiro entre conspiradores externos perde tração onde
+o conhecimento relevante reside numa única firma. Segundo, o canal de depósito
+condicional --- \emph{information escrow} no sentido de
+\citet{ayres2012information} --- resolve por construção o problema da
+sub-iniciação coletiva: a abertura simultânea condicionada ao gatilho
+$q_{\min}\cdot n$ elimina o equilíbrio de silêncio induzido pelo custo
+individual de represália suportado em isolamento, sem requerer recompensa
+monetária prévia. Terceiro, sobre o canal articulam-se cinco instrumentos
+opcionais de internalização --- recompensa via TCC, êxodo coletivo
+hirschmaniano, crédito tributário, leniência criminal individual, e
+intervenção sobre cláusulas restritivas de mobilidade ---, cada qual com
+reserva constitucional distinta e analisável separadamente, sem alterar a
+estrutura do canal. Quarto, a implementação infralegal sob Regime~B é viável
+\emph{de lege lata} pela base autônoma do Art.~4º, II e III, da Lei 12.529
+combinado com a Lei 9.784/99, sem dependência da re-caracterização
+controvertida do Art.~12 da Resolução 21/2018; o paralelo institucional do
+\citet{dojatr2025} (julho de 2025) confirma a viabilidade da via administrativa
+em jurisdição comparável. Quinto, o modelo baseado em agentes identifica cinco
+vetores de quebra mensuráveis (TCC clássico absorvente; anulação judicial sob
+F6; custo legal individual; massa crítica inalcançável; erosão Coleman do
+substrato cooperativo), cada um com parâmetro falsificável e teste de regressão
+associado --- a forma forte da Proposição~5 foi explicitamente \emph{refutada}
+pela varredura multi-seed dedicada (10 seeds $\times$ 8 valores de $\alpha$
+$\times$ 40 ciclos; Figura~\ref{fig:erosao}): o dano em Regime~B fica em
+mediana cerca de oito vezes abaixo do piso estável do Regime~A até $\alpha =
+0{,}9$, e a dissuasão endógena compensa, no nível agregado, a erosão do
+substrato local.
+
+\subsection{Limites reconhecidos}
 
 Os limites da contribuição são reconhecidos. A calibração formal de R03
-identifica $N^\star \approx 1\,679$ firmas como predição falsificável a
-verificar contra o universo CADE real; a Proposição~2 sob heterogeneidade
-de arquétipos e papéis segue conjectura aberta; doze citações marcadas
-\texttt{[?]} no repositório aguardam verificação contra fonte primária. A
-viabilidade política do Regime~C no horizonte 2024--2027 é baixa; a
-viabilidade do Regime~B depende de decisão administrativa do CADE não
-anunciada nem em consulta pública. A análise comparada com programas
-existentes (\S4) sugere que o desenho ocupa nicho ainda vazio na
-taxonomia institucional contemporânea --- canal de depósito condicional
-com massa crítica intra-firma sob via infralegal --- de modo que a
-contribuição substantiva é localizar e formalizar este nicho, não
-demonstrar sua superioridade incondicional sobre alternativas em
-qualquer cenário.
+identifica $N^\star \approx 1.679$ firmas como predição falsificável, a
+verificar contra o universo CADE real de firmas sob jurisdição ativa. A
+Proposição~2, no que se refere à unicidade do equilíbrio de \emph{switching}
+sob heterogeneidade de arquétipos e papéis, permanece conjectura aberta ---
+verificada por construção do canal no limite homogêneo $\tau \to 0$, mas
+formalmente não fechada no caso heterogêneo. Doze citações marcadas \texttt{[?]}
+no repositório aguardam verificação contra fonte primária. A viabilidade
+política do Regime~C no horizonte 2024--2027 é baixa, dada a agenda congressual
+concentrada em reforma tributária e a paralisia do PL 2768/2022; a
+viabilidade do Regime~B, ainda que tecnicamente preparada, depende de decisão
+administrativa do CADE não anunciada nem em consulta pública. A análise
+comparada com programas existentes sugere que o desenho ocupa nicho ainda
+vazio na taxonomia institucional contemporânea --- canal de depósito
+condicional com massa crítica intra-firma sob via infralegal ---, de modo que
+a contribuição substantiva é localizar e formalizar este nicho, não demonstrar
+superioridade incondicional sobre alternativas em qualquer cenário.
 
-A análise futura deve perseguir três frentes. Empírica: confirmar ou
-refutar $N^\star$ contra cadastro CADE de firmas sob jurisdição ativa;
-calibrar $\alpha_{\text{erosão}}$ contra evidência longitudinal de
-denúncia em jurisdições com programas estabelecidos (SEC, DOJ-ATR após
-2026, DMA). Teórica: fechar a unicidade do equilíbrio sob heterogeneidade
-(Proposição~2c); investigar formalmente as condições de não-bifurcação no
-acoplamento $(\lambda, \beta_H)$ entre laços dissuasório e contratual.
-Institucional: redigir, em sede acadêmica, minuta de Resolução
-complementar à 21/2018 que articule procedimento de depósito condicional
-sem assumir competência regulatória --- contribuição que este artigo
-declina por não-vinculação política do autor, mas que segue como pendência
-para trabalho futuro coordenado com pesquisadores de direito
-administrativo.
+\subsection{Três frentes futuras}
+
+A análise futura deve perseguir três frentes. A frente empírica consiste em
+confirmar ou refutar $N^\star$ contra cadastro CADE de firmas sob jurisdição
+ativa; e em calibrar $\alpha_{\text{erosão}}$ contra evidência longitudinal de
+denúncia em jurisdições com programas estabelecidos --- séries históricas da
+SEC, dados a serem produzidos pelo DOJ-ATR a partir de 2026, e métricas da
+DMA Whistleblower Tool. A frente teórica consiste em fechar a unicidade do
+equilíbrio sob heterogeneidade (Proposição~2 sob a forma heterogênea) e em
+investigar formalmente as condições de não-bifurcação no acoplamento
+$(\lambda, \beta_H)$ entre laços dissuasório e contratual via análise de
+jacobiano local. A frente institucional consiste em redigir, em sede
+acadêmica colaborativa com pesquisadores de direito administrativo, minuta de
+Resolução complementar à Resolução CADE n.º 21/2018 que articule procedimento
+formal de depósito condicional --- contribuição que este artigo declina por
+não-vinculação política do autor, mas que fica registrada como pendência
+metodologicamente preparada para trabalho coordenado subsequente.
 
 \bibliographystyle{apalike}
 \bibliography{refs}

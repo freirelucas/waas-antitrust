@@ -10,9 +10,7 @@ Esta página é organizada de fora para dentro: do **mecanismo de recepção qua
 
 A **Leniência Condicionada à Massa Crítica** (LCMC) é um *information escrow* operado pelo CADE:
 
-!!! tip "Princípio LCMC — canal de depósito condicional"
-
-    O **CADE recebe denúncias com cláusula de abertura condicional**. O trabalhador deposita sua denúncia (texto livre + prova específica) com a condição: *"esta denúncia só é instaurada se houver ≥ `q_min · n_trab` outros depósitos compatíveis do mesmo setor/firma dentro de `Δt` tiques"*. Enquanto o gatilho não é atingido, **a denúncia fica em escrow**: a firma não é notificada, a denúncia não vira processo, a identidade do trabalhador não é revelada. Quando o gatilho é atingido, **todas as denúncias se abrem simultaneamente** — e ninguém foi o primeiro isoladamente.
+> 🔑 **Princípio LCMC — canal de depósito condicional.** O **CADE recebe denúncias com cláusula de abertura condicional**. O trabalhador deposita sua denúncia (texto livre + prova específica) com a condição: *"esta denúncia só é instaurada se houver ≥ `q_min · n_trab` outros depósitos compatíveis do mesmo setor/firma dentro de `Δt` tiques"*. Enquanto o gatilho não é atingido, **a denúncia fica em escrow**: a firma não é notificada, a denúncia não vira processo, a identidade do trabalhador não é revelada. Quando o gatilho é atingido, **todas as denúncias se abrem simultaneamente** — e ninguém foi o primeiro isoladamente.
 
 O mecanismo resolve **diretamente** o problema clássico de Olson (1965): sub-iniciação ("ninguém quer ser o primeiro") é eliminada por construção. A denúncia individual nunca fica exposta sozinha — ou se acopla a outras e se abre coletivamente, ou permanece em escrow indefinidamente. Sem instrumento monetário, sem ressarcimento controverso, sem categoria dogmática nova: apenas **procedimento administrativo de recepção qualificada**, ancorado em Art. 4º II/III da Lei 12.529/2011 c/c Lei 9.784/99.
 
@@ -130,24 +128,13 @@ A LCMC funciona **sem nenhum** dos instrumentos abaixo — o canal sozinho resol
 
 Sob a LCMC, o **substrato cooperativo** é o que importa. Mas a cooperação custa caro para cada trabalhador individualmente — risco de represália, custo legal, desvio da carreira. Cinco instrumentos podem compensar esse custo (cada um com reserva constitucional diferente):
 
-<div class="grid-instrumentos" markdown>
-
-- <span class="chip-instrumento waas">WaaS</span> **Firma → trabalhador (recompensa via TCC)**
-  Firma paga; pagamento entra como atenuante. Aplicação direta da IC-F\* (Camada 3 abaixo). Reserva Art. 22 I; regime B ou C.
-
-- <span class="chip-instrumento">Hirschman</span> **Firma → trabalhador (vesting acelerado)**
-  Cláusula contratual padrão; ameaça crível de êxodo coletivo dissuade preventivamente em P0 e amplia IC-F\* em P3. Reserva Art. 22 I; regime Cₜ.
-
-- <span class="chip-instrumento">Tributário</span> **Estado → trabalhador (renúncia fiscal)**
-  Análogo limitado ao IRS Whistleblower (26 U.S.C. §7623). Reserva LC + LRF; regime Cᵩ. Stub declarativo (R22).
-
-- <span class="chip-instrumento">Criminal</span> **Estado → trabalhador (imunidade penal)**
-  Não-persecução do partícipe cooperador. Reserva Art. 5º XXXIX (penal estrita); regime Cₚ. Stub declarativo (R23).
-
-- <span class="chip-instrumento">Norma</span> **Nenhum pagamento — só reconhecimento**
-  LCMC pura. O substrato cooperativo é internalizado por dever de ofício (boa fé Lei 9.784) sem instrumento monetário. Dois cenários canônicos cobrem essa configuração: `apenas_massa_critica_observavel` (sinal sem canal explícito, Regime A) e `apenas_canal_sem_instrumento` (canal explícito do CADE sem pagamento, Regime B + `usar_escrow_explicito=True`).
-
-</div>
+| Instrumento | Direção do pagamento | Reserva constitucional · regime |
+|---|---|---|
+| 💰 **WaaS — recompensa via TCC** | Firma → trabalhador; pagamento entra como atenuante. Aplicação direta da IC-F\* (Camada 3) | Art. 22 I; regime B ou C |
+| 🚪 **Hirschman — vesting acelerado** | Firma → trabalhador via equity; cláusula contratual padrão; ameaça crível de êxodo coletivo dissuade em P0 e amplia IC-F\* em P3 | Art. 22 I; regime Cₜ |
+| 🧾 **Crédito tributário** | Estado → trabalhador via renúncia fiscal; análogo limitado ao IRS Whistleblower (26 U.S.C. §7623) | LC + LRF; regime Cᵩ (R22 stub) |
+| ⚖️ **Leniência criminal individual** | Estado → trabalhador via imunidade penal; não-persecução do partícipe cooperador | Art. 5º XXXIX penal estrita; regime Cₚ (R23 stub) |
+| 🤝 **Nenhum pagamento — só reconhecimento** | LCMC pura. Substrato cooperativo internalizado por dever de ofício (boa fé Lei 9.784/99) sem instrumento monetário | Cenários canônicos: `apenas_massa_critica_observavel` (sinal sem canal, Regime A) e `apenas_canal_sem_instrumento` (canal explícito CADE sem pagamento, Regime B + `usar_escrow_explicito=True`) |
 
 O catálogo declarativo das **5 entradas** — o canal base (sem pagamento) + os 4 instrumentos monetários — está em `src/waas_antitrust/instrumentos.py`:
 
