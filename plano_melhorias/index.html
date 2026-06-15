@@ -1,0 +1,2059 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).">
+      
+      
+        <meta name="author" content="L.">
+      
+      
+        <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/plano_melhorias/">
+      
+      
+        <link rel="prev" href="../critica_x10_v2/">
+      
+      
+        <link rel="next" href="../brainstorm_revisao/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Plano de melhorias - LCMC · Leniência Condicionada à Massa Crítica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%2011h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12zM12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm-3-3h2v-2.13c1.73-.44%203-2.01%203-3.87a4%204%200%200%200-4-4%204%204%200%200%200-4%204c0%201.86%201.27%203.43%203%203.87z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.5%202%202%206.5%202%2012s4.5%2010%2010%2010%2010-4.5%2010-10S17.5%202%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m4.59-12.42L10%2014.17l-2.59-2.58L6%2013l4%204%208-8z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.27%203%203%208.27v7.46L8.27%2021h7.46C17.5%2019.24%2021%2015.73%2021%2015.73V8.27L15.73%203M9.1%205h5.8L19%209.1v5.8L14.9%2019H9.1L5%2014.9V9.1m6%205.9h2v2h-2zm0-8h2v6h-2z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.8%2018.5%206%201.6-.4%201.9-9.4-2.5L2.6%2022l-.5-1.9%206-1.6L2%2016.9l.5-1.9%209.4%202.5%209.4-2.5.5%201.9zM9.5%206C8.7%206%208%206.7%208%207.5S8.7%209%209.5%209%2011%208.3%2011%207.5%2010.3%206%209.5%206m5%200c-.8%200-1.5.7-1.5%201.5S13.7%209%2014.5%209%2016%208.3%2016%207.5%2015.3%206%2014.5%206M13%2011l-1-2-1%202zM12%201C8.1%201%205%204.1%205%208c0%201.9.8%203.6%202%204.9V16h10v-3.1c1.2-1.3%202-3%202-4.9%200-3.9-3.1-7-7-7m3%2011v2h-1v-2h-1v2h-2v-2h-1v2H9v-2c-1.2-.9-2-2.3-2-4%200-2.8%202.2-5%205-5s5%202.2%205%205c0%201.6-.8%203.1-2%204%22/%3E%3C/svg%3E');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+
+  <meta property="og:title" content="Plano de melhorias · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta property="og:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://freirelucas.github.io/waas-antitrust/plano_melhorias/" />
+  <meta property="og:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="LCMC · Leniência Condicionada à Massa Crítica" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Plano de melhorias · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta name="twitter:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta name="twitter:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+
+  <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/plano_melhorias/" />
+
+  <meta name="theme-color" content="#1e8449" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plano-de-melhorias-pos-critica-x10" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-header__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LCMC · Leniência Condicionada à Massa Crítica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plano de melhorias
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-nav__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    LCMC · Leniência Condicionada à Massa Crítica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 1 · O problema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mecanismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 3 · Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colaborar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 5 · Colaborar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo ABM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brincar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brincar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper (rascunho v0.2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../uso/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexos
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desenvolvimento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critica_x10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crítica x10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critica_x10_v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crítica x10 v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plano de melhorias
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plano de melhorias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-1-honestidade-documental-s-doc-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 1 — Honestidade documental (S, doc-only)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-2-infra-de-robustez-s-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 2 — Infra de robustez (S, código)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-3-bem-estar-substantivo-s-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 3 — Bem-estar substantivo (S, código)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-4-gating-juridico-de-r07-m-codigo-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 4 — Gating jurídico de R07 (M, código + doc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-5-catalogo-br-papeis-m-codigo-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 5 — Catálogo BR + papéis (M, código + doc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-6-ux-visual-acessibilidade-s-viz-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 6 — UX visual + acessibilidade (S, viz + CSS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-7-decisoes-normativas-suas-fora-do-piloto-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 7 — Decisões normativas suas (FORA do piloto automático)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordem-de-execucao-piloto-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordem de execução (piloto automático)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brainstorm_revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brainstorm de revisão (jun/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revisao_personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão por personas (jun/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap_figuras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap de figuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aprendizados_v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aprendizados (sessão reframe v2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aprendizados_v3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aprendizados (correção radical v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisões e backlog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-1-honestidade-documental-s-doc-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 1 — Honestidade documental (S, doc-only)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-2-infra-de-robustez-s-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 2 — Infra de robustez (S, código)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-3-bem-estar-substantivo-s-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 3 — Bem-estar substantivo (S, código)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-4-gating-juridico-de-r07-m-codigo-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 4 — Gating jurídico de R07 (M, código + doc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-5-catalogo-br-papeis-m-codigo-doc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 5 — Catálogo BR + papéis (M, código + doc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-6-ux-visual-acessibilidade-s-viz-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 6 — UX visual + acessibilidade (S, viz + CSS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#categoria-7-decisoes-normativas-suas-fora-do-piloto-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categoria 7 — Decisões normativas suas (FORA do piloto automático)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordem-de-execucao-piloto-automatico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordem de execução (piloto automático)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Ato 1 · O problema
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../critica_x10/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Desenvolvimento
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/freirelucas/waas-antitrust/edit/main/docs/plano_melhorias.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/freirelucas/waas-antitrust/raw/main/docs/plano_melhorias.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="plano-de-melhorias-pos-critica-x10">Plano de melhorias — pós crítica x10<a class="headerlink" href="#plano-de-melhorias-pos-critica-x10" title="Permanent link">&para;</a></h1>
+<p>Esta página prioriza as melhorias propostas pelos 8 especialistas (ver
+<a href="../critica_x10/">Crítica x10</a>) por <strong>filtros do piloto automático</strong>:</p>
+<ul>
+<li><strong>(a) sem necessidade de decisão normativa do autor</strong>;</li>
+<li><strong>(b) implementação ≤ 2 h</strong>;</li>
+<li><strong>(c) gate verde garantido</strong> (testes, lint, mkdocs, sync <code>main</code>);</li>
+<li><strong>(d) reduz overclaim ou sobe rigor</strong>.</li>
+</ul>
+<h2 id="categoria-1-honestidade-documental-s-doc-only">Categoria 1 — Honestidade documental (S, doc-only)<a class="headerlink" href="#categoria-1-honestidade-documental-s-doc-only" title="Permanent link">&para;</a></h2>
+<p>Pode ser feito agora; só altera texto e não muda comportamento do modelo.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Adv B</td>
+<td>Corrigir docstring "padrões YC" → "construção normativa proposta"</td>
+<td><code>src/waas_antitrust/hirschman.py</code></td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Adv B</td>
+<td>Caveat: Lei 13.608 não cobre antitruste no eixo recompensa</td>
+<td><code>docs/DECISIONS.md</code> (R07)</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Adv B</td>
+<td>Caveat: tributação derrete 40–50% do <code>valor_vesting_acelerado</code></td>
+<td><code>docs/DECISIONS.md</code> (R07)</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Mat B</td>
+<td>Particionar R02 em R02a/R02b/R02c (limiar integrado / contraste mult.×unic. / heterogeneidade)</td>
+<td><code>docs/DECISIONS.md</code></td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>Adv A</td>
+<td>Tom: "é, assim, re-caracterizada" → "pode ser re-caracterizada, sujeita à controvérsia"</td>
+<td><code>paper/main.tex</code></td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>Adv A</td>
+<td>Linha "L-Jur1: fragilidade jurídica do Regime B"</td>
+<td><code>docs/limitacoes.md</code></td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>Adv B</td>
+<td>Subseção "Limites do Regime B" (reserva de lei)</td>
+<td><code>docs/INSTITUTIONAL.md</code></td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>Adv A</td>
+<td>Subseção "Quem é vítima?" com tipologia × Art. 86/Art. 12</td>
+<td><code>docs/INSTITUTIONAL.md</code></td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>Adv A</td>
+<td>Abrir D06 "análise dogmática vítima-empregado"; fechar E04 (ou explicitar pendência)</td>
+<td><code>docs/DECISIONS.md</code></td>
+</tr>
+<tr>
+<td>1.10</td>
+<td>PM</td>
+<td>Abrir E05 "calibrar distribuição de papéis em marketplace BR"</td>
+<td><code>docs/DECISIONS.md</code></td>
+</tr>
+<tr>
+<td>1.11</td>
+<td>Mat B</td>
+<td>Pressuposto de homogeneidade de Morris-Shin no ODD; marcar Prop. 2 conjectura aberta sob heterogeneidade</td>
+<td><code>docs/ODD.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-2-infra-de-robustez-s-codigo">Categoria 2 — Infra de robustez (S, código)<a class="headerlink" href="#categoria-2-infra-de-robustez-s-codigo" title="Permanent link">&para;</a></h2>
+<p>Adiciona/reescreve mecanismos sem mudar a <em>direção</em> do modelo. Reduz risco
+de overclaim na cauda de seeds.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td>Mat A</td>
+<td>Suavização Beta-Binomial em <code>p_perc</code>: <code>(vp + α) / (n_viol + α + β)</code> com pseudo-contagens; remove singularidade em <code>n_viol=0</code></td>
+<td><code>src/waas_antitrust/model.py</code> (P0); novo módulo/função pura testável</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Mat A, Mat B</td>
+<td>Helper de bootstrap multi-seed para headline-metrics; promover <code>test_dissuasao_endogena_*</code> a multi-seed com CI 95%</td>
+<td>novo módulo <code>src/waas_antitrust/robustez.py</code>; <code>tests/test_model.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-3-bem-estar-substantivo-s-codigo">Categoria 3 — Bem-estar substantivo (S, código)<a class="headerlink" href="#categoria-3-bem-estar-substantivo-s-codigo" title="Permanent link">&para;</a></h2>
+<p>Fechar gaps do R05 que ficaram pendentes.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1</td>
+<td>Eco B</td>
+<td>Incorporar <code>custo_exodo_acum</code> em <code>calcular_bem_estar</code> com peso <code>delta_exodo</code> (default ~0,5)</td>
+<td><code>src/waas_antitrust/sobol/execucao.py</code></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Eco B</td>
+<td>Reporter <code>multa_arrecadada_acum</code> (VP sem TCC ⇒ multa cheia; com TCC ⇒ parte residual) + termo no bem-estar</td>
+<td><code>src/waas_antitrust/model.py</code>; <code>sobol/execucao.py</code></td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Eco A, Eco B, PM</td>
+<td>Ponderar <code>dano_acumulado</code> por <code>fatia_mercado</code> da firma violadora; expor <code>dano_economico_acum</code></td>
+<td><code>src/waas_antitrust/model.py</code> (P0)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-4-gating-juridico-de-r07-m-codigo-doc">Categoria 4 — Gating jurídico de R07 (M, código + doc)<a class="headerlink" href="#categoria-4-gating-juridico-de-r07-m-codigo-doc" title="Permanent link">&para;</a></h2>
+<p>Este é o item <strong>estrutural</strong> que Adv B aponta — o modelo não pode oferecer
+no Regime B uma cláusula contratual que só Regime C pode entregar.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1</td>
+<td>Adv B</td>
+<td>Gating: <code>fracao_contratos_acelerados &gt; 0</code> apenas em Regime C; em A/B força 0 com warning</td>
+<td><code>src/waas_antitrust/model.py</code> (<code>__init__</code>)</td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Adv B</td>
+<td>Função <code>valor_liquido_pos_tributos</code> com haircut IRPF/INSS (default ~40%) antes de <code>custo_exodo_esperado</code></td>
+<td><code>src/waas_antitrust/hirschman.py</code></td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>Adv B</td>
+<td>Atualizar testes para refletir o gating</td>
+<td><code>tests/test_hirschman.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-5-catalogo-br-papeis-m-codigo-doc">Categoria 5 — Catálogo BR + papéis (M, código + doc)<a class="headerlink" href="#categoria-5-catalogo-br-papeis-m-codigo-doc" title="Permanent link">&para;</a></h2>
+<p>Expande R08 com cobertura empírica brasileira.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1</td>
+<td>PM</td>
+<td>Adicionar <code>exclusividade_retaliacao_marketplace</code> ao catálogo</td>
+<td><code>src/waas_antitrust/condutas.py</code></td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>PM</td>
+<td>Adicionar <code>anti_steering_iap</code> ao catálogo</td>
+<td><code>src/waas_antitrust/condutas.py</code></td>
+</tr>
+<tr>
+<td>5.3</td>
+<td>PM</td>
+<td>Acrescentar <code>operacoes</code> e <code>financeiro</code> aos <code>PAPEIS_PADRAO</code></td>
+<td><code>src/waas_antitrust/condutas.py</code></td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>PM</td>
+<td>Preset <code>MARKETPLACE_BR</code> em distribuições; manter <code>BIGTECH_MADURA</code> como padrão</td>
+<td><code>src/waas_antitrust/condutas.py</code></td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>PM</td>
+<td>Gradiente 3-níveis (primário=1.0, adjacente=0.5, distal=0.1); campo <code>atores_adjacentes</code> em <code>Conduta</code></td>
+<td><code>src/waas_antitrust/condutas.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-6-ux-visual-acessibilidade-s-viz-css">Categoria 6 — UX visual + acessibilidade (S, viz + CSS)<a class="headerlink" href="#categoria-6-ux-visual-acessibilidade-s-viz-css" title="Permanent link">&para;</a></h2>
+<p>Designer apontou risco real: jornalista cita figura conceitual como
+resultado.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.1</td>
+<td>Designer</td>
+<td>Trocar <code>RdYlGn</code> por <code>cividis</code> em figuras conceituais</td>
+<td><code>src/waas_antitrust/viz/inversao.py</code>, <code>viz/fase.py</code></td>
+</tr>
+<tr>
+<td>6.2</td>
+<td>Designer</td>
+<td>Adicionar marcadores A=<code>o</code>, B=<code>s</code>, C=<code>^</code> e hachuras nas séries por regime</td>
+<td><code>src/waas_antitrust/viz/paleta.py</code> (constantes); chamadas em viz</td>
+</tr>
+<tr>
+<td>6.3</td>
+<td>Designer</td>
+<td>CSS custom <code>.figura-conceitual</code> (borda cinza tracejada + chip "Ilustrativo") e <code>.figura-empirica</code> (borda verde + chip "Resultado da simulação")</td>
+<td><code>docs/stylesheets/extra.css</code>; <code>mkdocs.yml</code></td>
+</tr>
+<tr>
+<td>6.4</td>
+<td>Designer</td>
+<td>Regenerar <code>03_dissuasao_bem_estar.png</code> com rótulos "A"/"B" nos painéis, anotações numéricas, painel direito em escala adequada</td>
+<td><code>docs/img/03_dissuasao_bem_estar.png</code> (regen via script)</td>
+</tr>
+<tr>
+<td>6.5</td>
+<td>Designer</td>
+<td>Aplicar classes <code>{ .figura-conceitual }</code> / <code>{ .figura-empirica }</code> em <code>docs/index.md</code> e <code>docs/resultados.md</code></td>
+<td><code>docs/index.md</code>, <code>docs/resultados.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-7-decisoes-normativas-suas-fora-do-piloto-automatico">Categoria 7 — Decisões normativas suas (FORA do piloto automático)<a class="headerlink" href="#categoria-7-decisoes-normativas-suas-fora-do-piloto-automatico" title="Permanent link">&para;</a></h2>
+<p>Estes itens <strong>alteram material e Proposições centrais</strong> — entram no
+backlog (DECISIONS) para conversa explícita:</p>
+<ul>
+<li><strong>Eco A</strong>: endogeneizar <code>g_i(t) = π·R / (p·S)</code> como função do estado, não constante (altera Prop. 3 e R01).</li>
+<li><strong>Eco A</strong>: implementar IC-F* completa <code>W + p_pago·(S−D) &lt; p_npago·S</code> (altera Prop. 1).</li>
+<li><strong>Eco A</strong>: Hirschman como elevação de <code>W_esperado</code> em vez de subtração de <code>g_i</code> (alterar microfundamento de R07).</li>
+<li><strong>Mat B</strong>: substituir arquétipo "racional" por estratégia-limiar <code>s_i ≥ x*</code> do <code>jogo_global</code> (integra Prop. 2).</li>
+<li><strong>Mat B</strong>: contraste numérico multiplicidade × unicidade no espírito Morris-Shin.</li>
+<li><strong>Adv A</strong>: parâmetro <code>p_anulacao_tcc</code> na simulação (transforma F6 em falsificador).</li>
+<li><strong>Eco B</strong>: distribuição Pareto/lognormal de <code>fatia_mercado</code> (R03 dependência empírica).</li>
+<li><strong>Designer</strong>: promover <code>sankey.py</code> de stub a fluxograma real do mecanismo.</li>
+<li><strong>PM</strong>: 3 condutas-piloto para o paper (marketplace_exclusividade, anti_steering, killer_acq_ia) com fixtures e testes de regressão.</li>
+</ul>
+<p>Estes itens vão para <code>DECISIONS.md</code> como R09–R13 com descrição clara da
+decisão pendente.</p>
+<hr />
+<h2 id="ordem-de-execucao-piloto-automatico">Ordem de execução (piloto automático)<a class="headerlink" href="#ordem-de-execucao-piloto-automatico" title="Permanent link">&para;</a></h2>
+<p>Cada bloco é <strong>um commit + sync <code>main</code></strong>, com gates verdes (pytest, ruff,
+black, mkdocs --strict, nbval do demo).</p>
+<ol>
+<li><strong>Síntese</strong>: este arquivo + <code>critica_x10.md</code> (commitado <strong>antes</strong> das
+   melhorias para preservar a rastreabilidade).</li>
+<li><strong>Categoria 1</strong> (honestidade documental) — único commit.</li>
+<li><strong>Categoria 2</strong> (Beta-Binomial + multi-seed CI).</li>
+<li><strong>Categoria 3</strong> (bem-estar substantivo).</li>
+<li><strong>Categoria 4</strong> (gating jurídico do R07).</li>
+<li><strong>Categoria 5</strong> (catálogo BR + papéis).</li>
+<li><strong>Categoria 6</strong> (UX visual + acessibilidade).</li>
+<li>Final: regenerar a figura 3 com as melhorias visuais; verificação final.</li>
+</ol>
+<p>Ao final, <code>DECISIONS.md</code> ganha R09–R13 da Categoria 7 (pendências
+normativas suas).</p>
+<hr />
+<h1 id="v2-pos-reframe">v2 pós-reframe<a class="headerlink" href="#v2-pos-reframe" title="Permanent link">&para;</a></h1>
+<p>Esta seção sintetiza as melhorias propostas pelos <strong>10 especialistas</strong> da
+<a href="../critica_x10_v2/">Crítica x10 v2</a> — 8 originais + sociólogo da coordenação
+coletiva + cientista político da regulação. O reframe central deixa de ser
+"empresa paga pela delação" e passa a ser <strong>"massa crítica de cooperação
+interna como bem coletivo cuja internalização é instrumental"</strong>.</p>
+<p><strong>Recategorização sob filtros adaptados ao reframe:</strong></p>
+<ul>
+<li><strong>(a') reduz overclaim conceitual</strong> (corrige nome do reframe, decompõe
+  Regime C, ata reservas constitucionais)</li>
+<li><strong>(b') destrava modelagem de uso adversarial e capacidade institucional</strong></li>
+<li><strong>(c') gate verde mantido</strong> (testes, lint, mkdocs, sync <code>main</code>)</li>
+<li><strong>(d') compatível com Sprints A/B do PM</strong> — não empilha sobre R09-R11</li>
+</ul>
+<h2 id="categoria-v2a-reposicionamento-conceitual-s-doc-only">Categoria v2.A — Reposicionamento conceitual (S, doc-only)<a class="headerlink" href="#categoria-v2a-reposicionamento-conceitual-s-doc-only" title="Permanent link">&para;</a></h2>
+<p>Correções de framing sem mudança de código. Pode ser feito antes de
+qualquer commit de código.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.A.1</td>
+<td>Sociólogo</td>
+<td>Substituir "bem quase-público" por <strong>"capital social com risco de erosão endógena"</strong> como categoria conceitual primária; manter "bem público" como leitura secundária Samuelson</td>
+<td><code>docs/bem_publico.md</code> (renomear conceitualmente; arquivo mantém nome) + <code>docs/mecanismo.md</code> §macroconceito</td>
+</tr>
+<tr>
+<td>v2.A.2</td>
+<td>Adv A</td>
+<td>Substituir "atenuante por contribuição a bem público de detecção" por <strong>"interesse público em detecção e cessação"</strong> (Lei 9.784/99); citar Lei 12.846/2013 (LAC) Art. 7º VII-VIII como precedente dogmático</td>
+<td><code>docs/INSTITUTIONAL.md</code> (nova §)</td>
+</tr>
+<tr>
+<td>v2.A.3</td>
+<td>Adv B</td>
+<td>Decompor Regime C em sub-regimes <strong><code>Cₜ</code> trabalhista</strong>, <strong><code>Cᵩ</code> tributária-LC</strong>, <strong><code>Cₚ</code> penal</strong> com tabela de hospedabilidade por instrumento</td>
+<td><code>docs/INSTITUTIONAL.md</code> "Os três regimes" → quatro</td>
+</tr>
+<tr>
+<td>v2.A.4</td>
+<td>Sociólogo</td>
+<td>Tabela de 8 <em>design principles</em> de Ostrom (1990) × reporters/parâmetros existentes: 3 atendidos (P1, P4, P5), 5 ausentes (P2, P3, P6, P7, P8)</td>
+<td><code>docs/ODD.md</code> §2 nova subseção "Diagnóstico Ostrom"</td>
+</tr>
+<tr>
+<td>v2.A.5</td>
+<td>Cientista Político</td>
+<td>Documentar <strong>infactibilidade política Regime C</strong> 2024-2027 (PL 2768/2022 parado; janela legislativa baixa); marcar como limitação no Ato 4</td>
+<td><code>docs/limitacoes.md</code> + <code>docs/viabilidade_regime_c.md</code> (NOVO, ≤ 1 página)</td>
+</tr>
+<tr>
+<td>v2.A.6</td>
+<td>Designer</td>
+<td>Manter punchline jornalística do Ato 1 + sublinha cinza em itálico contendo reframe; mover <code>bem_publico.md</code> para depois do Ato 2</td>
+<td><code>docs/index.md</code> (H1 + sublinha); <code>mkdocs.yml</code> (ordem nav)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2b-modelagem-de-uso-adversarial-e-oportunista-m-codigo">Categoria v2.B — Modelagem de uso adversarial e oportunista (M, código)<a class="headerlink" href="#categoria-v2b-modelagem-de-uso-adversarial-e-oportunista-m-codigo" title="Permanent link">&para;</a></h2>
+<p>Convergência forte (Cientista Político + Mat B + Sociólogo): arquétipo
+<code>denunciante_oportunista</code> ausente é vácuo material.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.B.1</td>
+<td>Cientista Político</td>
+<td>Arquétipo <code>denunciante_oportunista</code> em <code>TrabalhadorAgent.ARQUETIPOS</code>: utilidade <code>u = recompensa - prob_falso_positivo·sancao_calunia</code>; parametriza insider acionista, concorrente, chantagem, hedge fund</td>
+<td><code>src/waas_antitrust/agents.py</code> + <code>tests/test_oportunista.py</code></td>
+</tr>
+<tr>
+<td>v2.B.2</td>
+<td>Sociólogo</td>
+<td>Reporter <code>densidade_denuncia_frivola</code> (FP/total) por firma; teste de cenário com <code>fracao_oportunistas &gt; 0.2</code> degrada IR financeira da firma</td>
+<td><code>src/waas_antitrust/model.py</code></td>
+</tr>
+<tr>
+<td>v2.B.3</td>
+<td>Mat B</td>
+<td>Arquétipo <code>oportunista</code> (Olson explícito): sinaliza apenas se <code>phi &lt; q_min - epsilon</code> (entra antes da massa); desiste se <code>phi ≥ k_req/n</code></td>
+<td><code>src/waas_antitrust/agents.py</code> (variante de v2.B.1)</td>
+</tr>
+<tr>
+<td>v2.B.4</td>
+<td>Sociólogo</td>
+<td>Reporter <code>capital_social_residual_firma</code> = densidade de laços fortes (clustering × confiança survey-like) pré/pós denúncia; teste hipótese Coleman "uso instrumental erode produção"</td>
+<td><code>src/waas_antitrust/model.py</code> + <code>tests/test_capital_social.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2c-instrumento-como-protocolo-ortogonal-l-codigo">Categoria v2.C — Instrumento como protocolo ortogonal (L, código)<a class="headerlink" href="#categoria-v2c-instrumento-como-protocolo-ortogonal-l-codigo" title="Permanent link">&para;</a></h2>
+<p>Convergência Eco A + Adv B: criar <code>src/waas_antitrust/instrumentos.py</code> em
+vez de apenas <code>bem_publico.py</code>. Substituição perversa (Frey-Jegen) só é
+falsificável se cada instrumento expuser seu <code>EfeitoIC</code> separado.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.C.1</td>
+<td>Eco A + Adv B</td>
+<td><code>Protocol Instrumento</code> com assinatura <code>aplicar(firma, fila, t) -&gt; EfeitoIC</code> + metadados <code>(nome, reserva_constitucional, regime_minimo, fontes_primarias)</code>; refator WaaS/Hirschman como implementações</td>
+<td><code>src/waas_antitrust/instrumentos.py</code> (NOVO) + refator <code>model.py</code> P3</td>
+</tr>
+<tr>
+<td>v2.C.2</td>
+<td>Eco A</td>
+<td><code>p_pago_por_instrumento(instrumento, pos_fila_inter, n_coop_intra)</code> em <code>corrida.py</code> — matriz de p_pago condicionada (fecha R10)</td>
+<td><code>src/waas_antitrust/corrida.py</code></td>
+</tr>
+<tr>
+<td>v2.C.3</td>
+<td>Eco A</td>
+<td>Cenário <code>apenas_massa_critica_observavel</code> em <code>cenarios.py</code>: regulador observa só <code>massa_critica_atingida</code> (sem qual instrumento); falsificador F7 — sinal Schelling sobrevive à invisibilidade do instrumento?</td>
+<td><code>src/waas_antitrust/cenarios.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2d-bem-estar-com-externalidade-explicita-m-codigo">Categoria v2.D — Bem-estar com externalidade explícita (M, código)<a class="headerlink" href="#categoria-v2d-bem-estar-com-externalidade-explicita-m-codigo" title="Permanent link">&para;</a></h2>
+<p>Convergência Eco A + Eco B + Sociólogo: bem-estar atual é contabilidade de
+custos privatizados; falta termo de externalidade erga omnes.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.D.1</td>
+<td>Eco B</td>
+<td><code>valor_dissuasao_difusa_acum = Σ (p_perc_t − p_perc_0) · n_empresas_não_violadoras · overcharge_evitavel</code> calibrado em Connor-Lande 17-19%; usar somente firmas que <strong>jamais</strong> foram notificadas (evita double-counting)</td>
+<td><code>src/waas_antitrust/model.py</code> (reporter) + <code>sobol/execucao.py</code> (peso opt-in)</td>
+</tr>
+<tr>
+<td>v2.D.2</td>
+<td>Eco B</td>
+<td>Renormalizar pesos β, γ por <code>dano_evitavel_total_potencial</code> (fração [0,1] em vez de R$/w_a) — permite comparação justa entre instrumentos</td>
+<td><code>sobol/execucao.py</code></td>
+</tr>
+<tr>
+<td>v2.D.3</td>
+<td>Eco B</td>
+<td>Proposição 4 candidata: WaaS Pareto-domina TCC clássico sse <code>valor_dissuasao_difusa &gt; β·FP + δ_exodo·êxodo</code> no equilíbrio</td>
+<td><code>docs/ODD.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2e-topologia-e-grafo-inter-firma-m-codigo">Categoria v2.E — Topologia e grafo inter-firma (M, código)<a class="headerlink" href="#categoria-v2e-topologia-e-grafo-inter-firma-m-codigo" title="Permanent link">&para;</a></h2>
+<p>Convergência Mat B + Eco B + Cientista Político: <code>p_perc</code> escalar atual é
+campo Schelling-médio insuficiente; mercados digitais têm aprendizado
+inter-firma estruturado.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.E.1</td>
+<td>Mat B</td>
+<td>Trocar <code>0,30</code> hardcoded por <code>theta_imitativo ~ Beta(α, β)</code> no <code>TrabalhadorAgent</code>; expor <code>theta_imitativo_media/desvio</code> em <code>WaaSParametros</code></td>
+<td><code>src/waas_antitrust/agents.py</code></td>
+</tr>
+<tr>
+<td>v2.E.2</td>
+<td>Mat B</td>
+<td>Parametrizar <code>topologia_intra ∈ {watts_strogatz, caverna, estrela, regular, random}</code>; varredura comparativa em scripts/run_sobol_full.py</td>
+<td><code>src/waas_antitrust/model.py</code> + <code>scripts/</code></td>
+</tr>
+<tr>
+<td>v2.E.3</td>
+<td>Mat B + Eco B + Cient. Pol.</td>
+<td>Substituir <code>p_perc</code> escalar por <code>nx.Graph</code> inter-firma (rotatividade de pessoal + escritórios jurídicos); <code>p_perc_i = média de vizinhos no grafo</code></td>
+<td><code>src/waas_antitrust/model.py</code> (L, opt-in)</td>
+</tr>
+<tr>
+<td>v2.E.4</td>
+<td>Mat B</td>
+<td>Teste de regressão: cascata morre em topologia regular (sem atalhos) e sobrevive em pequeno-mundo</td>
+<td><code>tests/test_contagio_complexo.py</code> (NOVO)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2f-capacidade-institucional-cade-como-gargalo-m-modelo">Categoria v2.F — Capacidade institucional CADE como gargalo (M, modelo)<a class="headerlink" href="#categoria-v2f-capacidade-institucional-cade-como-gargalo-m-modelo" title="Permanent link">&para;</a></h2>
+<p>Convergência Cientista Político + PM: WaaS pulveriza o gatilho mas concentra
+captura no processamento. Sem expansão de quadro, seleção discricionária
+vira ponto ótimo de captura.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.F.1</td>
+<td>Cient. Político</td>
+<td>Cenário <code>captura_processamento</code>: <code>p_inv = min(1, capacidade_servidores / (notificacoes · custo_caso))</code>; calibrar <code>capacidade_servidores = 180</code> (RIG 2024 área-fim)</td>
+<td><code>src/waas_antitrust/model.py</code> + <code>calibracao/cade_rig.py</code></td>
+</tr>
+<tr>
+<td>v2.F.2</td>
+<td>Eco B</td>
+<td>Cenário-teste de <strong>não-rivalidade</strong> como falsificador: varrer <code>capacidade_tique ∈ {0.5×, 1×, 2×}</code>; se duplicar capacidade NÃO duplica dano evitado, há rivalidade parcial por gargalo</td>
+<td><code>tests/test_externalidade.py</code> (NOVO)</td>
+</tr>
+<tr>
+<td>v2.F.3</td>
+<td>Cient. Político</td>
+<td>Cenário <code>jurisdicao_concorrente</code> (CADE × MPF × MPT × CGU): cada autoridade com <code>prob_acolhida</code> e <code>custo_captura</code> distintos; denunciante escolhe por max utility</td>
+<td><code>src/waas_antitrust/jurisdicao.py</code> (NOVO) + <code>cenarios.py</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2g-mat-a-unicidade-temporal-heterogeneidade-saito-s-doc-s-codigo">Categoria v2.G — Mat A: unicidade temporal + heterogeneidade Saito (S, doc + S, código)<a class="headerlink" href="#categoria-v2g-mat-a-unicidade-temporal-heterogeneidade-saito-s-doc-s-codigo" title="Permanent link">&para;</a></h2>
+<p>Crítica isolada mas técnica e direta — não convergiu mas é fundacional para
+a Proposição 2 sob reframe.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.G.1</td>
+<td>Mat A</td>
+<td>Generalizar <code>limiar_switching</code> para aceitar vetor <code>b_k = f_W(k) · b</code>; devolve limiar por posição <span class="arithmatex">\(x^\star_k\)</span> — explicita que o bem coletivo tem oferta escalonada</td>
+<td><code>src/waas_antitrust/jogo_global.py</code></td>
+</tr>
+<tr>
+<td>v2.G.2</td>
+<td>Mat A</td>
+<td>Proposição auxiliar 2': condições suficientes (independência inter-firma; ausência de sinal público sobre fila) para que <span class="arithmatex">\(\{x^\star(t)\}\)</span> permaneça único em cada instante; citar Frankel-Morris-Pauzner (2003) e Angeletos-Hellwig-Pavan (2007)</td>
+<td><code>docs/ODD.md</code> §Prop. 2</td>
+</tr>
+<tr>
+<td>v2.G.3</td>
+<td>Mat A</td>
+<td>Documentar tensão Olson vs Morris-Shin (em Olson o tamanho do grupo é hostil; em Morris-Shin o limiar é exógeno); citar Chwe 2000 <em>common knowledge in coordination</em></td>
+<td><code>docs/ODD.md</code> §2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2h-visualizacao-e-ux-s-viz-css">Categoria v2.H — Visualização e UX (S, viz + CSS)<a class="headerlink" href="#categoria-v2h-visualizacao-e-ux-s-viz-css" title="Permanent link">&para;</a></h2>
+<p>Designer aprofunda v1: punchline + reframe devem coexistir; chip-instrumento
+reutilizável.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Origem</th>
+<th>Ação</th>
+<th>Arquivo-alvo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.H.1</td>
+<td>Designer</td>
+<td>Sublinha de reframe em itálico cinza (HTML <code>&lt;p class="sublinha-tese"&gt;</code>) abaixo do H1 do Ato 1</td>
+<td><code>docs/index.md</code> linhas 3-4 + <code>docs/stylesheets/extra.css</code></td>
+</tr>
+<tr>
+<td>v2.H.2</td>
+<td>Designer</td>
+<td>Componente <code>chip-instrumento</code> (CSS) com paleta consistente: WaaS (cor primária), os outros 3 (cinza-azulado); contraste AA + texto alternativo</td>
+<td><code>docs/stylesheets/extra.css</code></td>
+</tr>
+<tr>
+<td>v2.H.3</td>
+<td>Designer</td>
+<td>Sumário visual de 4 instrumentos (grid 2×2) em <code>bem_publico.md</code> topo, com cada célula linkando para onde o instrumento aparece</td>
+<td><code>docs/bem_publico.md</code></td>
+</tr>
+<tr>
+<td>v2.H.4</td>
+<td>Designer</td>
+<td>Caption de <code>03_dissuasao_bem_estar.png</code> ganha leitura tripla: (a) eixo; (b) o reframe lê assim; (c) por que outros 3 instrumentos não aparecem</td>
+<td><code>docs/index.md</code> linha 13 + <code>docs/resultados.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="categoria-v2i-pendencias-normativas-que-o-reframe-nao-resolve-fora-do-piloto">Categoria v2.I — Pendências normativas que o reframe NÃO resolve (FORA do piloto)<a class="headerlink" href="#categoria-v2i-pendencias-normativas-que-o-reframe-nao-resolve-fora-do-piloto" title="Permanent link">&para;</a></h2>
+<p>Empilhar reframe sobre R09-R11 abertos é frágil. Itens que <strong>alteram
+material</strong> as Proposições e exigem decisão sua antes da execução:</p>
+<ul>
+<li><strong>R09 (Eco A v1, reforçado pelo Eco A v2)</strong>: endogeneizar <code>g_i(t) = π·R/(p·S)</code>; sob reframe, <code>p</code> é externalidade endógena (Sah-Stiglitz 1986 <em>spillover</em>).</li>
+<li><strong>R10 (Eco A v1, agravado pelo Eco A v2 + Mat A v2)</strong>: IC-F* completa não é só <code>W + p_pago·(S−D) &lt; p_npago·S</code> — é <strong>matriz</strong> com <code>p_pago = f(instrumento, posicao_fila, n_coop)</code>.</li>
+<li><strong>R11 (Eco A v1)</strong>: Hirschman como elevação de <code>W_esperado</code> em vez de subtração de <code>g_i</code> — alinhar com Protocol Instrumento (Eco A v2).</li>
+</ul>
+<p><strong>Recomendação do PM</strong>: fechar R09, R10 ou R11 (escolher 1) antes de
+iniciar Sprint A do reframe.</p>
+<h2 id="sequenciamento-sugerido-sprints-ab-do-pm">Sequenciamento sugerido (Sprints A/B do PM)<a class="headerlink" href="#sequenciamento-sugerido-sprints-ab-do-pm" title="Permanent link">&para;</a></h2>
+<p>O PM v2 contesta o sequenciamento ambicioso de 8 commits em 2-3 semanas e
+propõe particionar em <strong>dois sprints</strong>:</p>
+<h3 id="sprint-a-1-semana-equivalente-reposicionamento-mvp-de-codigo">Sprint A (~ 1 semana equivalente) — Reposicionamento + MVP de código<a class="headerlink" href="#sprint-a-1-semana-equivalente-reposicionamento-mvp-de-codigo" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Commit 1</strong>: Crítica x10 v2 + plano_melhorias v2 (este arquivo).</li>
+<li><strong>Commit 2</strong>: Categoria v2.A.1-A.6 (reposicionamento conceitual; doc-only).</li>
+<li><strong>Commit 3</strong>: Categoria v2.G.1-G.3 + v2.B.1 (Mat A + arquétipo oportunista, código mínimo).</li>
+<li><strong>Commit 4</strong>: Categoria v2.H.1-H.4 (UX visual + chip-instrumento).</li>
+</ol>
+<h3 id="sprint-b-2-semanas-equivalente-instrumentos-ortogonais-externalidade">Sprint B (~ 2 semanas equivalente) — Instrumentos ortogonais + Externalidade<a class="headerlink" href="#sprint-b-2-semanas-equivalente-instrumentos-ortogonais-externalidade" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Commit 5</strong>: Categoria v2.C.1-C.3 (Protocol Instrumento; refator P3).</li>
+<li><strong>Commit 6</strong>: Categoria v2.D.1-D.3 + v2.B.2-B.4 (externalidade no bem-estar; oportunismo completo).</li>
+<li><strong>Commit 7</strong>: Categoria v2.E.1-E.4 (topologia variável + grafo inter-firma opt-in).</li>
+<li><strong>Commit 8</strong>: Categoria v2.F.1-F.3 (capacidade CADE + jurisdição concorrente).</li>
+</ol>
+<p>Cada commit: gates verdes + sync <code>main</code> 4-way (<code>HEAD = claude/branch =
+origin/branch = main local = origin/main</code>).</p>
+<p><strong>Fora deste ciclo (Fase 4)</strong>: refator estrutural completo (FirmaIncentivoDecision class); paper main.tex (título + abstract + §5); 12 personas na x10 v3 (Behavioral ethicist + econometrista aplicado).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../critica_x10_v2/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Crítica x10 v2">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Crítica x10 v2
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../brainstorm_revisao/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Brainstorm de revisão (jun/2026)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Brainstorm de revisão (jun/2026)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Código e documentação sob CC BY-SA 4.0 · <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> · <a href="brincar/">brincar in-browser</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/freirelucas/waas-antitrust" target="_blank" rel="noopener" title="Repositório no GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="brincar/" target="_blank" rel="noopener" title="Brincar in-browser" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 5v8l5-4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "navigation.prune", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "content.tabs.link", "content.tooltips", "search.suggest", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/simulador.js"></script>
+      
+    
+  </body>
+</html>

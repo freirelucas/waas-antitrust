@@ -1,0 +1,1453 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).">
+      
+      
+        <meta name="author" content="L.">
+      
+      
+        <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/limitacoes/">
+      
+      
+        <link rel="prev" href="../resultados/">
+      
+      
+        <link rel="next" href="../colaborar/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ato 4 · Limitações - LCMC · Leniência Condicionada à Massa Crítica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%2011h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12zM12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm-3-3h2v-2.13c1.73-.44%203-2.01%203-3.87a4%204%200%200%200-4-4%204%204%200%200%200-4%204c0%201.86%201.27%203.43%203%203.87z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.5%202%202%206.5%202%2012s4.5%2010%2010%2010%2010-4.5%2010-10S17.5%202%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m4.59-12.42L10%2014.17l-2.59-2.58L6%2013l4%204%208-8z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.27%203%203%208.27v7.46L8.27%2021h7.46C17.5%2019.24%2021%2015.73%2021%2015.73V8.27L15.73%203M9.1%205h5.8L19%209.1v5.8L14.9%2019H9.1L5%2014.9V9.1m6%205.9h2v2h-2zm0-8h2v6h-2z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.8%2018.5%206%201.6-.4%201.9-9.4-2.5L2.6%2022l-.5-1.9%206-1.6L2%2016.9l.5-1.9%209.4%202.5%209.4-2.5.5%201.9zM9.5%206C8.7%206%208%206.7%208%207.5S8.7%209%209.5%209%2011%208.3%2011%207.5%2010.3%206%209.5%206m5%200c-.8%200-1.5.7-1.5%201.5S13.7%209%2014.5%209%2016%208.3%2016%207.5%2015.3%206%2014.5%206M13%2011l-1-2-1%202zM12%201C8.1%201%205%204.1%205%208c0%201.9.8%203.6%202%204.9V16h10v-3.1c1.2-1.3%202-3%202-4.9%200-3.9-3.1-7-7-7m3%2011v2h-1v-2h-1v2h-2v-2h-1v2H9v-2c-1.2-.9-2-2.3-2-4%200-2.8%202.2-5%205-5s5%202.2%205%205c0%201.6-.8%203.1-2%204%22/%3E%3C/svg%3E');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+
+  <meta property="og:title" content="Ato 4 · Limitações · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta property="og:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://freirelucas.github.io/waas-antitrust/limitacoes/" />
+  <meta property="og:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="LCMC · Leniência Condicionada à Massa Crítica" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ato 4 · Limitações · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta name="twitter:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta name="twitter:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+
+  <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/limitacoes/" />
+
+  <meta name="theme-color" content="#1e8449" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#o-que-ainda-nao-esta-sustentado" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-header__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LCMC · Leniência Condicionada à Massa Crítica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ato 4 · Limitações
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-nav__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    LCMC · Leniência Condicionada à Massa Crítica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 1 · O problema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mecanismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 3 · Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-fragilidade-juridica-do-regime-b-e-a-mais-seria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fragilidade jurídica do Regime B é a mais séria
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-numeros-ainda-nao-estao-calibrados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os números ainda não estão calibrados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Os números ainda não estão calibrados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-a-analise-de-identificabilidade-ja-mostrou-jun2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que a análise de identificabilidade já mostrou (jun/2026)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-pesos-do-bem-estar-sao-provisorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os pesos do bem-estar são provisórios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-proposicoes-teoricas-seguem-em-parte-como-conjecturas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As proposições teóricas seguem em parte como conjecturas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fragilidades-do-bem-coletivo-pos-reframe-coleman-samuelson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fragilidades do bem coletivo (pós-reframe Coleman &gt; Samuelson)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viabilidade-politica-do-regime-c-2024-2027" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viabilidade política do Regime C (2024-2027)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cinco-decisoes-normativas-em-aberto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cinco decisões normativas em aberto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-falsificar-cada-uma-destas-limitacoes-em-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como falsificar cada uma destas limitações em código
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-ja-esta-sustentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que já está sustentado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colaborar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 5 · Colaborar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo ABM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brincar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brincar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper (rascunho v0.2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../uso/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexos
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../critica_x10/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-fragilidade-juridica-do-regime-b-e-a-mais-seria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fragilidade jurídica do Regime B é a mais séria
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-numeros-ainda-nao-estao-calibrados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os números ainda não estão calibrados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Os números ainda não estão calibrados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-a-analise-de-identificabilidade-ja-mostrou-jun2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que a análise de identificabilidade já mostrou (jun/2026)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-pesos-do-bem-estar-sao-provisorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os pesos do bem-estar são provisórios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#as-proposicoes-teoricas-seguem-em-parte-como-conjecturas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As proposições teóricas seguem em parte como conjecturas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fragilidades-do-bem-coletivo-pos-reframe-coleman-samuelson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fragilidades do bem coletivo (pós-reframe Coleman &gt; Samuelson)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viabilidade-politica-do-regime-c-2024-2027" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Viabilidade política do Regime C (2024-2027)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cinco-decisoes-normativas-em-aberto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cinco decisões normativas em aberto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-falsificar-cada-uma-destas-limitacoes-em-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como falsificar cada uma destas limitações em código
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-ja-esta-sustentado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que já está sustentado
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/freirelucas/waas-antitrust/edit/main/docs/limitacoes.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/freirelucas/waas-antitrust/raw/main/docs/limitacoes.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="o-que-ainda-nao-esta-sustentado">O que ainda não está sustentado<a class="headerlink" href="#o-que-ainda-nao-esta-sustentado" title="Permanent link">&para;</a></h1>
+<p><strong>Ato 4 de 5 · A honestidade</strong></p>
+<p class="sublinha-tese"><em>O reframe não resolve fragilidades — apenas as nomeia melhor; sob a lente Coleman, novas fragilidades aparecem que o framing "empresa paga" ocultava.</em></p>
+
+<p>O Ato 3 fechou com evidência direcional para o canal de dissuasão. Mas seria desonesto parar aí. Este projeto é um <strong>artigo em elaboração</strong>, e existem pontos onde a alegação ainda não tem cobertura — alguns por calibração faltando, outros por escolha teórica que precisa de revisão, outros por restrição estrutural do desenho jurídico. Esta página enumera cada um deles e diz, na medida do possível, <strong>o que faria a alegação sustentar-se</strong>.</p>
+<p>A postura é simples: <strong>dizer onde o argumento ainda não fecha é mais útil ao leitor do que esconder a dobra</strong>. O backlog técnico completo está em <a href="../DECISIONS/">Decisões e backlog</a>; o que segue é a versão para humanos.</p>
+<h2 id="a-fragilidade-juridica-do-regime-b-e-a-mais-seria">A fragilidade jurídica do Regime B é a mais séria<a class="headerlink" href="#a-fragilidade-juridica-do-regime-b-e-a-mais-seria" title="Permanent link">&para;</a></h2>
+<p>Esta é a charneira que oito revisores externos — convocados na <a href="../critica_x10/">Crítica x10</a> — apontaram independentemente, e a que mais muda a leitura do projeto. Vale dizer com todas as letras.</p>
+<p>O Regime B implementa o WaaS por <strong>resolução do CADE</strong>, sem alterar lei. Tem três vetores de fragilidade:</p>
+<p><strong>(i) A re-caracterização da recompensa como "ressarcimento" é controvertida.</strong> A jurisprudência sobre o Art. 12 da Resolução 21/2018 trata "vítimas" como categoria coletiva (consumidores, concorrentes, erário). O denunciante interno é, dogmaticamente, <strong>testemunha qualificada</strong> — não a coletividade lesada. Re-caracterizar o pagamento como ressarcimento dessas vítimas é construção finalística, e o Judiciário pode rejeitá-la em sede de controle (falsificador F6 do desenho). O modelo torna isto calibrável via <code>p_anulacao_tcc</code>.</p>
+<p><strong>(ii) Resolução do CADE não pode impor cláusula contratual padrão.</strong> A camada <strong>Hirschman exit-with-equity</strong> (R07) supõe cláusulas contratuais de vesting acelerado por gatilho de ação coletiva. Por <strong>reserva de lei</strong> (Art. 22, I, da Constituição), matéria contratual padrão e proteção trabalhista são competência exclusiva da União por <strong>lei</strong> — não cabem em resolução infralegal. Logo, R07 só é institucionalmente coerente sob <strong>Regime C</strong>, e o modelo agora reflete isso: o parâmetro <code>fracao_contratos_acelerados &gt; 0</code> em Regime A ou B é forçado a 0 com aviso explícito.</p>
+<p><strong>(iii) Há colisão com a leniência clássica.</strong> Se o denunciante interno for <strong>partícipe</strong> da conduta — o engenheiro que codificou o algoritmo, o comercial que operou a exclusividade, o <em>growth</em> que instrumentou o <em>dark pattern</em> — o caminho institucional adequado é o Art. 86 (leniência clássica), não o WaaS. O Regime B pode criar <strong>arbitragem regulatória</strong> entre os dois canais.</p>
+<p>A solução estrutural para os três é o <strong>Regime C</strong> — extensão da Lei 13.608/2018 ao antitruste, via Congresso. Mais robusto, custa voto político. O modelo cobre os dois regimes para deixar a escolha explícita.</p>
+<h2 id="os-numeros-ainda-nao-estao-calibrados">Os números ainda não estão calibrados<a class="headerlink" href="#os-numeros-ainda-nao-estao-calibrados" title="Permanent link">&para;</a></h2>
+<p>A simulação produz direção e magnitude, mas os parâmetros são <strong>plausíveis, não ajustados</strong>. Há três bancos de dados externos contra os quais o modelo precisa ser calibrado antes de qualquer alegação quantitativa:</p>
+<ul>
+<li><strong>Saito (2021)</strong> — <em>Termo de Compromisso de Cessação na Lei nº 12.529/11</em>, CADE/PNUD. Cobre 349 TCCs em 7,5 anos com mediana de desconto. Calibrar <span class="arithmatex">\(D_{\text{base}}\)</span> contra esse universo é o item número um em R03.</li>
+<li><strong>DEE/CADE Documentos de Trabalho 003/2022 e 001/2024</strong> — magnitudes de multa, vazão da autoridade, perfil de capacidade.</li>
+<li><strong>Wiedman &amp; Zhu (2023, <em>CAR</em>)</strong> — evidência empírica de redução de fraude após Dodd-Frank §922 nos EUA. Fornece um quarto alvo de calibração via mecanismo análogo (incentivo financeiro ao denunciante interno).</li>
+</ul>
+<p>Calibração formal contra esses três alvos está em <strong>R03</strong> — a pendência mais importante do backlog.</p>
+<h3 id="o-que-a-analise-de-identificabilidade-ja-mostrou-jun2026">O que a análise de identificabilidade já mostrou (jun/2026)<a class="headerlink" href="#o-que-a-analise-de-identificabilidade-ja-mostrou-jun2026" title="Permanent link">&para;</a></h3>
+<p>Antes de otimizar, é preciso saber <strong>o que é otimizável</strong>. A terceira
+rodada de R03 (<code>scripts/identificabilidade_r03.py</code>, 175 rodadas 1D)
+decompôs o aparente conflito entre os alvos em três achados:</p>
+<ol>
+<li><strong>Sensibilidade</strong>: o volume de TCC/ano responde a <code>fracao_violadoras</code>
+   (Δ mediana 1,6), <code>taxa_capacidade</code> e <code>k_rel</code> (0,8 cada) — e <strong>não
+   responde a <code>rho</code></strong> (Δ = 0,000; acurácia afeta precisão, não volume).
+   <code>rho</code> deve sair da função objetivo de calibração.</li>
+<li><strong>O "gap de escala" era artefato de não-normalização</strong>: o alvo de
+   47 TCC/ano é do universo CADE inteiro; o modelo simula 20 firmas.
+   Invertendo a normalização, o modelo seria consistente com um universo
+   de <strong>N* ≈ 1.567 firmas</strong> sob jurisdição ativa — uma predição
+   falsificável contra o número real (pendência empírica; não estimado
+   aqui para não inventar dado).</li>
+<li><strong>O alvo DMZ (19% de detecção por empregados) é não-identificável por
+   construção</strong>: o modelo tem um único canal de detecção (o trabalhador),
+   então a fração interna simulada é ~100% e nenhum parâmetro atual a
+   move para 19%. O alvo mede composição <em>entre</em> canais (auditoria,
+   mídia, concorrentes) que o modelo não representa — ele deve sair da
+   função objetivo até que canais exógenos de detecção sejam modelados.</li>
+</ol>
+<p>A consequência prática: a calibração formal de R03 tem <strong>um alvo
+operacional</strong> (volume reescalonado por N*) e <strong>dois parâmetros
+dominantes</strong> (<code>fracao_violadoras</code>, <code>taxa_capacidade</code>) — problema bem
+mais tratável do que a forma original com 3 alvos × 3 parâmetros.</p>
+<p>A calibração formal, executada (<code>scripts/calibrar_formal.py</code>,
+<code>scipy.optimize.minimize(method="Nelder-Mead")</code>, 5 seeds): Nelder-Mead
+converge em 8 iterações ao ponto ótimo <strong>(0,323; 0,481)</strong>, produzindo
+<strong>0,56 TCC/ano simulado</strong> (IC bootstrap 95%: [0,200; 0,900]) contra
+alvo normalizado <strong>0,60</strong> — <strong>erro relativo final de 6,65%</strong>. O alvo
+está dentro do IC do modelo: a calibração é <strong>consistente com os
+dados disponíveis dado o N* assumido</strong>. O <code>N★</code> implícito sobe
+levemente para <strong>1.679 firmas</strong> (vs 1.567 da identificabilidade) —
+predição falsificável contra o número real de firmas sob jurisdição
+ativa do CADE (pendência empírica). Resultados em
+<code>results/calibracao_formal_r03.json</code>.</p>
+<p>Os dados primários contra os quais essa calibração corre estão
+visualizados abaixo (RIG/TCU 2022-2024 + comunicado CADE 2023):</p>
+<figure>
+<p><img alt="Painel 1x2 com fluxo investigativo SG 2022-2024 e leniências acumuladas 2003-2023 do CADE" class="figura-empirica status-calibrado" src="../img/14_cade_capacidade.png" />
+  </p>
+<figcaption>
+    Dados primários da capacidade investigativa real. <strong>(A)</strong> Investigações SG instauradas (63–103/ano), concluídas (89–111/ano) e estoque (177–247) em 2022-2024, com a força de trabalho anotada (287–326 servidores em exercício; 180 na área-fim) — fonte RIG/TCU, parseada em <code>calibracao/transparencia_cade.py</code>. <strong>(B)</strong> Leniências acumuladas 2003-2023: 109 acordos em 20 anos (comunicado CADE 2023). A vazão real é a âncora do reescalonamento de <code>taxa_capacidade</code> (R06) e do alvo de volume (R03).
+  </figcaption>
+</figure>
+<h2 id="os-pesos-do-bem-estar-sao-provisorios">Os pesos do bem-estar são provisórios<a class="headerlink" href="#os-pesos-do-bem-estar-sao-provisorios" title="Permanent link">&para;</a></h2>
+<p>O bem-estar social é definido como <span class="arithmatex">\(-(\text{dano} + \beta \cdot \text{FP} + \gamma \cdot \text{custo recompensa} + \delta_{\text{ex}} \cdot \text{êxodo} - \delta_{\text{mu}} \cdot \text{multa arrecadada}) / w_a\)</span>. Os defaults usados nos gráficos — <span class="arithmatex">\(\beta=1\)</span>, <span class="arithmatex">\(\gamma=0\)</span>, <span class="arithmatex">\(\delta_{\text{ex}}=0{,}5\)</span>, <span class="arithmatex">\(\delta_{\text{mu}}=1\)</span> — são <strong>normativos</strong>, não calibrados. Ancorar cada um requer:</p>
+<ul>
+<li><span class="arithmatex">\(\beta\)</span> contra Polinsky-Shavell (custo social do erro tipo I em enforcement);</li>
+<li><span class="arithmatex">\(\gamma\)</span> contra a interpretação econômica do desconto como transferência privada (provavelmente <span class="arithmatex">\(0\)</span>);</li>
+<li><span class="arithmatex">\(\delta_{\text{ex}}\)</span> contra a literatura de capital humano em transição (custo de substituição + perda transitória de produtividade);</li>
+<li><span class="arithmatex">\(\delta_{\text{mu}}\)</span> contra a valoração marginal de receita pública (provavelmente <span class="arithmatex">\(\approx 1\)</span>).</li>
+</ul>
+<p>A consolidação está rastreada em <strong>R05</strong>.</p>
+<h2 id="as-proposicoes-teoricas-seguem-em-parte-como-conjecturas">As proposições teóricas seguem em parte como conjecturas<a class="headerlink" href="#as-proposicoes-teoricas-seguem-em-parte-como-conjecturas" title="Permanent link">&para;</a></h2>
+<p>A <strong>Proposição 1</strong> — viabilidade da IC-F* no ponto-alvo do Regime B — está demonstrada <strong>pontualmente</strong> por teste de regressão, mas as faixas jurídicas do esboço (multa entre 1% e 20% da receita, <span class="arithmatex">\(D \le 50\%\)</span> da multa) seguem ilustrativas. A Proposição é honesta sobre isso.</p>
+<p>A <strong>Proposição 2</strong> — unicidade do equilíbrio de coordenação no limite <span class="arithmatex">\(\tau \to 0\)</span> do subjogo de Morris-Shin — está implementada em forma fechada no módulo <code>jogo_global</code> e verificada numericamente em testes. Mas <strong>não está integrada à dinâmica completa do ABM</strong> (R02a), o <strong>contraste numérico com multiplicidade sob conhecimento comum não foi feito</strong> (R02b), e a unicidade sob heterogeneidade de arquétipos × papéis é <strong>conjectura aberta</strong> (R02c) — Morris-Shin supõe homogeneidade que não temos.</p>
+<p>A <strong>Proposição 3</strong> — dominância de bem-estar de B sobre A — está sustentada direcionalmente por simulação multi-seed com CI 95% que não cruza zero. <strong>A prova formal segue como esboço</strong>, não como teorema fechado.</p>
+<h2 id="fragilidades-do-bem-coletivo-pos-reframe-coleman-samuelson">Fragilidades do bem coletivo (pós-reframe Coleman &gt; Samuelson)<a class="headerlink" href="#fragilidades-do-bem-coletivo-pos-reframe-coleman-samuelson" title="Permanent link">&para;</a></h2>
+<p>A <a href="../critica_x10_v2/">Crítica x10 v2</a> acrescentou três fragilidades que
+o framing original "empresa paga" ocultava por construção. Sob o reframe
+"massa crítica de cooperação interna como capital social com risco de
+erosão endógena", elas viram parte do esqueleto epistêmico do projeto.</p>
+<p><strong>(i) Free-riding ainda não é modelado.</strong> Olson 1965 mostra que grupos
+sustentam bens coletivos por <em>interesse perceptível</em> e <em>visibilidade
+mútua</em>; em grupos pequenos (5-20 cooperadores na firma típica) o problema
+não é sub-provisão, é <strong>sub-iniciação</strong> — ninguém quer ser o 1º. O
+decaimento Saito intra-firma é <em>selective incentive</em> compatível com
+Olson, mas o modelo não distingue custo psicológico do 1º cooperador
+(<span class="arithmatex">\(\text{custo}_{k=1}\)</span>) do dos demais (<span class="arithmatex">\(\text{custo}_{k\ge 2}\)</span>). Os
+imitativos e fairminded sinalizam quando há <span class="arithmatex">\(\phi_{\text{vizinhos}}\)</span>
+suficiente — mas nenhum <em>inicia</em>. R24 abre o arquétipo
+<code>denunciante_oportunista</code> (insider acionista, concorrente plantando
+informante, chantagem) e o arquétipo Olson explícito como variantes.</p>
+<p><strong>(ii) Tragédia reversa (anti-commons de Heller 1998).</strong> Sobre-denúncia
+frívola — direitos de "exclusão por denúncia" fragmentados, levando à
+subutilização da estrutura do CADE. Hoje o modelo trata FP como custo
+em <span class="arithmatex">\(\beta\)</span> no bem-estar, mas não captura o fenômeno sistêmico:
+trabalhadores podem usar WaaS como ameaça pré-rescisão para extrair
+<em>severance</em>, transformando o canal em barganha bilateral, não em prova
+qualificada. Pendência R24 — <strong>com primeira medição visual</strong>: a varredura
+abaixo varre a fração de oportunistas de 0% a 30% (calibração DMZ 2010:
+~17% na SEC) e mostra o custo sistêmico em FP e dano.</p>
+<figure>
+<p><img alt="Painel 1x2 com falsos positivos e dano acumulado por fração de trabalhadores oportunistas" class="figura-empirica" src="../img/15_adversarial_oportunistas.png" />
+  </p>
+<figcaption>
+    Custo sistêmico do uso adversarial (R24), 5 seeds × 12 tiques em Regime B. <strong>(A)</strong> Falsos positivos acumulados crescem com a fração de oportunistas — o canal absorve ruído extrativo. <strong>(B)</strong> Dano acumulado: a dissuasão resiste na faixa DMZ (~17%, linha pontilhada), mas o leitor deve notar que o modelo ainda não representa o uso do canal como barganha bilateral pré-rescisão — esta figura mede apenas o ruído de denúncias frívolas, um subconjunto do fenômeno de Heller.
+  </figcaption>
+</figure>
+<p><strong>(iii) Erosão endógena por uso instrumental — agora com veredicto
+parcial.</strong> Coleman 1990 previu que capital social é destruído pela sua
+instrumentalização. No WaaS: após uma rodada bem-sucedida em firma X, a
+comunicação informal em outras firmas Y, Z muda de regime — quem antes
+comentava livremente passa a auto-censurar (<em>chilling effect</em>). A
+Proposição 5 candidata formalizava o pior caso: existe
+<span class="arithmatex">\(\alpha_{\text{erosão}}^\star\)</span> tal que, para
+<span class="arithmatex">\(\alpha_{\text{erosão}} &gt; \alpha^\star\)</span>, Regime B/C colapsa em A após
+<span class="arithmatex">\(N\)</span> tiques. <strong>A varredura empírica de jun/2026 falsificou a forma
+forte</strong>: em grade 10 seeds × 8 alphas × 40 tiques
+(<code>scripts/varredura_alpha_erosao.py</code>; figura em
+<a href="../bem_publico/"><code>bem_publico.md</code></a>), o dano em Regime B fica ~8× abaixo
+do piso A <strong>estável até <span class="arithmatex">\(\alpha = 0{,}9\)</span></strong> — a dissuasão endógena domina
+a erosão no agregado, mesmo com o substrato cooperativo quase zerado.
+A <strong>forma fraca</strong> se confirma: o <code>capital_social_residual</code> decai
+monotonicamente em <span class="arithmatex">\(\alpha\)</span>. A leitura honesta: a objeção de Coleman é
+descritivamente correta (o substrato erode), mas, na configuração
+testada, <strong>não derruba a ordenação de regimes</strong>. O que ainda pode
+reverter o veredicto: erosão propagada por rede inter-firma
+(<code>phi_baseline</code> ↓ em vizinhas — não modelada) e calibração de
+<span class="arithmatex">\(\alpha\)</span> contra dados reais (R03). Literatura calibradora: Titmuss
+1970 <em>The Gift Relationship</em>, Frey-Jegen 2001, Bénabou-Tirole 2003.</p>
+<p><strong>Salvaguardas anti-erosão na literatura comparada:</strong> (a) anonimato
+forte (IRS Whistleblower Office); (b) recompensa coletiva
+(Mussler-Macy 1997); (c) janela curta. Cada uma tem custo de desenho —
+anonimato tensiona com fila identificada da LCMC; recompensa coletiva
+mata a corrida. A <strong>janela curta</strong> existe agora em dois níveis distintos
+no modelo: <code>janela_temporal_tiques</code> (R20) opera no nível <strong>agregado</strong> —
+prazo após a massa crítica disparar para a fila inter-firma fechar;
+<code>janela_escrow_tiques</code> (R27-ii) opera no nível <strong>individual</strong> — Δt de
+expiração de cada depósito condicional antes de a massa crítica ser
+atingida. O filtro anti-erosão individual deixou de ser lacuna de
+implementação; <strong>medir empiricamente seu efeito anti-erosão segue
+aberto em R26</strong> — o cenário canônico <code>erosao_coleman_adversarial</code>
+permite varrer o par (<code>alpha_erosao</code>, <code>janela_escrow_tiques</code>) em busca
+da combinação que estabiliza o capital social residual.</p>
+<h2 id="viabilidade-politica-do-regime-c-2024-2027">Viabilidade política do Regime C (2024-2027)<a class="headerlink" href="#viabilidade-politica-do-regime-c-2024-2027" title="Permanent link">&para;</a></h2>
+<p>A crítica do Cientista Político na x10 v2 trouxe outra honestidade
+material: a premissa do projeto de que "Regime C tem custo político mais
+alto mas viável" <strong>subestima o custo</strong> no horizonte 2024-2027. PL
+2768/2022 (análogo nacional ao DMA) está parado desde 2023; agenda da
+Câmara é concentrada em reforma tributária e arcabouço fiscal;
+antitruste digital é matéria periférica. Regime C é <strong>provavelmente
+infactível</strong> sem crise reputacional grande. Detalhes em
+<a href="../viabilidade_regime_c/">Viabilidade política do Regime C</a>.</p>
+<p>A consequência: a <em>advocacy</em> natural do projeto desloca-se de "convencer
+o Congresso" para "convencer o CADE de que B é institucionalmente
+defensável até C virar factível" — usando a Lei 12.846/2013 (LAC) Art.
+7º VII-VIII como precedente dogmático brasileiro, conforme a nova seção
+em <a href="../INSTITUTIONAL/">Análise institucional</a>.</p>
+<h2 id="cinco-decisoes-normativas-em-aberto">Cinco decisões normativas em aberto<a class="headerlink" href="#cinco-decisoes-normativas-em-aberto" title="Permanent link">&para;</a></h2>
+<p>Há cinco pontos onde a literatura crítica converge mas o autor ainda não decidiu — porque cada decisão <strong>altera Proposições</strong> e exige conversa explícita, não execução automática:</p>
+<ul>
+<li><strong>R09</strong> — endogeneizar <span class="arithmatex">\(g_i(t) = \pi \cdot R / (p \cdot S)\)</span> como função do estado, à la Becker. Altera Prop. 3.</li>
+<li><strong>R10</strong> — IC-F* completa <span class="arithmatex">\(W + p_{\text{pago}} \cdot (S - D) &lt; p_{\text{não pago}} \cdot S\)</span>. Altera Prop. 1.</li>
+<li><strong>R11</strong> — modelar Hirschman como elevação de <span class="arithmatex">\(W_{\text{esperado}}\)</span> em vez de subtração de <span class="arithmatex">\(g_i\)</span>. Altera o microfundamento de R07.</li>
+<li><strong>R12</strong> — substituir o arquétipo "racional" pela estratégia-limiar <span class="arithmatex">\(s_i \ge x^*\)</span> do jogo global. Integra Prop. 2 ao ABM e fecha R02a.</li>
+<li><strong>R13</strong> — distribuição Pareto/lognormal de fatia de mercado (em digital, o dano é cauda longa, não uniforme).</li>
+</ul>
+<p>Estão registrados em <a href="../DECISIONS/">DECISIONS.md</a>. Cada um tem origem, autor crítico, e arquivos-alvo.</p>
+<h2 id="como-falsificar-cada-uma-destas-limitacoes-em-codigo">Como falsificar cada uma destas limitações em código<a class="headerlink" href="#como-falsificar-cada-uma-destas-limitacoes-em-codigo" title="Permanent link">&para;</a></h2>
+<p>A vantagem editorial deste projeto é que <strong>toda limitação aqui listada é endereçável por código aberto</strong> — cada uma tem um parâmetro <code>WaaSParametros</code>, um reporter, ou um teste de regressão que materializa o ponto fraco. O leitor cético tem caminho direto para reproduzir o pior caso.</p>
+<table>
+<thead>
+<tr>
+<th>Limitação</th>
+<th>Parâmetro / reporter</th>
+<th>Como rodar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Re-caracterização "ressarcimento" controvertida (F6)</td>
+<td><code>p_anulacao_tcc</code></td>
+<td><code>WaaSParametros(p_anulacao_tcc=1.0)</code> ⇒ todo TCC-WaaS anulado ⇒ Regime B colapsa em A</td>
+</tr>
+<tr>
+<td>Reserva de lei do Regime B sobre vesting</td>
+<td><code>fracao_contratos_acelerados</code></td>
+<td>sob Regime A ou B, valor &gt; 0 é forçado a 0 com <code>UserWarning</code></td>
+</tr>
+<tr>
+<td>Colisão com leniência clássica Art. 86</td>
+<td><code>custo_legal_uw</code></td>
+<td>calibrar custo legal do partícipe; teste em <code>tests/test_vetores_quebra.py</code></td>
+</tr>
+<tr>
+<td>Pesos do bem-estar não calibrados</td>
+<td><code>PESOS_BEM_ESTAR</code> em <code>sobol/execucao.py</code></td>
+<td>dict editável; cada peso documentado com literatura calibradora</td>
+</tr>
+<tr>
+<td>Free-riding / sub-iniciação Olson</td>
+<td>arquétipo <code>oportunista</code> (R24)</td>
+<td><code>DISTRIBUICAO_COM_OPORTUNISTAS</code> em <code>cenarios.py</code></td>
+</tr>
+<tr>
+<td>Anti-commons (sobre-denúncia frívola)</td>
+<td><code>taxa_falso_reporte</code> + <code>n_tcc_anulados</code></td>
+<td>cenário <code>uso_adversarial_oportunista</code></td>
+</tr>
+<tr>
+<td>Erosão Coleman (Proposição 5 candidata)</td>
+<td><code>alpha_erosao</code> (R26)</td>
+<td><code>tests/test_erosao_coleman.py::test_proposicao_5_candidata_direcional</code></td>
+</tr>
+<tr>
+<td>Capacidade institucional CADE (Cient. Pol. v2)</td>
+<td><code>taxa_capacidade</code></td>
+<td>cenário <code>captura_processamento_cade</code></td>
+</tr>
+<tr>
+<td>Viabilidade política Regime C 2024-2027</td>
+<td>n/a</td>
+<td>documental (<a href="../viabilidade_regime_c/">viabilidade_regime_c.md</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Reproduzir o pior caso da fragilidade F6 (Vetor B):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">WaaSModel</span><span class="p">,</span> <span class="n">WaaSParametros</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Configuração &quot;Regime B com Judiciário hostil&quot;: todo TCC-WaaS é anulado</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">m</span> <span class="o">=</span> <span class="n">WaaSModel</span><span class="p">(</span><span class="n">WaaSParametros</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">n_empresas</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_tiques</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">p_anulacao_tcc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>    <span class="c1"># 100% das vezes que a firma assina, é anulado</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">))</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">executar</span><span class="p">()</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TCCs assinados: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;n_tcc_assinados&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TCCs anulados: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;n_tcc_anulados&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dano acumulado: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dano_acumulado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Resultado esperado: dano ~ Regime A, multa retorna ao erário</span>
+</code></pre></div>
+<p>Reproduzir a Proposição 5 candidata (erosão Coleman):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Comparar bem-estar sob alpha_erosao=0 vs alpha_erosao=0.5</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">WaaSModel</span><span class="p">,</span> <span class="n">WaaSParametros</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">base</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n_empresas</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_tiques</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>            <span class="n">fracao_violadoras</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">taxa_observacao</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">df_sem</span> <span class="o">=</span> <span class="n">WaaSModel</span><span class="p">(</span><span class="n">WaaSParametros</span><span class="p">(</span><span class="o">**</span><span class="n">base</span><span class="p">,</span> <span class="n">alpha_erosao</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span><span class="o">.</span><span class="n">executar</span><span class="p">()</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">df_com</span> <span class="o">=</span> <span class="n">WaaSModel</span><span class="p">(</span><span class="n">WaaSParametros</span><span class="p">(</span><span class="o">**</span><span class="n">base</span><span class="p">,</span> <span class="n">alpha_erosao</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span><span class="o">.</span><span class="n">executar</span><span class="p">()</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;capital_social final  α=0.0: </span><span class="si">{</span><span class="n">df_sem</span><span class="p">[</span><span class="s1">&#39;capital_social_residual&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;capital_social final  α=0.5: </span><span class="si">{</span><span class="n">df_com</span><span class="p">[</span><span class="s1">&#39;capital_social_residual&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dano_acumulado        α=0.0: </span><span class="si">{</span><span class="n">df_sem</span><span class="p">[</span><span class="s1">&#39;dano_acumulado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dano_acumulado        α=0.5: </span><span class="si">{</span><span class="n">df_com</span><span class="p">[</span><span class="s1">&#39;dano_acumulado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Se Proposição 5 vale, dano sob α=0.5 &gt; dano sob α=0 após N tiques</span>
+</code></pre></div>
+<p>Reproduzir o teste de uso adversarial (oportunistas):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.cenarios</span><span class="w"> </span><span class="kn">import</span> <span class="n">aplicar_cenario</span><span class="p">,</span> <span class="n">lookup_cenario</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">WaaSModel</span><span class="p">,</span> <span class="n">WaaSParametros</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">p</span> <span class="o">=</span> <span class="n">aplicar_cenario</span><span class="p">(</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">WaaSParametros</span><span class="p">(</span><span class="n">n_empresas</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_tiques</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">11</span><span class="p">),</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="s2">&quot;uso_adversarial_oportunista&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">df</span> <span class="o">=</span> <span class="n">WaaSModel</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">executar</span><span class="p">()</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;falsos positivos acumulados: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;falsos_positivos_acum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TCCs anulados: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;n_tcc_anulados&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># 20% de oportunistas ⇒ FP elevado, TCCs anulados crescem</span>
+</code></pre></div>
+<p>Cada uma das nove limitações da tabela acima tem caminho de reprodução em ≤ 10 linhas de Python. Esta é a postura editorial do projeto: <strong>se você acha que o argumento quebra, rode o código que mostra a quebra</strong>.</p>
+<h2 id="o-que-ja-esta-sustentado">O que já está sustentado<a class="headerlink" href="#o-que-ja-esta-sustentado" title="Permanent link">&para;</a></h2>
+<p>Em respeito à simetria, vale dizer o que <strong>não</strong> está nesta lista — o que sobreviveu à pressão da crítica, à reamostragem multi-seed e ao reframe v2:</p>
+<ul>
+<li><strong>Princípio LCMC separado de instrumento WaaS</strong> (reframe v2): a página <a href="../bem_publico/">Bem coletivo</a> explicita que a Leniência Condicionada à Massa Crítica pode existir sem pagamento monetário.</li>
+<li><strong>Inversão de incentivo</strong> (<span class="arithmatex">\(D &gt; W\)</span> no ponto-alvo) é verificável e tem teste automatizado pontual em <code>tests/test_vetores_quebra.py</code>.</li>
+<li><strong>Dissuasão</strong> (empresas param de violar) é produzida pelo próprio modelo, multi-seed, com CI 95% não cruzando zero — <code>test_dissuasao_endogena_robusta_a_multi_seed</code>.</li>
+<li><strong>Bem-estar substantivo</strong> credita a prevenção (dano evitado), custo de êxodo Hirschman, multa arrecadada pelo erário, e — sob <code>epsilon_dissuasao_difusa &gt; 0</code> — externalidade erga omnes (R21/v2.D.1).</li>
+<li><strong>Coordenação tipo jogo global</strong> tem versão analítica fechada e testada em <code>jogo_global.py</code> (limiar único <span class="arithmatex">\(x^\star\)</span> em <span class="arithmatex">\(\tau \to 0\)</span>). Sob LCMC, o limiar vira família <span class="arithmatex">\(\{x^\star_k\}\)</span> por posição na fila (Mat A v2).</li>
+<li><strong>Gating jurídico do R07</strong> está implementado — Regime A/B rejeita <code>fracao_contratos_acelerados &gt; 0</code> com <code>UserWarning</code> citando Art. 22 I CF.</li>
+<li><strong>Catálogo de 28 condutas</strong> unilaterais digitais com gradiente 3-níveis Near &amp; Miceli (inclui casos brasileiros: iFood marketplace, Apple anti-steering, e jurisprudência internacional pós-2024).</li>
+<li><strong>Capital social residual</strong> (R26 Coleman) operacionalizado como reporter; Proposição 5 candidata falsificável em <code>tests/test_erosao_coleman.py</code>.</li>
+<li><strong>Taxonomia declarativa de 5 entradas</strong> (<code>src/waas_antitrust/instrumentos.py</code>) — canal base v3 + 4 instrumentos com reservas constitucionais Cₜ/Cᵩ/Cₚ.</li>
+</ul>
+<div class="ato-fim">
+<p><strong>Fim do Ato 4.</strong> A honestidade não destrói o argumento; encurta o caminho para sustentá-lo. Há trabalho de calibração, trabalho jurídico e cinco decisões normativas em aberto. Se você quer ajudar — discordar, calibrar, escrever, criticar — o Ato 5 mostra como.</p>
+<p><a href="../colaborar/">Ato 5: Como contribuir →</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../resultados/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Ato 3 · Resultados">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Ato 3 · Resultados
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../colaborar/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Ato 5 · Colaborar">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Ato 5 · Colaborar
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Código e documentação sob CC BY-SA 4.0 · <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> · <a href="brincar/">brincar in-browser</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/freirelucas/waas-antitrust" target="_blank" rel="noopener" title="Repositório no GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="brincar/" target="_blank" rel="noopener" title="Brincar in-browser" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 5v8l5-4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "navigation.prune", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "content.tabs.link", "content.tooltips", "search.suggest", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/simulador.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2477 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).">
+      
+      
+        <meta name="author" content="L.">
+      
+      
+        <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/modelagem_multiagente/">
+      
+      
+        <link rel="prev" href="../bem_publico/">
+      
+      
+        <link rel="next" href="../condutas/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Modelagem multiagente - LCMC · Leniência Condicionada à Massa Crítica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%2011h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12zM12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm-3-3h2v-2.13c1.73-.44%203-2.01%203-3.87a4%204%200%200%200-4-4%204%204%200%200%200-4%204c0%201.86%201.27%203.43%203%203.87z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.5%202%202%206.5%202%2012s4.5%2010%2010%2010%2010-4.5%2010-10S17.5%202%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m4.59-12.42L10%2014.17l-2.59-2.58L6%2013l4%204%208-8z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.27%203%203%208.27v7.46L8.27%2021h7.46C17.5%2019.24%2021%2015.73%2021%2015.73V8.27L15.73%203M9.1%205h5.8L19%209.1v5.8L14.9%2019H9.1L5%2014.9V9.1m6%205.9h2v2h-2zm0-8h2v6h-2z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.8%2018.5%206%201.6-.4%201.9-9.4-2.5L2.6%2022l-.5-1.9%206-1.6L2%2016.9l.5-1.9%209.4%202.5%209.4-2.5.5%201.9zM9.5%206C8.7%206%208%206.7%208%207.5S8.7%209%209.5%209%2011%208.3%2011%207.5%2010.3%206%209.5%206m5%200c-.8%200-1.5.7-1.5%201.5S13.7%209%2014.5%209%2016%208.3%2016%207.5%2015.3%206%2014.5%206M13%2011l-1-2-1%202zM12%201C8.1%201%205%204.1%205%208c0%201.9.8%203.6%202%204.9V16h10v-3.1c1.2-1.3%202-3%202-4.9%200-3.9-3.1-7-7-7m3%2011v2h-1v-2h-1v2h-2v-2h-1v2H9v-2c-1.2-.9-2-2.3-2-4%200-2.8%202.2-5%205-5s5%202.2%205%205c0%201.6-.8%203.1-2%204%22/%3E%3C/svg%3E');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+
+  <meta property="og:title" content="Modelagem multiagente · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta property="og:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://freirelucas.github.io/waas-antitrust/modelagem_multiagente/" />
+  <meta property="og:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="LCMC · Leniência Condicionada à Massa Crítica" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Modelagem multiagente · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta name="twitter:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta name="twitter:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+
+  <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/modelagem_multiagente/" />
+
+  <meta name="theme-color" content="#1e8449" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modelagem-multiagente" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-header__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LCMC · Leniência Condicionada à Massa Crítica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modelagem multiagente
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-nav__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    LCMC · Leniência Condicionada à Massa Crítica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 1 · O problema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mecanismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 3 · Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colaborar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 5 · Colaborar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo ABM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brincar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brincar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper (rascunho v0.2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Anexos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Como usar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comandos e scripts (CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transparencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transparência epistêmica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imprensa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kit de imprensa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formulario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formulário matemático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoria e modelo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Teoria e modelo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bem_publico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bem coletivo e instrumentos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelagem multiagente
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelagem multiagente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#as-tres-classes-canonicas-de-agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As três classes canônicas de agente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trabalhadoragent-o-core-comportamental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrabalhadorAgent — o core comportamental
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TrabalhadorAgent — o core comportamental">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cinco-arquetipos-comportamentais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cinco arquétipos comportamentais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estado-individual-r14-heterogeneidade-explicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estado individual (R14 — heterogeneidade explícita)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heuristica-de-observacao-r08-conduta-papel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heurística de observação (R08 — conduta × papel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-de-sinalizacao-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão de sinalização (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empresaagent-a-ic-f-ampliada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmpresaAgent — a IC-F* ampliada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EmpresaAgent — a IC-F* ampliada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ic-f-em-tres-formas-dependendo-dos-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IC-F* em três formas, dependendo dos flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autoridadeagent-capacidade-e-acuracia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AutoridadeAgent — capacidade κ e acurácia ρ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-topologia-rede-intra-firma-e-acoplamento-inter-firma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A topologia: rede intra-firma e acoplamento inter-firma
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A topologia: rede intra-firma e acoplamento inter-firma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rede-intra-firma-watts-strogatz-pequeno-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rede intra-firma (Watts-Strogatz pequeno-mundo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acoplamento-inter-firma-campo-schelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acoplamento inter-firma (campo Schelling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-step-em-fases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O step() em fases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporters-e-observabilidade-do-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporters e observabilidade do modelo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-nao-e-agente-e-por-que" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que não é agente, e por quê
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O que não é agente, e por quê">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisoes-abertas-sobre-escopo-de-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisões abertas sobre escopo de agentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-atualizado-pos-reframe-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status atualizado pós-reframe v2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-inspecionar-o-estado-interno-em-uma-simulacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como inspecionar o estado interno em uma simulação
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-de-simulacao-painel-macro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tela de simulação — painel macro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-de-simulacao-painel-micro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tela de simulação — painel micro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-olhar-a-seguir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde olhar a seguir
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../condutas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catálogo de condutas digitais (28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../choques/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catálogos de choques institucionais (R19)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ODD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo (protocolo ODD)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../INSTITUTIONAL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direito e instituições
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../glossario/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../critica_x10/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#as-tres-classes-canonicas-de-agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As três classes canônicas de agente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trabalhadoragent-o-core-comportamental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrabalhadorAgent — o core comportamental
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TrabalhadorAgent — o core comportamental">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cinco-arquetipos-comportamentais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cinco arquétipos comportamentais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estado-individual-r14-heterogeneidade-explicita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estado individual (R14 — heterogeneidade explícita)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heuristica-de-observacao-r08-conduta-papel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heurística de observação (R08 — conduta × papel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-de-sinalizacao-p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão de sinalização (P1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empresaagent-a-ic-f-ampliada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmpresaAgent — a IC-F* ampliada
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EmpresaAgent — a IC-F* ampliada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ic-f-em-tres-formas-dependendo-dos-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IC-F* em três formas, dependendo dos flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autoridadeagent-capacidade-e-acuracia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AutoridadeAgent — capacidade κ e acurácia ρ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-topologia-rede-intra-firma-e-acoplamento-inter-firma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A topologia: rede intra-firma e acoplamento inter-firma
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A topologia: rede intra-firma e acoplamento inter-firma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rede-intra-firma-watts-strogatz-pequeno-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rede intra-firma (Watts-Strogatz pequeno-mundo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acoplamento-inter-firma-campo-schelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acoplamento inter-firma (campo Schelling)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-step-em-fases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O step() em fases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reporters-e-observabilidade-do-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporters e observabilidade do modelo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-nao-e-agente-e-por-que" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que não é agente, e por quê
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O que não é agente, e por quê">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisoes-abertas-sobre-escopo-de-agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisões abertas sobre escopo de agentes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-atualizado-pos-reframe-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status atualizado pós-reframe v2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-inspecionar-o-estado-interno-em-uma-simulacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como inspecionar o estado interno em uma simulação
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-de-simulacao-painel-macro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tela de simulação — painel macro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-de-simulacao-painel-micro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tela de simulação — painel micro
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onde-olhar-a-seguir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde olhar a seguir
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Ato 1 · O problema
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../uso/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Anexos
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../bem_publico/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Teoria e modelo
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/freirelucas/waas-antitrust/edit/main/docs/modelagem_multiagente.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/freirelucas/waas-antitrust/raw/main/docs/modelagem_multiagente.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="modelagem-multiagente">Modelagem multiagente<a class="headerlink" href="#modelagem-multiagente" title="Permanent link">&para;</a></h1>
+<p>Esta página consolida, em um único lugar, <strong>como o modelo é composto agente
+a agente</strong>: classes, estados, decisões, microfundamentos, acoplamentos. É
+complemento técnico ao <a href="../mecanismo/">Ato 2 (mecanismo)</a> e ao
+<a href="../ODD/">protocolo ODD</a> — aqui o foco está na <em>arquitetura computacional</em>
+da simulação, não na intuição econômica nem na descrição padrão JASSS.</p>
+<p>A simulação roda em <strong>Mesa 3.x</strong>, com três classes de agente, uma rede
+intra-firma em <strong>NetworkX</strong> (Watts-Strogatz pequeno-mundo) e topologia
+inter-firma implícita (acoplamento por <code>p_perc</code> global). Tudo opt-in
+pode ser ligado/desligado por flag em <code>WaaSParametros</code> — backward compat é
+invariante de projeto.</p>
+<h2 id="as-tres-classes-canonicas-de-agente">As três classes canônicas de agente<a class="headerlink" href="#as-tres-classes-canonicas-de-agente" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Classe</th>
+<th>Cardinalidade típica</th>
+<th>Decisão central</th>
+<th>Arquivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TrabalhadorAgent</code></td>
+<td><span class="arithmatex">\(N_\text{empresas} \times \overline{n}_\text{firm}\)</span> (centenas a milhares)</td>
+<td>sinalizar ou calar</td>
+<td><code>src/waas_antitrust/agents.py:24</code></td>
+</tr>
+<tr>
+<td><code>EmpresaAgent</code></td>
+<td><span class="arithmatex">\(N_\text{empresas}\)</span> (dezenas)</td>
+<td>pagar recompensa ou não</td>
+<td><code>src/waas_antitrust/agents.py:206</code></td>
+</tr>
+<tr>
+<td><code>AutoridadeAgent</code></td>
+<td>1 (CADE)</td>
+<td>aceitar caso (capacidade κ, acurácia ρ)</td>
+<td><code>src/waas_antitrust/agents.py:273</code></td>
+</tr>
+</tbody>
+</table>
+<p>A escolha de manter três classes — não cinco, não duas — é deliberada e
+documentada em <code>docs/ODD.md</code> §1.2. Outros papéis institucionais (VC
+investidor, advogado, Tribunal CADE) ficam capturados como <strong>parâmetros</strong>
+ou <strong>canais financeiros</strong>, não como agentes próprios — ver §"O que <strong>não</strong>
+é agente, e por quê" abaixo.</p>
+<h2 id="trabalhadoragent-o-core-comportamental">TrabalhadorAgent — o core comportamental<a class="headerlink" href="#trabalhadoragent-o-core-comportamental" title="Permanent link">&para;</a></h2>
+<p>O trabalhador é o agente mais rico. Combina cinco arquétipos
+comportamentais, heterogeneidade individual e (sob <code>modo_corrida=True</code>)
+uma posição em fila de cooperação interna.</p>
+<h3 id="cinco-arquetipos-comportamentais">Cinco arquétipos comportamentais<a class="headerlink" href="#cinco-arquetipos-comportamentais" title="Permanent link">&para;</a></h3>
+<p>Baseados em <strong>Hokamp &amp; Pickhardt (2010)</strong> + extensão <strong>fairminded</strong> de
+<strong>Torsell (2026)</strong> com utilidade Fehr-Schmidt (1999):</p>
+<table>
+<thead>
+<tr>
+<th>Arquétipo</th>
+<th>Regra de decisão</th>
+<th>Quando domina o resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ético</code></td>
+<td>sinaliza se severidade percebida ≥ limiar pessoal</td>
+<td>violações severas e visíveis</td>
+</tr>
+<tr>
+<td><code>imitativo</code></td>
+<td>sinaliza se fração de vizinhos sinalizadores ≥ 30%</td>
+<td>fase de cascata após break-even</td>
+</tr>
+<tr>
+<td><code>racional</code></td>
+<td>ponderação custo-benefício explícita: IR-W e IC-T</td>
+<td>regimes B/C com <code>W</code> calibrado</td>
+</tr>
+<tr>
+<td><code>aleatório</code></td>
+<td>ruído uniforme com probabilidade <span class="arithmatex">\(\eta\)</span></td>
+<td>piso de exploração / robustez a seed</td>
+</tr>
+<tr>
+<td><code>fairminded</code> (R16)</td>
+<td>racional + prêmio ético proporcional à fração de pares sinalizando</td>
+<td>break-even ético coletivo emergente</td>
+</tr>
+</tbody>
+</table>
+<p>A distribuição default é Hokamp-Pickhardt clássica (15/35/40/10/0 — sem
+fairminded); o preset <code>DISTRIBUICAO_COM_FAIRMINDED</code> (10/30/30/10/20)
+ativa o quinto arquétipo. Trocar a distribuição é a alavanca normativa
+mais direta para explorar "o que aconteceria se a população fosse mais
+ética/imitativa/racional/fairminded".</p>
+<h3 id="estado-individual-r14-heterogeneidade-explicita">Estado individual (R14 — heterogeneidade explícita)<a class="headerlink" href="#estado-individual-r14-heterogeneidade-explicita" title="Permanent link">&para;</a></h3>
+<p>Além do arquétipo, cada trabalhador carrega:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>papel                      : str   (eng, produto, design, growth, comercial,
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                     juridico, corpdev, operacoes, financeiro, outro)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>anos_carreira              : float (exponencial; média 2-4 anos típico em tech BR)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>fracao_vested_individual   : float (cliff 1y, linear até 4y; R07/R11)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>tolerancia_represalia      : float (multiplicador ~N(1, 0.15) sob R14 ativo)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>historico_observou         : int   (memória de observação acumulada)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>status                     : str   (&quot;ativo&quot; | &quot;ex_funcionario&quot; — R19/Eurace@Unibi)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>posicao_corrida_interna    : int?  (1-indexed; preenchido em P1 sob modo_corrida)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>tique_cooperou             : int?  (tique em que sinalizou pela primeira vez)
+</code></pre></div>
+<p>A heterogeneidade não é decorativa — sob <code>sigma_tolerancia_represalia &gt; 0</code>,
+o limiar individual de IR-W passa a ter dispersão, o que muda a velocidade
+da cascata de contágio complexo (Centola-Macy 2007).</p>
+<h3 id="heuristica-de-observacao-r08-conduta-papel">Heurística de observação (R08 — conduta × papel)<a class="headerlink" href="#heuristica-de-observacao-r08-conduta-papel" title="Permanent link">&para;</a></h3>
+<p>Em P1, cada trabalhador amostra um sinal ruidoso <span class="arithmatex">\(s_i = \sigma_\text{firma} + \varepsilon_i\)</span>
+e decide se "observou" a conduta. A probabilidade de observar depende do par
+(papel, conduta) via gradiente 3-níveis (<strong>Near &amp; Miceli 1985</strong>):</p>
+<div class="arithmatex">\[
+P_\text{observar}(i) = \tau_\text{base} \cdot \text{obs}(\text{papel}_i, \text{conduta}_\text{firma})
+\]</div>
+<table>
+<thead>
+<tr>
+<th>Posição na rede de cumplicidade</th>
+<th>Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ator primário (executa a conduta)</td>
+<td><span class="arithmatex">\(1{,}0\)</span></td>
+</tr>
+<tr>
+<td>ator adjacente (vê o efeito imediato)</td>
+<td><span class="arithmatex">\(0{,}5\)</span></td>
+</tr>
+<tr>
+<td>distal (sem vetor estável de observação)</td>
+<td><span class="arithmatex">\(0{,}1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Sob a tese do moat, o catálogo de 28 condutas em <code>condutas.py</code> declara
+explicitamente quais papéis são primários/adjacentes para cada conduta —
+ver <code>N_ATORES_PRIMARIOS_NECESSARIOS</code> em <code>condutas.py</code> para a calibração
+do gatilho de massa crítica por conduta.</p>
+<p>A consequência cibernética (variedade requisitada, Ashby 1956): a
+<strong>distribuição de papéis</strong> da firma determina a variedade efetiva que o
+canal recruta. A figura compara os dois presets:</p>
+<figure>
+<p><img alt="Painel 1x2 comparando sinais e verdadeiros positivos entre os presets BIGTECH_MADURA e MARKETPLACE_BR" class="figura-empirica" src="../img/17_variedade_papeis.png" />
+  </p>
+<figcaption>
+    Variedade efetiva por distribuição de papéis, 5 seeds × 12 tiques em Regime B. <strong>(A)</strong> Σ de sinais no horizonte; <strong>(B)</strong> verdadeiros positivos acumulados. O preset <code>MARKETPLACE_BR</code> (operações-pesada, perfil iFood/Mercado Livre) e o <code>BIGTECH_MADURA</code> (engenharia-pesada) recrutam variedades distintas — a divergência é a justificativa empírica do item E05 (calibrar a distribuição contra organogramas reais).
+  </figcaption>
+</figure>
+<h3 id="decisao-de-sinalizacao-p1">Decisão de sinalização (P1)<a class="headerlink" href="#decisao-de-sinalizacao-p1" title="Permanent link">&para;</a></h3>
+<p>A função <code>decidir_sinal(...)</code> em <code>agents.py</code> é o coração comportamental.
+Cada arquétipo aplica sua regra; os arquétipos <code>racional</code> e <code>fairminded</code>
+podem opcionalmente usar o limiar do jogo global (R02a, Morris-Shin):</p>
+<div class="arithmatex">\[
+s_i \ge x^\star(b, c, k, \tau) \quad \text{onde} \quad b = \frac{W_\text{esperado}}{w_a},\; c = r \cdot \text{tol} \cdot 2
+\]</div>
+<p>A flag <code>usar_x_estrela_no_racional: bool = False</code> ativa o limiar. Default
+preserva o caminho histórico.</p>
+<h2 id="empresaagent-a-ic-f-ampliada">EmpresaAgent — a IC-F* ampliada<a class="headerlink" href="#empresaagent-a-ic-f-ampliada" title="Permanent link">&para;</a></h2>
+<p>A firma carrega:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sigma                      : float  (severidade da conduta)
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>fatia_mercado              : float  (uniforme ou Pareto sob R13a)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>R_receita                  : float  (Brasscom 2024: ~R$ 1B para tech BR média)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>eh_violadora               : bool   (sorteio P0; R01 endogeneiza via g_i)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>g_violacao                 : float  (atratividade Becker; estática hoje — R09 endogeneiza)
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>cultura_compliance         : float  (R14: ∈ [0,1], modula σ efetiva)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>n_denuncias_acum           : int    (memória)
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>conduta_potencial          : str    (uma das 28 do catálogo)
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>tem_clausula_acelerada     : bool   (R07: Hirschman exit-with-equity ativo?)
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>posicao_fila_leniencia     : int?   (R20: 1-indexed; preenchida em P2.5)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>tique_atingiu_massa_critica: int?   (R20: para janela temporal)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>massa_critica_interna_satisfeita: bool  (gating LCMC)
+</code></pre></div>
+<h3 id="ic-f-em-tres-formas-dependendo-dos-flags">IC-F* em três formas, dependendo dos flags<a class="headerlink" href="#ic-f-em-tres-formas-dependendo-dos-flags" title="Permanent link">&para;</a></h3>
+<p><strong>Forma simplificada (default histórica)</strong>:</p>
+<div class="arithmatex">\[W &lt; D_\text{extra} \quad \text{onde} \quad D_\text{extra} = (D_\text{disc} - D_\text{disc, base}) \cdot S\]</div>
+<p><strong>Forma + Hirschman (R07)</strong>:</p>
+<div class="arithmatex">\[W &lt; D_\text{extra} + \text{custo\_exodo\_coletivo}\]</div>
+<p><strong>Forma LCMC (R20, <code>modo_corrida=True</code>)</strong>:</p>
+<div class="arithmatex">\[W_\text{total}(\vec{k}) &lt; D_\text{Saito}(\text{pos}_\text{firma}) \cdot S\]</div>
+<p>onde <span class="arithmatex">\(\vec{k}\)</span> é o vetor de posições dos trabalhadores cooperadores e
+<span class="arithmatex">\(W_\text{total} = \sum_i W_\text{base} \cdot f_W(k_i)\)</span> com
+<span class="arithmatex">\(f_W(k) = D_\text{Saito}(k)/D_\text{Saito}(1)\)</span>.</p>
+<h2 id="autoridadeagent-capacidade-e-acuracia">AutoridadeAgent — capacidade κ e acurácia ρ<a class="headerlink" href="#autoridadeagent-capacidade-e-acuracia" title="Permanent link">&para;</a></h2>
+<p>O CADE entra como um único agente com:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kappa_capacidade        : int    (R06: 180 servidores área-fim 2024)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>rho_acuracia            : float  (sensível à qualidade da prova)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>prioridade_digital      : float  (R14: ∈ [0,1], eleva ρ na P4)
+</code></pre></div>
+<p>A função em P4 é simples: dada uma lista de casos disparados, aceita até
+<span class="arithmatex">\(\kappa\)</span> casos por tique e classifica cada um como verdadeiro/falso
+positivo com probabilidade <span class="arithmatex">\(\rho\)</span> ajustada pela qualidade da prova. A
+calibração contra os RIGs CADE 2022-2024 (R06) ancora <span class="arithmatex">\(\kappa\)</span> em
+patamares realistas (não nas centenas idealizadas que o modelo de
+2024 supunha).</p>
+<h2 id="a-topologia-rede-intra-firma-e-acoplamento-inter-firma">A topologia: rede intra-firma e acoplamento inter-firma<a class="headerlink" href="#a-topologia-rede-intra-firma-e-acoplamento-inter-firma" title="Permanent link">&para;</a></h2>
+<h3 id="rede-intra-firma-watts-strogatz-pequeno-mundo">Rede intra-firma (Watts-Strogatz pequeno-mundo)<a class="headerlink" href="#rede-intra-firma-watts-strogatz-pequeno-mundo" title="Permanent link">&para;</a></h3>
+<p>Cada empresa carrega seu próprio grafo <span class="arithmatex">\(G_f\)</span> (NetworkX), tipicamente:</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> = tamanho da firma (default <span class="arithmatex">\(\bar{n} = 80\)</span>, calibrar contra
+  Brasscom + RAIS por subsidiária — E01)</li>
+<li><span class="arithmatex">\(k\)</span> = grau médio (default <span class="arithmatex">\(k = \lceil 0{,}02 \cdot n \rceil\)</span>, mas
+  trocar por mistura de <strong>ego networks Burt 2004</strong> + <strong>organograma
+  intra-firma</strong> seria mais defensável — D03)</li>
+<li><span class="arithmatex">\(p\)</span> = probabilidade de rewiring (default <span class="arithmatex">\(0{,}1\)</span>, pequeno-mundo
+  clássico)</li>
+</ul>
+<p>O imitativo e o fairminded consomem <code>phi_vizinhos</code> neste grafo. Mudar
+<span class="arithmatex">\(k\)</span> ou <span class="arithmatex">\(p\)</span> é a alavanca direta para explorar o efeito da topologia na
+velocidade da cascata.</p>
+<h3 id="acoplamento-inter-firma-campo-schelling">Acoplamento inter-firma (campo Schelling)<a class="headerlink" href="#acoplamento-inter-firma-campo-schelling" title="Permanent link">&para;</a></h3>
+<p>Não há grafo explícito entre firmas. O acoplamento se dá por dois canais:</p>
+<ol>
+<li><strong><code>p_perc</code> global</strong> — quando uma firma é notificada, a percepção de
+   detecção sobe em todas as firmas (canal de conhecimento comum). É o
+   ponto onde <strong>R20/LCMC</strong> entrega o feedback mais forte: cada
+   notificação de massa crítica torna a próxima firma mais propensa a
+   correr.</li>
+<li><strong>Choques exógenos discretos (R19, Eurace@Unibi)</strong> — catálogos
+   <code>CHOQUES_TECH_2022_2024</code>, <code>CHOQUES_CASO_PARADIGMATICO_IFOOD_2023</code> etc.
+   aplicam pulsos no início de <code>step()</code> quando o tique bate o gatilho.</li>
+</ol>
+<p>A ausência de grafo inter-firma é simplificação proposital. Quando a
+calibração for mais formal, R03 sugere migrar para um grafo bipartite
+firma × VC investidor (proxy de homofilia de financiamento) — pendência
+em <a href="../DECISIONS/"><code>DECISIONS.md</code></a>, D03.</p>
+<h2 id="o-step-em-fases">O step() em fases<a class="headerlink" href="#o-step-em-fases" title="Permanent link">&para;</a></h2>
+<p>Mesa 3.x usa <code>Model.step()</code> para coordenar a evolução. A sequência
+canônica em <code>WaaSModel.step()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>P0  · dissuasão endógena + camada Hirschman preventiva (R01, R07)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>P1  · trabalhadores observam (papel × conduta) e decidem sinal
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>P2  · agregador conta sinais na rede intra-firma; dispara se ≥ k
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>P2.5· (sob modo_corrida=True) registra firma em FilaLeniencia se atingiu
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>      massa crítica interna; atribui posicao_fila_leniencia
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>P3  · empresa decide pagar via IC-F* (simplificada / Hirschman / LCMC)
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>P4  · autoridade recebe caso, aplica capacidade κ e acurácia ρ
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>P5  · coleta de estado (reporters)
+</code></pre></div>
+<p>A inserção da <strong>Phase P2.5</strong> (R20) é o ponto de articulação entre o
+modelo histórico e a LCMC. Foi feita opt-in para não comprometer testes
+de regressão de fases anteriores.</p>
+<h2 id="reporters-e-observabilidade-do-modelo">Reporters e observabilidade do modelo<a class="headerlink" href="#reporters-e-observabilidade-do-modelo" title="Permanent link">&para;</a></h2>
+<p>Cada <code>model.executar()</code> retorna um <code>pandas.DataFrame</code> com uma linha por
+tique e as seguintes colunas canônicas (não exaustivo):</p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>O que mede</th>
+<th>Quando aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>n_sinais</code></td>
+<td>trabalhadores que sinalizaram nesse tique</td>
+<td>sempre</td>
+</tr>
+<tr>
+<td><code>n_firmas_violadoras_ativas</code></td>
+<td>firmas com <code>eh_violadora=True</code> no momento</td>
+<td>sempre</td>
+</tr>
+<tr>
+<td><code>dano_acumulado</code></td>
+<td><span class="arithmatex">\(\sum_t \sum_f \mathbb{1}[\text{viola}]\)</span></td>
+<td>sempre (R01)</td>
+</tr>
+<tr>
+<td><code>dano_economico_acum</code></td>
+<td>dano ponderado por fatia de mercado</td>
+<td>sempre (R05)</td>
+</tr>
+<tr>
+<td><code>bem_estar</code></td>
+<td><span class="arithmatex">\(-(\text{dano} + \beta \cdot \text{FP} + \gamma \cdot W - \delta \cdot \text{multa})\)</span></td>
+<td>sempre (R05)</td>
+</tr>
+<tr>
+<td><code>n_tcc_anulados</code></td>
+<td>quebras judiciais do TCC</td>
+<td>R15 ativo</td>
+</tr>
+<tr>
+<td><code>n_firmas_optaram_tcc_classico</code></td>
+<td>firmas que pegaram só <span class="arithmatex">\(D_\text{base}\)</span></td>
+<td>R15 ativo</td>
+</tr>
+<tr>
+<td><code>n_firmas_quebraram_tcc</code></td>
+<td>firmas que descumpriram após assinar</td>
+<td>R18 ativo</td>
+</tr>
+<tr>
+<td><code>multa_descumprimento_acum</code></td>
+<td>sanção catastrófica acumulada</td>
+<td>R18 ativo</td>
+</tr>
+<tr>
+<td><code>n_firmas_sob_ameaca_exodo</code></td>
+<td>firmas com IC-F* ampliada por Hirschman</td>
+<td>R07 ativo</td>
+</tr>
+<tr>
+<td><code>custo_exodo_acum</code></td>
+<td>valor presente do êxodo previsto</td>
+<td>R07 ativo</td>
+</tr>
+<tr>
+<td><code>n_firmas_atingiram_massa_critica_interna</code></td>
+<td>gatilho LCMC disparado</td>
+<td>R20, <code>modo_corrida=True</code></td>
+</tr>
+<tr>
+<td><code>custo_recompensa_corrida_acum</code></td>
+<td><span class="arithmatex">\(W_\text{total}\)</span> na fila intra-firma</td>
+<td>R20, <code>modo_corrida=True</code></td>
+</tr>
+</tbody>
+</table>
+<p>A análise downstream (figuras, paper, Sobol) consome estes reporters
+sem precisar entrar nos agentes — a separação <strong>simulação ↔ análise</strong>
+é estrita.</p>
+<h2 id="o-que-nao-e-agente-e-por-que">O que <strong>não</strong> é agente, e por quê<a class="headerlink" href="#o-que-nao-e-agente-e-por-que" title="Permanent link">&para;</a></h2>
+<p>A escolha de não criar agentes para certos atores institucionais é uma
+decisão sensível e está documentada aqui em vez de espalhada por outros
+documentos.</p>
+<table>
+<thead>
+<tr>
+<th>Ator</th>
+<th>Por que não é agente</th>
+<th>Onde fica capturado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VC investidor</strong></td>
+<td>até v0.1 o jogo investor-startup era considerado fora do escopo do canal whistleblower; a tese do moat (R20) torna a expectativa de moat do VC um <em>candidato</em> a parâmetro. <strong>Pendência em pesquisa de fundo no momento desta edição</strong> — ver Bloco D1 nas decisões abertas.</td>
+<td>hoje: implícito em <code>g_violacao</code> (atratividade); proposto: parâmetro <code>grau_alavancagem_vc</code> na firma</td>
+</tr>
+<tr>
+<td><strong>Empreendedor / startup-alvo</strong></td>
+<td>em mercados de moat, a startup raramente sobrevive ao incumbente sem ser adquirida (killer acquisition) ou expulsa (predação); modelar como agente próprio acoplaria demais o paper a outra literatura</td>
+<td>hoje: implícito na conduta <code>killer_acquisitions</code>; proposto: parâmetro <code>prob_aceitar_killer_offer</code></td>
+</tr>
+<tr>
+<td><strong>Advogado do denunciante</strong></td>
+<td>colapsado em intermediário transparente — entra como <code>custo_legal_uw</code> na IR-W do racional</td>
+<td>parâmetro <code>custo_legal_uw</code> em <code>WaaSParametros</code></td>
+</tr>
+<tr>
+<td><strong>Tribunal CADE (recurso administrativo)</strong></td>
+<td>não modelado; a fila de leniência para na decisão da SG</td>
+<td>hoje: aproximada via <code>p_anulacao_tcc</code> e <code>decaimento_D(≥9ª) = 15%</code> (média Tribunal Saito)</td>
+</tr>
+<tr>
+<td><strong>Judiciário (anulação)</strong></td>
+<td>falsificador F6 levado a parâmetro de simulação</td>
+<td>parâmetro <code>p_anulacao_tcc</code> em <code>WaaSParametros</code></td>
+</tr>
+<tr>
+<td><strong>MPT / TST</strong></td>
+<td>não modelado direto</td>
+<td>parâmetros <code>r_represalia</code> e <code>custo_legal_uw</code> capturam o canal</td>
+</tr>
+<tr>
+<td><strong>Sociedade civil / mídia</strong></td>
+<td>choque exógeno tipo <code>caso_paradigmatico</code> (R19) aproxima</td>
+<td>catálogo <code>CHOQUES_CASO_PARADIGMATICO_IFOOD_2023</code></td>
+</tr>
+<tr>
+<td><strong>Algoritmo / IA generativa</strong></td>
+<td>tratado como <em>meio</em> da conduta, não como agente</td>
+<td>conduta <code>tying_ia_generativa</code> em <code>condutas.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>A regra heurística: <strong>só vira agente o que precisa decidir em loop com
+o resto do sistema</strong>. Atores que entram/saem do estado uma vez por
+tique ou cuja função é puramente coletora são capturados como parâmetros
+ou reporters.</p>
+<h3 id="decisoes-abertas-sobre-escopo-de-agentes">Decisões abertas sobre escopo de agentes<a class="headerlink" href="#decisoes-abertas-sobre-escopo-de-agentes" title="Permanent link">&para;</a></h3>
+<p>Há um par de pendências relevantes para a próxima rodada de
+refinamento:</p>
+<ul>
+<li><strong>VC investidor como agente?</strong> A discussão sobre <code>grau_alavancagem_vc</code>,
+  <code>multiplo_liquidacao_preferencia</code> e jogo VC-startup-incumbente está
+  em pesquisa de fundo no momento desta edição. Se a recomendação for
+  positiva, abre-se eventualmente um módulo <code>mercado_corporativo.py</code> com
+  uma quarta classe (<code>InvestidorVCAgent</code>?) e uma topologia bipartite
+  firma × VC. Decisão registrada em <a href="../DECISIONS/"><code>DECISIONS.md</code></a> sob
+  D-VC (a abrir).</li>
+<li><strong>Killer acquisitions como jogo, não conduta?</strong> Hoje
+  <code>killer_acquisitions</code> e <code>reverse_killer_shelving</code> são entradas do
+  catálogo <code>condutas.py</code>. Promover ao status de <em>jogo estratégico</em> (3
+  jogadores: incumbente, startup, VC; + denunciante interno como 4º)
+  exigiria modelar a IC do empreendedor, a IC do VC e a IC do
+  incumbente como sistema acoplado. Decisão também em D-KA (a abrir).</li>
+<li><strong>Comportamento individual mais fino (Big Five / Dark Triad /
+  Fehr-Schmidt α/β individual).</strong> O arquétipo <code>fairminded</code> já abre a
+  porta para preferências de fairness; o <strong><code>oportunista</code> (R24, reframe v2)</strong>
+  abre a porta para personalidades extrativas. Generalização futura
+  seria parametrizar α individual e introduzir traços de personalidade
+  como modulador da observabilidade e da inclinação a denunciar.
+  Decisão em D-PERS (a abrir).</li>
+</ul>
+<h3 id="status-atualizado-pos-reframe-v2">Status atualizado pós-reframe v2<a class="headerlink" href="#status-atualizado-pos-reframe-v2" title="Permanent link">&para;</a></h3>
+<p>A classe <code>TrabalhadorAgent</code> agora tem <strong>seis arquétipos</strong> (ético,
+imitativo, racional, aleatório, fairminded, oportunista). A classe
+<code>EmpresaAgent</code> ganhou os reporters <code>valor_dissuasao_difusa_acum</code>
+(externalidade erga omnes, v2.D.1) e <code>capital_social_residual</code> (R26
+Coleman); o segundo é controlado pelo parâmetro <code>alpha_erosao</code>
+(default 0 = sem erosão).</p>
+<p>Novos módulos vinculados ao modelo de agentes:
+- <code>instrumentos.py</code> (R21 + Eco A v2): taxonomia declarativa dos 4
+  instrumentos de internalização (WaaS, Hirschman, tributário stub,
+  criminal stub) com reservas constitucionais Cₜ/Cᵩ/Cₚ.
+- <code>viz/painel_macro.py</code> e <code>viz/painel_micro.py</code> (Designer v2): telas
+  de simulação 2×2 macro (sistema agregado) e micro (uma firma) —
+  ver figuras 06 e 07 no site.
+- <code>viz/cascata.py</code> e <code>viz/erosao.py</code> (Designer v2): figuras conceitual
+  e empírica do fenômeno emergente (4 e 5 no site).</p>
+<p>Esses três pontos são a parte da pesquisa de fundo em curso no momento
+desta edição.</p>
+<h2 id="como-inspecionar-o-estado-interno-em-uma-simulacao">Como inspecionar o estado interno em uma simulação<a class="headerlink" href="#como-inspecionar-o-estado-interno-em-uma-simulacao" title="Permanent link">&para;</a></h2>
+<p>Para depurar ou validar o comportamento dos agentes em uma execução
+específica, o caminho canônico é:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">WaaSModel</span><span class="p">,</span> <span class="n">WaaSParametros</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">m</span> <span class="o">=</span> <span class="n">WaaSModel</span><span class="p">(</span><span class="n">WaaSParametros</span><span class="p">(</span><span class="n">n_empresas</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">tam_medio_empresa</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>                             <span class="n">n_tiques</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">))</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">df</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">executar</span><span class="p">()</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Trabalhadores de uma firma específica</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">ws</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">trabalhadores_por_empresa</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ws</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">arquetipo</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">papel</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">observou</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">sinaliza_agora</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>          <span class="nb">getattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;posicao_corrida_interna&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># Estado da empresa</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">m</span><span class="o">.</span><span class="n">empresas</span><span class="p">:</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">eh_violadora</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">conduta_potencial</span><span class="p">,</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>          <span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s2">&quot;posicao_fila_leniencia&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+</code></pre></div>
+<p>As classes em <code>agents.py</code> não escondem estado privado — os atributos
+são <em>namedtuple-like</em> públicos. Convenção do projeto: <strong>inspeção
+direta</strong> é preferível a métodos getter; agentes são objetos de dados +
+uma decisão.</p>
+<h2 id="tela-de-simulacao-painel-macro">Tela de simulação — painel macro<a class="headerlink" href="#tela-de-simulacao-painel-macro" title="Permanent link">&para;</a></h2>
+<p>O módulo <code>viz/painel_macro.py</code> produz uma tela 2×2 com as quatro
+trajetórias-chave do sistema:</p>
+<figure>
+<p><img alt="Painel macro 2x2 com p_perc, massa crítica, bem-estar e capital social residual" class="figura-empirica" src="../img/06_painel_macro.png" />
+  </p>
+<figcaption>
+    Painel macro 2×2. <strong>(a)</strong> detecção percebida global <code>p_perc</code> (sinal Schelling — sobe com cada notificação). <strong>(b)</strong> firmas que atingiram massa crítica interna ao longo do tempo (LCMC R20). <strong>(c)</strong> bem-estar substantivo <code>-(dano + β·FP + γ·custo + δ_ex·exodo − δ_mu·multa)/w_a</code>. <strong>(d)</strong> capital social residual sob risco de erosão Coleman (R26, com <code>alpha_erosao=0.2</code>).
+  </figcaption>
+</figure>
+<p>A leitura sob reframe: as quatro trajetórias contam a história inteira do
+mecanismo em uma única visualização. (a) e (b) são o <strong>lado positivo</strong> —
+detecção sobe, massa crítica forma. (c) é o <strong>saldo agregado</strong>. (d) é a
+<strong>fragilidade Coleman</strong> — quanto do substrato de capital social ainda
+existe ao final do horizonte. Quando alpha_erosao é alto, (d) decresce
+abaixo de 0,5 e (b) eventualmente para de crescer — a Proposição 5
+candidata se materializa visualmente.</p>
+<h2 id="tela-de-simulacao-painel-micro">Tela de simulação — painel micro<a class="headerlink" href="#tela-de-simulacao-painel-micro" title="Permanent link">&para;</a></h2>
+<p>Complementar ao macro: o módulo <code>viz/painel_micro.py</code> foca em UMA firma
+específica e mostra o que acontece dentro dela.</p>
+<figure>
+<p><img alt="Painel micro 2x2 de uma firma com arquétipos, papéis, estado e fila LCMC" class="figura-empirica" src="../img/07_painel_micro.png" />
+  </p>
+<figcaption>
+    Painel micro 2×2 da firma 0. <strong>(a)</strong> trabalhadores que sinalizaram por arquétipo (ético, imitativo, racional, aleatório, fairminded, oportunista). <strong>(b)</strong> trabalhadores que sinalizaram por papel funcional (eng, produto, design, etc.) — observabilidade depende de papel × conduta. <strong>(c)</strong> estado da firma em quatro flags (violadora, notificada, massa crítica interna, TCC assinado). <strong>(d)</strong> fila intra-firma sob LCMC — cada ponto é uma posição de cooperação no tique em que foi registrada.
+  </figcaption>
+</figure>
+<p>Útil para depurar <strong>por que</strong> uma firma específica forma (ou não) massa
+crítica: as distribuições de arquétipo e papel em (a) e (b) explicam,
+junto com a conduta_potencial da firma, se as ICs individuais permitem
+ou não a cascata.</p>
+<h2 id="onde-olhar-a-seguir">Onde olhar a seguir<a class="headerlink" href="#onde-olhar-a-seguir" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../mecanismo/">Ato 2 (mecanismo)</a> — a intuição econômica das ICs e
+  a corrida que faltava (R20).</li>
+<li><a href="../ODD/">Protocolo ODD</a> — descrição padrão JASSS, com as três
+  Proposições e seus esboços de prova (mais a reformulação sob LCMC).</li>
+<li><a href="../DECISIONS/">Decisões e backlog</a> — R09-R11 reformulados como mais
+  acionáveis sob LCMC; R20 macroconceito; D-VC, D-KA, D-PERS abertas
+  conforme a pesquisa de fundo retorne.</li>
+<li><a href="../REFERENCES/">Referências</a> — todas as fontes primárias que
+  sustentam cada classe de agente.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../bem_publico/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Bem coletivo e instrumentos">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Bem coletivo e instrumentos
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../condutas/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Catálogo de condutas digitais (28)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Catálogo de condutas digitais (28)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Código e documentação sob CC BY-SA 4.0 · <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> · <a href="brincar/">brincar in-browser</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/freirelucas/waas-antitrust" target="_blank" rel="noopener" title="Repositório no GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="brincar/" target="_blank" rel="noopener" title="Brincar in-browser" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 5v8l5-4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "navigation.prune", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "content.tabs.link", "content.tooltips", "search.suggest", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/simulador.js"></script>
+      
+    
+  </body>
+</html>

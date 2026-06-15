@@ -1,0 +1,1737 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).">
+      
+      
+        <meta name="author" content="L.">
+      
+      
+        <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/DECISIONS/">
+      
+      
+        <link rel="prev" href="../aprendizados_v3/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Decisões e backlog - LCMC · Leniência Condicionada à Massa Crítica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%2011h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12zM12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm-3-3h2v-2.13c1.73-.44%203-2.01%203-3.87a4%204%200%200%200-4-4%204%204%200%200%200-4%204c0%201.86%201.27%203.43%203%203.87z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.5%202%202%206.5%202%2012s4.5%2010%2010%2010%2010-4.5%2010-10S17.5%202%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m4.59-12.42L10%2014.17l-2.59-2.58L6%2013l4%204%208-8z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.27%203%203%208.27v7.46L8.27%2021h7.46C17.5%2019.24%2021%2015.73%2021%2015.73V8.27L15.73%203M9.1%205h5.8L19%209.1v5.8L14.9%2019H9.1L5%2014.9V9.1m6%205.9h2v2h-2zm0-8h2v6h-2z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.8%2018.5%206%201.6-.4%201.9-9.4-2.5L2.6%2022l-.5-1.9%206-1.6L2%2016.9l.5-1.9%209.4%202.5%209.4-2.5.5%201.9zM9.5%206C8.7%206%208%206.7%208%207.5S8.7%209%209.5%209%2011%208.3%2011%207.5%2010.3%206%209.5%206m5%200c-.8%200-1.5.7-1.5%201.5S13.7%209%2014.5%209%2016%208.3%2016%207.5%2015.3%206%2014.5%206M13%2011l-1-2-1%202zM12%201C8.1%201%205%204.1%205%208c0%201.9.8%203.6%202%204.9V16h10v-3.1c1.2-1.3%202-3%202-4.9%200-3.9-3.1-7-7-7m3%2011v2h-1v-2h-1v2h-2v-2h-1v2H9v-2c-1.2-.9-2-2.3-2-4%200-2.8%202.2-5%205-5s5%202.2%205%205c0%201.6-.8%203.1-2%204%22/%3E%3C/svg%3E');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+
+  <meta property="og:title" content="Decisões e backlog · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta property="og:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://freirelucas.github.io/waas-antitrust/DECISIONS/" />
+  <meta property="og:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="LCMC · Leniência Condicionada à Massa Crítica" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Decisões e backlog · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta name="twitter:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta name="twitter:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+
+  <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/DECISIONS/" />
+
+  <meta name="theme-color" content="#1e8449" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#decisoes-em-aberto-e-backlog" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-header__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LCMC · Leniência Condicionada à Massa Crítica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Decisões e backlog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-nav__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    LCMC · Leniência Condicionada à Massa Crítica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 1 · O problema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mecanismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 3 · Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colaborar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 5 · Colaborar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo ABM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brincar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brincar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper (rascunho v0.2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../uso/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexos
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desenvolvimento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critica_x10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crítica x10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critica_x10_v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crítica x10 v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plano_melhorias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plano de melhorias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brainstorm_revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brainstorm de revisão (jun/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../revisao_personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão por personas (jun/2026)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap_figuras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap de figuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aprendizados_v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aprendizados (sessão reframe v2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aprendizados_v3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aprendizados (correção radical v3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisões e backlog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisões e backlog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceituais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceituais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Técnicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empiricas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empíricas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backlog-pos-critica-fase-3-pesquisa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backlog pós-crítica (Fase 3 — pesquisa)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendencias-normativas-categoria-7-da-critica-x10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendências normativas — Categoria 7 da crítica x10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-decisoes-fechadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de decisões fechadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceituais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceituais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tecnicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Técnicas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empiricas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empíricas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backlog-pos-critica-fase-3-pesquisa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backlog pós-crítica (Fase 3 — pesquisa)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pendencias-normativas-categoria-7-da-critica-x10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pendências normativas — Categoria 7 da crítica x10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-decisoes-fechadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de decisões fechadas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Ato 1 · O problema
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../critica_x10/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Desenvolvimento
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/freirelucas/waas-antitrust/edit/main/docs/DECISIONS.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/freirelucas/waas-antitrust/raw/main/docs/DECISIONS.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="decisoes-em-aberto-e-backlog">Decisões em aberto e backlog<a class="headerlink" href="#decisoes-em-aberto-e-backlog" title="Permanent link">&para;</a></h1>
+<p>Decisões rastreadas que afetam o desenho do mecanismo ou a arquitetura do código.</p>
+<h2 id="conceituais">Conceituais<a class="headerlink" href="#conceituais" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decisão</th>
+<th>Status</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D01</td>
+<td>Caminho via Resolução vs. via Lei</td>
+<td>aberta</td>
+<td>Preferência inicial: Resolução. Reverificar com falsificador F6.</td>
+</tr>
+<tr>
+<td>D02</td>
+<td>Modelar a Assessoria jurídica como agente estratégico?</td>
+<td>aberta</td>
+<td>Hoje colapsada em intermediário transparente.</td>
+</tr>
+<tr>
+<td>D03</td>
+<td>Calibrar topologia de redes intra-firma via instrumento empírico</td>
+<td>aberta</td>
+<td>Requer survey ou aproximação via LinkedIn (aprovação ética).</td>
+</tr>
+<tr>
+<td>D04</td>
+<td>Co-autoria com Felipe Roquete</td>
+<td>aberta</td>
+<td>Hipótese original surgiu em conversa de 06/09/2022.</td>
+</tr>
+<tr>
+<td>D05</td>
+<td>Versão completa da IC-F* (não simplificada)</td>
+<td>aberta</td>
+<td>Hoje usa D &gt; W. A Fase 2 ligou a acurácia da autoridade à qualidade da prova, mas a dissuasão (p_detecção endógeno) segue aberta — ver R01.</td>
+</tr>
+<tr>
+<td>D06</td>
+<td>Análise dogmática "vítima-empregado" no Art. 12 da Res. 21/2018</td>
+<td>aberta</td>
+<td>Adv A/B convergiram que "vítima" é categoria coletiva e o empregado-denunciante é testemunha qualificada (ou partícipe → colisão com Art. 86). Necessária análise dogmática própria e seção no paper (esboço já em <code>docs/INSTITUTIONAL.md</code> § "Quem é vítima?"). Charneira do falsificador F6.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tecnicas">Técnicas<a class="headerlink" href="#tecnicas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decisão</th>
+<th>Status</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T01</td>
+<td>Migrar viz 3 a 11 do caderno para módulos</td>
+<td><strong>fechada (jun/2026)</strong></td>
+<td>Todos os 18 módulos de <code>viz/</code> implementados com <code>gerar_figura(...)</code> + teste; 18 figuras publicadas no site (mapa em <code>roadmap_figuras.md</code>). O caderno deixa de ser referência canônica de visualizações.</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>Adotar Mesa 3.x space classes para a rede intra-firma</td>
+<td>aberta</td>
+<td>Hoje uso direto de NetworkX.</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>Integração contínua com Zenodo</td>
+<td>aberta</td>
+<td>Workflow <code>.github/workflows/release.yml</code> pronto; falta vincular conta.</td>
+</tr>
+<tr>
+<td>T04</td>
+<td>Adicionar DVC para versionamento de dados brutos</td>
+<td>aberta</td>
+<td>Pasta <code>data/raw/</code> reservada.</td>
+</tr>
+<tr>
+<td>T05</td>
+<td>Cobertura de testes acima de 80%</td>
+<td>fechada</td>
+<td>Cobertura 93% (modo rápido): modelo, agentes, sobol (execução + análise) e viz (figuras + stubs).</td>
+</tr>
+<tr>
+<td>T06</td>
+<td>Adoção de DVC para versionamento de dados brutos</td>
+<td>aberta</td>
+<td>Pasta <code>data/raw/</code> reservada. Após <code>data/normas/</code> (T07), benefício marginal cresce.</td>
+</tr>
+<tr>
+<td>T07</td>
+<td>Módulo <code>normas/</code> para parsing programático de normas</td>
+<td><strong>Implementado.</strong> Após pesquisa de metodologia (sem parser PT-BR maduro disponível), criado <code>src/waas_antitrust/normas/</code> com: <code>urn.py</code> (URN-LEX padrão LexML BR + 4 URNs canônicas pré-definidas), <code>articulacao.py</code> (parser regex disciplinado por LC 95/1998 para Art./§/Inciso/Alínea/Item), <code>remissoes.py</code> (extrator de remissões cruzadas com <code>Remissao</code> dataclass), <code>corpus.py</code> (3 normas-base em <code>data/normas/</code> indexadas por URN), <code>cite.py</code> (<code>citar(urn, dispositivo)</code> e <code>citar_com_subitens</code> recuperam texto do corpus local). Decisão: <strong>não fetch em tempo de execução</strong> — integridade vem do Git. <strong>Status dos textos</strong>: Art. 85 caput da Lei 12.529 é verbatim verificado contra INSTITUTIONAL.md; demais dispositivos são "redação consolidada para teste interno do parser" com nota explícita em cada arquivo <code>data/normas/*.txt</code> e caveat persistente em E04 (verificação verbatim contra DOU pendente). 24 testes em <code>tests/test_normas.py</code>. Pendências futuras: gerador inverso (Dispositivo → XML LexML), comparador entre versões consolidadas (Lei 13.608 antes/após Lei 13.964/2019), grafo NetworkX de remissões.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="empiricas">Empíricas<a class="headerlink" href="#empiricas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decisão</th>
+<th>Status</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E01</td>
+<td>Triangular número de empregados em subsidiárias Big Tech BR</td>
+<td>aberta</td>
+<td>RAIS/CAGED via MTE.</td>
+</tr>
+<tr>
+<td>E02</td>
+<td>Construir série temporal completa de TCCs do CADE</td>
+<td>aberta</td>
+<td>Saito 2021 cobre 2012-2019; estender até 2024.</td>
+</tr>
+<tr>
+<td>E03</td>
+<td>Levantar série de represálias trabalhistas em casos relevantes</td>
+<td>aberta</td>
+<td>TST + CGU + MPT.</td>
+</tr>
+<tr>
+<td>E04</td>
+<td>Verificar texto integral da Resolução 21/2018, Art. 12</td>
+<td>aberta</td>
+<td>Conferir contra publicação no Diário Oficial. Pendência explicitada também no <code>paper/main.tex</code> (rodapé TODO em §Mecanismo); enquanto não fechada, o paper cita o Art. 12 de memória — risco rastreado.</td>
+</tr>
+<tr>
+<td>E05</td>
+<td>Calibrar distribuição de papéis em marketplace BR (R08)</td>
+<td>aberta</td>
+<td><code>DISTRIBUICAO_PAPEIS_PADRAO</code> foi parametrizada para perfil tipo big tech madura; PM apontou que marketplaces brasileiros (iFood, Mercado Livre) são operations-heavy. Necessário survey/levantamento de organogramas ou aproximação via LinkedIn. Liga-se a presets <code>MARKETPLACE_BR</code> × <code>BIGTECH_MADURA</code> na Categoria 5 do plano de melhorias.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backlog-pos-critica-fase-3-pesquisa">Backlog pós-crítica (Fase 3 — pesquisa)<a class="headerlink" href="#backlog-pos-critica-fase-3-pesquisa" title="Permanent link">&para;</a></h2>
+<p>Itens levantados na crítica de 2026-05-26. As alegações infladas correspondentes
+já foram neutralizadas nas Fases 1–2 (texto e código); estes itens são o trabalho
+de pesquisa necessário para <em>sustentar</em> — não apenas alegar — cada ponto.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item</th>
+<th>Abordagem recomendada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R01</td>
+<td>Dissuasão endógena (Prop. 3)</td>
+<td><strong>Implementado:</strong> a firma viola enquanto g_i = ganho/sanção &gt; detecção percebida (expectativa adaptativa, λ). B/C deter; A não. <code>dano_acumulado</code> exposto; teste de regressão em <code>tests/test_model.py</code>. <em>Suavização Beta-Binomial (Categoria 2, Mat A):</em> <code>p_realizado</code> agora é o MAP <code>(vp + α)/(n_viol + α + β)</code>, removendo a singularidade em <code>n_viol = 0</code> e estabilizando a variância em n pequeno (<code>α=1, β=5</code> ⇒ prior centrado em ~16,7%; calibrar em R03). Resta calibrar λ e os hiperparâmetros (α, β) (R03).</td>
+</tr>
+<tr>
+<td>R02a</td>
+<td>Integração do <code>x*</code> no ABM (decisão dos arquétipos)</td>
+<td><strong>Implementado (opt-in).</strong> Novo parâmetro <code>usar_x_estrela_no_racional: bool = False</code> em <code>WaaSParametros</code>. Quando ativado, o arquétipo "racional" deixa de comparar IR-W ↔ ganho líquido direto e passa a decidir via <code>s_i ≥ x*</code> derivado de <code>jogo_global.limiar_switching(b, c, k, τ)</code> (Mat B na crítica x10). Mapeamento: <code>b = W_esperado/w_a</code> (ganho marginal por unidade de severidade); <code>c = r·tol·2</code> (custo de denúncia frustrada em unidades de w_a); <code>k = model.k_rel</code>; <code>τ = model.tau_ruido</code>. Default <code>False</code> preserva o caminho histórico — sem impacto em testes/calibração anteriores. 9 testes em <code>tests/test_jogo_global_no_racional.py</code> validam: comportamento determinístico do limiar, integração no <code>decidir_sinal</code>, lida com <code>W=0</code> (regime A), respeita <code>observou=False</code>, modelo completo roda em ambos os modos. Fecha o sub-item (a) de R02 e integra a Prop. 2 ao ABM.</td>
+</tr>
+<tr>
+<td>R02b</td>
+<td>Contraste multiplicidade × unicidade (Morris-Shin)</td>
+<td><strong>Parcialmente fechado</strong> (balanço 360° item #5). Novo módulo <code>src/waas_antitrust/viz/multiplicidade_unicidade.py</code> produz figura 1×2 dedicada: (A) melhor-resposta sigmoide com 3 equilíbrios sob conhecimento comum (trivial + instável + cooperativo); (B) trilha de convergência <span class="arithmatex">\(x^\star(\tau)\)</span> ao limite Morris-Shin sob informação privada. Figura <code>docs/img/09_multiplicidade_unicidade.png</code> integrada em <code>docs/ODD.md</code> sub-§ Prop. 2. Caveat formal mantido: Angeletos-Hellwig-Pavan 2007 sob LCMC pode restaurar multiplicidade — não tratado. <strong>Resta</strong> para fechamento total: notebook auxiliar com derivação formal dos pontos fixos da melhor-resposta.</td>
+</tr>
+<tr>
+<td>R02c</td>
+<td>Unicidade do equilíbrio sob heterogeneidade</td>
+<td><strong>Conjectura aberta:</strong> Morris-Shin supõe homogeneidade. Com arquétipos (R01) + papéis (R08), não há resultado fechado conhecido para o mix. Marcar como conjectura no <code>ODD.md</code> (feito) e deixar como pesquisa futura.</td>
+</tr>
+<tr>
+<td>R02</td>
+<td>(legado) Jogo global de fato (Prop. 2)</td>
+<td><strong>Particionado em R02a / R02b / R02c</strong> após a crítica x10 (Mat B). Os subitens preservam o conteúdo original com granularidade suficiente para rastrear a integração ABM, o contraste numérico de multiplicidade e a unicidade sob heterogeneidade separadamente.</td>
+</tr>
+<tr>
+<td>R03</td>
+<td>Calibração + validação reais</td>
+<td><strong>Primeira ponta implementada</strong> em <code>scripts/calibrar.py</code>: varredura em grade sobre (<code>taxa_observacao</code>, <code>taxa_falso_reporte</code>, <code>rho</code>) minimizando erro quadrático relativo médio contra os 3 alvos do ODD (5 leniências/ano, 47 TCC/ano, 19% DMZ), com multi-seed averaging. <strong>Achado direto da primeira rodada:</strong> os parâmetros default produzem ~1 TCC/ano contra alvo 47 — gap de escala documentado revela dependência forte de R06 (reescalonar capacidade ao universo do CADE). <strong>Segunda rodada (jun/2026):</strong> varredura <code>--grid 4 --seeds 11 23 37 41 53</code> em <code>results/calibracao_r03_first_pass.parquet</code> confirma o diagnóstico — melhor ponto da grade 4³=64 produz 0,84 TCC/ano (score 15,07) com fração VP internas 88,5% contra alvo 19%. O modelo <strong>super-detecta</strong> (fração interna alta) e <strong>sub-conta</strong> (volume baixo), sinais opostos que sugerem que os 3 alvos do ODD são parcialmente conflitantes na configuração atual e exigem revisão de identificabilidade antes do passo SALib/scipy.optimize. <strong>Terceira rodada — análise de identificabilidade (jun/2026, <code>scripts/identificabilidade_r03.py</code>, 175 rodadas 1D em <code>results/identificabilidade_r03.parquet</code>):</strong> o "conflito" se dissolve em três achados. (i) <strong>Sensibilidade 1D</strong>: <code>fracao_violadoras</code> domina o alvo de volume (Δ mediana = 1,6 TCC/ano sobre a grade), seguida de <code>taxa_capacidade</code> e <code>k_rel</code> (0,8 cada); <code>rho</code> <strong>não move alvo nenhum</strong> (Δ = 0,000 — a acurácia da autoridade afeta precisão, não volume de assinatura) e deve sair da função objetivo; <code>k_rel</code> é o único parâmetro que move a fração interna materialmente (Δ = 0,27). (ii) <strong>Fator de escala implícito</strong>: o alvo de 47 TCC/ano é do universo CADE inteiro; o modelo simula 20 firmas. Invertendo a normalização, N* ≈ <strong>1.567 firmas</strong> é o universo que tornaria o modelo consistente — predição falsificável contra o número real de firmas sob jurisdição ativa (pendência empírica; não inventar). O "gap de escala" é artefato de não-normalização do alvo, não defeito do modelo. (iii) <strong>Alvo DMZ (19%) é não-identificável por construção</strong>: o modelo tem UM canal de detecção (trabalhador); a fração interna simulada é ~100% e nenhum parâmetro atual a leva a 19% — DMZ mede composição ENTRE canais (auditoria, mídia, concorrentes), que o modelo não representa. Recomendação registrada: remover o alvo 3 da função objetivo até modelar canais exógenos de detecção (candidato a novo R-item). <strong>Quarta rodada — calibração formal sobre o problema reduzido (jun/2026, <code>scripts/calibrar_formal.py</code>, <code>scipy.optimize.minimize(method="Nelder-Mead")</code>, 19 avaliações × 5 seeds):</strong> Nelder-Mead converge em 8 iterações sobre (fracao_violadoras, taxa_capacidade) ao ponto ótimo <strong>(0,323; 0,481)</strong>, produzindo 0,560 TCC/ano simulado (IC bootstrap 95%: [0,200; 0,900]) contra alvo normalizado 0,600 — <strong>erro relativo final de 6,65%</strong> (grava <code>results/calibracao_formal_r03.json</code>). O <code>N★</code> implícito sobe levemente para 1.679 firmas (vs 1.567 da identificabilidade), predição falsificável contra o universo CADE real. Bootstrap dá IC honesto: o alvo está dentro do IC do modelo no ponto ótimo — calibração é <strong>consistente com os dados disponíveis</strong> dado o N* assumido. <strong>Resta</strong> confirmar/refutar N* contra o número real de firmas sob jurisdição ativa do CADE (pendência empírica E-nova) e migrar para SALib para decompor a variância (índices Sobol no ponto ótimo). <strong>R03a — Saito (2021) extraído da fonte primária</strong>: PDF baixado e §3.7.7 conferida (Saito, <strong>Carolina</strong>, 24/02/2021, CADE/PNUD, 349 TCCs 2012-2019). Constantes reais no <code>calibracao/saito.py</code>: médias por posição SG/CADE (1ª=43,43%; 2ª=34,51%; 3ª=20,22%), Tribunal/1ª=15%, faixas codificadas do Guia CADE. <strong>Mediana NÃO reportada pela autora</strong> — marcação explícita como <code>None</code>. Helper <code>d_base_tcc_calibrado()</code> consultado por todos os 7 cenários relevantes via <code>_D_BASE_TCC</code> em <code>cenarios.py</code> agora devolve <strong>0,15</strong> (média Tribunal, conservador) em vez do default histórico 0,10. <strong>Caveat de uso</strong>: decomposição por tipo de conduta NÃO disponível (Saito reporta alíquota da multa, não desconto, por conduta); transposição para conduta unilateral (alvo do WaaS) sujeita a sensibilidade. 13 testes em <code>tests/test_saito_placeholder.py</code>.</td>
+</tr>
+<tr>
+<td>R04</td>
+<td>Canal de falso reporte</td>
+<td><strong>Parcial (implementado):</strong> <code>taxa_falso_reporte</code> gera reportes errôneos/maliciosos contra não-violadoras (prova fraca q=0,15) ⇒ FP&gt;0 e precisão deixa de ser trivial; teste de regressão em <code>tests/test_model.py</code>. Falta: represália a falsos reportes e calibração da taxa.</td>
+</tr>
+<tr>
+<td>R05</td>
+<td>Bem-estar coerente / pesos</td>
+<td><strong>Implementado (Categoria 3 da crítica x10):</strong> <code>bem_estar</code> agora é <code>−(dano + β·FP + γ·custo_recompensa + δ_exodo·custo_exodo − δ_multa·multa_arrecadada)/w_a</code> — credita a prevenção (R01), agrega o custo de êxodo de Hirschman (R07), e credita a multa arrecadada pelo erário (transferência ao Estado). Reporters novos: <code>dano_economico_acum</code> (ponderado por fatia de mercado — colapsa em <code>dano_acumulado/n_empresas</code> sob fatias uniformes, mas vira métrica significativa quando a heterogeneidade Pareto/lognormal for introduzida) e <code>multa_arrecadada_acum</code> (VP sem TCC ⇒ multa cheia; VP com TCC ⇒ residual). Pesos provisórios (β=1, γ=0, δ_exodo=0.5, δ_multa=1.0); calibrar contra Connor-Lande (overcharge mediano 15–25%) e Polinsky-Shavell (custo FP ≈ 1–2× sanção) em R03.</td>
+</tr>
+<tr>
+<td>R06</td>
+<td>Reescalonar capacidade ao universo do CADE</td>
+<td><strong>Calibrado contra Relatórios Integrados de Gestão (RIG) 2022-2024 — fonte primária TCU.</strong> Três PDFs baixados (URLs em REFERENCES) e parseados via <code>pdftotext</code>. Série temporal verbatim de força de trabalho (287/311/326 servidores em exercício; 524/545/569 pessoas totais; 75/77/82% cedidos de outras instituições; 35 no PGPE quadro próprio; <strong>180 na área-fim</strong> como proxy de SG). Orçamento Ação 2807 (Promoção e Defesa da Concorrência) executado em 99,4-99,8% — <strong>gargalo do CADE não é orçamentário, é de pessoal e procedimental</strong>. Fluxo de processos completo: ACs 660/594/712; <strong>investigações SG instauradas 103/63/73</strong> (categoria ampla = PA + preparatório + inquérito; categoria relevante para WaaS); concluídas 111/106/89; estoque 247/177/185; leniências 1/2/4 (total histórico = 113); B&amp;A 2/2/3 (16 mandados em 2024); tempo médio AC ordinário 125,6 → 116,7 → 92,1 dias; multas trânsito em julgado 2024: nominal R$ 158 mi / arrecadado R$ 29 mi (gap de cobrança &gt;80%). <strong>Pendências [?] explícitas</strong>: decomposição SG ↔ DEE estrita (RIGs reportam apenas "área-fim" agregada — pedir ofício LAI ao Fala.BR/Cgesp/DAP); contagem específica de procuradores federais (PFE) e cargos comissionados. Helper <code>servidores_sg_calibrado()</code> agora retorna 180 (de 50 anterior). 38 testes em <code>tests/test_transparencia_cade_placeholder.py</code> validam série + caveats.</td>
+</tr>
+<tr>
+<td>R07</td>
+<td>Ameaça crível de êxodo coletivo (Hirschman exit-with-equity)</td>
+<td><strong>Implementado (exploratório, com caveats jurídicos e tributários abaixo):</strong> módulo <code>hirschman.py</code> (puro, testado) + integração em P0 (camada preventiva via <code>g_i_efetivo</code>) e P3 (IC-F<em> ampliada <code>D + custo_exodo &gt; W</code>). Parâmetros provisionais (vesting 4y/1y cliff; custo de substituição ~50% w_a; equity ~50% w_a; ~50% non-vested). Novos reporters: <code>n_firmas_sob_ameaca_exodo</code>, <code>custo_exodo_acum</code>. </em><em>Gating jurídico (Categoria 4 implementada):</em><em> sob Regime A ou B, <code>fracao_contratos_acelerados &gt; 0</code> é incoerente (Resolução do CADE não pode impor cláusula contratual padrão — reserva de lei, Art. 22, I, CF); o <code>WaaSModel.__init__</code> agora </em><em>força</em><em> <code>fracao_contratos_acelerados = 0</code> nesses regimes e emite <code>UserWarning</code>. Apenas o </em><em>Regime C</em><em> (via lei) preserva o parâmetro. Teste em <code>tests/test_hirschman.py</code>. </em><em>Caveat de escopo (Adv B):</em><em> a Lei 13.608/2018 (Art. 4º-C, §3º) </em><em>não cobre antitruste no eixo recompensa</em><em> — restringe a "crimes contra a administração pública"; extensão analógica anti-represália é hipótese, não jurisprudência consolidada. </em><em>Caveat tributário implementado:</em>* função <code>valor_liquido_pos_tributos(valor_bruto, aliquota_efetiva=0.4)</code> aplica haircut IRPF + INSS sobre o vesting (substituição NÃO sofre haircut — é despesa operacional da firma). Parâmetro <code>aliquota_tributaria_vesting</code> em <code>WaaSParametros</code> (default 0.0 para compat; ~0.4 para realismo). Resta: calibrar <code>peso_hirschman</code>, <code>valor_equity</code>, <code>fator_substituicao</code>, <code>aliquota_tributaria</code> (R03), e modelar a opção "corrigir conduta sem pagar" como terceira via.</td>
+</tr>
+<tr>
+<td>R19</td>
+<td>Choques exógenos discretos (Eurace@Unibi)</td>
+<td><strong>Implementado (exploratório, v0).</strong> Resposta a "como o modelo lida com choques?" + hipótese "layoffs como oportunidade". Novo módulo <code>src/waas_antitrust/choques.py</code> com dataclass <code>Choque(tique, tipo, magnitude, descricao)</code> validada (<code>__post_init__</code>) e função <code>aplicar_choque(modelo, choque)</code>. Quatro tipos: <strong>layoff</strong> (converte fração de trabalhadores a <code>status="ex_funcionario"</code>); <strong>caso_paradigmatico</strong> (pulso em <code>p_perc</code>, efeito Schelling); <strong>campanha_cade</strong> (eleva <code>rho_acuracia</code> da autoridade); <strong>choque_juridico</strong> (eleva <code>p_anulacao_tcc</code>). <code>TrabalhadorAgent.status ∈ {"ativo", "ex_funcionario"}</code> com r efetivo reduzido pelo <code>fator_represalia_ex_funcionario</code> (default 0,2) e capacidade de sinalizar preservada via <code>historico_observou &gt; 0</code>. Aplicação no início de <code>step()</code>. Quatro catálogos canônicos: <code>CHOQUES_TECH_2022_2024</code> (2 ondas jan/2023 e jan/2024, magnitudes 6% e 4%); <code>CHOQUES_CAMPANHA_CADE_DIGITAL</code>; <code>CHOQUES_CASO_PARADIGMATICO_IFOOD_2023</code>; <code>CHOQUES_JURIDICO_ADVERSO</code>. Reporters: <code>n_ex_funcionarios</code>, <code>n_choques_layoff_aplicados</code>, <code>n_choques_paradigmaticos_aplicados</code>. 15 testes em <code>tests/test_choques.py</code>. <strong>Simplificação documentada (v0):</strong> efeitos instantâneos que se propagam pela dinâmica adaptativa; duração explícita fica para v1. <strong>Calibração formal pendente em R03</strong>: layoffs.fyi para tech BR, DEE/CADE DTs para <code>campanha_cade</code>, magnitudes hoje em ordem de grandeza.</td>
+</tr>
+<tr>
+<td>R18</td>
+<td>Commitment da firma + sanção catastrófica por descumprimento</td>
+<td><strong>Implementado (exploratório).</strong> Atende a "se a empresa não paga, eles perdem tudo": adiciona dois canais simétricos de commitment. (i) <strong><code>prob_pagamento_perc</code></strong> ∈ [0,1] em <code>WaaSParametros</code>: o trabalhador racional e o fairminded descontam <code>W</code> esperado por essa probabilidade percebida — captura o problema clássico de commitment (o trabalhador denuncia <em>antes</em> de saber se a firma pagará). Default 1.0 preserva comportamento; valores realistas 0,5–0,9 dependem do regime e do histórico institucional. (ii) <strong><code>p_descumprimento_tcc</code></strong> + <strong><code>multa_descumprimento_tcc</code></strong>: probabilidade de a firma descumprir o TCC após assinar, e multa adicional (em múltiplos da sanção base) que sofre quando descumpre. Reporters novos: <code>n_firmas_quebraram_tcc</code>, <code>multa_descumprimento_acum</code>. 4 testes em <code>tests/test_fairminded_cenarios.py</code>. Pendente: modelar elevação permanente de <code>p_perc</code> percebida pelas demais firmas após uma quebra pública (canal de aprendizado coletivo).</td>
+</tr>
+<tr>
+<td>R17</td>
+<td>Cenários normativos como variantes paramétricas</td>
+<td><strong>Implementado.</strong> Novo módulo <code>src/waas_antitrust/cenarios.py</code> com 7 cenários pré-empacotados que tratam alterações normativas como objetos comparáveis: <code>status_quo</code>, <code>resolucao_pura</code>, <code>resolucao_mais_portaria_mte</code>, <code>lei_waas_pura</code>, <code>lei_waas_com_fundo_honorarios</code>, <code>lei_waas_com_vesting_padrao</code>, <code>cenario_sancao_dura</code>. Cada cenário é uma <code>Conduta</code>-like dataclass com <code>nome</code>, <code>descricao</code>, <code>sobrescritas</code>. Função <code>aplicar_cenario(params, cenario)</code> retorna novo <code>WaaSParametros</code> via <code>dataclasses.replace</code> (não muta o original). Cobertura mínima: pelo menos um cenário por regime (A/B/C); o cenário com vesting padrão respeita o gating jurídico R07 (só funciona em C). 7 testes cobrem catálogo, lookup, aplicação, não-mutação e execução end-to-end de todos os cenários. Pendente: integrar com varredura Sobol para comparação sistemática.</td>
+</tr>
+<tr>
+<td>R16</td>
+<td>Arquétipo fairminded + inequity aversion (Torsell 2026)</td>
+<td><strong>Implementado (exploratório).</strong> <code>TrabalhadorAgent.ARQUETIPOS</code> ganha quinto arquétipo <code>"fairminded"</code> baseado em Fehr-Schmidt (1999) — penaliza "estar em silêncio enquanto pares falam". Em <code>decidir_sinal</code>, FM computa payoff racional base + prêmio ético <code>α · phi_vizinhos · w_a</code> proporcional à fração de vizinhos sinalizando no tique anterior. Novo parâmetro <code>peso_inequity_aversion</code> (default 0 ⇒ FM degenera em racional puro). Novo parâmetro <code>distribuicao_arquetipos</code> (default None ⇒ Hokamp-Pickhardt clássico 15/35/40/10, sem FM — preserva calibração). Preset <code>DISTRIBUICAO_COM_FAIRMINDED</code> (10/30/30/10/20) em <code>cenarios.py</code>. 6 testes confirmam: (a) ARQUETIPOS = 5; (b) default não sorteia FM; (c) preset ativa FM em ~20%; (d) peso=0 degenera; (e) peso alto acelera cascata ética. <strong>Motivação teórica:</strong> Torsell (2026, <em>Theory and Decision</em>) mostra que FM domina HE em populações sob fictitious play — modela o "break-even ético coletivo" sem hardcoding. Pendente: implementar aprendizado intra-geracional (fictitious play) sobre crença de comportamento dos pares.</td>
+</tr>
+<tr>
+<td>R15</td>
+<td>Vetores de quebra do mecanismo WaaS</td>
+<td><strong>Implementado (exploratório, atende à crítica direta do autor "basta a empresa se recusar a pagar W e pegar D para ruir tudo").</strong> Três parâmetros novos em <code>WaaSParametros</code> materializam vetores antes implícitos: (A) <code>D_disc_base_tcc</code> — desconto que o TCC clássico (Art. 85) já oferece sem WaaS; a IC-F<em> correta compara <code>W</code> contra o </em><em>incremento</em><em> <code>D_extra = D_total − D_base</code>, NÃO contra o total; default 0 preserva a forma simplificada. (B) <code>p_anulacao_tcc</code> — probabilidade de o TCC-WaaS ser anulado judicialmente (falsificador F6 levado a parâmetro de simulação); ativa retorna a multa cheia ao erário. (C) <code>custo_legal_uw</code> — custo legal individual do denunciante em unidades de <code>w_a</code>; entra na IR-W do arquétipo racional (honorários para reivindicar W, defesa em ação trabalhista, eventual responsabilização criminal sob Art. 86 — colisão com leniência clássica). Reporters novos: <code>n_tcc_anulados</code>, <code>n_firmas_optaram_tcc_classico</code>. Página <code>docs/mecanismo.md</code> ("Como o mecanismo se sustenta") explica a aritmética da IC-F</em> com exemplo numérico (R$ 1B, σ=0,5 ⇒ D_extra=R<span class="arithmatex">\(15M vs. W=R\)</span>2,7M) e três cenários institucionais para quem cobre o custo legal (denunciante; empresa via TCC; Estado via fundo). 8 testes em <code>tests/test_vetores_quebra.py</code>. Resta calibrar D_base contra Saito 2021 e custos legais contra dados de honorários BR (R03).</td>
+</tr>
+<tr>
+<td>R14</td>
+<td>Enriquecimento heterogêneo dos agentes</td>
+<td><strong>Implementado (exploratório).</strong> TrabalhadorAgent ganha <code>anos_carreira</code> (Exponencial), <code>fracao_vested_individual</code> (cliff 1y + linear até 4y), <code>tolerancia_represalia</code> (heterogeneidade individual, padrão homogêneo 1.0; ativar com <code>sigma_tolerancia_represalia&gt;0</code>), e memória <code>historico_observou</code>. EmpresaAgent ganha <code>cultura_compliance ∈ [0,1]</code> (sorteio U[0,1]; modula σ efetiva via <code>peso_cultura_compliance·cultura</code>), <code>poder_retaliacao</code> (proxy = <code>fatia_mercado</code>, ainda não acionado), e memória <code>n_denuncias_acum</code>. AutoridadeAgent ganha <code>prioridade_digital ∈ [0,1]</code> (eleva ρ na P4; default 0 preserva comportamento original). Tudo opt-in por defaults; canais ortogonais ao R01 (não violam Proposições). Testes direcionais em <code>tests/test_agentes_enriquecidos.py</code> (7 casos). Resta: usar <code>fracao_vested_individual</code> por trabalhador em <code>custo_exodo_esperado</code> (refinar R07), e implementar canal de <code>poder_retaliacao</code> (modula <code>r_represalia</code> localmente).</td>
+</tr>
+<tr>
+<td>R30</td>
+<td><strong>Sinergia entre autoridades internacionais — LCMC global coordenada</strong></td>
+<td><strong>Fechado nesta rodada.</strong> Modela a hipótese "e se todas as autoridades adotassem LCMC simultaneamente?" com duas alavancas independentes. (i) <code>usar_escrow_consolidado_grupo: bool = False</code> + <code>grupos_economicos: tuple | None = None</code>: firmas no mesmo grupo (jurisdições da mesma multinacional) pool de depósitos para o gatilho de massa crítica — paralelo direto de MoU bilateral CADE-DOJ-ATR 2019, DG-COMP-CADE 2009 e ICN MoU 2001. (ii) <code>coordenacao_internacional: float = 0.0</code>: amplifica o sinal Schelling erga omnes do R21 — cada abertura eleva <code>p_perc</code> em todas as outras firmas globalmente, modelando o efeito notícia ICN/OECD. Implementação: <code>_firmas_por_grupo</code>, <code>_gatilho_grupo_atingido</code>, <code>_abrir_escrow_consolidado_por_grupo</code>, <code>_aplicar_coordenacao_internacional</code> em <code>WaaSModel</code>; fase P2.5b estendida. Reporters <code>n_aberturas_consolidadas_grupo_acum</code> e <code>n_boosts_coordenacao_intl_acum</code>. 2 cenários canônicos (<code>lcmc_global_coordenada</code> / <code>_descoordenada</code>); 9 testes em <code>test_sinergia_r30.py</code>. Visualização <code>viz/sinergia_internacional.py</code> em 2 painéis → figura 23. Compat estrita: defaults preservam comportamento bit-a-bit.</td>
+</tr>
+<tr>
+<td>R29</td>
+<td><strong>Janela de adesão pós-abertura com desconto progressivo por classe</strong> (regra de cascata pós-coordenação)</td>
+<td><strong>Fechado nesta rodada.</strong> Quando uma firma atinge massa crítica e o escrow é aberto, abre-se uma janela de <code>janela_adesao_pos_abertura</code> tiques (default 10 quando ativado) durante a qual trabalhadores da MESMA firma que ainda não cooperaram podem aderir à classe dos lenientes e receber desconto progressivo por ordem de chegada (<code>descontos_faixas_adesao</code>, default <code>(1.0, 0.7, 0.5, 0.3, 0.1)</code>). Espelha o Art. 86 da Lei 12.529/2011 (Spagnolo 2004 <em>J. Eur. Econ. Assoc.</em> 2(1)) operado DENTRO da firma já aberta — incentivo de cascata pós-coordenação. Os depositantes originais ficam na faixa 0 (imunidade total); aderentes 1..N recebem fatores decrescentes; quem não aderir até o fim da janela permanece no escrow comum (sujeito a R27-ii). Implementação: <code>AutoridadeAgent.registrar_bloco_em_adesao</code> + <code>processar_adesao_pos_abertura</code> (<code>src/waas_antitrust/agents.py</code>); fase nova P2.5c em <code>WaaSModel.step()</code> (<code>model.py</code>); 2 reporters novos no DataCollector. Cenário canônico <code>cascata_adesao_progressiva</code> (20 cenários no catálogo). Figura conceitual em 2 painéis: <code>viz/cascata_adesao.py</code> → <code>docs/img/22_cascata_adesao_r29.png</code>. Backward compat estrita: default 0 desliga o mecanismo bit-a-bit. 10 testes em <code>tests/test_janela_adesao_r29.py</code>. Simulador in-browser <code>docs/brincar.md</code> expõe slider "Janela de adesão R29" ao vivo.</td>
+</tr>
+<tr>
+<td>R28</td>
+<td><strong>Generalidade da LCMC para EUA e UE — parametrização externa</strong> (pesquisa de fundo 2026)</td>
+<td><strong>Parcialmente fechado.</strong> Pesquisa de fundo (jan/2026) confirma que a LCMC é <strong>(b)/(c) generalizável</strong>, não específica ao BR. Três descobertas materiais: (i) <strong>DOJ-ATR Whistleblower Rewards Program</strong> (jul/2025, em parceria com USPS): primeiro programa federal de recompensa antitruste americano, 15-30% sobre multas ≥ US$ 1 milhão, <strong>instituído administrativamente sem nova lei</strong> — confirma a tese v3 de que regulamentação infralegal é via viável. Primeiro prêmio: US$ 1 milhão em 29/jan/2026 [pillsburylaw.com, natlawreview.com]. (ii) <strong>DMA Whistleblower Tool</strong> da UE (30/abr/2024) [digital-markets-act.ec.europa.eu]: canal anônimo para violações dos Arts. 5/6/7 do Reg. 2022/1925, MAS sem recompensa — confirma a tese substantiva de que proteção sem incentivo é insuficiente. (iii) <strong>Callisto</strong> (callisto.org) opera nos EUA sob universidades privadas, <strong>sem mandato federal</strong>, demonstrando que o desenho funciona até em ambientes sem autoridade pública. <strong>Infraestrutura implementada</strong>: 2 cenários em <code>cenarios.py</code> (<code>eua_doj_atr_rewards_2025</code> — <code>prob_pagamento_perc=0.225</code> + <code>modo_corrida</code>; <code>ue_dma_whistleblower_tool_2024</code> — <code>r_represalia=0.05</code> + <code>D_disc=0</code>); página <code>docs/internacional.md</code> com caveats explícitos; figura comparativa 3-jurisdições <code>docs/img/13_internacional_3jurisdicoes.png</code> (<code>viz/internacional.py</code>, 8 seeds × 24 tiques). <strong>Tags jurisdicionais nativas (jun/2026)</strong>: <code>WaaSParametros.regime</code> aceita <code>"EUA"</code> e <code>"UE"</code> via <code>model.REGIME_EQUIVALENTE</code> ("EUA"→C, equivalência <strong>bit-a-bit</strong> testada; "UE"→A); a tag original fica em <code>WaaSModel.regime_declarado</code>; regimes inválidos agora levantam <code>ValueError</code>; <code>instrumentos_por_regime</code> resolve as tags ("EUA" hospeda como C; "UE" devolve vazio). Cenários R28 usam as tags nativas. 11 testes em <code>tests/test_cenarios_v2.py</code>. <strong>Decomposição comparada (jun/2026)</strong>: <code>INSTITUTIONAL.md</code> § "Transposição comparada" mapeia os 3 eixos (canal/recompensa/proteção) por jurisdição: a via administrativa do DOJ-ATR é o paralelo funcional do Regime B brasileiro MAS sem o F6 (fundo Dodd-Frank §922); a UE é o contrafactual sem recompensa (predição comparada falsificável); a decomposição Cₜ/Cᵩ/Cₚ NÃO viaja (reservas constitucionais brasileiras). <strong>Resta</strong> para fechamento total: (1) calibrar <code>taxa_capacidade</code> para DOJ-ATR (FY2025) e DG-COMP (orçamento 2024); (2) publicações comparadas (paper extension). Não bloqueia publicação BR.</td>
+</tr>
+<tr>
+<td>R27</td>
+<td><strong>Canal de depósito condicional como mecanismo central</strong> (correção radical v3)</td>
+<td><strong>Fechado</strong> (3 itens i/ii/iii completados nesta rodada). (i) Cenário canônico <code>apenas_canal_sem_instrumento</code> em <code>cenarios.py</code> (Regime B + <code>usar_escrow_explicito=True</code> + <code>W_mult=0</code> + <code>D_disc=0</code> — isola o canal); (ii) parâmetro <code>janela_escrow_tiques: int = 0</code> em <code>WaaSParametros</code> + método <code>AutoridadeAgent.expirar_depositos_condicionais(tique_atual, janela)</code> + reporter <code>n_depositos_expirados_acum</code> — Δt da definição LCMC v3; (iii) entry <code>canal_deposito_condicional</code> em primeira posição de <code>INSTRUMENTOS</code> (<code>regime_minimo="B"</code>, base autônoma Art. 4º Lei 12.529 c/c Lei 9.784/99, status implementado) + refator de <code>instrumentos_por_regime</code> para derivar nível de <code>regime_minimo</code> em vez de fatias hardcoded. Implementação base preservada do commit <code>519fd0a</code>: <code>AutoridadeAgent.escrow_denuncias</code>, <code>depositar_condicional</code>, <code>abrir_escrow_se_massa_critica</code>; P2 deposita e P2.5b expira+abre sob <code>usar_escrow_explicito=True</code>. Total: 20 testes em <code>tests/test_escrow_r27.py</code> + 5 testes do canal/instrumentos. Backward compat estrita: defaults <code>False</code>/0 preservam comportamento bit-a-bit. Texto original: refatorar a leitura para o <code>AutoridadeAgent</code> carregar o escrow — Ayres-Unkovic 2012 (<em>Mich. L. Rev.</em> 111:145); análogo Callisto.</td>
+</tr>
+<tr>
+<td>R26</td>
+<td><strong>Erosão endógena por uso instrumental</strong> (sob reframe)</td>
+<td><strong>Parcialmente fechado — Prop. 5 candidata FALSIFICADA na forma forte.</strong> Varredura empírica em <code>scripts/varredura_alpha_erosao.py</code> (10 seeds × 8 alphas × 40 tiques; resultados em <code>results/alpha_erosao_grade.parquet</code>): mediana de <code>dano_acumulado</code> em Regime B fica em ~53 contra piso A em ~425 (8× menor), <strong>estável até alpha=0.9</strong> — o efeito Schelling (dissuasão endógena R01) domina a erosão no nível agregado, mesmo quando <code>capital_social_residual</code> final cai a quase 0. Forma fraca (erosão do substrato) confirmada. Figura <code>docs/img/10_alpha_erosao_limiar.png</code>; viz <code>viz/alpha_erosao_limiar.py</code>; teste em <code>tests/test_viz.py</code>. Implementação core completa: <code>alpha_erosao: float = 0.0</code> em <code>WaaSParametros</code>; reporter <code>capital_social_residual</code> no DataCollector; viz <code>proposicao_5.py</code> + <code>erosao.py</code>. Cenário canônico <code>erosao_coleman_adversarial</code> adicionado (<code>resolucao_pura</code> + <code>alpha_erosao=0.5</code>) — par comparável com o baseline para varrer Proposição 5 candidata. Coleman 1990 <em>Foundations of Social Theory</em> cap. 12: capital social é produzido como subproduto de relações de obrigação; instrumentalização (premiar denúncia) pode <strong>destruir o substrato</strong> que produz o bem. Hoje o modelo capta o sinal Schelling (cada notificação eleva <code>p_perc</code> em outras firmas → mais dissuasão) mas <strong>não capta a erosão inversa de Coleman</strong> (cada notificação reduz comunicação informal espontânea → menos massa crítica futura). Os dois efeitos coexistem; falta medir qual vence em qual horizonte temporal. <strong>Operacionalização proposta</strong>: (i) reporter <code>capital_social_residual_firma</code> = densidade de clustering × razão sinais espontâneos a reativos; (ii) parâmetro <code>alpha_erosao</code> ≥ 0: cada notificação em firma X reduz <code>phi_baseline</code> em firmas Y vizinhas (rede inter-firma v2.E.3); (iii) <strong>Proposição 5 candidata</strong>: existe <code>alpha_erosao*</code> tal que para <code>alpha_erosao &gt; *</code>, Regime B/C colapsa em A após N tiques. <strong>Literatura calibradora</strong>: Titmuss 1970 <em>The Gift Relationship</em>, Frey-Jegen 2001 <em>motivation crowding</em>, Bénabou-Tirole 2003 <em>intrinsic-extrinsic crowding-out</em>. <strong>Salvaguardas anti-erosão estudadas em outros mecanismos</strong>: anonimato forte (IRS Whistleblower 26 §7623); recompensa coletiva (Mussler-Macy 1997) — tensiona com LCMC <code>f_W(k)</code> por posição; janela curta (<code>janela_temporal_tiques</code> já em R20).</td>
+</tr>
+<tr>
+<td>R25</td>
+<td>Jurisdição concorrente (CADE × MPF × MPT × CGU)</td>
+<td><strong>Aberto, do Cient. Político v2 e do reframe.</strong> Modelar 2+ autoridades competindo pelo reconhecimento da massa crítica. Cada autoridade tem <code>prob_acolhida</code> e <code>custo_captura</code> distintos; denunciante escolhe canal por max utility. <strong>Hipótese dupla</strong>: reduz captura (Stigler diluído por multi-jurisdição) mas aumenta arbitragem regulatória negativa (caso Odebrecht/leniência LAC). Implementar como <code>jurisdicao.py</code> + cenário em <code>cenarios.py</code>.</td>
+</tr>
+<tr>
+<td>R24</td>
+<td>Free-riding e tragédia reversa (anti-commons)</td>
+<td><strong>Aberto, do Sociólogo v2 + Mat B v2 + Cient. Político v2.</strong> Três peças: (i) arquétipo <code>denunciante_oportunista</code> (utilidade extrativa pura <code>u = recompensa − prob_falso·sancao_calunia</code>) capturando uso adversarial (insider acionista, concorrente, chantagem); (ii) variante <code>oportunista</code> Olson explícito (sinaliza antes da massa crítica, desiste após); (iii) reporter <code>densidade_denuncia_frivola = FP/total</code>; teste de cenário com <code>fracao_oportunistas &gt; 0.2</code> degrada IR financeira da firma. Heller 1998 (<em>Harv. L. Rev.</em> 111:621) como referência teórica do anti-commons.</td>
+</tr>
+<tr>
+<td>R23</td>
+<td>Instrumento leniência criminal individual</td>
+<td><strong>Aberto, exploratório.</strong> Análise de colisão com Art. 86 (leniência clássica para empresas — protege empresa+colaboradores-do-acordo, não empregado-terceiro) e Art. 340 CP (denúncia caluniosa). <strong>Adv B v2 adiciona reserva penal estrita Art. 5º XXXIX CF</strong>: extensão analógica é vedada (<em>in malam partem</em>). Lei 13.608 Art. 4º-C §3º restringe a "crimes contra adm. pública" — cartel é Lei 8.137 Art. 4º, categoria distinta. Hospedabilidade: apenas Regime <strong>Cₚ penal</strong>. Decisão dogmática do autor pendente.</td>
+</tr>
+<tr>
+<td>R22</td>
+<td>Instrumento crédito tributário</td>
+<td><strong>Aberto, exploratório.</strong> Mapa jurídico: <strong>lei complementar Art. 146 CF</strong> (IRPJ/CSLL) + lei ordinária específica Art. 150 §6º (benefício) + LRF Art. 14 (estimativa trienal). Resolução CADE + Portaria RFB <strong>não suprem</strong> (Adv B v2). Hospedabilidade: apenas Regime <strong>Cᵩ tributária-LC</strong>. <strong>Caveat material (Adv B v2)</strong>: analogia ao IRS Whistleblower (26 U.S.C. §7623) é <strong>inaplicável</strong> — IRS opera sob federal taxing power sem reserva penal; WaaS antitruste atravessa três competências. Parâmetro proposto: <code>aliquota_tributaria_negativa_denuncia</code>. <strong>D08 acessório</strong>: quem fornece a estimativa trienal de impacto orçamentário? RFB ou SPE/MF?</td>
+</tr>
+<tr>
+<td>R21</td>
+<td>Operacionalizar bem coletivo (sob reframe Coleman &gt; Samuelson)</td>
+<td><strong>Aberto, do Sociólogo v2.</strong> Métricas para testar o reframe: (i) <strong>não-rivalidade</strong> observada — CADE consome reduz para MPF? Teste: instrumentar <code>capacidade_tique</code> da autoridade; se duplicar capacidade NÃO duplica dano evitado, há rivalidade parcial por gargalo institucional (Eco B v2); (ii) <strong>excluibilidade</strong> observada — papéis com <code>observabilidade=0.1</code> participam ou não da massa crítica? (iii) <strong>externalidade</strong> — <code>p_perc</code> cresce em firmas vizinhas após notificação (já no modelo). Os 8 <em>design principles</em> de Ostrom 1990 entram em <code>docs/ODD.md</code> §"Diagnóstico Ostrom": atendidos P1, P4, P5; ausentes/silenciosos P2, P3, P6, P7, P8. R21 é o R-item mãe que organiza as métricas de Ostrom para falsificação futura.</td>
+</tr>
+<tr>
+<td>R20</td>
+<td><strong>Leniência Condicionada à Massa Crítica (LCMC) — macroconceito do mecanismo</strong></td>
+<td><strong>Implementado em 7 fases (exploratório).</strong> A LCMC é o <strong>macroconceito unificador</strong> sob o qual o WaaS é a forma operacional. Combina três peças que existiam em isolamento: leniência clássica (Spagnolo 2004; Motta-Polo 2003), massa crítica (Granovetter 1978; Centola-Macy 2007; Morris-Shin 1998) e gradiente Saito (2021) por posição na fila. Sob a tese do moat (mercados digitais → condutas unilaterais), a corrida clássica entre conspiradores externos não tem onde acontecer; a LCMC institucionaliza a corrida <strong>intra-firma</strong> e a acopla a uma corrida <strong>inter-firma</strong>, ambas calibradas pelo mesmo gradiente Saito (Imagem 23, p. 38). <strong>Fase 1-2</strong> (núcleo + calibração Saito): novo módulo <code>corrida.py</code> com <code>decaimento_D</code> (firma na fila inter-firma: 1ª=43,43%; 2ª=34,51%; 3ª=20,22%; ≥9ª=15%), <code>decaimento_W</code> (trabalhador na fila intra-firma: <span class="arithmatex">\(f_W(k) = D(k)/D(1)\)</span> normalizado), <code>FilaInternaCooperacao</code>, <code>FilaLeniencia</code>, <code>massa_critica_interna_atingida</code>. <strong>Fase 3</strong> (narrativa): <code>mecanismo.md</code> ganhou seção "O macroconceito LCMC" e "A corrida que faltava". <strong>Fase 4</strong> (vetores quebra): Vetor D (corrida vazia) explícito em testes. <strong>Fase 7</strong> (catálogo expandido): <code>condutas.py</code> 9 → 28 condutas + <code>N_ATORES_PRIMARIOS_NECESSARIOS</code>. Novos <code>WaaSParametros</code>: <code>modo_corrida: bool = False</code>, <code>q_min_cooperacao_interna: float = 0.10</code>, <code>janela_temporal_tiques: int = 4</code>, <code>perfil_decaimento: str = "saito"</code>. Phase P2.5 em <code>model.step()</code> opt-in. Cenário canônico <code>cenario_corrida_leniencia</code> (Regime C + LCMC plena). 21 testes em <code>tests/test_corrida.py</code>. Reformula as 3 Proposições do ODD com adjuntos LCMC. <strong>Status: exploratório</strong> — backward compat preservada com default <code>modo_corrida=False</code>; o caminho histórico coexiste para comparação. Pendente: Fase 5 (integração formal de <code>limiar_switching_temporal</code> com <code>R02a</code>); Fase 6 (visualização <code>sankey.py</code> da corrida — R13-iii); calibração formal Saito sob conduta unilateral (E04 + R03b).</td>
+</tr>
+<tr>
+<td>R08</td>
+<td>Heterogeneidade conduta × ator crítico</td>
+<td><strong>Implementado (exploratório; Categoria 5 da crítica x10) + expandido em R20/Fase 7:</strong> módulo <code>condutas.py</code> com catálogo de <strong>28 condutas</strong> (9 originais + 19 da expansão R20). Cobertura das 12 famílias de conduta unilateral digital: auto-preferência, restrições de plataforma, vinculação/bundling, predação algorítmica, acesso/dados/self-dealing, aquisições de bloqueio + reverse killer, discriminação algorítmica, captura de aprendizagem, manipulação de relevância, tying IA, lock-in via credentials, switching costs. Cada conduta com 1+ caso de referência verificado (DMA UE 2022, CMA UK 2020, FTC v. Amazon 2023, US v. Google Search Mehta 08/2024, CJUE Google Shopping 09/2024, Khan 2017, Crémer-Montjoye-Schweitzer 2019, Cunningham-Ederer-Ma JPE 2021). <code>PAPEIS_PADRAO</code> ganha <strong><code>operacoes</code></strong> (marketplaces BR são operations-heavy) e <strong><code>financeiro</code></strong> (FP&amp;A). Trabalhadores ganham <code>papel</code>; firmas ganham <code>conduta_potencial</code>. <strong>Gradiente 3-níveis</strong> (Near &amp; Miceli): primário=1.0, adjacente=0.5, distal=0.1. Dois presets de distribuição: <code>BIGTECH_MADURA</code> (default) e <code>MARKETPLACE_BR</code>. <strong>Novo <code>N_ATORES_PRIMARIOS_NECESSARIOS: dict[str, int]</code></strong> (R20): calibra <code>q_min_cooperacao_interna</code> por conduta — nenhuma conduta digital unilateral catalogada exige mais que 2-3 papéis primários, confirmando a tese do moat. 14 testes em <code>tests/test_condutas.py</code> (28 condutas; emergentes pós-2024; killer/reverse killer distintos; q_min ≥ 2 por conduta). Resta: calibrar distribuição em marketplace BR contra organogramas (E05); pesos contra survey (R03).</td>
+</tr>
+</tbody>
+</table>
+<p>Itens correlatos já rastreados: migração das 9 viz do caderno (T01) e adoção das
+classes de espaço do Mesa para a rede intra-firma (T02).</p>
+<h2 id="pendencias-normativas-categoria-7-da-critica-x10">Pendências normativas — Categoria 7 da crítica x10<a class="headerlink" href="#pendencias-normativas-categoria-7-da-critica-x10" title="Permanent link">&para;</a></h2>
+<p>Itens da <a href="../critica_x10/">Crítica x10</a> que alterariam material e Proposições
+centrais do modelo. Ficam aqui como decisões <strong>suas</strong> (autor): não cabem ao
+piloto automático porque mudam interpretação teórica ou de mecanismo, e exigem
+conversa explícita antes da execução.</p>
+<p>Estado atualizado após R02a, R13a, R15 e <strong>R20 (LCMC)</strong>: dois itens da
+Categoria 7 foram fechados parcialmente pelo trabalho técnico (sem
+decisão teórica); R20 reorganizou a moldura sob a qual R09-R11
+ficam mais acionáveis. Os três restantes (R09, R10, R11) seguem
+como pendências <strong>estritamente normativas</strong> e exigem decisão sua
+antes de qualquer implementação. Cada linha abaixo termina com
+<strong>uma pergunta concreta</strong> para acionar a próxima rodada de conversa.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Status</th>
+<th>Origem</th>
+<th>Decisão pendente + pergunta acionável</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>R09</strong></td>
+<td>aberto, <strong>mais natural sob LCMC</strong></td>
+<td>Eco A</td>
+<td><strong>Endogeneizar <code>g_i(t) = π·R / (p·S)</code></strong> como função do estado. Hoje, <code>g_violacao = self.rng.uniform(0.0, _g_max)</code> (sorteio estático em <code>_criar_empresas</code>). Endogeneizar significa: cada firma recalcula <code>g_i</code> a cada tique como <code>(ganho ilícito) / (detecção percebida × sanção esperada)</code>, fechando o loop Becker. <strong>Consequência:</strong> altera material a Prop. 3, porque o canal de dissuasão deixa de ser comparação estática <code>g_i &gt; p_perc</code> e vira feedback dinâmico <code>g_i ↘ quando p ↗</code>. <strong>Sob LCMC (R20), R09 vira mais natural</strong> — <code>g_i</code> decai com <code>p_perc</code> que cresce com cada notificação de massa crítica; a corrida endogeneiza o loop por construção. <strong>Pergunta:</strong> o esboço atual da Prop. 3 (dominância de bem-estar do Regime B sobre A, via canal de dissuasão) pode ser reescrito sob <code>g_i</code> endógeno acoplado à fila de leniência (R20) — ou prefere preservá-lo como simplificação documentada e abrir a endogeneização como variante futura do paper?</td>
+</tr>
+<tr>
+<td><strong>R10</strong></td>
+<td>aberto, <strong>necessário sob LCMC</strong></td>
+<td>Eco A</td>
+<td><strong>IC-F* completa em vez da simplificada.</strong> Hoje a IC-F* é <code>W &lt; D_extra</code> (ver <code>mecanismo.md</code> § "IC-F* em prosa"). A forma completa é <code>W + p_pago·(S − D) &lt; p_npago·S</code>: a firma compara o valor esperado de pagar (incluindo a sanção residual com prob. <code>p_pago</code>) contra o valor esperado de não pagar (sanção cheia com prob. <code>p_npago</code>). <strong>Consequência:</strong> altera Prop. 1 (viabilidade da IC-F* no ponto-alvo). O ponto Eco A: sem <code>p_pago</code> e <code>p_npago</code> explícitos, o modelo assume que "não pagar" é dominado por suposição estrutural — o que vicia alegações sobre economizar contribuição pecuniária. <strong>Sob LCMC (R20), R10 deixa de ser opcional e vira necessário</strong> — sem <code>p_pago</code> e <code>p_npago</code>, o cálculo de "se eu não corro, qual minha chance de não ser pego antes da concorrente?" não fecha. A expectativa de posição na fila inter-firma calibrada por Saito gera <span class="arithmatex">\(p_\text{pago}\)</span> e <span class="arithmatex">\(p_\text{npago}\)</span> com sentido empírico. <strong>Pergunta:</strong> quer implementar a forma completa acoplada à fila inter-firma do R20 (<code>p_pago = f(posicao_esperada)</code> calibrado por Saito) — ou manter a simplificação com caveat reforçado?</td>
+</tr>
+<tr>
+<td><strong>R11</strong></td>
+<td>aberto, <strong>encaixa em LCMC</strong></td>
+<td>Eco A</td>
+<td><strong>Hirschman como elevação de <code>W_esperado</code></strong> em vez de subtração de <code>g_i_efetivo</code>. Hoje, <code>g_i_efetivo(g_i, tem_clausula, p_perc, peso_hirschman)</code> em <code>hirschman.py</code> SUBTRAI a ameaça de êxodo da atratividade de violar. A reformulação econômica de Eco A trata a cláusula de vesting acelerado como <strong>pagamento condicional</strong> ao trabalhador (eleva <code>W_esperado</code> por canal contratual paralelo, em vez de descontar <code>g_i</code>). <strong>Sob LCMC (R20), R11 encaixa naturalmente</strong> — vesting acelerado pode ser modelado como <code>W_extra</code> que <strong>só vale para os primeiros K cooperadores</strong> (criando corrida adicional dentro de Hirschman, paralela à corrida intra-firma do R20). <strong>Pergunta:</strong> quer pedir uma derivação algébrica (em rascunho) demonstrando equivalência entre as duas formulações sob certas condições — ou ir direto à reformulação no código (W_extra restrito a primeiros K na FilaInternaCooperacao) e medir o impacto via varredura Sobol?</td>
+</tr>
+<tr>
+<td><strong>R12</strong></td>
+<td><strong>fechado parcial em R02a</strong></td>
+<td>Mat B</td>
+<td>Substituir o "racional" por estratégia-limiar <code>s_i ≥ x*</code> do jogo global: <strong>implementado opt-in</strong> (<code>WaaSParametros.usar_x_estrela_no_racional</code>, default False). Falta o sub-item ambicioso de R02b: <strong>contraste numérico multiplicidade × unicidade</strong> no espírito Morris-Shin (gerar evidência simulada de que sob conhecimento comum há múltiplos equilíbrios e sob informação privada há único). <strong>Pergunta:</strong> quer abrir R02b como tarefa de simulação dedicada — talvez como notebook auxiliar — ou marcá-lo como conjectura aberta documentada e seguir?</td>
+</tr>
+<tr>
+<td><strong>R13</strong></td>
+<td><strong>fechado parcial em R13a + R15</strong></td>
+<td>Adv A, Eco B, Designer, PM</td>
+<td>(i) <code>p_anulacao_tcc</code> — <strong>fechado em R15</strong> (vetor de quebra B); (ii) Pareto/lognormal de <code>fatia_mercado</code> — <strong>fechado em R13a</strong> (8 cenários incl. <code>mercado_digital_br_pareto</code>; reporter HHI); (iii) <strong><code>sankey.py</code> real</strong> (fluxograma do mecanismo) — pendente; (iv) <strong>3 condutas-piloto para o paper</strong> (<code>marketplace_exclusividade</code>, <code>anti_steering</code>, <code>killer_acq_ia</code>) com fixtures e testes de regressão — pendente. <strong>Pergunta:</strong> quer priorizar <code>sankey.py</code> (visual para o paper) ou as 3 condutas-piloto (calibração mais focada por conduta)? Ou fechar R13 como "endgame" formal e mover (iii)/(iv) para um R20 separado?</td>
+</tr>
+</tbody>
+</table>
+<h2 id="historico-de-decisoes-fechadas">Histórico de decisões fechadas<a class="headerlink" href="#historico-de-decisoes-fechadas" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Decisão</th>
+<th>Resolução</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F01</td>
+<td>Linguagem: anglicismos?</td>
+<td>Sem anglicismos quando houver termo português. Siglas mantidas.</td>
+<td>2026-05-26</td>
+</tr>
+<tr>
+<td>F02</td>
+<td>Licença</td>
+<td>CC-BY-SA 4.0</td>
+<td>2026-05-26</td>
+</tr>
+<tr>
+<td>F03</td>
+<td>Estrutura do pacote</td>
+<td>src/ layout, Python 3.12+ (mesa≥3.5 exige 3.12)</td>
+<td>2026-05-26</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../aprendizados_v3/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Aprendizados (correção radical v3)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Aprendizados (correção radical v3)
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Código e documentação sob CC BY-SA 4.0 · <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> · <a href="brincar/">brincar in-browser</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/freirelucas/waas-antitrust" target="_blank" rel="noopener" title="Repositório no GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="brincar/" target="_blank" rel="noopener" title="Brincar in-browser" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 5v8l5-4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "navigation.prune", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "content.tabs.link", "content.tooltips", "search.suggest", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/simulador.js"></script>
+      
+    
+  </body>
+</html>

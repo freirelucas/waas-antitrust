@@ -1,0 +1,2095 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).">
+      
+      
+        <meta name="author" content="L.">
+      
+      
+        <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/mecanismo/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../resultados/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Ato 2 · O mecanismo - LCMC · Leniência Condicionada à Massa Crítica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%2011h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12zM12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm-3-3h2v-2.13c1.73-.44%203-2.01%203-3.87a4%204%200%200%200-4-4%204%204%200%200%200-4%204c0%201.86%201.27%203.43%203%203.87z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.5%202%202%206.5%202%2012s4.5%2010%2010%2010%2010-4.5%2010-10S17.5%202%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m4.59-12.42L10%2014.17l-2.59-2.58L6%2013l4%204%208-8z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.27%203%203%208.27v7.46L8.27%2021h7.46C17.5%2019.24%2021%2015.73%2021%2015.73V8.27L15.73%203M9.1%205h5.8L19%209.1v5.8L14.9%2019H9.1L5%2014.9V9.1m6%205.9h2v2h-2zm0-8h2v6h-2z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.8%2018.5%206%201.6-.4%201.9-9.4-2.5L2.6%2022l-.5-1.9%206-1.6L2%2016.9l.5-1.9%209.4%202.5%209.4-2.5.5%201.9zM9.5%206C8.7%206%208%206.7%208%207.5S8.7%209%209.5%209%2011%208.3%2011%207.5%2010.3%206%209.5%206m5%200c-.8%200-1.5.7-1.5%201.5S13.7%209%2014.5%209%2016%208.3%2016%207.5%2015.3%206%2014.5%206M13%2011l-1-2-1%202zM12%201C8.1%201%205%204.1%205%208c0%201.9.8%203.6%202%204.9V16h10v-3.1c1.2-1.3%202-3%202-4.9%200-3.9-3.1-7-7-7m3%2011v2h-1v-2h-1v2h-2v-2h-1v2H9v-2c-1.2-.9-2-2.3-2-4%200-2.8%202.2-5%205-5s5%202.2%205%205c0%201.6-.8%203.1-2%204%22/%3E%3C/svg%3E');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+
+  <meta property="og:title" content="Ato 2 · O mecanismo · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta property="og:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://freirelucas.github.io/waas-antitrust/mecanismo/" />
+  <meta property="og:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="LCMC · Leniência Condicionada à Massa Crítica" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ato 2 · O mecanismo · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta name="twitter:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta name="twitter:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+
+  <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/mecanismo/" />
+
+  <meta name="theme-color" content="#1e8449" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#o-mecanismo-em-tres-camadas" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-header__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LCMC · Leniência Condicionada à Massa Crítica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ato 2 · O mecanismo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-nav__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    LCMC · Leniência Condicionada à Massa Crítica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 1 · O problema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-canal-de-deposito-condicional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O canal de depósito condicional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O canal de depósito condicional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tres-paralelos-para-situar-a-ideia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Três paralelos para situar a ideia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-coordenacao-que-o-canal-resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A coordenação que o canal resolve
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A coordenação que o canal resolve">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-peca-empirica-gradiente-saito-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A peça empírica: gradiente Saito (2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-cinco-instrumentos-incrementais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os cinco instrumentos incrementais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-ic-f-sob-instrumento-waas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A IC-F* sob instrumento WaaS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A IC-F* sob instrumento WaaS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-a-escolha-da-firma-em-uma-frase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 A escolha da firma, em uma frase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-a-ic-f-em-prosa-antes-da-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 A IC-F*, em prosa antes da fórmula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 A IC-F*, em prosa antes da fórmula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-ic-f-no-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A IC-F* no código
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-uma-firma-r-1-bilhao-de-receita-30-minutos-com-a-calculadora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Uma firma, R$ 1 bilhão de receita, 30 minutos com a calculadora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-os-tres-vetores-de-quebra-onde-o-argumento-pode-mesmo-ruir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Os três vetores de quebra — onde o argumento pode mesmo ruir
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Os três vetores de quebra — onde o argumento pode mesmo ruir">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vetor-a-e-se-o-tcc-classico-ja-der-desconto-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vetor A: e se o TCC clássico já der desconto suficiente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vetor-b-e-se-o-judiciario-anular-o-tcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vetor B: e se o Judiciário anular o TCC?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vetor-c-e-os-advogados-dos-denunciantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vetor C: e os advogados dos denunciantes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-break-even-etico-coletivo-r16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O break-even ético coletivo (R16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#janela-de-adesao-pos-abertura-com-desconto-progressivo-r29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Janela de adesão pós-abertura com desconto progressivo (R29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-corrida-que-faltava-r20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A corrida que faltava (R20)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A corrida que faltava (R20)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrida-intra-firma-entre-trabalhadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrida intra-firma (entre trabalhadores)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corrida-inter-firma-entre-firmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrida inter-firma (entre firmas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequencia-teorica-proposicao-1-ganha-numero-de-firmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequência teórica: Proposição 1 ganha número de firmas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dois-canais-de-feedback-acoplam-as-corridas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dois canais de feedback acoplam as corridas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saito-como-ancoragem-normativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saito como ancoragem normativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cenarios-normativos-como-variantes-parametricas-r17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cenários normativos como variantes paramétricas (R17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-outros-tres-incentivos-compativeis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os outros três incentivos compatíveis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-ainda-pode-ruir-mesmo-assim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que ainda pode ruir mesmo assim
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 3 · Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colaborar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 5 · Colaborar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo ABM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brincar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brincar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper (rascunho v0.2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../uso/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexos
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../critica_x10/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-canal-de-deposito-condicional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O canal de depósito condicional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O canal de depósito condicional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tres-paralelos-para-situar-a-ideia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Três paralelos para situar a ideia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-coordenacao-que-o-canal-resolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A coordenação que o canal resolve
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A coordenação que o canal resolve">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-peca-empirica-gradiente-saito-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A peça empírica: gradiente Saito (2021)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-cinco-instrumentos-incrementais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os cinco instrumentos incrementais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-ic-f-sob-instrumento-waas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A IC-F* sob instrumento WaaS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A IC-F* sob instrumento WaaS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-a-escolha-da-firma-em-uma-frase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 A escolha da firma, em uma frase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-a-ic-f-em-prosa-antes-da-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 A IC-F*, em prosa antes da fórmula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 A IC-F*, em prosa antes da fórmula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-ic-f-no-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A IC-F* no código
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-uma-firma-r-1-bilhao-de-receita-30-minutos-com-a-calculadora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Uma firma, R$ 1 bilhão de receita, 30 minutos com a calculadora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-os-tres-vetores-de-quebra-onde-o-argumento-pode-mesmo-ruir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Os três vetores de quebra — onde o argumento pode mesmo ruir
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Os três vetores de quebra — onde o argumento pode mesmo ruir">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vetor-a-e-se-o-tcc-classico-ja-der-desconto-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vetor A: e se o TCC clássico já der desconto suficiente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vetor-b-e-se-o-judiciario-anular-o-tcc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vetor B: e se o Judiciário anular o TCC?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vetor-c-e-os-advogados-dos-denunciantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vetor C: e os advogados dos denunciantes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-break-even-etico-coletivo-r16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O break-even ético coletivo (R16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#janela-de-adesao-pos-abertura-com-desconto-progressivo-r29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Janela de adesão pós-abertura com desconto progressivo (R29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-corrida-que-faltava-r20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A corrida que faltava (R20)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A corrida que faltava (R20)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrida-intra-firma-entre-trabalhadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrida intra-firma (entre trabalhadores)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corrida-inter-firma-entre-firmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrida inter-firma (entre firmas)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequencia-teorica-proposicao-1-ganha-numero-de-firmas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequência teórica: Proposição 1 ganha número de firmas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dois-canais-de-feedback-acoplam-as-corridas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dois canais de feedback acoplam as corridas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saito-como-ancoragem-normativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saito como ancoragem normativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cenarios-normativos-como-variantes-parametricas-r17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cenários normativos como variantes paramétricas (R17)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-outros-tres-incentivos-compativeis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Os outros três incentivos compatíveis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-ainda-pode-ruir-mesmo-assim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que ainda pode ruir mesmo assim
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/freirelucas/waas-antitrust/edit/main/docs/mecanismo.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/freirelucas/waas-antitrust/raw/main/docs/mecanismo.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="o-mecanismo-em-tres-camadas">O mecanismo, em três camadas<a class="headerlink" href="#o-mecanismo-em-tres-camadas" title="Permanent link">&para;</a></h1>
+<p class="deck">Descrição do mecanismo da LCMC organizada do canal de recepção qualificada para o problema de coordenação que ele resolve, e por último para os instrumentos opcionais de internalização — o instrumento monetário <em>Whistleblower-as-a-Service</em> entre eles.</p>
+
+<p class="byline"><em>Ato 2 de 5</em> · A hipótese · rascunho v0.2.0</p>
+
+<p class="lede">Esta página é organizada de fora para dentro: do mecanismo de recepção qualificada (canal de depósito condicional) para o problema de coordenação que ele resolve, e por fim para os instrumentos incrementais que aumentam adesão sem serem essenciais. A ordem importa: parte da literatura interna do projeto leu, em versões anteriores, o WaaS como sinônimo da LCMC. Não é. O Ato 1 separou os dois conceitos; aqui formalizamos a distinção e detalhamos cada uma das cinco camadas.</p>
+
+<p><span class="kicker">Camada 1 · Canal</span></p>
+<h2 id="o-canal-de-deposito-condicional">O canal de depósito condicional<a class="headerlink" href="#o-canal-de-deposito-condicional" title="Permanent link">&para;</a></h2>
+<p>A <strong>Leniência Condicionada à Massa Crítica</strong> (LCMC) é um <em>information escrow</em> operado pelo CADE:</p>
+<blockquote>
+<p>🔑 <strong>Princípio LCMC — canal de depósito condicional.</strong> O <strong>CADE recebe denúncias com cláusula de abertura condicional</strong>. O trabalhador deposita sua denúncia (texto livre + prova específica) com a condição: <em>"esta denúncia só é instaurada se houver ≥ <code>q_min · n_trab</code> outros depósitos compatíveis do mesmo setor/firma dentro de <code>Δt</code> tiques"</em>. Enquanto o gatilho não é atingido, <strong>a denúncia fica em escrow</strong>: a firma não é notificada, a denúncia não vira processo, a identidade do trabalhador não é revelada. Quando o gatilho é atingido, <strong>todas as denúncias se abrem simultaneamente</strong> — e ninguém foi o primeiro isoladamente.</p>
+</blockquote>
+<p>O mecanismo resolve <strong>diretamente</strong> o problema clássico de Olson (1965): sub-iniciação ("ninguém quer ser o primeiro") é eliminada por construção. A denúncia individual nunca fica exposta sozinha — ou se acopla a outras e se abre coletivamente, ou permanece em escrow indefinidamente. Sem instrumento monetário, sem ressarcimento controverso, sem categoria dogmática nova: apenas <strong>procedimento administrativo de recepção qualificada</strong>, ancorado em Art. 4º II/III da Lei 12.529/2011 c/c Lei 9.784/99.</p>
+<h3 id="tres-paralelos-para-situar-a-ideia">Três paralelos para situar a ideia<a class="headerlink" href="#tres-paralelos-para-situar-a-ideia" title="Permanent link">&para;</a></h3>
+<p>Quem nunca leu Ayres-Unkovic (formalizadores da ideia em Yale Law School) encontra
+<strong>três paralelos</strong> no cotidiano que descrevem a mesma estrutura:</p>
+<ul>
+<li><strong>Kickstarter</strong>. No Kickstarter, o cartão de crédito do apoiador só é cobrado se
+  o projeto atingir a meta de apoiadores; senão, ninguém paga e o projeto não começa.
+  É o desenho <em>all-or-nothing</em>: ou todos cooperam e o projeto sai, ou ninguém é
+  exposto financeiramente. A LCMC aplica o mesmo desenho à denúncia: a denúncia
+  individual só "cobra" — vira processo — se outras forem depositadas; senão, nada
+  acontece e ninguém aparece.</li>
+<li><strong>Callisto</strong> (<a href="https://www.callisto.org">callisto.org</a>). Plataforma americana, em
+  operação desde 2015, onde estudantes universitárias registram denúncias de
+  assédio. O nome de uma vítima só é revelado se <strong>outra</strong> vítima identificar o
+  <strong>mesmo</strong> agressor — coincidência libera; isolamento mantém anonimato. É a prova
+  prática de que o desenho funciona em produção, não só em paper.</li>
+<li><strong>Caixa-cofre operada por terceiro confiável.</strong> Imagine envelopes com denúncias
+  entregues a uma caixa-cofre operada por uma instituição neutra — no nosso caso,
+  o CADE. Cada envelope vem com a instrução: "abra esta caixa apenas quando houver
+  ao menos N envelopes parecidos contra a mesma empresa". A caixa pode esperar
+  meses. Quando atinge N, <strong>todos</strong> os envelopes se abrem juntos. Ninguém foi o
+  primeiro a se expor.</li>
+</ul>
+<p>O nome acadêmico desse desenho é <em>information escrow</em> — depósito de informação sob
+condição de abertura pré-acordada, com terceiro confiável como custodiante. A
+formalização contemporânea está em Ayres &amp; Unkovic (2012), <em>Information Escrows</em>,
+<em>Michigan Law Review</em> vol. 111 p. 145; a aplicação ao antitruste brasileiro com o
+CADE como custodiante é a contribuição deste projeto.</p>
+<p>Em código, o canal é implementado em duas camadas. <strong>R20 (<code>modo_corrida</code>)</strong> registra firmas que atingiram massa crítica agregada — sem rastrear identidade individual do depositante. <strong>R27 (<code>usar_escrow_explicito</code>)</strong> carrega o escrow individual no <code>AutoridadeAgent</code>: cada sinal vira um depósito identificado, e a abertura simultânea colapsa N depósitos em um caso processual único. O parâmetro <code>janela_escrow_tiques</code> é o "Δt" da definição LCMC — quantos tiques um depósito permanece no escrow antes de expirar (default <code>0</code> = escrow eterno, leitura Callisto).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># src/waas_antitrust/agents.py — AutoridadeAgent (R27)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">AutoridadeAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="c1"># ... self.escrow_denuncias: dict[int, list[dict]] = {}</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">depositar_condicional</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_empresa</span><span class="p">,</span> <span class="n">id_trabalhador</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                              <span class="n">qualidade_prova</span><span class="p">,</span> <span class="n">tique</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Trabalhador deposita denúncia condicional no escrow do CADE.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">expirar_depositos_condicionais</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tique_atual</span><span class="p">,</span> <span class="n">janela</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove depósitos com idade &gt;= janela. janela &lt;= 0 é no-op.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">abrir_escrow_se_massa_critica</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_empresa</span><span class="p">,</span> <span class="n">q_min</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                                      <span class="n">n_trabalhadores_firma</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Abertura simultânea quando massa crítica é atingida.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p>O <code>WaaSModel.step()</code> ativa o caminho v3 via flag opt-in:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># src/waas_antitrust/model.py — fase P2.5b (R27)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">usar_escrow_explicito</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">autoridade</span><span class="o">.</span><span class="n">expirar_depositos_condicionais</span><span class="p">(</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="n">tique_atual</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tique</span><span class="p">,</span> <span class="n">janela</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">janela_escrow_tiques</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">for</span> <span class="n">fid</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trabalhadores_por_empresa</span><span class="p">:</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="n">empresa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">empresas</span><span class="p">[</span><span class="n">fid</span><span class="p">]</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">autoridade</span><span class="o">.</span><span class="n">abrir_escrow_se_massa_critica</span><span class="p">(</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>            <span class="n">id_empresa</span><span class="o">=</span><span class="n">fid</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            <span class="n">q_min</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">q_min_cooperacao_interna</span><span class="p">,</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            <span class="n">n_trabalhadores_firma</span><span class="o">=</span><span class="n">empresa</span><span class="o">.</span><span class="n">n_trabalhadores</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="p">)</span>
+</code></pre></div>
+<p>As funções de canal são puras na lógica e idempotentes por tique. <strong>Nada de pagamento entra na conta — o canal opera independentemente de qualquer instrumento monetário.</strong> O cenário canônico <code>apenas_canal_sem_instrumento</code> testa exatamente essa propriedade: <code>W_mult=0</code>, <code>D_disc=0</code>, <code>usar_escrow_explicito=True</code>, Regime B.</p>
+<figure>
+<p><img alt="Sankey do fluxo agregado da corrida LCMC: sinais → depósitos no escrow → aberturas simultâneas → TCCs assinados" class="figura-empirica" src="../img/11_sankey_corrida_lcmc.png" />
+  </p>
+<figcaption>
+    Fluxo agregado da corrida LCMC sob <code>cenario_corrida_leniencia</code> com <code>usar_escrow_explicito=True</code> (10 firmas × 120 trabalhadores × 15 ciclos, seed=2026). 72 sinais viraram 36 depósitos condicionais; 7 firmas atingiram massa crítica intra-firma; 36 depósitos se abriram simultaneamente em casos qualificados; 8 firmas optaram pelo TCC com ressarcimento WaaS. A figura é evidência da Proposição 4 (R20) por construção do canal.
+  </figcaption>
+</figure>
+<p><span class="kicker">Camada 2 · Coordenação</span></p>
+<h2 id="a-coordenacao-que-o-canal-resolve">A coordenação que o canal resolve<a class="headerlink" href="#a-coordenacao-que-o-canal-resolve" title="Permanent link">&para;</a></h2>
+<p>O canal não cria cooperação onde não havia; <strong>resolve o jogo de coordenação</strong> que torna a cooperação racionalmente difícil. Olson (1965, <em>Logic of Collective Action</em>) mostrou que mesmo em grupos pequenos onde todos sairiam melhor cooperando, cada agente individual prefere esperar: ninguém quer ser o primeiro a arcar com o risco. Granovetter (1978) generalizou via limiares heterogêneos; Centola-Macy (2007) mostraram que contágio complexo exige reforço local.</p>
+<p>O escrow muda a estrutura informacional do jogo. Sob canal de depósito condicional:</p>
+<ul>
+<li>O trabalhador <strong>não escolhe entre "denunciar isolado" e "calar"</strong>. Escolhe entre "depositar (com risco zero enquanto não houver coorrespondência)" e "calar".</li>
+<li>Como o depósito <strong>não expõe nada</strong> enquanto o gatilho não é atingido, o custo individual cai a praticamente zero (custo de redigir + depositar).</li>
+<li>Quando há coorrespondência, todos abrem simultaneamente — <strong>a coordenação foi resolvida por agregação institucional</strong>, não por confiança horizontal informal.</li>
+</ul>
+<p>Esta diferença é radical em relação à formulação anterior do projeto, que dependia de capital social organizacional (Coleman 1990) sendo <em>internalizado</em> pelo regulador. Sob o canal correto, o regulador <strong>não precisa</strong> que o capital social pré-exista: a coordenação acontece via depósito paralelo no canal, sem necessidade de comunicação horizontal entre os depositantes.</p>
+<p>R26 (erosão endógena Coleman) segue válido apenas como sub-caso — se o CADE publica taxas agregadas de depósito no canal, pode haver leak parcial que afeta a comunicação informal subsequente. Mas o <strong>caso geral é independente</strong> desse risco.</p>
+<figure>
+<p><img alt="Heurística do jogo global: probabilidade de cascata cooperativa em função do ruído σ e da massa crítica k/n, com regiões dos regimes A, B e C marcadas" class="figura-conceitual" src="../img/02_fase.png" /></p>
+<figcaption>Heurística do jogo global (Morris-Shin 1998). Probabilidade de cascata cooperativa em função do ruído e da massa crítica relativa; as três zonas marcadas correspondem aos regimes A, B e C.</figcaption>
+</figure>
+<h3 id="a-peca-empirica-gradiente-saito-2021">A peça empírica: gradiente Saito (2021)<a class="headerlink" href="#a-peca-empirica-gradiente-saito-2021" title="Permanent link">&para;</a></h3>
+<p>Quando há recompensa (instrumento monetário ativo, <strong>incremental ao canal</strong>), a LCMC distribui o atenuante por posição na fila usando o <strong>gradiente empírico Saito</strong>, extraído de 349 TCCs CADE 2012-2019:</p>
+<table>
+<thead>
+<tr>
+<th>Posição na fila inter-firma</th>
+<th>Desconto <span class="arithmatex">\(D_{\text{Saito}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1ª</td>
+<td>43,43%</td>
+</tr>
+<tr>
+<td>2ª</td>
+<td>34,51%</td>
+</tr>
+<tr>
+<td>3ª</td>
+<td>20,22%</td>
+</tr>
+<tr>
+<td>4ª</td>
+<td>17,99%</td>
+</tr>
+<tr>
+<td>5ª</td>
+<td>16,77%</td>
+</tr>
+<tr>
+<td>≥ 9ª</td>
+<td>15,00% (piso Tribunal)</td>
+</tr>
+</tbody>
+</table>
+<p>O mesmo gradiente, normalizado por <span class="arithmatex">\(D_{\text{Saito}}(1) = 43{,}43\%\)</span>, calibra a fila intra-firma sob <code>modo_corrida=True</code> — quem coopera em posição 1 dentro da firma recebe 100% da recompensa; em posição 2, 79,5%; em posição 3, 46,6%. A escolha <em>não é arbitrária</em>: o mesmo dado empírico do CADE calibra duas escalas.</p>
+<p><span class="kicker">Camada 3 · Incrementos</span></p>
+<h2 id="os-cinco-instrumentos-incrementais">Os cinco instrumentos incrementais<a class="headerlink" href="#os-cinco-instrumentos-incrementais" title="Permanent link">&para;</a></h2>
+<p>A LCMC funciona <strong>sem nenhum</strong> dos instrumentos abaixo — o canal sozinho resolve a coordenação. Os instrumentos aumentam a <em>probabilidade de adesão</em> ao canal, oferecendo benefício ao depositante. Cada um tem reserva constitucional distinta e pode ser adotado isoladamente ou em combinação.</p>
+<p>Sob a LCMC, o <strong>substrato cooperativo</strong> é o que importa. Mas a cooperação custa caro para cada trabalhador individualmente — risco de represália, custo legal, desvio da carreira. Cinco instrumentos podem compensar esse custo (cada um com reserva constitucional diferente):</p>
+<table>
+<thead>
+<tr>
+<th>Instrumento</th>
+<th>Direção do pagamento</th>
+<th>Reserva constitucional · regime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>💰 <strong>WaaS — recompensa via TCC</strong></td>
+<td>Firma → trabalhador; pagamento entra como atenuante. Aplicação direta da IC-F* (Camada 3)</td>
+<td>Art. 22 I; regime B ou C</td>
+</tr>
+<tr>
+<td>🚪 <strong>Hirschman — vesting acelerado</strong></td>
+<td>Firma → trabalhador via equity; cláusula contratual padrão; ameaça crível de êxodo coletivo dissuade em P0 e amplia IC-F* em P3</td>
+<td>Art. 22 I; regime Cₜ</td>
+</tr>
+<tr>
+<td>🧾 <strong>Crédito tributário</strong></td>
+<td>Estado → trabalhador via renúncia fiscal; análogo limitado ao IRS Whistleblower (26 U.S.C. §7623)</td>
+<td>LC + LRF; regime Cᵩ (R22 stub)</td>
+</tr>
+<tr>
+<td>⚖️ <strong>Leniência criminal individual</strong></td>
+<td>Estado → trabalhador via imunidade penal; não-persecução do partícipe cooperador</td>
+<td>Art. 5º XXXIX penal estrita; regime Cₚ (R23 stub)</td>
+</tr>
+<tr>
+<td>🤝 <strong>Nenhum pagamento — só reconhecimento</strong></td>
+<td>LCMC pura. Substrato cooperativo internalizado por dever de ofício (boa fé Lei 9.784/99) sem instrumento monetário</td>
+<td>Cenários canônicos: <code>apenas_massa_critica_observavel</code> (sinal sem canal, Regime A) e <code>apenas_canal_sem_instrumento</code> (canal explícito CADE sem pagamento, Regime B + <code>usar_escrow_explicito=True</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>O catálogo declarativo das <strong>5 entradas</strong> — o canal base (sem pagamento) + os 4 instrumentos monetários — está em <code>src/waas_antitrust/instrumentos.py</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.instrumentos</span><span class="w"> </span><span class="kn">import</span> <span class="n">INSTRUMENTOS</span><span class="p">,</span> <span class="n">instrumentos_por_regime</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Quais entradas cabem em cada regime?</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">for</span> <span class="n">nome</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;Cᵩ&quot;</span><span class="p">,</span> <span class="s2">&quot;Cₚ&quot;</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">disponiveis</span> <span class="o">=</span> <span class="n">instrumentos_por_regime</span><span class="p">(</span><span class="n">nome</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Regime </span><span class="si">{</span><span class="n">nome</span><span class="si">:</span><span class="s2">3s</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">nome</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">disponiveis</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># A : []</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># B : [&#39;canal_deposito_condicional&#39;, &#39;recompensa_tcc_waas&#39;]</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># C : [&#39;canal_deposito_condicional&#39;, &#39;recompensa_tcc_waas&#39;,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1">#       &#39;vesting_acelerado_hirschman&#39;]</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># Cᵩ: + &#39;credito_tributario_denunciante&#39;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># Cₚ: + &#39;leniencia_criminal_individual&#39;</span>
+</code></pre></div>
+<p><span class="kicker">Camada 4 · Aritmética</span></p>
+<h2 id="a-ic-f-sob-instrumento-waas">A IC-F* sob instrumento WaaS<a class="headerlink" href="#a-ic-f-sob-instrumento-waas" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><strong>Quando esta camada se aplica.</strong> A próxima seção é específica do
+<strong>instrumento WaaS</strong> — o único que envolve a firma pagando o trabalhador
+diretamente, <em>depois</em> que o canal abriu e o procedimento foi instaurado.
+Para os outros instrumentos, a aritmética é diferente (Hirschman tem
+<code>custo_exodo_esperado</code> em vez de <code>W</code>, por exemplo). Para a configuração
+"canal sem instrumento", esta camada <strong>não se aplica</strong>.</p>
+</blockquote>
+<p>A pergunta natural, e a primeira que aparece quando alguém ouve o WaaS pela primeira vez, é uma versão mais educada de <strong>"você é ingênuo?"</strong>:</p>
+<blockquote>
+<p>Basta a empresa se recusar a pagar os denunciantes e ainda assim pegar o desconto para tudo ruir, não?</p>
+</blockquote>
+<p>A resposta está nas três subseções que seguem: <strong>4.1 a escolha em prosa; 4.2 a fórmula da IC-F*; 4.3 um exemplo numérico em R$ 1 bi de receita.</strong> Com três pontos (sub-§ 4.4-4.6) onde o argumento pode quebrar.</p>
+<h3 id="41-a-escolha-da-firma-em-uma-frase">4.1 A escolha da firma, em uma frase<a class="headerlink" href="#41-a-escolha-da-firma-em-uma-frase" title="Permanent link">&para;</a></h3>
+<p>A firma já foi denunciada — o gatilho de massa crítica disparou, o caso vai ao CADE. A partir daí, ela escolhe entre três caminhos. Em todos eles, paga <strong>alguma coisa</strong>; a diferença é a soma.</p>
+<ol>
+<li><strong>Assinar um TCC com ressarcimento WaaS</strong> — paga a recompensa <span class="arithmatex">\(W\)</span> aos denunciantes e ganha o desconto cheio <span class="arithmatex">\(D_{\text{total}}\)</span> no acordo.</li>
+<li><strong>Assinar um TCC clássico</strong> — não paga <span class="arithmatex">\(W\)</span>, mas obtém apenas o desconto comum <span class="arithmatex">\(D_{\text{base}}\)</span> que o Art. 85 da Lei 12.529/2011 já oferece em qualquer TCC.</li>
+<li><strong>Não assinar nada</strong> — enfrenta a sanção cheia <span class="arithmatex">\(S\)</span>, com a probabilidade de condenação que a investigação produz.</li>
+</ol>
+<p>A diferença entre os dois primeiros — entre o TCC-WaaS e o TCC clássico — é a peça que sustenta o argumento. Não é o desconto <strong>total</strong> <span class="arithmatex">\(D_{\text{total}}\)</span> que move a firma a pagar a recompensa; é o <strong>incremento</strong> que o canal WaaS oferece sobre o que a firma teria de qualquer jeito.</p>
+<div class="pull-quote">
+<p>A firma paga os denunciantes não porque ganha um desconto. Paga porque ganha um desconto <strong>maior</strong> do que conseguiria sem isso — e maior o suficiente para cobrir a recompensa, com folga.</p>
+</div>
+<h3 id="42-a-ic-f-em-prosa-antes-da-formula">4.2 A IC-F*, em prosa antes da fórmula<a class="headerlink" href="#42-a-ic-f-em-prosa-antes-da-formula" title="Permanent link">&para;</a></h3>
+<p>A condição que define quando a firma escolhe pagar tem nome em economia institucional: <strong>incentive compatibility da firma</strong> — escrita aqui como <strong>IC-F*</strong>. Em prosa direta:</p>
+<blockquote>
+<p>A firma paga a recompensa <span class="arithmatex">\(W\)</span> se, e somente se, o <strong>incremento</strong> de desconto que o canal WaaS oferece for maior que a recompensa.</p>
+</blockquote>
+<p>Em fórmula, com <span class="arithmatex">\(S\)</span> sendo a sanção esperada e <span class="arithmatex">\(D_{\text{base}}\)</span> o desconto que o TCC clássico já garante:</p>
+<div class="arithmatex">\[
+W &lt; D_{\text{extra}} \quad \text{onde} \quad D_{\text{extra}} = D_{\text{total}} - D_{\text{base}} = (D_{\text{disc}} - D_{\text{disc, base}}) \cdot S
+\]</div>
+<p>A versão simplificada <span class="arithmatex">\(W &lt; D_{\text{total}}\)</span> — usada nos artigos teóricos de leniência clássica — só funciona se assumirmos <span class="arithmatex">\(D_{\text{base}} = 0\)</span>. Quando o TCC clássico <strong>já</strong> dá desconto, ignorar isso é overclaim. O modelo computacional incorpora a forma correta (parâmetro <code>D_disc_base_tcc</code> em <code>WaaSParametros</code>).</p>
+<h4 id="a-ic-f-no-codigo">A IC-F* no código<a class="headerlink" href="#a-ic-f-no-codigo" title="Permanent link">&para;</a></h4>
+<p>A função que decide se a firma paga está em <code>model.py</code> (Phase P3). Em pseudocódigo (omitindo a camada Hirschman e a corrida LCMC):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># src/waas_antitrust/model.py — fase P3, decisão da firma sob instrumento WaaS</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">S</span> <span class="o">=</span> <span class="n">sancao_esperada</span><span class="p">(</span><span class="n">empresa</span><span class="p">)</span>                       <span class="c1"># sanção cheia (R$)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">D_total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">D_disc</span> <span class="o">*</span> <span class="n">S</span>                   <span class="c1"># desconto TCC-WaaS</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">D_base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">D_disc_base_tcc</span> <span class="o">*</span> <span class="n">S</span>           <span class="c1"># desconto TCC clássico (Art. 85)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">D_extra</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">D_total</span> <span class="o">-</span> <span class="n">D_base</span><span class="p">)</span>               <span class="c1"># incremento que o WaaS oferece</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">W_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_W_esperado</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">w_a</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">disparados</span><span class="p">)</span>  <span class="c1"># recompensa total</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># IC-F* simplificada (default; modo histórico):</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">empresa</span><span class="o">.</span><span class="n">pagou_denunciantes</span> <span class="o">=</span> <span class="n">D_extra</span> <span class="o">&gt;</span> <span class="n">W_total</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># IC-F* ampliada por Hirschman (R07):</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">custo_exodo</span> <span class="o">=</span> <span class="n">hirschman</span><span class="o">.</span><span class="n">custo_exodo_esperado</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">empresa</span><span class="o">.</span><span class="n">pagou_denunciantes</span> <span class="o">=</span> <span class="p">(</span><span class="n">D_extra</span> <span class="o">+</span> <span class="n">custo_exodo</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">W_total</span>
+</code></pre></div>
+<p>Sob <code>modo_corrida=True</code> (LCMC + WaaS), a fórmula muda — <span class="arithmatex">\(D_{\text{total}}\)</span> deixa de ser constante e passa a depender da posição da firma na fila inter-firma:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># src/waas_antitrust/model.py — fase P3 sob modo_corrida</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.corrida</span><span class="w"> </span><span class="kn">import</span> <span class="n">decaimento_D</span><span class="p">,</span> <span class="n">decaimento_W</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">pos_firma</span> <span class="o">=</span> <span class="n">empresa</span><span class="o">.</span><span class="n">posicao_fila_leniencia</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">d_frac</span> <span class="o">=</span> <span class="n">decaimento_D</span><span class="p">(</span><span class="n">pos_firma</span><span class="p">,</span> <span class="n">perfil</span><span class="o">=</span><span class="s2">&quot;saito&quot;</span><span class="p">)</span>  <span class="c1"># 1ª=0,4343; 2ª=0,3451; ...</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">D_total</span> <span class="o">=</span> <span class="n">d_frac</span> <span class="o">*</span> <span class="n">S</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">W_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">decaimento_W</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">posicao_corrida_interna</span><span class="p">,</span> <span class="n">W_base</span><span class="p">,</span> <span class="s2">&quot;saito&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>              <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">disparados</span><span class="p">)</span>
+</code></pre></div>
+<p>A diferença entre o caminho histórico e o caminho LCMC fica explícita: no histórico, todo trabalhador recebe <code>W_base</code>; sob LCMC, a recompensa decai com a posição na fila intra-firma, e o desconto da firma decai com a posição inter-firma. <strong>Duas filas, um gradiente empírico</strong>.</p>
+<h3 id="43-uma-firma-r-1-bilhao-de-receita-30-minutos-com-a-calculadora">4.3 Uma firma, R$ 1 bilhão de receita, 30 minutos com a calculadora<a class="headerlink" href="#43-uma-firma-r-1-bilhao-de-receita-30-minutos-com-a-calculadora" title="Permanent link">&para;</a></h3>
+<p>Aritmética é o tipo de coisa que parece dura até virar familiar. Aqui está com nomes em reais.</p>
+<p>Imagine uma firma com receita afetada <span class="arithmatex">\(R = \text{R\$}\,1\)</span> bilhão e severidade da conduta <span class="arithmatex">\(\sigma = 0{,}5\)</span> (no meio da escala). O CADE pratica multas-base na faixa de 0,1% a 20% da receita; usamos 5% como referência conservadora, e escalamos por <span class="arithmatex">\((1+\sigma)\)</span>:</p>
+<div class="arithmatex">\[
+S = 0{,}05 \cdot R \cdot (1 + \sigma) = 0{,}05 \cdot 1\,000 \cdot 1{,}5 = \text{R\$}\,75\text{ milhões}.
+\]</div>
+<p>O desconto total a que ela teria direito num TCC com ressarcimento WaaS é, digamos, 30% — alinhado com o que o Art. 12 permite combinando com o Art. 85:</p>
+<div class="arithmatex">\[
+D_{\text{total}} = 0{,}30 \cdot S = \text{R\$}\,22{,}5\text{ milhões}.
+\]</div>
+<p>O desconto que ela teria <strong>mesmo sem WaaS</strong>, só com o TCC clássico, é o que precisamos calibrar contra os dados de Saito (2021). Para este exemplo, usamos uma estimativa intermediária — 10%:</p>
+<div class="arithmatex">\[
+D_{\text{base}} = 0{,}10 \cdot S = \text{R\$}\,7{,}5\text{ milhões}.
+\]</div>
+<div class="numero-callout">
+<p><span class="valor">R$ 15 milhões</span>
+<span class="legenda">O incremento <span class="arithmatex">\(D_{\text{extra}}\)</span> — exatamente quanto a firma ganha <strong>a mais</strong> ao escolher o caminho WaaS em vez do TCC clássico. É contra este número, não contra os R$ 22,5 milhões totais, que a recompensa total <span class="arithmatex">\(W\)</span> tem de ser menor para a firma pagar.</span></p>
+</div>
+<p>Agora o outro lado. Suponha que 10 denunciantes internos atingiram a massa crítica. Cada um receberia uma recompensa de 1,5 salários anuais — calibrada para satisfazer a participação do trabalhador (IR-W), inclusive cobrindo o custo legal individual. Com <span class="arithmatex">\(w_a = \text{R\$}\,180\,000\)</span> e <span class="arithmatex">\(W_{\text{indiv}} = 1{,}5 \cdot w_a\)</span>:</p>
+<div class="arithmatex">\[
+W = 10 \cdot 1{,}5 \cdot 180\,000 = \text{R\$}\,2{,}7\text{ milhões}.
+\]</div>
+<p>A IC-F* fica satisfeita com folga ampla:</p>
+<div class="numero-callout">
+<p><span class="valor">R$ 12,3 milhões</span>
+<span class="legenda">A margem que sobra na conta da firma quando ela escolhe o caminho WaaS. É o <strong>preço</strong> que o mecanismo extrai do bolso da empresa investigada e devolve ao bolso dos trabalhadores que falaram — uma transferência privada com efeito de prevenção pública.</span></p>
+</div>
+<p>Tudo isso depende, evidentemente, de quanto <span class="arithmatex">\(D_{\text{base}}\)</span> realmente é na prática do CADE. Quando esse número aproxima-se de <span class="arithmatex">\(D_{\text{total}}\)</span>, a margem encolhe. Quando ultrapassa, o mecanismo <strong>deixa de funcionar</strong> — e este é o primeiro dos três vetores que cobrimos a seguir.</p>
+<figure>
+<p><img alt="Inversão da função-utilidade da firma sob WaaS: painel A mostra o ganho líquido com e sem TCC; painel B mostra a margem D-extra menos W com o ponto-alvo W=1,5 w_a e D=30% da sanção" class="figura-conceitual" src="../img/01_inversao.png" /></p>
+<figcaption>Inversão da função-utilidade da firma sob o instrumento WaaS. Painel A — ganho líquido com e sem o TCC com ressarcimento. Painel B — margem $D_{\text{extra}} - W$ em função da fatia de mercado, com o ponto-alvo $W = 1{,}5 \cdot w_a$ e $D = 30\%$ da sanção base assinalado.</figcaption>
+</figure>
+<h3 id="44-os-tres-vetores-de-quebra-onde-o-argumento-pode-mesmo-ruir">4.4 Os três vetores de quebra — onde o argumento pode mesmo ruir<a class="headerlink" href="#44-os-tres-vetores-de-quebra-onde-o-argumento-pode-mesmo-ruir" title="Permanent link">&para;</a></h3>
+<h4 id="vetor-a-e-se-o-tcc-classico-ja-der-desconto-suficiente">Vetor A: e se o TCC clássico já der desconto suficiente?<a class="headerlink" href="#vetor-a-e-se-o-tcc-classico-ja-der-desconto-suficiente" title="Permanent link">&para;</a></h4>
+<p>Este é o cético que diz "basta a empresa não pagar e pegar o desconto". A versão tecnicamente correta da crítica é: se <span class="arithmatex">\(D_{\text{base}}\)</span> já cobre uma fração significativa de <span class="arithmatex">\(D_{\text{total}}\)</span>, a margem <span class="arithmatex">\(D_{\text{extra}}\)</span> encolhe e a IC-F* deixa de motivar o pagamento.</p>
+<p>O <strong>desenho jurídico</strong> se sustenta porque o Art. 12 da Res. 21/2018 é explícito ao tratar o ressarcimento das vítimas como <strong>acréscimo</strong> ao desconto genérico. A magnitude desse acréscimo é discricionária — depende da prática do CADE em cada caso. A calibração empírica desse parâmetro é precisamente o que falta em <strong>R03</strong> (calibração formal contra Saito 2021).</p>
+<p>O <strong>modelo</strong> torna isto explícito: o parâmetro <code>D_disc_base_tcc</code> em <code>WaaSParametros</code> permite simular qualquer valor de <span class="arithmatex">\(D_{\text{base}}\)</span>, inclusive o pior caso em que <span class="arithmatex">\(D_{\text{base}} = D_{\text{total}}\)</span>. Quando isso acontece, <span class="arithmatex">\(D_{\text{extra}} = 0\)</span>, ninguém paga a recompensa, e o contador <code>n_firmas_optaram_tcc_classico</code> registra a quebra. Testes em <code>tests/test_vetores_quebra.py</code> cobrem o caso direcionalmente.</p>
+<h4 id="vetor-b-e-se-o-judiciario-anular-o-tcc">Vetor B: e se o Judiciário anular o TCC?<a class="headerlink" href="#vetor-b-e-se-o-judiciario-anular-o-tcc" title="Permanent link">&para;</a></h4>
+<p>A re-caracterização da recompensa como "ressarcimento das vítimas" é uma construção jurídico-finalística. O Judiciário pode rejeitá-la — e a recusa pode vir anos depois do TCC ter sido assinado, <strong>anulando-o retroativamente</strong>. Quando isso acontece, a empresa perde o desconto e a multa cheia retorna como crédito ao erário.</p>
+<p>Este é precisamente o <strong>falsificador F6</strong> declarado no desenho. A defesa institucional contra ele é dupla. Em primeiro lugar, o Regime C — extensão da Lei 13.608/2018 via Congresso — elimina a controvérsia legal, custando voto político. Em segundo, mesmo em Regime B, o risco de anulação é uma propriedade do desenho que precisa ser dimensionada, não escondida.</p>
+<p>O <strong>modelo</strong> torna esse risco calibrável via <code>p_anulacao_tcc</code>. Em P4, todo TCC assinado é sorteado contra essa probabilidade; quando anulado, o contador <code>n_tcc_anulados</code> registra, a multa cheia volta ao erário, e o sistema perde a coordenação que o mecanismo construía. Em testes, <span class="arithmatex">\(p_{\text{anulação}}\)</span> alta faz o Regime B convergir para o Regime A — um falsificador quantitativo, não verbal.</p>
+<h4 id="vetor-c-e-os-advogados-dos-denunciantes">Vetor C: e os advogados dos denunciantes?<a class="headerlink" href="#vetor-c-e-os-advogados-dos-denunciantes" title="Permanent link">&para;</a></h4>
+<p>Esta é uma crítica que custumeiramente passa em branco e merece resposta direta. <strong>Sim</strong>, o denunciante terá custos legais: advogado para reivindicar a recompensa, defesa em eventual ação trabalhista por represália, e — em hipótese pior — defesa criminal se for caracterizado como <strong>partícipe</strong> da conduta (a colisão dura com o Art. 86 da Lei 12.529/2011, território de leniência clássica).</p>
+<p>Três cenários institucionais são possíveis, e implicam calibrações diferentes:</p>
+<ol>
+<li><strong>O denunciante paga.</strong> Eleva o piso da IR-W — a recompensa precisa ser maior para compensar. Estimativas conservadoras no Brasil colocariam o custo legal entre <strong>10% e 50% de um salário anual</strong>.</li>
+<li><strong>A empresa cobre via TCC.</strong> Análogo ao programa Dodd-Frank §922 da SEC americana, em que o pagamento bruto pode incluir margem para honorários do advogado do denunciante. Requer cláusula explícita na proposta de TCC e aprovação do CADE.</li>
+<li><strong>O Estado financia via fundo.</strong> Análogo ao IRS Whistleblower Office. Exige lei (Regime C) e dotação orçamentária — politicamente custoso, mas estruturalmente robusto.</li>
+</ol>
+<p>O <strong>modelo</strong> torna isto calibrável via <code>custo_legal_uw</code> (em unidades de <span class="arithmatex">\(w_a\)</span>). O parâmetro entra na IR-W do arquétipo "racional" — quando o custo legal é alto, a recompensa <span class="arithmatex">\(W\)</span> precisa subir para o trabalhador racional ainda denunciar.</p>
+<h2 id="o-break-even-etico-coletivo-r16">O break-even ético coletivo (R16)<a class="headerlink" href="#o-break-even-etico-coletivo-r16" title="Permanent link">&para;</a></h2>
+<p>Até aqui o argumento foi inteiramente financeiro — IC-F* da firma, IR-W
+do trabalhador, contas em reais. Mas há uma intuição forte que a versão
+puramente racional não captura: <strong>a partir de uma certa massa crítica,
+algo muda na lógica individual</strong>. O trabalhador que vê dez colegas falando
+não decide pelo mesmo cálculo de quem está sozinho.</p>
+<p>O modelo agora incorpora isso explicitamente, baseado em <strong>Torsell (2026,
+<em>Theory and Decision</em>)</strong> e na teoria de inequity aversion de <strong>Fehr &amp;
+Schmidt (1999)</strong>. Um quinto arquétipo — <code>"fairminded"</code> — entra ao lado dos
+quatro de Hokamp-Pickhardt (ético, imitativo, racional, aleatório). O FM
+agente computa o payoff racional clássico <strong>e</strong> adiciona um prêmio ético
+proporcional à fração de pares já sinalizando:</p>
+<div class="arithmatex">\[
+\text{ganho}_{\text{FM}} = W_{\text{efetivo}} + \alpha \cdot \phi_{\text{vizinhos}} \cdot w_a - \text{custos}
+\]</div>
+<p>onde <span class="arithmatex">\(\phi_{\text{vizinhos}}\)</span> é a fração de vizinhos da rede intra-firma
+que sinalizaram no tique anterior, e <span class="arithmatex">\(\alpha\)</span> é o peso da inequity
+aversion (parâmetro <code>peso_inequity_aversion</code>).</p>
+<p><strong>A consequência emergente é o break-even ético</strong>: enquanto <span class="arithmatex">\(\phi\)</span> é
+baixa, FM se comporta como racional puro; quando <span class="arithmatex">\(\phi\)</span> ultrapassa um
+limiar tácito, o prêmio ético inverte o sinal da decisão — calar passa a
+ser desigualdade moral mais custosa do que falar. Não é hardcoded; é
+propriedade emergente do mesmo agente Fehr-Schmidt que a literatura usa
+em jogos de barganha.</p>
+<p>O resultado central de Torsell (2026) — que FM <strong>proliferaria</strong> em
+populações HE+FM sob qualquer dinâmica payoff-monotone, com aprendizado
+intra-geracional via <em>fictitious play</em> — sugere que o canal ético não é
+uma curiosidade marginal; pode ser <strong>a peça dominante</strong> quando a massa
+crítica se forma. Modelar isto endogenamente é o trabalho de R16, e o
+catálogo de <a href="#">cenários normativos</a> (R17) já oferece presets que ativam
+o canal.</p>
+<p><span class="kicker">Camada 5 · Cascata</span></p>
+<h2 id="janela-de-adesao-pos-abertura-com-desconto-progressivo-r29">Janela de adesão pós-abertura com desconto progressivo (R29)<a class="headerlink" href="#janela-de-adesao-pos-abertura-com-desconto-progressivo-r29" title="Permanent link">&para;</a></h2>
+<p>A LCMC clássica resolve o problema de quem dá o primeiro passo: ninguém é o primeiro, porque o canal espera todos. Mas quando a massa crítica é atingida e o bloco se abre, sobra ainda <strong>uma decisão aberta para o resto dos trabalhadores da firma</strong>: o que fazer com quem viu a conduta mas não depositou a tempo? A regra R29 oferece a esses retardatários <strong>uma janela de dez tiques para aderir à classe dos lenientes</strong> com desconto decrescente por ordem de chegada — uma versão pós-coordenação da fila clássica do Art. 86 da Lei nº 12.529/2011.</p>
+<p>A lógica é direta. No instante da abertura, os depositantes originais — aqueles que dispararam a massa crítica — ficam na <strong>faixa 0</strong>: imunidade total. Pelos próximos <code>janela_adesao_pos_abertura</code> tiques (default 10), trabalhadores da mesma firma que ainda não cooperaram podem aderir: o primeiro entra na faixa 1, o segundo na faixa 2, e assim por diante. Cada faixa tem um fator de desconto sobre a recompensa <code>W</code>, descrito pela tupla <code>descontos_faixas_adesao</code> (default <code>(1.0, 0.7, 0.5, 0.3, 0.1)</code>). Quem aderiu na posição 0 (junto com os originais) recebe 100% de <code>W</code>; quem aderiu em quinta posição em diante recebe 10% — o piso. Quem não aderiu até o fim da janela permanece no escrow comum e está sujeito à expiração R27-ii.</p>
+<p><img alt="Janela de adesão pós-abertura com desconto progressivo R29" src="../img/22_cascata_adesao_r29.png" /></p>
+<p>Em prosa: a R29 transforma a abertura do bloco em <strong>evento Schelling reverso</strong>. No instante zero, a firma já sabe que vai ser notificada — não há mais dúvida sobre o gatilho. Mas para cada trabalhador que tinha hesitado, agora há uma escolha clara: aderir já (e levar desconto alto) ou esperar (e ver o desconto cair tique a tique). É o mesmo dispositivo da fila clássica de leniência operado <strong>dentro da firma já aberta</strong>, sem precisar de outro cartel para servir de gatilho.</p>
+<p>O efeito jogo-teórico é dois: (i) a janela aumenta a captação de prova — mais trabalhadores cooperam, qualidade média da prova sobe; (ii) cria pressão antecipatória sobre quem está pensando em depositar para o canal em primeiro lugar. Mesmo quem prefere "esperar para ver" tem incentivo para depositar antes da abertura, porque saber-se na faixa 0 vale mais do que apostar em entrar na faixa 1 depois.</p>
+<p>Em código, a regra é uma fase nova P2.5c entre a abertura do escrow e a decisão da firma (P3). Sob <code>janela_adesao_pos_abertura = 0</code> (default), a fase é no-op e o modelo se comporta exatamente como antes — compat estrita.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># src/waas_antitrust/model.py — fase P2.5c</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">usar_escrow_explicito</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">janela_adesao_pos_abertura</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">autoridade</span><span class="o">.</span><span class="n">processar_adesao_pos_abertura</span><span class="p">(</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        <span class="n">tique_atual</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tique</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="n">janela</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">janela_adesao_pos_abertura</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="n">descontos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">descontos_faixas_adesao</span><span class="p">,</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="n">trabalhadores_por_empresa</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trabalhadores_por_empresa</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="n">W_max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_W_esperado</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="n">custo_represalia</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">r_represalia</span><span class="p">,</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="p">)</span>
+</code></pre></div>
+<p>A decisão individual de aderir é a IR-W projetada para a faixa: o trabalhador entra se <code>fator_desconto[k] × W_max &gt; custo_represalia × w_a</code>. Como o fator decai, há uma posição <span class="arithmatex">\(k^*\)</span> a partir da qual ninguém adere mais — corte endógeno do que originalmente seria uma cauda infinita. Os reporters <code>n_aderentes_pos_abertura_acum</code> e <code>n_blocos_em_janela_adesao_acum</code> ficam expostos no <code>DataFrame</code> resultado, como qualquer outro estado do modelo. O cenário canônico <code>cascata_adesao_progressiva</code> ativa a regra com a parametrização default; o caderno <a href="../brincar/">Brincar in-browser</a> tem o slider "Janela de adesão R29" para ajustar o <span class="arithmatex">\(\Delta t\)</span> ao vivo.</p>
+<h2 id="a-corrida-que-faltava-r20">A corrida que faltava (R20)<a class="headerlink" href="#a-corrida-que-faltava-r20" title="Permanent link">&para;</a></h2>
+<p>A leniência clássica funciona porque cria uma <strong>corrida temporal</strong> entre cúmplices: quem entrega primeiro escapa da multa, e cada conspirador, sabendo disso, antecipa-se ao outro. O <strong>WaaS na sua forma original não tinha esta corrida</strong>: o gatilho de massa crítica era binário (<code>k</code> denunciantes ⇒ a firma é notificada), o desconto da firma era constante na IC-F*, a recompensa do trabalhador era constante na IR-W. A delação era um <em>ato</em>, não uma <em>corrida</em>.</p>
+<p>Sob o moat dos mercados digitais, a corrida clássica entre firmas <strong>não tem onde acontecer</strong> — a conduta é unilateral, sem cúmplice externo. A única corrida possível é <strong>intra-firma</strong>: entre os funcionários que viram a conduta. A LCMC institucionaliza isso e acopla a uma segunda corrida — <strong>inter-firma</strong> — calibrando ambas pelo mesmo gradiente Saito.</p>
+<h3 id="corrida-intra-firma-entre-trabalhadores">Corrida intra-firma (entre trabalhadores)<a class="headerlink" href="#corrida-intra-firma-entre-trabalhadores" title="Permanent link">&para;</a></h3>
+<p>Dentro de cada firma, cada cooperador entra em uma <code>FilaInternaCooperacao</code> na ordem em que sinaliza. A recompensa decai com a posição <span class="arithmatex">\(k\)</span>:</p>
+<div class="arithmatex">\[
+W_i(k) = W_\text{base} \cdot f_W(k) \quad \text{onde} \quad f_W(k) = \frac{D_\text{Saito}(k)}{D_\text{Saito}(1)}
+\]</div>
+<p>Numericamente:</p>
+<table>
+<thead>
+<tr>
+<th>Posição <span class="arithmatex">\(k\)</span></th>
+<th><span class="arithmatex">\(D_\text{Saito}(k)\)</span></th>
+<th><span class="arithmatex">\(f_W(k)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1ª</td>
+<td>43,43%</td>
+<td>1,000</td>
+</tr>
+<tr>
+<td>2ª</td>
+<td>34,51%</td>
+<td>0,795</td>
+</tr>
+<tr>
+<td>3ª</td>
+<td>20,22%</td>
+<td>0,466</td>
+</tr>
+<tr>
+<td>4ª</td>
+<td>17,99%</td>
+<td>0,414</td>
+</tr>
+<tr>
+<td>≥ 9ª</td>
+<td>15,00% (piso Tribunal/CADE)</td>
+<td>0,345</td>
+</tr>
+</tbody>
+</table>
+<p>A consequência: o trabalhador racional que <strong>espera</strong> ver vários colegas falarem antes de falar recebe fração pequena da recompensa. Quem fala primeiro recebe o cheque cheio. A IR-W deixa de ser um limiar absoluto e vira um <em>jogo de ordem</em> — exatamente o que torna a corrida estável em leniência clássica, transposto para o microcosmo intra-firma.</p>
+<h3 id="corrida-inter-firma-entre-firmas">Corrida inter-firma (entre firmas)<a class="headerlink" href="#corrida-inter-firma-entre-firmas" title="Permanent link">&para;</a></h3>
+<p>A primeira firma a satisfazer o gatilho de <strong>massa crítica interna</strong> (<span class="arithmatex">\(n_\text{cooperadores} \ge q_\text{min} \cdot n_\text{trabalhadores}\)</span>, com <span class="arithmatex">\(q_\text{min}\)</span> default <span class="arithmatex">\(= 10\%\)</span>, calibrável por conduta via <code>N_ATORES_PRIMARIOS_NECESSARIOS</code>) entra na <code>FilaLeniencia</code> global em posição 1. A segunda em posição 2. E assim por diante.</p>
+<p>A IC-F* deixa de comparar <span class="arithmatex">\(W\)</span> contra <span class="arithmatex">\(D_\text{extra}\)</span> constante e passa a comparar contra:</p>
+<div class="arithmatex">\[
+D_\text{total}(\text{pos}_\text{firma}) = D_\text{Saito}(\text{pos}_\text{firma}) \cdot S
+\]</div>
+<p>Para a 1ª firma, <span class="arithmatex">\(D_\text{total}(1) \approx 43\% \cdot S\)</span> — IC-F* generosa, satisfeita com folga ampla. Para a 4ª, <span class="arithmatex">\(D_\text{total}(4) \approx 18\% \cdot S\)</span> — a margem encolhe. Para a ≥ 9ª (ou nenhuma cooperação interna), cai ao piso de 15% e a margem pode inverter.</p>
+<h3 id="consequencia-teorica-proposicao-1-ganha-numero-de-firmas">Consequência teórica: Proposição 1 ganha número de firmas<a class="headerlink" href="#consequencia-teorica-proposicao-1-ganha-numero-de-firmas" title="Permanent link">&para;</a></h3>
+<p>A Proposição 1 original ("existem parâmetros em que IC-F* é satisfeita") se transforma:</p>
+<blockquote>
+<p><strong>Prop. 1 (LCMC).</strong> Sob os parâmetros do ponto-alvo, <strong>existe número finito <span class="arithmatex">\(n^\star\)</span> de firmas</strong> que satisfazem a IC-F* na fila inter-firma. Firmas que chegam em posição <span class="arithmatex">\(&gt; n^\star\)</span> não cobrem <span class="arithmatex">\(W\)</span> com <span class="arithmatex">\(D_\text{total}(\text{pos})\)</span>.</p>
+</blockquote>
+<p>Esta versão é mais forte: não diz só que "existe equilíbrio cooperativo", diz <strong>quantas firmas correm</strong>. A corrida ganha precisão.</p>
+<h3 id="dois-canais-de-feedback-acoplam-as-corridas">Dois canais de feedback acoplam as corridas<a class="headerlink" href="#dois-canais-de-feedback-acoplam-as-corridas" title="Permanent link">&para;</a></h3>
+<p>A acoplagem entre corrida intra-firma e inter-firma se dá por dois canais:</p>
+<ol>
+<li><strong><code>p_perc</code> global</strong> — quando uma firma atinge massa crítica e é notificada, a percepção de detecção em todas as outras firmas sobe (canal Schelling, choque <code>caso_paradigmatico</code> endogenizado). A trabalhadora em outra firma recalcula sua expectativa de posição final.</li>
+<li><strong><code>W</code> esperado individual</strong> — trabalhadores observando a corrida em curso (<code>phi_vizinhos</code> estendido para vizinhos inter-firma) ajustam expectativa de posição final na fila. Quem chega tarde sabe que recebe menos.</li>
+</ol>
+<p>A janela temporal <code>janela_temporal_tiques</code> (default 4) limita quanto tempo a firma tem para fechar o gatilho. Se nenhuma firma atinge <span class="arithmatex">\(q_\text{min}\)</span> na janela, todas perdem o benefício LCMC e recaem em TCC clássico — o <strong>Vetor D (corrida vazia)</strong> documentado em <code>tests/test_vetores_quebra.py</code>.</p>
+<h3 id="saito-como-ancoragem-normativa">Saito como ancoragem normativa<a class="headerlink" href="#saito-como-ancoragem-normativa" title="Permanent link">&para;</a></h3>
+<p>A escolha do gradiente <span class="arithmatex">\(f_W\)</span> não é arbitrária do autor — é o mesmo dado empírico que o CADE já usa para a fila clássica entre conspiradores. Reusá-lo para a fila intra-firma é a <strong>tese substantiva da LCMC</strong>: o microcosmo interno deve replicar a lógica de fila que o macrocosmo (CADE) já pratica.</p>
+<p>O caveat declarado em <code>corrida.py</code>: Saito reporta médias por <strong>cartel</strong>, não por conduta unilateral. A transposição é proxy, justificada como ponto de partida calibrável, não como verdade empírica fechada. O CADE ainda não publica TCCs de conduta unilateral decompostos por posição (pendência E04 + R03b).</p>
+<h2 id="cenarios-normativos-como-variantes-parametricas-r17">Cenários normativos como variantes paramétricas (R17)<a class="headerlink" href="#cenarios-normativos-como-variantes-parametricas-r17" title="Permanent link">&para;</a></h2>
+<p>Uma das primeiras objeções honestas a um modelo deste tipo é "<strong>e se
+mudar a lei?</strong>". A resposta tradicional — escrever um parágrafo no paper
+descrevendo a alteração — não é boa o suficiente. A versão deste projeto
+trata cada alteração normativa como um <strong>cenário comparável</strong>: um conjunto
+nomeado de sobrescritas de parâmetros, executável e reportável.</p>
+<p>O catálogo (módulo <code>waas_antitrust.cenarios</code>) contém <strong>22 cenários
+canônicos</strong>. A tabela abaixo lista os 9 que cobrem a malha institucional
+brasileira inicial; os outros 10 (reframe v2, generalidade EUA/UE,
+canal puro, erosão Coleman) estão em <a href="../modelo_abm/"><code>modelo_abm.md</code></a> §5.</p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Hipótese institucional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>status_quo</code></td>
+<td>Brasil hoje — sem canal de incentivo individual.</td>
+</tr>
+<tr>
+<td><code>resolucao_pura</code></td>
+<td>Regime B — Art. 12 da Res. 21/2018; F6 calibrado em 10%.</td>
+</tr>
+<tr>
+<td><code>resolucao_mais_portaria_mte</code></td>
+<td>Regime B + portaria MTE com proteção trabalhista reforçada — <code>r_represalia</code> cai a 8%, <code>custo_legal</code> a 15%.</td>
+</tr>
+<tr>
+<td><code>lei_waas_pura</code></td>
+<td>Regime C — Lei 13.608/2018 estendida; F6 = 0.</td>
+</tr>
+<tr>
+<td><code>lei_waas_com_fundo_honorarios</code></td>
+<td>Regime C + fundo público para honorários (análogo IRS Whistleblower Office).</td>
+</tr>
+<tr>
+<td><code>lei_waas_com_vesting_padrao</code></td>
+<td>Regime C + cláusula padrão de vesting acelerado (Hirschman R07 universal); haircut IRPF+INSS realista.</td>
+</tr>
+<tr>
+<td><code>mercado_digital_br_pareto</code></td>
+<td>Regime C com fatia de mercado distribuída em Pareto (α=1,16) — reflete moat de plataformas dominantes (iFood, Mercado Livre, Apple/Google).</td>
+</tr>
+<tr>
+<td><code>cenario_sancao_dura</code></td>
+<td>Regime C + multa por descumprimento de TCC = 2× sanção base (R18).</td>
+</tr>
+<tr>
+<td><strong><code>cenario_corrida_leniencia</code></strong></td>
+<td><strong>LCMC plena</strong> — Regime C + <code>modo_corrida=True</code> + <code>q_min=10%</code> + janela 4 tiques + decaimento Saito. Ativa as duas corridas acopladas (intra-firma + inter-firma) descritas em "A corrida que faltava".</td>
+</tr>
+<tr>
+<td><strong><code>apenas_canal_sem_instrumento</code></strong></td>
+<td><strong>Canal puro (R27-i)</strong> — Regime B + <code>usar_escrow_explicito=True</code> + <code>W_mult=0</code> + <code>D_disc=0</code>. Isola o canal: testa se sozinho carrega o mecanismo.</td>
+</tr>
+<tr>
+<td><strong><code>erosao_coleman_adversarial</code></strong></td>
+<td><strong>Falsificação R26</strong> — <code>resolucao_pura</code> + <code>alpha_erosao=0.5</code>. Operacionaliza a Proposição 5 candidata (instrumentalizar denúncia destrói o substrato cooperativo).</td>
+</tr>
+</tbody>
+</table>
+<p>Cada cenário roda como uma chamada de função:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust</span><span class="w"> </span><span class="kn">import</span> <span class="n">cenarios</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">waas_antitrust.model</span><span class="w"> </span><span class="kn">import</span> <span class="n">WaaSModel</span><span class="p">,</span> <span class="n">WaaSParametros</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">base</span> <span class="o">=</span> <span class="n">WaaSParametros</span><span class="p">(</span><span class="n">n_empresas</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_tiques</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">for</span> <span class="n">nome</span> <span class="ow">in</span> <span class="n">cenarios</span><span class="o">.</span><span class="n">listar_cenarios</span><span class="p">():</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">params</span> <span class="o">=</span> <span class="n">cenarios</span><span class="o">.</span><span class="n">aplicar_cenario</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">nome</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">WaaSModel</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">executar</span><span class="p">()</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;dano_acumulado&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</code></pre></div>
+<p>Comparar regimes vira <strong>trabalho computacional reprodutível</strong>, não
+exercício retórico.</p>
+<h2 id="os-outros-tres-incentivos-compativeis">Os outros três incentivos compatíveis<a class="headerlink" href="#os-outros-tres-incentivos-compativeis" title="Permanent link">&para;</a></h2>
+<p>Além da IC-F* da firma, o desenho precisa satisfazer simultaneamente:</p>
+<table>
+<thead>
+<tr>
+<th>Sigla</th>
+<th>Quem</th>
+<th>Condição</th>
+<th>Onde no modelo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IR-W</strong></td>
+<td>trabalhador</td>
+<td><span class="arithmatex">\(W \ge \text{custo esperado de represália} + \text{custo legal}\)</span></td>
+<td><code>agents.py::decidir_sinal</code> (arquétipo racional)</td>
+</tr>
+<tr>
+<td><strong>IC-T</strong></td>
+<td>trabalhador</td>
+<td><span class="arithmatex">\(W\)</span> deve compensar penalidade por falso reporte</td>
+<td><code>agents.py</code> (mesma função, parcela <span class="arithmatex">\(F_{\text{falso}}\)</span>)</td>
+</tr>
+<tr>
+<td><strong>IC-F*</strong></td>
+<td>firma</td>
+<td><span class="arithmatex">\(W &lt; D_{\text{extra}}\)</span> (vide acima)</td>
+<td><code>model.py</code> (P3)</td>
+</tr>
+</tbody>
+</table>
+<p>A camada <strong>Hirschman exit-with-equity</strong> (R07) acrescenta um quarto incentivo opcional, válido apenas sob Regime C: cláusulas contratuais de vesting acelerado por gatilho de ação coletiva. Quando ativas, ampliam a IC-F* para <span class="arithmatex">\(W &lt; D_{\text{extra}} + \text{custo de êxodo coletivo}\)</span> — a firma também ganha por <strong>não perder capital humano</strong>, e isso ajuda a fechar o cálculo em casos marginais.</p>
+<p>Sob LCMC (R20, <code>modo_corrida=True</code>), as quatro condições ICs ganham dimensão de posição na fila — a IR-W vira <span class="arithmatex">\(W_\text{base} \cdot f_W(k) \ge \text{custos}\)</span> (decrescente com a ordem de cooperação intra-firma) e a IC-F* vira <span class="arithmatex">\(W_\text{total} &lt; D_\text{Saito}(\text{pos}_\text{firma}) \cdot S\)</span> (decrescente com a ordem de chegada inter-firma). É a mesma estrutura econômica; a corrida apenas torna explícito o gradiente.</p>
+<h2 id="o-que-ainda-pode-ruir-mesmo-assim">O que ainda pode ruir mesmo assim<a class="headerlink" href="#o-que-ainda-pode-ruir-mesmo-assim" title="Permanent link">&para;</a></h2>
+<p>Há pendências que o modelo, sozinho, não resolve. Estão rastreadas em <a href="../DECISIONS/">Decisões e backlog</a>, e a lista curta é:</p>
+<ul>
+<li><strong>R03</strong> — calibração formal contra Saito (2021), DEE/CADE (2022, 2024), Wiedman &amp; Zhu (2023, Dodd-Frank §922). Em particular, <span class="arithmatex">\(D_{\text{base}}\)</span> precisa de mediana empírica brasileira.</li>
+<li><strong>R09</strong> — endogeneizar <span class="arithmatex">\(g_i(t)\)</span> (atratividade de violar como função do estado). Hoje é sorteio uniforme estático.</li>
+<li><strong>R10</strong> — IC-F* completa <span class="arithmatex">\(W + p_{\text{pago}} \cdot (S - D) &lt; p_{\text{não pago}} \cdot S\)</span>, em vez da forma simplificada.</li>
+<li><strong>R13</strong> — distribuição Pareto/lognormal de fatia de mercado (hoje uniforme; em digital, o dano é cauda longa).</li>
+</ul>
+<p>A página de <a href="../limitacoes/">Limitações</a> sintetiza isso em linguagem acessível; a <a href="../critica_x10/">Crítica x10</a> detalha o que oito revisores externos apontaram.</p>
+<div class="ato-fim">
+<p><strong>Fim do Ato 2.</strong> Temos um desenho — com fórmula, exemplo numérico e três vetores de quebra calibráveis. Mas até aqui é tudo papel e equação. <strong>Será que funciona em simulação?</strong> O Ato 3 mostra o que acontece quando rodamos o modelo nos três regimes, em 20 firmas, ao longo de 40 trimestres.</p>
+<p><a href="../resultados/">Ato 3: Resultados →</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Anterior: Ato 1 · O problema">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Ato 1 · O problema
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../resultados/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Ato 3 · Resultados">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Ato 3 · Resultados
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Código e documentação sob CC BY-SA 4.0 · <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> · <a href="brincar/">brincar in-browser</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/freirelucas/waas-antitrust" target="_blank" rel="noopener" title="Repositório no GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="brincar/" target="_blank" rel="noopener" title="Brincar in-browser" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 5v8l5-4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "navigation.prune", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "content.tabs.link", "content.tooltips", "search.suggest", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/simulador.js"></script>
+      
+    
+  </body>
+</html>

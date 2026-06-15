@@ -1,0 +1,2164 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).">
+      
+      
+        <meta name="author" content="L.">
+      
+      
+        <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/REFERENCES/">
+      
+      
+        <link rel="prev" href="../TERMINOLOGIA/">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Referências - LCMC · Leniência Condicionada à Massa Crítica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%2011h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12zM12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm-3-3h2v-2.13c1.73-.44%203-2.01%203-3.87a4%204%200%200%200-4-4%204%204%200%200%200-4%204c0%201.86%201.27%203.43%203%203.87z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.5%202%202%206.5%202%2012s4.5%2010%2010%2010%2010-4.5%2010-10S17.5%202%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m4.59-12.42L10%2014.17l-2.59-2.58L6%2013l4%204%208-8z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.27%203%203%208.27v7.46L8.27%2021h7.46C17.5%2019.24%2021%2015.73%2021%2015.73V8.27L15.73%203M9.1%205h5.8L19%209.1v5.8L14.9%2019H9.1L5%2014.9V9.1m6%205.9h2v2h-2zm0-8h2v6h-2z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.8%2018.5%206%201.6-.4%201.9-9.4-2.5L2.6%2022l-.5-1.9%206-1.6L2%2016.9l.5-1.9%209.4%202.5%209.4-2.5.5%201.9zM9.5%206C8.7%206%208%206.7%208%207.5S8.7%209%209.5%209%2011%208.3%2011%207.5%2010.3%206%209.5%206m5%200c-.8%200-1.5.7-1.5%201.5S13.7%209%2014.5%209%2016%208.3%2016%207.5%2015.3%206%2014.5%206M13%2011l-1-2-1%202zM12%201C8.1%201%205%204.1%205%208c0%201.9.8%203.6%202%204.9V16h10v-3.1c1.2-1.3%202-3%202-4.9%200-3.9-3.1-7-7-7m3%2011v2h-1v-2h-1v2h-2v-2h-1v2H9v-2c-1.2-.9-2-2.3-2-4%200-2.8%202.2-5%205-5s5%202.2%205%205c0%201.6-.8%203.1-2%204%22/%3E%3C/svg%3E');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+
+  <meta property="og:title" content="Referências · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta property="og:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://freirelucas.github.io/waas-antitrust/REFERENCES/" />
+  <meta property="og:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="LCMC · Leniência Condicionada à Massa Crítica" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Referências · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta name="twitter:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta name="twitter:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+
+  <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/REFERENCES/" />
+
+  <meta name="theme-color" content="#1e8449" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bibliografia-primaria" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-header__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LCMC · Leniência Condicionada à Massa Crítica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Referências
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-nav__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    LCMC · Leniência Condicionada à Massa Crítica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 1 · O problema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mecanismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 3 · Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colaborar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 5 · Colaborar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo ABM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brincar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brincar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper (rascunho v0.2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Anexos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Como usar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comandos e scripts (CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transparencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transparência epistêmica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imprensa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kit de imprensa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formulario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formulário matemático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../bem_publico/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoria e modelo
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../INSTITUTIONAL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direito e instituições
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Referência
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TERMINOLOGIA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminologia canônica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referências
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referências
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#teoria-dos-jogos-e-desenho-de-mecanismos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teoria dos jogos e desenho de mecanismos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empirica-de-denuncia-interna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empírica de denúncia interna
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contagio-social-e-jogos-globais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contágio social e jogos globais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-escrows-e-denuncia-condicional-correcao-radical-v3-base-do-mecanismo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information escrows e denúncia condicional (correção radical v3 — base do mecanismo)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coordenacao-coletiva-capital-social-e-bens-coletivos-leitura-analitica-secundaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordenação coletiva, capital social e bens coletivos (leitura analítica secundária)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erosao-de-motivacao-por-uso-instrumental-motivation-crowding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erosão de motivação por uso instrumental (motivation crowding)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jogos-globais-dinamicos-resposta-a-mat-a-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jogos globais dinâmicos (resposta a Mat A v2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciencia-politica-da-regulacao-base-do-reframe-cientista-politico-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ciência política da regulação (base do reframe — Cientista Político v2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inequity-aversion-e-evolucao-de-preferencias-base-de-r16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inequity aversion e evolução de preferências (base de R16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelagem-baseada-em-agentes-foundational" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelagem baseada em agentes (foundational)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mercados-digitais-plataformas-e-colusao-algoritmica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mercados digitais, plataformas e colusão algorítmica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mercados digitais, plataformas e colusão algorítmica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fontes-regulatorias-e-jurisprudenciais-do-antitruste-digital-r20-catalogo-expandido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes regulatórias e jurisprudenciais do antitruste digital (R20 — catálogo expandido)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cibernetica-organizacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cibernética organizacional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fontes-brasileiras-e-contexto-institucional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes brasileiras e contexto institucional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fontes brasileiras e contexto institucional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parsing-programatico-de-normas-modulo-normas-t07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parsing programático de normas (módulo normas/ — T07)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lei-e-norma-regulamentar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lei e norma regulamentar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacidade-institucional-do-cade-r06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidade institucional do CADE (R06)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadedee-e-outras-fontes-tecnicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CADE/DEE e outras fontes técnicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roquete-e-antitruste-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roquete e antitruste 3.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lacunas-que-o-waas-aborda-sintese-pos-pesquisa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4 · Lacunas que o WaaS aborda (síntese pós-pesquisa)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-caveat-metodologico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5 · Caveat metodológico
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência da API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../critica_x10/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#teoria-dos-jogos-e-desenho-de-mecanismos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teoria dos jogos e desenho de mecanismos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#empirica-de-denuncia-interna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empírica de denúncia interna
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contagio-social-e-jogos-globais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contágio social e jogos globais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-escrows-e-denuncia-condicional-correcao-radical-v3-base-do-mecanismo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information escrows e denúncia condicional (correção radical v3 — base do mecanismo)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coordenacao-coletiva-capital-social-e-bens-coletivos-leitura-analitica-secundaria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordenação coletiva, capital social e bens coletivos (leitura analítica secundária)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erosao-de-motivacao-por-uso-instrumental-motivation-crowding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erosão de motivação por uso instrumental (motivation crowding)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jogos-globais-dinamicos-resposta-a-mat-a-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jogos globais dinâmicos (resposta a Mat A v2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciencia-politica-da-regulacao-base-do-reframe-cientista-politico-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ciência política da regulação (base do reframe — Cientista Político v2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inequity-aversion-e-evolucao-de-preferencias-base-de-r16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inequity aversion e evolução de preferências (base de R16)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modelagem-baseada-em-agentes-foundational" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelagem baseada em agentes (foundational)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mercados-digitais-plataformas-e-colusao-algoritmica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mercados digitais, plataformas e colusão algorítmica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mercados digitais, plataformas e colusão algorítmica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fontes-regulatorias-e-jurisprudenciais-do-antitruste-digital-r20-catalogo-expandido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes regulatórias e jurisprudenciais do antitruste digital (R20 — catálogo expandido)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cibernetica-organizacional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cibernética organizacional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fontes-brasileiras-e-contexto-institucional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fontes brasileiras e contexto institucional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fontes brasileiras e contexto institucional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parsing-programatico-de-normas-modulo-normas-t07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parsing programático de normas (módulo normas/ — T07)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lei-e-norma-regulamentar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lei e norma regulamentar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacidade-institucional-do-cade-r06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidade institucional do CADE (R06)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cadedee-e-outras-fontes-tecnicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CADE/DEE e outras fontes técnicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roquete-e-antitruste-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roquete e antitruste 3.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lacunas-que-o-waas-aborda-sintese-pos-pesquisa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4 · Lacunas que o WaaS aborda (síntese pós-pesquisa)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-caveat-metodologico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5 · Caveat metodológico
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Ato 1 · O problema
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../uso/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Anexos
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../glossario/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Referência
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/freirelucas/waas-antitrust/edit/main/docs/REFERENCES.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/freirelucas/waas-antitrust/raw/main/docs/REFERENCES.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="bibliografia-primaria">Bibliografia primária<a class="headerlink" href="#bibliografia-primaria" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Convenção.</strong> Cada referência abaixo foi verificada via DOI/arXiv/URL estável,
+exceto quando explicitamente marcada com <strong>[?]</strong> (verificação não conclusiva
+nesta sessão — citação a confirmar antes da publicação).</p>
+</blockquote>
+<h2 id="teoria-dos-jogos-e-desenho-de-mecanismos">Teoria dos jogos e desenho de mecanismos<a class="headerlink" href="#teoria-dos-jogos-e-desenho-de-mecanismos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Aubert, C., Rey, P., &amp; Kovacic, W. E. (2006). The impact of leniency and whistle-blowing programs on cartels. <em>International Journal of Industrial Organization</em> 24(6): 1241–1266. DOI: 10.1016/j.ijindorg.2006.04.002</li>
+<li>Bigoni, M., Fridolfsson, S.-O., Le Coq, C., &amp; Spagnolo, G. (2012). Fines, leniency, and rewards in antitrust. <em>RAND Journal of Economics</em> 43(2): 368–390. DOI: 10.1111/j.1756-2171.2012.00170.x</li>
+<li>Chen, Z., &amp; Rey, P. (2013). On the design of leniency programs. <em>Journal of Law and Economics</em> 56(4): 917–957.</li>
+<li>Harrington, J. E., &amp; Chang, M.-H. (2009). Modeling the birth and death of cartels with an application to evaluating competition policy. <em>Journal of the European Economic Association</em> 7(6): 1400–1435. DOI: 10.1162/JEEA.2009.7.6.1400</li>
+<li>Harrington, J. E., &amp; Chang, M.-H. (2015). When can we expect a corporate leniency program to result in fewer cartels? <em>Journal of Law and Economics</em> 58(2): 417–449. DOI: 10.1086/684041</li>
+<li>Motta, M., &amp; Polo, M. (2003). Leniency programs and cartel prosecution. <em>International Journal of Industrial Organization</em> 21(3): 347–379. DOI: 10.1016/S0167-7187(02)00057-7</li>
+<li>Morris, S., &amp; Shin, H. S. (1998). Unique equilibrium in a model of self-fulfilling currency attacks. <em>American Economic Review</em> 88(3): 587–597.</li>
+<li>Apesteguia, J., Dufwenberg, M., &amp; Selten, R. (2007). Blowing the whistle. <em>Economic Theory</em> 31(1): 143–166. DOI: 10.1007/s00199-006-0092-8</li>
+<li>Polinsky, A. M., &amp; Shavell, S. (2000). The economic theory of public enforcement of law. <em>Journal of Economic Literature</em> 38(1): 45–76. DOI: 10.1257/jel.38.1.45</li>
+<li>Spagnolo, G. (2004). Divide et impera: Optimal leniency programs. <em>CEPR Discussion Paper</em> 4840. <a href="https://cepr.org/publications/dp4840">https://cepr.org/publications/dp4840</a></li>
+</ul>
+<h2 id="empirica-de-denuncia-interna">Empírica de denúncia interna<a class="headerlink" href="#empirica-de-denuncia-interna" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Dyck, A., Morse, A., &amp; Zingales, L. (2010). Who blows the whistle on corporate fraud? <em>Journal of Finance</em> 65(6): 2213–2253. DOI: 10.1111/j.1540-6261.2010.01614.x</li>
+<li>Call, A. C., Martin, G. S., Sharp, N. Y., &amp; Wilde, J. H. (2018). Whistleblowers and outcomes of financial misrepresentation enforcement actions. <em>Journal of Accounting Research</em> 56(1): 123–171. DOI: 10.1111/1475-679X.12177</li>
+<li>Stubben, S., &amp; Welch, K. (2020). Evidence on the use and efficacy of internal whistleblowing systems. <em>Journal of Accounting Research</em> 58(2): 473–518. DOI: 10.1111/1475-679X.12303</li>
+<li>Wiedman, C. I., &amp; Zhu, C. (2023). The deterrent effect of the SEC Whistleblower Program on financial reporting securities violations. <em>Contemporary Accounting Research</em> 40(4): 2711–2744. DOI: 10.1111/1911-3846.12884</li>
+</ul>
+<h2 id="contagio-social-e-jogos-globais">Contágio social e jogos globais<a class="headerlink" href="#contagio-social-e-jogos-globais" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Centola, D., &amp; Macy, M. (2007). Complex contagions and the weakness of long ties. <em>American Journal of Sociology</em> 113(3): 702–734.</li>
+<li>Chwe, M. S.-Y. (2001). <em>Rational Ritual: Culture, Coordination, and Common Knowledge</em>. Princeton University Press. — <em>base do enquadramento "rituais públicos" como produtores de conhecimento comum; informa o caveat anti-erosão sobre instrumentalização da cooperação interna.</em></li>
+<li>Granovetter, M. (1978). Threshold models of collective behavior. <em>American Journal of Sociology</em> 83(6): 1420–1443.</li>
+<li>Near, J. P., &amp; Miceli, M. P. (1985). Organizational dissidence: The case of whistle-blowing. <em>Journal of Business Ethics</em> 4(1): 1–16. — <em>base do gradiente 3-níveis primário/adjacente/distal em R08.</em></li>
+</ul>
+<h2 id="information-escrows-e-denuncia-condicional-correcao-radical-v3-base-do-mecanismo">Information escrows e denúncia condicional (correção radical v3 — base do mecanismo)<a class="headerlink" href="#information-escrows-e-denuncia-condicional-correcao-radical-v3-base-do-mecanismo" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Ayres, I., &amp; Unkovic, C. (2012).</strong> Information escrows. <em>Michigan Law Review</em> 111(2): 145–196. URL: <a href="https://repository.law.umich.edu/mlr/vol111/iss2/2/">https://repository.law.umich.edu/mlr/vol111/iss2/2/</a> — <em>base teórica do canal de depósito condicional do CADE; depósito de informação revelada sob regra ex-ante por terceiro confiável.</em></li>
+<li><strong>Callisto</strong> (Project Callisto). <a href="https://www.callisto.org">https://www.callisto.org</a> — <em>plataforma operacional de denúncia condicional de assédio sexual em campus universitário nos EUA; identidade da vítima é revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem. Paralelo prático direto do canal LCMC.</em></li>
+<li>Mungan, M. C., &amp; Klick, J. (2014). Discounting and criminals' implied risk preferences. <em>Review of Law &amp; Economics</em> 10(3): 273–297. <strong>[?]</strong> — <em>aplicação de escrows em direito penal; relevante para o instrumento "leniência criminal individual" (R23).</em></li>
+<li>Mungan, M. C., &amp; Klick, J. (2016). Identifying criminals' risk preferences. <em>Indiana Law Journal</em> 91(3): 791–816. <strong>[?]</strong></li>
+<li><strong>Lei 12.529/2011, Art. 4º, II e III</strong> — atribuições do CADE para "decidir sobre a existência de infração à ordem econômica" e "instaurar processo administrativo, presidir, instruir e julgar". <em>Base legal direta da Resolução proposta para regulamentar o canal de recepção condicional.</em></li>
+<li><strong>Lei 9.784/99</strong>, Art. 5º e Art. 6º — princípios do procedimento administrativo federal; Art. 24 — sigilo decorrente de interesse público. Base supletiva para a custódia em escrow.</li>
+</ul>
+<h2 id="coordenacao-coletiva-capital-social-e-bens-coletivos-leitura-analitica-secundaria">Coordenação coletiva, capital social e bens coletivos (leitura analítica secundária)<a class="headerlink" href="#coordenacao-coletiva-capital-social-e-bens-coletivos-leitura-analitica-secundaria" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Olson, M. (1965).</strong> <em>The Logic of Collective Action: Public Goods and the Theory of Groups</em>. Harvard University Press. — <em>base do diagnóstico "grupos pequenos sustentam bens coletivos por interesse perceptível e visibilidade mútua"; informa por que massa crítica intra-firma (5-20 cooperadores) sobrevive ao argumento clássico de subprovisão.</em></li>
+<li><strong>Ostrom, E. (1990).</strong> <em>Governing the Commons: The Evolution of Institutions for Collective Action</em>. Cambridge University Press. — <em>fonte dos 8 design principles de governança de commons; o ODD §"Diagnóstico Ostrom" mostra que o WaaS satisfaz 3 (P1, P4, P5) e não satisfaz 5 (P2, P3, P6, P7, P8) — pendência de pesquisa explícita.</em></li>
+<li><strong>Coleman, J. S. (1990).</strong> <em>Foundations of Social Theory</em>. Harvard University Press. Cap. 12 ("Social Capital"). — <em>categoria primária do reframe: capital social como bem coletivo produzido como subproduto de relações de obrigação; previsão de destruição por uso instrumental (informa R26 e a Proposição 5 candidata).</em></li>
+<li>Hardin, G. (1968). The tragedy of the commons. <em>Science</em> 162(3859): 1243–1248. DOI: 10.1126/science.162.3859.1243</li>
+<li><strong>Heller, M. A. (1998).</strong> The tragedy of the anticommons: Property in the transition from Marx to markets. <em>Harvard Law Review</em> 111(3): 621–688. — <em>categoria correta para o vetor "sobre-denúncia frívola" (tragédia reversa); referência via Sociólogo na x10 v2.</em></li>
+<li>Elster, J. (1989). <em>The Cement of Society: A Study of Social Order</em>. Cambridge University Press. Cap. 5 (normas sociais como cimento de cooperação).</li>
+<li>Samuelson, P. A. (1954). The pure theory of public expenditure. <em>Review of Economics and Statistics</em> 36(4): 387–389. — <em>fonte da leitura secundária (bem quase-público) que o reframe usa como ponte didática antes da categoria Coleman.</em></li>
+</ul>
+<h2 id="erosao-de-motivacao-por-uso-instrumental-motivation-crowding">Erosão de motivação por uso instrumental (motivation crowding)<a class="headerlink" href="#erosao-de-motivacao-por-uso-instrumental-motivation-crowding" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Titmuss, R. M. (1970).</strong> <em>The Gift Relationship: From Human Blood to Social Policy</em>. London: Allen &amp; Unwin. — <em>evidência clássica de que pagar por doação de sangue reduz a doação; base empírica do efeito erosão por uso instrumental.</em></li>
+<li><strong>Frey, B. S., &amp; Jegen, R. (2001).</strong> Motivation crowding theory. <em>Journal of Economic Surveys</em> 15(5): 589–611. DOI: 10.1111/1467-6419.00150 — <em>teoria geral da expulsão de motivação intrínseca por incentivos extrínsecos; informa R26 (erosão endógena por uso).</em></li>
+<li>Bénabou, R., &amp; Tirole, J. (2003). Intrinsic and extrinsic motivation. <em>Review of Economic Studies</em> 70(3): 489–520. DOI: 10.1111/1467-937X.00253 — <em>formalização da tensão extrinsic-intrinsic em contratos com sinalização.</em></li>
+<li>Mussler, M. R., &amp; Macy, M. W. (1997). Cooperation and the emergence of role differentiation in the dynamics of social networks. <em>American Sociological Review</em> 62(5): 695–711. <strong>[?]</strong> — <em>evidência de que recompensas coletivas preservam motivação intrínseca melhor que recompensas individualizadas; relevante para a tensão entre LCMC (decaimento Saito por posição) e salvaguardas anti-erosão.</em></li>
+</ul>
+<h2 id="jogos-globais-dinamicos-resposta-a-mat-a-v2">Jogos globais dinâmicos (resposta a Mat A v2)<a class="headerlink" href="#jogos-globais-dinamicos-resposta-a-mat-a-v2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Frankel, D. M., Morris, S., &amp; Pauzner, A. (2003). Equilibrium selection in global games with strategic complementarities. <em>Journal of Economic Theory</em> 108(1): 1–44. DOI: 10.1016/S0022-0531(02)00018-2 — <em>arcabouço para unicidade em jogos globais dinâmicos; necessário para a reformulação rigorosa da Prop. 2 sob LCMC.</em></li>
+<li>Angeletos, G.-M., Hellwig, C., &amp; Pavan, A. (2007). Dynamic global games of regime change: Learning, multiplicity, and the timing of attacks. <em>Econometrica</em> 75(3): 711–756. DOI: 10.1111/j.1468-0262.2007.00766.x — <em>mostra que sinal público correlacionado pode restaurar multiplicidade; alerta de Mat A v2 sobre a fila inter-firma.</em></li>
+<li>Chwe, M. S.-Y. (2000). Communication and coordination in social networks. <em>Review of Economic Studies</em> 67(1): 1–16. DOI: 10.1111/1467-937X.00118 — <em>common knowledge em redes; ponte entre Morris-Shin e Olson, citado por Mat A v2.</em></li>
+</ul>
+<h2 id="ciencia-politica-da-regulacao-base-do-reframe-cientista-politico-v2">Ciência política da regulação (base do reframe — Cientista Político v2)<a class="headerlink" href="#ciencia-politica-da-regulacao-base-do-reframe-cientista-politico-v2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Stigler, G. J. (1971).</strong> The theory of economic regulation. <em>Bell Journal of Economics and Management Science</em> 2(1): 3–21. — <em>teoria da captura regulatória; informa o sinal mais forte do Cientista Político v2 sobre captura no processamento.</em></li>
+<li><strong>Wilson, J. Q. (ed.) (1980).</strong> <em>The Politics of Regulation</em>. Basic Books. — <em>taxonomia interesses concentrados × difusos; WaaS converte custo difuso em concentrado no bolso do trabalhador, mudando o regime de client politics para interest group politics.</em></li>
+<li><strong>McCubbins, M. D., &amp; Schwartz, T. (1984).</strong> Congressional oversight overlooked: Police patrols versus fire alarms. <em>American Journal of Political Science</em> 28(1): 165–179. DOI: 10.2307/2110792 — <em>WaaS é canal "fire alarm" (alerta pulverizado) em contraste com CADE de ofício ("police patrol"); ponto-chave do reframe.</em></li>
+<li><strong>Carpenter, D., &amp; Moss, D. A. (eds.) (2014).</strong> <em>Preventing Regulatory Capture: Special Interest Influence and How to Limit It</em>. Cambridge University Press. — <em>4 pré-requisitos contra captura: independência, transparência, sanções graduadas, accountability dupla; diagnóstico de quais o WaaS satisfaz/falha.</em></li>
+<li>Levi, M. (1988). <em>Of Rule and Revenue</em>. University of California Press. — <em>política comparada da capacidade fiscal-regulatória; informa diagnóstico do RIG 2024 sobre capacidade institucional do CADE.</em></li>
+<li>Mattli, W., &amp; Woods, N. (eds.) (2009). <em>The Politics of Global Regulation</em>. Princeton University Press. — <em>regulação em arenas multinível; informa o cenário "jurisdição concorrente" (CADE × MPF × MPT × CGU).</em></li>
+<li>Mueller, B., &amp; Pereira, C. (2002). Credibility and the design of regulatory agencies in Brazil. <em>Revista Brasileira de Economia</em> 56(3): 565–597. <strong>[?]</strong> — <em>credibilidade de autarquias regulatórias BR; informa caveats sobre captura via sabatina Senado.</em></li>
+<li>Pacheco, R. S. (2006). Regulação no Brasil: desenho das agências e formas de controle. <em>Revista de Administração Pública</em> 40(4): 523–543. <strong>[?]</strong> — <em>desenho institucional das agências BR; relevante para análise CADE pós-2023.</em></li>
+</ul>
+<h2 id="inequity-aversion-e-evolucao-de-preferencias-base-de-r16">Inequity aversion e evolução de preferências (base de R16)<a class="headerlink" href="#inequity-aversion-e-evolucao-de-preferencias-base-de-r16" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Fehr, E., &amp; Schmidt, K. M. (1999). A theory of fairness, competition, and cooperation. <em>Quarterly Journal of Economics</em> 114(3): 817–868. DOI: 10.1162/003355399556151 — <em>modelo seminal de inequity aversion; base da utilidade <code>u_i = π_i − α·|π_i − π_j|</code> adotada pelo arquétipo fairminded.</em></li>
+<li>Bolton, G. E., &amp; Ockenfels, A. (2000). ERC: A theory of equity, reciprocity, and competition. <em>American Economic Review</em> 90(1): 166–193. DOI: 10.1257/aer.90.1.166 — <em>modelo alternativo (não-aditivo) de fairness preferences; comparação canônica com Fehr-Schmidt.</em></li>
+<li>Güth, W., &amp; Yaari, M. (1992). Explaining reciprocal behavior in simple strategic games: An evolutionary approach. Em U. Witt (ed.), <em>Explaining process and change</em>. University of Michigan Press. — <em>abordagem evolutiva indireta: dual payoff structure (utilidade subjetiva × payoff material).</em></li>
+<li>Skyrms, B. (1996). <em>Evolution of the Social Contract</em>. Cambridge University Press. — <em>evolução de equilíbrios igualitários no jogo de demanda de Nash sob dinâmica replicador.</em></li>
+<li>Huck, S., &amp; Oechssler, J. (1999). The indirect evolutionary approach to explaining fair allocations. <em>Games and Economic Behavior</em> 28(1): 13–24. DOI: 10.1006/game.1998.0691</li>
+<li>Nowak, M. A., Page, K. M., &amp; Sigmund, K. (2000). Fairness versus reason in the ultimatum game. <em>Science</em> 289(5485): 1773–1775. DOI: 10.1126/science.289.5485.1773</li>
+<li>Henrich, J., Boyd, R., Bowles, S., Camerer, C., Fehr, E., Gintis, H., &amp; McElreath, R. (2001). In search of Homo Economicus: Behavioral experiments in 15 small-scale societies. <em>American Economic Review</em> 91(2): 73–78. DOI: 10.1257/aer.91.2.73</li>
+<li><strong>Torsell, C. (2026). Egalitarianism and evolution. <em>Theory and Decision</em>. DOI: 10.1007/s11238-026-10127-6</strong> — <em>resultado central que motiva R16: aversão à inequidade prolifera em populações HE+FM sob qualquer dinâmica payoff-monotone, com aprendizado intra-geracional via fictitious play. O agente fairminded no <code>agents.py</code> é a adaptação direta da utilidade Fehr-Schmidt para o contexto WaaS.</em></li>
+<li>Fudenberg, D., &amp; Levine, D. (1998). <em>The Theory of Learning in Games</em>. MIT Press. — <em>fictitious play e aprendizado intra-geracional como motor dinâmico.</em></li>
+<li>Camerer, C., &amp; Hua Ho, T. (1999). Experience-weighted attraction learning in normal form games. <em>Econometrica</em> 67(4): 827–874. DOI: 10.1111/1468-0262.00054</li>
+</ul>
+<h2 id="modelagem-baseada-em-agentes-foundational">Modelagem baseada em agentes (foundational)<a class="headerlink" href="#modelagem-baseada-em-agentes-foundational" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Grimm, V. et al. (2020). The ODD protocol for describing agent-based and other simulation models: A second update. <em>JASSS</em> 23(2): 7.</li>
+<li>Hokamp, S., &amp; Pickhardt, M. (2010). Income tax evasion in a society of heterogeneous agents. <em>International Economic Journal</em> 24(4): 541–553. DOI: 10.1080/10168737.2010.525994</li>
+<li>Tesfatsion, L., &amp; Judd, K. L. (eds.) (2006). <em>Handbook of Computational Economics, Vol. 2: Agent-Based Computational Economics</em>. North-Holland. <a href="https://faculty.sites.iastate.edu/tesfatsi/archive/tesfatsi/hbace.htm">https://faculty.sites.iastate.edu/tesfatsi/archive/tesfatsi/hbace.htm</a></li>
+<li>Farmer, J. D., &amp; Foley, D. (2009). The economy needs agent-based modelling. <em>Nature</em> 460(7256): 685–686. DOI: 10.1038/460685a</li>
+<li>LeBaron, B. (2006). Agent-based computational finance. Em Tesfatsion &amp; Judd (eds.), <em>Handbook of Computational Economics, Vol. 2</em>, cap. 24.</li>
+<li>Wilensky, U., &amp; Rand, W. (2015). <em>An Introduction to Agent-Based Modeling: Modeling Natural, Social, and Engineered Complex Systems with NetLogo</em>. MIT Press.</li>
+<li>Dawid, H., Gemkow, S., Harting, P., van der Hoog, S., &amp; Neugart, M. (2018). Agent-based macroeconomic modeling and policy analysis: The Eurace@Unibi model. Em Chen, Kaboudan &amp; Du (eds.), <em>Oxford Handbook of Computational Economics and Finance</em>. SSRN: <a href="https://ssrn.com/abstract=2408969">https://ssrn.com/abstract=2408969</a></li>
+</ul>
+<h2 id="mercados-digitais-plataformas-e-colusao-algoritmica">Mercados digitais, plataformas e colusão algorítmica<a class="headerlink" href="#mercados-digitais-plataformas-e-colusao-algoritmica" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Rochet, J.-C., &amp; Tirole, J. (2003). Platform competition in two-sided markets. <em>Journal of the European Economic Association</em> 1(4): 990–1029. DOI: 10.1162/154247603322493212</li>
+<li>Calvano, E., Calzolari, G., Denicolò, V., &amp; Pastorello, S. (2020). Artificial intelligence, algorithmic pricing, and collusion. <em>American Economic Review</em> 110(10): 3267–3297. DOI: 10.1257/aer.20190623 — dois agentes Q-learning convergem a preços supracompetitivos sem comunicação.</li>
+<li>Calvano, E., Calzolari, G., Denicolò, V., &amp; Pastorello, S. (2021). Algorithmic collusion with imperfect monitoring. <em>International Journal of Industrial Organization</em> 79: 102712. DOI: 10.1016/j.ijindorg.2021.102712</li>
+<li>Klein, T. (2021). Autonomous algorithmic collusion: Q-learning under sequential pricing. <em>RAND Journal of Economics</em> 52(3): 538–558. DOI: 10.1111/1756-2171.12383</li>
+<li>Ezrachi, A., &amp; Stucke, M. E. (2016). <em>Virtual Competition: The Promise and Perils of the Algorithm-Driven Economy</em>. Harvard University Press.</li>
+<li>Cunningham, C., Ederer, F., &amp; Ma, S. (2021). Killer acquisitions. <em>Journal of Political Economy</em> 129(3): 649–702. DOI: 10.1086/712506 — <em>base de <code>reverse_killer_shelving</code> em <code>condutas.py</code>.</em></li>
+<li>Caffarra, C., Crawford, G., &amp; Valletti, T. (2020). "How tech rolls": Potential competition and "reverse" killer acquisitions. <em>VoxEU/CEPR</em>, maio 2020. <a href="https://cepr.org/voxeu/blogs-and-reviews/how-tech-rolls-potential-competition-and-reverse-killer-acquisitions">https://cepr.org/voxeu/blogs-and-reviews/how-tech-rolls-potential-competition-and-reverse-killer-acquisitions</a></li>
+<li>Crémer, J., de Montjoye, Y.-A., &amp; Schweitzer, H. (2019). <em>Competition Policy for the Digital Era</em>. European Commission. <a href="https://op.europa.eu/en/publication-detail/-/publication/21dc175c-7b76-11e9-9f05-01aa75ed71a1">https://op.europa.eu/en/publication-detail/-/publication/21dc175c-7b76-11e9-9f05-01aa75ed71a1</a></li>
+<li>Mathur, A., Acar, G., Friedman, M. J., Lucherini, E., Mayer, J., Chetty, M., &amp; Narayanan, A. (2019). Dark patterns at scale: Findings from a crawl of 11K shopping websites. <em>Proceedings of the ACM on Human-Computer Interaction</em> 3(CSCW): art. 81. DOI: 10.1145/3359183 · arXiv: 1907.07032</li>
+<li>Khan, L. (2017). Amazon's antitrust paradox. <em>Yale Law Journal</em> 126(3): 710–805. — <em>teoria da plataforma dominante; base de <code>subsidio_cruzado_ecossistema</code> em R20.</em></li>
+</ul>
+<h3 id="fontes-regulatorias-e-jurisprudenciais-do-antitruste-digital-r20-catalogo-expandido">Fontes regulatórias e jurisprudenciais do antitruste digital (R20 — catálogo expandido)<a class="headerlink" href="#fontes-regulatorias-e-jurisprudenciais-do-antitruste-digital-r20-catalogo-expandido" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Digital Markets Act (UE, Reg. 2022/1925)</strong> — obrigações por <em>gatekeeper</em>. <a href="https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=CELEX%3A32022R1925">https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=CELEX%3A32022R1925</a> — base de <code>sideloading_block</code> (Art. 6(4)), <code>multihoming_friction</code> (Art. 6(7)), <code>switching_costs_design</code> (Art. 6(9)), <code>lock_in_credenciais</code> (Art. 5(7)).</li>
+<li><strong>Curt Justiça da UE — Google Shopping (T-612/17 / C-48/22 P, 10/09/2024).</strong> — base de <code>ranking_demotion_rivais</code>. <a href="https://curia.europa.eu/juris/document/document.jsf?docid=290229">https://curia.europa.eu/juris/document/document.jsf?docid=290229</a></li>
+<li><strong>US v. Google Search — Memorandum Opinion (Mehta J., D.D.C., 05/08/2024).</strong> — confirmação Sherman §2 sobre default search distribution. Base de <code>default_distribution_exclusivo</code>.</li>
+<li><strong>FTC v. Amazon (2023 — caso 2:23-cv-01495).</strong> Acusação relacionada a Project Nessie (precificação algorítmica) e uso de dados de sellers do marketplace. Base de <code>mfn_inverso_algorithmic</code>, <code>uso_dados_concorrentes</code>, <code>auto_deteccao_atrasada</code>. <a href="https://www.ftc.gov/legal-library/browse/cases-proceedings/1910116-amazoncom-inc">https://www.ftc.gov/legal-library/browse/cases-proceedings/1910116-amazoncom-inc</a></li>
+<li><strong>CMA UK — SMS Designations (Strategic Market Status, 2025):</strong> Apple mobile (10/10/2025), Google Search (10/10/2025). Base de <code>sideloading_block</code>, <code>multihoming_friction</code>. <a href="https://www.gov.uk/cma-cases">https://www.gov.uk/cma-cases</a></li>
+<li><strong>NYT v. OpenAI (S.D.N.Y., 2023).</strong> — questão de treino de IA com conteúdo de terceiros. Base de <code>treino_ia_com_dados_concorrentes</code>. <a href="https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf">https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf</a></li>
+<li><strong>RealPage litigation (em curso, EUA).</strong> Algorithmic pricing em mercado de aluguéis. Base de <code>discriminacao_algoritmica_preco</code>.</li>
+<li><strong>CMA Ticketmaster algorithmic pricing review (UK, 2024).</strong> Base parcial de <code>discriminacao_algoritmica_preco</code>.</li>
+<li><strong>NY Algorithmic Pricing Disclosure Act (2025).</strong> Legislação estadual sobre precificação dinâmica. <a href="https://www.nyc.gov/site/dca/businesses/consumer-protection-laws.page">https://www.nyc.gov/site/dca/businesses/consumer-protection-laws.page</a></li>
+<li><strong>CADE — Caderno Plataformas Digitais (2023).</strong> — base de <code>subsidio_cruzado_ecossistema</code>, <code>switching_costs_design</code>. <a href="https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/estudos-economicos/cadernos-do-cade/Plataformas%20Digitais.pdf">https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/estudos-economicos/cadernos-do-cade/Plataformas%20Digitais.pdf</a></li>
+<li><strong>CADE — Apple Brasil TCC dez/2025.</strong> — anti-steering + sideloading em iOS no Brasil. Base de <code>anti_steering_iap</code>, <code>sideloading_block</code>, <code>exclusao_app_store_seletiva</code>.</li>
+<li><strong>Cornell Journal of Law and Public Policy — "Pulling Up the Drawbridge" (2025).</strong> — degradação seletiva de API em plataformas. Base de <code>degradacao_api_seletiva</code>. <strong>[?]</strong> referência específica a confirmar.</li>
+<li><strong>EC RFI Microsoft-OpenAI investment (2024).</strong> — base de <code>aquisicao_assets_chave</code> e <code>tying_ia_generativa</code>. <strong>[?]</strong> verbatim a confirmar.</li>
+</ul>
+<h2 id="cibernetica-organizacional">Cibernética organizacional<a class="headerlink" href="#cibernetica-organizacional" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ashby, W. R. (1956). <em>An Introduction to Cybernetics</em>. Chapman &amp; Hall.</li>
+<li>Beer, S. (1972). <em>Brain of the Firm</em>. Allen Lane.</li>
+<li>Conant, R. C., &amp; Ashby, W. R. (1970). Every good regulator of a system must be a model of that system. <em>International Journal of Systems Science</em> 1(2): 89–97.</li>
+</ul>
+<h2 id="fontes-brasileiras-e-contexto-institucional">Fontes brasileiras e contexto institucional<a class="headerlink" href="#fontes-brasileiras-e-contexto-institucional" title="Permanent link">&para;</a></h2>
+<h3 id="parsing-programatico-de-normas-modulo-normas-t07">Parsing programático de normas (módulo <code>normas/</code> — T07)<a class="headerlink" href="#parsing-programatico-de-normas-modulo-normas-t07" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>LexML Brasil</strong> — padrão oficial brasileiro de identificação e estruturação de normas (URN-LEX + XSDs). <a href="https://projeto.lexml.gov.br/">https://projeto.lexml.gov.br/</a> · resolutor: <a href="https://www.lexml.gov.br/">https://www.lexml.gov.br/</a></li>
+<li><strong>Akoma Ntoso v1.0 OASIS</strong> — padrão internacional análogo (LegalDocML). <a href="https://docs.oasis-open.org/legaldocml/akn-core/v1.0/cs01/part1-vocabulary/akn-core-v1.0-cs01-part1-vocabulary.html">https://docs.oasis-open.org/legaldocml/akn-core/v1.0/cs01/part1-vocabulary/akn-core-v1.0-cs01-part1-vocabulary.html</a></li>
+<li><strong>LC 95/1998</strong> — Lei Complementar que codifica a técnica brasileira de elaboração legislativa (hierarquia Artigo → § → Inciso → Alínea → Item; usada como gramática do parser regex em <code>articulacao.py</code>).</li>
+<li><strong>laws.africa / cobalt + bluebell</strong> — ferramentas Python ativas para Akoma Ntoso 3.0 (cobalt para FRBR URIs, bluebell para parser texto → AKN). PT-BR não testado oficialmente; útil como referência de arquitetura. <a href="https://github.com/laws-africa/cobalt">https://github.com/laws-africa/cobalt</a> · <a href="https://github.com/laws-africa/bluebell">https://github.com/laws-africa/bluebell</a></li>
+<li><strong>ulysses-camara / ulysses-segmenter</strong> — segmentador BERT/Bi-LSTM para texto legislativo PT-BR (granularidade de sentença, não estrutural). Polo acadêmico Câmara dos Deputados + NILC/USP-São Carlos. <a href="https://github.com/ulysses-camara/ulysses-segmenter">https://github.com/ulysses-camara/ulysses-segmenter</a></li>
+<li><strong>lexml-parser-projeto-lei</strong> — parser oficial LexML em Scala (não-Python); visa projetos de lei, não normas vigentes. <a href="https://github.com/lexml/lexml-parser-projeto-lei">https://github.com/lexml/lexml-parser-projeto-lei</a></li>
+</ul>
+<h3 id="lei-e-norma-regulamentar">Lei e norma regulamentar<a class="headerlink" href="#lei-e-norma-regulamentar" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Lei 12.529/2011 (arts. 85 a 87).</li>
+<li>Lei 13.608/2018, com redação dada pela Lei 13.964/2019 (arts. 4º-A, 4º-B, 4º-C).</li>
+<li>Resolução CADE nº 21/2018, em especial o art. 12.</li>
+<li>Câmara dos Deputados. PL 2768/2022 — regulação econômica concorrencial de plataformas digitais. <a href="https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2337417">https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2337417</a> — análogo nacional ao DMA europeu.</li>
+</ul>
+<h3 id="capacidade-institucional-do-cade-r06">Capacidade institucional do CADE (R06)<a class="headerlink" href="#capacidade-institucional-do-cade-r06" title="Permanent link">&para;</a></h3>
+<p><strong>Relatórios Integrados de Gestão (RIG) — fonte primária TCU</strong></p>
+<ul>
+<li>CADE — <em>Relatório Integrado de Gestão 2022</em> (Lei 14.303/2022). Página índice: <a href="https://www.gov.br/cade/pt-br/acesso-a-informacao/transparencia-e-prestacao-de-contas/relatorios-de-gestao">https://www.gov.br/cade/pt-br/acesso-a-informacao/transparencia-e-prestacao-de-contas/relatorios-de-gestao</a>. PDF: <a href="https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2022/RIG_2022_Cade.pdf">https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2022/RIG_2022_Cade.pdf</a> — 287 servidores em exercício; LOA Ação 2807 R$ 41,8 mi (executado 99,6%); 660 ACs; 103 investigações instauradas; 1 leniência + 1 Leniência Plus.</li>
+<li>CADE — <em>Relatório Integrado de Gestão 2023</em> (Lei 14.535/2023). PDF: <a href="https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2023/RIG-2023.pdf">https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2023/RIG-2023.pdf</a> — 311 servidores; 594 ACs; 63 investigações instauradas; 2 leniências.</li>
+<li>CADE — <em>Relatório Integrado de Gestão 2024</em> (Lei 14.822/2024; publicado 25/06/2025). PDF: <a href="https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2025/RIG%202024%20COMPLETO%202025.06.25.pdf">https://cdn.cade.gov.br/Portal/acesso-a-informacao/Transpar%C3%AAncia%20e%20Presta%C3%A7%C3%A3o%20de%20Contas/2025/RIG%202024%20COMPLETO%202025.06.25.pdf</a> — <strong>326 servidores em exercício (82% cedidos)</strong>; <strong>180 na área-fim</strong>; 35 no PGPE; LOA total R$ 49,5 mi; 712 ACs (recorde); 73 investigações instauradas; 4 leniências; total cumulativo 113 leniências; multas trânsito em julgado R$ 158,18 mi nominal / R$ 29,17 mi arrecadado.</li>
+</ul>
+<p><strong>Outras fontes verificadas</strong></p>
+<ul>
+<li>CADE (14/01/2025). <em>Cade bate recorde de notificação de Atos de Concentração em 2024.</em> URL: <a href="https://www.gov.br/cade/pt-br/assuntos/noticias/cade-bate-recorde-de-notificacao-de-atos-de-concentracao-em-2024">https://www.gov.br/cade/pt-br/assuntos/noticias/cade-bate-recorde-de-notificacao-de-atos-de-concentracao-em-2024</a> — 712 ACs notificados; tempo médio AC ordinário caiu de 117 (2023) para 93,9 dias.</li>
+<li>CADE. <em>Tribunal Administrativo — Membros.</em> URL: <a href="https://www.gov.br/cade/pt-br/composicao/tribunal-administrativo/membros">https://www.gov.br/cade/pt-br/composicao/tribunal-administrativo/membros</a> — 7 conselheiros estatutários (Lei 12.529/2011 art. 6º).</li>
+<li>CADE. <em>Departamento de Estudos Econômicos (DEE).</em> URL: <a href="https://www.gov.br/cade/pt-br/acesso-a-informacao/institucional/competencias/departamento-de-estudos-economicos">https://www.gov.br/cade/pt-br/acesso-a-informacao/institucional/competencias/departamento-de-estudos-economicos</a></li>
+<li>Cordeiro, A. (30/12/2023). <em>Balanço da atuação do Cade em 2023 e novas perspectivas para 2024.</em> ConJur. URL: <a href="https://www.conjur.com.br/2023-dez-30/balanco-da-atuacao-do-cade-e-novas-perspectivas-para-2024/">https://www.conjur.com.br/2023-dez-30/balanco-da-atuacao-do-cade-e-novas-perspectivas-para-2024/</a> — 14 PAs + 5 TCC; 579 ACs; R$ 114,5 mi em multas; 2 leniências.</li>
+<li>CADE. <em>Nota Técnica de Pessoal — solicitação de concurso</em> (24/05/2022 e 2023, reproduzidas integralmente em Direção Concursos): <a href="https://www.direcaoconcursos.com.br/noticias/concurso-cade-solicitado-2023">https://www.direcaoconcursos.com.br/noticias/concurso-cade-solicitado-2023</a> e <a href="https://www.direcaoconcursos.com.br/noticias/concurso-eppgg-cade-solicitado-2023/">https://www.direcaoconcursos.com.br/noticias/concurso-eppgg-cade-solicitado-2023/</a> — 292 servidores em exercício; 34 efetivos próprios; 65 EPPGGs lotados de 200 cargos criados.</li>
+<li>Mattos Filho (2024). <em>Anticompetitive conduct enforcement 2024.</em> URL: <a href="https://www.mattosfilho.com.br/en/unico/anticompetitive-conduct-enforcement-2024/">https://www.mattosfilho.com.br/en/unico/anticompetitive-conduct-enforcement-2024/</a> — 4 leniências assinadas em 2024.</li>
+<li><strong>[?]</strong> Portal da Transparência por órgão (<code>UO 30211 — CADE</code>): <a href="https://portaldatransparencia.gov.br/orgaos/30211">https://portaldatransparencia.gov.br/orgaos/30211</a> — inacessível via WebFetch (HTTP 405); orçamento LOA pendente de verificação direta via SIOP.</li>
+</ul>
+<h3 id="cadedee-e-outras-fontes-tecnicas">CADE/DEE e outras fontes técnicas<a class="headerlink" href="#cadedee-e-outras-fontes-tecnicas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Saito, C. (24/02/2021). <em>TCC na Lei nº 12.529/11</em>. Gabinete da Presidência do CADE — resultado da Consultoria PNUD/Brasil no projeto "Melhores práticas e procedimentos de negociação de TCC" (2019-2020). 349 TCCs CADE 2012-2019. PDF verificado: <a href="https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/TCC%20na%20Lei%20n%C2%BA%2012.52911/TCC%20na%20Lei%20n%C2%BA%2012.529-11.pdf">https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/TCC%20na%20Lei%20n%C2%BA%2012.52911/TCC%20na%20Lei%20n%C2%BA%2012.529-11.pdf</a>. — <em>Calibra <code>D_disc_base_tcc</code> em <code>calibracao/saito.py</code>: médias por posição na fila (SG/CADE 1ª=43,43%; 2ª=34,51%; 3ª=20,22%; Tribunal=15%). Mediana NÃO REPORTADA pela autora.</em></li>
+<li>CADE (11/09/2017). <em>Guia de Termo de Compromisso de Cessação para casos de cartel.</em> — Codifica faixas de desconto por posição. URL: <a href="https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/guias-do-cade/guia-tcc-atualizado-11-09-17.pdf">https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/guias-do-cade/guia-tcc-atualizado-11-09-17.pdf</a></li>
+<li>CADE, DEE, <em>Documento de Trabalho 003/2022 — Aprendizado de máquina e antitruste</em>. <a href="https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/estudos-economicos/documentos-de-trabalho/2022/DOC_003-2022_Aprendizado-de-maquina-e-antitruste.pdf">https://cdn.cade.gov.br/Portal/centrais-de-conteudo/publicacoes/estudos-economicos/documentos-de-trabalho/2022/DOC_003-2022_Aprendizado-de-maquina-e-antitruste.pdf</a></li>
+<li>CADE, DEE, <em>Documento de Trabalho 001/2024 — Benefícios de atuação do Cade em 2023</em>.</li>
+<li>Castro, R. M., Mundim, F. N., &amp; Resende, G. M. (2022). <em>DEE/CADE — 10 anos da Lei 12.529/2011</em>. <strong>[?]</strong> RePEc: <code>atg/wpaper/2022060</code> (conferir publicação no portal CADE antes de citar verbatim).</li>
+<li>IPEA, Centro de Pesquisa em Ciência, Tecnologia e Sociedade. <em>Reflexões sobre o PL 2.768/2022</em> (2024). <a href="https://www.ipea.gov.br/cts/pt/central-de-conteudo/artigos/artigos/376-regulacao-de-mercados-mediados-por-plataformas-digitais-no-brasil">https://www.ipea.gov.br/cts/pt/central-de-conteudo/artigos/artigos/376-regulacao-de-mercados-mediados-por-plataformas-digitais-no-brasil</a></li>
+<li>Brasscom, <em>Monitor de Empregos e Salários</em> (09/04/2024).</li>
+<li>Brasscom, <em>Relatório Setorial 2024</em> (julho de 2025).</li>
+</ul>
+<h3 id="roquete-e-antitruste-30">Roquete e antitruste 3.0<a class="headerlink" href="#roquete-e-antitruste-30" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Roquete, F. L. V. — Superintendente-Adjunto do CADE (Coordenador-Geral de Análise Antitruste, SG/CADE); doutorando em Direito da Regulação (FGV Direito Rio). <a href="https://direitorio.fgv.br/convidado/felipe-leitao-valadares-roquete">https://direitorio.fgv.br/convidado/felipe-leitao-valadares-roquete</a>; conferência <em>Computational Antitrust: Exploring Antitrust 3.0</em> (Stanford, 15/12/2021) <a href="https://conferences.law.stanford.edu/computational-antitrust-exploring-antitrust/speakers/felipe-roquete/">https://conferences.law.stanford.edu/computational-antitrust-exploring-antitrust/speakers/felipe-roquete/</a>; coluna <em>Fronteiras Concorrência e Regulação</em> no JOTA <a href="https://www.jota.info/autor/felipe-roquete">https://www.jota.info/autor/felipe-roquete</a>. <strong>[?]</strong> Atribuição direta de "Antitruste assimétrico em mercados digitais" (JOTA, 08/10/2021) requer verificação manual antes de citação verbatim. <strong>D04</strong> (<code>DECISIONS.md</code>) registra a possibilidade de co-autoria.</li>
+</ul>
+<h2 id="4-lacunas-que-o-waas-aborda-sintese-pos-pesquisa">§4 · Lacunas que o WaaS aborda (síntese pós-pesquisa)<a class="headerlink" href="#4-lacunas-que-o-waas-aborda-sintese-pos-pesquisa" title="Permanent link">&para;</a></h2>
+<p>A literatura ABM cobre (i) <strong>leniência clássica entre cúmplices de cartel</strong>
+(Spagnolo; Motta-Polo; Harrington-Chang) e (ii) <strong>denúncia interna em fraude
+financeira</strong> (Dyck-Morse-Zingales; Hokamp-Pickhardt; Stubben-Welch;
+Wiedman-Zhu). A literatura sobre <strong>colusão algorítmica</strong> (Calvano et al.;
+Klein) é oligopólio Bertrand sem agentes humanos; a literatura sobre
+<strong>plataformas digitais</strong> (Rochet-Tirole; Crémer et al.; Cunningham-Ederer-Ma)
+é majoritariamente reduzida a forma fechada ou empírica. O projeto WaaS é
+distintivo nos seguintes pontos:</p>
+<ol>
+<li><strong>Abuso unilateral, não colusivo, como objeto.</strong> A leniência exige cúmplice
+   para delatar; a denúncia interna é financeira, não antitruste. O WaaS
+   modela como um trabalhador interno pode delatar abuso de posição dominante
+   unilateral (<em>self-preferencing</em>, <em>anti-steering</em>, <em>killer acquisitions</em>).</li>
+<li><strong>Acoplamento explícito</strong> entre IC do trabalhador (Hokamp-Pickhardt), IR
+   financeira da firma (Spagnolo) e IC institucional (Art. 12 da Resolução
+   CADE 21/2018) — sem paralelo no corpus ABM antitruste.</li>
+<li><strong>Hirschman exit-with-equity</strong> como restrição contratual sobre IC-F<em>. O
+   </em>exit-with-equity<em> como microfundamento da IC-F</em> da firma é original; a
+   literatura de leniência trata apenas recompensa financeira direta.</li>
+<li><strong>Calibração institucional brasileira granular</strong> (Leis 12.529, 13.608,
+   13.964; Resolução 21/2018; Brasscom 2024; Saito 2021; DEE/CADE 2022, 2024).</li>
+<li><strong>Catálogo heterogêneo conduta × papel intra-firma</strong> (<code>condutas.py</code>): <strong>vinte
+   e oito condutas digitais</strong> (R20/Fase 7 da LCMC) cobrindo 12 famílias de
+   conduta unilateral, incluindo casos BR — iFood marketplace, Apple Brasil
+   2025 — e jurisprudência internacional pós-2024 (CJUE Google Shopping
+   09/2024, US v. Google Search 08/2024, FTC v. Amazon 2023), cruzadas com
+   dez papéis funcionais e gradiente 3-níveis primário/adjacente/distal
+   (Near &amp; Miceli 1985). Dict <code>N_ATORES_PRIMARIOS_NECESSARIOS</code> calibra
+   <code>q_min_cooperacao_interna</code> por conduta.</li>
+<li><strong>Leniência Condicionada à Massa Crítica (LCMC) como macroconceito</strong>
+   (R20): unifica leniência clássica (Spagnolo 2004; Motta-Polo 2003),
+   massa crítica (Granovetter 1978; Centola-Macy 2007; Morris-Shin 1998) e
+   gradiente Saito (2021) por posição na fila do CADE. Sob a tese do moat,
+   institucionaliza a corrida <strong>intra-firma</strong> (entre trabalhadores) e a
+   acopla a uma corrida <strong>inter-firma</strong> (entre firmas) — ambas calibradas
+   pelo <strong>mesmo dado empírico</strong>. Módulo <code>corrida.py</code> com <code>decaimento_W</code> e
+   <code>decaimento_D</code> consumindo <code>saito.MEDIA_DESCONTO_SG_POR_POSICAO</code>. Phase
+   P2.5 em <code>model.step()</code> opt-in via <code>modo_corrida: bool = False</code>.</li>
+</ol>
+<h2 id="5-caveat-metodologico">§5 · Caveat metodológico<a class="headerlink" href="#5-caveat-metodologico" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Todas as referências acima foram verificadas via DOI/arXiv/URL no curso da
+  pesquisa de junho/2026, com exceção das marcadas <strong>[?]</strong>, que aguardam
+  confirmação manual antes de citação verbatim.</li>
+<li>A pesquisa <strong>não conseguiu localizar</strong> um pesquisador "Anderson Caputo
+  Silva" ligado ao CADE/USP em antitruste (homônimo no Banco Mundial é
+  especialista em finanças, não antitruste) — referência removida.</li>
+<li>A pesquisa <strong>não confirmou</strong> a existência de "Heitzman-Lefebvre" sobre
+  <em>false reporting/gaming</em> — substituído por Stubben &amp; Welch (2020),
+  indexado.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../TERMINOLOGIA/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Terminologia canônica">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Terminologia canônica
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Referência da API">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Referência da API
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Código e documentação sob CC BY-SA 4.0 · <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> · <a href="brincar/">brincar in-browser</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/freirelucas/waas-antitrust" target="_blank" rel="noopener" title="Repositório no GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="brincar/" target="_blank" rel="noopener" title="Brincar in-browser" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 5v8l5-4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "navigation.prune", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "content.tabs.link", "content.tooltips", "search.suggest", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/simulador.js"></script>
+      
+    
+  </body>
+</html>

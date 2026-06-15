@@ -1,0 +1,3724 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).">
+      
+      
+        <meta name="author" content="L.">
+      
+      
+        <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/api/">
+      
+      
+        <link rel="prev" href="../REFERENCES/">
+      
+      
+        <link rel="next" href="../critica_x10/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Referência da API - LCMC · Leniência Condicionada à Massa Crítica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M20%2011h3v2h-3zM1%2011h3v2H1zM13%201v3h-2V1zM4.92%203.5l2.13%202.14-1.42%201.41L3.5%204.93zm12.03%202.13%202.12-2.13%201.43%201.43-2.13%202.12zM12%206a6%206%200%200%201%206%206c0%202.22-1.21%204.16-3%205.2V19a1%201%200%200%201-1%201h-4a1%201%200%200%201-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6%206%200%200%201%206-6m2%2015v1a1%201%200%200%201-1%201h-2a1%201%200%200%201-1-1v-1zm-3-3h2v-2.13c1.73-.44%203-2.01%203-3.87a4%204%200%200%200-4-4%204%204%200%200%200-4%204c0%201.86%201.27%203.43%203%203.87z%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%202C6.5%202%202%206.5%202%2012s4.5%2010%2010%2010%2010-4.5%2010-10S17.5%202%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m4.59-12.42L10%2014.17l-2.59-2.58L6%2013l4%204%208-8z%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.27%203%203%208.27v7.46L8.27%2021h7.46C17.5%2019.24%2021%2015.73%2021%2015.73V8.27L15.73%203M9.1%205h5.8L19%209.1v5.8L14.9%2019H9.1L5%2014.9V9.1m6%205.9h2v2h-2zm0-8h2v6h-2z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22m15.8%2018.5%206%201.6-.4%201.9-9.4-2.5L2.6%2022l-.5-1.9%206-1.6L2%2016.9l.5-1.9%209.4%202.5%209.4-2.5.5%201.9zM9.5%206C8.7%206%208%206.7%208%207.5S8.7%209%209.5%209%2011%208.3%2011%207.5%2010.3%206%209.5%206m5%200c-.8%200-1.5.7-1.5%201.5S13.7%209%2014.5%209%2016%208.3%2016%207.5%2015.3%206%2014.5%206M13%2011l-1-2-1%202zM12%201C8.1%201%205%204.1%205%208c0%201.9.8%203.6%202%204.9V16h10v-3.1c1.2-1.3%202-3%202-4.9%200-3.9-3.1-7-7-7m3%2011v2h-1v-2h-1v2h-2v-2h-1v2H9v-2c-1.2-.9-2-2.3-2-4%200-2.8%202.2-5%205-5s5%202.2%205%205c0%201.6-.8%203.1-2%204%22/%3E%3C/svg%3E');}</style>
+
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+
+  <meta property="og:title" content="Referência da API · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta property="og:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://freirelucas.github.io/waas-antitrust/api/" />
+  <meta property="og:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:image:alt" content="Dissuasão endógena e bem-estar — 3 regimes A/B/C ao longo de 40 trimestres" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="LCMC · Leniência Condicionada à Massa Crítica" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Referência da API · LCMC · Leniência Condicionada à Massa Crítica" />
+  <meta name="twitter:description" content="LCMC — canal de depósito condicional (information escrow) operado pelo CADE, sem lei nova, para o antitruste de mercados digitais brasileiros. Cinco instrumentos de internalização opcionalmente acoplados ao canal, WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes, 21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481)." />
+  <meta name="twitter:image" content="https://freirelucas.github.io/waas-antitrust/img/03_dissuasao_bem_estar.png" />
+
+  <link rel="canonical" href="https://freirelucas.github.io/waas-antitrust/api/" />
+
+  <meta name="theme-color" content="#1e8449" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#referencia-da-api" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-header__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LCMC · Leniência Condicionada à Massa Crítica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Referência da API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="teal"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LCMC · Leniência Condicionada à Massa Crítica" class="md-nav__button md-logo" aria-label="LCMC · Leniência Condicionada à Massa Crítica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m9 3c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9-5a3 3 0 0 0-3 3c0 1.31.83 2.42 2 2.83V18h2v-2h2v-2h-2v-2.17c1.17-.41 2-1.52 2-2.83a3 3 0 0 0-3-3"/></svg>
+
+    </a>
+    LCMC · Leniência Condicionada à Massa Crítica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/freirelucas/waas-antitrust" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    freirelucas/waas-antitrust
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 1 · O problema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mecanismo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 2 · O mecanismo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 3 · Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../limitacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 4 · Limitações
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../colaborar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ato 5 · Colaborar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo_abm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo ABM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brincar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brincar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paper (rascunho v0.2.0)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anexos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Anexos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Como usar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comandos e scripts (CLI)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transparencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transparência epistêmica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../imprensa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kit de imprensa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formulario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Formulário matemático
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../bem_publico/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoria e modelo
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../INSTITUTIONAL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direito e instituições
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_8" id="__nav_9_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Referência
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossário
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TERMINOLOGIA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminologia canônica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referências
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência da API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referência da API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model.WaaSParametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WaaSParametros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model.WaaSModel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WaaSModel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WaaSModel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model.WaaSModel.executar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        agents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrabalhadorAgent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TrabalhadorAgent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.fracao_vested_individual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fracao_vested_individual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.receber_sinal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        receber_sinal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.decidir_sinal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        decidir_sinal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        step
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.EmpresaAgent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmpresaAgent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EmpresaAgent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.EmpresaAgent.sancao_esperada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sancao_esperada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.EmpresaAgent.satisfaz_ic_f_estrela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        satisfaz_ic_f_estrela
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AutoridadeAgent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AutoridadeAgent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.depositar_condicional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        depositar_condicional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.expirar_depositos_condicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        expirar_depositos_condicionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.abrir_escrow_se_massa_critica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        abrir_escrow_se_massa_critica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.registrar_bloco_em_adesao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        registrar_bloco_em_adesao
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.processar_adesao_pos_abertura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        processar_adesao_pos_abertura
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#varredura-de-sobol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Varredura de Sobol
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Varredura de Sobol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        execucao
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="execucao">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.calcular_bem_estar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calcular_bem_estar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_para_sobol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executar_para_sobol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_varredura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executar_varredura
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="executar_varredura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_varredura--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_varredura--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analise
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="analise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise.calcular_indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calcular_indices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise.calcular_indices_replicado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calcular_indices_replicado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise.identificar_regiao_robusta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identificar_regiao_robusta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jogo-global-r02-exploratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jogo global (R02, exploratório)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jogo global (R02, exploratório)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jogo_global
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jogo_global">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global--modelo-estilizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo estilizado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global--extensao-lcmc-mat-a-v2-r20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensão LCMC (Mat A v2 — R20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        limiar_switching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="limiar_switching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.trilha_convergencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        trilha_convergencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching_por_posicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        limiar_switching_por_posicao
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="limiar_switching_por_posicao">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching_por_posicao--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching_por_posicao--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.familia_limiares_por_posicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        familia_limiares_por_posicao
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../critica_x10/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenvolvimento
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model.WaaSParametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WaaSParametros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model.WaaSModel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WaaSModel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WaaSModel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.model.WaaSModel.executar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executar
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        agents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TrabalhadorAgent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TrabalhadorAgent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.fracao_vested_individual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fracao_vested_individual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.receber_sinal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        receber_sinal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.decidir_sinal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        decidir_sinal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.TrabalhadorAgent.step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        step
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.EmpresaAgent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmpresaAgent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EmpresaAgent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.EmpresaAgent.sancao_esperada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sancao_esperada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.EmpresaAgent.satisfaz_ic_f_estrela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        satisfaz_ic_f_estrela
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AutoridadeAgent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AutoridadeAgent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.depositar_condicional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        depositar_condicional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.expirar_depositos_condicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        expirar_depositos_condicionais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.abrir_escrow_se_massa_critica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        abrir_escrow_se_massa_critica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.registrar_bloco_em_adesao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        registrar_bloco_em_adesao
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.agents.AutoridadeAgent.processar_adesao_pos_abertura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        processar_adesao_pos_abertura
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#varredura-de-sobol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Varredura de Sobol
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Varredura de Sobol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        execucao
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="execucao">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.calcular_bem_estar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calcular_bem_estar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_para_sobol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executar_para_sobol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_varredura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        executar_varredura
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="executar_varredura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_varredura--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.execucao.executar_varredura--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        analise
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="analise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise.calcular_indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calcular_indices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise.calcular_indices_replicado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calcular_indices_replicado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.sobol.analise.identificar_regiao_robusta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        identificar_regiao_robusta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jogo-global-r02-exploratorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jogo global (R02, exploratório)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jogo global (R02, exploratório)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        jogo_global
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jogo_global">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global--modelo-estilizado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelo estilizado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global--extensao-lcmc-mat-a-v2-r20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensão LCMC (Mat A v2 — R20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        limiar_switching
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="limiar_switching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.trilha_convergencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        trilha_convergencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching_por_posicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        limiar_switching_por_posicao
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="limiar_switching_por_posicao">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching_por_posicao--parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.limiar_switching_por_posicao--returns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waas_antitrust.jogo_global.familia_limiares_por_posicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        familia_limiares_por_posicao
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navegação" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Ato 1 · O problema
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../uso/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Anexos
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../glossario/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Referência
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/freirelucas/waas-antitrust/edit/main/docs/api.md" title="Editar esta página" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/freirelucas/waas-antitrust/raw/main/docs/api.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="referencia-da-api">Referência da API<a class="headerlink" href="#referencia-da-api" title="Permanent link">&para;</a></h1>
+<p>Documentação gerada automaticamente a partir das docstrings do pacote
+<code>waas_antitrust</code>.</p>
+<h2 id="modelo">Modelo<a class="headerlink" href="#modelo" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="waas_antitrust.model" class="doc doc-heading">
+            <code>waas_antitrust.model</code>
+
+
+<a href="#waas_antitrust.model" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Classe principal do modelo WaaS e contêiner de parâmetros.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="waas_antitrust.model.WaaSParametros" class="doc doc-heading">
+            <code>WaaSParametros</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#waas_antitrust.model.WaaSParametros" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Contêiner de parâmetros do modelo.</p>
+<p>Valores-padrão inspirados em ordens de grandeza de Brasscom 2024 e da
+série do CADE (ver <code>waas_antitrust.calibracao</code>). Não há ajuste/calibração
+formal contra esses alvos — ver <code>docs/DECISIONS.md</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="waas_antitrust.model.WaaSModel" class="doc doc-heading">
+            <code>WaaSModel</code>
+
+
+<a href="#waas_antitrust.model.WaaSModel" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="mesa.Model">Model</span></code></p>
+
+
+
+        <p>Modelo Whistleblower-as-a-Service com três populações.</p>
+<p>Implementa as cinco fases do protocolo ODD (Grimm et al., JASSS 2020):
+    P1 — fase de sinalização (sinal privado ruidoso; inspirada em jogo global)
+    P2 — disparo de massa crítica
+    P3 — decisão de pagamento da empresa (IC-F*)
+    P4 — intervenção da autoridade (com restrição de capacidade)
+    P5 — coleta de estado</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.model.WaaSModel.executar" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">executar</span><span class="p">(</span><span class="n">n_tiques</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.model.WaaSModel.executar" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Executa o modelo por n_tiques (ou pelos parâmetros configurados).</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="agentes">Agentes<a class="headerlink" href="#agentes" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="waas_antitrust.agents" class="doc doc-heading">
+            <code>waas_antitrust.agents</code>
+
+
+<a href="#waas_antitrust.agents" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Três classes de agentes do modelo WaaS.</p>
+<p>Trabalhador
+    Funcionário de uma grande empresa de tecnologia, com arquétipo
+    heterogêneo (Hokamp &amp; Pickhardt, Int. Economic Journal 24(4), 2010).</p>
+<p>Empresa
+    Grande empresa de tecnologia, com tipo {violadora, não-violadora} e
+    decisão de pagamento da recompensa segundo a condição IC-F*.</p>
+<p>Autoridade
+    Entidade do tipo CADE, com restrição de capacidade κ no espírito de
+    Harrington &amp; Chang (Journal of Law and Economics 58(2), 2015) e
+    acurácia ρ.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="waas_antitrust.agents.TrabalhadorAgent" class="doc doc-heading">
+            <code>TrabalhadorAgent</code>
+
+
+<a href="#waas_antitrust.agents.TrabalhadorAgent" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="mesa.Agent">Agent</span></code></p>
+
+
+
+        <p>Funcionário de uma grande empresa de tecnologia.</p>
+<p>Arquétipos (Hokamp &amp; Pickhardt, 2010; estendidos com <strong>fairminded</strong> a
+partir de Torsell 2026 e Fehr &amp; Schmidt 1999):
+    ético       — sinaliza se severidade percebida supera limiar pessoal
+    imitativo   — sinaliza se fração de vizinhos sinalizadores ≥ 30%
+    racional    — ponderação custo-benefício explícita (IR-W e IC-T)
+    aleatório   — ruído uniforme com probabilidade eta
+    fairminded  — IR-W com inequity aversion: além do payoff individual,
+                  penaliza a desigualdade entre "estar sinalizando" e
+                  "estar em silêncio" enquanto os pares falam.
+                  Captura o <strong>break-even ético coletivo</strong> (Torsell 2026):
+                  a partir de certa massa crítica, calar vira mais custoso
+                  do que falar — emerge sem hardcoding.</p>
+<p>Heterogeneidade adicional (R14, exploratório):
+    anos_carreira              — tempo na firma (distrib. exponencial em P0)
+    fracao_vested_individual   — derivado: 0 se &lt; 1 ano (cliff); min(1, anos/4)
+    tolerancia_represalia      — multiplicador individual do custo esperado
+                                 de represália (heterogeneidade ~ N(1, 0,15))
+    historico_observou         — memória: nº de tiques em que observou
+    status                     — "ativo" (default) ou "ex_funcionario";
+                                 ex-funcionário sofre <code>r</code> efetivo menor
+                                 (sem vínculo a perder) e preserva
+                                 capacidade de sinalizar via memória.
+                                 Aplicado por choques (R19, Eurace@Unibi).</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="waas_antitrust.agents.TrabalhadorAgent.fracao_vested_individual" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fracao_vested_individual</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#waas_antitrust.agents.TrabalhadorAgent.fracao_vested_individual" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Fração vested do equity, dada <code>anos_carreira</code> (4y vesting, 1y cliff).</p>
+<p>Antes do cliff (anos &lt; 1): 0. Depois: linear até 1 em 4 anos.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.TrabalhadorAgent.receber_sinal" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">receber_sinal</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">tau</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.TrabalhadorAgent.receber_sinal" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sinal privado σ + ε, ε ~ N(0, τ²) (inspirado em jogo global; sem cálculo de equilíbrio).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.TrabalhadorAgent.decidir_sinal" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">decidir_sinal</span><span class="p">(</span><span class="n">s_i</span><span class="p">,</span> <span class="n">phi_vizinhos</span><span class="p">,</span> <span class="n">W_esperado</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">F_falso</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.TrabalhadorAgent.decidir_sinal" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retorna 1 se sinaliza nesta rodada, 0 caso contrário.</p>
+<p>O custo esperado de represália é modulado por <code>tolerancia_represalia</code>
+(R14): trabalhadores mais tolerantes ao risco têm custo efetivo menor.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.TrabalhadorAgent.step" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">step</span><span class="p">()</span></code>
+
+<a href="#waas_antitrust.agents.TrabalhadorAgent.step" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Os passos do trabalhador são orquestrados pelo modelo (fases P1–P5).</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="waas_antitrust.agents.EmpresaAgent" class="doc doc-heading">
+            <code>EmpresaAgent</code>
+
+
+<a href="#waas_antitrust.agents.EmpresaAgent" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="mesa.Agent">Agent</span></code></p>
+
+
+
+        <p>Grande empresa de tecnologia.</p>
+<p>Tipo θ ∈ {V, V̄} (violadora ou não). Decisão de pagamento (IC-F*):
+paga se D &gt; W (e o regime permite).</p>
+<p>Heterogeneidade adicional (R14, exploratório):
+    cultura_compliance — ∈ [0, 1]; modula a severidade efetiva da conduta
+                         <code>sigma_efetiva = sigma_potencial · (1 − ω·cultura)</code>.
+                         Captura programa de integridade, conselho de ética,
+                         treinamento — sem alterar a Proposição 3 (canal
+                         ortogonal ao WaaS).
+    poder_retaliacao   — proporcional a <code>fatia_mercado</code>; modula o custo
+                         efetivo de represália percebido pelo trabalhador.
+    n_denuncias_acum   — memória: nº de denúncias internas já sofridas
+                         (proxy de pressão reputacional).</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.EmpresaAgent.sancao_esperada" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sancao_esperada</span><span class="p">()</span></code>
+
+<a href="#waas_antitrust.agents.EmpresaAgent.sancao_esperada" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>E[S] escalada por σ. Faixa CADE: 0,1% a 20% da receita afetada.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.EmpresaAgent.satisfaz_ic_f_estrela" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">satisfaz_ic_f_estrela</span><span class="p">(</span><span class="n">W_total</span><span class="p">,</span> <span class="n">D_val</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.EmpresaAgent.satisfaz_ic_f_estrela" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>IC-F*: a firma paga as recompensas se o desconto no TCC supera o custo (D &gt; W).</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="waas_antitrust.agents.AutoridadeAgent" class="doc doc-heading">
+            <code>AutoridadeAgent</code>
+
+
+<a href="#waas_antitrust.agents.AutoridadeAgent" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="mesa.Agent">Agent</span></code></p>
+
+
+
+        <p>Autoridade do tipo CADE.</p>
+<p>Capacidade κ (casos por tique) e acurácia ρ. Casos não-aceitos por
+restrição de capacidade são descartados (Harrington-Chang 2015).</p>
+<p>Heterogeneidade adicional (R14, exploratório):
+    prioridade_digital — ∈ [0, 1]; modula a acurácia em condutas digitais
+                         <code>rho_efetivo = rho + (1 − rho)·prioridade</code>.
+                         Captura especialização institucional (CGAA/CADE
+                         Departamento de Estudos Econômicos sobre digital).
+                         Default 0 preserva o comportamento original.</p>
+<p>R27 (correção radical v3 — balanço 360° item #1):
+    escrow_denuncias — dict mapeando id_empresa → list[DepositoCondicional].
+                       Sob <code>usar_escrow_explicito=True</code>, o CADE mantém
+                       explicitamente o escrow de denúncias condicionais
+                       (Ayres-Unkovic 2012; análogo Callisto). Quando massa
+                       crítica é atingida em uma firma, TODAS as denúncias
+                       depositadas para aquela firma se abrem
+                       simultaneamente. Sob <code>usar_escrow_explicito=False</code>
+                       (default), o escrow é mantido implicitamente em P2.5
+                       do WaaSModel.
+    expirar_depositos_condicionais — método que remove depósitos com idade
+                       ≥ <code>janela</code> tiques (R27-ii). Chamado em P2.5b antes
+                       da abertura. <code>janela &lt;= 0</code> é no-op (escrow eterno,
+                       leitura Callisto). Distinto de <code>janela_temporal_tiques</code>
+                       (R20, janela da corrida pós-massa-crítica): é o "Δt"
+                       da definição LCMC v3 — escopo individual do depósito.</p>
+<p>R29 (janela de adesão pós-abertura com desconto progressivo por classe):
+    blocos_em_janela_adesao — dict mapeando id_empresa → registro de janela
+                       de adesão aberta. Quando uma firma atinge massa
+                       crítica e o escrow é aberto, abre-se uma janela de
+                       <code>janela_adesao_pos_abertura</code> tiques. Trabalhadores
+                       da MESMA firma que ainda não cooperaram podem aderir
+                       à "classe dos lenientes" e receber desconto
+                       progressivo por ordem de chegada — espelha a fila
+                       de leniência clássica (Spagnolo 2004), mas operada
+                       DENTRO da firma já aberta. Quem aderir na posição
+                       0..N-1 da fila pós-abertura recebe o fator do
+                       respectivo elemento de <code>descontos_faixas_adesao</code>;
+                       quem não aderir até o fim da janela permanece no
+                       escrow geral (sujeito à expiração R27-ii).
+    registrar_bloco_em_adesao — chamado pelo <code>WaaSModel</code> quando
+                       <code>abrir_escrow_se_massa_critica</code> devolve True;
+                       inicia a janela.
+    processar_adesao_pos_abertura — para cada bloco em janela ativa,
+                       processa adesões de candidatos elegíveis no tique
+                       atual; expira blocos cuja janela já se fechou.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.AutoridadeAgent.depositar_condicional" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">depositar_condicional</span><span class="p">(</span><span class="n">id_empresa</span><span class="p">,</span> <span class="n">id_trabalhador</span><span class="p">,</span> <span class="n">qualidade_prova</span><span class="p">,</span> <span class="n">tique</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.AutoridadeAgent.depositar_condicional" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Trabalhador deposita uma denúncia condicional no escrow do CADE.</p>
+<p>A denúncia fica em escrow (não notifica a firma, não vira processo)
+até que massa crítica seja atingida via <code>abrir_escrow_se_massa_critica</code>.
+Análogo Callisto / information escrow (Ayres-Unkovic 2012).</p>
+<p>Sob <code>usar_escrow_explicito=True</code> em <code>WaaSParametros</code>, o
+<code>WaaSModel.step()</code> chama este método em P1/P2 em vez de manter o
+escrow implicitamente. Backward compat estrita.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.AutoridadeAgent.expirar_depositos_condicionais" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">expirar_depositos_condicionais</span><span class="p">(</span><span class="n">tique_atual</span><span class="p">,</span> <span class="n">janela</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.AutoridadeAgent.expirar_depositos_condicionais" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Remove do escrow os depósitos com idade ≥ <code>janela</code> tiques; devolve
+quantos expiraram.</p>
+<p><code>janela &lt;= 0</code> é no-op (escrow eterno — compat e leitura Callisto).
+Idade do depósito é <code>tique_atual - tique_deposito</code>; depósitos do tique
+corrente nunca expiram (idade 0). Esta é a janela individual do depósito
+(R27-ii) — distinta de <code>janela_temporal_tiques</code> (R20, agregada).</p>
+<p>Deve ser chamada UMA vez por tique, no início de P2.5b, ANTES de
+<code>abrir_escrow_se_massa_critica</code> — depósito vencido não pode contar
+para a fração de massa crítica.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.AutoridadeAgent.abrir_escrow_se_massa_critica" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">abrir_escrow_se_massa_critica</span><span class="p">(</span><span class="n">id_empresa</span><span class="p">,</span> <span class="n">q_min</span><span class="p">,</span> <span class="n">n_trabalhadores_firma</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.AutoridadeAgent.abrir_escrow_se_massa_critica" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Se massa crítica intra-firma foi atingida, <strong>abre simultaneamente</strong>
+todas as denúncias depositadas para <code>id_empresa</code> e devolve True.</p>
+<p>Caso contrário, mantém o escrow e devolve False. Esta é a "abertura
+simultânea" da LCMC v3 — implementa o all-or-nothing do canal de
+depósito condicional.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.AutoridadeAgent.registrar_bloco_em_adesao" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">registrar_bloco_em_adesao</span><span class="p">(</span><span class="n">id_empresa</span><span class="p">,</span> <span class="n">tique_abertura</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.AutoridadeAgent.registrar_bloco_em_adesao" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Registra um bloco recém-aberto como elegível à janela de adesão.</p>
+<p>Os depositantes originais (que dispararam a massa crítica) ficam na
+faixa 0 — imunidade total. A janela de adesão fica aberta por
+<code>janela_adesao_pos_abertura</code> tiques; quem aderir nessa janela entra
+nas faixas 1..N com desconto decrescente. Quem não aderir permanece
+no escrow geral e está sujeito à expiração R27-ii.</p>
+<p>Deve ser chamado pelo <code>WaaSModel</code> imediatamente após
+<code>abrir_escrow_se_massa_critica</code> devolver True.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="waas_antitrust.agents.AutoridadeAgent.processar_adesao_pos_abertura" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">processar_adesao_pos_abertura</span><span class="p">(</span><span class="n">tique_atual</span><span class="p">,</span> <span class="n">janela</span><span class="p">,</span> <span class="n">descontos</span><span class="p">,</span> <span class="n">trabalhadores_por_empresa</span><span class="p">,</span> <span class="n">W_max</span><span class="p">,</span> <span class="n">custo_represalia</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.agents.AutoridadeAgent.processar_adesao_pos_abertura" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Para cada bloco em janela ativa, oferece adesão a trabalhadores da
+MESMA firma que ainda não fizeram parte da leniência.</p>
+<p>Decisão econômica simplificada: aderem todos cujo <code>fator_desconto *
+W_max &gt; custo_represalia</code> (IR-W projetada para a faixa atual).
+Aderentes entram na próxima posição da fila pós-abertura; saem do
+escrow caso ainda tivessem depósito ali. Devolve total de novos
+aderentes neste tique.</p>
+<p><code>janela &lt;= 0</code> é no-op; <code>descontos</code> vazio também é no-op.
+Chamado em P2.5c do <code>WaaSModel</code> UMA vez por tique, APÓS as aberturas
+do tique e ANTES de P3 — o desconto de adesão é apurado quando a
+firma decide sobre TCC.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="varredura-de-sobol">Varredura de Sobol<a class="headerlink" href="#varredura-de-sobol" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="waas_antitrust.sobol.execucao" class="doc doc-heading">
+            <code>waas_antitrust.sobol.execucao</code>
+
+
+<a href="#waas_antitrust.sobol.execucao" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Execução da varredura paramétrica de Sobol.</p>
+<p>Suporta execução síncrona e assíncrona (via joblib). Para a versão definitiva
+do artigo, recomenda-se <code>n_base = 1024</code> com paralelismo total.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.sobol.execucao.calcular_bem_estar" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calcular_bem_estar</span><span class="p">(</span><span class="n">dano</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">custo_recompensa</span><span class="p">,</span> <span class="n">w_a_base</span><span class="p">,</span> <span class="n">pesos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">custo_exodo</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">multa_arrecadada</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dissuasao_difusa</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.sobol.execucao.calcular_bem_estar" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bem-estar social com termo de externalidade erga omnes (v2.D).</p>
+
+
+<details class="fórmula" open>
+  <summary>Fórmula</summary>
+  <p>bem_estar = −(dano + β·FP + γ·custo + δ_ex·exodo
+              − δ_mu·multa − ε·dissuasao_difusa) / w_a</p>
+</details>        <p><code>dano</code> = Σ violadoras ativas por tique (R01) ou <code>dano_economico_acum</code>
+(ponderado por fatia de mercado, Categoria 3); ambos creditam a PREVENÇÃO.
+<code>custo_exodo</code> (Hirschman, R07) é custo social de perda de capital humano
+transitória; <code>multa_arrecadada</code> é receita do erário (entra com sinal +).</p>
+<p><strong>v2.D.1 (Eco B v2, R21):</strong> <code>dissuasao_difusa</code> é a externalidade
+positiva erga omnes do bem coletivo de massa crítica — calibrada como
+<code>Σ (p_perc_t − p_perc_0) · n_empresas_não_notificadas · overcharge</code>.
+Conta a dissuasão difusa que o WaaS gera sobre firmas que CADE/MPF
+jamais investigaria. Default 0 (compat); ativar via <code>pesos</code>.</p>
+<p>Mitigação de double-counting: o termo <code>dano</code> já desconta violadoras
+ativas, então <code>dissuasao_difusa</code> deve usar apenas firmas que <strong>jamais</strong>
+foram notificadas — não as que viraram VP no estoque.</p>
+<p>Pesos normativos provisórios (calibrar em R03 contra Connor-Lande
+overcharge mediano 17-19%).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.sobol.execucao.executar_para_sobol" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">executar_para_sobol</span><span class="p">(</span><span class="n">linha</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_empresas</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">tam_medio_empresa</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">n_tiques</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">replica</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.sobol.execucao.executar_para_sobol" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Executa uma única configuração paramétrica.</p>
+<p><code>VP</code>/<code>FP</code>/<code>bem_estar</code> são os totais acumulados ao fim do horizonte.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.sobol.execucao.executar_varredura" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">executar_varredura</span><span class="p">(</span><span class="n">n_base</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">regime</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_empresas</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">n_tiques</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">seed_base</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_replicas</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">problema</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.sobol.execucao.executar_varredura" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Executa a varredura de Sobol com replicação correta sobre seeds.</p>
+<p>A matriz de Saltelli é gerada uma vez. Para cada réplica <code>r</code> em
+<code>range(n_replicas)</code>, a matriz <strong>inteira</strong> é avaliada com uma seed fixa
+(<code>seed_base + r</code>), preservando o pareamento A/B/AB_i exigido pelo
+estimador de Sobol. As linhas de cada réplica ficam na ordem original da
+matriz; os índices são calculados por réplica e mediados em
+<code>analise.calcular_indices_replicado</code>.</p>
+<p>NB: alternar a seed <em>dentro</em> de uma única matriz (como em versões
+anteriores) contamina o estimador e é incorreto.</p>
+<h6 id="waas_antitrust.sobol.execucao.executar_varredura--parameters">Parameters<a class="headerlink" href="#waas_antitrust.sobol.execucao.executar_varredura--parameters" title="Permanent link">&para;</a></h6>
+<p>n_base : int
+    Número-base N. A matriz tem N·(d+2) linhas (calc_second_order=False).
+n_replicas : int
+    Número de réplicas (seeds distintas) da matriz inteira.</p>
+<h6 id="waas_antitrust.sobol.execucao.executar_varredura--returns">Returns<a class="headerlink" href="#waas_antitrust.sobol.execucao.executar_varredura--returns" title="Permanent link">&para;</a></h6>
+<p>DataFrame com N·(d+2)·n_replicas linhas; colunas: parâmetros + regime +
+seed + replica + VP + FP + precisão + bem_estar.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="waas_antitrust.sobol.analise" class="doc doc-heading">
+            <code>waas_antitrust.sobol.analise</code>
+
+
+<a href="#waas_antitrust.sobol.analise" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Análise dos resultados da varredura Sobol.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.sobol.analise.calcular_indices" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calcular_indices</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">problema</span><span class="p">,</span> <span class="n">metrica</span><span class="o">=</span><span class="s1">&#39;bem_estar&#39;</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.sobol.analise.calcular_indices" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Índices de Sobol (S1 e ST) para uma <strong>matriz única</strong> (uma réplica).</p>
+<p>Para resultados de <code>executar_varredura</code> (com coluna <code>replica</code>), use
+<code>calcular_indices_replicado</code>, que medeia os índices entre réplicas.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.sobol.analise.calcular_indices_replicado" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">calcular_indices_replicado</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">,</span> <span class="n">problema</span><span class="p">,</span> <span class="n">metrica</span><span class="o">=</span><span class="s1">&#39;bem_estar&#39;</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.sobol.analise.calcular_indices_replicado" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Índices de Sobol mediados sobre réplicas.</p>
+<p>Espera <code>df_resultados</code> com coluna <code>replica</code> (ver
+<code>execucao.executar_varredura</code>). Cada bloco de réplica deve estar na ordem
+da matriz de Saltelli. Calcula S1/ST por réplica e devolve média e
+desvio-padrão entre réplicas — esta é a forma correta de obter índices com
+incerteza estocástica, em vez de alternar seeds dentro de uma só matriz.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.sobol.analise.identificar_regiao_robusta" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">identificar_regiao_robusta</span><span class="p">(</span><span class="n">df_resultados</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">limiar_bem_estar</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">limiar_precisao</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.sobol.analise.identificar_regiao_robusta" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Marca amostras na região robusta de política.</p>
+<p>Região robusta: bem-estar estritamente positivo E precisão acima do limiar.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="jogo-global-r02-exploratorio">Jogo global (R02, exploratório)<a class="headerlink" href="#jogo-global-r02-exploratorio" title="Permanent link">&para;</a></h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h3 id="waas_antitrust.jogo_global" class="doc doc-heading">
+            <code>waas_antitrust.jogo_global</code>
+
+
+<a href="#waas_antitrust.jogo_global" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents first">
+
+        <p>Jogo global (Morris-Shin 1998) do subjogo de coordenação dos denunciantes.</p>
+<p>EXPLORATÓRIO / ESTILIZADO (R02). Deriva o <strong>limiar de switching único</strong> da decisão
+de sinalizar sob informação privada e mostra que ele converge a um limite bem
+definido quando o ruído do sinal τ → 0 — a seleção de equilíbrio único que motiva a
+Proposição 2. <strong>Não</strong> está integrado à dinâmica de arquétipos do ABM principal
+(<code>agents.py</code>); serve como verificação analítica da estrutura teórica.</p>
+<h5 id="waas_antitrust.jogo_global--modelo-estilizado">Modelo estilizado<a class="headerlink" href="#waas_antitrust.jogo_global--modelo-estilizado" title="Permanent link">&para;</a></h5>
+<p>Fundamental θ (severidade) com prior difuso; cada trabalhador recebe sinal privado
+<code>x_i = θ + τ·ε_i</code>, <code>ε_i ~ N(0, 1)</code>, e sinaliza se <code>x_i ≥ x*</code>. A cascata (massa
+crítica) é bem-sucedida se a fração de sinalizadores ≥ <code>k</code>. O ganho de uma denúncia
+bem-sucedida cresce com a severidade (<code>b·θ</code>, com <code>b ∝ W</code>); o custo de uma denúncia
+frustrada é <code>c</code> (<code>∝</code> represália <code>r</code>). A indiferença do trabalhador marginal
+(crença laplaciana) dá o limiar <strong>único</strong></p>
+<div class="highlight"><pre><span></span><code>x*(τ) = [c·k − b·τ·φ(Φ⁻¹(k))] / [b·(1−k)],     x*(0) = c·k / [b·(1−k)],
+</code></pre></div>
+<p>com φ e Φ a densidade e a CDF normais padrão. O limiar é único (linear em <code>x*</code>), em
+contraste com a multiplicidade de equilíbrios do jogo de coordenação sob conhecimento
+comum — exatamente o ponto de Morris-Shin.</p>
+<p>Limitações (ver docs/DECISIONS.md, R02): ganho linear na severidade e massa crítica
+constante são simplificações; o contraste formal com a multiplicidade e a integração
+ao ABM seguem em aberto.</p>
+<h5 id="waas_antitrust.jogo_global--extensao-lcmc-mat-a-v2-r20">Extensão LCMC (Mat A v2 — R20)<a class="headerlink" href="#waas_antitrust.jogo_global--extensao-lcmc-mat-a-v2-r20" title="Permanent link">&para;</a></h5>
+<p>Sob <code>modo_corrida=True</code>, o ganho marginal do trabalhador deixa de ser <code>b</code> uniforme e
+passa a depender da posição esperada <code>k</code> na fila intra-firma:</p>
+<div class="highlight"><pre><span></span><code>b_k = f_W(k) · b,      f_W(k) = D_Saito(k) / D_Saito(1)
+</code></pre></div>
+<p>(<code>decaimento_W</code> em <code>corrida.py</code>). O <strong>limiar por posição</strong> vira</p>
+<div class="highlight"><pre><span></span><code>x*_k(τ) = [c·k_rel − b_k·τ·φ(Φ⁻¹(k_rel))] / [b_k·(1−k_rel)]
+</code></pre></div>
+<p>onde <code>k_rel</code> é a massa crítica relativa (não confundir com a posição <code>k</code> na fila).
+Logo, sob LCMC, <strong>não há um único limiar</strong> — há uma <strong>família de limiares</strong> indexada
+por posição esperada, e a "oferta do bem coletivo" tem escala decrescente conforme
+posições se afastam da 1ª.</p>
+<p><strong>Caveat formal de unicidade</strong> (Mat A v2, Frankel-Morris-Pauzner 2003;
+Angeletos-Hellwig-Pavan 2007): a unicidade Morris-Shin clássica supõe jogo estático.
+Sob LCMC a fila inter-firma é sinal público correlacionado — Angeletos-Hellwig-Pavan
+mostraram que isso pode restaurar multiplicidade. A Proposição 2 reformulada
+"sequência {x<em>(t)}_t decrescente é única em cada instante" requer condições adicionais
+(independência inter-firma; ausência de sinal público sobre fila) que não são
+satisfeitas no caso geral. Tratamos como </em><em>conjectura aberta</em>* (ver ODD §Prop 2).</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.jogo_global.limiar_switching" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">limiar_switching</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.jogo_global.limiar_switching" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Limiar de switching <code>x*</code> do jogo global (<code>tau=0</code> dá o limite de Morris-Shin).</p>
+<h6 id="waas_antitrust.jogo_global.limiar_switching--parameters">Parameters<a class="headerlink" href="#waas_antitrust.jogo_global.limiar_switching--parameters" title="Permanent link">&para;</a></h6>
+<p>b : float
+    Ganho marginal de uma denúncia bem-sucedida por unidade de severidade (<code>∝ W</code>).
+c : float
+    Custo de uma denúncia frustrada (<code>∝</code> represália <code>r</code>).
+k : float
+    Massa crítica como fração, em <code>(0, 1)</code>.
+tau : float
+    Desvio-padrão do ruído do sinal privado (<code>≥ 0</code>). <code>0</code> devolve o limite <code>τ→0</code>.</p>
+<h6 id="waas_antitrust.jogo_global.limiar_switching--returns">Returns<a class="headerlink" href="#waas_antitrust.jogo_global.limiar_switching--returns" title="Permanent link">&para;</a></h6>
+<p>float
+    O limiar único <code>x*</code>: o trabalhador sinaliza sse seu sinal privado <code>x_i ≥ x*</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.jogo_global.trilha_convergencia" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">trilha_convergencia</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">taus</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.jogo_global.trilha_convergencia" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Limiares para uma sequência de <code>τ</code>, evidenciando a convergência ao limite <code>τ→0</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.jogo_global.limiar_switching_por_posicao" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">limiar_switching_por_posicao</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k_rel</span><span class="p">,</span> <span class="n">posicao_trabalhador</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">perfil</span><span class="o">=</span><span class="s1">&#39;saito&#39;</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.jogo_global.limiar_switching_por_posicao" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Limiar de switching <code>x*_k</code> para o trabalhador na <code>posicao_trabalhador</code> na fila
+intra-firma sob LCMC (<code>modo_corrida=True</code>).</p>
+<p>Sob o decaimento Saito, o ganho marginal vira <code>b_k = f_W(k) · b</code> com
+<code>f_W(k) = D_Saito(k) / D_Saito(1)</code>. A consequência é que <strong>cada posição</strong> tem
+seu próprio limiar; o "bem coletivo" tem oferta escalonada por posição.</p>
+<p>Atende a M1 da crítica Mat A v2 (x10 v2): explicita que o limiar Morris-Shin
+sob LCMC não é monolítico.</p>
+<h6 id="waas_antitrust.jogo_global.limiar_switching_por_posicao--parameters">Parameters<a class="headerlink" href="#waas_antitrust.jogo_global.limiar_switching_por_posicao--parameters" title="Permanent link">&para;</a></h6>
+<p>b : float
+    Ganho marginal base (posição 1) por unidade de severidade.
+c : float
+    Custo de denúncia frustrada.
+k_rel : float
+    Massa crítica relativa em <code>(0, 1)</code> (não confundir com posição na fila).
+posicao_trabalhador : int
+    Posição esperada na fila intra-firma (1-indexada).
+tau : float
+    Desvio-padrão do ruído.
+perfil : str
+    Perfil de decaimento; só <code>"saito"</code> está calibrado (consome Saito 2021).</p>
+<h6 id="waas_antitrust.jogo_global.limiar_switching_por_posicao--returns">Returns<a class="headerlink" href="#waas_antitrust.jogo_global.limiar_switching_por_posicao--returns" title="Permanent link">&para;</a></h6>
+<p>float
+    Limiar <code>x*_k</code> para a posição dada. Quanto maior a posição, <strong>maior</strong> o
+    limiar (recompensa esperada cai com posição ⇒ trabalhador mais cauteloso).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="waas_antitrust.jogo_global.familia_limiares_por_posicao" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">familia_limiares_por_posicao</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">k_rel</span><span class="p">,</span> <span class="n">posicoes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">tau</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">perfil</span><span class="o">=</span><span class="s1">&#39;saito&#39;</span><span class="p">)</span></code>
+
+<a href="#waas_antitrust.jogo_global.familia_limiares_por_posicao" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Família de limiares <code>{x*_k}</code> para uma sequência de posições na fila intra-firma.</p>
+<p>Útil para visualizar o "bem coletivo escalonado" — Proposição 1 reformulada sob LCMC
+afirma que existe número finito <code>n*</code> de posições para as quais <code>x*_k</code> está
+abaixo de algum limite tolerável; posições além de <code>n*</code> enfrentam limiar
+proibitivo e desistem de cooperar.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../REFERENCES/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Referências">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Referências
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../critica_x10/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Crítica x10">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Crítica x10
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Código e documentação sob CC BY-SA 4.0 · <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> · <a href="brincar/">brincar in-browser</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/freirelucas/waas-antitrust" target="_blank" rel="noopener" title="Repositório no GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="brincar/" target="_blank" rel="noopener" title="Brincar in-browser" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V5h14m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-9 5v8l5-4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "navigation.indexes", "navigation.prune", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "content.tabs.link", "content.tooltips", "search.suggest", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/simulador.js"></script>
+      
+    
+  </body>
+</html>

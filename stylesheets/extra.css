@@ -1,0 +1,1976 @@
+/* Categoria 6 (Designer, crítica x10): sinalização visual de status das figuras.
+ *
+ * Risco identificado: jornalista cita figura conceitual como resultado simulado;
+ * jurista cita tese como pacífica quando é controvertida.
+ *
+ * Aplicar como attribute list após a imagem:
+ *
+ *   ![…](img/01_inversao.png){ .figura-conceitual }
+ *   ![…](img/03_dissuasao_bem_estar.png){ .figura-empirica }
+ */
+
+.figura-conceitual,
+.figura-empirica {
+  display: block;
+  margin: 1.2em auto;
+  padding: 6px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.figura-conceitual {
+  border: 2px dashed #8a8a8a;
+  background: #fafafa;
+}
+
+.figura-empirica {
+  border: 2px solid #27ae60;
+  background: #f3fbf6;
+}
+
+/* Chips de status, posicionados no topo-direita da imagem. */
+.figura-conceitual::before,
+.figura-empirica::before {
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.72em;
+  font-weight: 600;
+  font-family: var(--md-text-font-family, sans-serif);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.figura-conceitual::before {
+  content: "Ilustrativo";
+  background: #ececec;
+  color: #444;
+  border: 1px solid #c6c6c6;
+}
+
+.figura-empirica::before {
+  content: "Resultado da simulação";
+  background: #27ae60;
+  color: white;
+}
+
+/* Modo escuro: ajustar contrastes. */
+[data-md-color-scheme="slate"] .figura-conceitual {
+  border-color: #6f6f6f;
+  background: #2a2a2a;
+}
+[data-md-color-scheme="slate"] .figura-empirica {
+  background: #1f3a2a;
+}
+[data-md-color-scheme="slate"] .figura-conceitual::before {
+  background: #3a3a3a;
+  color: #cfcfcf;
+  border-color: #555;
+}
+
+/* Sub-status para figuras empíricas: distingue (i) calibrado contra
+ * dado externo, (ii) direcional/sob configuração não-calibrada, e
+ * (iii) achado negativo (falsificação). Usar como segunda classe:
+ *
+ *   ![…](img/12_bootstrap.png){ .figura-empirica .status-calibrado }
+ *   ![…](img/13_internacional.png){ .figura-empirica .status-direcional }
+ *   ![…](img/10_alpha_erosao_limiar.png){ .figura-empirica .status-falsificacao }
+ */
+.figura-empirica.status-calibrado::after,
+.figura-empirica.status-direcional::after,
+.figura-empirica.status-falsificacao::after {
+  position: absolute;
+  bottom: -10px;
+  right: 12px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  font-weight: 600;
+  font-family: var(--md-text-font-family, sans-serif);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.figura-empirica.status-calibrado::after {
+  content: "Calibrado";
+  background: #1e6c39;
+  color: white;
+}
+.figura-empirica.status-direcional::after {
+  content: "Direcional";
+  background: #f5a623;
+  color: #1a1a1a;
+}
+.figura-empirica.status-falsificacao::after {
+  content: "Achado negativo";
+  background: #c0392b;
+  color: white;
+}
+[data-md-color-scheme="slate"] .figura-empirica.status-direcional::after {
+  background: #d49118;
+  color: #1a1a1a;
+}
+
+/* ----------------------------------------------------------------------
+ * Hero da home — pergunta-tese + lead em destaque acima da dobra.
+ * Aplicado com classe `.hero` em um bloco markdown.
+ * --------------------------------------------------------------------*/
+.md-typeset .hero {
+  position: relative;
+  padding: 2.2em 2em 2em 2em;
+  margin: 0.6em 0 2em 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f3fbf6 0%, #ffffff 60%, #eafaf1 100%);
+  border: 1px solid rgba(39, 174, 96, 0.15);
+  box-shadow: 0 6px 24px rgba(39, 174, 96, 0.07);
+  overflow: hidden;
+}
+.md-typeset .hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #27ae60 0%, #16a085 100%);
+}
+.md-typeset .hero h1 {
+  margin-top: 0.4em;
+  font-size: 2.2em;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+}
+.md-typeset .hero .lead {
+  font-size: 1.18em;
+  line-height: 1.55;
+  color: #2c3e50;
+  font-weight: 400;
+  margin-top: 0.6em;
+  margin-bottom: 1.2em;
+  max-width: 64ch;
+}
+.md-typeset .hero strong {
+  color: #1e8449;
+}
+
+.md-typeset .hero-cta {
+  margin-top: 1.4em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+}
+.md-typeset .hero-cta .md-button {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.md-typeset .hero-cta .md-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(39, 174, 96, 0.22);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .hero {
+  background: linear-gradient(135deg, #1e2d24 0%, #1a1f1c 60%, #15291f 100%);
+  border-color: rgba(46, 204, 113, 0.22);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+[data-md-color-scheme="slate"] .md-typeset .hero h1 {
+  color: #f3f3f3;
+}
+[data-md-color-scheme="slate"] .md-typeset .hero .lead {
+  color: #e6e6e6;
+}
+[data-md-color-scheme="slate"] .md-typeset .hero strong {
+  color: #58d68d;
+}
+
+/* ----------------------------------------------------------------------
+ * KPIs — quatro chips numéricos abaixo do hero, com destaque visual.
+ * --------------------------------------------------------------------*/
+.md-typeset .kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  margin: 0 0 2.4em 0;
+}
+.md-typeset .kpi-card {
+  padding: 1.1em 1em 0.9em 1em;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  text-align: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.md-typeset .kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(39, 174, 96, 0.12);
+}
+.md-typeset .kpi-card strong {
+  display: block;
+  font-size: 1.65em;
+  line-height: 1.08;
+  color: #1e8449;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-feature-settings: "tnum";
+}
+.md-typeset .kpi-card small {
+  display: block;
+  margin-top: 0.45em;
+  font-size: 0.78em;
+  color: #555;
+  line-height: 1.35;
+}
+[data-md-color-scheme="slate"] .md-typeset .kpi-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(46, 204, 113, 0.25);
+}
+[data-md-color-scheme="slate"] .md-typeset .kpi-card strong {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset .kpi-card small {
+  color: #bdbdbd;
+}
+@media (max-width: 760px) {
+  .md-typeset .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 380px) {
+  .md-typeset .kpi-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------------------------------------------------
+ * Pivô estético/narrativo: tipografia dramática + storytelling
+ * --------------------------------------------------------------------*/
+
+/* H1 mais leve, com letter-spacing negativo (editorial). */
+.md-typeset h1 {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-top: 0.6em;
+}
+
+/* H2 com peso e respiro adicional — divide os atos. */
+.md-typeset h2 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2.6em;
+  margin-bottom: 0.6em;
+}
+
+/* Lead — parágrafo introdutório em corpo maior. Aplicado via `{ .lead }`. */
+.md-typeset .lead {
+  font-size: 1.18em;
+  line-height: 1.55;
+  color: #34495e;
+  margin: 0.4em 0 1.2em 0;
+}
+[data-md-color-scheme="slate"] .md-typeset .lead {
+  color: #d8d8d8;
+}
+
+/* Callout numérico — destaque de um valor central do argumento. */
+.md-typeset .numero-callout {
+  display: block;
+  margin: 1.8em auto;
+  text-align: center;
+  padding: 1.2em 1em;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.md-typeset .numero-callout .valor {
+  display: block;
+  font-size: 2.6em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1e8449;
+  line-height: 1.0;
+  margin-bottom: 0.2em;
+}
+.md-typeset .numero-callout .legenda {
+  display: block;
+  font-size: 0.95em;
+  color: #5d6d7e;
+  max-width: 38em;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+[data-md-color-scheme="slate"] .md-typeset .numero-callout .valor {
+  color: #2ecc71;
+}
+[data-md-color-scheme="slate"] .md-typeset .numero-callout .legenda {
+  color: #b8c5d1;
+}
+[data-md-color-scheme="slate"] .md-typeset .numero-callout {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Quote flanqueada — citação ou tese em destaque visual. */
+.md-typeset .pull-quote {
+  display: block;
+  margin: 1.6em 0;
+  padding: 0.5em 0 0.5em 1.2em;
+  border-left: 3px solid #16a085;
+  font-size: 1.1em;
+  line-height: 1.5;
+  color: #2c3e50;
+  font-style: italic;
+}
+[data-md-color-scheme="slate"] .md-typeset .pull-quote {
+  color: #d8d8d8;
+  border-left-color: #1abc9c;
+}
+
+/* Conclusão do ato — bloco final com ponte para a próxima página. */
+.md-typeset .ato-fim {
+  display: block;
+  margin: 2.4em 0 0.4em 0;
+  padding: 1.0em 1.2em;
+  background: #eafaf1;
+  border-radius: 6px;
+  border-left: 4px solid #27ae60;
+}
+.md-typeset .ato-fim p {
+  margin: 0.2em 0;
+}
+.md-typeset .ato-fim p:last-child a {
+  font-weight: 600;
+  color: #1e8449;
+  text-decoration: none;
+}
+.md-typeset .ato-fim p:last-child a:hover {
+  text-decoration: underline;
+}
+[data-md-color-scheme="slate"] .md-typeset .ato-fim {
+  background: #1f3a2a;
+  border-left-color: #2ecc71;
+}
+[data-md-color-scheme="slate"] .md-typeset .ato-fim p:last-child a {
+  color: #2ecc71;
+}
+
+/* Chip de ato — "Ato 1 de 5" no topo de cada página. */
+.md-typeset .ato-chip {
+  display: inline-block;
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #16a085;
+  font-weight: 600;
+  margin-bottom: 0.6em;
+}
+[data-md-color-scheme="slate"] .md-typeset .ato-chip {
+  color: #2ecc71;
+}
+
+/* ----------------------------------------------------------------------
+ * Cartões de navegação por persona (grid cards Material).
+ * --------------------------------------------------------------------*/
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 1.2em 1.2em 1.1em 1.2em;
+  background: #ffffff;
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 12px 28px rgba(39, 174, 96, 0.13);
+  transform: translateY(-3px);
+  border-color: rgba(39, 174, 96, 0.32);
+}
+.md-typeset .grid.cards > ul > li > p:first-child {
+  margin-top: 0;
+  font-size: 1.08em;
+  letter-spacing: -0.005em;
+}
+.md-typeset .grid.cards > ul > li > p:first-child strong {
+  font-size: 1.06em;
+  color: #1e8449;
+}
+.md-typeset .grid.cards > ul > li > p:first-child .twemoji,
+.md-typeset .grid.cards > ul > li > p:first-child .md-typeset__svg,
+.md-typeset .grid.cards > ul > li > p:first-child svg {
+  fill: #16a085;
+  margin-right: 0.3em;
+  vertical-align: -0.15em;
+}
+.md-typeset .grid.cards > ul > li > hr {
+  margin: 0.55em 0 0.85em 0;
+  border: none;
+  border-top: 1px solid rgba(39, 174, 96, 0.22);
+}
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
+  border-color: rgba(46, 204, 113, 0.42);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li > p:first-child strong {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li > hr {
+  border-top-color: rgba(46, 204, 113, 0.3);
+}
+
+/* ----------------------------------------------------------------------
+ * Distinções tipográficas leves para badges / chips em texto.
+ * --------------------------------------------------------------------*/
+.md-typeset .chip {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 0.8em;
+  border-radius: 10px;
+  background: #ececec;
+  color: #444;
+  margin-right: 4px;
+}
+[data-md-color-scheme="slate"] .md-typeset .chip {
+  background: #3a3a3a;
+  color: #cfcfcf;
+}
+
+/* Crítica x10 v2 (Designer): empilhar tipograficamente punchline jornalística
+ * (H1) + reframe acadêmico (sublinha cinza em itálico) abaixo. Mantém ambas
+ * leituras — cético jornalístico continua na pista, leitor analítico já
+ * recebe o reframe.
+ */
+.sublinha-tese {
+  font-size: 1.05em;
+  font-style: italic;
+  color: #5d6d7e;
+  margin-top: -0.4em;
+  margin-bottom: 1.4em;
+  padding-left: 0.6em;
+  border-left: 3px solid #cfd8dc;
+  line-height: 1.5;
+}
+[data-md-color-scheme="slate"] .sublinha-tese {
+  color: #9aa6b2;
+  border-left-color: #4a5562;
+}
+
+/* Crítica x10 v2 (Designer): chip-instrumento reutilizável para os 4
+ * instrumentos de internalização. WaaS em cor primária (verde do tema);
+ * Hirschman, tributário, criminal em cinza-azulado uniforme.
+ * Contraste AA verificado.
+ */
+.chip-instrumento {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  margin: 0 0.2em;
+  border-radius: 0.3em;
+  font-size: 0.85em;
+  font-weight: 500;
+  background: #cfd8dc;
+  color: #2c3e50;
+  border: 1px solid #b0bec5;
+}
+.chip-instrumento.waas {
+  background: #27ae60;
+  color: #ffffff;
+  border-color: #1e8449;
+}
+[data-md-color-scheme="slate"] .chip-instrumento {
+  /* Balanço 360° item #3: contraste AA em modo escuro (era 3.2:1, agora ≥ 4.5:1). */
+  background: #2c3e50;
+  color: #ffffff;
+  border-color: #4a5562;
+}
+[data-md-color-scheme="slate"] .chip-instrumento.waas {
+  background: #2ecc71;
+  color: #1a1a1a;
+  border-color: #27ae60;
+}
+
+/* Crítica x10 v2 (Designer): grid-instrumentos para sumário visual 2×2 dos
+ * quatro instrumentos de internalização (WaaS, Hirschman, Tributário, Criminal).
+ * Munzner "small multiples" — leitor reconhece família, não objeto isolado.
+ */
+.grid-instrumentos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin: 1.5em 0;
+}
+.grid-instrumentos ul,
+.grid-instrumentos > p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.grid-instrumentos li {
+  background: #f5f7fa;
+  border-left: 3px solid #cfd8dc;
+  border-radius: 0.25em;
+  padding: 0.8em 1em;
+  list-style: none;
+}
+[data-md-color-scheme="slate"] .grid-instrumentos li {
+  background: #2a3138;
+  border-left-color: #4a5562;
+}
+@media (max-width: 600px) {
+  .grid-instrumentos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Balanço 360° item #8: hierarquia visual de H4 em páginas longas.
+ * Sub-subseções (####) ganham cor cinza-azulada distinta + margem maior
+ * para respiração; quebra a parede de texto em Atos com aritmética
+ * densa (notadamente Camada 4 de mecanismo.md). */
+.md-typeset h4 {
+  color: #5d6d7e;
+  font-size: 0.95em;
+  font-weight: 600;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+}
+[data-md-color-scheme="slate"] .md-typeset h4 {
+  color: #9aa6b2;
+}
+
+/* Balanço 360° item #M2: responsividade ampliada para telas < 480px.
+ * numero-callout em 2.6em fica agressivo em iPhone SE — reduz e
+ * permite reflow vertical.
+ *
+ * Os seletores são prefixados com `.md-typeset` para vencerem a
+ * especificidade das regras base (que usam o mesmo prefixo). Sem o
+ * prefixo, as regras desta media query nunca ganham. */
+@media (max-width: 480px) {
+  .md-typeset .numero-callout .valor {
+    font-size: 1.8em;
+  }
+  .md-typeset .numero-callout {
+    padding: 0.9em 0.5em;
+  }
+  .md-typeset .hero {
+    padding: 1em;
+  }
+  .md-typeset h1 {
+    font-size: 1.55em;
+  }
+  .md-typeset h2 {
+    font-size: 1.25em;
+    margin-top: 2em;
+  }
+  .md-typeset .pull-quote {
+    font-size: 1em;
+    padding-left: 0.8em;
+  }
+  .md-typeset .ato-fim {
+    padding: 0.8em 0.9em;
+  }
+  .md-typeset .sublinha-tese {
+    font-size: 0.98em;
+  }
+  .md-typeset .chip-instrumento {
+    font-size: 0.8em;
+    padding: 0.1em 0.5em;
+  }
+}
+
+/* Cards de navegação: padding mais econômico em telas pequenas e hover
+ * só em dispositivos com ponteiro fino (evita translateY "grudado" em
+ * toque). */
+@media (max-width: 600px) {
+  .md-typeset .grid.cards > ul > li {
+    padding: 0.8em 0.9em;
+  }
+}
+@media (hover: none) {
+  .md-typeset .grid.cards > ul > li:hover {
+    transform: none;
+  }
+}
+
+/* ----------------------------------------------------------------------
+ * Polimento global para a "super experiência" — sumário sticky, tabs
+ * mais respiráveis, links/footer enriquecido, sublinhado animado.
+ * --------------------------------------------------------------------*/
+
+/* Tabs do pymdownx (=== conteúdo): mais espaço, hover suave, ativa em verde institucional. */
+.md-typeset .tabbed-set {
+  margin: 1.2em 0 1.8em 0;
+}
+.md-typeset .tabbed-labels > label {
+  padding: 0.6em 0.9em;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.md-typeset .tabbed-labels > label:hover {
+  color: #16a085;
+}
+.md-typeset .tabbed-set > input:checked + label {
+  border-color: #27ae60;
+  color: #1e8449;
+}
+.md-typeset .tabbed-content {
+  padding-top: 0.4em;
+}
+[data-md-color-scheme="slate"] .md-typeset .tabbed-set > input:checked + label {
+  border-color: #58d68d;
+  color: #58d68d;
+}
+
+/* Links de conteúdo: underline mais discreto, mais elegante. */
+.md-typeset a:not(.md-button):not(.headerlink) {
+  text-decoration-color: rgba(39, 174, 96, 0.32);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+.md-typeset a:not(.md-button):not(.headerlink):hover {
+  text-decoration-color: #16a085;
+}
+
+/* Tabela de conteúdo (TOC) lateral: tipografia mais editorial. */
+.md-nav__title {
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 600;
+}
+.md-nav__item .md-nav__link--active {
+  font-weight: 600;
+  color: #1e8449;
+}
+[data-md-color-scheme="slate"] .md-nav__item .md-nav__link--active {
+  color: #58d68d;
+}
+
+/* Tipografia geral: H1/H2 com letter-spacing editorial, ritmo respirável. */
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.18;
+}
+.md-typeset h2 {
+  font-weight: 600;
+  letter-spacing: -0.014em;
+  margin-top: 2.0em;
+  padding-top: 0.2em;
+}
+.md-typeset h2::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: linear-gradient(90deg, #27ae60, #16a085);
+  border-radius: 2px;
+  margin-top: 0.45em;
+  margin-bottom: 0.3em;
+}
+.md-typeset h3 {
+  font-weight: 600;
+  letter-spacing: -0.008em;
+}
+
+/* Citação em bloco mais editorial (verbatim normativos). */
+.md-typeset blockquote {
+  border-left: 3px solid #27ae60;
+  background: rgba(39, 174, 96, 0.05);
+  border-radius: 0 6px 6px 0;
+  padding: 0.8em 1.1em;
+  font-style: italic;
+  color: #2c3e50;
+}
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  background: rgba(46, 204, 113, 0.06);
+  color: #e6e6e6;
+}
+
+/* Footer enriquecido: copyright e links com mais respiração + hover verde. */
+.md-footer-meta__inner {
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+}
+.md-copyright {
+  font-size: 0.78em;
+  line-height: 1.55;
+}
+.md-copyright a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  margin: 0 0.3em;
+}
+.md-copyright a:hover {
+  color: #58d68d;
+}
+
+/* "ato-fim" — botão de continuidade ao próximo Ato fica mais cinematográfico. */
+.md-typeset .ato-fim {
+  margin-top: 3em;
+  padding: 1.4em 1.6em;
+  background: linear-gradient(135deg, #f3fbf6 0%, #eafaf1 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+}
+[data-md-color-scheme="slate"] .md-typeset .ato-fim {
+  background: linear-gradient(135deg, #1e2d24 0%, #15291f 100%);
+  border-color: rgba(46, 204, 113, 0.22);
+}
+
+/* Code blocks: bordas mais suaves, ritmo melhor. */
+.md-typeset pre > code {
+  border-radius: 8px;
+  padding: 0.9em 1em;
+}
+.md-typeset code {
+  font-size: 0.86em;
+  border-radius: 4px;
+  padding: 0.12em 0.32em;
+}
+
+/* Header de página: anúncio enxuto sem peso. */
+.md-banner {
+  background: linear-gradient(90deg, #16a085, #27ae60);
+}
+.md-banner a {
+  color: #ffffff;
+}
+
+/* Focus state mais visível (acessibilidade). */
+:focus-visible {
+  outline: 2px solid #27ae60;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------------------
+ * Hero auto-aplicado em H1 do index — sem necessidade de markup HTML
+ * dentro da página. Funciona porque o markdown puro renderiza bem em
+ * qualquer ambiente (GitHub raw, Material, IDE) e ganha visual rico
+ * só no Material via CSS.
+ * --------------------------------------------------------------------*/
+.md-typeset > h1:first-of-type {
+  position: relative;
+  margin-top: 0.6em;
+  padding: 1.4em 1.6em 0.8em 1.6em;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(135deg, #f3fbf6 0%, #ffffff 60%, #eafaf1 100%);
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-bottom: none;
+  font-size: 2.1em;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+.md-typeset > h1:first-of-type::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #27ae60 0%, #16a085 100%);
+  border-radius: 12px 0 0 0;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type {
+  background: linear-gradient(135deg, #1e2d24 0%, #1a1f1c 60%, #15291f 100%);
+  border-color: rgba(46, 204, 113, 0.22);
+}
+/* O parágrafo "Ato N de 5" logo após o H1 vira chip auto-aplicado. */
+.md-typeset > h1:first-of-type + p {
+  margin-top: -0.4em;
+  margin-bottom: 1.4em;
+  padding: 1.2em 1.6em;
+  background: linear-gradient(135deg, #f3fbf6 0%, #ffffff 60%, #eafaf1 100%);
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-top: none;
+  border-bottom: none;
+  font-size: 1.15em;
+  line-height: 1.55;
+  color: #34495e;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type + p {
+  background: linear-gradient(135deg, #1e2d24 0%, #1a1f1c 60%, #15291f 100%);
+  border-color: rgba(46, 204, 113, 0.22);
+  color: #d8d8d8;
+}
+.md-typeset > h1:first-of-type + p strong:first-child {
+  display: inline-block;
+  font-size: 0.72em;
+  font-weight: 600;
+  font-family: var(--md-text-font-family, sans-serif);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22em 0.7em;
+  margin-bottom: 0.5em;
+  margin-right: 0.4em;
+  background: #27ae60;
+  color: white;
+  border-radius: 6px;
+  vertical-align: 0.15em;
+}
+
+/* Tabela de KPI: estilizar a primeira tabela após o lead. Identificada
+ * pela combinação de 4 colunas com header curto e :---: alinhamento. */
+.md-typeset > table:first-of-type,
+.md-typeset > p + table:first-of-type {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9em;
+  width: 100%;
+  margin: 1.6em 0 2em 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+.md-typeset > table:first-of-type thead {
+  display: contents;
+}
+.md-typeset > table:first-of-type tbody {
+  display: contents;
+}
+.md-typeset > table:first-of-type tr {
+  display: contents;
+}
+.md-typeset > table:first-of-type thead tr th {
+  padding: 1.1em 0.9em 0.4em 0.9em;
+  text-align: center;
+  font-size: 1.55em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1e8449;
+  background: #ffffff;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  font-feature-settings: "tnum";
+}
+.md-typeset > table:first-of-type tbody tr td {
+  padding: 0.2em 0.9em 0.9em 0.9em;
+  text-align: center;
+  font-size: 0.84em;
+  line-height: 1.4;
+  color: #555;
+  background: #ffffff;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+.md-typeset > table:first-of-type tbody tr td strong {
+  color: #1e8449;
+  font-weight: 600;
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type thead tr th,
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type tbody tr td {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(46, 204, 113, 0.25);
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type thead tr th {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type tbody tr td {
+  color: #bdbdbd;
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type tbody tr td strong {
+  color: #58d68d;
+}
+@media (max-width: 760px) {
+  .md-typeset > table:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 380px) {
+  .md-typeset > table:first-of-type {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------------------------------------------------
+ * Row de CTAs no Ato 1 — primeiro parágrafo após o lead, contendo 3
+ * links separados por · vira botões grandes no Material e degrada
+ * para linha de links comum em ambientes raw (GitHub UI).
+ * --------------------------------------------------------------------*/
+.md-typeset > h1:first-of-type + p + p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7em;
+  align-items: center;
+  margin: 1.6em 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-size: 1em;
+  line-height: 1.5;
+  color: inherit;
+}
+.md-typeset > h1:first-of-type + p + p a {
+  display: inline-block;
+  padding: 0.65em 1.1em;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(39, 174, 96, 0.4);
+  color: #1e8449;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+.md-typeset > h1:first-of-type + p + p a:first-child {
+  background: linear-gradient(135deg, #27ae60, #16a085);
+  border-color: transparent;
+  color: white;
+}
+.md-typeset > h1:first-of-type + p + p a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(39, 174, 96, 0.25);
+}
+.md-typeset > h1:first-of-type + p + p a:first-child:hover {
+  filter: brightness(1.08);
+}
+/* Hide the · separators between the buttons. */
+.md-typeset > h1:first-of-type + p + p {
+  /* preserva o conteúdo mas o flex layout absorve os "·" automaticamente
+   * porque ficam como text nodes entre os <a>; estilizamos para ficarem
+   * discretos */
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type + p + p a {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(46, 204, 113, 0.4);
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type + p + p a:first-child {
+  background: linear-gradient(135deg, #27ae60, #16a085);
+  color: white;
+}
+
+/* ----------------------------------------------------------------------
+ * Tabela "Para quem é isso" no Ato 1 e na home — tabelas de 3 colunas
+ * com primeira coluna de emoji+persona ganham hover sutil
+ * --------------------------------------------------------------------*/
+.md-typeset > h2 + table tr:hover td,
+.md-typeset > h2 + p + table tr:hover td {
+  background: rgba(39, 174, 96, 0.04);
+}
+
+/* ============================================================================
+ * Simulador in-browser (docs/brincar.md, docs/javascripts/simulador.js)
+ * ========================================================================= */
+.sim-painel {
+  background: linear-gradient(135deg, #f8fdf9 0%, #eef9f3 100%);
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 6px 22px rgba(20, 45, 30, 0.05);
+}
+[data-md-color-scheme="slate"] .sim-painel {
+  background: linear-gradient(135deg, #1f2a25 0%, #1c2520 100%);
+  border-color: rgba(46, 204, 113, 0.25);
+}
+.sim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.sim-grupo {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(39, 174, 96, 0.1);
+}
+[data-md-color-scheme="slate"] .sim-grupo {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(46, 204, 113, 0.15);
+}
+.sim-grupo strong {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #16a085;
+  margin-bottom: 0.55rem;
+}
+[data-md-color-scheme="slate"] .sim-grupo strong {
+  color: #58d68d;
+}
+.sim-grupo label {
+  display: block;
+  font-size: 0.85rem;
+  margin: 0.45rem 0;
+  color: #2c3e50;
+}
+[data-md-color-scheme="slate"] .sim-grupo label {
+  color: #d5dbdb;
+}
+.sim-grupo label span {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #27ae60;
+  margin-left: 0.25rem;
+}
+.sim-grupo input[type="range"],
+.sim-grupo select {
+  display: block;
+  width: 100%;
+  margin-top: 0.2rem;
+}
+.sim-grupo select {
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: white;
+  font-size: 0.9rem;
+}
+[data-md-color-scheme="slate"] .sim-grupo select {
+  background: #1a2521;
+  color: #ecf0f1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.sim-grupo input[type="checkbox"] {
+  margin-right: 0.4rem;
+}
+.sim-acoes {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.8rem 0 1rem;
+  flex-wrap: wrap;
+}
+.sim-acoes button {
+  background: linear-gradient(135deg, #27ae60, #16a085);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.28);
+}
+.sim-acoes button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(39, 174, 96, 0.38);
+}
+.sim-acoes #sim-tempo {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  font-variant-numeric: tabular-nums;
+}
+.sim-graficos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+.sim-graficos canvas {
+  width: 100%;
+  height: auto;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+[data-md-color-scheme="slate"] .sim-graficos canvas {
+  background: #161e1b;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+@media (max-width: 700px) {
+  .sim-graficos {
+    grid-template-columns: 1fr;
+  }
+}
+.sim-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.sim-kpi {
+  background: rgba(39, 174, 96, 0.08);
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border-left: 3px solid #27ae60;
+  display: flex;
+  flex-direction: column;
+}
+.sim-kpi strong {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #16a085;
+  margin-bottom: 0.2rem;
+}
+.sim-kpi span {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2c3e50;
+  font-variant-numeric: tabular-nums;
+}
+[data-md-color-scheme="slate"] .sim-kpi {
+  background: rgba(46, 204, 113, 0.1);
+}
+[data-md-color-scheme="slate"] .sim-kpi strong {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .sim-kpi span {
+  color: #ecf0f1;
+}
+
+/* ============================================================================
+ * Banho de loja jun/2026 — refinamentos de superfície
+ *  - Grid de personas (substitui tabela 6×3 do Ato 1)
+ *  - Hero KPI: cards em vez de tabela monoespaço
+ *  - Refinamento tipográfico: escala modular e ritmo vertical
+ *  - Microinteração nos botões e links principais
+ * ========================================================================= */
+
+/* --- Grid de personas (Ato 1 · entrada por papel profissional) ------------ */
+.md-typeset .persona-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0 2rem;
+}
+.md-typeset .persona-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1.25rem 1.15rem 1rem;
+  border-radius: 14px;
+  background: linear-gradient(150deg, #ffffff 0%, #f4faf6 100%);
+  border: 1px solid rgba(39, 174, 96, 0.14);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(20, 45, 30, 0.04);
+}
+.md-typeset .persona-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, #27ae60, #16a085);
+  opacity: 0.75;
+}
+.md-typeset .persona-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(39, 174, 96, 0.45);
+  box-shadow: 0 12px 26px rgba(20, 45, 30, 0.1);
+  text-decoration: none;
+}
+.md-typeset .persona-card strong {
+  font-size: 1.05rem;
+  color: #16624c;
+  letter-spacing: -0.005em;
+}
+.md-typeset .persona-card p {
+  margin: 0;
+}
+.md-typeset .persona-icone {
+  font-size: 2rem;
+  line-height: 1;
+}
+.md-typeset .persona-cta {
+  margin-top: auto;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #16a085;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 0.4rem;
+  border-top: 1px dashed rgba(39, 174, 96, 0.22);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+.md-typeset .persona-card:hover .persona-cta {
+  color: #0f6f5b;
+  transform: translateX(2px);
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-card {
+  background: linear-gradient(150deg, #1d2622 0%, #1a201d 100%);
+  border-color: rgba(46, 204, 113, 0.22);
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-card strong {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-card:hover {
+  border-color: rgba(46, 204, 113, 0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-cta {
+  color: #58d68d;
+}
+@media (max-width: 480px) {
+  .md-typeset .persona-card {
+    padding: 1rem 0.95rem 0.85rem;
+  }
+  .md-typeset .persona-icone {
+    font-size: 1.7rem;
+  }
+}
+
+/* --- Tabela do hero (1ª depois do H1) reformatada em cards KPI ------------ */
+.md-typeset > h1:first-of-type + p + p + table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.9rem;
+  margin: 1.5rem 0;
+  border: none;
+  border-radius: 16px;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+.md-typeset > h1:first-of-type + p + p + table thead {
+  display: contents;
+}
+.md-typeset > h1:first-of-type + p + p + table tbody {
+  display: contents;
+}
+.md-typeset > h1:first-of-type + p + p + table thead tr {
+  display: contents;
+}
+.md-typeset > h1:first-of-type + p + p + table tbody tr {
+  display: contents;
+}
+.md-typeset > h1:first-of-type + p + p + table thead th,
+.md-typeset > h1:first-of-type + p + p + table tbody td {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(160deg, #ffffff 0%, #f1f9f4 100%);
+  border: 1px solid rgba(39, 174, 96, 0.16);
+  border-radius: 14px;
+  padding: 1.1rem 0.9rem;
+  min-height: 96px;
+  box-shadow: 0 2px 10px rgba(20, 45, 30, 0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.md-typeset > h1:first-of-type + p + p + table thead th {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #16624c;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  min-height: 70px;
+  padding-bottom: 0.6rem;
+}
+.md-typeset > h1:first-of-type + p + p + table tbody td {
+  font-size: 0.85rem;
+  color: #2c3e50;
+  line-height: 1.4;
+  min-height: 80px;
+  padding-top: 0.6rem;
+}
+.md-typeset > h1:first-of-type + p + p + table thead th:hover,
+.md-typeset > h1:first-of-type + p + p + table tbody td:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 45, 30, 0.07);
+}
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + table
+  thead
+  th,
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + table
+  tbody
+  td {
+  background: linear-gradient(160deg, #1f2925 0%, #1c2520 100%);
+  border-color: rgba(46, 204, 113, 0.28);
+}
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + table
+  thead
+  th {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + table
+  tbody
+  td {
+  color: #d5dbdb;
+}
+
+/* --- Pull-quote (blockquote do princípio LCMC no hero) -------------------- */
+.md-typeset > h1:first-of-type ~ blockquote {
+  background: linear-gradient(135deg, #f1f9f4 0%, #e7f6ee 100%);
+  border-left: 4px solid #27ae60;
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.2rem;
+  margin: 1.6rem 0;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  font-style: italic;
+  color: #1f4a3a;
+  position: relative;
+}
+.md-typeset > h1:first-of-type ~ blockquote::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -2px;
+  width: 26px;
+  height: 26px;
+  background: #27ae60;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(39, 174, 96, 0.35);
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type ~ blockquote {
+  background: linear-gradient(135deg, #1d2622 0%, #1a201d 100%);
+  color: #d5dbdb;
+}
+
+/* --- Separadores visuais entre seções H2 do Ato 1 ------------------------ */
+.md-typeset > h1:first-of-type ~ h2 {
+  padding-top: 1.2rem;
+  margin-top: 2.4rem;
+  position: relative;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+}
+.md-typeset > h1:first-of-type ~ h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, #27ae60, #16a085);
+  border-radius: 2px;
+}
+
+/* ============================================================================
+ * Banho de loja jornalístico-estilístico (jun/2026)
+ * Tipografia editorial: Playfair Display (manchetes) + Source Serif (deck)
+ * + estrutura jornal: kicker · deck · byline · lede com drop cap · pull-quote
+ * Material Inter (corpo) é preservado para legibilidade
+ * ========================================================================= */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap");
+
+/* Manchetes em serif editorial — H1/H2/H3 do conteúdo principal */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-family: "Playfair Display", "Source Serif 4", Georgia, "Times New Roman",
+    serif;
+  letter-spacing: -0.012em;
+}
+.md-typeset h1 {
+  font-weight: 900;
+  font-size: 2.6rem;
+  line-height: 1.05;
+  margin-bottom: 0.4rem;
+}
+.md-typeset h2 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.18;
+}
+.md-typeset h3 {
+  font-weight: 700;
+  font-size: 1.32rem;
+  line-height: 1.22;
+}
+@media (max-width: 720px) {
+  .md-typeset h1 {
+    font-size: 2.05rem;
+  }
+  .md-typeset h2 {
+    font-size: 1.45rem;
+  }
+}
+
+/* Kicker — etiqueta de seção tipo "editorial / análise / breaking" acima do H2 */
+.md-typeset .kicker {
+  display: inline-block;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #16a085;
+  background: linear-gradient(180deg, #eafaf2 0%, #d7f3e3 100%);
+  padding: 0.28rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.55rem;
+  position: relative;
+  top: -0.1rem;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+}
+[data-md-color-scheme="slate"] .md-typeset .kicker {
+  color: #58d68d;
+  background: linear-gradient(180deg, #1f3329 0%, #1a2820 100%);
+  border-color: rgba(46, 204, 113, 0.3);
+}
+.md-typeset .kicker + h1,
+.md-typeset .kicker + h2,
+.md-typeset .kicker + h3 {
+  margin-top: 0.25rem;
+}
+
+/* Deck — strapline editorial sob o H1 (italico serif, leve, separador) */
+.md-typeset .deck {
+  font-family: "Source Serif 4", "Playfair Display", Georgia, serif;
+  font-size: 1.32rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #3d5a4b;
+  line-height: 1.42;
+  margin: 0.25rem 0 1.1rem;
+  padding-bottom: 1.05rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  max-width: 760px;
+}
+[data-md-color-scheme="slate"] .md-typeset .deck {
+  color: #b5c4bd;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Byline · dateline jornalístico */
+.md-typeset .byline {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7f8c8d;
+  font-weight: 700;
+  margin: 0.2rem 0 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.md-typeset .byline::before {
+  content: "";
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, #27ae60, #16a085);
+  border-radius: 1px;
+}
+.md-typeset .byline em {
+  font-style: normal;
+  color: #16624c;
+  font-weight: 800;
+}
+[data-md-color-scheme="slate"] .md-typeset .byline em {
+  color: #58d68d;
+}
+
+/* Lede — primeiro parágrafo da matéria com drop cap clássico */
+.md-typeset .lede {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.18rem;
+  line-height: 1.55;
+  color: #243030;
+  margin: 0.6rem 0 1.4rem;
+}
+.md-typeset .lede::first-letter {
+  float: left;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 900;
+  font-size: 4.6em;
+  line-height: 0.84;
+  margin: 0.06em 0.14em -0.08em 0;
+  color: #16624c;
+  background: linear-gradient(180deg, #16a085, #16624c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-md-color-scheme="slate"] .md-typeset .lede {
+  color: #e1e8e5;
+}
+[data-md-color-scheme="slate"] .md-typeset .lede::first-letter {
+  background: linear-gradient(180deg, #58d68d, #27ae60);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pull-quote jornalístico — citação destacada (estilo NYT / FSP) */
+.md-typeset .pull-quote-jornal {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.55rem;
+  line-height: 1.32;
+  color: #16624c;
+  text-align: center;
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 1.6rem 1rem 1.4rem;
+  position: relative;
+}
+.md-typeset .pull-quote-jornal::before,
+.md-typeset .pull-quote-jornal::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #27ae60, transparent);
+  margin: 0 auto;
+}
+.md-typeset .pull-quote-jornal::before {
+  margin-bottom: 1.1rem;
+}
+.md-typeset .pull-quote-jornal::after {
+  margin-top: 1.1rem;
+}
+.md-typeset .pull-quote-jornal cite {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7f8c8d;
+  margin-top: 0.9rem;
+}
+[data-md-color-scheme="slate"] .md-typeset .pull-quote-jornal {
+  color: #d5e8df;
+}
+
+/* Dado em destaque — caixa lateral estilo "by the numbers" */
+.md-typeset .dado-destaque {
+  background: linear-gradient(160deg, #f9fdfb 0%, #f0f9f4 100%);
+  border-left: 4px solid #27ae60;
+  padding: 1.1rem 1.3rem 1rem;
+  margin: 1.6rem 0;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: #2c3e50;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 4px 14px rgba(20, 45, 30, 0.05);
+}
+.md-typeset .dado-destaque strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 900;
+  font-size: 2rem;
+  color: #16624c;
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.015em;
+  font-variant-numeric: tabular-nums;
+}
+[data-md-color-scheme="slate"] .md-typeset .dado-destaque {
+  background: linear-gradient(160deg, #1f2925 0%, #1a201d 100%);
+  color: #d5dbdb;
+}
+[data-md-color-scheme="slate"] .md-typeset .dado-destaque strong {
+  color: #58d68d;
+}
+
+/* Regra jornal — separador entre matérias (substitui o <hr> bruto) */
+.md-typeset hr {
+  border: 0;
+  height: auto;
+  margin: 2.4rem 0;
+  text-align: center;
+  position: relative;
+}
+.md-typeset hr::after {
+  content: "◆ ◆ ◆";
+  display: block;
+  letter-spacing: 1.2em;
+  font-size: 0.6rem;
+  color: rgba(39, 174, 96, 0.55);
+  font-variant-numeric: tabular-nums;
+}
+[data-md-color-scheme="slate"] .md-typeset hr::after {
+  color: rgba(88, 214, 141, 0.55);
+}
+
+/* Subtítulo seccional (H3) ganha pequena barra verde */
+.md-typeset h3 {
+  position: relative;
+  padding-left: 0.85rem;
+}
+.md-typeset h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  bottom: 0.18em;
+  width: 3px;
+  background: linear-gradient(180deg, #27ae60, #16a085);
+  border-radius: 2px;
+}
+
+/* ============================================================================
+ * Atenuação editorial (jun/2026) — torna o estilo jornalístico mais sóbrio
+ * Reduz tamanhos, retira gradients teatrais, mantém a identidade tipográfica
+ * mas baixa o tom de "manifesto" para "academic-friendly".
+ * ========================================================================= */
+
+/* H1: menor e menos heavy */
+.md-typeset h1 {
+  font-weight: 700;
+  font-size: 2.15rem;
+  line-height: 1.1;
+}
+.md-typeset h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.md-typeset h3 {
+  font-weight: 600;
+  font-size: 1.18rem;
+}
+@media (max-width: 720px) {
+  .md-typeset h1 {
+    font-size: 1.75rem;
+  }
+  .md-typeset h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Deck: menos italic flamboyant, mais subhead jornalístico discreto */
+.md-typeset .deck {
+  font-size: 1.1rem;
+  font-style: normal;
+  color: #4a5d62;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* Byline mais discreto */
+.md-typeset .byline {
+  font-size: 0.72rem;
+  color: #95a5a6;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.md-typeset .byline::before {
+  width: 20px;
+  height: 1px;
+}
+
+/* Kicker em texto simples uppercase (sem pill colorido) — NYT section style */
+.md-typeset .kicker {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 0.45rem !important;
+  color: #27ae60;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  display: block;
+  position: relative;
+}
+.md-typeset .kicker::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1.5px;
+  background: #27ae60;
+  vertical-align: middle;
+  margin-right: 0.55rem;
+  margin-bottom: 0.15em;
+}
+[data-md-color-scheme="slate"] .md-typeset .kicker {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset .kicker::before {
+  background: #58d68d;
+}
+
+/* Lede: drop cap menor (3em em vez de 4.6em) e sem gradient — só verde sólido */
+.md-typeset .lede {
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+.md-typeset .lede::first-letter {
+  font-size: 3em;
+  font-weight: 800;
+  line-height: 0.9;
+  margin: 0.06em 0.1em -0.04em 0;
+  color: #16624c;
+  background: none;
+  -webkit-text-fill-color: #16624c;
+}
+[data-md-color-scheme="slate"] .md-typeset .lede::first-letter {
+  color: #58d68d;
+  -webkit-text-fill-color: #58d68d;
+}
+
+/* Pull-quote: menor, sem separadores horizontais teatrais — borda lateral */
+.md-typeset .pull-quote-jornal {
+  font-size: 1.18rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  padding: 0.9rem 0 0.9rem 1.4rem;
+  margin: 1.6rem 0;
+  max-width: 100%;
+  border-left: 3px solid #27ae60;
+  color: #2c3e50;
+}
+.md-typeset .pull-quote-jornal::before,
+.md-typeset .pull-quote-jornal::after {
+  content: none;
+}
+.md-typeset .pull-quote-jornal cite {
+  font-size: 0.76rem;
+  letter-spacing: 0.07em;
+  color: #7f8c8d;
+  margin-top: 0.6rem;
+  font-weight: 600;
+}
+[data-md-color-scheme="slate"] .md-typeset .pull-quote-jornal {
+  color: #d5dbdb;
+}
+
+/* KPI cards (hero): fundo branco com borda discreta, número menor */
+.md-typeset > h1:first-of-type + p + p + p + p + table thead th,
+.md-typeset > h1:first-of-type + p + p + table thead th {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #2c3e50;
+  min-height: 56px;
+  padding: 0.85rem 0.7rem 0.5rem;
+}
+.md-typeset > h1:first-of-type + p + p + p + p + table tbody td,
+.md-typeset > h1:first-of-type + p + p + table tbody td {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  font-size: 0.8rem;
+  min-height: 70px;
+  padding-top: 0.4rem;
+  color: #5d6d6d;
+}
+.md-typeset > h1:first-of-type + p + p + p + p + table thead th:hover,
+.md-typeset > h1:first-of-type + p + p + p + p + table tbody td:hover,
+.md-typeset > h1:first-of-type + p + p + table thead th:hover,
+.md-typeset > h1:first-of-type + p + p + table tbody td:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-color: rgba(39, 174, 96, 0.3);
+}
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + p
+  + p
+  + table
+  thead
+  th,
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + p
+  + p
+  + table
+  tbody
+  td,
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + table
+  thead
+  th,
+[data-md-color-scheme="slate"]
+  .md-typeset
+  > h1:first-of-type
+  + p
+  + p
+  + table
+  tbody
+  td {
+  background: #1a201d;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: inherit;
+}
+
+/* Persona cards: menos gradient, fundo neutro, hover sutil */
+.md-typeset .persona-card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+}
+.md-typeset .persona-card::before {
+  width: 3px;
+  opacity: 0.6;
+}
+.md-typeset .persona-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(39, 174, 96, 0.35);
+  box-shadow: 0 4px 14px rgba(20, 45, 30, 0.06);
+}
+.md-typeset .persona-card strong {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+.md-typeset .persona-icone {
+  font-size: 1.6rem;
+}
+.md-typeset .persona-cta {
+  font-size: 0.72rem;
+  color: #16a085;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-card {
+  background: #1a201d;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-card strong {
+  color: #ecf0f1;
+}
+
+/* HR/regra: glifo único mais discreto */
+.md-typeset hr::after {
+  content: "—";
+  letter-spacing: normal;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.18);
+}
+[data-md-color-scheme="slate"] .md-typeset hr::after {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+/* H2 separadores: barra mais discreta */
+.md-typeset > h1:first-of-type ~ h2::before {
+  width: 32px;
+  height: 2px;
+  background: #27ae60;
+}
+
+/* H3 com barra lateral mais fina e curta */
+.md-typeset h3::before {
+  width: 2px;
+  top: 0.28em;
+  bottom: 0.28em;
+}
+
+/* Blockquote do princípio LCMC no hero: menos celebratório, mais técnico */
+.md-typeset > h1:first-of-type ~ blockquote {
+  background: #f8faf9;
+  border-left: 3px solid #27ae60;
+  border-radius: 0 6px 6px 0;
+  padding: 0.85rem 1.1rem;
+  font-style: normal;
+  font-size: 0.96rem;
+  color: #2c3e50;
+  box-shadow: none;
+}
+.md-typeset > h1:first-of-type ~ blockquote::before {
+  display: none;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type ~ blockquote {
+  background: #1a201d;
+  color: #d5dbdb;
+}
+
+/* Dado-destaque mais discreto */
+.md-typeset .dado-destaque {
+  background: #f8faf9;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  box-shadow: none;
+  border-radius: 0 6px 6px 0;
+}
+.md-typeset .dado-destaque strong {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #16624c;
+}
+
+/* Atenuação do painel do simulador (jun/2026) — alinha à atenuação
+ * editorial: gradient verde → fundo branco com borda discreta */
+.sim-painel {
+  background: #fbfcfc;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+}
+[data-md-color-scheme="slate"] .sim-painel {
+  background: #161e1b;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.sim-grupo {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+[data-md-color-scheme="slate"] .sim-grupo {
+  background: rgba(255, 255, 255, 0.02);
+}
+.sim-grupo strong {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+.sim-acoes button {
+  background: #27ae60;
+  box-shadow: none;
+  font-weight: 500;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+}
+.sim-acoes button:hover {
+  background: #16a085;
+  transform: none;
+  box-shadow: 0 2px 6px rgba(39, 174, 96, 0.25);
+}
+.sim-kpi {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-left: 3px solid #27ae60;
+  box-shadow: none;
+}
+.sim-kpi strong {
+  font-size: 0.68rem;
+}
+.sim-kpi span {
+  font-size: 1rem;
+  color: #2c3e50;
+}
+[data-md-color-scheme="slate"] .sim-kpi {
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-left-color: #27ae60;
+}
+[data-md-color-scheme="slate"] .sim-kpi span {
+  color: #ecf0f1;
+}
