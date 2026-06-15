@@ -745,3 +745,144 @@
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* ----------------------------------------------------------------------
+ * Hero auto-aplicado em H1 do index — sem necessidade de markup HTML
+ * dentro da página. Funciona porque o markdown puro renderiza bem em
+ * qualquer ambiente (GitHub raw, Material, IDE) e ganha visual rico
+ * só no Material via CSS.
+ * --------------------------------------------------------------------*/
+.md-typeset > h1:first-of-type {
+  position: relative;
+  margin-top: 0.6em;
+  padding: 1.4em 1.6em 0.8em 1.6em;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(135deg, #f3fbf6 0%, #ffffff 60%, #eafaf1 100%);
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-bottom: none;
+  font-size: 2.1em;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+.md-typeset > h1:first-of-type::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, #27ae60 0%, #16a085 100%);
+  border-radius: 12px 0 0 0;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type {
+  background: linear-gradient(135deg, #1e2d24 0%, #1a1f1c 60%, #15291f 100%);
+  border-color: rgba(46, 204, 113, 0.22);
+}
+/* O parágrafo "Ato N de 5" logo após o H1 vira chip auto-aplicado. */
+.md-typeset > h1:first-of-type + p {
+  margin-top: -0.4em;
+  margin-bottom: 1.4em;
+  padding: 1.2em 1.6em;
+  background: linear-gradient(135deg, #f3fbf6 0%, #ffffff 60%, #eafaf1 100%);
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-top: none;
+  border-bottom: none;
+  font-size: 1.15em;
+  line-height: 1.55;
+  color: #34495e;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type + p {
+  background: linear-gradient(135deg, #1e2d24 0%, #1a1f1c 60%, #15291f 100%);
+  border-color: rgba(46, 204, 113, 0.22);
+  color: #d8d8d8;
+}
+.md-typeset > h1:first-of-type + p strong:first-child {
+  display: inline-block;
+  font-size: 0.72em;
+  font-weight: 600;
+  font-family: var(--md-text-font-family, sans-serif);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22em 0.7em;
+  margin-bottom: 0.5em;
+  margin-right: 0.4em;
+  background: #27ae60;
+  color: white;
+  border-radius: 6px;
+  vertical-align: 0.15em;
+}
+
+/* Tabela de KPI: estilizar a primeira tabela após o lead. Identificada
+ * pela combinação de 4 colunas com header curto e :---: alinhamento. */
+.md-typeset > table:first-of-type,
+.md-typeset > p + table:first-of-type {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9em;
+  width: 100%;
+  margin: 1.6em 0 2em 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+.md-typeset > table:first-of-type thead {
+  display: contents;
+}
+.md-typeset > table:first-of-type tbody {
+  display: contents;
+}
+.md-typeset > table:first-of-type tr {
+  display: contents;
+}
+.md-typeset > table:first-of-type thead tr th {
+  padding: 1.1em 0.9em 0.4em 0.9em;
+  text-align: center;
+  font-size: 1.55em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1e8449;
+  background: #ffffff;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  font-feature-settings: "tnum";
+}
+.md-typeset > table:first-of-type tbody tr td {
+  padding: 0.2em 0.9em 0.9em 0.9em;
+  text-align: center;
+  font-size: 0.84em;
+  line-height: 1.4;
+  color: #555;
+  background: #ffffff;
+  border: 1px solid rgba(39, 174, 96, 0.18);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+}
+.md-typeset > table:first-of-type tbody tr td strong {
+  color: #1e8449;
+  font-weight: 600;
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type thead tr th,
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type tbody tr td {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(46, 204, 113, 0.25);
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type thead tr th {
+  color: #58d68d;
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type tbody tr td {
+  color: #bdbdbd;
+}
+[data-md-color-scheme="slate"] .md-typeset > table:first-of-type tbody tr td strong {
+  color: #58d68d;
+}
+@media (max-width: 760px) {
+  .md-typeset > table:first-of-type {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 380px) {
+  .md-typeset > table:first-of-type {
+    grid-template-columns: 1fr;
+  }
+}

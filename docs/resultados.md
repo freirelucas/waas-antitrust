@@ -1,6 +1,6 @@
-<span class="ato-chip">Ato 3 de 5 · O teste</span>
-
 # O que a simulação mostra
+
+**Ato 3 de 5 · O teste**
 
 <p class="sublinha-tese"><em>Não é figura estilizada nem aritmética de papel. É o DataFrame que o <code>WaaSModel.executar()</code> devolve quando rodamos com seed 11. Reproduzível em 60 segundos.</em></p>
 

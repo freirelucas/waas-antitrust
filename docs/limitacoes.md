@@ -1,6 +1,6 @@
-<span class="ato-chip">Ato 4 de 5 · A honestidade</span>
-
 # O que ainda não está sustentado
+
+**Ato 4 de 5 · A honestidade**
 
 <p class="sublinha-tese"><em>O reframe não resolve fragilidades — apenas as nomeia melhor; sob a lente Coleman, novas fragilidades aparecem que o framing "empresa paga" ocultava.</em></p>
 

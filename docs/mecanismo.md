@@ -1,6 +1,6 @@
-<span class="ato-chip">Ato 2 de 5 · A hipótese</span>
-
 # O mecanismo, em três camadas
+
+**Ato 2 de 5 · A hipótese**
 
 <p class="sublinha-tese"><em>Primeiro o canal (depósito condicional CADE). Depois a coordenação que isso resolve (Olson sem sub-iniciação). Por último os instrumentos incrementais — todos opcionais.</em></p>
 

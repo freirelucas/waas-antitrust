@@ -1,6 +1,6 @@
-<span class="ato-chip">Ato 5 de 5 · A continuação</span>
-
 # Como contribuir, discordar, ou simplesmente conversar
+
+**Ato 5 de 5 · A continuação**
 
 <p class="sublinha-tese"><em>Pesquisadores das tradições Olson-Ostrom-Coleman + Stigler-Carpenter-Moss agora têm pontos de entrada explícitos — R21-R26 abertos no backlog.</em></p>
 

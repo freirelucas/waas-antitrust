@@ -1,42 +1,16 @@
-<div class="hero" markdown>
-<span class="ato-chip">Ato 1 de 5 · O problema</span>
-
 # Quando a infração é unilateral, quem denuncia?
 
-<p class="lead">A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é <strong>de uma firma só</strong> — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e <em>corp dev</em>, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.</p>
+**Ato 1 de 5 · O problema**
 
-<div class="hero-cta" markdown>
-[Ato 2: O mecanismo →](mecanismo.md){ .md-button .md-button--primary }
-[Brincar com o modelo](brincar.md){ .md-button }
-[Paper](paper.md){ .md-button }
-</div>
-</div>
+A leniência clássica acabou de bater num muro. Em mercados digitais, a infração é **de uma firma só** — não há cúmplice para delatar. A informação existe nos times de produto, engenharia e *corp dev*, mas o trabalhador que falaria arrisca tudo e ganha nada. Esta é a história de uma proposta para destravá-la.
 
-<div class="kpi-row" markdown>
+[Ato 2: O mecanismo →](mecanismo.md){ .md-button .md-button--primary } [Brincar com o modelo](brincar.md){ .md-button } [Paper](paper.md){ .md-button }
 
-<div class="kpi-card" markdown>
-**R$ 12,3 mi**
-<small>margem da firma sob TCC-WaaS<br/>para receita de R\$ 1 bi</small>
-</div>
+| R\$ 12,3 mi | 1.679 firmas | +1.363% | 343 testes |
+|:---:|:---:|:---:|:---:|
+| **margem da firma sob TCC-WaaS** para receita de R\$ 1 bi | **universo CADE implícito** após calibração formal R03 | **ΔW de Regime B sobre A** em bem-estar agregado | **verdes em ~25s** · 21 figuras reproduzíveis |
 
-<div class="kpi-card" markdown>
-**1.679 firmas**
-<small>universo CADE implícito<br/>após calibração formal R03</small>
-</div>
-
-<div class="kpi-card" markdown>
-**+1.363%**
-<small>ΔW de Regime B sobre A<br/>em bem-estar agregado</small>
-</div>
-
-<div class="kpi-card" markdown>
-**341 testes**
-<small>verdes em ~25s · 19 figuras<br/>reproduzíveis bit-a-bit</small>
-</div>
-
-</div>
-
-<p class="sublinha-tese"><em>A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um <strong>canal de depósito condicional</strong> onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".</em></p>
+> *A resposta não está em incentivar a empresa nem em recompensar denúncia isolada. Está em dar ao CADE um **canal de depósito condicional** onde a denúncia individual só se abre quando há massa crítica de cooperadores — eliminando "ninguém quer ser o primeiro".*
 
 ## A leniência clássica acabou de bater num muro
 
