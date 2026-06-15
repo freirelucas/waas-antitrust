@@ -8,8 +8,8 @@
 | [§2](#2-anatomia-rapida) | Anatomia rápida | Três classes, fases P0-P5 e reporters |
 | [§3](#3-tabela-completa-de-parametros-waasparametros) | Tabela de ~40 parâmetros | `WaaSParametros` linha a linha, com defaults |
 | [§4](#4-como-alterar-parametros-manipulabilidade-7-receitas) | Manipulabilidade + 7 receitas | Tabela de flags opt-in + Python para mudar regime, ativar escrow, varrer Sobol |
-| [§5](#5-atalho-19-cenarios-canonicos) | 19 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
-| [§6](#6-a-saida-do-modelo-34-reporters) | 34 reporters | As colunas do DataFrame agrupadas por categoria |
+| [§5](#5-atalho-20-cenarios-canonicos) | 20 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
+| [§6](#6-a-saida-do-modelo-36-reporters) | 36 reporters | As colunas do DataFrame agrupadas por categoria |
 | [§7](#7-cookbook-reprodutivel-6-receitas-avancadas) | Cookbook avançado | Calibração Saito, choques layoff, multi-seed CI, mapa λ×Hirschman |
 | [§8](#8-postura-epistemica) | Postura epistêmica | Backward compat estrita; opt-in por flag |
 
@@ -45,14 +45,14 @@ P3  → empresa decide pagar denunciantes via IC-F*; ramos: (a) simplificada;
       (b) + Hirschman (D+exodo > W); (c) + LCMC (decaimento Saito).
 P4  → autoridade recebe casos (capacidade κ); aplica acurácia ρ; sorteia
       anulação se p_anulacao_tcc > 0 (Vetor B/F6).
-P5  → coleta de estado (34 reporters → DataFrame).
+P5  → coleta de estado (36 reporters → DataFrame).
 ```
 
 Sob a tese corrigida v3, o `AutoridadeAgent` carrega explicitamente o escrow (R27, `usar_escrow_explicito=True`) e a expiração individual de cada depósito (R27-ii, `janela_escrow_tiques`). O caminho histórico (default `False`) preserva o escrow implícito em P2.5 — comportamento bit-a-bit idêntico.
 
-### 34 reporters em 3 categorias semânticas
+### 36 reporters em 3 categorias semânticas
 
-Os 34 reporters do `DataCollector` agrupam-se em:
+Os 36 reporters do `DataCollector` agrupam-se em:
 
 - **Massa crítica** (substrato LCMC): `n_sinais`, `n_empresas_notif`, `n_firmas_atingiram_massa_critica_interna`, `n_violadoras_ativas`, `dano_acumulado`, `dano_economico_acum`, `valor_dissuasao_difusa_acum`, `capital_social_residual`, `hhi`.
 - **Instrumentos** (uso dos cinco): `n_tcc_assinados`, `n_pagou`, `custo_recompensa_acum`, `custo_exodo_acum`, `custo_recompensa_corrida_acum`, `n_firmas_sob_ameaca_exodo`, `n_ex_funcionarios`.
@@ -347,7 +347,7 @@ df = m.executar()
 
 A soma do dict precisa ser 1.0 (não validado em runtime, mas o `rng.choice` quebra silenciosamente se não for).
 
-## 5. Atalho: 19 cenários canônicos
+## 5. Atalho: 20 cenários canônicos
 
 Em vez de configurar parâmetros manualmente, use `aplicar_cenario(base, nome)`:
 
@@ -358,7 +358,7 @@ for nome in listar_cenarios():
     print(f"  {nome}")
 ```
 
-Os 19 cenários disponíveis (cada um é um conjunto pré-configurado de sobrescritas):
+Os 20 cenários disponíveis (cada um é um conjunto pré-configurado de sobrescritas):
 
 | Cenário | Eixo |
 |---|---|
@@ -381,10 +381,11 @@ Os 19 cenários disponíveis (cada um é um conjunto pré-configurado de sobresc
 | `ue_dma_whistleblower_tool_2024` | Variante UE — Regime A + proteção horizontal sem recompensa (R28) |
 | `apenas_canal_sem_instrumento` | Canal puro (R27-i) — Regime B + `usar_escrow_explicito=True`, sem instrumento monetário |
 | `erosao_coleman_adversarial` | Falsificação R26 — `resolucao_pura` + `alpha_erosao=0.5` |
+| `cascata_adesao_progressiva` | Cascata R29 — Regime B + escrow explícito + `janela_adesao_pos_abertura=10` + faixas 100/70/50/30/10% |
 
-## 6. A saída do modelo — 34 reporters
+## 6. A saída do modelo — 36 reporters
 
-Após `model.executar()`, o `DataFrame` tem **uma linha por tique** e 34 colunas. Tabela resumida:
+Após `model.executar()`, o `DataFrame` tem **uma linha por tique** e 36 colunas. Tabela resumida:
 
 | Reporter | Tipo | Categoria | Quando relevante |
 |---|---|---|---|

@@ -11,6 +11,31 @@ semântico será adotado a partir da primeira release (Zenodo).
 Trabalho desde a importação inicial do projeto (`563588c`, "Add files via upload"),
 agrupado por tema. O hash de cada commit aparece entre parênteses.
 
+### Rodada "R29 + simulador in-browser" — jun/2026
+
+Três commits que adicionam a regra de cascata pós-coordenação ao modelo,
+substituem a dependência do Colab por simulador JavaScript embarcado e
+sobem a contagem de cenários para 20 e de testes para 354.
+
+- **R29 — Janela de adesão pós-abertura com desconto progressivo por classe**
+  (`54525c5`). Quando uma firma atinge massa crítica e o escrow é aberto,
+  abre-se uma janela de `janela_adesao_pos_abertura` tiques (default 10)
+  durante a qual trabalhadores da MESMA firma que ainda não cooperaram
+  podem aderir à classe dos lenientes e receber desconto progressivo por
+  ordem de chegada (`descontos_faixas_adesao=(1.0, 0.7, 0.5, 0.3, 0.1)`).
+  Espelha o Art. 86 da Lei 12.529/2011 (Spagnolo 2004) operado DENTRO da
+  firma já aberta. Opt-in estrito (default 0 desliga).
+- **Cenário canônico `cascata_adesao_progressiva` + figura R29** (`d71783a`).
+  Catálogo: 19→20 cenários. Visualização em dois painéis
+  (`viz/cascata_adesao.py` → `docs/img/22_cascata_adesao_r29.png`):
+  gradiente de descontos por faixa + cascata temporal de adesão.
+- **Simulador in-browser do ABM + remoção da dependência Colab** (`f9b1e12`).
+  `docs/javascripts/simulador.js`: WaaSSimMini fiel das fases P1–P4 do
+  modelo Python, plotter Canvas, UI com 13 sliders. Roda em <300 ms para
+  10 firmas × 80 trabalhadores × 24 tiques. Comparação Regime A vs regime
+  escolhido na mesma seed. `docs/brincar.md` reescrito; links Colab no
+  README/index.md substituídos por "Brincar in-browser".
+
 ### Rodada "consolidação pré-submissão" — Prop. 5 falsificada, T01 fechado, R28 quase fechado
 
 Doze commits que convergem paper e site sob v3, produzem dois achados

@@ -83,6 +83,25 @@ sem saber qual é a "oficial".
   v3 porque concentrava a leitura no lado da firma; o canal abre
   *para o CADE*, e a firma é notificada como consequência.
 
+### Janela de adesão pós-abertura (R29)
+
+- **Significado canônico**: janela de `janela_adesao_pos_abertura`
+  tiques (default 10) que se abre quando uma firma atinge massa
+  crítica e o escrow é aberto. Durante a janela, trabalhadores da
+  mesma firma que ainda não cooperaram podem **aderir à classe dos
+  lenientes** e receber **desconto progressivo por ordem de chegada**
+  (`descontos_faixas_adesao`, default faixas 100/70/50/30/10%).
+- **Sinônimos aceitos**: "janela de cascata pós-coordenação",
+  "fila pós-abertura", "classes de leniência por adesão".
+- **Análogo**: fila clássica do Art. 86 da Lei nº 12.529/2011
+  (Spagnolo 2004 *J. Eur. Econ. Assoc.* 2(1)) operada **dentro** da
+  firma já aberta, em vez de entre firmas cúmplices.
+- **Parâmetros no código**: `janela_adesao_pos_abertura: int = 0`
+  (opt-in estrito), `descontos_faixas_adesao: tuple = (1.0, 0.7, 0.5, 0.3, 0.1)`.
+- **Cenário canônico**: `cascata_adesao_progressiva`.
+- **Reporters**: `n_aderentes_pos_abertura_acum`,
+  `n_blocos_em_janela_adesao_acum` no DataFrame de saída.
+
 ## Termos do bem coletivo (lentes analíticas secundárias)
 
 ### Capital social organizacional (Coleman 1990)

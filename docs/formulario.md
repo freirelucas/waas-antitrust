@@ -135,6 +135,29 @@ O `_D_BASE_TCC` em `cenarios.py` usa 0,15 (média Tribunal, conservador) como ba
 A função $f_W(j)$ da recompensa do trabalhador é a normalização $D(j)/D(1)$, garantindo
 $f_W(1) = 1$ e queda monótona — preserva a corrida intra-firma (incentivo a chegar primeiro).
 
+### 4.1 Desconto progressivo por classe na janela de adesão (R29)
+
+A regra R29 instala um gradiente análogo **dentro da firma já aberta**. Seja $k$ a
+posição na fila pós-abertura e $\mathbf{f}_W^{\text{adesão}} = (f_0, f_1, \ldots, f_{N-1})$
+a tupla `descontos_faixas_adesao` (default `(1.0, 0.7, 0.5, 0.3, 0.1)`). A recompensa
+esperada do trabalhador que adere na posição $k$ é
+
+$$
+\mathbb{E}[W \mid \text{aderir em } k] \;=\; W_{\max} \cdot f_W^{\text{adesão}}(\min(k, N-1)).
+$$
+
+A decisão individual no modelo é uma IR-W projetada para a faixa:
+
+$$
+\text{aderir} \iff f_W^{\text{adesão}}(k) \cdot W_{\max} \;>\; r \cdot w_a.
+$$
+
+O corte endógeno $k^\star$ aparece quando $f_W^{\text{adesão}}(k^\star) \cdot W_{\max}
+\le r \cdot w_a$ — a partir daí ninguém adere mais. A janela $\Delta t =$
+`janela_adesao_pos_abertura` controla o tempo máximo entre a abertura do bloco e
+o fechamento da janela; após $\Delta t$ tiques o bloco sai do estado "em adesão" e
+o gradiente apurado é consolidado para apuração da decisão da firma (P3).
+
 *Implementado*: `src/waas_antitrust/calibracao/saito.py`,
 `src/waas_antitrust/corrida.py:decaimento_D`.
 

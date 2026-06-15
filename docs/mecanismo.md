@@ -348,6 +348,35 @@ crítica se forma. Modelar isto endogenamente é o trabalho de R16, e o
 catálogo de [cenários normativos](#) (R17) já oferece presets que ativam
 o canal.
 
+## Camada 5 — Janela de adesão pós-abertura com desconto progressivo (R29)
+
+A LCMC clássica resolve o problema de quem dá o primeiro passo: ninguém é o primeiro, porque o canal espera todos. Mas quando a massa crítica é atingida e o bloco se abre, sobra ainda **uma decisão aberta para o resto dos trabalhadores da firma**: o que fazer com quem viu a conduta mas não depositou a tempo? A regra R29 oferece a esses retardatários **uma janela de dez tiques para aderir à classe dos lenientes** com desconto decrescente por ordem de chegada — uma versão pós-coordenação da fila clássica do Art. 86 da Lei nº 12.529/2011.
+
+A lógica é direta. No instante da abertura, os depositantes originais — aqueles que dispararam a massa crítica — ficam na **faixa 0**: imunidade total. Pelos próximos `janela_adesao_pos_abertura` tiques (default 10), trabalhadores da mesma firma que ainda não cooperaram podem aderir: o primeiro entra na faixa 1, o segundo na faixa 2, e assim por diante. Cada faixa tem um fator de desconto sobre a recompensa `W`, descrito pela tupla `descontos_faixas_adesao` (default `(1.0, 0.7, 0.5, 0.3, 0.1)`). Quem aderiu na posição 0 (junto com os originais) recebe 100% de `W`; quem aderiu em quinta posição em diante recebe 10% — o piso. Quem não aderiu até o fim da janela permanece no escrow comum e está sujeito à expiração R27-ii.
+
+![Janela de adesão pós-abertura com desconto progressivo R29](img/22_cascata_adesao_r29.png)
+
+Em prosa: a R29 transforma a abertura do bloco em **evento Schelling reverso**. No instante zero, a firma já sabe que vai ser notificada — não há mais dúvida sobre o gatilho. Mas para cada trabalhador que tinha hesitado, agora há uma escolha clara: aderir já (e levar desconto alto) ou esperar (e ver o desconto cair tique a tique). É o mesmo dispositivo da fila clássica de leniência operado **dentro da firma já aberta**, sem precisar de outro cartel para servir de gatilho.
+
+O efeito jogo-teórico é dois: (i) a janela aumenta a captação de prova — mais trabalhadores cooperam, qualidade média da prova sobe; (ii) cria pressão antecipatória sobre quem está pensando em depositar para o canal em primeiro lugar. Mesmo quem prefere "esperar para ver" tem incentivo para depositar antes da abertura, porque saber-se na faixa 0 vale mais do que apostar em entrar na faixa 1 depois.
+
+Em código, a regra é uma fase nova P2.5c entre a abertura do escrow e a decisão da firma (P3). Sob `janela_adesao_pos_abertura = 0` (default), a fase é no-op e o modelo se comporta exatamente como antes — compat estrita.
+
+```python
+# src/waas_antitrust/model.py — fase P2.5c
+if self.usar_escrow_explicito and self.janela_adesao_pos_abertura > 0:
+    self.autoridade.processar_adesao_pos_abertura(
+        tique_atual=self.tique,
+        janela=self.janela_adesao_pos_abertura,
+        descontos=self.descontos_faixas_adesao,
+        trabalhadores_por_empresa=self.trabalhadores_por_empresa,
+        W_max=self._W_esperado(1.0),
+        custo_represalia=self.r_represalia,
+    )
+```
+
+A decisão individual de aderir é a IR-W projetada para a faixa: o trabalhador entra se `fator_desconto[k] × W_max > custo_represalia × w_a`. Como o fator decai, há uma posição $k^*$ a partir da qual ninguém adere mais — corte endógeno do que originalmente seria uma cauda infinita. Os reporters `n_aderentes_pos_abertura_acum` e `n_blocos_em_janela_adesao_acum` ficam expostos no `DataFrame` resultado, como qualquer outro estado do modelo. O cenário canônico `cascata_adesao_progressiva` ativa a regra com a parametrização default; o caderno [Brincar in-browser](brincar.md) tem o slider "Janela de adesão R29" para ajustar o $\Delta t$ ao vivo.
+
 ## A corrida que faltava (R20)
 
 A leniência clássica funciona porque cria uma **corrida temporal** entre cúmplices: quem entrega primeiro escapa da multa, e cada conspirador, sabendo disso, antecipa-se ao outro. O **WaaS na sua forma original não tinha esta corrida**: o gatilho de massa crítica era binário (`k` denunciantes ⇒ a firma é notificada), o desconto da firma era constante na IC-F\*, a recompensa do trabalhador era constante na IR-W. A delação era um *ato*, não uma *corrida*.
@@ -417,7 +446,7 @@ descrevendo a alteração — não é boa o suficiente. A versão deste projeto
 trata cada alteração normativa como um **cenário comparável**: um conjunto
 nomeado de sobrescritas de parâmetros, executável e reportável.
 
-O catálogo (módulo `waas_antitrust.cenarios`) contém **19 cenários
+O catálogo (módulo `waas_antitrust.cenarios`) contém **20 cenários
 canônicos**. A tabela abaixo lista os 9 que cobrem a malha institucional
 brasileira inicial; os outros 10 (reframe v2, generalidade EUA/UE,
 canal puro, erosão Coleman) estão em [`modelo_abm.md`](modelo_abm.md) §5.

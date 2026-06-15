@@ -56,7 +56,7 @@ site, use `scripts/regerar_todas_as_figuras.py`.
 | `mapa_lambda_hirschman.py` | Mapa de regime (λ × peso_hirschman) — resposta ao Mat A | `results/mapa_lambda_hirschman.parquet` + `docs/img/19_…` |
 | `gerar_figura_dissuasao.py` | Figura central da home (dissuasão e bem-estar A/B/C) | `docs/img/03_dissuasao_bem_estar.png` |
 | `gerar_figs_paper.py` | Regenera as 4 PDFs do paper a partir dos módulos viz | `paper/figs/0[1-4]_*.pdf` |
-| `regerar_todas_as_figuras.py` | **Orquestrador**: regera todas as 21 figuras do site em sequência | `docs/img/*.png` |
+| `regerar_todas_as_figuras.py` | **Orquestrador**: regera todas as 22 figuras do site em sequência | `docs/img/*.png` |
 | `gerar_figuras.py` | Gera as figuras conceituais simples (inversão, fase) | `figuras/*.{png,svg,pdf}` |
 | `run_sobol_full.py` | Varredura Sobol full paper-grade — wrapper do `waas-sobol` | `results/sobol_full.parquet` |
 
@@ -91,7 +91,7 @@ python scripts/identificabilidade_r03.py          # decompõe os 3 alvos
 python scripts/calibrar_formal.py                 # calibração formal
 python scripts/mapa_lambda_hirschman.py           # mapa Mat A
 
-# 2. Todas as 21 figuras do site (5-10 min)
+# 2. Todas as 22 figuras do site (5-10 min)
 python scripts/regerar_todas_as_figuras.py
 
 # 3. Os 4 PDFs do paper
