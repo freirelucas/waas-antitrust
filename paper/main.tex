@@ -28,69 +28,20 @@ A Conditional-Deposit Channel for Unilateral Conduct in Digital Markets}
 \begin{center}\textbf{Rascunho de trabalho (v0.2.0) --- não citar.}\end{center}
 
 \begin{abstract}
-O artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS) como resposta a uma falha estrutural dos programas clássicos de leniência em mercados digitais. O núcleo do desenho é um \emph{canal de depósito condicional} operado pela autoridade antitruste --- \emph{information escrow} no sentido de \citet{ayres2012information}, com análogo prático em \citet{callisto}: o trabalhador deposita uma denúncia que permanece em escrow até que uma massa crítica $q_{\min}\cdot n$ de co-depositantes da mesma firma se forme. O canal resolve por construção o dilema clássico do denunciante interno isolado e dispensa a coordenação simultânea entre conspiradores externos que a leniência clássica pressupõe. Ao canal são acoplados, opcionalmente, instrumentos de internalização --- recompensa via TCC, êxodo coletivo \emph{à la} Hirschman, crédito tributário, leniência criminal individual. Quando a recompensa é o acoplamento ativo, a aritmética sobre a firma passa a maximizar a margem $D - W$, com $D$ o desconto sobre a contribuição pecuniária do Termo de Compromisso de Cessação (TCC) e $W$ a recompensa total paga aos denunciantes; a fronteira IC-F* ($D > W$) é satisfazível na jurisprudência atual da Resolução CADE nº~21/2018, sustentando implementação por via infralegal (Regime B). Formalizamos a Leniência Condicionada à Massa Crítica (LCMC) que estrutura o canal, simulamos um modelo baseado em agentes com três populações (trabalhadores, empresa, autoridade) e varredura de Sobol em oito dimensões, e identificamos a região robusta de política. Marcos institucionais recentes --- DOJ-ATR Whistleblower Rewards Program (jul./2025, parceria com o USPS) e DMA Whistleblower Tool da Comissão Europeia (abr./2024) --- fornecem validação independente da transponibilidade do desenho. A parametrização usa o gradiente de descontos por posição na fila reportado por \citet{saito2021tcc} (calibração extraída da fonte primária) e o fluxo investigativo da Superintendência Geral 2022-2024 dos RIG/TCU. A calibração formal foi conduzida via \texttt{scipy.optimize.minimize} (Nelder-Mead, 5 seeds) sobre o problema reduzido --- 1 alvo operacional, 2 parâmetros dominantes --- após a análise de identificabilidade decompor o aparente conflito entre os 3 alvos do ODD. O ponto ótimo $(fra\c{c}\tilde{a}o\_violadoras, taxa\_capacidade) = (0{,}323; 0{,}481)$ produz 0,56 TCC/ano contra alvo normalizado 0,60 (erro relativo 6,7\%); o universo CADE implícito $N^\star \approx 1.679$ firmas é uma predi\c{c}\~ao falsific\'avel contra o n\'umero real sob jurisdi\c{c}\~ao ativa (pend\^encia emp\'irica explicitada). Resultados em \texttt{results/calibracao\_formal\_r03.json}.
+Os programas clássicos de leniência, ao explorarem a instabilidade interna do dilema do prisioneiro entre conspiradores externos, perdem tração diante das condutas predominantemente unilaterais que caracterizam o enforcement antitruste de mercados digitais \citep{cremer2019competition}. Propomos a \emph{Leniência Condicionada à Massa Crítica} (LCMC), um \emph{canal de depósito condicional} operado pelo CADE que implementa o desenho de \emph{information escrow} de \citet{ayres2012information} no domínio antitruste, com análogo operacional em \citet{callisto}: depósitos individuais de denúncia permanecem selados até que um gatilho de massa crítica $q_{\min}\cdot n$ sobre a mesma firma seja atingido, hipótese em que se abrem simultaneamente para o procedimento administrativo. A base normativa do canal é autônoma --- Art.~4º, II e III, da Lei nº~12.529/2011 \citep{lei12529} combinado com a Lei nº~9.784/1999 \citep{lei9784} ---, dispensando nova lei e dissociando a coordenação do incentivo monetário. Ao canal podem ser acoplados, de modo facultativo e ortogonal, cinco instrumentos de internalização: canal puro sem recompensa; recompensa via Termo de Compromisso de Cessação (TCC) sob o Art.~12 da Resolução CADE nº~21/2018 \citep{res21cade}; saída coordenada com vesting acelerado \emph{à la} Hirschman; crédito tributário; e leniência criminal individual. Quando a recompensa via TCC --- o instrumento \emph{Whistleblower-as-a-Service} (WaaS) --- é o acoplamento ativo, a firma maximiza a margem $D - W$, e a fronteira IC-F* ($D > W$) é satisfazível na jurisprudência atual do Art.~12 (Regime~B, infralegal; controvertível e sujeita ao falsificador F6). A análise empírica usa modelo baseado em agentes em Mesa~3.x com três populações (trabalhador, empresa, autoridade) e seis fases por tique. A calibração formal (R03) por Nelder-Mead em $(fra\c{c}\tilde{a}o\_violadoras, taxa\_capacidade) = (0{,}323;\ 0{,}481)$ entrega erro relativo de 6,65\% sobre o alvo operacional de TCCs/ano, dentro do intervalo de confiança \emph{bootstrap} de 95\%, e implica universo CADE de $N^\star \approx 1\,679$ firmas como predição falsificável. A validação institucional externa apoia-se em dois marcos contemporâneos: o programa de recompensa antitruste do DOJ-ATR \citep{dojatr2025}, instituído em julho de 2025 por ato infralegal em parceria com o USPS, oferece paralelo direto à via administrativa do Regime~B; a Whistleblower Tool da DMA \citep{dmatool2024}, lançada em abril de 2024 sem recompensa associada, oferece contrafactual para o canal puro. Reconhecem-se duas limitações: a forma forte da Proposição~5 (erosão Coleman do substrato cooperativo) foi refutada por varredura multi-seed dedicada, sobrevivendo apenas a forma fraca; e a unicidade do equilíbrio de coordenação (Proposição~2) sob heterogeneidade de arquétipos e papéis segue conjectura aberta.
 \end{abstract}
 
 \section{Introdução}
 
-Programas de leniência transformaram o enforcement antitruste ao oferecer imunidade ao
-primeiro membro de um cartel que coopera com a autoridade \citep{spagnolo2004divide,
-harrington2015when}. Sua eficácia, porém, pressupõe um \emph{cartel} --- conduta
-coordenada entre concorrentes cuja instabilidade interna a leniência explora. Em
-mercados digitais, parte central das condutas potencialmente anticompetitivas é
-\emph{unilateral} (autopreferência, venda casada, recusa de acesso), sem co-conspirador
-com incentivo a delatar \citep{cremer2019competition}. A leniência clássica, desenhada
-para o dilema do prisioneiro entre firmas, perde tração onde o conhecimento relevante
-reside \emph{dentro} de uma única firma, com seus empregados.
+Programas de leniência reconfiguraram o enforcement antitruste das últimas três décadas ao oferecer imunidade qualificada ao primeiro membro de um cartel que coopere com a autoridade. A análise formal de \citet{spagnolo2004divide} mostrou que descontos progressivos por posição na fila sustentam, em equilíbrio bayesiano-perfeito, a delação como resposta dominante em cartéis de população finita; \citet{harrington2015when} explicitaram, em sequência, as condições agregadas sob as quais um programa de leniência reduz a prevalência cartelizada no longo prazo. A evidência empírica em jurisdições maduras --- DOJ Antitrust Division desde 1993, Comissão Europeia desde 1996, CADE desde 2000 --- corroborou que o instrumento opera por desestabilização interna de uma coordenação que já existe entre concorrentes externos.
 
-Este artigo propõe o mecanismo \emph{Whistleblower-as-a-Service} (WaaS), que desloca o
-incentivo da delação do concorrente para o \emph{denunciante interno}. A evidência
-empírica indica que empregados são uma das principais fontes de detecção de fraude
-corporativa \citep{dyck2010blows} e que recompensas --- não apenas a redução de
-penalidades --- ampliam materialmente a delação \citep{bigoni2012fines,
-aubert2006impact}. O núcleo do desenho, contudo, não é a recompensa; é o
-\emph{canal de depósito condicional} operado pela autoridade. Um trabalhador isolado
-não se identifica antes de saber se outros se identificarão --- problema clássico de
-ação coletiva sob assimetria de informação \citep{olson1965logic, granovetter1978threshold}.
-O canal resolve isso institucionalizando o que \citet{ayres2012information} chamam de
-\emph{information escrow}: o depósito permanece selado até que um gatilho de massa
-crítica $q_{\min}\cdot n$ se concretize sobre a mesma firma, e só então as identidades
-e provas são abertas simultaneamente para o procedimento antitruste. O análogo prático
-direto é a plataforma \citet{callisto}, em operação nos EUA desde 2015 para denúncias
-condicionais de assédio em campus.
+O sucesso depende, porém, da existência de um \emph{cartel}: conduta coordenada entre firmas distintas cuja instabilidade interna a leniência explora. \citet{cremer2019competition} documentam que parte central das condutas potencialmente anticompetitivas em mercados digitais é estruturalmente distinta --- autopreferência de busca, restrições \emph{anti-steering} sobre desenvolvedores, recusa de acesso a dados, aquisições assassinas (\emph{killer acquisitions}), exclusividade em \emph{marketplace}. São condutas \emph{unilaterais}, sem co-conspirador externo a quem se possa oferecer imunidade; a informação relevante reside, tipicamente, no interior de pequenos núcleos técnicos da própria firma (engenharia de \emph{ranking}, \emph{ad-tech}, \emph{corp dev}). A leniência clássica, desenhada para o dilema do prisioneiro entre firmas, perde tração nesse domínio: não há a quem delatar, há apenas a quem testemunhar.
 
-Ao canal são acoplados, opcionalmente, \emph{instrumentos de internalização} que
-financeiram a revelação. Quando o acoplamento é a recompensa via TCC, emerge a
-aritmética que dá nome ao mecanismo: a firma compara a margem
-$D - W$, em que $D$ é o desconto sobre a contribuição pecuniária do TCC e $W$ é a
-recompensa total paga aos denunciantes internos (Figura~\ref{fig:inversao}). Quando
-$D > W$ --- condição que denominamos IC-F* --- a própria firma tem incentivo a
-financiar a revelação, e o enforcement deixa de depender exclusivamente da capacidade
-investigativa da autoridade. Os demais acoplamentos (Hirschman, crédito tributário,
-leniência criminal individual) atuam sobre regimes constitucionais distintos e ficam
-documentados como sub-regimes $C_t/C_\varphi/C_p$.
+O problema central, sustentamos, não é a punição da firma --- já endereçada pelo arsenal sancionatório da Lei nº~12.529/2011 --- nem o pagamento ao denunciante individual --- já contemplado, sob arquitetura distinta, pela Lei nº~13.608/2018 \citep{lei13608}. O problema é a \emph{coordenação intra-firma}: o trabalhador que detém informação relevante não se identifica isoladamente, porque o custo individual de represália suportado em isolamento é proibitivo; o equilíbrio de silêncio que daí resulta é o caso paradigmático da \emph{lógica da ação coletiva} de \citet{olson1965logic}, do modelo de \emph{thresholds} de \citet{granovetter1978threshold} e do \emph{contágio complexo} de \citet{centola2007complex} sobre redes intra-organizacionais.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\textwidth]{01_inversao_utilidade}
-  \caption{Inversão da função-utilidade da conformidade sob o acoplamento
-  ``recompensa via TCC''. À esquerda, o regime clássico (Regime~A): a firma minimiza
-  a sanção esperada $p\cdot S$ e a conformidade ótima reside na zona de baixa
-  detecção. À direita, sob WaaS (Regimes~B/C), a firma maximiza a margem $D - W$; a
-  fronteira IC-F* ($D = W$) separa a região em que pagar os denunciantes é
-  individualmente racional. \emph{Figura ilustrativa; as magnitudes relativas $S/W$
-  são discutidas na Seção~\ref{sec:mecanismo}.}}
-  \label{fig:inversao}
-\end{figure}
+Este artigo propõe a \emph{Leniência Condicionada à Massa Crítica} (LCMC) como mecanismo de coordenação adequado ao domínio. O núcleo do desenho é um \emph{canal de depósito condicional} operado pelo CADE: trabalhadores depositam denúncias seladas em escrow institucional, à maneira do \emph{information escrow} de \citet{ayres2012information}; os depósitos só se abrem simultaneamente quando um gatilho de massa crítica $q_{\min}\cdot n$ sobre a mesma firma é atingido, replicando \emph{mutatis mutandis} o desenho \emph{all-or-nothing} de \citet{callisto} para denúncias condicionais de assédio em campus universitário. O CADE figura como custodiante neutro do escrow; nenhum depósito individual permanece exposto isoladamente. A base normativa do canal é autônoma no Art.~4º, II e III, da Lei nº~12.529/2011 \citep{lei12529} combinado com a Lei nº~9.784/1999 \citep{lei9784} sobre processo administrativo federal: o canal é implementável por ato infralegal do CADE, sem nova lei.
 
-Sustentamos que IC-F* é satisfazível \emph{de lege lata} na Resolução CADE
-nº~21/2018 \citep{res21cade} para o acoplamento monetário (Regime~B), permitindo
-implementação por via infralegal, e discutimos uma via legal mais robusta (Regime~C,
-via extensão da Lei nº~13.608/2018 \citep{lei13608}). O \emph{canal} em si, contudo,
-tem base autônoma no Art.~4º, II e III, da Lei nº~12.529/2011 \citep{lei12529} c/c a
-Lei nº~9.784/1999 \citep{lei9784} --- o CADE pode disciplinar procedimento de
-recepção qualificada de denúncias condicionais sem nova lei e sem depender da
-re-caracterização do Art.~12.
+Ao canal podem ser acoplados, de modo opcional e ortogonal, cinco instrumentos de internalização: o canal puro (sem instrumento acoplado, equivalente operacional da DMA Tool); a recompensa via TCC sob re-caracterização do Art.~12 da Resolução CADE nº~21/2018 \citep{res21cade} --- o instrumento \emph{Whistleblower-as-a-Service} (WaaS) que dá nome à literatura precedente do projeto e que satisfaz a aritmética IC-F* ($D > W$) sobre a firma, sujeita à validação judicial (falsificador F6); o vesting acelerado de Hirschman como saída coordenada da firma; o crédito tributário (sub-regime $C_\varphi$); e a leniência criminal individual (sub-regime $C_p$). O acoplamento é, em todo caso, lógica e juridicamente separável do canal. A Seção~\ref{sec:mecanismo} detalha o mecanismo e a charneira normativa de cada regime; a Seção~\ref{sec:limitacoes}, o modelo baseado em agentes e a calibração formal; as seções subsequentes desenvolvem o enquadramento cibernético, a pré-condição sociológica e a tradução política do desenho ao contexto institucional brasileiro 2024--2027.
 
 \section{Falha estrutural da leniência clássica em mercados digitais}
 
@@ -199,7 +150,7 @@ via TCC, sob via infralegal. Esse posicionamento permite implementação no
 horizonte regulatório brasileiro 2024--2027 sem dependência de nova lei
 federal (analisada em detalhe em \S\ref{sec:traducao_politica}).
 
-\section{O mecanismo WaaS}
+\section{O mecanismo LCMC}
 \label{sec:mecanismo}
 
 O WaaS opera em cinco fases sequenciais. (P1)~\emph{Sinalização}: cada empregado que
