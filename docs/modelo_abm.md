@@ -1,25 +1,27 @@
 # O modelo ABM em detalhe
 
-<p class="sublinha-tese"><em>Três classes de agente, ~40 parâmetros, 331 testes, opt-in por flag. Tudo inspecionável. Esta página é o guia completo para abrir o capô, ler, calibrar e quebrar.</em></p>
+<p class="deck">Referência completa do modelo baseado em agentes (Mesa 3.x) que sustenta a LCMC: três classes de agente, cinquenta e poucos parâmetros expostos, 364 testes verdes, comportamento histórico preservado por design por trás de cada parâmetro novo (opt-in via <em>flag</em>).</p>
 
 | § | Seção | O que tem |
 |---|---|---|
-| [§1](#1-a-historia-do-modelo-em-um-paragrafo) | A história em um parágrafo | Da formulação original v1 à correção v3 |
+| [§1](#1-o-que-este-modelo-e) | O que este modelo é | Definição operacional + remissão à trajetória |
 | [§2](#2-anatomia-rapida) | Anatomia rápida | Três classes, fases P0-P5 e reporters |
-| [§3](#3-tabela-completa-de-parametros-waasparametros) | Tabela de ~40 parâmetros | `WaaSParametros` linha a linha, com defaults |
-| [§4](#4-como-alterar-parametros-manipulabilidade-7-receitas) | Manipulabilidade + 7 receitas | Tabela de flags opt-in + Python para mudar regime, ativar escrow, varrer Sobol |
+| [§3](#3-tabela-completa-de-parametros-waasparametros) | Tabela de parâmetros | `WaaSParametros` linha a linha, com defaults |
+| [§4](#4-como-alterar-parametros-manipulabilidade-7-receitas) | Como alterar parâmetros | Tabela de flags opt-in + 7 receitas Python |
 | [§5](#5-atalho-22-cenarios-canonicos) | 22 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
 | [§6](#6-a-saida-do-modelo-38-reporters) | 38 reporters | As colunas do DataFrame agrupadas por categoria |
-| [§7](#7-cookbook-reprodutivel-6-receitas-avancadas) | Cookbook avançado | Calibração Saito, choques layoff, multi-seed CI, mapa λ×Hirschman |
-| [§8](#8-postura-epistemica) | Postura epistêmica | Backward compat estrita; opt-in por flag |
+| [§7](#7-cookbook-reprodutivel-6-receitas-avancadas) | Cookbook avançado | Calibração, varreduras paramétricas, multi-seed |
+| [§8](#8-postura-epistemica) | Postura epistêmica | Compatibilidade retroativa estrita; opt-in por flag |
 
-Esta é a aba dedicada ao **modelo computacional**: o que é, como evoluiu, como se mexe nos parâmetros, como se lê a saída. Para a anatomia conceitual das 3 classes (Trabalhador, Empresa, Autoridade) e a discussão de "o que não é agente, e por quê", veja [Modelagem multiagente](modelagem_multiagente.md). Para o protocolo ODD formal, veja [Modelo (ODD)](ODD.md).
+Esta é a aba dedicada ao **modelo computacional**: o que ele simula, como se lê a saída e como se altera o comportamento ajustando parâmetros. Para a discussão conceitual das três classes (Trabalhador, Empresa, Autoridade) e a justificativa do que **não** é agente, ver [Modelagem multiagente](modelagem_multiagente.md). Para o protocolo ODD formal (Grimm et al. 2010), ver [Modelo (ODD)](ODD.md).
 
-## 1. A história do modelo, em um parágrafo
+## 1. O que este modelo é
 
-O modelo nasceu em 2022 como uma simulação simples de leniência clássica antitruste sob a Lei 12.529/2011 — duas firmas, sinalização Bayesiana, payoffs Beckerianos. A primeira reformulação radical (LCMC, R20) deslocou o eixo de "leniência entre cúmplices" para **massa crítica intra-firma** sob a tese do moat (mercados digitais → condutas unilaterais → conluio só existe dentro do organograma). A segunda (Coleman 1990, R26) abriu a hipótese de erosão endógena do substrato cooperativo. A terceira — a correção radical do autor em fim de sessão — moveu o coração do mecanismo para **canal de depósito condicional** (information escrow à la Ayres-Unkovic 2012; análogo Callisto). Coleman virou **diagnóstico secundário**; o canal virou tese central. Veja [aprendizados v3](aprendizados_v3.md) para a memória institucional desta trajetória.
+O modelo simula o comportamento de **trabalhadores, empresas e uma autoridade antitruste** ao longo de trimestres ("tiques") sob diferentes regimes institucionais. Em cada tique, cada trabalhador observa parcialmente uma conduta potencialmente anticompetitiva da sua empresa e decide se sinaliza ou silencia, segundo o arquétipo (ético, imitativo, racional, *fairminded* ou oportunista) e a percepção de recompensa e represália. Quando a massa crítica de sinalizações é atingida dentro de uma firma, a autoridade pode abrir o procedimento; a firma escolhe entre seguir adiante (e absorver a sanção esperada) ou propor um acordo de cessação. O bem-estar agregado é medido como o oposto do dano social acumulado, com correções por falsos positivos.
 
-O modelo atual implementa **mecanicamente** a versão correta (Phase P2 já é gating de massa crítica; P2.5 sob `modo_corrida=True` já implementa o escrow), mas a leitura semântica do código ainda está em refator (R27 aberto). Isso significa: **a simulação produz hoje os resultados certos sob a tese correta**, apenas com nomes de variáveis que carregam resquícios v1/v2.
+O mecanismo de interesse é a **Leniência Condicionada à Massa Crítica (LCMC)** — um canal de depósito condicional (*information escrow*; Ayres & Unkovic, *Mich. L. Rev.* 111, 2012; análogo prático em [callisto.org](https://www.callisto.org), em operação desde 2015) operado pela autoridade. Trabalhadores depositam denúncias que permanecem seladas até que uma fração mínima `q_min · n` de colegas da mesma firma também tenha depositado. Quando o gatilho é atingido, todas as denúncias daquela firma se abrem simultaneamente — eliminando, por construção, o problema clássico de "ninguém quer ser o primeiro" (Olson 1965). Sobre o canal podem ser acoplados, opcionalmente, instrumentos de internalização: recompensa via TCC (o instrumento *Whistleblower-as-a-Service*, do qual o pacote Python herda o nome histórico), vesting acelerado à la Hirschman, crédito tributário ou leniência criminal individual. O canal sozinho — sem nenhum desses acoplamentos — resolve a coordenação; os instrumentos amplificam a taxa de adesão.
+
+> **Trajetória do modelo.** O código atual é produto de três reformulações desde a versão original de 2022 (que simulava leniência clássica entre cúmplices, sem canal). A correção mais recente, de jun/2026, é a que deslocou o eixo conceitual para o canal de depósito condicional como mecanismo central. Nomes de algumas variáveis no código ainda refletem versões anteriores — em particular o próprio nome do pacote, `waas_antitrust`. A simulação produz hoje, mecanicamente, os resultados da versão correta (Phase P2 do `step()` é o gatilho de massa crítica; sob `usar_escrow_explicito=True`, a Phase P2.5 carrega o escrow no `AutoridadeAgent`). A reescrita semântica do código para refletir a nomenclatura atual é um item de dívida técnica registrado em [`brainstorm de revisão`](brainstorm_revisao.md) §4. Para a memória completa da trajetória, ver [Aprendizados v3](aprendizados_v3.md).
 
 ## 2. Anatomia rápida
 
