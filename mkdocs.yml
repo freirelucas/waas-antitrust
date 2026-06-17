@@ -86,6 +86,7 @@ nav:
   - "Modelo ABM": modelo_abm.md
   - "Brincar": brincar.md
   - "Paper (rascunho v0.2.0)": paper.md
+  - Sobre: sobre.md
   - Anexos:
       - Como usar: uso.md
       - "Comandos e scripts (CLI)": comandos.md

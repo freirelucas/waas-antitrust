@@ -1,39 +1,80 @@
 cff-version: 1.2.0
 title: >-
-  waas-antitrust: modelo baseado em agentes para o mecanismo
-  Whistleblower-as-a-Service em enforcement antitruste de mercados digitais
+  LCMC — Leniência Condicionada à Massa Crítica: canal de depósito
+  condicional para condutas unilaterais em mercados digitais
 message: >-
   Se este software for usado em pesquisa, cite conforme abaixo.
 type: software
 authors:
   - given-names: "L."
     family-names: ""
-    affiliation: "IPEA (DIEST/COGIT)"
+    website: "https://freirelucas.github.io/waas-antitrust/"
 repository-code: "https://github.com/freirelucas/waas-antitrust"
+url: "https://freirelucas.github.io/waas-antitrust/"
 license: CC-BY-SA-4.0
-version: "0.1.0"
-date-released: "2026-05-26"
+version: "0.2.0-draft"
+date-released: "2026-06-15"
 abstract: >-
-  Modelo baseado em agentes (Mesa 3.x) e análise de sensibilidade global
-  (Sobol) para o mecanismo Whistleblower-as-a-Service aplicado a casos
-  unilaterais antitruste em mercados digitais. Inclui calibração contra a
-  série histórica do CADE (109 acordos de leniência em 20 anos) e
-  parâmetros do mercado de trabalho TIC brasileiro (Brasscom, 2024).
+  Proposta acadêmica de mecanismo Leniência Condicionada à Massa Crítica
+  (LCMC) — canal de depósito condicional (information escrow no sentido de
+  Ayres-Unkovic 2012; análogo prático em Callisto) operado pelo CADE para
+  o enforcement antitruste de mercados digitais brasileiros, em que a
+  conduta tipicamente é unilateral e a leniência clássica perde tração.
+  Inclui cinco instrumentos opcionais de internalização (canal puro,
+  WaaS via TCC sob Art. 12 Res. 21/2018, Hirschman, crédito tributário,
+  leniência criminal individual), modelo baseado em agentes (Mesa 3.x)
+  com 364 testes verdes, calibração formal Nelder-Mead em (0,323; 0,481),
+  22 cenários canônicos, 38 reporters expostos e 23 figuras
+  reproduzíveis. Extensões R29 (janela de adesão pós-abertura com
+  desconto progressivo por classe) e R30 (sinergia entre autoridades
+  internacionais sob LCMC global) acrescentadas em jun/2026.
 keywords:
   - "antitrust"
   - "agent-based-model"
   - "leniency"
+  - "information-escrow"
+  - "critical-mass"
   - "CADE"
   - "digital-markets"
-  - "Sobol-sensitivity"
+  - "unilateral-conduct"
+  - "self-preferencing"
   - "Mesa"
+  - "Sobol-sensitivity"
+  - "Brazil"
+references:
+  - type: article
+    authors:
+      - family-names: Ayres
+        given-names: Ian
+      - family-names: Unkovic
+        given-names: Cait
+    title: "Information Escrows"
+    journal: "Michigan Law Review"
+    volume: 111
+    start: 145
+    year: 2012
+  - type: article
+    authors:
+      - family-names: Olson
+        given-names: Mancur
+    title: "The Logic of Collective Action"
+    year: 1965
+  - type: article
+    authors:
+      - family-names: Spagnolo
+        given-names: Giancarlo
+    title: "Divide et Impera: Optimal Leniency Programs"
+    journal: "Journal of the European Economic Association"
+    volume: 2
+    issue: 1
+    year: 2004
 preferred-citation:
   type: article
   authors:
     - given-names: "L."
       family-names: ""
   title: >-
-    Rescaling Leniency Programs for Digital Markets:
-    A Whistleblower-as-a-Service Mechanism
+    Leniency Conditional on Critical Mass: A Conditional-Deposit Channel
+    for Unilateral Conduct in Digital Markets
   year: 2026
   status: in-preparation

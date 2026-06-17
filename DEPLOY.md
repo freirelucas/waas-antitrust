@@ -91,3 +91,40 @@ Após push em `main`, verificar:
   Uma única fonte da verdade: o artefato do workflow é o que vai ao
   ar. Resolve definitivamente o ciclo "deploy ok mas site mostra
   Jekyll bruto".
+
+## Arquivamento Zenodo (DOI)
+
+A integração Zenodo é independente do GitHub Pages e usa o arquivo
+`.zenodo.json` na raiz para preencher os metadados de cada release.
+
+### Configuração manual única
+
+1. Abra <https://zenodo.org/account/settings/github/> autenticado com a
+   mesma conta GitHub que mantém o repositório.
+2. Em *Repositories*, localize `freirelucas/waas-antitrust` e ligue a
+   chave ON.
+3. Salve.
+
+A partir disso, toda *Release* publicada na página de GitHub →
+*Releases* dispara automaticamente um arquivamento no Zenodo com DOI
+permanente, derivado dos campos em `.zenodo.json` (título, criadores,
+licença, *keywords*, comunidade, etc.).
+
+### Criar release v0.2.0
+
+Quando o conjunto v0.2.0 estiver pronto para arquivamento:
+
+```bash
+git tag -a v0.2.0 -m "Release v0.2.0 — R29 + R30 + atenuação editorial + Pages via Actions"
+git push origin v0.2.0
+```
+
+Depois, ir em <https://github.com/freirelucas/waas-antitrust/releases/new>,
+selecionar a tag `v0.2.0`, preencher título e *release notes* (extrair
+do `CHANGELOG.md` rodada "R30 + banho de loja" e "R29 + simulador").
+Publicar. O Zenodo cria o registro e devolve o DOI em poucos minutos.
+
+Após o DOI sair, atualizar:
+- `CITATION.cff` (campo `doi:`)
+- `docs/sobre.md` (seção "DOI")
+- `README.md` (badge DOI no hero)
