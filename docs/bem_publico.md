@@ -1,55 +1,26 @@
 # Bem coletivo, capital social, instrumentos de internalização
 
-<div class="grid-instrumentos" markdown>
+<p class="deck">Por que a cooperação interna que a LCMC mobiliza é tecnicamente um bem coletivo, em que medida o capital social organizacional (Coleman 1990) é precondição necessária para o canal funcionar, e como cada um dos cinco instrumentos opcionais — canal puro, recompensa via TCC (WaaS), vesting acelerado, crédito tributário, leniência criminal individual — internaliza esse bem por uma via diferente.</p>
 
-- <span class="chip-instrumento waas">WaaS</span> **Recompensa via TCC** — firma → trabalhador, sob Art. 12 da Res. 21/2018. Reserva ordinária. Implementado em `model.py` P3.
+Esta página é o pano de fundo conceitual da LCMC. Responde a uma pergunta que aparece naturalmente depois do [Ato 2 (mecanismo)](mecanismo.md): que tipo de coisa é a "massa crítica de cooperação interna" sobre a qual o canal opera, e por que a recompensa via TCC é apenas **um** entre cinco instrumentos opcionais — não o coração do desenho.
 
-- <span class="chip-instrumento">Hirschman</span> **Vesting acelerado** — firma (via equity) → trabalhador. Reserva Cₜ trabalhista. Implementado em `hirschman.py`.
+## Onde se encaixa cada um dos cinco instrumentos
 
-- <span class="chip-instrumento">Tributário</span> **Crédito tributário** — Estado → trabalhador (renúncia fiscal). Reserva Cᵩ tributária (LC + LRF). Stub declarativo (R22).
+| Instrumento | Quem paga | Para quem | Reserva normativa | Onde no código |
+|---|---|---|---|---|
+| **Canal puro** | — | — | Art. 4º II/III Lei 12.529 + Lei 9.784 (ordinária) | `usar_escrow_explicito=True` |
+| **Recompensa via TCC** (WaaS) | Firma | Trabalhador | Art. 12 Res. CADE 21/2018 (controvertível, F6) | `model.py` P3 |
+| **Vesting acelerado** (Hirschman) | Firma (equity) | Trabalhador | Reserva Cₜ trabalhista (lei) | `hirschman.py` |
+| **Crédito tributário** | Estado (renúncia) | Trabalhador | Reserva Cᵩ tributária (LC + LRF) | *stub* declarativo |
+| **Leniência criminal individual** | Estado (não-persecução) | Trabalhador | Reserva Cₚ penal (lei estrita) | *stub* declarativo |
 
-- <span class="chip-instrumento">Criminal</span> **Leniência criminal individual** — Estado → trabalhador (não-persecução). Reserva Cₚ penal estrita. Stub declarativo (R23).
+O canal puro carrega o mecanismo sozinho — os outros quatro elevam a taxa de adesão. As duas leituras conceituais que seguem (Samuelson e Coleman) servem para **diagnosticar fragilidades** do desenho (bem coletivo difícil de internalizar; risco de erosão por uso instrumental), não para sustentar o mecanismo, que tem outra ancoragem.
 
-</div>
+## A leitura primária — *information escrow* (Ayres & Unkovic 2012)
 
-Esta página é o **anexo conceitual** do projeto. Ela responde a uma
-pergunta que o leitor curioso faz depois do [Ato 2](mecanismo.md): de
-que tipo de coisa é "massa crítica de cooperação interna" — e por que
-a recompensa via TCC é apenas **um** instrumento incremental?
+A categoria correta para o canal proposto é **information escrow**: um depósito de informação revelada condicionalmente, sob regra estabelecida *ex-ante* por um terceiro confiável. Ayres & Unkovic (2012, *Michigan Law Review* 111: 145) formalizaram o instrumento em direito; a aplicação prática mais conhecida é o [Callisto](https://www.callisto.org), plataforma em operação desde 2015 em campus universitário norte-americano: identidade de uma vítima de assédio é revelada à autoridade interna apenas se duas ou mais denúncias coincidirem no mesmo agressor.
 
-!!! warning "Atualização — correção radical pós-`aprendizados_v3.md`"
-
-    A leitura "capital social com risco de erosão endógena" (Coleman 1990)
-    abaixo é **moldura analítica secundária** sob a versão corrigida do
-    mecanismo. O **mecanismo central** é o **canal de depósito condicional
-    (information escrow)** operado pelo CADE — Ayres & Unkovic (2012,
-    *Michigan Law Review* 111:145), análogo prático Callisto (callisto.org).
-    O canal resolve Olson 1965 **direto na estrutura** (sub-iniciação
-    eliminada por construção), sem precisar que capital social pré-exista.
-
-    - Detalhamento da correção: ver §"A analogia conceitual correta" em
-      [aprendizados_v3.md](aprendizados_v3.md).
-    - Forma canônica dos termos ("depósito condicional", "escrow",
-      "canal"): ver [terminologia canônica](TERMINOLOGIA.md).
-    - As duas leituras abaixo (Samuelson e Coleman) servem para
-      **diagnosticar fragilidades** (bem coletivo difícil de
-      internalizar; erosão por uso instrumental), **não** para sustentar
-      o mecanismo.
-
-## A leitura primária correta — information escrow (Ayres & Unkovic 2012)
-
-A categoria correta para o mecanismo proposto é **information escrow**: um
-depósito de informação revelada condicionalmente, sob regra estabelecida
-*ex-ante* por um terceiro confiável. Ayres & Unkovic (2012) formalizaram a
-ideia em direito; a aplicação prática mais conhecida é o **Callisto**
-([callisto.org](https://www.callisto.org)), plataforma usada em campus
-universitário para denúncia de assédio sexual: identidade da vítima é
-revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem.
-
-Sob LCMC corrigida, o CADE opera o escrow. O trabalhador deposita uma
-denúncia com cláusula de abertura condicional. As denúncias ficam em
-escrow até `q_min · n` co-depósitos do mesmo setor/firma. Quando o gatilho
-é atingido, todas se abrem simultaneamente.
+Sob a LCMC, o CADE opera o escrow. O trabalhador deposita uma denúncia com cláusula de abertura condicional. As denúncias ficam seladas até que `q_min · n` co-depósitos da mesma firma sejam atingidos. Quando o gatilho dispara, todas se abrem simultaneamente — eliminando, por construção, o problema clássico de "ninguém quer ser o primeiro" (Olson 1965).
 
 A vantagem estrutural: o problema clássico de Olson (1965) — sub-iniciação,
 "ninguém quer ser o primeiro" — é resolvido **direto no canal**, sem

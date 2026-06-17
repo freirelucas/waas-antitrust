@@ -1,22 +1,22 @@
 # O que ainda não está sustentado
 
-**Ato 4 de 5 · A honestidade**
+<p class="deck">Inventário honesto dos pontos onde a alegação do projeto ainda não fecha — por calibração faltando, por escolha teórica que precisa de revisão, por restrição estrutural do desenho jurídico. Cada item diz o que faria a alegação se sustentar.</p>
 
-<p class="sublinha-tese"><em>O reframe não resolve fragilidades — apenas as nomeia melhor; sob a lente Coleman, novas fragilidades aparecem que o framing "empresa paga" ocultava.</em></p>
+<p class="byline"><em>Ato 4 de 5</em> · Limitações · rascunho v0.2.0</p>
 
-O Ato 3 fechou com evidência direcional para o canal de dissuasão. Mas seria desonesto parar aí. Este projeto é um **artigo em elaboração**, e existem pontos onde a alegação ainda não tem cobertura — alguns por calibração faltando, outros por escolha teórica que precisa de revisão, outros por restrição estrutural do desenho jurídico. Esta página enumera cada um deles e diz, na medida do possível, **o que faria a alegação sustentar-se**.
+<p class="lede">O <a href="resultados.md">Ato 3</a> consolidou a evidência direcional para o canal de dissuasão. Parar aí seria desonesto. O projeto é um rascunho de trabalho em elaboração, e há pontos onde a alegação ainda não tem cobertura completa. Esta página enumera cada um deles e diz, na medida do possível, o que faria a alegação sustentar-se. O backlog técnico estruturado fica em <a href="DECISIONS.md">Decisões e backlog</a>; o que segue é a versão para leitor humano, dividida por categoria de fragilidade.</p>
 
-A postura é simples: **dizer onde o argumento ainda não fecha é mais útil ao leitor do que esconder a dobra**. O backlog técnico completo está em [Decisões e backlog](DECISIONS.md); o que segue é a versão para humanos.
+## Fragilidade jurídica do Regime B
 
-## A fragilidade jurídica do Regime B é a mais séria
+O Regime B implementa a recompensa via TCC por **resolução do CADE**, sem alterar lei. Tem três vetores de fragilidade que oito leituras críticas independentes identificaram convergentemente.
 
-Esta é a charneira que oito revisores externos — convocados na [Crítica x10](critica_x10.md) — apontaram independentemente, e a que mais muda a leitura do projeto. Vale dizer com todas as letras.
+### (i) A re-caracterização da recompensa como ressarcimento é controvertida
 
-O Regime B implementa o WaaS por **resolução do CADE**, sem alterar lei. Tem três vetores de fragilidade:
+A jurisprudência sobre o Art. 12 da Resolução 21/2018 trata "vítimas" como categoria coletiva (consumidores, concorrentes, erário). O denunciante interno é, dogmaticamente, **testemunha qualificada** — não a coletividade lesada. Re-caracterizar o pagamento como ressarcimento dessas vítimas é construção finalística, e o Judiciário pode rejeitá-la em sede de controle. No modelo, esse risco é calibrado por `p_anulacao_tcc`.
 
-**(i) A re-caracterização da recompensa como "ressarcimento" é controvertida.** A jurisprudência sobre o Art. 12 da Resolução 21/2018 trata "vítimas" como categoria coletiva (consumidores, concorrentes, erário). O denunciante interno é, dogmaticamente, **testemunha qualificada** — não a coletividade lesada. Re-caracterizar o pagamento como ressarcimento dessas vítimas é construção finalística, e o Judiciário pode rejeitá-la em sede de controle (falsificador F6 do desenho). O modelo torna isto calibrável via `p_anulacao_tcc`.
+### (ii) Resolução não pode impor cláusula contratual padrão
 
-**(ii) Resolução do CADE não pode impor cláusula contratual padrão.** A camada **Hirschman exit-with-equity** (R07) supõe cláusulas contratuais de vesting acelerado por gatilho de ação coletiva. Por **reserva de lei** (Art. 22, I, da Constituição), matéria contratual padrão e proteção trabalhista são competência exclusiva da União por **lei** — não cabem em resolução infralegal. Logo, R07 só é institucionalmente coerente sob **Regime C**, e o modelo agora reflete isso: o parâmetro `fracao_contratos_acelerados > 0` em Regime A ou B é forçado a 0 com aviso explícito.
+A camada do vesting acelerado de Hirschman supõe cláusulas contratuais de aceleração disparadas por gatilho de ação coletiva. Por **reserva de lei** (Art. 22, I, da Constituição), matéria contratual padrão e proteção trabalhista são competência exclusiva da União por lei — não cabem em resolução infralegal. Logo, esse instrumento só é institucionalmente coerente sob **Regime C**. O modelo agora reflete essa restrição: `fracao_contratos_acelerados > 0` em Regime A ou B é forçado a 0, com aviso explícito.
 
 **(iii) Há colisão com a leniência clássica.** Se o denunciante interno for **partícipe** da conduta — o engenheiro que codificou o algoritmo, o comercial que operou a exclusividade, o *growth* que instrumentou o *dark pattern* — o caminho institucional adequado é o Art. 86 (leniência clássica), não o WaaS. O Regime B pode criar **arbitragem regulatória** entre os dois canais.
 
