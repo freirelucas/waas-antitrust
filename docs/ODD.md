@@ -1,18 +1,20 @@
-# Protocolo ODD do modelo WaaS
+# Protocolo ODD do modelo
 
-Documentação seguindo Grimm, Railsback, Vincenot et al. (*JASSS* 23(2):7, 2020).
+<p class="deck">Especificação formal do modelo segundo o protocolo ODD (Grimm, Railsback, Vincenot <em>et al.</em>, <em>JASSS</em> 23(2): 7, 2020) — propósito, entidades e variáveis de estado, escala temporal e espacial, visão geral do processo, conceitos de desenho, inicialização, dados de entrada e submodelos.</p>
+
+Esta página é a descrição técnica padronizada do modelo, no formato esperado por publicação em ABM. Para uma introdução em prosa antes do protocolo, ver [Modelagem multiagente](modelagem_multiagente.md); para a tabela de parâmetros e como manipulá-los, [Modelo ABM em detalhe](modelo_abm.md).
 
 ## 1. Visão geral
 
 ### 1.1 Propósito e padrões
 
-Quantificar a taxa de denúncia, taxa de verdadeiros positivos, taxa de falsos positivos e bem-estar social gerado pelo mecanismo WaaS sob três regimes institucionais brasileiros.
+Quantificar quatro grandezas sob três regimes institucionais brasileiros: taxa de denúncia, taxa de verdadeiros positivos, taxa de falsos positivos e bem-estar social agregado gerado pela LCMC (canal de depósito condicional operado pelo CADE, com instrumentos opcionais acoplados — entre eles a recompensa via TCC, do qual o pacote Python herda o nome histórico `waas_antitrust`).
 
-Padrões-alvo para calibração:
+Alvos empíricos usados na calibração:
 
-- CADE: 109 acordos de leniência cumulativos em 20 anos.
-- CADE: 349 TCCs em 7,5 anos (média 47/ano), conforme Saito 2021.
-- Dyck-Morse-Zingales (2010): aproximadamente 19% das fraudes corporativas grandes nos EUA são descobertas por funcionários.
+- Série histórica do CADE: 109 acordos de leniência cumulativos em vinte anos.
+- Série histórica do CADE: 349 TCCs em 7,5 anos (média de 47 por ano), conforme Saito (2021).
+- Dyck, Morse & Zingales (*Journal of Finance* 65(6), 2010): aproximadamente 19 % das fraudes corporativas de grande porte nos Estados Unidos são descobertas por funcionários internos.
 
 ### 1.2 Entidades, variáveis de estado, escalas
 

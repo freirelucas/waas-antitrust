@@ -1,30 +1,18 @@
 # Modelagem multiagente
 
-Esta página consolida, em um único lugar, **como o modelo é composto agente
-a agente**: classes, estados, decisões, microfundamentos, acoplamentos. É
-complemento técnico ao [Ato 2 (mecanismo)](mecanismo.md) e ao
-[protocolo ODD](ODD.md) — aqui o foco está na *arquitetura computacional*
-da simulação, não na intuição econômica nem na descrição padrão JASSS.
+<p class="deck">Como o modelo é composto agente a agente: classes, estados, decisões individuais, microfundamentos comportamentais e acoplamentos entre populações. Complemento técnico ao <a href="mecanismo.md">Ato 2 (mecanismo)</a> e ao <a href="ODD.md">protocolo ODD</a>; o foco aqui é a arquitetura computacional, não a intuição econômica nem a descrição padrão JASSS.</p>
 
-A simulação roda em **Mesa 3.x**, com três classes de agente, uma rede
-intra-firma em **NetworkX** (Watts-Strogatz pequeno-mundo) e topologia
-inter-firma implícita (acoplamento por `p_perc` global). Tudo opt-in
-pode ser ligado/desligado por flag em `WaaSParametros` — backward compat é
-invariante de projeto.
+A simulação roda em [Mesa 3.x](https://mesa.readthedocs.io/) com três classes de agente, uma rede social intra-firma em [NetworkX](https://networkx.org/) (modelo *small-world* de Watts-Strogatz) e topologia inter-firma implícita (acoplamento por uma percepção global de detecção `p_perc`). Cada extensão posterior do modelo entra como opção que pode ser ligada ou desligada por um parâmetro em `WaaSParametros`; os valores padrão preservam o comportamento histórico bit a bit (regra explícita do projeto, ver [Postura epistêmica](modelo_abm.md#8-postura-epistemica)).
 
-## As três classes canônicas de agente
+## As três classes de agente
 
 | Classe | Cardinalidade típica | Decisão central | Arquivo |
 |---|---|---|---|
-| `TrabalhadorAgent` | $N_\text{empresas} \times \overline{n}_\text{firm}$ (centenas a milhares) | sinalizar ou calar | `src/waas_antitrust/agents.py:24` |
-| `EmpresaAgent` | $N_\text{empresas}$ (dezenas) | pagar recompensa ou não | `src/waas_antitrust/agents.py:206` |
-| `AutoridadeAgent` | 1 (CADE) | aceitar caso (capacidade κ, acurácia ρ) | `src/waas_antitrust/agents.py:273` |
+| `TrabalhadorAgent` | $N_\text{empresas} \times \overline{n}_\text{firm}$ (centenas a milhares) | sinalizar ou silenciar | `src/waas_antitrust/agents.py:24` |
+| `EmpresaAgent` | $N_\text{empresas}$ (dezenas) | aceitar TCC ou seguir contencioso | `src/waas_antitrust/agents.py:206` |
+| `AutoridadeAgent` | 1 (CADE) | aceitar caso, sob restrição de capacidade $\kappa$ e acurácia $\rho$ | `src/waas_antitrust/agents.py:273` |
 
-A escolha de manter três classes — não cinco, não duas — é deliberada e
-documentada em `docs/ODD.md` §1.2. Outros papéis institucionais (VC
-investidor, advogado, Tribunal CADE) ficam capturados como **parâmetros**
-ou **canais financeiros**, não como agentes próprios — ver §"O que **não**
-é agente, e por quê" abaixo.
+A escolha por três classes — em vez de cinco ou duas — é discutida em [`ODD.md` §1.2](ODD.md). Outros papéis institucionais (fundo de *venture capital*, escritório de advocacia, Tribunal do CADE) ficam capturados como parâmetros ou canais financeiros, não como agentes próprios; a justificativa está na seção [O que **não** é agente, e por quê](#o-que-nao-e-agente-e-por-que) ao final desta página.
 
 ## TrabalhadorAgent — o core comportamental
 

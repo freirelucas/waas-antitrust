@@ -1,11 +1,8 @@
 # Transparência epistêmica
 
-Este anexo consolida, em uma página, o estado de evidência por trás de
-**cada afirmação central** do projeto: o que está demonstrado, o que
-está conjecturado, o que está aberto e em qual seed/configuração cada
-figura empírica foi produzida. A intenção é dar ao leitor o que ele
-precisa para **refutar** o projeto numericamente — não convencê-lo de
-que tudo está fechado.
+<p class="deck">Estado de evidência por trás de cada afirmação central do projeto: o que está demonstrado por simulação multi-seed, o que está conjecturado, o que permanece aberto e em qual semente e configuração cada figura empírica foi produzida. O propósito da página é dar ao leitor o material necessário para refutar o projeto numericamente.</p>
+
+Esta página é a referência de auditoria do material publicado. Cada figura do site e cada alegação substantiva tem uma entrada abaixo com a fonte, a semente, a configuração de parâmetros e o caminho do arquivo de resultado correspondente. Quando um achado é uma falsificação (figura 10, Proposição 5 candidata), a entrada inclui o critério que teria sustentado a hipótese — e por que ela não passou.
 
 ## Convenção visual nas figuras
 
