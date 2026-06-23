@@ -231,3 +231,105 @@ def test_coordenacao_intl_combinada_com_grupo_consolidado_end_to_end():
     assert (
         df["n_aberturas_consolidadas_grupo_acum"].max() + df["n_boosts_coordenacao_intl_acum"].max()
     ) >= 1
+
+
+# ----------------------------------------------------------------------
+# R30-ii — Assimetria entre jurisdições
+# ----------------------------------------------------------------------
+
+
+def test_multiplicador_tamanho_por_firma_default_none_compat():
+    """Default None preserva o caminho histórico."""
+    p = WaaSParametros(n_empresas=3, tam_medio_empresa=20, n_tiques=2, seed=11)
+    assert p.multiplicador_tamanho_por_firma is None
+    m = WaaSModel(p)
+    assert m.multiplicador_tamanho_por_firma is None
+
+
+def test_multiplicador_tamanho_tamanho_invalido_levanta():
+    """`multiplicador_tamanho_por_firma` deve ter tamanho `n_empresas`."""
+    import pytest
+
+    with pytest.raises(ValueError, match="tamanho n_empresas"):
+        WaaSModel(
+            WaaSParametros(
+                n_empresas=3,
+                tam_medio_empresa=20,
+                n_tiques=2,
+                seed=11,
+                multiplicador_tamanho_por_firma=(1.0, 2.0),  # tamanho 2 ≠ 3
+            )
+        )
+
+
+def test_assimetria_jurisdicoes_aplica_multiplicador_no_tamanho():
+    """O multiplicador escala o tam_medio_empresa por firma."""
+    p = WaaSParametros(
+        n_empresas=3,
+        tam_medio_empresa=100,
+        n_tiques=2,
+        seed=42,
+        multiplicador_tamanho_por_firma=(0.3, 1.0, 2.0),
+    )
+    m = WaaSModel(p)
+    n_pequena = m.empresas[0].n_trabalhadores
+    n_media = m.empresas[1].n_trabalhadores
+    n_grande = m.empresas[2].n_trabalhadores
+    # Ordem preservada (multiplicador respeitado, mesmo com jitter U(0,3))
+    assert n_pequena < n_media < n_grande
+    # A firma pequena deve ter ~30 trabalhadores (piso de 50 pode dominar)
+    assert n_pequena <= 60
+    # A firma grande deve ter pelo menos 50 % a mais que a média
+    assert n_grande > n_media * 1.4
+
+
+# ----------------------------------------------------------------------
+# R30-iii — Forum shopping ativo
+# ----------------------------------------------------------------------
+
+
+def test_forum_shopping_default_false_compat():
+    """Default False preserva caminho histórico."""
+    p = WaaSParametros(n_empresas=3, tam_medio_empresa=20, n_tiques=2, seed=11)
+    assert p.forum_shopping_ativo is False
+    m = WaaSModel(p)
+    assert m.forum_shopping_ativo is False
+    assert m.n_forum_shopping_acum == 0
+
+
+def test_reporter_forum_shopping_zero_sob_default():
+    """Sob default, reporter de forum shopping permanece em 0."""
+    m = WaaSModel(
+        WaaSParametros(
+            n_empresas=4,
+            tam_medio_empresa=30,
+            n_tiques=10,
+            seed=11,
+            regime="B",
+            usar_escrow_explicito=True,
+        )
+    )
+    df = m.executar()
+    assert "n_forum_shopping_acum" in df.columns
+    assert df["n_forum_shopping_acum"].max() == 0
+
+
+def test_cenario_lcmc_global_assimetrica_valida():
+    """O cenário R30-ii usa multiplicadores realistas BR=0,3 / US=1,5 / EU=1,0."""
+    from waas_antitrust.cenarios import aplicar_cenario
+
+    base = WaaSParametros(n_empresas=4, tam_medio_empresa=30, n_tiques=2, seed=11)
+    p = aplicar_cenario(base, "lcmc_global_assimetrica")
+    assert p.multiplicador_tamanho_por_firma == (0.3, 1.5, 1.0, 0.3, 1.5, 1.0)
+    assert p.n_empresas == 6
+    assert p.usar_escrow_consolidado_grupo is True
+
+
+def test_cenario_lcmc_global_com_forum_shopping_liga_flag():
+    """O cenário R30-iii liga forum_shopping_ativo + prob 0,5."""
+    from waas_antitrust.cenarios import aplicar_cenario
+
+    base = WaaSParametros(n_empresas=4, tam_medio_empresa=30, n_tiques=2, seed=11)
+    p = aplicar_cenario(base, "lcmc_global_com_forum_shopping")
+    assert p.forum_shopping_ativo is True
+    assert p.prob_tcc_classico_pre_consolidado == 0.5

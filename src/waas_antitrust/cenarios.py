@@ -568,6 +568,59 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "alpha_erosao": 0.5,
         },
     ),
+    Cenario(
+        nome="lcmc_global_assimetrica",
+        descricao=(
+            "**R30-ii — assimetria entre jurisdições**. 6 firmas em 2 "
+            "grupos multinacionais com tamanhos heterogêneos por filial: "
+            "BR=0,3, US=1,5, EU=1,0 do tam_medio_empresa (e idem para o "
+            "segundo grupo). Captura a realidade de que Google Brasil ≠ "
+            "Google US ≠ Google EU em número de trabalhadores; o grupo "
+            "consolidado precisa lidar com cardinalidades muito diferentes "
+            "por jurisdição. Mede se a sinergia coordenada R30 sobrevive "
+            "à assimetria — comparação direta com `lcmc_global_coordenada` "
+            "(que assume todas as filiais simétricas)."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "usar_escrow_consolidado_grupo": True,
+            "coordenacao_internacional": 0.6,
+            "grupos_economicos": (0, 0, 0, 1, 1, 1),
+            "multiplicador_tamanho_por_firma": (0.3, 1.5, 1.0, 0.3, 1.5, 1.0),
+            "n_empresas": 6,
+            "q_min_cooperacao_interna": 0.08,
+            "fracao_violadoras": 0.6,
+            "taxa_observacao": 0.5,
+        },
+    ),
+    Cenario(
+        nome="lcmc_global_com_forum_shopping",
+        descricao=(
+            "**R30-iii — forum shopping ativo**. Mesma topologia do "
+            "`lcmc_global_coordenada` (6 firmas em 2 grupos multinacionais "
+            "simétricos), mas com firma notificada localmente tentando TCC "
+            "clássico antes do gatilho consolidado fechar "
+            "(`forum_shopping_ativo=True`, prob 0,5 de fuga por firma "
+            "notificada). Mede a tese substantiva: a sinergia consolidada "
+            "R30 sobrevive ao incentivo de fuga local? Quantas firmas "
+            "fogem antes do gatilho global disparar? Reporter de saída: "
+            "`n_forum_shopping_acum`."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "usar_escrow_consolidado_grupo": True,
+            "coordenacao_internacional": 0.6,
+            "grupos_economicos": (0, 0, 0, 1, 1, 1),
+            "n_empresas": 6,
+            "q_min_cooperacao_interna": 0.08,
+            "fracao_violadoras": 0.6,
+            "taxa_observacao": 0.5,
+            "forum_shopping_ativo": True,
+            "prob_tcc_classico_pre_consolidado": 0.5,
+        },
+    ),
 )
 
 

@@ -206,6 +206,21 @@ class WaaSParametros:
     grupos_economicos: tuple | None = None
     usar_escrow_consolidado_grupo: bool = False
     coordenacao_internacional: float = 0.0
+    # R30-ii: assimetria entre jurisdições. Mapa fid → multiplicador do
+    # tamanho da firma (em torno de tam_medio_empresa). None preserva
+    # comportamento histórico (firmas todas com tamanho médio). Permite
+    # configurar, por exemplo, BR=0.3, US=1.5, EU=1.0 dentro de um mesmo
+    # grupo multinacional, refletindo o desbalanceamento real entre
+    # filiais. Aplicado em _criar_empresas.
+    multiplicador_tamanho_por_firma: tuple | None = None
+    # R30-iii: forum shopping. Sob True, firma notificada em uma
+    # jurisdição pode tentar TCC clássico antes do gatilho global fechar
+    # — captura o risco substantivo da R30 ("e se a firma corre para
+    # TCC amistoso?"). Decisão em P3 quando notificada_no_periodo é True
+    # e o grupo ainda não atingiu massa crítica consolidada. Modulado por
+    # prob_tcc_classico_pre_consolidado ∈ [0, 1].
+    forum_shopping_ativo: bool = False
+    prob_tcc_classico_pre_consolidado: float = 0.5
 
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
@@ -464,10 +479,25 @@ class WaaSModel(Model):
             )
         self.usar_escrow_consolidado_grupo = getattr(params, "usar_escrow_consolidado_grupo", False)
         self.coordenacao_internacional = float(getattr(params, "coordenacao_internacional", 0.0))
+        # R30-ii: assimetria entre jurisdições — multiplicadores de tamanho.
+        mult_param = getattr(params, "multiplicador_tamanho_por_firma", None)
+        if mult_param is not None and len(mult_param) != params.n_empresas:
+            raise ValueError(
+                "multiplicador_tamanho_por_firma deve ter tamanho n_empresas "
+                f"({params.n_empresas}); recebido {len(mult_param)}."
+            )
+        self.multiplicador_tamanho_por_firma = tuple(mult_param) if mult_param is not None else None
+        # R30-iii: forum shopping ativo.
+        self.forum_shopping_ativo = getattr(params, "forum_shopping_ativo", False)
+        self.prob_tcc_classico_pre_consolidado = float(
+            getattr(params, "prob_tcc_classico_pre_consolidado", 0.5)
+        )
         # R30: contador cumulativo de aberturas consolidadas a nível de grupo.
         self.n_aberturas_consolidadas_grupo_acum: int = 0
         # R30: contador de boosts erga omnes aplicados via coordenação intl.
         self.n_boosts_coordenacao_intl_acum: int = 0
+        # R30-iii: contador de firmas que fugiram via forum shopping.
+        self.n_forum_shopping_acum: int = 0
         # R20 — Modo corrida + filas
         self.modo_corrida = params.modo_corrida
         self.q_min_cooperacao_interna = params.q_min_cooperacao_interna
@@ -538,6 +568,10 @@ class WaaSModel(Model):
                 # `coordenacao_internacional=0.0`, ambos ficam em 0 (compat).
                 "n_aberturas_consolidadas_grupo_acum": ("n_aberturas_consolidadas_grupo_acum"),
                 "n_boosts_coordenacao_intl_acum": "n_boosts_coordenacao_intl_acum",
+                # R30-iii: firmas que fugiram via forum shopping (TCC clássico
+                # antes do gatilho consolidado fechar). Sob
+                # `forum_shopping_ativo=False`, sempre 0.
+                "n_forum_shopping_acum": "n_forum_shopping_acum",
                 "n_tcc_anulados": "n_tcc_anulados",
                 "n_firmas_optaram_tcc_classico": "n_firmas_optaram_tcc_classico",
                 "n_firmas_quebraram_tcc": "n_firmas_quebraram_tcc",
@@ -675,6 +709,10 @@ class WaaSModel(Model):
         fatias = self._sortear_fatias_mercado(n_empresas)
         for fid in range(n_empresas):
             tam = max(50, int(self.rng.normal(tam_medio, tam_medio * 0.3)))
+            # R30-ii: aplica multiplicador de tamanho por firma (assimetria
+            # entre jurisdições). Default None preserva comportamento histórico.
+            if self.multiplicador_tamanho_por_firma is not None:
+                tam = max(50, int(tam * self.multiplicador_tamanho_por_firma[fid]))
             # Atratividade de violar g_i = ganho ilícito / sanção esperada (R01).
             # A firma viola enquanto g_i > detecção percebida; _g_max calibra a
             # fração inicial de violadoras dado o prior de detecção.
@@ -1056,6 +1094,8 @@ class WaaSModel(Model):
             abertas_via_grupo: set[int] = set()
             if self.usar_escrow_consolidado_grupo:
                 abertas_via_grupo = self._abrir_escrow_consolidado_por_grupo()
+            # R30-iii: expõe o conjunto para a fase P3 (forum shopping).
+            self._firmas_abertas_consolidado_neste_tique = abertas_via_grupo
             for fid in self.trabalhadores_por_empresa:
                 if fid in abertas_via_grupo:
                     # Já aberta pelo gatilho consolidado.
@@ -1108,6 +1148,23 @@ class WaaSModel(Model):
         for empresa in self.empresas:
             if not empresa.notificada_no_periodo:
                 continue
+            # R30-iii: forum shopping. Se a firma foi notificada apenas
+            # localmente (sem gatilho consolidado no grupo) e o flag está
+            # ligado, ela tenta TCC clássico antes que o gatilho global feche
+            # — captura o risco "firma corre para jurisdição amistosa".
+            if self.forum_shopping_ativo and self.usar_escrow_consolidado_grupo:
+                consolidados = getattr(self, "_firmas_abertas_consolidado_neste_tique", set())
+                grupo_disparou_consolidado = empresa.id_empresa in consolidados
+                if (
+                    not grupo_disparou_consolidado
+                    and self.rng.random() < self.prob_tcc_classico_pre_consolidado
+                ):
+                    # Foge: assina TCC clássico, desliga notificação, sai de
+                    # cena para o resto do tique. Não usa instrumento WaaS.
+                    empresa.tcc_assinado = True
+                    self.n_forum_shopping_acum += 1
+                    self.n_firmas_optaram_tcc_classico += 1
+                    continue
             disparados = [t for t in empresa.trabalhadores if t.sinaliza_agora]
             S_esp = empresa.sancao_esperada()
             # R20 — Sob modo_corrida, recompensa por trabalhador e desconto da
