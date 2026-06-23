@@ -219,6 +219,7 @@ A vantagem editorial deste projeto é que **toda limitação aqui listada é end
 | Erosão Coleman (Proposição 5 candidata) | `alpha_erosao` (R26) | `tests/test_erosao_coleman.py::test_proposicao_5_candidata_direcional` |
 | Capacidade institucional CADE (Cient. Pol. v2) | `taxa_capacidade` | cenário `captura_processamento_cade` |
 | Viabilidade política Regime C 2024-2027 | n/a | documental ([viabilidade_regime_c.md](viabilidade_regime_c.md)) |
+| Choques institucionais discretos (layoff, paradigmático, campanha, jurídico) | parâmetro `choques` | catálogo R19 em [Choques institucionais](choques.md) com 5 catálogos canônicos calibrados |
 
 Reproduzir o pior caso da fragilidade F6 (Vetor B):
 

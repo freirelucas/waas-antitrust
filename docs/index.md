@@ -28,6 +28,8 @@ Em mercados digitais, no entanto, o abuso costuma vir de **uma única empresa** 
 
 A informação sobre essas práticas existe **dentro da própria empresa** — em conversas no Slack, na ata da reunião do comitê de produto, no slide-deck do time de aquisições. Mas ela não chega ao CADE. No Brasil de hoje, o trabalhador que falaria arrisca emprego, carreira, tranquilidade — e ganha **nada de previsível** em troca.
 
+Os quatro exemplos acima são caso individual de uma lista mais longa: o projeto cataloga 28 condutas digitais unilaterais com taxonomia, taxa de observabilidade e estimativa de massa crítica em [Catálogo de condutas digitais](condutas.md). Para a definição precisa de "canal", "escrow", "massa crítica" e "abertura simultânea", ver [Glossário](glossario.md) e [Terminologia canônica](TERMINOLOGIA.md).
+
 > A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
 
 <span class="kicker">A tese</span>

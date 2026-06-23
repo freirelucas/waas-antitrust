@@ -14,6 +14,8 @@
 3. **Resolução CADE nº 21/2018**
    - Art. 12: autoriza considerar como circunstância atenuante, no cálculo da contribuição pecuniária do TCC, o ressarcimento extrajudicial ou judicial das vítimas (art. 45, V e VI da Lei 12.529/2011). **Esta é a charneira jurídica do Regime B.**
 
+O texto verbatim dos dispositivos centrais acima, parseado a partir do LexML BR e disponível para consulta programática, está em [módulo `normas/` (parser LexML BR)](normas.md). Caveat: parser ainda parcial; expansão para Lei 13.608/2018 e Lei 13.964/2019 está registrada em [Brainstorm de revisão](brainstorm_revisao.md) §6.
+
 ## Os três regimes
 
 ### Regime A — situação atual

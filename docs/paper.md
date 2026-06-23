@@ -1,20 +1,10 @@
-<span class="ato-chip">Paper · rascunho v0.2.0</span>
-
 # Rescaling Leniency Programs for Digital Markets: A Whistleblower-as-a-Service Mechanism
 
-<p class="sublinha-tese"><em>Versão web navegável do rascunho acadêmico. Para
-o PDF compilado (LaTeX em <code>paper/main.tex</code>) ver as instruções de
-compilação no fim. Os argumentos centrais aparecem em cinco Atos no site;
-esta página apresenta o mesmo material na ordem do paper acadêmico,
-preservando a estrutura argumentativa para leitor de peer-review.</em></p>
+<p class="deck">Versão web navegável do rascunho acadêmico. O PDF compilado a partir de <code>paper/main.tex</code> é o documento canônico para arbitragem; esta página apresenta o mesmo material na ordem do paper, preservando a estrutura argumentativa para revisão por pares.</p>
 
-!!! warning "Rascunho de trabalho — não citar como definitivo"
-    Esta página acompanha `paper/main.tex` no repositório associado e está em
-    iteração ativa. A versão atual (v0.2.0) tem todas as seções escritas, mas
-    seções §3 (Blocos construtivos) e §4 (Análise comparada) ainda estão em
-    primeira redação. O DOI Zenodo será emitido após congelamento da versão
-    de submissão. Use `CITATION.cff` na raiz do repositório para metadados
-    intermediários.
+<p class="byline"><em>Paper</em> · rascunho v0.2.0 · jun/2026 · não citar como definitivo</p>
+
+<p class="lede">Esta página acompanha <code>paper/main.tex</code> no repositório e está em iteração ativa. A versão atual tem todas as dez seções escritas; o §3 (Blocos construtivos) e o §4 (Análise comparada) ainda estão em primeira redação e podem mudar materialmente. O DOI Zenodo será emitido após o congelamento da versão de submissão (ver <a href="sobre.md">Sobre</a> para a forma canônica provisória de citação). Para a leitura em cinco Atos no formato site (mais didática, com figuras embarcadas), começar pelo <a href="index.md">Ato 1</a>.</p>
 
 ## Sumário
 
