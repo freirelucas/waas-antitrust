@@ -621,6 +621,35 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "prob_tcc_classico_pre_consolidado": 0.5,
         },
     ),
+    Cenario(
+        nome="recompensa_coletiva_anti_erosao",
+        descricao=(
+            "**R29-iv — Recompensa coletiva como salvaguarda anti-erosão "
+            "Coleman** (Marwell & Oliver 1993, *The Critical Mass in "
+            "Collective Action*; Macy 1991, *AJS* 97:808). Topologia do "
+            "caso base R29 + erosão Coleman α=0,5 + recompensa coletiva "
+            "ligada: a recompensa total W de uma abertura é dividida "
+            "igualmente entre depositantes originais e aderentes "
+            "pós-abertura, em vez de cada um receber W cheio. Hipótese "
+            "substantiva: a partilha desincentiva uso instrumental "
+            "individual e PRESERVA o substrato cooperativo organizacional "
+            "(Coleman 1990) mesmo sob erosão α elevada. Par comparável com "
+            "`cascata_adesao_com_erosao_coleman` para medir o ganho "
+            "marginal da salvaguarda."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "janela_escrow_tiques": 8,
+            "janela_adesao_pos_abertura": 10,
+            "descontos_faixas_adesao": (1.0, 0.7, 0.5, 0.3, 0.1),
+            "q_min_cooperacao_interna": 0.10,
+            "fracao_violadoras": 0.5,
+            "taxa_observacao": 0.5,
+            "alpha_erosao": 0.5,
+            "recompensa_coletiva_pos_abertura": True,
+        },
+    ),
 )
 
 

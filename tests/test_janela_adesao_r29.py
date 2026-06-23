@@ -453,3 +453,28 @@ def test_cenario_r29_x_r26_alpha_erosao_ligado():
     assert p.janela_adesao_pos_abertura == 10
     assert p.usar_escrow_explicito is True
     assert p.regime == "B"
+
+
+# ----------------------------------------------------------------------
+# R29-iv — Recompensa coletiva (Marwell-Oliver 1993; Macy 1991)
+# ----------------------------------------------------------------------
+
+
+def test_recompensa_coletiva_default_false_compat():
+    """Default preserva comportamento histórico."""
+    p = WaaSParametros(n_empresas=3, tam_medio_empresa=20, n_tiques=2, seed=11)
+    assert p.recompensa_coletiva_pos_abertura is False
+    m = WaaSModel(p)
+    assert m.recompensa_coletiva_pos_abertura is False
+
+
+def test_cenario_recompensa_coletiva_anti_erosao_valida():
+    """O cenário liga recompensa_coletiva + alpha_erosao=0.5 + R29 default."""
+    from waas_antitrust.cenarios import aplicar_cenario
+
+    base = WaaSParametros(n_empresas=4, tam_medio_empresa=20, n_tiques=2, seed=11)
+    p = aplicar_cenario(base, "recompensa_coletiva_anti_erosao")
+    assert p.recompensa_coletiva_pos_abertura is True
+    assert p.alpha_erosao == 0.5
+    assert p.janela_adesao_pos_abertura == 10
+    assert p.usar_escrow_explicito is True

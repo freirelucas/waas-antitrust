@@ -126,10 +126,12 @@ def test_catalogo_tem_24_cenarios_canonicos():
     R29 calibrado Saito 2021 adicionou `cascata_adesao_saito_calibrada` = 23.
     R29 × R26 cruzado adicionou `cascata_adesao_com_erosao_coleman` = 24.
     R30-ii (assimetria) e R30-iii (forum shopping) adicionaram
-    `lcmc_global_assimetrica` e `lcmc_global_com_forum_shopping` = 26."""
-    assert len(CATALOGO_CENARIOS) == 26
+    `lcmc_global_assimetrica` e `lcmc_global_com_forum_shopping` = 26.
+    R29-iv (Mussler-Macy/Marwell-Oliver recompensa coletiva) adicionou
+    `recompensa_coletiva_anti_erosao` = 27."""
+    assert len(CATALOGO_CENARIOS) == 27
     nomes = [c.nome for c in CATALOGO_CENARIOS]
-    assert len(set(nomes)) == 26  # nomes únicos
+    assert len(set(nomes)) == 27  # nomes únicos
     assert "cenario_corrida_leniencia" in nomes
     # Cenários novos do reframe v2
     assert "apenas_massa_critica_observavel" in nomes
@@ -150,6 +152,8 @@ def test_catalogo_tem_24_cenarios_canonicos():
     # Cenários R30-ii (assimetria) e R30-iii (forum shopping)
     assert "lcmc_global_assimetrica" in nomes
     assert "lcmc_global_com_forum_shopping" in nomes
+    # Cenário R29-iv — recompensa coletiva anti-erosão Coleman
+    assert "recompensa_coletiva_anti_erosao" in nomes
     # Cenários R30 — sinergia entre autoridades internacionais
     assert "lcmc_global_coordenada" in nomes
     assert "lcmc_global_descoordenada" in nomes

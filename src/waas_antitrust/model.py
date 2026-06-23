@@ -221,6 +221,14 @@ class WaaSParametros:
     # prob_tcc_classico_pre_consolidado ∈ [0, 1].
     forum_shopping_ativo: bool = False
     prob_tcc_classico_pre_consolidado: float = 0.5
+    # **R29-iv — Recompensa coletiva (Marwell-Oliver 1993; Macy 1991)** como
+    # salvaguarda anti-erosão Coleman (item #17 do brainstorm de revisão).
+    # Sob True, a recompensa total W de uma abertura é dividida igualmente
+    # entre depositantes originais + aderentes pós-abertura (em vez de cada
+    # um receber W cheio). Desincentiva uso instrumental individual e
+    # preserva o substrato cooperativo organizacional. Tensiona com R20
+    # (Saito por posição), por isso default False.
+    recompensa_coletiva_pos_abertura: bool = False
 
     # **R02a — Jogo global no arquétipo racional** (Mat B na crítica x10).
     # Quando True, o arquétipo "racional" usa o **limiar de switching x\***
@@ -491,6 +499,10 @@ class WaaSModel(Model):
         self.forum_shopping_ativo = getattr(params, "forum_shopping_ativo", False)
         self.prob_tcc_classico_pre_consolidado = float(
             getattr(params, "prob_tcc_classico_pre_consolidado", 0.5)
+        )
+        # R29-iv: recompensa coletiva pós-abertura (Marwell-Oliver 1993).
+        self.recompensa_coletiva_pos_abertura = getattr(
+            params, "recompensa_coletiva_pos_abertura", False
         )
         # R30: contador cumulativo de aberturas consolidadas a nível de grupo.
         self.n_aberturas_consolidadas_grupo_acum: int = 0
@@ -1186,6 +1198,17 @@ class WaaSModel(Model):
                 D_extra = D_total
             else:
                 W_total = sum(self._W_esperado(t.w_a) for t in disparados)
+                # R29-iv: sob recompensa coletiva, W total é dividido entre
+                # depositantes originais + aderentes pós-abertura — Marwell &
+                # Oliver 1993; Macy 1991. Desincentiva uso instrumental
+                # individual; salvaguarda anti-erosão Coleman.
+                if self.recompensa_coletiva_pos_abertura and self.usar_escrow_explicito:
+                    reg = self.autoridade.blocos_em_janela_adesao.get(empresa.id_empresa)
+                    n_partilhantes = len(disparados)
+                    if reg is not None:
+                        n_partilhantes += len(reg.get("aderentes_pos_abertura", []))
+                    n_partilhantes = max(1, n_partilhantes)
+                    W_total = W_total / n_partilhantes
                 D_total = self.D_disc * S_esp if D_ativo else 0.0
                 D_base = self.D_disc_base_tcc * S_esp if D_ativo else 0.0
                 D_extra = max(0.0, D_total - D_base)  # incentivo marginal do WaaS
