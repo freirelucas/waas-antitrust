@@ -16,6 +16,26 @@
 
 O texto verbatim dos dispositivos centrais acima, parseado a partir do LexML BR e disponível para consulta programática, está em [módulo `normas/` (parser LexML BR)](normas.md). Caveat: parser ainda parcial; expansão para Lei 13.608/2018 e Lei 13.964/2019 está registrada em [Brainstorm de revisão](brainstorm_revisao.md) §6.
 
+## Doutrina brasileira relevante
+
+A discussão sobre o desenho institucional da LCMC dialoga com três linhas doutrinárias brasileiras já estabelecidas. Esta seção registra as obras-referência, sem pretender pacificar o debate — registra apenas que o argumento do projeto não opera no vácuo doutrinário.
+
+### Sobre os fundamentos do antitruste e a aplicação da Lei 12.529
+
+A obra de referência é **Paula Forgioni**, *Os Fundamentos do Antitruste* (RT, sucessivas edições), que trabalha em detalhe a passagem da defesa abstrata da concorrência para o enforcement concreto sob a Lei 12.529/2011 e a relação entre instrumentos sancionatórios (multa, TCC, leniência) e os critérios dosimétricos do Art. 45. A discussão da LCMC sobre o gradiente Saito como calibração empírica do Art. 45 (ver [operacionalização](operacional.md#compatibilidade-com-a-dosimetria-do-art-45)) se insere nesse debate.
+
+A obra de **Calixto Salomão Filho**, *Direito Concorrencial* (Malheiros, sucessivas edições), trabalha em particular o regime do abuso de posição dominante e a distinção entre conduta unilateral e coordenada. A premissa central do projeto — de que mercados digitais tornam a leniência clássica frágil porque a conduta tipicamente é unilateral — dialoga diretamente com essa linha.
+
+### Sobre reserva de lei e limites da regulação infralegal
+
+A questão de **se a LCMC cabe em Resolução do CADE ou exige lei nova** envolve a discussão clássica sobre reserva legal e limites da delegação normativa, na qual a obra de **Tércio Sampaio Ferraz Jr.** é referência seminal na produção brasileira — em particular o tratamento da reserva de lei como princípio estruturante e os limites do que cabe em ato infralegal sob a Constituição de 1988. A análise do falsificador F6 do desenho (ver [limitações](limitacoes.md#fragilidade-juridica-do-regime-b)) se inscreve nesse debate.
+
+### Sobre a proteção do denunciante
+
+A literatura brasileira específica sobre proteção do denunciante (*whistleblower*) é mais incipiente. As referências mais usadas nesta página são a literatura comparada (Vandekerckhove; Worth; Devine) e os comentários à Lei 13.608/2018 produzidos no contexto da Lei 13.964/2019. A pendência de aprofundamento doutrinário sobre este eixo está registrada em [Brainstorm de revisão](brainstorm_revisao.md) §6.
+
+> **Caveat.** As três linhas doutrinárias acima são citadas como referência de leitura, não como autoridade que sustente este projeto. As posições do autor podem divergir das posições doutrinárias mencionadas; cada divergência substantiva fica explicitada no corpo do texto correspondente.
+
 ## Os três regimes
 
 ### Regime A — situação atual

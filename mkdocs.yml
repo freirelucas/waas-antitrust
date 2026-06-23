@@ -103,6 +103,7 @@ nav:
   - Direito e instituições:
       - Análise institucional: INSTITUTIONAL.md
       - Procedimento administrativo (CADE): procedimento_cade.md
+      - "Operacionalização (do modelo à Resolução)": operacional.md
       - Compliance corporativo (especulativo): compliance_corporativo.md
       - Generalidade (EUA e UE): internacional.md
       - Viabilidade política do Regime C: viabilidade_regime_c.md
