@@ -124,6 +124,18 @@ No limite τ → 0 do subjogo de jogo global, há equilíbrio único de switchin
 
 > **Reformulação sob LCMC (R20):** sob `modo_corrida=True`, o limiar $x^\star$ ganha dimensão temporal. Cada trabalhador tem $x^\star(t)$ porque a recompensa esperada cai com a posição na fila (próprio decaimento $f_W(k)$ é decrescente). Esboço novo: o limiar de cooperação é único em cada instante; a sequência $\{x^\star(t)\}_t$ é decrescente sob informação privada e converge ao limiar estático no caso degenerado. **Status: conjectura aberta** — a integração formal do `limiar_switching_temporal` ao racional sob `modo_corrida` é trabalho de R02b/R20 ainda não escrito.
 
+#### Esboço de prova estendido (jun/2026)
+
+A direção da prova para uma versão **fraca** da Proposição 2 sob heterogeneidade requisitada (#18 do brainstorm) é a seguinte. Seja $A = \{a_1, \ldots, a_K\}$ o conjunto de arquétipos com pesos populacionais $\pi_k \geq 0$ tais que $\sum_k \pi_k = 1$. Para cada arquétipo $a_k$, seja $g_k(s_i, x) \mapsto \{0, 1\}$ a regra de decisão a partir do sinal privado $s_i$ e do estado agregado $x$. Define-se a **fração esperada de cooperadores** condicional ao estado agregado $x$ e à observabilidade $\phi$:
+
+$$
+\bar{a}(x, \phi) \;=\; \sum_k \pi_k \cdot \mathbb{P}\!\left[g_k(s_i, x) = 1 \mid x, \phi\right].
+$$
+
+A condição de equilíbrio de Morris-Shin generalizada exige que $\bar{a}(x^\star, \phi^\star) = q_{\min}$. Sob duas condições suficientes — (i) *monotonicidade fraca*: cada $g_k$ é não-decrescente em $s_i$ e $x$; (ii) *complementaridades estratégicas globais*: $\partial \bar{a} / \partial x > 0$ — o teorema de ponto fixo de Tarski garante existência de pelo menos um equilíbrio. **Unicidade** requer adicionalmente que a função $\bar{a}(x, \phi) - q_{\min}$ tenha um único zero em $x$ para cada $\phi$ fixo.
+
+A condição (ii) é violada por arquétipos **anti-correlacionados** com a massa (por exemplo, um arquétipo "rebelde" que diminui sua propensão quando vê muitos cooperando). O modelo atual não tem arquétipo desse tipo — os cinco arquétipos canônicos têm propensão monotônica fracamente não-decrescente em $x$. Portanto a versão **fraca** da Proposição 2 (existência + unicidade local) é provável neste regime; a versão **forte** (unicidade global em todo o espaço de configurações) permanece conjectura aberta. A integração formal ao módulo `jogo_global` fica registrada em [Brainstorm de revisão](brainstorm_revisao.md) §5 como item #18.
+
 #### R02b — Contraste numérico multiplicidade × unicidade (balanço 360° item #5)
 
 O contraste central de Morris-Shin (1998) é entre **conhecimento comum**

@@ -8,6 +8,47 @@ e **direções de pesquisa abertas**. Cada item indica gravidade
 A lista não é roteiro — é um espelho do estado atual para próximas
 sessões.
 
+## 0 · Resumo executivo da rodada jun/2026
+
+Resumo dos itens fechados ao longo das múltiplas iterações desta rodada:
+
+**Editorial (concluído):**
+- Migração para padrão `deck`/`byline`/`lede` em 14 páginas-âncora.
+- Cross-links para 4 páginas órfãs (`condutas`, `choques`, `normas`,
+  `glossario`).
+- Reorganização do nav em 5 grupos top-level coerentes.
+- Auditoria de tom + crítica editorial + auditoria estrutural
+  (3 documentos de revisão interna).
+
+**Substantivo (concluído):**
+- **R29 calibrado contra Saito (2021)** — cenário canônico com
+  faixas derivadas do gradiente do Art. 86.
+- **R29-iii — adesão estocástica por arquétipo** (#9) — decisão
+  modulada por arquétipo ético/imitativo/racional/fairminded/
+  oportunista/aleatório.
+- **R29 × R26 cruzado** (#13) — cascata + erosão Coleman testáveis
+  no mesmo cenário.
+- **R29-iv — recompensa coletiva** (#17) — Marwell-Oliver 1993 como
+  salvaguarda anti-erosão Coleman, com cenário canônico próprio.
+- **R30-ii — assimetria entre jurisdições** (#11) — multiplicador de
+  tamanho por firma com cenário BR=0.3 / US=1.5 / EU=1.0.
+- **R30-iii — forum shopping por firmas** (#12) — risco modelado em
+  P3 com reporter `n_forum_shopping_acum`.
+- **Página `/operacional`** atendendo conselheiro CADE + compliance.
+- **Doutrina BR expandida** em `INSTITUTIONAL.md` (Forgioni / Calixto
+  Salomão / Tércio Ferraz Jr.).
+- **Página `/calibracao_pendente`** documentando metodologia de
+  fechamento para N\* × CNAE (#15), capacidade DOJ-ATR/DG-COMP (#16),
+  faixas R29 sob conduta unilateral e Mussler-Macy multi-seed (#17b).
+- **Esboço estendido da Proposição 2** sob heterogeneidade (#18) em
+  `ODD.md` — versão fraca (existência + unicidade local) provável;
+  versão forte conjectura.
+
+**Catálogo:** 22 → 27 cenários canônicos. **Testes:** 364 → 380.
+
+Os itens marcados como pendentes abaixo são os que sobrevivem à
+rodada como direções de pesquisa aberta de gravidade mais alta.
+
 ## 1 · Resíduos de versões anteriores ainda no site
 
 ### 1.1 Concluído nesta rodada
