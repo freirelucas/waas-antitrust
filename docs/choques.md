@@ -1,8 +1,8 @@
-<span class="ato-chip">Anexo · R19 expandido</span>
+# Choques institucionais
 
-# Choques institucionais e a hipótese "layoffs IA como oportunidade"
+<p class="deck">Catálogo dos cinco tipos de choque exógeno que o modelo absorve por construção, com magnitude e causalidade calibradas contra eventos observáveis: dispensas em massa no setor tecnológico (cíclicas 2022–2024 e estruturais 2024–2025 por difusão de IA), campanhas regulatórias do CADE, casos paradigmáticos, choques jurisprudenciais adversos e mudanças institucionais discretas. Inclui a hipótese de que dispensas por reestruturação de IA podem alterar a equação de represália percebida pelo ex-funcionário e abrir janela de cooperação ampliada com a autoridade.</p>
 
-<p class="sublinha-tese"><em>O modelo absorve choques exógenos discretos. Cinco catálogos canônicos cobrem layoffs tech (cíclico 2022-2024 vs estrutural 2024-2025 por IA), campanhas regulatórias do CADE, casos paradigmáticos e choques jurisprudenciais adversos. A pesquisa de fundo 2026 calibra magnitudes e causalidade declarada — incluindo a hipótese substantiva do autor: <strong>layoffs por reestruturação de IA podem virar oportunidade de denúncia</strong>, porque o ex-funcionário tem represália efetiva reduzida e mantém capacidade de sinalizar.</em></p>
+<p class="byline"><em>Anexo técnico</em> · catálogos R19 · rascunho v0.2.0</p>
 
 ## O que é um choque no modelo
 

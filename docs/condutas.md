@@ -1,8 +1,8 @@
-<span class="ato-chip">Anexo · catálogo R08/R20 Fase 7</span>
-
 # Catálogo das 28 condutas digitais unilaterais
 
-<p class="sublinha-tese"><em>O modelo carrega catálogo declarativo de 28 condutas digitais unilaterais, cada uma com (i) descrição substantiva, (ii) papéis primários e adjacentes responsáveis pela execução, (iii) severidade-base de 0,5 a 0,9, e (iv) ≥ 1 caso de referência verificado contra fonte primária. Esta é a base da heterogeneidade conduta × papel × observabilidade que sustenta a tese substantiva: <strong>nenhuma conduta digital unilateral catalogada exige mais que 2-3 papéis primários para configurar, o que confirma o argumento de massa crítica intra-firma viável</strong>.</em></p>
+<p class="deck">Catálogo declarativo das 28 condutas digitais unilaterais consideradas no modelo, com descrição substantiva, papéis funcionais primários e adjacentes responsáveis pela execução, severidade-base entre 0,5 e 0,9 e pelo menos um caso de referência verificado em fonte primária por entrada. A base da heterogeneidade conduta × papel × observabilidade que sustenta a tese de massa crítica intra-firma viável (nenhuma conduta catalogada exige mais do que dois ou três papéis primários para configurar).</p>
+
+<p class="byline"><em>Anexo técnico</em> · catálogo de condutas · rascunho v0.2.0</p>
 
 ## Estrutura
 

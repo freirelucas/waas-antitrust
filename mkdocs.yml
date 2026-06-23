@@ -83,34 +83,35 @@ nav:
   - "Ato 3 · Resultados": resultados.md
   - "Ato 4 · Limitações": limitacoes.md
   - "Ato 5 · Colaborar": colaborar.md
-  - "Modelo ABM": modelo_abm.md
-  - "Brincar": brincar.md
-  - "Paper (rascunho v0.2.0)": paper.md
+  - Aprofundamento técnico:
+      - Modelo ABM em detalhe: modelo_abm.md
+      - Simulador in-browser: brincar.md
+      - "Paper (rascunho v0.2.0)": paper.md
   - Sobre: sobre.md
-  - Anexos:
+  - Guias operacionais:
       - Como usar: uso.md
       - "Comandos e scripts (CLI)": comandos.md
       - Transparência epistêmica: transparencia.md
       - Kit de imprensa: imprensa.md
       - Formulário matemático: formulario.md
-      - Teoria e modelo:
-          - Bem coletivo e instrumentos: bem_publico.md
-          - Modelagem multiagente: modelagem_multiagente.md
-          - Catálogo de condutas digitais (28): condutas.md
-          - Catálogos de choques institucionais (R19): choques.md
-          - Modelo (protocolo ODD): ODD.md
-      - Direito e instituições:
-          - Análise institucional: INSTITUTIONAL.md
-          - Procedimento administrativo (CADE): procedimento_cade.md
-          - Compliance corporativo (especulativo): compliance_corporativo.md
-          - Generalidade (EUA e UE): internacional.md
-          - Viabilidade política do Regime C: viabilidade_regime_c.md
-          - "Módulo `normas/` (parser LexML BR)": normas.md
-      - Referência:
-          - Glossário: glossario.md
-          - Terminologia canônica: TERMINOLOGIA.md
-          - Referências: REFERENCES.md
-          - Referência da API: api.md
+  - Teoria e modelo:
+      - Bem coletivo e instrumentos: bem_publico.md
+      - Modelagem multiagente: modelagem_multiagente.md
+      - Catálogo de condutas digitais (28): condutas.md
+      - Catálogos de choques institucionais (R19): choques.md
+      - Modelo (protocolo ODD): ODD.md
+  - Direito e instituições:
+      - Análise institucional: INSTITUTIONAL.md
+      - Procedimento administrativo (CADE): procedimento_cade.md
+      - Compliance corporativo (especulativo): compliance_corporativo.md
+      - Generalidade (EUA e UE): internacional.md
+      - Viabilidade política do Regime C: viabilidade_regime_c.md
+      - "Módulo `normas/` (parser LexML BR)": normas.md
+  - Referência:
+      - Glossário: glossario.md
+      - Terminologia canônica: TERMINOLOGIA.md
+      - Referências: REFERENCES.md
+      - Referência da API: api.md
   - Desenvolvimento:
       - Crítica x10: critica_x10.md
       - Crítica x10 v2: critica_x10_v2.md

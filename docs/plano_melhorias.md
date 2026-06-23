@@ -1,5 +1,7 @@
 # Plano de melhorias — pós crítica x10
 
+> **Documento histórico (jun/2026).** Esta página registra o plano de melhorias produzido após a primeira [crítica x10](critica_x10.md), anterior aos reframes v2 e v3. Itens já endereçados estão documentados nas rodadas posteriores ([brainstorm de revisão](brainstorm_revisao.md), [aprendizados v3](aprendizados_v3.md), [auditoria estrutural](auditoria_estrutural.md)). Para o backlog atual, ver [Decisões e backlog](DECISIONS.md).
+
 Esta página prioriza as melhorias propostas pelos 8 especialistas (ver
 [Crítica x10](critica_x10.md)) por **filtros do piloto automático**:
 

@@ -1,8 +1,8 @@
-<span class="ato-chip">Anexo · T07 fechado</span>
-
 # Módulo `normas/` — parsing programático de normas brasileiras
 
-<p class="sublinha-tese"><em>O projeto carrega um <strong>parser programático de normas jurídicas brasileiras</strong> (540 linhas de código + 24 testes, T07 fechado em <a href="DECISIONS.md">DECISIONS</a>) que permite citar Art./§/Inciso/Alínea/Item verbatim a partir do corpus local, identificado por URN-LEX padrão LexML BR. Foi construído depois de pesquisa de metodologia que não encontrou parser pt-BR maduro disponível — então o projeto criou o seu, disciplinado pela LC 95/1998 (regras de elaboração de leis).</em></p>
+<p class="deck">Parser programático de normas jurídicas brasileiras (540 linhas de Python, 24 testes) que permite citar Art./§/Inciso/Alínea/Item verbatim a partir do corpus local, identificado por URN-LEX padrão LexML BR. Foi construído depois de pesquisa de metodologia que não encontrou parser pt-BR maduro disponível; o projeto criou o seu próprio, disciplinado pela LC 95/1998 (regras de elaboração legislativa).</p>
+
+<p class="byline"><em>Anexo técnico</em> · módulo <code>normas/</code> · rascunho v0.2.0</p>
 
 ## Por que isso existe
 
