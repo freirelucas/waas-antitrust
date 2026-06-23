@@ -158,8 +158,32 @@ O corte endógeno $k^\star$ aparece quando $f_W^{\text{adesão}}(k^\star) \cdot 
 o fechamento da janela; após $\Delta t$ tiques o bloco sai do estado "em adesão" e
 o gradiente apurado é consolidado para apuração da decisão da firma (P3).
 
+#### Variante calibrada contra Saito (2021)
+
+A tupla default `(1.0, 0.7, 0.5, 0.3, 0.1)` é uma escolha de juízo do desenho.
+A variante normativa, registrada no cenário canônico
+`cascata_adesao_saito_calibrada`, deriva as faixas 1..4 do mesmo gradiente
+empírico que sustenta o R20 inter-firma — descontos da SG do CADE em TCCs
+de leniência, conforme Saito (2021) §3.7.7:
+
+$$
+f_W^{\text{adesão},\text{Saito}}(k) \;=\;
+\begin{cases}
+1{,}0 & k = 0 \quad (\text{depositante original; imunidade total}) \\[2pt]
+D_{\text{Saito}}(k+1) / D_{\text{Saito}}(1) & k = 1, 2, 3 \\[2pt]
+D_{\text{piso}} / D_{\text{Saito}}(1) & k \geq 4 \quad (\text{piso 15 \%})
+\end{cases}
+$$
+
+Numericamente, com $D_{\text{Saito}}(1) = 43{,}43 \%$, $D_{\text{Saito}}(2) = 34{,}51 \%$,
+$D_{\text{Saito}}(3) = 20{,}22 \%$ e $D_{\text{piso}} = 15 \%$:
+$\mathbf{f}_W^{\text{adesão},\text{Saito}} = (1{,}0;\ 0{,}795;\ 0{,}466;\ 0{,}345;\ 0{,}345)$.
+A comparação direta com a variante arbitrária mede o efeito da
+calibração sobre ΔW.
+
 *Implementado*: `src/waas_antitrust/calibracao/saito.py`,
-`src/waas_antitrust/corrida.py:decaimento_D`.
+`src/waas_antitrust/corrida.py:decaimento_D`,
+`src/waas_antitrust/cenarios.py:cascata_adesao_saito_calibrada`.
 
 ---
 

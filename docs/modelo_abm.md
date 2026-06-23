@@ -8,7 +8,7 @@
 | [§2](#2-anatomia-rapida) | Anatomia rápida | Três classes, fases P0-P5 e reporters |
 | [§3](#3-tabela-completa-de-parametros-waasparametros) | Tabela de parâmetros | `WaaSParametros` linha a linha, com defaults |
 | [§4](#4-como-alterar-parametros-manipulabilidade-7-receitas) | Como alterar parâmetros | Tabela de flags opt-in + 7 receitas Python |
-| [§5](#5-atalho-22-cenarios-canonicos) | 22 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
+| [§5](#5-atalho-cenarios-canonicos-23) | 23 cenários canônicos | `aplicar_cenario(base, nome)` sem configuração manual |
 | [§6](#6-a-saida-do-modelo-38-reporters) | 38 reporters | As colunas do DataFrame agrupadas por categoria |
 | [§7](#7-cookbook-reprodutivel-6-receitas-avancadas) | Cookbook avançado | Calibração, varreduras paramétricas, multi-seed |
 | [§8](#8-postura-epistemica) | Postura epistêmica | Compatibilidade retroativa estrita; opt-in por flag |
@@ -349,7 +349,7 @@ df = m.executar()
 
 A soma do dict precisa ser 1.0 (não validado em runtime, mas o `rng.choice` quebra silenciosamente se não for).
 
-## 5. Atalho: 22 cenários canônicos
+## 5. Atalho: cenários canônicos (23)
 
 Em vez de configurar parâmetros manualmente, use `aplicar_cenario(base, nome)`:
 

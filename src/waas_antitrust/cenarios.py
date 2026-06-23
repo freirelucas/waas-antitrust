@@ -510,6 +510,36 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "taxa_observacao": 0.5,
         },
     ),
+    Cenario(
+        nome="cascata_adesao_saito_calibrada",
+        descricao=(
+            "**R29 calibrado contra Saito (2021)** — variante do "
+            "`cascata_adesao_progressiva` em que as faixas pós-abertura "
+            "deixam de ser arbitrárias e passam a refletir o gradiente "
+            "empírico do Art. 86 da Lei 12.529/2011 calibrado por Saito "
+            "2021 (§3.7.7): D_Saito(1)=43,43% (SG), D_Saito(2)=34,51%, "
+            "D_Saito(3)=20,22%, piso 15% (≥9ª posição). A faixa 0 "
+            "(depositantes originais que dispararam a massa crítica) "
+            "mantém imunidade total (fator 1,0); as faixas 1..4 espelham "
+            "o gradiente Saito normalizado pelo topo (= D_Saito(k+1)/"
+            "D_Saito(1) para k=1,2,3 e piso para k≥4): "
+            "`(1.0, 0.795, 0.466, 0.345, 0.345)`. Isso elimina a "
+            "arbitrariedade das faixas do caso base e ancora a regra "
+            "R29 no mesmo dado empírico que sustenta o R20 inter-firma. "
+            "Demais parâmetros idênticos ao caso base para comparabilidade "
+            "direta de ΔW(arbitrário) vs ΔW(Saito)."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "janela_escrow_tiques": 8,
+            "janela_adesao_pos_abertura": 10,
+            "descontos_faixas_adesao": (1.0, 0.795, 0.466, 0.345, 0.345),
+            "q_min_cooperacao_interna": 0.10,
+            "fracao_violadoras": 0.5,
+            "taxa_observacao": 0.5,
+        },
+    ),
 )
 
 

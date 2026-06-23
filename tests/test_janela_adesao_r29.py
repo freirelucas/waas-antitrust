@@ -300,3 +300,43 @@ def test_end_to_end_produz_aderentes_acumulados():
     # Em janela larga + q_min baixo + W relevante, esperamos pelo menos
     # uma adesão na cauda da simulação (cascata pós-coordenação).
     assert df["n_aderentes_pos_abertura_acum"].max() >= 1
+
+
+# ----------------------------------------------------------------------
+# Calibração contra gradiente Saito 2021
+# ----------------------------------------------------------------------
+
+
+def test_cenario_saito_calibrado_usa_gradiente_normalizado():
+    """O cenário `cascata_adesao_saito_calibrada` usa as faixas derivadas
+    de Saito 2021 §3.7.7 — D_Saito(k+1)/D_Saito(1) para k=1,2,3 + piso 15 %."""
+    from waas_antitrust.cenarios import aplicar_cenario
+
+    base = WaaSParametros(n_empresas=4, tam_medio_empresa=20, n_tiques=2, seed=11)
+    p_saito = aplicar_cenario(base, "cascata_adesao_saito_calibrada")
+    assert p_saito.descontos_faixas_adesao == (1.0, 0.795, 0.466, 0.345, 0.345)
+    # E nada mais muda na topologia: comparabilidade direta com
+    # `cascata_adesao_progressiva` que usa faixas arbitrárias.
+    p_arb = aplicar_cenario(base, "cascata_adesao_progressiva")
+    assert p_saito.janela_adesao_pos_abertura == p_arb.janela_adesao_pos_abertura
+    assert p_saito.janela_escrow_tiques == p_arb.janela_escrow_tiques
+    assert p_saito.q_min_cooperacao_interna == p_arb.q_min_cooperacao_interna
+    assert p_saito.usar_escrow_explicito is True
+
+
+def test_faixas_saito_decrescentes_monotonicamente():
+    """As faixas calibradas Saito são estritamente decrescentes até o piso,
+    consistentes com o gradiente do Art. 86 (Lei 12.529/2011)."""
+    from waas_antitrust.cenarios import aplicar_cenario
+
+    p = aplicar_cenario(
+        WaaSParametros(n_empresas=2, tam_medio_empresa=10, n_tiques=2, seed=1),
+        "cascata_adesao_saito_calibrada",
+    )
+    f = p.descontos_faixas_adesao
+    # Faixa 0 (imunidade) é máxima
+    assert f[0] == 1.0
+    # Faixas 1..3 estritamente decrescentes
+    assert f[1] > f[2] > f[3]
+    # Faixa 4 = piso, igual à 3 (15 % normalizado pelo topo Saito)
+    assert f[4] == f[3] == 0.345
