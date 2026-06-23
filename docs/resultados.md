@@ -1,12 +1,10 @@
 # O que a simulação mostra
 
-**Ato 3 de 5 · O teste**
+<p class="deck">A saída literal do <code>WaaSModel.executar()</code> sob a parametrização canônica do projeto, rodada com seed 11 nos três regimes (A status quo, B Resolução CADE, C Lei ordinária). Reprodutível localmente em aproximadamente sessenta segundos.</p>
 
-<p class="sublinha-tese"><em>Não é figura estilizada nem aritmética de papel. É o DataFrame que o <code>WaaSModel.executar()</code> devolve quando rodamos com seed 11. Reproduzível em 60 segundos.</em></p>
+<p class="byline"><em>Ato 3 de 5</em> · Resultados · rascunho v0.2.0</p>
 
-O Ato 2 apresentou três camadas (princípio LCMC, instrumentos, aritmética IC-F\*). Tudo vive no papel — equações, exemplos numéricos, vetores de quebra. Esta página mostra **o que sai do código quando o desenho é executado**.
-
-A pergunta operacional é direta: rodando o modelo nos três regimes (A, B, C) com os mesmos parâmetros e mesmas seeds, o que muda?
+<p class="lede">O <a href="mecanismo.md">Ato 2</a> apresentou as cinco camadas do mecanismo (canal, coordenação, instrumentos, aritmética IC-F* e cascata pós-abertura) em prosa, equações e exemplos numéricos. Esta página mostra o que efetivamente sai do código quando o desenho é executado. A pergunta operacional é direta: rodando o modelo nos três regimes com os mesmos parâmetros e as mesmas sementes, o que muda?</p>
 
 ## A evidência principal — saída literal do modelo
 

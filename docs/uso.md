@@ -1,6 +1,6 @@
 # Como usar
 
-<p class="sublinha-tese"><em>Da clonagem ao primeiro DataFrame em ≤ 60 segundos; da configuração de cenário customizado em ≤ 10 linhas.</em></p>
+<p class="deck">Guia operacional para quatro perfis de uso: leitor que quer apenas explorar (simulador in-browser, sem instalar), cético que quer rodar localmente e contestar, calibrador que quer ajustar parâmetros contra dados reais e desenvolvedor que quer escrever testes ou propor extensão. Cada perfil tem caminho próprio abaixo; a instalação local completa fica pronta em menos de um minuto em Python 3.12.</p>
 
 Este guia operacional cobre quatro perfis de uso: **leigo** (simulador in-browser, sem instalar), **cético** (rodar localmente e contestar), **calibrador** (ajustar parâmetros contra dados reais), e **desenvolvedor** (escrever testes e propor PR).
 

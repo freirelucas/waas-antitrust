@@ -1,12 +1,12 @@
-# Como contribuir, discordar, ou simplesmente conversar
+# Como contribuir, discordar ou conversar
 
-**Ato 5 de 5 · A continuação**
+<p class="deck">Vias concretas pelas quais pesquisadoras, advogadas, autoridades e jornalistas podem entrar no projeto: contestar a calibração, falsificar uma proposição candidata, propor cenário adversarial, escrever sobre o desenho ou propor co-autoria em uma extensão. Tudo aberto sob CC BY-SA 4.0; tudo auditável por simulação multi-seed.</p>
 
-<p class="sublinha-tese"><em>Pesquisadores das tradições Olson-Ostrom-Coleman + Stigler-Carpenter-Moss agora têm pontos de entrada explícitos — R21-R26 abertos no backlog.</em></p>
+<p class="byline"><em>Ato 5 de 5</em> · Colaborar · rascunho v0.2.0</p>
 
-A versão honesta deste projeto é: **um artigo em elaboração, com cinco pendências normativas explícitas (R09-R11), seis R-items abertos do reframe v2 (R21-R26), um vão de calibração que precisa de quem entenda do CADE pós-2020, e cinco proposições teóricas (a Prop. 5 é a mais recente — Coleman 1990) que pediriam mais matemática**. Nada disso vai se resolver no monólogo do autor. Esta página enumera as formas concretas pelas quais alguém pode entrar no jogo.
+<p class="lede">O projeto é um rascunho de trabalho em elaboração, com pendências normativas e empíricas explícitas registradas em <a href="DECISIONS.md">decisões e backlog</a> e na lista de <a href="limitacoes.md">limitações</a>. Esta página enumera as formas concretas pelas quais alguém de fora pode contestar, estender ou se associar ao trabalho — preferencialmente em canal aberto (issues no GitHub), preservando a auditabilidade do processo.</p>
 
-## Sob o reframe v2, três comunidades novas têm convite explícito
+## Três comunidades com pontos de entrada explícitos
 
 - **Sociólogos da coordenação coletiva** (Olson, Ostrom, Coleman, Elster, Chwe) — a Proposição 5 candidata (Coleman: erosão endógena do capital social) é falsificável via `tests/test_erosao_coleman.py`. Veja `docs/bem_publico.md`.
 - **Cientistas políticos da regulação** (Stigler, Wilson, McCubbins-Schwartz, Carpenter-Moss) — `docs/viabilidade_regime_c.md` documenta a infactibilidade política do Regime C 2024-2027; o cenário `captura_processamento_cade` modela o gargalo de 180 servidores área-fim do CADE (RIG 2024).

@@ -1,8 +1,6 @@
-<span class="ato-chip">Anexo · ferramentas de linha de comando</span>
-
 # Comandos — todos os scripts e CLIs
 
-<p class="sublinha-tese"><em>Inventário completo das ferramentas executáveis do projeto. Dois <strong>entry points instalados</strong> (<code>waas-sobol</code>, <code>waas-figuras</code>) via <code>pip install -e .</code>; 10 scripts em <code>scripts/</code> para análises científicas específicas; 20 módulos viz invocáveis via <code>python -m waas_antitrust.viz.&lt;nome&gt;</code>. Esta página resume tudo em uma tela navegável.</em></p>
+<p class="deck">Inventário das ferramentas executáveis do projeto: dois <em>entry points</em> instalados via <code>pip install -e .</code> (<code>waas-sobol</code>, <code>waas-figuras</code>); dez scripts em <code>scripts/</code> para análises específicas; vinte e dois módulos de visualização invocáveis via <code>python -m waas_antitrust.viz.&lt;nome&gt;</code>. Esta página é a referência rápida; para o tutorial guiado por perfil de uso, ver <a href="uso.md">Como usar</a>.</p>
 
 ## Entry points instalados (CLI)
 
