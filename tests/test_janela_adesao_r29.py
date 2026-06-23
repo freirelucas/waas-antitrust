@@ -340,3 +340,116 @@ def test_faixas_saito_decrescentes_monotonicamente():
     assert f[1] > f[2] > f[3]
     # Faixa 4 = piso, igual à 3 (15 % normalizado pelo topo Saito)
     assert f[4] == f[3] == 0.345
+
+
+# ----------------------------------------------------------------------
+# R29-iii — Decisão de adesão estocástica por arquétipo
+# ----------------------------------------------------------------------
+
+
+def test_adesao_estocastica_default_false_compat():
+    """Default preserva o comportamento determinístico bit a bit."""
+    p = WaaSParametros(n_empresas=3, tam_medio_empresa=20, n_tiques=2, seed=11)
+    assert p.adesao_estocastica_por_arquetipo is False
+    m = WaaSModel(p)
+    assert m.adesao_estocastica_por_arquetipo is False
+
+
+def test_adesao_estocastica_racional_mantem_irw_classica():
+    """Sob estocástica, o arquétipo 'racional' continua usando IR-W
+    determinística — preserva a semântica histórica desse arquétipo."""
+    from waas_antitrust.agents import AutoridadeAgent
+
+    # IR-W positiva: 0.5 * 100 = 50 > 1
+    assert AutoridadeAgent._decidir_adesao(
+        arquetipo="racional",
+        fator=0.5,
+        W_max=100,
+        custo_represalia=1,
+        fracao_ja_aderentes=0.0,
+        estocastica=True,
+        rng=None,  # racional não usa rng — ramo determinístico
+    )
+    # IR-W negativa: 0.5 * 1 = 0.5 < 10
+    assert not AutoridadeAgent._decidir_adesao(
+        arquetipo="racional",
+        fator=0.5,
+        W_max=1,
+        custo_represalia=10,
+        fracao_ja_aderentes=0.0,
+        estocastica=True,
+        rng=None,
+    )
+
+
+def test_adesao_estocastica_etico_alta_propensao():
+    """Ético tem prob 0.85 sob estocástica — verificável via grande N."""
+    import numpy as np
+
+    from waas_antitrust.agents import AutoridadeAgent
+
+    rng = np.random.default_rng(42)
+    n_total = 1000
+    aderiram = sum(
+        AutoridadeAgent._decidir_adesao(
+            arquetipo="ético",
+            fator=0.5,
+            W_max=100,
+            custo_represalia=1,
+            fracao_ja_aderentes=0.0,
+            estocastica=True,
+            rng=rng,
+        )
+        for _ in range(n_total)
+    )
+    # 0.85 ± 0.03 sob N=1000 (≈ 850; ±28 a 95 % CI)
+    assert 820 <= aderiram <= 880, f"esperado ~850, obtido {aderiram}"
+
+
+def test_adesao_estocastica_imitativo_segue_fracao_aderentes():
+    """Imitativo: prob = fração de aderentes já no bloco (Granovetter
+    intra-bloco). Com fração=0, ninguém adere; com fração=1, todos."""
+    import numpy as np
+
+    from waas_antitrust.agents import AutoridadeAgent
+
+    rng = np.random.default_rng(13)
+    n_total = 500
+    aderiram_zero = sum(
+        AutoridadeAgent._decidir_adesao(
+            arquetipo="imitativo",
+            fator=1.0,
+            W_max=100,
+            custo_represalia=1,
+            fracao_ja_aderentes=0.0,
+            estocastica=True,
+            rng=rng,
+        )
+        for _ in range(n_total)
+    )
+    aderiram_um = sum(
+        AutoridadeAgent._decidir_adesao(
+            arquetipo="imitativo",
+            fator=1.0,
+            W_max=100,
+            custo_represalia=1,
+            fracao_ja_aderentes=1.0,
+            estocastica=True,
+            rng=rng,
+        )
+        for _ in range(n_total)
+    )
+    assert aderiram_zero == 0, f"fração 0 não deveria gerar adesão, obtido {aderiram_zero}"
+    assert aderiram_um == n_total, f"fração 1 deveria gerar adesão total, obtido {aderiram_um}"
+
+
+def test_cenario_r29_x_r26_alpha_erosao_ligado():
+    """O cenário cruzado liga alpha_erosao=0.5 sob a topologia R29 default."""
+    from waas_antitrust.cenarios import aplicar_cenario
+
+    base = WaaSParametros(n_empresas=4, tam_medio_empresa=20, n_tiques=2, seed=11)
+    p = aplicar_cenario(base, "cascata_adesao_com_erosao_coleman")
+    assert p.alpha_erosao == 0.5
+    assert p.janela_adesao_pos_abertura == 10
+    assert p.usar_escrow_explicito is True
+    assert p.regime == "B"

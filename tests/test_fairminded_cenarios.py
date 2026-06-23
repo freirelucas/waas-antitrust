@@ -111,7 +111,7 @@ def test_fairminded_peso_alto_acelera_cascata_etica():
 # ----------------------------------------------------------------------
 
 
-def test_catalogo_tem_23_cenarios_canonicos():
+def test_catalogo_tem_24_cenarios_canonicos():
     """R13a adicionou `mercado_digital_br_pareto` (8); R20 adicionou
     `cenario_corrida_leniencia` (9); reframe v2 adicionou 6 cenários
     (apenas_massa_critica_observavel, dois_instrumentos_acoplados,
@@ -123,10 +123,11 @@ def test_catalogo_tem_23_cenarios_canonicos():
     `erosao_coleman_adversarial` = 19. R29 adicionou
     `cascata_adesao_progressiva` = 20. R30 adicionou
     `lcmc_global_coordenada` e `lcmc_global_descoordenada` = 22.
-    R29 calibrado Saito 2021 adicionou `cascata_adesao_saito_calibrada` = 23."""
-    assert len(CATALOGO_CENARIOS) == 23
+    R29 calibrado Saito 2021 adicionou `cascata_adesao_saito_calibrada` = 23.
+    R29 × R26 cruzado adicionou `cascata_adesao_com_erosao_coleman` = 24."""
+    assert len(CATALOGO_CENARIOS) == 24
     nomes = [c.nome for c in CATALOGO_CENARIOS]
-    assert len(set(nomes)) == 23  # nomes únicos
+    assert len(set(nomes)) == 24  # nomes únicos
     assert "cenario_corrida_leniencia" in nomes
     # Cenários novos do reframe v2
     assert "apenas_massa_critica_observavel" in nomes
@@ -142,6 +143,8 @@ def test_catalogo_tem_23_cenarios_canonicos():
     assert "cascata_adesao_progressiva" in nomes
     # Cenário R29 calibrado contra Saito 2021
     assert "cascata_adesao_saito_calibrada" in nomes
+    # Cenário cruzado R29 × R26 (cascata + erosão Coleman)
+    assert "cascata_adesao_com_erosao_coleman" in nomes
     # Cenários R30 — sinergia entre autoridades internacionais
     assert "lcmc_global_coordenada" in nomes
     assert "lcmc_global_descoordenada" in nomes

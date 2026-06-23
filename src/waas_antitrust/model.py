@@ -175,6 +175,15 @@ class WaaSParametros:
     # mecanismo (compat estrita).
     janela_adesao_pos_abertura: int = 0
     descontos_faixas_adesao: tuple = (1.0, 0.7, 0.5, 0.3, 0.1)
+    # R29-iii: decisão de adesão estocástica por arquétipo (opt-in).
+    # Sob False (default), decisão determinística IR-W (fator * W > custo).
+    # Sob True, cada arquétipo decide com probabilidade própria — captura
+    # heterogeneidade comportamental clássica do modelo: ético adere
+    # frequentemente (0,85), imitativo segue Granovetter (fração de
+    # aderentes), racional mantém IR-W, fairminded ganha bônus 0,2 quando
+    # massa atravessa 0,3 (inequity coletivo), oportunista 0,8 fixo,
+    # aleatório 0,3 fixo. Detalhe em AutoridadeAgent._decidir_adesao.
+    adesao_estocastica_por_arquetipo: bool = False
 
     # **R30 — Sinergia entre autoridades internacionais (LCMC global coordenada).**
     # Modela o cenário "e se todas as autoridades antitruste adotassem LCMC".
@@ -433,6 +442,10 @@ class WaaSModel(Model):
         self.janela_adesao_pos_abertura = getattr(params, "janela_adesao_pos_abertura", 0)
         self.descontos_faixas_adesao = tuple(
             getattr(params, "descontos_faixas_adesao", (1.0, 0.7, 0.5, 0.3, 0.1))
+        )
+        # R29-iii: adesão estocástica por arquétipo (opt-in)
+        self.adesao_estocastica_por_arquetipo = getattr(
+            params, "adesao_estocastica_por_arquetipo", False
         )
         # R30: sinergia entre autoridades internacionais. Grupos econômicos
         # consolidam depósitos (proxy de MoU bilateral / cooperação ICN);
@@ -1083,6 +1096,8 @@ class WaaSModel(Model):
                 trabalhadores_por_empresa=self.trabalhadores_por_empresa,
                 W_max=self._W_esperado(1.0),
                 custo_represalia=self.r_represalia,
+                estocastica_por_arquetipo=self.adesao_estocastica_por_arquetipo,
+                rng=self.rng,
             )
 
         # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07).

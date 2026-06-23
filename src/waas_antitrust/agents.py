@@ -523,23 +523,39 @@ class AutoridadeAgent(Agent):
         trabalhadores_por_empresa: dict,
         W_max: float,
         custo_represalia: float,
+        estocastica_por_arquetipo: bool = False,
+        rng: np.random.Generator | None = None,
     ) -> int:
         """Para cada bloco em janela ativa, oferece adesão a trabalhadores da
         MESMA firma que ainda não fizeram parte da leniência.
 
-        Decisão econômica simplificada: aderem todos cujo `fator_desconto *
+        Em modo determinístico (default), aderem todos cujo `fator_desconto *
         W_max > custo_represalia` (IR-W projetada para a faixa atual).
-        Aderentes entram na próxima posição da fila pós-abertura; saem do
-        escrow caso ainda tivessem depósito ali. Devolve total de novos
-        aderentes neste tique.
 
-        `janela <= 0` é no-op; `descontos` vazio também é no-op.
-        Chamado em P2.5c do `WaaSModel` UMA vez por tique, APÓS as aberturas
-        do tique e ANTES de P3 — o desconto de adesão é apurado quando a
-        firma decide sobre TCC.
+        Sob `estocastica_por_arquetipo=True`, a decisão de aderir vira
+        probabilística e modulada pelo arquétipo do trabalhador (R29-iii,
+        em resposta ao §4.1 do brainstorm de revisão):
+
+        - **ético**: probabilidade alta (0,85) se o fator é viável (fator > 0).
+        - **imitativo**: probabilidade proporcional à fração de aderentes
+          já no bloco (cascata Granovetter intra-bloco).
+        - **racional**: mantém a regra determinística IR-W
+          (`fator * W_max > custo_represalia`); preserva o comportamento
+          do modo legacy para esse arquétipo.
+        - **fairminded**: como racional, mas com bônus de 0,2 quando a
+          fração de aderentes já no bloco passa de 0,3 (inequity aversion
+          coletivo).
+        - **oportunista**: probabilidade fixa 0,8 — adere extrativamente
+          enquanto houver desconto positivo, independentemente de IR-W.
+        - **aleatório**: probabilidade fixa 0,3 (ruído uniforme).
+
+        `rng` é o gerador de números aleatórios do modelo; obrigatório
+        sob modo estocástico.
         """
         if janela <= 0 or not descontos:
             return 0
+        if estocastica_por_arquetipo and rng is None:
+            raise ValueError("rng é obrigatório sob estocastica_por_arquetipo=True.")
         total_neste_tique = 0
         for id_empresa, registro in list(self.blocos_em_janela_adesao.items()):
             idade = tique_atual - registro["tique_abertura"]
@@ -565,9 +581,18 @@ class AutoridadeAgent(Agent):
                 fator = descontos[faixa]
                 if fator <= 0:
                     continue
-                # IR-W projetada para a faixa atual: aderir só se o desconto
-                # esperado supera o custo de represália percebido.
-                if fator * W_max <= custo_represalia:
+                if not self._decidir_adesao(
+                    arquetipo=getattr(t, "arquetipo", "racional"),
+                    fator=fator,
+                    W_max=W_max,
+                    custo_represalia=custo_represalia,
+                    fracao_ja_aderentes=(
+                        len(registro["aderentes_pos_abertura"])
+                        / max(1, len(ws) - len(registro["depositantes_originais"]))
+                    ),
+                    estocastica=estocastica_por_arquetipo,
+                    rng=rng,
+                ):
                     continue
                 registro["aderentes_pos_abertura"].append(
                     {
@@ -581,6 +606,45 @@ class AutoridadeAgent(Agent):
                 total_neste_tique += 1
                 ja_dentro.add(tid)
         return total_neste_tique
+
+    @staticmethod
+    def _decidir_adesao(  # noqa: C901 — despacha por 6 arquétipos sob duas regras
+        arquetipo: str,
+        fator: float,
+        W_max: float,
+        custo_represalia: float,
+        fracao_ja_aderentes: float,
+        estocastica: bool,
+        rng: np.random.Generator | None,
+    ) -> bool:
+        """Decide se o trabalhador adere à classe leniente pós-abertura.
+
+        Sob `estocastica=False`, usa a IR-W determinística clássica
+        (mantém o comportamento histórico bit a bit). Sob `True`, modula
+        a decisão pelo arquétipo conforme o docstring de
+        `processar_adesao_pos_abertura`.
+        """
+        if not estocastica:
+            return fator * W_max > custo_represalia
+
+        if arquetipo == "ético":
+            prob = 0.85
+        elif arquetipo == "imitativo":
+            prob = max(0.0, min(1.0, fracao_ja_aderentes))
+        elif arquetipo == "racional":
+            return fator * W_max > custo_represalia
+        elif arquetipo == "fairminded":
+            base = 1.0 if fator * W_max > custo_represalia else 0.0
+            if fracao_ja_aderentes >= 0.3:
+                base = min(1.0, base + 0.2)
+            prob = base
+        elif arquetipo == "oportunista":
+            prob = 0.8
+        elif arquetipo == "aleatório":
+            prob = 0.3
+        else:
+            return fator * W_max > custo_represalia
+        return rng.random() < prob
 
     def processar_casos(self) -> list[dict]:
         aceitos = self.casos_neste_tique[: self.capacidade]

@@ -62,7 +62,7 @@ print(f"firmas que atingiram massa crítica interna: "
       f"{df['n_firmas_atingiram_massa_critica_interna'].max()}")
 ```
 
-23 cenários canônicos disponíveis (incluindo os 6 do reframe v2, os 2 do R28 EUA/UE, os 2 do canal puro + erosão Coleman, os 2 do R29 — cascata arbitrária e a variante calibrada contra Saito 2021 — e os 2 do R30 da LCMC global):
+24 cenários canônicos disponíveis (incluindo os 6 do reframe v2, os 2 do R28 EUA/UE, os 2 do canal puro + erosão Coleman, os 3 do R29 — cascata arbitrária, calibração Saito 2021 e cruzamento R29 × R26 — e os 2 do R30 da LCMC global):
 
 ```python
 from waas_antitrust.cenarios import listar_cenarios
@@ -188,7 +188,7 @@ python .claude/skills/run-waas-antitrust/driver.py --out /tmp/waas-driver
 src/waas_antitrust/
 ├── agents.py              # TrabalhadorAgent, EmpresaAgent, AutoridadeAgent
 ├── model.py               # WaaSModel + WaaSParametros (~30 params)
-├── cenarios.py            # 23 cenários canônicos + aplicar_cenario
+├── cenarios.py            # 24 cenários canônicos + aplicar_cenario
 ├── instrumentos.py        # 5 entradas: canal base (v3) + 4 instrumentos
 ├── corrida.py             # FilaInternaCooperacao + FilaLeniencia (LCMC)
 ├── hirschman.py           # custo_exodo_esperado (R07)

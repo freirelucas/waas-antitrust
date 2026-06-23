@@ -540,6 +540,34 @@ CATALOGO_CENARIOS: tuple[Cenario, ...] = (
             "taxa_observacao": 0.5,
         },
     ),
+    Cenario(
+        nome="cascata_adesao_com_erosao_coleman",
+        descricao=(
+            "**Cruzamento R29 × R26** — caso base R29 (cascata de adesão "
+            "pós-abertura) com erosão endógena Coleman 1990 acoplada "
+            "(`alpha_erosao=0.5`). Mede a hipótese substantiva de que a "
+            "cascata pós-abertura, ao concentrar notificações em janela "
+            "curta, **acelera** a erosão do capital social organizacional "
+            "(Coleman 1990 *Foundations of Social Theory* cap. 12) — ou, "
+            "alternativamente, de que o efeito Schelling de dissuasão "
+            "domina o efeito Coleman mesmo sob cascata. Falsifica a "
+            "Proposição 5 candidata SOB R29: existe `alpha_erosao*` tal que "
+            "B/C colapsa em A após N tiques sob cascata? Calibração α=0.5 "
+            "consistente com o teste isolado de R26. Demais parâmetros "
+            "idênticos ao caso base R29 para comparabilidade direta."
+        ),
+        sobrescritas={
+            "regime": "B",
+            "usar_escrow_explicito": True,
+            "janela_escrow_tiques": 8,
+            "janela_adesao_pos_abertura": 10,
+            "descontos_faixas_adesao": (1.0, 0.7, 0.5, 0.3, 0.1),
+            "q_min_cooperacao_interna": 0.10,
+            "fracao_violadoras": 0.5,
+            "taxa_observacao": 0.5,
+            "alpha_erosao": 0.5,
+        },
+    ),
 )
 
 
