@@ -1,6 +1,6 @@
 # Glossário
 
-Termos usados no projeto, em uma linha cada.
+Dicionário rápido dos termos usados no projeto, em uma linha cada. Para a **forma canônica** dos termos centrais da LCMC (sinônimos aceitos, sinônimos proibidos, parâmetros no código, cenários canônicos e reporters), ver [Terminologia canônica](TERMINOLOGIA.md) — esta página foca no vocabulário geral antitruste e econômico que aparece no projeto.
 
 | Termo | Significado |
 |-------|-------------|

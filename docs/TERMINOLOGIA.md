@@ -1,8 +1,11 @@
 # Terminologia canônica
 
-Esta página unifica o vocabulário do projeto. Termos que aparecem com
-frequência em múltiplas páginas (Atos, Anexos, código) são listados
-aqui em sua **forma canônica**, com sinônimos aceitos e proibidos.
+Esta página unifica o vocabulário **central** do projeto — termos
+ligados ao mecanismo LCMC e às suas extensões, com forma canônica em
+português, precedente teórico em inglês, sinônimos aceitos, sinônimos
+proibidos, parâmetros no código e cenários canônicos. Para o vocabulário
+geral (antitruste, condutas digitais, economia institucional) que
+aparece de passagem no projeto, ver [Glossário](glossario.md).
 
 A unidade terminológica é importante porque o projeto atravessou três
 reformulações conceituais (v1 LCMC → v2 capital social Coleman → v3

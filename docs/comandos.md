@@ -75,44 +75,6 @@ python -m waas_antitrust.viz.internacional  # figura 13 — 3 jurisdições
 
 A lista canônica está em [`roadmap_figuras.md`](roadmap_figuras.md).
 
-## Fluxos sugeridos
+## Tutoriais e receitas
 
-### Quero reproduzir TUDO
-
-```bash
-git clone https://github.com/freirelucas/waas-antitrust.git
-cd waas-antitrust && pip install -e ".[dev]"
-
-# 1. Os 4 artefatos científicos da rodada
-python scripts/varredura_alpha_erosao.py          # falsifica Prop. 5 forte
-python scripts/identificabilidade_r03.py          # decompõe os 3 alvos
-python scripts/calibrar_formal.py                 # calibração formal
-python scripts/mapa_lambda_hirschman.py           # mapa Mat A
-
-# 2. Todas as 23 figuras do site (5-10 min)
-python scripts/regerar_todas_as_figuras.py
-
-# 3. Os 4 PDFs do paper
-python scripts/gerar_figs_paper.py
-
-# 4. Sobol paper-grade (várias horas)
-waas-sobol --n-base 1024 --jobs -1 --out results/sobol_full.parquet
-```
-
-### Quero brincar interativamente
-
-Abra o [simulador in-browser](brincar.md): roda no navegador, 13 sliders, atualização em <300 ms. Para a versão Python plena (sem aproximações), abra `notebooks/WaaS_brincar.ipynb` localmente com `jupyter notebook`.
-
-### Quero rodar testes
-
-```bash
-# Suite completa (~25s, 343 testes)
-pytest -x -q -m "not slow"
-
-# Apenas os testes de regressão dos achados científicos
-pytest -x -q tests/test_achados_rodada.py
-
-# Apenas viz (com nbval do demo)
-pytest -x -q tests/test_viz.py
-pytest --nbval-lax notebooks/WaaS_demo.ipynb
-```
+Para fluxos completos por perfil de uso (leigo / cético / calibrador / desenvolvedor) e receitas concretas de reprodução, consultar [Como usar](uso.md). Esta página é apenas a referência rápida dos comandos disponíveis.
