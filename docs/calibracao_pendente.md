@@ -6,6 +6,43 @@
 
 Esta página detalha quatro pontos onde o argumento numérico do projeto ainda depende de calibração externa não-fechada. A intenção é cumprir o duplo objetivo da [transparência epistêmica](transparencia.md): documentar onde a evidência ainda não fecha e fornecer ao leitor a receita para fechar.
 
+## 0 · R03 multi-target (alvos 2 e 3)
+
+A calibração formal R03 inicial (`scripts/calibrar_formal.py`) fechou
+o alvo único TCCs/ano por Nelder-Mead 2D em (0,323; 0,481). Os alvos
+2 (sinais/tique × Dyck-Morse-Zingales 2010) e 3 (dano relativo B/A)
+permaneceram em aberto por identificabilidade fraca — os 3 alvos não
+são identificáveis conjuntamente sob 2 parâmetros.
+
+**Framework disponível.** O script
+`scripts/calibrar_formal_multitarget.py` estende a calibração formal
+para os 3 alvos com função objetivo vetorial ponderada:
+
+$$
+J(x) \;=\; w_1 \cdot \left( \frac{\text{TCC} - \text{alvo}_1}{\text{alvo}_1} \right)^2
+       + w_2 \cdot \left( \frac{\text{sinais} - 0{,}19}{0{,}19} \right)^2
+       + w_3 \cdot \left( \frac{D_B/D_A - 0{,}30}{0{,}30} \right)^2.
+$$
+
+O ponto ótimo é o **melhor compromisso** sob o vetor de pesos
+escolhido — não a solução única. A receita de execução:
+
+```bash
+# Pesos neutros (1/3 cada), seeds default
+python scripts/calibrar_formal_multitarget.py
+
+# Privilegiando TCC (alvo já calibrado pelo R03 unidimensional)
+python scripts/calibrar_formal_multitarget.py --pesos 0.6 0.3 0.1
+
+# Resultado em results/calibracao_formal_r03_multitarget.json
+```
+
+A interpretação do ponto ótimo é declarada honesta: sob identificabilidade
+fraca, o vetor de pesos é decisão do autor — diferentes pesos retornam
+ótimos materialmente distintos. A varredura sistemática sobre o
+*simplex* de pesos $(w_1, w_2, w_3)$ — i.e., gerar a curva de
+compromisso — fica como pendência de pesquisa.
+
 ## 1 · N\* ≈ 1.679 firmas × CNAE
 
 A calibração formal R03 (Nelder-Mead em duas dimensões) entrega o ponto ótimo $(\text{fração de violadoras}, \text{taxa de capacidade}) = (0{,}323;\ 0{,}481)$, do qual decorre o **universo CADE implícito** de aproximadamente **1.679 firmas sob jurisdição ativa**. Este número é apresentado em [`index.md`](index.md) e em [`internacional.md`](internacional.md) como predição falsificável.
