@@ -359,3 +359,36 @@ def test_multiplicidade_unicidade_gera_figura():
     assert fig is not None
     assert len(axes) == 2
     plt.close(fig)
+
+
+# ----------------------------------------------------------------------
+# Regressão visual via pytest-mpl
+# ----------------------------------------------------------------------
+#
+# Para gerar/atualizar baseline images (procedimento manual, fora do CI):
+#
+#   pytest tests/test_viz.py --mpl-generate-path=tests/baseline_images
+#
+# Em CI, esses testes só rodam quando explicitamente requisitados:
+#
+#   pytest tests/test_viz.py --mpl
+#
+# Sem a flag --mpl, as funções marcadas com mpl_image_compare apenas
+# executam (smoke test) sem comparar contra baseline. Baselines vivem
+# em tests/baseline_images/ (versionado em git).
+
+
+@pytest.mark.mpl_image_compare(remove_text=True, tolerance=2)
+def test_cascata_adesao_regressao_visual():
+    """Regressão visual da figura R29 (cascata de adesão) — usa
+    parâmetros determinísticos para garantir reprodutibilidade
+    bit a bit do PNG entre rodadas."""
+    from waas_antitrust.viz import cascata_adesao
+
+    aplicar_estilo()
+    fig, _ = cascata_adesao.gerar_figura(
+        descontos=(1.0, 0.795, 0.466, 0.345, 0.345),  # Saito calibrado
+        janela=10,
+        seed=2026,
+    )
+    return fig

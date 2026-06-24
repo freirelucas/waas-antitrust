@@ -37,6 +37,7 @@ dependencies = [
 dev = [
     "pytest>=7.4",
     "pytest-cov>=4.1",
+    "pytest-mpl>=0.17",
     "pytest-xdist>=3.5",
     "nbval>=0.10",
     "ruff>=0.4",
@@ -97,7 +98,12 @@ addopts = "-ra --strict-markers --strict-config"
 markers = [
     "slow: testes lentos (varreduras paramétricas)",
     "integration: testes de integração (Mesa + Sobol)",
+    "mpl_image_compare: regressão visual via pytest-mpl",
 ]
+# pytest-mpl: aponta para baselines versionados; tolerância padrão 0,5
+mpl-baseline-path = "tests/baseline_images"
+mpl-results-path = "tests/mpl_results"
+mpl-baseline-relative = true
 
 # ----- Coverage -----
 [tool.coverage.run]

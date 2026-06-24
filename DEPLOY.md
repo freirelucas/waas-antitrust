@@ -128,3 +128,36 @@ Após o DOI sair, atualizar:
 - `CITATION.cff` (campo `doi:`)
 - `docs/sobre.md` (seção "DOI")
 - `README.md` (badge DOI no hero)
+
+## Regressão visual (pytest-mpl)
+
+Testes marcados com `@pytest.mark.mpl_image_compare` em `tests/test_viz.py`
+comparam o PNG produzido pela função `gerar_figura()` contra um baseline
+versionado em `tests/baseline_images/`.
+
+### Gerar/atualizar baselines (procedimento manual, fora do CI)
+
+```bash
+pytest tests/test_viz.py --mpl-generate-path=tests/baseline_images
+git add tests/baseline_images/
+git commit -m "test(viz): atualiza baselines de regressão visual"
+```
+
+### Rodar a comparação no CI
+
+A comparação não roda no workflow padrão (`tests.yml`). Para ativar,
+adicionar uma matriz separada com a flag `--mpl`:
+
+```bash
+pytest tests/test_viz.py --mpl
+```
+
+Sem a flag, os testes marcados apenas executam como smoke test (sem
+comparar bytes).
+
+### Cobertura mínima
+
+O workflow `tests.yml` exige `--cov-fail-under=85` em `pytest-cov`.
+A cobertura atual da `src/waas_antitrust/` é de aproximadamente 94 %
+(medida em jun/2026); o piso de 85 % deixa folga de 9 pontos para
+evolução sem quebrar o CI.

@@ -34,11 +34,25 @@ jobs:
         run: black --check src/ tests/
 
       - name: Testes rápidos (sem 'slow')
-        run: pytest -x -q -m "not slow" --cov=waas_antitrust --cov-report=xml
+        run: |
+          pytest -x -q -m "not slow" \
+            --cov=waas_antitrust \
+            --cov-report=xml \
+            --cov-report=html \
+            --cov-report=term-missing \
+            --cov-fail-under=85
 
       - name: Validação do caderno-demo (nbval)
         if: matrix.python-version == '3.12'
         run: pytest --nbval-lax notebooks/WaaS_demo.ipynb
+
+      - name: Upload do relatório HTML de cobertura como artifact
+        if: matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cobertura-html
+          path: htmlcov/
+          retention-days: 14
 
       - name: Upload de cobertura para Codecov
         if: matrix.python-version == '3.12'
