@@ -100,10 +100,11 @@ markers = [
     "integration: testes de integração (Mesa + Sobol)",
     "mpl_image_compare: regressão visual via pytest-mpl",
 ]
-# pytest-mpl: aponta para baselines versionados; tolerância padrão 0,5
+# pytest-mpl: aponta para baselines versionados; tolerância padrão 0,5.
+# Os campos abaixo são lidos pelo plugin pytest-mpl quando a flag --mpl
+# é passada na linha de comando; sem --mpl ficam dormentes.
 mpl-baseline-path = "tests/baseline_images"
 mpl-results-path = "tests/mpl_results"
-mpl-baseline-relative = true
 
 # ----- Coverage -----
 [tool.coverage.run]

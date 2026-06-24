@@ -907,7 +907,14 @@ class WaaSModel(Model):
         self.n_boosts_coordenacao_intl_acum += 1
 
     # ---- step ----
-    def step(self) -> None:  # noqa: C901 — orquestra as 5 fases do protocolo ODD
+    def step(self) -> None:
+        """Orquestra as 5 fases do protocolo ODD em sub-métodos privados.
+
+        Cada `_fase_pX_*` é bit-a-bit equivalente ao bloco que o step()
+        executava antes do refator de jun/2026 — refatoração puramente
+        estrutural, sem alterar cálculos. Testes 364 a 381 cobrem a
+        equivalência.
+        """
         self.tique += 1
         # R19 — Choques exógenos aplicados no tique corrente, antes de P0.
         for choque in self.choques:
@@ -915,10 +922,22 @@ class WaaSModel(Model):
                 choques_mod.aplicar_choque(self, choque)
         W_ativo = self.regime in ("B", "C")
         D_ativo = self.regime in ("B", "C")
+        self._fase_p0_dissuasao()
+        self._fase_p1_sinalizacao(W_ativo)
+        self._fase_p2_massa_critica(W_ativo)
+        self._fase_p2_5_corrida()
+        self._fase_p2_5b_escrow_abertura()
+        self._fase_p2_5c_adesao_pos_abertura()
+        self._fase_p3_decisao_firma(D_ativo)
+        self._fase_p4_intervencao_autoridade(W_ativo)
 
-        # P0 · dissuasão endógena (R01): a detecção percebida é atualizada por
-        # expectativa adaptativa sobre a detecção realizada no tique anterior;
-        # cada firma re-decide violar enquanto sua atratividade g_i superar p_perc.
+    def _fase_p0_dissuasao(self) -> None:  # noqa: C901
+        """P0 · dissuasão endógena (R01): atualiza detecção percebida por
+        expectativa adaptativa, re-decide quais firmas violam, atualiza
+        observabilidade dos trabalhadores. Inclui hooks Hirschman (R07),
+        externalidade erga omnes (R21), erosão Coleman (R26) e
+        observabilidade conduta × papel (R08).
+        """
         # Categoria 2 (Mat A): estimador frequencista vp/n_viol substituído por
         # Beta-Binomial MAP `(vp + α) / (n_viol + α + β)` — sempre definido
         # (mesmo em n_viol = 0, retorna a média do prior) e estável em n pequeno.
@@ -1007,7 +1026,12 @@ class WaaSModel(Model):
                 if t.observou:
                     t.historico_observou += 1
 
-        # P1 · fase de sinalização
+    def _fase_p1_sinalizacao(self, W_ativo: bool) -> None:
+        """P1 · sinalização: cada trabalhador observador amostra sinal
+        privado e decide cooperar (`sinaliza_agora`) segundo seu arquétipo.
+        Sob `modo_corrida=True`, novos cooperadores entram na fila
+        intra-firma (R20).
+        """
         for fid, ws in self.trabalhadores_por_empresa.items():
             empresa = self.empresas[fid]
             sinais_anteriores = (
@@ -1039,7 +1063,12 @@ class WaaSModel(Model):
                         t.posicao_corrida_interna = pos
                         t.tique_cooperou = self.tique
 
-        # P2 · massa crítica
+    def _fase_p2_massa_critica(self, W_ativo: bool) -> None:
+        """P2 · massa crítica: agrega sinais por firma e dispara
+        `notificada_no_periodo` quando o limiar `k_rel` é atingido. Sob
+        `usar_escrow_explicito=True`, deposita cada sinal no escrow do
+        CADE (R27) em vez de notificar imediatamente.
+        """
         for fid, ws in self.trabalhadores_por_empresa.items():
             empresa = self.empresas[fid]
             empresa.notificada_no_periodo = False
@@ -1067,7 +1096,10 @@ class WaaSModel(Model):
                 empresa.notificada_no_periodo = True
                 empresa.n_denuncias_acum += 1  # R14: memória da firma
 
-        # P2.5 · R20: massa crítica interna + posicionamento na fila de leniência
+    def _fase_p2_5_corrida(self) -> None:
+        """P2.5 · R20: massa crítica intra-firma + posicionamento na fila
+        inter-firma de leniência. No-op sob `modo_corrida=False` (compat).
+        """
         if self.modo_corrida:
             from waas_antitrust.corrida import massa_critica_interna_atingida
 
@@ -1088,8 +1120,13 @@ class WaaSModel(Model):
                     )
                     self.n_firmas_atingiram_massa_critica_interna += 1
 
-        # P2.5b · R27: abertura simultânea do escrow quando massa crítica é
-        # atingida em uma firma. Sob `usar_escrow_explicito=False`, é no-op.
+    def _fase_p2_5b_escrow_abertura(self) -> None:
+        """P2.5b · R27/R30: abertura simultânea do escrow quando massa
+        crítica é atingida em uma firma (R27) ou no grupo econômico
+        consolidado (R30-i). No-op sob `usar_escrow_explicito=False`.
+        Inclui amplificação Schelling internacional (R30) e registro de
+        bloco em janela de adesão pós-abertura (R29).
+        """
         if self.usar_escrow_explicito:
             # R27-ii: expira depósitos antigos ANTES da abertura — depósito
             # vencido não pode contar para a fração de massa crítica.
@@ -1135,11 +1172,11 @@ class WaaSModel(Model):
             if self.coordenacao_internacional > 0:
                 self._aplicar_coordenacao_internacional(abertas_via_grupo)
 
-        # P2.5c · R29: janela de adesão pós-abertura com desconto progressivo.
-        # Para cada bloco aberto dentro da janela ativa, oferece adesão a
-        # trabalhadores da MESMA firma que ainda não cooperaram. Desconto
-        # decai conforme `descontos_faixas_adesao`. Sob `janela_adesao_pos_abertura=0`
-        # é no-op (compat estrita).
+    def _fase_p2_5c_adesao_pos_abertura(self) -> None:
+        """P2.5c · R29: janela de adesão pós-abertura com desconto
+        progressivo por classe. No-op sob `janela_adesao_pos_abertura=0`
+        ou `usar_escrow_explicito=False` (compat estrita).
+        """
         if self.usar_escrow_explicito and self.janela_adesao_pos_abertura > 0:
             self.autoridade.processar_adesao_pos_abertura(
                 tique_atual=self.tique,
@@ -1152,11 +1189,16 @@ class WaaSModel(Model):
                 rng=self.rng,
             )
 
-        # P3 · decisão de pagamento (IC-F* ampliada por Hirschman, R07).
-        # **Vetor de quebra A**: a IC-F* correta compara W contra o INCREMENTO
-        # de desconto que o canal WaaS oferece (`D_extra = D_total − D_base`),
-        # não contra o desconto total. Sem isso, o modelo superestima o
-        # incentivo a pagar — porque o TCC clássico já oferece desconto.
+    def _fase_p3_decisao_firma(self, D_ativo: bool) -> None:  # noqa: C901
+        """P3 · decisão da firma: para cada firma notificada, escolhe entre
+        IC-F* ampliada por Hirschman (R07), recompensa coletiva (R29-iv),
+        TCC clássico ou contencioso. Inclui forum shopping (R30-iii),
+        gradiente Saito (R20) sob `modo_corrida`, e descumprimento R18.
+
+        **Vetor de quebra A**: a IC-F* correta compara W contra o INCREMENTO
+        de desconto que o canal WaaS oferece (`D_extra = D_total − D_base`),
+        não contra o desconto total.
+        """
         for empresa in self.empresas:
             if not empresa.notificada_no_periodo:
                 continue
@@ -1258,7 +1300,13 @@ class WaaSModel(Model):
                     self.n_firmas_sob_ameaca_exodo += 1
                     self.custo_exodo_acum += c_exodo
 
-        # P4 · intervenção da autoridade
+    def _fase_p4_intervencao_autoridade(self, W_ativo: bool) -> None:
+        """P4 · intervenção da autoridade: processa casos pendentes do
+        tique (residuais — auto-detecção e falso reporte — + casos das
+        firmas notificadas, exceto as já injetadas via escrow em P2.5b).
+        Apura VP/FP/FN, dosimetria do Art. 45 (incluindo anulação F6),
+        multa arrecadada e dispara o DataCollector.
+        """
         # R27: sob `usar_escrow_explicito=True`, os casos das firmas notificadas
         # já foram injetados via `abrir_escrow_se_massa_critica` em P2.5b.
         # P4 trata apenas dos canais residuais (auto-detecção + falso reporte).
