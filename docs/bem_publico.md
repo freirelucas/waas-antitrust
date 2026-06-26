@@ -99,11 +99,13 @@ coordenação que torna sua provisão difícil**.
 </figure>
 
 
-A crítica x10 v2 (Sociólogo) trouxe a reformulação que originou esta
-moldura. Sob v2, capital social era apresentado como **eixo central** do
-projeto. Sob v3 (correção radical do autor — ver
-[aprendizados_v3.md](aprendizados_v3.md)), permanece como **diagnóstico
-de um risco residual**, não como mecanismo.
+No desenho atual, capital social organizacional figura como **diagnóstico
+de um risco residual** ao canal: a hipótese é que a instrumentalização
+do canal pode erodir o substrato cooperativo que produz a denúncia
+espontânea, conforme a leitura de Coleman (1990). Esse risco é
+mensurável e falsificável; o parâmetro `alpha_erosao` controla a
+intensidade do efeito e a Proposição 5 candidata abaixo define a
+fronteira de falsificação.
 
 ### A Proposição 5 candidata em multi-seed
 
@@ -181,10 +183,9 @@ ancoragem legal. A categoria disponível é **interesse público em detecção
 e cessação** (Lei 9.784/99 Art. 2º, parágrafo único, IV e XIII) — princípio
 de finalidade que pode sustentar atenuação sem criar categoria nova.
 
-O **precedente brasileiro mais relevante**, que estava ausente nas
-versões anteriores do projeto, é a **Lei 12.846/2013 (LAC), Art. 7º,
-VII-VIII**: a existência de programa de integridade interno conta como
-atenuante na dosimetria. Esse é exatamente o tipo de reconhecimento
+O **precedente brasileiro mais relevante** é a **Lei 12.846/2013 (LAC),
+Art. 7º, VII-VIII**: a existência de programa de integridade interno
+conta como atenuante na dosimetria. Esse é exatamente o tipo de reconhecimento
 institucional que o WaaS busca para a cooperação intra-firma. A LAC já
 trata mecanismos de detecção interna como bem juridicamente relevante;
 a tese do WaaS é uma extensão analógica defensável a partir desse

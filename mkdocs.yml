@@ -34,15 +34,15 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
-      accent: teal
+      primary: black
+      accent: indigo
       toggle:
         icon: material/weather-night
         name: Mudar para o modo escuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
-      accent: teal
+      primary: black
+      accent: indigo
       toggle:
         icon: material/weather-sunny
         name: Mudar para o modo claro

@@ -1,6 +1,6 @@
 # Modelagem multiagente
 
-<p class="deck">Como o modelo é composto agente a agente: classes, estados, decisões individuais, microfundamentos comportamentais e acoplamentos entre populações. Complemento técnico ao <a href="mecanismo.md">Ato 2 (mecanismo)</a> e ao <a href="ODD.md">protocolo ODD</a>; o foco aqui é a arquitetura computacional, não a intuição econômica nem a descrição padrão JASSS.</p>
+<p class="deck">Como o modelo é composto agente a agente: classes, estados, decisões individuais, microfundamentos comportamentais e acoplamentos entre populações. Complemento técnico ao <a href="mecanismo/">Ato 2 (mecanismo)</a> e ao <a href="ODD/">protocolo ODD</a>; o foco aqui é a arquitetura computacional, não a intuição econômica nem a descrição padrão JASSS.</p>
 
 A simulação roda em [Mesa 3.x](https://mesa.readthedocs.io/) com três classes de agente, uma rede social intra-firma em [NetworkX](https://networkx.org/) (modelo *small-world* de Watts-Strogatz) e topologia inter-firma implícita (acoplamento por uma percepção global de detecção `p_perc`). Cada extensão posterior do modelo entra como opção que pode ser ligada ou desligada por um parâmetro em `WaaSParametros`; os valores padrão preservam o comportamento histórico bit a bit (regra explícita do projeto, ver [Postura epistêmica](modelo_abm.md#8-postura-epistemica)).
 
@@ -280,16 +280,15 @@ refinamento:
   exigiria modelar a IC do empreendedor, a IC do VC e a IC do
   incumbente como sistema acoplado. Decisão também em D-KA (a abrir).
 - **Comportamento individual mais fino (Big Five / Dark Triad /
-  Fehr-Schmidt α/β individual).** O arquétipo `fairminded` já abre a
-  porta para preferências de fairness; o **`oportunista` (R24, reframe v2)**
+  Fehr-Schmidt α/β individual).** O arquétipo `fairminded` abre a
+  porta para preferências de fairness; o arquétipo `oportunista`
   abre a porta para personalidades extrativas. Generalização futura
   seria parametrizar α individual e introduzir traços de personalidade
   como modulador da observabilidade e da inclinação a denunciar.
-  Decisão em D-PERS (a abrir).
 
-### Status atualizado pós-reframe v2
+### Status atual
 
-A classe `TrabalhadorAgent` agora tem **seis arquétipos** (ético,
+A classe `TrabalhadorAgent` tem **seis arquétipos** (ético,
 imitativo, racional, aleatório, fairminded, oportunista). A classe
 `EmpresaAgent` ganhou os reporters `valor_dissuasao_difusa_acum`
 (externalidade erga omnes, v2.D.1) e `capital_social_residual` (R26

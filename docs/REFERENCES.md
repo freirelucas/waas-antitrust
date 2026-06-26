@@ -1,8 +1,8 @@
 # Bibliografia primária
 
 > **Convenção.** Cada referência abaixo foi verificada via DOI/arXiv/URL estável,
-> exceto quando explicitamente marcada com **[?]** (verificação não conclusiva
-> nesta sessão — citação a confirmar antes da publicação).
+> exceto quando explicitamente marcada com **[?]** (verificação ainda em curso
+> — citação a confirmar antes da publicação).
 
 ## Teoria dos jogos e desenho de mecanismos
 
@@ -31,7 +31,7 @@
 - Granovetter, M. (1978). Threshold models of collective behavior. *American Journal of Sociology* 83(6): 1420–1443.
 - Near, J. P., & Miceli, M. P. (1985). Organizational dissidence: The case of whistle-blowing. *Journal of Business Ethics* 4(1): 1–16. — *base do gradiente 3-níveis primário/adjacente/distal em R08.*
 
-## Information escrows e denúncia condicional (correção radical v3 — base do mecanismo)
+## Information escrows e denúncia condicional (base do mecanismo)
 
 - **Ayres, I., & Unkovic, C. (2012).** Information escrows. *Michigan Law Review* 111(2): 145–196. URL: <https://repository.law.umich.edu/mlr/vol111/iss2/2/> — *base teórica do canal de depósito condicional do CADE; depósito de informação revelada sob regra ex-ante por terceiro confiável.*
 - **Callisto** (Project Callisto). <https://www.callisto.org> — *plataforma operacional de denúncia condicional de assédio sexual em campus universitário nos EUA; identidade da vítima é revelada ao mesmo agressor apenas se duas ou mais denúncias coincidirem. Paralelo prático direto do canal LCMC.*

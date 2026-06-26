@@ -1,10 +1,8 @@
 # Status atual
 
-<p class="deck">Panorama do estado do projeto em uma página: o que está fechado, o que está em andamento, o que permanece em aberto. Agrega o histórico de decisões, o changelog técnico e os aprendizados das três correções radicais sem exigir que o leitor reconstrua o quadro a partir das fontes.</p>
+<p class="deck">Panorama do estado do projeto em uma página: o que está fechado, o que está em andamento, o que permanece em aberto.</p>
 
-<p class="byline"><em>Snapshot</em> · jun/2026 · gerado manualmente após cada rodada</p>
-
-<p class="lede">Esta página é o atalho de leitura para quem chega ao projeto e precisa entender em qual ponto da trajetória de pesquisa ele está agora. Os três documentos-fonte (<a href="DECISIONS.md">decisões e backlog</a>, <a href="../CHANGELOG.md">changelog técnico</a>, <a href="aprendizados_v3.md">aprendizados v3</a>) continuam sendo a referência canônica de cada dimensão; esta página apenas resume.</p>
+<p class="lede">Esta página é o atalho para quem precisa entender, em poucos minutos, o estado de evidência e o ponto da agenda de pesquisa em que o projeto se encontra. Para detalhe técnico, ver <a href="DECISIONS/">decisões e backlog</a>; para histórico de mudanças, ver o <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CHANGELOG.md">changelog</a>.</p>
 
 ## Numérico
 
@@ -27,40 +25,29 @@ A LCMC (**Leniência Condicionada à Massa Crítica**) é um canal de depósito 
 
 Sobre o canal podem ser acoplados, opcionalmente, cinco instrumentos de internalização: canal puro (sem recompensa), recompensa via TCC (*Whistleblower-as-a-Service*) sob re-caracterização do Art. 12 da Resolução CADE 21/2018, vesting acelerado de Hirschman (R07), crédito tributário (sub-regime Cᵩ) e leniência criminal individual (sub-regime Cₚ). O canal puro resolve a coordenação sozinho; os instrumentos amplificam a taxa de adesão.
 
-## Trajetória das três reformulações
+## Componentes implementados
 
-A versão v1 do modelo (2022) era simulação Mesa simples de leniência clássica entre cúmplices, sob a Lei nº 12.529/2011. Duas reformulações radicais sucessivas moveram o eixo conceitual:
+Lista dos marcos materializados no código, na documentação e na infraestrutura:
 
-- **v2 (2025)** — *reframe* "massa crítica como bem quase-público" (Olson 1965, Ostrom 1990, Coleman 1990). O foco deslocou de "empresa paga pela delação" para "cooperação interna como bem coletivo a ser criado". Documentado em [`aprendizados_v2.md`](aprendizados_v2.md).
-- **v3 (jun/2026)** — correção radical: o coração do mecanismo passou a ser o **canal de depósito condicional** (Ayres-Unkovic). WaaS foi rebaixado de mecanismo central a um dos cinco instrumentos opcionais. Documentado em [`aprendizados_v3.md`](aprendizados_v3.md).
-
-O nome do pacote Python (`waas_antitrust`) e algumas variáveis internas ainda refletem a hierarquia v2; a reescrita semântica do código é dívida técnica registrada no [brainstorm de revisão](brainstorm_revisao.md) §4.
-
-## O que foi fechado na rodada jun/2026
-
-Sessão longa e parcialmente automatizada que combinou correção editorial, refatoração técnica e quatro extensões substantivas ao mecanismo:
-
-| Marco | Item | Onde |
+| Dimensão | Componente | Onde |
 |---|---|---|
-| Mecanismo | **R29 — janela de adesão pós-abertura com desconto progressivo** | [`mecanismo.md`](mecanismo.md) §5 |
-| Mecanismo | **R29-iii — adesão estocástica por arquétipo** | `AutoridadeAgent._decidir_adesao` |
-| Mecanismo | **R29-iv — recompensa coletiva (Marwell-Oliver 1993)** | `WaaSParametros.recompensa_coletiva_pos_abertura` |
-| Mecanismo | **R30 — sinergia entre autoridades internacionais** | [`internacional.md`](internacional.md) |
-| Mecanismo | **R30-ii — assimetria entre jurisdições** | `multiplicador_tamanho_por_firma` |
-| Mecanismo | **R30-iii — forum shopping por firmas** | `forum_shopping_ativo` |
-| Calibração | **R29 contra gradiente Saito (2021)** | `cascata_adesao_saito_calibrada` |
-| Calibração | Cenário cruzado R29 × R26 (cascata × erosão Coleman) | `cascata_adesao_com_erosao_coleman` |
-| Editorial | Padrão deck/byline/lede em 15 páginas-âncora | toda a árvore principal |
-| Editorial | 3 documentos de revisão interna | [brainstorm](brainstorm_revisao.md), [personas](revisao_personas.md), [estrutural](auditoria_estrutural.md) |
-| Institucional | Página `/operacional` | [`operacional.md`](operacional.md) |
-| Institucional | Doutrina BR expandida | [`INSTITUTIONAL.md`](INSTITUTIONAL.md) §"Doutrina" |
-| Institucional | Página `/calibracao_pendente` | [`calibracao_pendente.md`](calibracao_pendente.md) |
-| Distribuição | Autoria visível (página `/sobre`) | [`sobre.md`](sobre.md) |
-| Distribuição | Pages via `actions/deploy-pages@v4` | [`DEPLOY.md`](https://github.com/freirelucas/waas-antitrust/blob/main/DEPLOY.md) |
-| Distribuição | Metadados Zenodo v0.2.0-draft | `CITATION.cff`, `.zenodo.json` |
-| Técnico | `WaaSModel.step()` decomposto em 8 sub-fases | `model.py` `_fase_pX_*` |
-| Técnico | `pytest-cov` + `pytest-mpl` + piso 85 % no CI | `.github/workflows/tests.yml` |
-| Prova | Esboço estendido da Proposição 2 sob heterogeneidade | [`ODD.md`](ODD.md) §1.4 |
+| Mecanismo | Janela de adesão pós-abertura com desconto progressivo | [Camada 5 do mecanismo](mecanismo.md) |
+| Mecanismo | Adesão estocástica modulada por arquétipo | `AutoridadeAgent._decidir_adesao` |
+| Mecanismo | Recompensa coletiva como salvaguarda anti-erosão (Marwell-Oliver 1993) | `WaaSParametros.recompensa_coletiva_pos_abertura` |
+| Mecanismo | Sinergia entre autoridades internacionais (consolidação cross-jurisdicional + amplificação Schelling) | [`internacional.md`](internacional.md) |
+| Mecanismo | Assimetria de tamanho entre jurisdições | `multiplicador_tamanho_por_firma` |
+| Mecanismo | Risco de *forum shopping* por firmas | `forum_shopping_ativo` |
+| Calibração | Faixas R29 contra gradiente Saito (2021) | `cascata_adesao_saito_calibrada` |
+| Calibração | Cenário cruzado cascata × erosão Coleman | `cascata_adesao_com_erosao_coleman` |
+| Calibração | Framework multi-target R03 (alvos 2 e 3) | `scripts/calibrar_formal_multitarget.py` |
+| Institucional | Operacionalização do canal | [`operacional.md`](operacional.md) |
+| Institucional | Doutrina brasileira citada | [`INSTITUTIONAL.md`](INSTITUTIONAL.md) |
+| Institucional | Calibrações pendentes documentadas | [`calibracao_pendente.md`](calibracao_pendente.md) |
+| Distribuição | Autoria, licença e como citar | [`sobre.md`](sobre.md) |
+| Distribuição | Metadados Zenodo (release v0.2.0-draft) | `CITATION.cff`, `.zenodo.json` |
+| Técnico | `WaaSModel.step()` decomposto em sub-fases | `model.py` `_fase_pX_*` |
+| Técnico | Cobertura mínima de 85 % no CI + regressão visual via *pytest-mpl* | `.github/workflows/tests.yml` |
+| Teoria | Esboço estendido da Proposição 2 sob heterogeneidade | [`ODD.md`](ODD.md) §1.4 |
 
 ## O que permanece em aberto
 

@@ -52,9 +52,9 @@ sem saber qual é a "oficial".
   (preserva-se o anglicismo porque é a sigla técnica do paper)
 - **Em pt-BR contextual**: *recompensa via TCC* (quando se fala do
   instrumento)
-- **Status no reframe v3**: WaaS é **um instrumento incremental**
-  dentre cinco; não é o mecanismo central. Confundir LCMC com WaaS
-  é o erro editorial mais comum do projeto pré-v3.
+- **Status no desenho atual**: WaaS é **um instrumento incremental**
+  dentre cinco acoplamentos opcionais do canal LCMC, não o mecanismo
+  central.
 
 ## Termos do mecanismo de coordenação
 
@@ -222,8 +222,8 @@ mapeia cada conceito à sua forma canônica e às formas a evitar:
 
 ## Onde ler mais
 
-- [Aprendizados v3](aprendizados_v3.md) — memória institucional da
-  correção radical (canal de depósito condicional).
+- [Mecanismo](mecanismo.md) — formalização do canal de depósito condicional
+  em cinco camadas.
 - [Bem coletivo](bem_publico.md) — anexo conceitual, com Coleman/
   Samuelson como molduras secundárias.
 - [Mecanismo](mecanismo.md) — Ato 2 com a estrutura em camadas

@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Análise internacional</em> · pesquisa de fundo jan/2026 · atualizada jun/2026</p>
 
-<p class="lede">A pesquisa de fundo de janeiro de 2026 verificou três marcos institucionais relevantes para a leitura comparada da LCMC. Cada marco aparece aqui como variante paramétrica do mesmo agente-modelo — não como teoria distinta. A leitura primária permanece a do canal de depósito condicional operado pela autoridade (Ayres-Unkovic 2012; Callisto 2015); a leitura institucional brasileira (Art. 12 da Res. CADE 21/2018; Cₜ/Cᵩ/Cₚ) permanece em <a href="INSTITUTIONAL.md"><code>INSTITUTIONAL.md</code></a>. A R30 (seção final) examina a hipótese de adoção coordenada e os limites do exercício.</p>
+<p class="lede">A pesquisa de fundo de janeiro de 2026 verificou três marcos institucionais relevantes para a leitura comparada da LCMC. Cada marco aparece aqui como variante paramétrica do mesmo agente-modelo — não como teoria distinta. A leitura primária permanece a do canal de depósito condicional operado pela autoridade (Ayres-Unkovic 2012; Callisto 2015); a leitura institucional brasileira (Art. 12 da Res. CADE 21/2018; Cₜ/Cᵩ/Cₚ) permanece em <a href="INSTITUTIONAL/"><code>INSTITUTIONAL.md</code></a>. A R30 (seção final) examina a hipótese de adoção coordenada e os limites do exercício.</p>
 
 <span class="kicker">Marcos · 2024–2025</span>
 ## Sumário dos três marcos

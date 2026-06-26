@@ -1,6 +1,6 @@
 # Comandos — todos os scripts e CLIs
 
-<p class="deck">Inventário das ferramentas executáveis do projeto: dois <em>entry points</em> instalados via <code>pip install -e .</code> (<code>waas-sobol</code>, <code>waas-figuras</code>); dez scripts em <code>scripts/</code> para análises específicas; vinte e dois módulos de visualização invocáveis via <code>python -m waas_antitrust.viz.&lt;nome&gt;</code>. Esta página é a referência rápida; para o tutorial guiado por perfil de uso, ver <a href="uso.md">Como usar</a>.</p>
+<p class="deck">Inventário das ferramentas executáveis do projeto: dois <em>entry points</em> instalados via <code>pip install -e .</code> (<code>waas-sobol</code>, <code>waas-figuras</code>); dez scripts em <code>scripts/</code> para análises específicas; vinte e dois módulos de visualização invocáveis via <code>python -m waas_antitrust.viz.&lt;nome&gt;</code>. Esta página é a referência rápida; para o tutorial guiado por perfil de uso, ver <a href="uso/">Como usar</a>.</p>
 
 ## Entry points instalados (CLI)
 

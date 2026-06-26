@@ -1974,3 +1974,159 @@
 [data-md-color-scheme="slate"] .sim-kpi span {
   color: #ecf0f1;
 }
+
+/* ============================================================================
+ * Atenuação acadêmica jun/2026 — paleta sóbria, baixa saturação
+ * Substitui o verde LCMC #27AE60 / #16624c por um cinza-azulado de
+ * tipografia acadêmica clássica. O verde sobrevive apenas como acento
+ * sutil em divisores e ícones, nunca no corpo do texto.
+ * ========================================================================= */
+
+/* Kickers e barras decorativas: cinza-escuro em vez de verde */
+.md-typeset .kicker {
+  color: #4a5568;
+}
+.md-typeset .kicker::before {
+  background: #4a5568;
+}
+[data-md-color-scheme="slate"] .md-typeset .kicker {
+  color: #a0aec0;
+}
+[data-md-color-scheme="slate"] .md-typeset .kicker::before {
+  background: #a0aec0;
+}
+
+/* Lede drop cap: cinza-grafite em vez de verde */
+.md-typeset .lede::first-letter {
+  color: #2d3748;
+  -webkit-text-fill-color: #2d3748;
+}
+[data-md-color-scheme="slate"] .md-typeset .lede::first-letter {
+  color: #cbd5e0;
+  -webkit-text-fill-color: #cbd5e0;
+}
+
+/* Blockquote do hero: borda lateral cinza em vez de verde */
+.md-typeset > h1:first-of-type ~ blockquote {
+  border-left-color: #4a5568;
+  background: #f7fafc;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type ~ blockquote {
+  border-left-color: #a0aec0;
+  background: #1a202c;
+}
+
+/* Persona cards: borda lateral cinza em vez de verde gradient */
+.md-typeset .persona-card::before {
+  background: #4a5568;
+}
+.md-typeset .persona-card:hover {
+  border-color: rgba(74, 85, 104, 0.35);
+}
+.md-typeset .persona-card strong {
+  color: #1a202c;
+}
+.md-typeset .persona-cta {
+  color: #4a5568;
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-card::before {
+  background: #a0aec0;
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-card strong {
+  color: #e2e8f0;
+}
+[data-md-color-scheme="slate"] .md-typeset .persona-cta {
+  color: #a0aec0;
+}
+
+/* Separadores de seção H2: barra cinza em vez de verde */
+.md-typeset > h1:first-of-type ~ h2::before {
+  background: #2d3748;
+}
+[data-md-color-scheme="slate"] .md-typeset > h1:first-of-type ~ h2::before {
+  background: #cbd5e0;
+}
+
+/* H3 com barra vertical cinza */
+.md-typeset h3::before {
+  background: #4a5568;
+}
+[data-md-color-scheme="slate"] .md-typeset h3::before {
+  background: #a0aec0;
+}
+
+/* Dado destaque (by the numbers): cinza em vez de verde */
+.md-typeset .dado-destaque {
+  border-left-color: #2d3748;
+  background: #f7fafc;
+}
+.md-typeset .dado-destaque strong {
+  color: #1a202c;
+}
+[data-md-color-scheme="slate"] .md-typeset .dado-destaque {
+  border-left-color: #cbd5e0;
+  background: #1a202c;
+}
+[data-md-color-scheme="slate"] .md-typeset .dado-destaque strong {
+  color: #e2e8f0;
+}
+
+/* Pull-quote jornal: borda cinza, atribuição em cinza-claro */
+.md-typeset .pull-quote-jornal {
+  border-left-color: #2d3748;
+  color: #1a202c;
+}
+.md-typeset .pull-quote-jornal cite {
+  color: #4a5568;
+}
+[data-md-color-scheme="slate"] .md-typeset .pull-quote-jornal {
+  border-left-color: #cbd5e0;
+  color: #e2e8f0;
+}
+[data-md-color-scheme="slate"] .md-typeset .pull-quote-jornal cite {
+  color: #a0aec0;
+}
+
+/* HR divisor */
+.md-typeset hr::after {
+  color: rgba(45, 55, 72, 0.3);
+}
+[data-md-color-scheme="slate"] .md-typeset hr::after {
+  color: rgba(203, 213, 224, 0.3);
+}
+
+/* Painel do simulador: borda neutra */
+.sim-painel {
+  border-color: rgba(45, 55, 72, 0.12);
+}
+.sim-kpi {
+  border-left-color: #4a5568;
+}
+[data-md-color-scheme="slate"] .sim-kpi {
+  border-left-color: #a0aec0;
+}
+.sim-acoes button {
+  background: #2d3748;
+}
+.sim-acoes button:hover {
+  background: #1a202c;
+  box-shadow: 0 2px 6px rgba(45, 55, 72, 0.25);
+}
+.sim-grupo strong {
+  color: #4a5568;
+}
+[data-md-color-scheme="slate"] .sim-grupo strong {
+  color: #a0aec0;
+}
+.sim-grupo label span {
+  color: #2d3748;
+}
+[data-md-color-scheme="slate"] .sim-grupo label span {
+  color: #cbd5e0;
+}
+.sim-kpi strong {
+  color: #4a5568;
+}
+[data-md-color-scheme="slate"] .sim-kpi strong {
+  color: #a0aec0;
+}

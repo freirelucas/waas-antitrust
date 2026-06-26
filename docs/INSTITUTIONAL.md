@@ -162,18 +162,17 @@ Esse risco dogmático é a charneira do falsificador **F6** (re-caracterização
 sujeita a validação judicial) e da decisão **D06** (análise dogmática
 detalhada da figura "vítima-empregado", ver `DECISIONS.md`).
 
-## Canal de depósito condicional como procedimento administrativo (reframe v3)
+## Canal de depósito condicional como procedimento administrativo
 
-!!! tip "Atualização — correção radical (aprendizados_v3.md)"
-
-    A LCMC corretamente compreendida **não** depende da re-caracterização
-    do pagamento como ressarcimento sob Art. 12. Depende apenas de
-    Resolução CADE regulamentando **procedimento de recepção qualificada**
-    de denúncias condicionais (Art. 4º, II e III da Lei 12.529/2011 c/c
-    Lei 9.784/99, Art. 5º e segs.). A § "Art. 12 como reconhecimento de
-    interesse público" abaixo continua relevante para o **instrumento
-    WaaS** (recompensa via TCC pós-instauração), mas NÃO é a base
-    dogmática do canal.
+A LCMC **não** depende da re-caracterização do pagamento como
+ressarcimento sob o Art. 12 da Resolução 21/2018. Depende apenas de
+Resolução do CADE regulamentando o **procedimento de recepção
+qualificada** de denúncias condicionais, com base no Art. 4º, II e III,
+da Lei nº 12.529/2011 combinado com a Lei nº 9.784/1999 (Arts. 5º e
+seguintes). A seção seguinte sobre o Art. 12 como reconhecimento de
+interesse público trata do **instrumento WaaS** (recompensa via TCC
+pós-instauração), que é um acoplamento opcional ao canal — não a base
+dogmática do canal.
 
 ### O que muda na ancoragem jurídica
 
@@ -251,10 +250,10 @@ construção *finalística* (pelo papel funcional na produção da prova),
 não dogmática (pelo nexo de causalidade com o dano).
 
 Sob revisão judicial, essa re-caracterização pode ser rejeitada
-(falsificador F6). O reframe v2 — substituir por "atenuante por
-contribuição a bem público de detecção" — **agravava** o problema ao
-criar categoria *constitutiva* sem ancoragem expressa na Lei 12.529
-nem em precedente brasileiro.
+(falsificador F6). Construções alternativas que substituem o
+ressarcimento por "atenuante por contribuição a bem público de
+detecção" **agravam** o problema, criando categoria *constitutiva* sem
+ancoragem expressa na Lei nº 12.529/2011 nem em precedente brasileiro.
 
 ### Solução dogmática
 

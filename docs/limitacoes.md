@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Ato 4 de 5</em> · Limitações · rascunho v0.2.0</p>
 
-<p class="lede">O <a href="resultados.md">Ato 3</a> consolidou a evidência direcional para o canal de dissuasão. Parar aí seria desonesto. O projeto é um rascunho de trabalho em elaboração, e há pontos onde a alegação ainda não tem cobertura completa. Esta página enumera cada um deles e diz, na medida do possível, o que faria a alegação sustentar-se. O backlog técnico estruturado fica em <a href="DECISIONS.md">Decisões e backlog</a>; o que segue é a versão para leitor humano, dividida por categoria de fragilidade.</p>
+<p class="lede">O <a href="resultados/">Ato 3</a> consolidou a evidência direcional para o canal de dissuasão. Parar aí seria desonesto. O projeto é um rascunho de trabalho em elaboração, e há pontos onde a alegação ainda não tem cobertura completa. Esta página enumera cada um deles e diz, na medida do possível, o que faria a alegação sustentar-se. O backlog técnico estruturado fica em <a href="DECISIONS/">Decisões e backlog</a>; o que segue é a versão para leitor humano, dividida por categoria de fragilidade.</p>
 
 ## Fragilidade jurídica do Regime B
 
@@ -277,9 +277,9 @@ Cada uma das nove limitações da tabela acima tem caminho de reprodução em �
 
 ## O que já está sustentado
 
-Em respeito à simetria, vale dizer o que **não** está nesta lista — o que sobreviveu à pressão da crítica, à reamostragem multi-seed e ao reframe v2:
+Por simetria, vale enumerar o que **não** está na lista de fragilidades acima — pontos que sobreviveram à crítica, à reamostragem multi-seed e à análise institucional:
 
-- **Princípio LCMC separado de instrumento WaaS** (reframe v2): a página [Bem coletivo](bem_publico.md) explicita que a Leniência Condicionada à Massa Crítica pode existir sem pagamento monetário.
+- **Princípio LCMC separado do instrumento WaaS**: a página [Bem coletivo](bem_publico.md) explicita que a Leniência Condicionada à Massa Crítica pode existir sem pagamento monetário.
 - **Inversão de incentivo** ($D > W$ no ponto-alvo) é verificável e tem teste automatizado pontual em `tests/test_vetores_quebra.py`.
 - **Dissuasão** (empresas param de violar) é produzida pelo próprio modelo, multi-seed, com CI 95% não cruzando zero — `test_dissuasao_endogena_robusta_a_multi_seed`.
 - **Bem-estar substantivo** credita a prevenção (dano evitado), custo de êxodo Hirschman, multa arrecadada pelo erário, e — sob `epsilon_dissuasao_difusa > 0` — externalidade erga omnes (R21/v2.D.1).

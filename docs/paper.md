@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Paper</em> · rascunho v0.2.0 · jun/2026 · não citar como definitivo</p>
 
-<p class="lede">Esta página acompanha <code>paper/main.tex</code> no repositório e está em iteração ativa. A versão atual tem todas as dez seções escritas; o §3 (Blocos construtivos) e o §4 (Análise comparada) ainda estão em primeira redação e podem mudar materialmente. O DOI Zenodo será emitido após o congelamento da versão de submissão (ver <a href="sobre.md">Sobre</a> para a forma canônica provisória de citação). Para a leitura em cinco Atos no formato site (mais didática, com figuras embarcadas), começar pelo <a href="index.md">Ato 1</a>.</p>
+<p class="lede">Esta página acompanha <code>paper/main.tex</code> no repositório e está em iteração ativa. A versão atual tem todas as dez seções escritas; o §3 (Blocos construtivos) e o §4 (Análise comparada) ainda estão em primeira redação e podem mudar materialmente. O DOI Zenodo será emitido após o congelamento da versão de submissão (ver <a href="sobre/">Sobre</a> para a forma canônica provisória de citação). Para a leitura em cinco Atos no formato site (mais didática, com figuras embarcadas), começar pelo <a href="index/">Ato 1</a>.</p>
 
 ## Sumário
 

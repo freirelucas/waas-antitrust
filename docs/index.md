@@ -2,7 +2,7 @@
 
 <p class="deck">Proposta acadêmica de um canal de depósito condicional (<em>information escrow</em>) operado pelo CADE para destravar a denúncia interna em mercados digitais — onde a infração é tipicamente de uma firma só, sem cúmplice externo a quem oferecer leniência clássica.</p>
 
-<p class="byline"><em><a href="sobre.md">L.</a></em> · <a href="sobre.md">Rascunho v0.2.0</a> · jun/2026 · CC BY-SA 4.0</p>
+<p class="byline"><em><a href="sobre/">L.</a></em> · <a href="sobre/">Rascunho v0.2.0</a> · jun/2026 · CC BY-SA 4.0</p>
 
 <p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a LCMC — desenhada para esse domínio.</p>
 

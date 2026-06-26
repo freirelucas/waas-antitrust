@@ -1,10 +1,8 @@
-# O mecanismo, em três camadas
+# O mecanismo
 
-<p class="deck">Descrição do mecanismo da LCMC organizada do canal de recepção qualificada para o problema de coordenação que ele resolve, e por último para os instrumentos opcionais de internalização — o instrumento monetário <em>Whistleblower-as-a-Service</em> entre eles.</p>
+<p class="deck">Descrição da Leniência Condicionada à Massa Crítica em cinco camadas: o canal de depósito condicional, o problema de coordenação que ele resolve, os instrumentos opcionais de internalização, a aritmética da condição de pagamento da firma e a janela de adesão progressiva pós-abertura.</p>
 
-<p class="byline"><em>Ato 2 de 5</em> · A hipótese · rascunho v0.2.0</p>
-
-<p class="lede">Esta página é organizada de fora para dentro: do mecanismo de recepção qualificada (canal de depósito condicional) para o problema de coordenação que ele resolve, e por fim para os instrumentos incrementais que aumentam adesão sem serem essenciais. A ordem importa: parte da literatura interna do projeto leu, em versões anteriores, o WaaS como sinônimo da LCMC. Não é. O Ato 1 separou os dois conceitos; aqui formalizamos a distinção e detalhamos cada uma das cinco camadas.</p>
+<p class="lede">A página é organizada de fora para dentro: do canal de recepção qualificada para o problema de coordenação que ele resolve, e por fim para os instrumentos opcionais que aumentam a taxa de adesão sem serem essenciais. A distinção entre o canal (mecanismo) e a recompensa via TCC (instrumento) é estrutural: o canal sozinho resolve a coordenação; os instrumentos amplificam.</p>
 
 <span class="kicker">Camada 1 · Canal</span>
 ## O canal de depósito condicional
@@ -453,8 +451,8 @@ nomeado de sobrescritas de parâmetros, executável e reportável.
 
 O catálogo (módulo `waas_antitrust.cenarios`) contém **27 cenários
 canônicos**. A tabela abaixo lista os 9 que cobrem a malha institucional
-brasileira inicial; os outros 10 (reframe v2, generalidade EUA/UE,
-canal puro, erosão Coleman) estão em [`modelo_abm.md`](modelo_abm.md) §5.
+brasileira; os outros 18 (generalidade EUA/UE, canal puro, erosão Coleman,
+cascata R29 e sinergia R30 com suas variantes) estão em [`modelo_abm.md`](modelo_abm.md) §5.
 
 | Cenário | Hipótese institucional |
 |---|---|
