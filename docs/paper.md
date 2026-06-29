@@ -14,7 +14,7 @@
 | 2 | Falha estrutural da leniência clássica em mercados digitais | Por que cartel-style não opera em conduta unilateral |
 | 3 | Blocos construtivos | Spagnolo, Aubert-Rey-Kovacic, Dodd-Frank §922 |
 | 4 | Análise comparada | SEC, DOJ-ATR, DMA Tool, Diretiva 2019/1937, CADE |
-| 5 | O mecanismo WaaS | Cinco fases P1-P4 + base normativa BR |
+| 5 | O mecanismo LCMC | Canal + cinco fases P1-P4 + base normativa BR |
 | 6 | Modelo baseado em agentes | 3 classes de agente, calibração formal R03 |
 | 7 | Enquadramento cibernético | Ashby, variedade requisitada |
 | 8 | Pré-condição sociológica | Olson, Google Walkout, Haugen, NLRB |
@@ -144,9 +144,11 @@ A LCMC ocupa **nicho ainda vazio na taxonomia**.
 
 ---
 
-## 5. O mecanismo WaaS
+## 5. O mecanismo LCMC
 
-Cinco fases sequenciais:
+O canal de depósito condicional opera em cinco fases sequenciais. A
+recompensa via TCC (instrumento *Whistleblower-as-a-Service*) é apenas
+o acoplamento monetário opcional da fase P3 — o canal funciona sem ele.
 
 1. **Sinalização (P1)**: cada empregado que observa indício de violação
    recebe sinal privado ruidoso e decide, segundo seu arquétipo, se reporta.

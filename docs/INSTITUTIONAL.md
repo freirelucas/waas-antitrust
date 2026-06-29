@@ -142,7 +142,7 @@ agravantes/atenuantes. Na práxis do CADE, **vítima** em infração à ordem
 econômica é categoria *coletiva*: consumidores afetados por sobrepreço,
 concorrentes excluídos por conduta exclusionária, eventualmente o erário.
 
-O **denunciante interno** do WaaS é tipicamente **funcionário ou
+O **denunciante interno** da LCMC é tipicamente **funcionário ou
 ex-funcionário** da empresa que cometeu a infração. Há tensão dogmática em
 duas frentes:
 

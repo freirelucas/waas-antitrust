@@ -186,9 +186,9 @@ de finalidade que pode sustentar atenuação sem criar categoria nova.
 O **precedente brasileiro mais relevante** é a **Lei 12.846/2013 (LAC),
 Art. 7º, VII-VIII**: a existência de programa de integridade interno
 conta como atenuante na dosimetria. Esse é exatamente o tipo de reconhecimento
-institucional que o WaaS busca para a cooperação intra-firma. A LAC já
+institucional que a LCMC busca para a cooperação intra-firma. A LAC já
 trata mecanismos de detecção interna como bem juridicamente relevante;
-a tese do WaaS é uma extensão analógica defensável a partir desse
+a tese da LCMC é uma extensão analógica defensável a partir desse
 precedente.
 
 ## Os instrumentos de internalização

@@ -63,11 +63,11 @@ Após a crítica do Sociólogo na x10 v2, a leitura do mecanismo deslocou-se de
 "bem quase-público à Samuelson" para "capital social organizacional com risco
 de erosão endógena" (Coleman 1990). Ostrom (1990, *Governing the Commons*,
 cap. 3) propôs **8 design principles** para governança sustentável de bens
-coletivos. Cruzá-los com o desenho atual do WaaS revela quais princípios o
+coletivos. Cruzá-los com o desenho atual da LCMC revela quais princípios o
 modelo satisfaz, quais ignora silenciosamente, e quais abrem pendências
 explícitas.
 
-| # | Princípio Ostrom | Status no WaaS | Reporter/parâmetro |
+| # | Princípio Ostrom | Status na LCMC | Reporter/parâmetro |
 |---|---|---|---|
 | **P1** | Fronteiras claras: quem participa do commons | **Atendido** — rede intra-firma observável a CADE via auditoria | `papel`, `condutas.observabilidade` |
 | **P2** | Congruência entre regras e condições locais | **Ausente** — não há proporcionalidade da recompensa ao dano sofrido pelo trabalhador | pendência R-novo |
@@ -164,6 +164,6 @@ Para um conjunto de medida positiva de (W, D, σ), o bem-estar social esperado �
 
 > **Status (atualizado — R01 implementado):** o canal de **dissuasão é endógeno**: cada firma viola enquanto sua atratividade $g_i$ = ganho/sanção supera a detecção percebida $p$, que sobe por expectativa adaptativa quando o canal LCMC opera. Em simulação, os Regimes B/C reduzem as violadoras ativas a zero enquanto o Regime A as faz crescer — sustentando a **direção** da proposição (a prova formal segue como conjectura). Com **R05**, o `bem_estar` passou a ser baseado em **dano** (= −(dano + β·FP)), creditando a prevenção — os Regimes B/C superam o Regime A. Pesos provisórios; calibração formal em R03.
 
-> **Adicional (R07, exploratório):** a Hirschman exit-with-equity adiciona um **segundo canal de dissuasão** ortogonal ao WaaS — firmas com cláusulas contratuais de vesting acelerado por gatilho de ação coletiva enfrentam custo crível de êxodo do capital humano. A IC-F* da firma se amplia para `D + custo_exodo > W`, e o `g_i` preventivo recebe desconto proporcional a `peso_hirschman · p_perc`. Teste end-to-end em `tests/test_hirschman.py` confirma que firmas com cláusula cooperam mais (mais TCCs assinados) ou geram menos dano em comparação ao baseline. Parâmetros financeiros (substituição, equity, vesting) seguem padrões YC documentados; calibração formal em R03.
+> **Adicional (R07, exploratório):** a Hirschman exit-with-equity adiciona um **segundo canal de dissuasão** ortogonal à recompensa via TCC — firmas com cláusulas contratuais de vesting acelerado por gatilho de ação coletiva enfrentam custo crível de êxodo do capital humano. A IC-F* da firma se amplia para `D + custo_exodo > W`, e o `g_i` preventivo recebe desconto proporcional a `peso_hirschman · p_perc`. Teste end-to-end em `tests/test_hirschman.py` confirma que firmas com cláusula cooperam mais (mais TCCs assinados) ou geram menos dano em comparação ao baseline. Parâmetros financeiros (substituição, equity, vesting) seguem padrões YC documentados; calibração formal em R03.
 
 > **Reformulação sob LCMC (R20):** sob `modo_corrida=True`, a dominância de B sobre A ganha **terceiro canal**: a **competição inter-firma acelera a detecção**. Em Regime A, dissuasão é nula. Em Regime B/C com modo_corrida, três canais: (i) R01 (detecção endógena via `p_perc`); (ii) Hirschman (R07); (iii) canal-corrida (firmas se apressam a cooperar antes da concorrente para garantir posição 1 = 43% de desconto). A dominância é mais forte, mas a calibração precisa medir os três canais separadamente. Reporters em `model.py`: `n_firmas_atingiram_massa_critica_interna`, `custo_recompensa_corrida_acum`. **Status: conjectura aberta** com testes direcionais em `tests/test_corrida.py`.
