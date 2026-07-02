@@ -42,10 +42,10 @@ formalização contemporânea está em Ayres & Unkovic (2012), *Information Escr
 *Michigan Law Review* vol. 111 p. 145; a aplicação ao antitruste brasileiro com o
 CADE como custodiante é a contribuição deste projeto.
 
-Em código, o canal é implementado em duas camadas. **R20 (`modo_corrida`)** registra firmas que atingiram massa crítica agregada — sem rastrear identidade individual do depositante. **R27 (`usar_escrow_explicito`)** carrega o escrow individual no `AutoridadeAgent`: cada sinal vira um depósito identificado, e a abertura simultânea colapsa N depósitos em um caso processual único. O parâmetro `janela_escrow_tiques` é o "Δt" da definição LCMC — quantos tiques um depósito permanece no escrow antes de expirar (default `0` = escrow eterno, leitura Callisto).
+No modelo computacional, o canal é implementado em duas camadas. A primeira apenas registra que uma firma atingiu massa crítica agregada, sem rastrear a identidade de cada depositante. A segunda carrega o escrow individual dentro da autoridade: cada sinal vira um depósito identificado, e a abertura simultânea colapsa os N depósitos em um caso processual único. Há também uma janela de expiração — o intervalo máximo (o "Δt" da definição) que um depósito permanece selado antes de vencer, com o valor padrão configurado para escrow indefinido, na leitura da plataforma Callisto.
 
 ```python
-# src/waas_antitrust/agents.py — AutoridadeAgent (R27)
+# src/waas_antitrust/agents.py — AutoridadeAgent
 class AutoridadeAgent(Agent):
     # ... self.escrow_denuncias: dict[int, list[dict]] = {}
 
@@ -64,7 +64,7 @@ class AutoridadeAgent(Agent):
 O `WaaSModel.step()` ativa o caminho v3 via flag opt-in:
 
 ```python
-# src/waas_antitrust/model.py — fase P2.5b (R27)
+# src/waas_antitrust/model.py — fase P2.5b
 if self.usar_escrow_explicito:
     self.autoridade.expirar_depositos_condicionais(
         tique_atual=self.tique, janela=self.janela_escrow_tiques
@@ -78,12 +78,12 @@ if self.usar_escrow_explicito:
         )
 ```
 
-As funções de canal são puras na lógica e idempotentes por tique. **Nada de pagamento entra na conta — o canal opera independentemente de qualquer instrumento monetário.** O cenário canônico `apenas_canal_sem_instrumento` testa exatamente essa propriedade: `W_mult=0`, `D_disc=0`, `usar_escrow_explicito=True`, Regime B.
+As funções de canal são puras na lógica e idempotentes por tique. **Nada de pagamento entra na conta — o canal opera independentemente de qualquer instrumento monetário.** Um dos cenários de teste isola exatamente essa propriedade: o canal explícito ligado, recompensa e desconto zerados, em Regime B.
 
 <figure markdown>
   ![Sankey do fluxo agregado da corrida LCMC: sinais → depósitos no escrow → aberturas simultâneas → TCCs assinados](img/11_sankey_corrida_lcmc.png){ .figura-empirica }
   <figcaption>
-    Fluxo agregado da corrida LCMC sob <code>cenario_corrida_leniencia</code> com <code>usar_escrow_explicito=True</code> (10 firmas × 120 trabalhadores × 15 ciclos, seed=2026). 72 sinais viraram 36 depósitos condicionais; 7 firmas atingiram massa crítica intra-firma; 36 depósitos se abriram simultaneamente em casos qualificados; 8 firmas optaram pelo TCC com ressarcimento WaaS. A figura é evidência da Proposição 4 (R20) por construção do canal.
+    Fluxo agregado da corrida da LCMC sob o cenário de leniência coletiva com o canal explícito ligado (10 firmas × 120 trabalhadores × 15 ciclos, semente 2026). 72 sinais viraram 36 depósitos condicionais; 7 firmas atingiram massa crítica intra-firma; 36 depósitos se abriram simultaneamente em casos qualificados; 8 firmas optaram pelo TCC com ressarcimento. A figura é evidência da Proposição 4 por construção do canal.
   </figcaption>
 </figure>
 
@@ -100,7 +100,7 @@ O escrow muda a estrutura informacional do jogo. Sob canal de depósito condicio
 
 Esta diferença é radical em relação à formulação anterior do projeto, que dependia de capital social organizacional (Coleman 1990) sendo *internalizado* pelo regulador. Sob o canal correto, o regulador **não precisa** que o capital social pré-exista: a coordenação acontece via depósito paralelo no canal, sem necessidade de comunicação horizontal entre os depositantes.
 
-R26 (erosão endógena Coleman) segue válido apenas como sub-caso — se o CADE publica taxas agregadas de depósito no canal, pode haver leak parcial que afeta a comunicação informal subsequente. Mas o **caso geral é independente** desse risco.
+A hipótese de erosão endógena do substrato cooperativo (Coleman) segue válida apenas como sub-caso — se o CADE publica taxas agregadas de depósito no canal, pode haver vazamento parcial que afeta a comunicação informal subsequente. Mas o **caso geral é independente** desse risco.
 
 <figure markdown>
 ![Heurística do jogo global: probabilidade de cascata cooperativa em função do ruído σ e da massa crítica k/n, com regiões dos regimes A, B e C marcadas](img/02_fase.png){ .figura-conceitual }
@@ -120,7 +120,7 @@ Quando há recompensa (instrumento monetário ativo, **incremental ao canal**), 
 | 5ª | 16,77% |
 | ≥ 9ª | 15,00% (piso Tribunal) |
 
-O mesmo gradiente, normalizado por $D_{\text{Saito}}(1) = 43{,}43\%$, calibra a fila intra-firma sob `modo_corrida=True` — quem coopera em posição 1 dentro da firma recebe 100% da recompensa; em posição 2, 79,5%; em posição 3, 46,6%. A escolha *não é arbitrária*: o mesmo dado empírico do CADE calibra duas escalas.
+O mesmo gradiente, normalizado por $D_{\text{Saito}}(1) = 43{,}43\%$, calibra a fila intra-firma no modo de corrida — quem coopera em primeiro lugar dentro da firma recebe 100% da recompensa; em segundo, 79,5%; em terceiro, 46,6%. A escolha *não é arbitrária*: o mesmo dado empírico do CADE calibra duas escalas.
 
 <span class="kicker">Camada 3 · Incrementos</span>
 ## Os cinco instrumentos incrementais
@@ -133,9 +133,9 @@ Sob a LCMC, o **substrato cooperativo** é o que importa. Mas a cooperação cus
 |---|---|---|
 | 💰 **WaaS — recompensa via TCC** | Firma → trabalhador; pagamento entra como atenuante. Aplicação direta da IC-F\* (Camada 3) | Art. 22 I; regime B ou C |
 | 🚪 **Hirschman — vesting acelerado** | Firma → trabalhador via equity; cláusula contratual padrão; ameaça crível de êxodo coletivo dissuade em P0 e amplia IC-F\* em P3 | Art. 22 I; regime Cₜ |
-| 🧾 **Crédito tributário** | Estado → trabalhador via renúncia fiscal; análogo limitado ao IRS Whistleblower (26 U.S.C. §7623) | LC + LRF; regime Cᵩ (R22 stub) |
-| ⚖️ **Leniência criminal individual** | Estado → trabalhador via imunidade penal; não-persecução do partícipe cooperador | Art. 5º XXXIX penal estrita; regime Cₚ (R23 stub) |
-| 🤝 **Nenhum pagamento — só reconhecimento** | LCMC pura. Substrato cooperativo internalizado por dever de ofício (boa fé Lei 9.784/99) sem instrumento monetário | Cenários canônicos: `apenas_massa_critica_observavel` (sinal sem canal, Regime A) e `apenas_canal_sem_instrumento` (canal explícito CADE sem pagamento, Regime B + `usar_escrow_explicito=True`) |
+| 🧾 **Crédito tributário** | Estado → trabalhador via renúncia fiscal; análogo limitado ao IRS Whistleblower (26 U.S.C. §7623) | LC + LRF; regime Cᵩ (ainda não implementado) |
+| ⚖️ **Leniência criminal individual** | Estado → trabalhador via imunidade penal; não-persecução do partícipe cooperador | Art. 5º XXXIX penal estrita; regime Cₚ (ainda não implementado) |
+| 🤝 **Nenhum pagamento — só reconhecimento** | LCMC pura. Substrato cooperativo internalizado por dever de ofício (boa-fé, Lei 9.784/99) sem instrumento monetário | Testado por dois cenários: sinal sem canal (Regime A) e canal explícito do CADE sem pagamento (Regime B) |
 
 O catálogo declarativo das **5 entradas** — o canal base (sem pagamento) + os 4 instrumentos monetários — está em `src/waas_antitrust/instrumentos.py`:
 
@@ -214,12 +214,12 @@ W_total = sum(self._W_esperado(t.w_a) for t in disparados)  # recompensa total
 # IC-F* simplificada (default; modo histórico):
 empresa.pagou_denunciantes = D_extra > W_total
 
-# IC-F* ampliada por Hirschman (R07):
+# IC-F* ampliada por Hirschman:
 custo_exodo = hirschman.custo_exodo_esperado(...)
 empresa.pagou_denunciantes = (D_extra + custo_exodo) > W_total
 ```
 
-Sob `modo_corrida=True` (LCMC + WaaS), a fórmula muda — $D_{\text{total}}$ deixa de ser constante e passa a depender da posição da firma na fila inter-firma:
+No modo de corrida (LCMC com o instrumento de recompensa ativo), a fórmula muda — $D_{\text{total}}$ deixa de ser constante e passa a depender da posição da firma na fila inter-firma:
 
 ```python
 # src/waas_antitrust/model.py — fase P3 sob modo_corrida
@@ -288,7 +288,7 @@ Tudo isso depende, evidentemente, de quanto $D_{\text{base}}$ realmente é na pr
 
 Este é o cético que diz "basta a empresa não pagar e pegar o desconto". A versão tecnicamente correta da crítica é: se $D_{\text{base}}$ já cobre uma fração significativa de $D_{\text{total}}$, a margem $D_{\text{extra}}$ encolhe e a IC-F\* deixa de motivar o pagamento.
 
-O **desenho jurídico** se sustenta porque o Art. 12 da Res. 21/2018 é explícito ao tratar o ressarcimento das vítimas como **acréscimo** ao desconto genérico. A magnitude desse acréscimo é discricionária — depende da prática do CADE em cada caso. A calibração empírica desse parâmetro é precisamente o que falta em **R03** (calibração formal contra Saito 2021).
+O **desenho jurídico** se sustenta porque o Art. 12 da Res. 21/2018 é explícito ao tratar o ressarcimento das vítimas como **acréscimo** ao desconto genérico. A magnitude desse acréscimo é discricionária — depende da prática do CADE em cada caso. A calibração empírica desse parâmetro é precisamente a pendência mais importante — a calibração formal contra os descontos observados por Saito (2021).
 
 O **modelo** torna isto explícito: o parâmetro `D_disc_base_tcc` em `WaaSParametros` permite simular qualquer valor de $D_{\text{base}}$, inclusive o pior caso em que $D_{\text{base}} = D_{\text{total}}$. Quando isso acontece, $D_{\text{extra}} = 0$, ninguém paga a recompensa, e o contador `n_firmas_optaram_tcc_classico` registra a quebra. Testes em `tests/test_vetores_quebra.py` cobrem o caso direcionalmente.
 
@@ -312,7 +312,7 @@ Três cenários institucionais são possíveis, e implicam calibrações diferen
 
 O **modelo** torna isto calibrável via `custo_legal_uw` (em unidades de $w_a$). O parâmetro entra na IR-W do arquétipo "racional" — quando o custo legal é alto, a recompensa $W$ precisa subir para o trabalhador racional ainda denunciar.
 
-## O break-even ético coletivo (R16)
+## O break-even ético coletivo
 
 Até aqui o argumento foi inteiramente financeiro — IC-F\* da firma, IR-W
 do trabalhador, contas em reais. Mas há uma intuição forte que a versão
@@ -346,20 +346,20 @@ O resultado central de Torsell (2026) — que FM **proliferaria** em
 populações HE+FM sob qualquer dinâmica payoff-monotone, com aprendizado
 intra-geracional via *fictitious play* — sugere que o canal ético não é
 uma curiosidade marginal; pode ser **a peça dominante** quando a massa
-crítica se forma. Modelar isto endogenamente é o trabalho de R16, e o
-catálogo de [cenários normativos](#) (R17) já oferece presets que ativam
+crítica se forma. Modelar isto endogenamente é trabalho em aberto, e o
+catálogo de [cenários normativos](#) já oferece configurações que ativam
 o canal.
 
 <span class="kicker">Camada 5 · Cascata</span>
-## Janela de adesão pós-abertura com desconto progressivo (R29)
+## Janela de adesão pós-abertura com desconto progressivo
 
-A LCMC clássica resolve o problema de quem dá o primeiro passo: ninguém é o primeiro, porque o canal espera todos. Mas quando a massa crítica é atingida e o bloco se abre, sobra ainda **uma decisão aberta para o resto dos trabalhadores da firma**: o que fazer com quem viu a conduta mas não depositou a tempo? A regra R29 oferece a esses retardatários **uma janela de dez tiques para aderir à classe dos lenientes** com desconto decrescente por ordem de chegada — uma versão pós-coordenação da fila clássica do Art. 86 da Lei nº 12.529/2011.
+A LCMC clássica resolve o problema de quem dá o primeiro passo: ninguém é o primeiro, porque o canal espera todos. Mas quando a massa crítica é atingida e o bloco se abre, sobra ainda **uma decisão aberta para o resto dos trabalhadores da firma**: o que fazer com quem viu a conduta mas não depositou a tempo? A janela de adesão oferece a esses retardatários **uma janela de dez tiques para aderir à classe dos lenientes** com desconto decrescente por ordem de chegada — uma versão pós-coordenação da fila clássica do Art. 86 da Lei nº 12.529/2011.
 
-A lógica é direta. No instante da abertura, os depositantes originais — aqueles que dispararam a massa crítica — ficam na **faixa 0**: imunidade total. Pelos próximos `janela_adesao_pos_abertura` tiques (default 10), trabalhadores da mesma firma que ainda não cooperaram podem aderir: o primeiro entra na faixa 1, o segundo na faixa 2, e assim por diante. Cada faixa tem um fator de desconto sobre a recompensa `W`, descrito pela tupla `descontos_faixas_adesao` (default `(1.0, 0.7, 0.5, 0.3, 0.1)`). Quem aderiu na posição 0 (junto com os originais) recebe 100% de `W`; quem aderiu em quinta posição em diante recebe 10% — o piso. Quem não aderiu até o fim da janela permanece no escrow comum e está sujeito à expiração R27-ii.
+A lógica é direta. No instante da abertura, os depositantes originais — aqueles que dispararam a massa crítica — ficam na **faixa 0**: imunidade total. Pelos próximos `janela_adesao_pos_abertura` tiques (default 10), trabalhadores da mesma firma que ainda não cooperaram podem aderir: o primeiro entra na faixa 1, o segundo na faixa 2, e assim por diante. Cada faixa tem um fator de desconto sobre a recompensa `W`, descrito pela tupla `descontos_faixas_adesao` (default `(1.0, 0.7, 0.5, 0.3, 0.1)`). Quem aderiu na posição 0 (junto com os originais) recebe 100% de `W`; quem aderiu em quinta posição em diante recebe 10% — o piso. Quem não aderiu até o fim da janela permanece no escrow comum e está sujeito à expiração da janela.
 
-![Janela de adesão pós-abertura com desconto progressivo R29](img/22_cascata_adesao_r29.png)
+![Janela de adesão pós-abertura com desconto progressivo](img/22_cascata_adesao_r29.png)
 
-Em prosa: a R29 transforma a abertura do bloco em **evento Schelling reverso**. No instante zero, a firma já sabe que vai ser notificada — não há mais dúvida sobre o gatilho. Mas para cada trabalhador que tinha hesitado, agora há uma escolha clara: aderir já (e levar desconto alto) ou esperar (e ver o desconto cair tique a tique). É o mesmo dispositivo da fila clássica de leniência operado **dentro da firma já aberta**, sem precisar de outro cartel para servir de gatilho.
+Em prosa: a janela de adesão transforma a abertura do bloco em **evento Schelling reverso**. No instante zero, a firma já sabe que vai ser notificada — não há mais dúvida sobre o gatilho. Mas para cada trabalhador que tinha hesitado, agora há uma escolha clara: aderir já (e levar desconto alto) ou esperar (e ver o desconto cair tique a tique). É o mesmo dispositivo da fila clássica de leniência operado **dentro da firma já aberta**, sem precisar de outro cartel para servir de gatilho.
 
 O efeito jogo-teórico é dois: (i) a janela aumenta a captação de prova — mais trabalhadores cooperam, qualidade média da prova sobe; (ii) cria pressão antecipatória sobre quem está pensando em depositar para o canal em primeiro lugar. Mesmo quem prefere "esperar para ver" tem incentivo para depositar antes da abertura, porque saber-se na faixa 0 vale mais do que apostar em entrar na faixa 1 depois.
 
@@ -378,9 +378,9 @@ if self.usar_escrow_explicito and self.janela_adesao_pos_abertura > 0:
     )
 ```
 
-A decisão individual de aderir é a IR-W projetada para a faixa: o trabalhador entra se `fator_desconto[k] × W_max > custo_represalia × w_a`. Como o fator decai, há uma posição $k^*$ a partir da qual ninguém adere mais — corte endógeno do que originalmente seria uma cauda infinita. Os reporters `n_aderentes_pos_abertura_acum` e `n_blocos_em_janela_adesao_acum` ficam expostos no `DataFrame` resultado, como qualquer outro estado do modelo. O cenário canônico `cascata_adesao_progressiva` ativa a regra com a parametrização default; o caderno [Brincar in-browser](brincar.md) tem o slider "Janela de adesão R29" para ajustar o $\Delta t$ ao vivo.
+A decisão individual de aderir é a IR-W projetada para a faixa: o trabalhador entra se `fator_desconto[k] × W_max > custo_represalia × w_a`. Como o fator decai, há uma posição $k^*$ a partir da qual ninguém adere mais — corte endógeno do que originalmente seria uma cauda infinita. Os reporters `n_aderentes_pos_abertura_acum` e `n_blocos_em_janela_adesao_acum` ficam expostos no `DataFrame` resultado, como qualquer outro estado do modelo. O cenário canônico `cascata_adesao_progressiva` ativa a regra com a parametrização default; o caderno [Brincar in-browser](brincar.md) tem o slider "Janela de adesão" para ajustar o $\Delta t$ ao vivo.
 
-## A corrida que faltava (R20)
+## A corrida que faltava
 
 A leniência clássica funciona porque cria uma **corrida temporal** entre cúmplices: quem entrega primeiro escapa da multa, e cada conspirador, sabendo disso, antecipa-se ao outro. O **WaaS na sua forma original não tinha esta corrida**: o gatilho de massa crítica era binário (`k` denunciantes ⇒ a firma é notificada), o desconto da firma era constante na IC-F\*, a recompensa do trabalhador era constante na IR-W. A delação era um *ato*, não uma *corrida*.
 
@@ -439,9 +439,9 @@ A janela temporal `janela_temporal_tiques` (default 4) limita quanto tempo a fir
 
 A escolha do gradiente $f_W$ não é arbitrária do autor — é o mesmo dado empírico que o CADE já usa para a fila clássica entre conspiradores. Reusá-lo para a fila intra-firma é a **tese substantiva da LCMC**: o microcosmo interno deve replicar a lógica de fila que o macrocosmo (CADE) já pratica.
 
-O caveat declarado em `corrida.py`: Saito reporta médias por **cartel**, não por conduta unilateral. A transposição é proxy, justificada como ponto de partida calibrável, não como verdade empírica fechada. O CADE ainda não publica TCCs de conduta unilateral decompostos por posição (pendência E04 + R03b).
+O caveat declarado em `corrida.py`: Saito reporta médias por **cartel**, não por conduta unilateral. A transposição é proxy, justificada como ponto de partida calibrável, não como verdade empírica fechada. O CADE ainda não publica TCCs de conduta unilateral decompostos por posição (pendência aberta).
 
-## Cenários normativos como variantes paramétricas (R17)
+## Cenários normativos como variantes paramétricas
 
 Uma das primeiras objeções honestas a um modelo deste tipo é "**e se
 mudar a lei?**". A resposta tradicional — escrever um parágrafo no paper
@@ -452,7 +452,7 @@ nomeado de sobrescritas de parâmetros, executável e reportável.
 O catálogo (módulo `waas_antitrust.cenarios`) contém **27 cenários
 canônicos**. A tabela abaixo lista os 9 que cobrem a malha institucional
 brasileira; os outros 18 (generalidade EUA/UE, canal puro, erosão Coleman,
-cascata R29 e sinergia R30 com suas variantes) estão em [`modelo_abm.md`](modelo_abm.md) §5.
+cascata de adesão e sinergia internacional com suas variantes) estão em [`modelo_abm.md`](modelo_abm.md) §5.
 
 | Cenário | Hipótese institucional |
 |---|---|
@@ -461,12 +461,12 @@ cascata R29 e sinergia R30 com suas variantes) estão em [`modelo_abm.md`](model
 | `resolucao_mais_portaria_mte` | Regime B + portaria MTE com proteção trabalhista reforçada — `r_represalia` cai a 8%, `custo_legal` a 15%. |
 | `lei_waas_pura` | Regime C — Lei 13.608/2018 estendida; F6 = 0. |
 | `lei_waas_com_fundo_honorarios` | Regime C + fundo público para honorários (análogo IRS Whistleblower Office). |
-| `lei_waas_com_vesting_padrao` | Regime C + cláusula padrão de vesting acelerado (Hirschman R07 universal); haircut IRPF+INSS realista. |
+| `lei_waas_com_vesting_padrao` | Regime C + cláusula padrão de vesting acelerado (vesting acelerado universal); haircut IRPF+INSS realista. |
 | `mercado_digital_br_pareto` | Regime C com fatia de mercado distribuída em Pareto (α=1,16) — reflete moat de plataformas dominantes (iFood, Mercado Livre, Apple/Google). |
-| `cenario_sancao_dura` | Regime C + multa por descumprimento de TCC = 2× sanção base (R18). |
+| `cenario_sancao_dura` | Regime C + multa por descumprimento de TCC = 2× sanção base. |
 | **`cenario_corrida_leniencia`** | **LCMC plena** — Regime C + `modo_corrida=True` + `q_min=10%` + janela 4 tiques + decaimento Saito. Ativa as duas corridas acopladas (intra-firma + inter-firma) descritas em "A corrida que faltava". |
-| **`apenas_canal_sem_instrumento`** | **Canal puro (R27-i)** — Regime B + `usar_escrow_explicito=True` + `W_mult=0` + `D_disc=0`. Isola o canal: testa se sozinho carrega o mecanismo. |
-| **`erosao_coleman_adversarial`** | **Falsificação R26** — `resolucao_pura` + `alpha_erosao=0.5`. Operacionaliza a Proposição 5 candidata (instrumentalizar denúncia destrói o substrato cooperativo). |
+| **`apenas_canal_sem_instrumento`** | **Canal puro** — Regime B + `usar_escrow_explicito=True` + `W_mult=0` + `D_disc=0`. Isola o canal: testa se sozinho carrega o mecanismo. |
+| **`erosao_coleman_adversarial`** | **Falsificação da Proposição 5** — `resolucao_pura` + `alpha_erosao=0.5`. Operacionaliza a Proposição 5 candidata (instrumentalizar denúncia destrói o substrato cooperativo). |
 
 Cada cenário roda como uma chamada de função:
 
@@ -494,18 +494,18 @@ Além da IC-F\* da firma, o desenho precisa satisfazer simultaneamente:
 | **IC-T** | trabalhador | $W$ deve compensar penalidade por falso reporte | `agents.py` (mesma função, parcela $F_{\text{falso}}$) |
 | **IC-F\*** | firma | $W < D_{\text{extra}}$ (vide acima) | `model.py` (P3) |
 
-A camada **Hirschman exit-with-equity** (R07) acrescenta um quarto incentivo opcional, válido apenas sob Regime C: cláusulas contratuais de vesting acelerado por gatilho de ação coletiva. Quando ativas, ampliam a IC-F\* para $W < D_{\text{extra}} + \text{custo de êxodo coletivo}$ — a firma também ganha por **não perder capital humano**, e isso ajuda a fechar o cálculo em casos marginais.
+A camada **Hirschman exit-with-equity** acrescenta um quarto incentivo opcional, válido apenas sob Regime C: cláusulas contratuais de vesting acelerado por gatilho de ação coletiva. Quando ativas, ampliam a IC-F\* para $W < D_{\text{extra}} + \text{custo de êxodo coletivo}$ — a firma também ganha por **não perder capital humano**, e isso ajuda a fechar o cálculo em casos marginais.
 
-Sob LCMC (R20, `modo_corrida=True`), as quatro condições ICs ganham dimensão de posição na fila — a IR-W vira $W_\text{base} \cdot f_W(k) \ge \text{custos}$ (decrescente com a ordem de cooperação intra-firma) e a IC-F\* vira $W_\text{total} < D_\text{Saito}(\text{pos}_\text{firma}) \cdot S$ (decrescente com a ordem de chegada inter-firma). É a mesma estrutura econômica; a corrida apenas torna explícito o gradiente.
+No modo de corrida da LCMC, as quatro condições ICs ganham dimensão de posição na fila — a IR-W vira $W_\text{base} \cdot f_W(k) \ge \text{custos}$ (decrescente com a ordem de cooperação intra-firma) e a IC-F\* vira $W_\text{total} < D_\text{Saito}(\text{pos}_\text{firma}) \cdot S$ (decrescente com a ordem de chegada inter-firma). É a mesma estrutura econômica; a corrida apenas torna explícito o gradiente.
 
 ## O que ainda pode ruir mesmo assim
 
 Há pendências que o modelo, sozinho, não resolve. Estão rastreadas em [Decisões e backlog](DECISIONS.md), e a lista curta é:
 
-- **R03** — calibração formal contra Saito (2021), DEE/CADE (2022, 2024), Wiedman & Zhu (2023, Dodd-Frank §922). Em particular, $D_{\text{base}}$ precisa de mediana empírica brasileira.
-- **R09** — endogeneizar $g_i(t)$ (atratividade de violar como função do estado). Hoje é sorteio uniforme estático.
-- **R10** — IC-F\* completa $W + p_{\text{pago}} \cdot (S - D) < p_{\text{não pago}} \cdot S$, em vez da forma simplificada.
-- **R13** — distribuição Pareto/lognormal de fatia de mercado (hoje uniforme; em digital, o dano é cauda longa).
+- **Calibração formal** contra Saito (2021), documentos de trabalho do CADE (2022, 2024) e Wiedman & Zhu (2023, sobre a Dodd-Frank §922). Em particular, o desconto-base do TCC clássico precisa de mediana empírica brasileira.
+- **Atratividade de violar endógena** — hoje sorteada de forma uniforme e estática; deveria evoluir como função do estado do sistema.
+- **Condição de pagamento completa** — a forma usada é simplificada; a versão completa compara a recompensa mais a sanção esperada sob pagamento contra a sanção esperada sem pagamento.
+- **Distribuição de fatia de mercado** — hoje uniforme; em mercados digitais o dano é de cauda longa (Pareto ou lognormal).
 
 A página de [Limitações](limitacoes.md) sintetiza isso em linguagem acessível; a [Crítica x10](critica_x10.md) detalha o que oito revisores externos apontaram.
 

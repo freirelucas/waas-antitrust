@@ -37,7 +37,7 @@ print(df_b[["tique","n_sinais","n_violadoras_ativas","dano_acumulado","n_empresa
 Saída (tiques 36-40):
 
 ```
-=== REGIME A (sem WaaS) ===
+=== REGIME A (status quo) ===
  tique  n_sinais  n_violadoras_ativas  dano_acumulado  n_empresas_notif
     36         0                   10             330                 0
     37         0                   10             340                 0
@@ -45,7 +45,7 @@ Saída (tiques 36-40):
     39         0                   10             360                 0
     40         0                   10             370                 0
 
-=== REGIME B (com WaaS) ===
+=== REGIME B (canal LCMC) ===
  tique  n_sinais  n_violadoras_ativas  dano_acumulado  n_empresas_notif
     36         0                    0              19                 0
     37         0                    0              19                 0
@@ -71,27 +71,27 @@ O DataFrame tem **34 colunas**. Para legibilidade, este guia agrupa abaixo em tr
 _REPORTERS_MASSA_CRITICA = (
     "n_sinais",                                  # trabalhadores que sinalizaram
     "n_empresas_notif",                          # firmas que receberam notificação
-    "n_firmas_atingiram_massa_critica_interna",  # gatilho LCMC R20
-    "n_denuncias_em_escrow",                     # escrow R27 (canal explícito)
-    "n_aberturas_simultaneas_acum",              # abertura all-or-nothing R27
-    "n_depositos_expirados_acum",                # janela_escrow_tiques (R27-ii)
+    "n_firmas_atingiram_massa_critica_interna",  # gatilho de massa crítica intra-firma
+    "n_denuncias_em_escrow",                     # escrow (canal explícito)
+    "n_aberturas_simultaneas_acum",              # abertura all-or-nothing
+    "n_depositos_expirados_acum",                # janela de expiração do depósito
     "n_violadoras_ativas",                       # estoque de firmas violando
     "dano_acumulado",                            # Σ violadoras·tique
-    "valor_dissuasao_difusa_acum",               # externalidade erga omnes (v2.D.1)
-    "capital_social_residual",                   # erosão Coleman (R26)
+    "valor_dissuasao_difusa_acum",               # externalidade erga omnes
+    "capital_social_residual",                   # erosão Coleman
 )
 _REPORTERS_INSTRUMENTOS = (
     "n_tcc_assinados",                           # firmas que assinaram TCC-WaaS
     "n_pagou",                                   # firmas que pagaram recompensa
     "custo_recompensa_acum",                     # Σ W pagos
-    "custo_exodo_acum",                          # custo Hirschman (R07)
-    "custo_recompensa_corrida_acum",             # W sob LCMC (R20)
+    "custo_exodo_acum",                          # custo do vesting acelerado
+    "custo_recompensa_corrida_acum",             # recompensa sob corrida da LCMC
     "n_firmas_sob_ameaca_exodo",                 # Hirschman ativo
 )
 _REPORTERS_ROBUSTEZ = (
-    "n_tcc_anulados",                            # Vetor B (F6)
+    "n_tcc_anulados",                            # anulação judicial do acordo
     "n_firmas_optaram_tcc_classico",             # Vetor A (D_base alto)
-    "n_firmas_quebraram_tcc",                    # Vetor D (commitment R18)
+    "n_firmas_quebraram_tcc",                    # descumprimento do acordo pela firma
     "multa_arrecadada_acum",                     # erário
     "multa_descumprimento_acum",                 # sanção catastrófica
     "hhi",                                       # concentração de mercado
@@ -100,7 +100,7 @@ _REPORTERS_ROBUSTEZ = (
 
 A primeira categoria mede **o substrato LCMC** (a cooperação interna emerge?). A segunda mede **o uso dos instrumentos** (alguém efetivamente paga?). A terceira mede **a robustez do mecanismo** (em que casos o desenho quebra?).
 
-Sob o reframe v2, a primeira categoria é o que importa para a tese central. As outras são consequência e diagnóstico.
+A primeira categoria é o que importa para a tese central. As outras são consequência e diagnóstico.
 
 ## O bem-estar substantivo
 
@@ -129,11 +129,11 @@ def calcular_bem_estar(
     )
 ```
 
-A fórmula é **negativa do custo social total**, com créditos pela multa arrecadada (devolução ao erário) e pela externalidade erga omnes (dissuasão difusa, v2.D.1 Eco B v2). Pesos provisórios; calibração formal em R03. **`epsilon_dissuasao_difusa = 0` por default** — ativar via `pesos` custom para creditar o bem coletivo no bem-estar.
+A fórmula é **negativa do custo social total**, com créditos pela multa arrecadada (devolução ao erário) e pela externalidade erga omnes (dissuasão difusa). Pesos provisórios; ver a calibração formal. **`epsilon_dissuasao_difusa = 0` por default** — ativar via `pesos` custom para creditar o bem coletivo no bem-estar.
 
 ## Robustez multi-seed — o pecado da seed única
 
-Há um pecado clássico em ABM, apontado por **Mat A** e **Mat B** na [Crítica x10](critica_x10.md): apresentar resultado de **uma única seed** como propriedade do mecanismo. Variância de seed pode produzir gráficos bonitos que não sobrevivem à reamostragem.
+Há um pecado clássico em ABM, apontado repetidamente na literatura de modelagem baseada em agentes: apresentar resultado de **uma única seed** como propriedade do mecanismo. Variância de seed pode produzir gráficos bonitos que não sobrevivem à reamostragem.
 
 A defesa está no teste de regressão em `tests/test_robustez.py` (ou similar). A lógica é direta:
 
@@ -183,12 +183,12 @@ Toda a evidência acima usa parâmetros conservadores: $D_{\text{base}}=0$, $p_{
 
 | Vetor | Condição | Reporter que detecta | Teste |
 |---|---|---|---|
-| **A** (R15) | $D_{\text{base}} \ge D_{\text{total}}$ — TCC clássico já dá o desconto | `n_firmas_optaram_tcc_classico` | `test_vetor_a_d_base_alto_quebra_o_mecanismo` |
-| **B** (R15/F6) | $p_{\text{anulação}}=1$ — Judiciário anula todo TCC-WaaS | `n_tcc_anulados` | `test_vetor_b_p_anulacao_um_anula_todos_os_tcc` |
-| **C** (R15) | $c_{\text{legal}}$ alto — denunciante racional desiste | `n_sinais` cai | `test_vetor_c_custo_legal_alto_reduz_sinalizacao` |
-| **D** (R20/LCMC) | nenhuma firma atinge $q_\text{min}$ na janela | `n_firmas_atingiram_massa_critica_interna = 0` | em `test_corrida.py` |
-| **D** (R18) | firma assina TCC e descumpre | `n_firmas_quebraram_tcc` | em `test_fairminded_cenarios.py` |
-| **E** (R26 Coleman) | `alpha_erosao` alto — substrato cooperativo seca | `capital_social_residual` colapsa | `test_erosao_coleman.py` |
+| **A** | $D_{\text{base}} \ge D_{\text{total}}$ — TCC clássico já dá o desconto | `n_firmas_optaram_tcc_classico` | `test_vetor_a_d_base_alto_quebra_o_mecanismo` |
+| **B** | $p_{\text{anulação}}=1$ — Judiciário anula todo TCC-WaaS | `n_tcc_anulados` | `test_vetor_b_p_anulacao_um_anula_todos_os_tcc` |
+| **C** | $c_{\text{legal}}$ alto — denunciante racional desiste | `n_sinais` cai | `test_vetor_c_custo_legal_alto_reduz_sinalizacao` |
+| **D** (corrida vazia) | nenhuma firma atinge $q_\text{min}$ na janela | `n_firmas_atingiram_massa_critica_interna = 0` | em `test_corrida.py` |
+| **D** (descumprimento) | firma assina TCC e descumpre | `n_firmas_quebraram_tcc` | em `test_fairminded_cenarios.py` |
+| **E** (erosão Coleman) | `alpha_erosao` alto — substrato cooperativo seca | `capital_social_residual` colapsa | `test_erosao_coleman.py` |
 
 Reproduzir um vetor de quebra: muda um parâmetro, roda, observa o reporter:
 
@@ -248,6 +248,6 @@ Para quem precisa da história inteira em uma figura (`viz/painel.py`):
 <figure markdown>
   ![Painel 2x3 com dano por regime, violadoras ativas, massa crítica LCMC, canal de depósito, erosão Coleman e dano nas 5 variantes institucionais](img/18_painel_sintese.png){ .figura-empirica }
   <figcaption>
-    Painel-síntese, mediana de 3 seeds × 16 tiques. <strong>(A)</strong> dano acumulado: A cresce linear; B/C achatam. <strong>(B)</strong> violadoras ativas caem sob dissuasão endógena (R01). <strong>(C)</strong> fração de firmas com massa crítica interna satura sob LCMC. <strong>(D)</strong> o canal de depósito condicional operando: escrow oscila, aberturas acumulam (R27). <strong>(E)</strong> erosão Coleman na forma fraca: substrato decai com $\alpha=0{,}5$ (R26). <strong>(F)</strong> generalidade R28: a variante UE (sem recompensa) replica o regime A; a variante EUA replica o C.
+    Painel-síntese, mediana de 3 seeds × 16 tiques. <strong>(A)</strong> dano acumulado: A cresce linear; B/C achatam. <strong>(B)</strong> violadoras ativas caem sob dissuasão endógena. <strong>(C)</strong> fração de firmas com massa crítica interna satura sob LCMC. <strong>(D)</strong> o canal de depósito condicional operando: escrow oscila, aberturas acumulam. <strong>(E)</strong> erosão Coleman na forma fraca: substrato decai com $\alpha=0{,}5$. <strong>(F)</strong> generalidade: a variante UE (sem recompensa) replica o regime A; a variante EUA replica o C.
   </figcaption>
 </figure>

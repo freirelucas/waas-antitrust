@@ -10,7 +10,7 @@
 
 | R\$ 12,3 mi | 1.679 firmas | +1.363% | 364 testes |
 |:---:|:---:|:---:|:---:|
-| margem da firma sob TCC-WaaS para receita de R\$ 1 bi (cenário ilustrativo) | universo CADE implícito após calibração formal R03 (predição falsificável) | ΔW do Regime B sobre o A em bem-estar agregado (rodada multi-seed) | verdes em ~31 s · 23 figuras reproduzíveis · `mkdocs --strict` limpa |
+| margem da firma sob TCC-WaaS para receita de R\$ 1 bi (cenário ilustrativo) | universo CADE implícito após a calibração formal (predição falsificável) | ΔW do Regime B sobre o A em bem-estar agregado (rodada multi-seed) | verdes em ~31 s · 23 figuras reproduzíveis · `mkdocs --strict` limpa |
 
 > **Princípio LCMC.** O CADE recebe denúncias com cláusula de abertura condicional e as mantém em escrow até que uma fração mínima `q_min · n` de trabalhadores da mesma firma também tenha depositado denúncias compatíveis. Quando o gatilho é atingido, todas as denúncias se abrem simultaneamente; antes disso, nenhuma é exposta. O problema clássico de "ninguém quer ser o primeiro" (Olson 1965) é eliminado por construção.
 
@@ -66,11 +66,11 @@ Quando o canal abre (massa crítica atingida), o procedimento administrativo se 
 |---|---|---|---|
 | **WaaS — recompensa via TCC** | Firma | Trabalhador | Ex-post: firma paga sob TCC; pagamento re-caracterizado como ressarcimento (Art. 12 Res. 21/2018) |
 | **Hirschman — vesting acelerado** | Firma (via equity) | Trabalhador | Ex-ante: cláusula contratual dispara ao gatilho de ação coletiva |
-| **Crédito tributário** | Estado (renúncia fiscal) | Trabalhador | Pós-instauração (R22 stub) |
-| **Leniência criminal individual** | Estado (não-persecução) | Trabalhador-partícipe | Pós-instauração (R23 stub) |
+| **Crédito tributário** | Estado (renúncia fiscal) | Trabalhador | Pós-instauração (ainda não implementado) |
+| **Leniência criminal individual** | Estado (não-persecução) | Trabalhador-partícipe | Pós-instauração (ainda não implementado) |
 | **Nenhum — só o canal** | — | — | O canal funciona pela coordenação per se |
 
-A linha **"Nenhum — só o canal"** é a configuração mais conservadora juridicamente: o canal exige apenas uma Resolução do CADE regulamentando o **procedimento de como receber denúncias condicionais** (com base no Art. 4º, II e III da Lei 12.529/2011 combinado com a Lei 9.784/99, que rege o processo administrativo federal). Não cria nova categoria de punição; apenas estrutura *como o CADE recebe* informação. O risco de o Judiciário anular essa Resolução depois — que o projeto chama de **falsificador F6** e analisa em detalhe no [Ato 4 · Limitações](limitacoes.md) — cai materialmente.
+A linha **"Nenhum — só o canal"** é a configuração mais conservadora juridicamente: o canal exige apenas uma Resolução do CADE regulamentando o **procedimento de como receber denúncias condicionais** (com base no Art. 4º, II e III da Lei 12.529/2011 combinado com a Lei 9.784/99, que rege o processo administrativo federal). Não cria nova categoria de punição; apenas estrutura *como o CADE recebe* informação. O risco de o Judiciário anular essa Resolução depois — que o projeto analisa em detalhe no [Ato 4 · Limitações](limitacoes.md) — cai materialmente.
 
 <span class="kicker">Saída literal do modelo</span>
 ## A figura central
@@ -83,7 +83,7 @@ A figura abaixo é a **saída literal** de uma execução do modelo computaciona
 
 <aside class="dado-destaque" markdown>
 <strong>+1.363%</strong>
-Ganho de bem-estar agregado do Regime B (Resolução CADE) sobre o status quo, em uma rodada multi-seed do modelo. O segundo degrau — sinergia internacional R30 — soma a esse ganho um adicional medido no [`internacional.md`](internacional.md).
+Ganho de bem-estar agregado do Regime B (Resolução CADE) sobre o status quo, em uma rodada multi-seed do modelo. O segundo degrau — sinergia internacional — soma a esse ganho um adicional medido no [`internacional.md`](internacional.md).
 </aside>
 
 *Leitura sob LCMC corrigida:* a queda de violadoras em B/C é resultado de **denúncias coletivas abrindo do escrow**. Cada vez que o canal abre, o sinal Schelling se propaga (detecção percebida sobe em todas as firmas). O instrumento WaaS está ativo nas curvas verdes/roxas como incentivo incremental à adesão ao canal — não é a causa primeira da queda.
@@ -134,8 +134,8 @@ A LCMC pode ser implementada em três regimes regulatórios distintos. Os instru
 | **A** — status quo | Sem LCMC | — | Nenhum |
 | **B** — Resolução CADE | Resolução complementar à 21/2018, **sem mudar a lei** | **de lege lata** (interpretação infralegal) | WaaS (recompensa via TCC sob Art. 12) |
 | **C** — Lei ordinária federal | Extensão da Lei 13.608/2018 ao antitruste | **de lege ferenda** (lei nova) | WaaS + Hirschman (vesting acelerado) |
-| **Cᵩ** — LC tributária | Lei complementar Art. 146 + LRF Art. 14 | **de lege ferenda** (LC + LRF) | + Crédito tributário (R22 stub) |
-| **Cₚ** — Lei penal estrita | Reserva penal Art. 5º XXXIX | **de lege ferenda** (lei penal) | + Leniência criminal individual (R23 stub) |
+| **Cᵩ** — LC tributária | Lei complementar Art. 146 + LRF Art. 14 | **de lege ferenda** (LC + LRF) | + Crédito tributário |
+| **Cₚ** — Lei penal estrita | Reserva penal Art. 5º XXXIX | **de lege ferenda** (lei penal) | + Leniência criminal individual |
 
 O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer sozinho com a Resolução 21/2018 vigente. O **Regime C** é mais robusto juridicamente mas exige Congresso — e a [viabilidade política 2024-2027](viabilidade_regime_c.md) é incerta. Os sub-regimes Cᵩ e Cₚ são exploratórios.
 
@@ -154,14 +154,14 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 <a class="persona-card advogado" href="INSTITUTIONAL.md" markdown>
 <span class="persona-icone">⚖️</span>
 **Advogada/o**
-Base autônoma Art. 4º · vetores F6 e reserva de lei
+Base autônoma Art. 4º · vetores de anulação judicial e reserva de lei
 <span class="persona-cta">Análise institucional →</span>
 </a>
 
 <a class="persona-card economista" href="formulario.md" markdown>
 <span class="persona-icone">📐</span>
 **Economista**
-IC-F\* nas 3 formas · bem-estar · calibração R03
+IC-F\* nas 3 formas · bem-estar · calibração formal
 <span class="persona-cta">Formulário matemático →</span>
 </a>
 

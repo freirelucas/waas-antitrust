@@ -26,16 +26,16 @@ A solução estrutural para os três é o **Regime C** — extensão da Lei 13.6
 
 A simulação produz direção e magnitude, mas os parâmetros são **plausíveis, não ajustados**. Há três bancos de dados externos contra os quais o modelo precisa ser calibrado antes de qualquer alegação quantitativa:
 
-- **Saito (2021)** — *Termo de Compromisso de Cessação na Lei nº 12.529/11*, CADE/PNUD. Cobre 349 TCCs em 7,5 anos com mediana de desconto. Calibrar $D_{\text{base}}$ contra esse universo é o item número um em R03.
+- **Saito (2021)** — *Termo de Compromisso de Cessação na Lei nº 12.529/11*, CADE/PNUD. Cobre 349 TCCs em 7,5 anos com mediana de desconto. Calibrar $D_{\text{base}}$ contra esse universo é o item número um da calibração formal.
 - **DEE/CADE Documentos de Trabalho 003/2022 e 001/2024** — magnitudes de multa, vazão da autoridade, perfil de capacidade.
 - **Wiedman & Zhu (2023, *CAR*)** — evidência empírica de redução de fraude após Dodd-Frank §922 nos EUA. Fornece um quarto alvo de calibração via mecanismo análogo (incentivo financeiro ao denunciante interno).
 
-Calibração formal contra esses três alvos está em **R03** — a pendência mais importante do backlog.
+A calibração formal contra esses três alvos é a pendência mais importante do backlog.
 
 ### O que a análise de identificabilidade já mostrou (jun/2026)
 
 Antes de otimizar, é preciso saber **o que é otimizável**. A terceira
-rodada de R03 (`scripts/identificabilidade_r03.py`, 175 rodadas 1D)
+rodada da calibração (`scripts/identificabilidade_r03.py`, 175 rodadas 1D)
 decompôs o aparente conflito entre os alvos em três achados:
 
 1. **Sensibilidade**: o volume de TCC/ano responde a `fracao_violadoras`
@@ -55,7 +55,7 @@ decompôs o aparente conflito entre os alvos em três achados:
    mídia, concorrentes) que o modelo não representa — ele deve sair da
    função objetivo até que canais exógenos de detecção sejam modelados.
 
-A consequência prática: a calibração formal de R03 tem **um alvo
+A consequência prática: a calibração formal tem **um alvo
 operacional** (volume reescalonado por N\*) e **dois parâmetros
 dominantes** (`fracao_violadoras`, `taxa_capacidade`) — problema bem
 mais tratável do que a forma original com 3 alvos × 3 parâmetros.
@@ -78,7 +78,7 @@ visualizados abaixo (RIG/TCU 2022-2024 + comunicado CADE 2023):
 <figure markdown>
   ![Painel 1x2 com fluxo investigativo SG 2022-2024 e leniências acumuladas 2003-2023 do CADE](img/14_cade_capacidade.png){ .figura-empirica .status-calibrado }
   <figcaption>
-    Dados primários da capacidade investigativa real. <strong>(A)</strong> Investigações SG instauradas (63–103/ano), concluídas (89–111/ano) e estoque (177–247) em 2022-2024, com a força de trabalho anotada (287–326 servidores em exercício; 180 na área-fim) — fonte RIG/TCU, parseada em <code>calibracao/transparencia_cade.py</code>. <strong>(B)</strong> Leniências acumuladas 2003-2023: 109 acordos em 20 anos (comunicado CADE 2023). A vazão real é a âncora do reescalonamento de <code>taxa_capacidade</code> (R06) e do alvo de volume (R03).
+    Dados primários da capacidade investigativa real. <strong>(A)</strong> Investigações SG instauradas (63–103/ano), concluídas (89–111/ano) e estoque (177–247) em 2022-2024, com a força de trabalho anotada (287–326 servidores em exercício; 180 na área-fim) — fonte RIG/TCU, parseada em <code>calibracao/transparencia_cade.py</code>. <strong>(B)</strong> Leniências acumuladas 2003-2023: 109 acordos em 20 anos (comunicado CADE 2023). A vazão real é a âncora do reescalonamento da capacidade da autoridade e do alvo de volume.
   </figcaption>
 </figure>
 
@@ -91,13 +91,13 @@ O bem-estar social é definido como $-(\text{dano} + \beta \cdot \text{FP} + \ga
 - $\delta_{\text{ex}}$ contra a literatura de capital humano em transição (custo de substituição + perda transitória de produtividade);
 - $\delta_{\text{mu}}$ contra a valoração marginal de receita pública (provavelmente $\approx 1$).
 
-A consolidação está rastreada em **R05**.
+A consolidação está rastreada no backlog.
 
 ## As proposições teóricas seguem em parte como conjecturas
 
 A **Proposição 1** — viabilidade da IC-F\* no ponto-alvo do Regime B — está demonstrada **pontualmente** por teste de regressão, mas as faixas jurídicas do esboço (multa entre 1% e 20% da receita, $D \le 50\%$ da multa) seguem ilustrativas. A Proposição é honesta sobre isso.
 
-A **Proposição 2** — unicidade do equilíbrio de coordenação no limite $\tau \to 0$ do subjogo de Morris-Shin — está implementada em forma fechada no módulo `jogo_global` e verificada numericamente em testes. Mas **não está integrada à dinâmica completa do ABM** (R02a), o **contraste numérico com multiplicidade sob conhecimento comum não foi feito** (R02b), e a unicidade sob heterogeneidade de arquétipos × papéis é **conjectura aberta** (R02c) — Morris-Shin supõe homogeneidade que não temos.
+A **Proposição 2** — unicidade do equilíbrio de coordenação no limite $\tau \to 0$ do subjogo de Morris-Shin — está implementada em forma fechada no módulo `jogo_global` e verificada numericamente em testes. Mas **não está integrada à dinâmica completa do ABM**, o **contraste numérico com multiplicidade sob conhecimento comum não foi feito**, e a unicidade sob heterogeneidade de arquétipos × papéis é **conjectura aberta** — Morris-Shin supõe homogeneidade que não temos.
 
 A **Proposição 3** — dominância de bem-estar de B sobre A — está sustentada direcionalmente por simulação multi-seed com CI 95% que não cruza zero. **A prova formal segue como esboço**, não como teorema fechado.
 
@@ -116,7 +116,7 @@ decaimento Saito intra-firma é *selective incentive* compatível com
 Olson, mas o modelo não distingue custo psicológico do 1º cooperador
 ($\text{custo}_{k=1}$) do dos demais ($\text{custo}_{k\ge 2}$). Os
 imitativos e fairminded sinalizam quando há $\phi_{\text{vizinhos}}$
-suficiente — mas nenhum *inicia*. R24 abre o arquétipo
+suficiente — mas nenhum *inicia*. O modelo abre um arquétipo
 `denunciante_oportunista` (insider acionista, concorrente plantando
 informante, chantagem) e o arquétipo Olson explícito como variantes.
 
@@ -126,14 +126,14 @@ subutilização da estrutura do CADE. Hoje o modelo trata FP como custo
 em $\beta$ no bem-estar, mas não captura o fenômeno sistêmico:
 trabalhadores podem usar WaaS como ameaça pré-rescisão para extrair
 *severance*, transformando o canal em barganha bilateral, não em prova
-qualificada. Pendência R24 — **com primeira medição visual**: a varredura
+qualificada. Pendência — **com primeira medição visual**: a varredura
 abaixo varre a fração de oportunistas de 0% a 30% (calibração DMZ 2010:
 ~17% na SEC) e mostra o custo sistêmico em FP e dano.
 
 <figure markdown>
   ![Painel 1x2 com falsos positivos e dano acumulado por fração de trabalhadores oportunistas](img/15_adversarial_oportunistas.png){ .figura-empirica }
   <figcaption>
-    Custo sistêmico do uso adversarial (R24), 5 seeds × 12 tiques em Regime B. <strong>(A)</strong> Falsos positivos acumulados crescem com a fração de oportunistas — o canal absorve ruído extrativo. <strong>(B)</strong> Dano acumulado: a dissuasão resiste na faixa DMZ (~17%, linha pontilhada), mas o leitor deve notar que o modelo ainda não representa o uso do canal como barganha bilateral pré-rescisão — esta figura mede apenas o ruído de denúncias frívolas, um subconjunto do fenômeno de Heller.
+    Custo sistêmico do uso adversarial, 5 seeds × 12 tiques em Regime B. <strong>(A)</strong> Falsos positivos acumulados crescem com a fração de oportunistas — o canal absorve ruído extrativo. <strong>(B)</strong> Dano acumulado: a dissuasão resiste na faixa DMZ (~17%, linha pontilhada), mas o leitor deve notar que o modelo ainda não representa o uso do canal como barganha bilateral pré-rescisão — esta figura mede apenas o ruído de denúncias frívolas, um subconjunto do fenômeno de Heller.
   </figcaption>
 </figure>
 
@@ -157,7 +157,7 @@ descritivamente correta (o substrato erode), mas, na configuração
 testada, **não derruba a ordenação de regimes**. O que ainda pode
 reverter o veredicto: erosão propagada por rede inter-firma
 (`phi_baseline` ↓ em vizinhas — não modelada) e calibração de
-$\alpha$ contra dados reais (R03). Literatura calibradora: Titmuss
+$\alpha$ contra dados reais na calibração formal. Literatura calibradora: Titmuss
 1970 *The Gift Relationship*, Frey-Jegen 2001, Bénabou-Tirole 2003.
 
 **Salvaguardas anti-erosão na literatura comparada:** (a) anonimato
@@ -165,13 +165,13 @@ forte (IRS Whistleblower Office); (b) recompensa coletiva
 (Mussler-Macy 1997); (c) janela curta. Cada uma tem custo de desenho —
 anonimato tensiona com fila identificada da LCMC; recompensa coletiva
 mata a corrida. A **janela curta** existe agora em dois níveis distintos
-no modelo: `janela_temporal_tiques` (R20) opera no nível **agregado** —
+no modelo: a janela agregada da corrida opera no nível **agregado** —
 prazo após a massa crítica disparar para a fila inter-firma fechar;
-`janela_escrow_tiques` (R27-ii) opera no nível **individual** — Δt de
+a janela do depósito individual opera no nível **individual** — Δt de
 expiração de cada depósito condicional antes de a massa crítica ser
 atingida. O filtro anti-erosão individual deixou de ser lacuna de
 implementação; **medir empiricamente seu efeito anti-erosão segue
-aberto em R26** — o cenário canônico `erosao_coleman_adversarial`
+aberto** — o cenário canônico `erosao_coleman_adversarial`
 permite varrer o par (`alpha_erosao`, `janela_escrow_tiques`) em busca
 da combinação que estabiliza o capital social residual.
 
@@ -196,13 +196,13 @@ em [Análise institucional](INSTITUTIONAL.md).
 
 Há cinco pontos onde a literatura crítica converge mas o autor ainda não decidiu — porque cada decisão **altera Proposições** e exige conversa explícita, não execução automática:
 
-- **R09** — endogeneizar $g_i(t) = \pi \cdot R / (p \cdot S)$ como função do estado, à la Becker. Altera Prop. 3.
-- **R10** — IC-F\* completa $W + p_{\text{pago}} \cdot (S - D) < p_{\text{não pago}} \cdot S$. Altera Prop. 1.
-- **R11** — modelar Hirschman como elevação de $W_{\text{esperado}}$ em vez de subtração de $g_i$. Altera o microfundamento de R07.
-- **R12** — substituir o arquétipo "racional" pela estratégia-limiar $s_i \ge x^*$ do jogo global. Integra Prop. 2 ao ABM e fecha R02a.
-- **R13** — distribuição Pareto/lognormal de fatia de mercado (em digital, o dano é cauda longa, não uniforme).
+- **Atratividade de violar endógena** — torná-la função do estado do sistema, à la Becker, em vez de sorteio estático. Altera a Proposição 3.
+- **Condição de pagamento completa** — usar a forma completa, que compara a recompensa mais a sanção esperada sob pagamento contra a sanção esperada sem pagamento. Altera a Proposição 1.
+- **Microfundamento de Hirschman** — modelar o vesting acelerado como elevação da recompensa esperada em vez de redução da atratividade de violar.
+- **Estratégia-limiar do jogo global** — substituir o arquétipo "racional" pela regra de switching de Morris-Shin, integrando a Proposição 2 ao modelo.
+- **Distribuição de fatia de mercado** — Pareto ou lognormal em vez de uniforme (em mercados digitais o dano é de cauda longa).
 
-Estão registrados em [DECISIONS.md](DECISIONS.md). Cada um tem origem, autor crítico, e arquivos-alvo.
+Cada um está registrado, com origem e arquivos-alvo, em [Decisões e backlog](DECISIONS.md).
 
 ## Como falsificar cada uma destas limitações em código
 
@@ -210,18 +210,18 @@ A vantagem editorial deste projeto é que **toda limitação aqui listada é end
 
 | Limitação | Parâmetro / reporter | Como rodar |
 |---|---|---|
-| Re-caracterização "ressarcimento" controvertida (F6) | `p_anulacao_tcc` | `WaaSParametros(p_anulacao_tcc=1.0)` ⇒ todo TCC-WaaS anulado ⇒ Regime B colapsa em A |
+| Re-caracterização do "ressarcimento" (controvertida) | `p_anulacao_tcc` | `WaaSParametros(p_anulacao_tcc=1.0)` ⇒ todo TCC-WaaS anulado ⇒ Regime B colapsa em A |
 | Reserva de lei do Regime B sobre vesting | `fracao_contratos_acelerados` | sob Regime A ou B, valor > 0 é forçado a 0 com `UserWarning` |
 | Colisão com leniência clássica Art. 86 | `custo_legal_uw` | calibrar custo legal do partícipe; teste em `tests/test_vetores_quebra.py` |
 | Pesos do bem-estar não calibrados | `PESOS_BEM_ESTAR` em `sobol/execucao.py` | dict editável; cada peso documentado com literatura calibradora |
-| Free-riding / sub-iniciação Olson | arquétipo `oportunista` (R24) | `DISTRIBUICAO_COM_OPORTUNISTAS` em `cenarios.py` |
+| Free-riding / sub-iniciação Olson | arquétipo `oportunista` | `DISTRIBUICAO_COM_OPORTUNISTAS` em `cenarios.py` |
 | Anti-commons (sobre-denúncia frívola) | `taxa_falso_reporte` + `n_tcc_anulados` | cenário `uso_adversarial_oportunista` |
-| Erosão Coleman (Proposição 5 candidata) | `alpha_erosao` (R26) | `tests/test_erosao_coleman.py::test_proposicao_5_candidata_direcional` |
+| Erosão Coleman (Proposição 5 candidata) | `alpha_erosao` | `tests/test_erosao_coleman.py::test_proposicao_5_candidata_direcional` |
 | Capacidade institucional CADE (Cient. Pol. v2) | `taxa_capacidade` | cenário `captura_processamento_cade` |
 | Viabilidade política Regime C 2024-2027 | n/a | documental ([viabilidade_regime_c.md](viabilidade_regime_c.md)) |
-| Choques institucionais discretos (layoff, paradigmático, campanha, jurídico) | parâmetro `choques` | catálogo R19 em [Choques institucionais](choques.md) com 5 catálogos canônicos calibrados |
+| Choques institucionais discretos (layoff, paradigmático, campanha, jurídico) | parâmetro `choques` | catálogo em [Choques institucionais](choques.md) com 5 catálogos canônicos calibrados |
 
-Reproduzir o pior caso da fragilidade F6 (Vetor B):
+Reproduzir o pior caso da anulação judicial do acordo:
 
 ```python
 from waas_antitrust.model import WaaSModel, WaaSParametros
@@ -282,11 +282,11 @@ Por simetria, vale enumerar o que **não** está na lista de fragilidades acima 
 - **Princípio LCMC separado do instrumento WaaS**: a página [Bem coletivo](bem_publico.md) explicita que a Leniência Condicionada à Massa Crítica pode existir sem pagamento monetário.
 - **Inversão de incentivo** ($D > W$ no ponto-alvo) é verificável e tem teste automatizado pontual em `tests/test_vetores_quebra.py`.
 - **Dissuasão** (empresas param de violar) é produzida pelo próprio modelo, multi-seed, com CI 95% não cruzando zero — `test_dissuasao_endogena_robusta_a_multi_seed`.
-- **Bem-estar substantivo** credita a prevenção (dano evitado), custo de êxodo Hirschman, multa arrecadada pelo erário, e — sob `epsilon_dissuasao_difusa > 0` — externalidade erga omnes (R21/v2.D.1).
+- **Bem-estar substantivo** credita a prevenção (dano evitado), custo de êxodo Hirschman, multa arrecadada pelo erário, e — sob `epsilon_dissuasao_difusa > 0` — externalidade erga omnes.
 - **Coordenação tipo jogo global** tem versão analítica fechada e testada em `jogo_global.py` (limiar único $x^\star$ em $\tau \to 0$). Sob LCMC, o limiar vira família $\{x^\star_k\}$ por posição na fila (Mat A v2).
-- **Gating jurídico do R07** está implementado — Regime A/B rejeita `fracao_contratos_acelerados > 0` com `UserWarning` citando Art. 22 I CF.
+- **O travamento jurídico do vesting acelerado** está implementado — Regime A/B rejeita `fracao_contratos_acelerados > 0` com `UserWarning` citando Art. 22 I CF.
 - **Catálogo de 28 condutas** unilaterais digitais com gradiente 3-níveis Near & Miceli (inclui casos brasileiros: iFood marketplace, Apple anti-steering, e jurisprudência internacional pós-2024).
-- **Capital social residual** (R26 Coleman) operacionalizado como reporter; Proposição 5 candidata falsificável em `tests/test_erosao_coleman.py`.
+- **Capital social residual** (Coleman) operacionalizado como reporter; Proposição 5 candidata falsificável em `tests/test_erosao_coleman.py`.
 - **Taxonomia declarativa de 5 entradas** (`src/waas_antitrust/instrumentos.py`) — canal base v3 + 4 instrumentos com reservas constitucionais Cₜ/Cᵩ/Cₚ.
 
 <div class="ato-fim" markdown>
