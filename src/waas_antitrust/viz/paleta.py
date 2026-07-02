@@ -13,15 +13,19 @@ Categoria 6 (Designer, crítica x10):
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Paleta acadêmica sóbria (jun/2026). Substitui o verde/roxo/âmbar
+# saturados por tons de baixa saturação em escala grafite-azul, no
+# registro de figura de periódico. Mantém distinção daltonismo-amigável
+# (luminâncias separadas) reforçada por MARCADORES e HACHURAS.
 PALETA = {
-    "A": "#5D6D7E",  # cinza-azulado · Regime A (situação atual)
-    "B": "#27AE60",  # verde · Regime B (Resolução)
-    "C": "#8E44AD",  # roxo · Regime C (Lei)
-    "adv": "#C0392B",  # vermelho · cenários adversariais
-    "cade": "#D68910",  # âmbar · série histórica CADE
-    "neutro_escuro": "#2C3E50",
-    "neutro_claro": "#ECF0F1",
-    "destaque": "#16A085",
+    "A": "#9aa5b1",  # cinza-azulado claro · Regime A (situação atual)
+    "B": "#1f4e5f",  # azul-petróleo escuro · Regime B (Resolução)
+    "C": "#4b3f6b",  # roxo-grafite · Regime C (Lei)
+    "adv": "#8c3b3b",  # vermelho-tijolo sóbrio · cenários adversariais
+    "cade": "#8a6d3b",  # mostarda escura · série histórica CADE
+    "neutro_escuro": "#2d3748",
+    "neutro_claro": "#edf0f3",
+    "destaque": "#2c5f6f",
 }
 
 #: Marcadores por regime — redundância sensorial além da cor.
