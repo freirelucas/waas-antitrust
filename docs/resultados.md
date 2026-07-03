@@ -135,7 +135,7 @@ A fórmula é **negativa do custo social total**, com créditos pela multa arrec
 
 Há um pecado clássico em ABM, apontado repetidamente na literatura de modelagem baseada em agentes: apresentar resultado de **uma única seed** como propriedade do mecanismo. Variância de seed pode produzir gráficos bonitos que não sobrevivem à reamostragem.
 
-A defesa está no teste de regressão em `tests/test_robustez.py` (ou similar). A lógica é direta:
+A defesa está no teste de regressão em `tests/test_robustez.py`. A lógica é direta:
 
 ```python
 # Lógica do teste multi-seed

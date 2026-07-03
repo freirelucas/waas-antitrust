@@ -6,11 +6,11 @@
 
 <p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a LCMC — desenhada para esse domínio.</p>
 
-[Ato 2 · O mecanismo](mecanismo.md) · [Simulador in-browser](brincar.md) · [Paper](paper.md)
+[Ato 2 · O mecanismo](mecanismo.md) · [Simulador in-browser](brincar.md) · [Paper](paper.md) · [Sobre](sobre.md)
 
 | R\$ 12,3 mi | 1.679 firmas | +1.363% | 385 testes |
 |:---:|:---:|:---:|:---:|
-| margem da firma sob TCC-WaaS para receita de R\$ 1 bi (cenário ilustrativo) | universo CADE implícito após a calibração formal (predição falsificável) | ΔW do Regime B sobre o A em bem-estar agregado (rodada multi-seed) | verdes em ~31 s · 23 figuras reproduzíveis · `mkdocs --strict` limpa |
+| margem da firma sob TCC-WaaS para receita de R\$ 1 bi (cenário ilustrativo) | universo CADE implícito após a calibração formal (predição falsificável) | ΔW do Regime B sobre o A em bem-estar agregado (saída ilustrativa do modelo, ainda não calibrada) | verdes em ~31 s · 23 figuras reproduzíveis |
 
 > **Princípio LCMC.** O CADE recebe denúncias com cláusula de abertura condicional e as mantém em escrow até que uma fração mínima `q_min · n` de trabalhadores da mesma firma também tenha depositado denúncias compatíveis. Quando o gatilho é atingido, todas as denúncias se abrem simultaneamente; antes disso, nenhuma é exposta. O problema clássico de "ninguém quer ser o primeiro" (Olson 1965) é eliminado por construção.
 
@@ -86,7 +86,7 @@ A figura abaixo é a **saída literal** de uma execução do modelo computaciona
 Ganho de bem-estar agregado do Regime B (Resolução CADE) sobre o status quo, em uma rodada multi-seed do modelo. O segundo degrau — sinergia internacional — soma a esse ganho um adicional medido no [`internacional.md`](internacional.md).
 </aside>
 
-*Leitura sob LCMC corrigida:* a queda de violadoras em B/C é resultado de **denúncias coletivas abrindo do escrow**. Cada vez que o canal abre, o sinal Schelling se propaga (detecção percebida sobe em todas as firmas). O instrumento WaaS está ativo nas curvas verdes/roxas como incentivo incremental à adesão ao canal — não é a causa primeira da queda.
+*Leitura sob a LCMC:* a queda de violadoras em B/C é resultado de **denúncias coletivas abrindo do escrow**. Cada vez que o canal abre, o sinal Schelling se propaga (detecção percebida sobe em todas as firmas). O instrumento WaaS está ativo nas curvas verdes/roxas como incentivo incremental à adesão ao canal — não é a causa primeira da queda.
 
 <span class="kicker">Reprodutibilidade</span>
 ## Reproduzir esta figura em três comandos
@@ -133,7 +133,7 @@ A LCMC pode ser implementada em três regimes regulatórios distintos. Os instru
 |---|---|---|---|
 | **A** — status quo | Sem LCMC | — | Nenhum |
 | **B** — Resolução CADE | Resolução complementar à 21/2018, **sem mudar a lei** | **de lege lata** (interpretação infralegal) | WaaS (recompensa via TCC sob Art. 12) |
-| **C** — Lei ordinária federal | Extensão da Lei 13.608/2018 ao antitruste | **de lege ferenda** (lei nova) | WaaS + Hirschman (vesting acelerado) |
+| **C** — Lei ordinária federal | Extensão da Lei 13.608/2018 (com a redação da Lei 13.964/2019) ao antitruste | **de lege ferenda** (lei nova) | WaaS + Hirschman (vesting acelerado) |
 | **Cᵩ** — LC tributária | Lei complementar Art. 146 + LRF Art. 14 | **de lege ferenda** (LC + LRF) | + Crédito tributário |
 | **Cₚ** — Lei penal estrita | Reserva penal Art. 5º XXXIX | **de lege ferenda** (lei penal) | + Leniência criminal individual |
 
@@ -144,42 +144,42 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
 <div class="persona-grade" markdown>
 
-<a class="persona-card jornalista" href="imprensa.md" markdown>
+<a class="persona-card jornalista" href="imprensa/" markdown>
 <span class="persona-icone">📰</span>
 **Jornalista**
 3 leads · 6 números com fonte · autor e contato
 <span class="persona-cta">Kit de imprensa →</span>
 </a>
 
-<a class="persona-card advogado" href="INSTITUTIONAL.md" markdown>
+<a class="persona-card advogado" href="INSTITUTIONAL/" markdown>
 <span class="persona-icone">⚖️</span>
 **Advogada/o**
 Base autônoma Art. 4º · vetores de anulação judicial e reserva de lei
 <span class="persona-cta">Análise institucional →</span>
 </a>
 
-<a class="persona-card economista" href="formulario.md" markdown>
+<a class="persona-card economista" href="formulario/" markdown>
 <span class="persona-icone">📐</span>
 **Economista**
 IC-F\* nas 3 formas · bem-estar · calibração formal
 <span class="persona-cta">Formulário matemático →</span>
 </a>
 
-<a class="persona-card autoridade" href="procedimento_cade.md" markdown>
+<a class="persona-card autoridade" href="procedimento_cade/" markdown>
 <span class="persona-icone">🏛️</span>
 **Autoridade**
 Tabela A/B/C · fluxograma processual · sensibilidade
 <span class="persona-cta">Procedimento CADE →</span>
 </a>
 
-<a class="persona-card bigtech" href="compliance_corporativo.md" markdown>
+<a class="persona-card bigtech" href="compliance_corporativo/" markdown>
 <span class="persona-icone">🏢</span>
 **Big Tech**
 Aritmética R\$ · 4 vetores corporativos · DOJ-ATR
 <span class="persona-cta">Compliance corporativo →</span>
 </a>
 
-<a class="persona-card academia" href="bem_publico.md" markdown>
+<a class="persona-card academia" href="bem_publico/" markdown>
 <span class="persona-icone">🎓</span>
 **Academia · sociedade civil**
 LCMC sob Ostrom-Coleman-Olson · Prop. 5 refutada

@@ -20,7 +20,7 @@ A camada do vesting acelerado de Hirschman supõe cláusulas contratuais de acel
 
 **(iii) Há colisão com a leniência clássica.** Se o denunciante interno for **partícipe** da conduta — o engenheiro que codificou o algoritmo, o comercial que operou a exclusividade, o *growth* que instrumentou o *dark pattern* — o caminho institucional adequado é o Art. 86 (leniência clássica), não o WaaS. O Regime B pode criar **arbitragem regulatória** entre os dois canais.
 
-A solução estrutural para os três é o **Regime C** — extensão da Lei 13.608/2018 ao antitruste, via Congresso. Mais robusto, custa voto político. O modelo cobre os dois regimes para deixar a escolha explícita.
+A solução estrutural para os três é o **Regime C** — extensão da Lei 13.608/2018 (com a redação da Lei 13.964/2019) ao antitruste, via Congresso. Mais robusto, custa voto político. O modelo cobre os dois regimes para deixar a escolha explícita.
 
 ## Os números ainda não estão calibrados
 
@@ -48,7 +48,7 @@ decompôs o aparente conflito entre os alvos em três achados:
    de **N\* ≈ 1.567 firmas** sob jurisdição ativa — uma predição
    falsificável contra o número real (pendência empírica; não estimado
    aqui para não inventar dado).
-3. **O alvo DMZ (19% de detecção por empregados) é não-identificável por
+3. **O alvo de Dyck, Morse e Zingales (2010) — DMZ (19% de detecção por empregados) — é não-identificável por
    construção**: o modelo tem um único canal de detecção (o trabalhador),
    então a fração interna simulada é ~100% e nenhum parâmetro atual a
    move para 19%. O alvo mede composição *entre* canais (auditoria,
@@ -58,7 +58,7 @@ decompôs o aparente conflito entre os alvos em três achados:
 A consequência prática: a calibração formal tem **um alvo
 operacional** (volume reescalonado por N\*) e **dois parâmetros
 dominantes** (`fracao_violadoras`, `taxa_capacidade`) — problema bem
-mais tratável do que a forma original com 3 alvos × 3 parâmetros.
+mais tratável do que a formulação com 3 alvos × 3 parâmetros.
 
 A calibração formal, executada (`scripts/calibrar_formal.py`,
 `scipy.optimize.minimize(method="Nelder-Mead")`, 5 seeds): Nelder-Mead
@@ -101,12 +101,12 @@ A **Proposição 2** — unicidade do equilíbrio de coordenação no limite $\t
 
 A **Proposição 3** — dominância de bem-estar de B sobre A — está sustentada direcionalmente por simulação multi-seed com CI 95% que não cruza zero. **A prova formal segue como esboço**, não como teorema fechado.
 
-## Fragilidades do bem coletivo (pós-reframe Coleman > Samuelson)
+## Fragilidades do bem coletivo
 
-A [Crítica x10 v2](critica_x10_v2.md) acrescentou três fragilidades que
-o framing original "empresa paga" ocultava por construção. Sob o reframe
-"massa crítica de cooperação interna como capital social com risco de
-erosão endógena", elas viram parte do esqueleto epistêmico do projeto.
+Uma [leitura crítica independente](critica_x10_v2.md) acrescentou três
+fragilidades que a leitura "empresa paga" ocultava por construção. Sob a
+leitura da massa crítica de cooperação interna como capital social com risco
+de erosão endógena, elas viram parte do esqueleto epistêmico do projeto.
 
 **(i) Free-riding ainda não é modelado.** Olson 1965 mostra que grupos
 sustentam bens coletivos por *interesse perceptível* e *visibilidade
@@ -161,8 +161,8 @@ $\alpha$ contra dados reais na calibração formal. Literatura calibradora: Titm
 1970 *The Gift Relationship*, Frey-Jegen 2001, Bénabou-Tirole 2003.
 
 **Salvaguardas anti-erosão na literatura comparada:** (a) anonimato
-forte (IRS Whistleblower Office); (b) recompensa coletiva
-(Mussler-Macy 1997); (c) janela curta. Cada uma tem custo de desenho —
+forte (IRS Whistleblower Office); (b) recompensa coletiva; (c) janela
+curta. Cada uma tem custo de desenho —
 anonimato tensiona com fila identificada da LCMC; recompensa coletiva
 mata a corrida. A **janela curta** existe agora em dois níveis distintos
 no modelo: a janela agregada da corrida opera no nível **agregado** —
@@ -177,7 +177,7 @@ da combinação que estabiliza o capital social residual.
 
 ## Viabilidade política do Regime C (2024-2027)
 
-A crítica do Cientista Político na x10 v2 trouxe outra honestidade
+A crítica do ângulo da ciência política trouxe outra honestidade
 material: a premissa do projeto de que "Regime C tem custo político mais
 alto mas viável" **subestima o custo** no horizonte 2024-2027. PL
 2768/2022 (análogo nacional ao DMA) está parado desde 2023; agenda da
@@ -217,7 +217,7 @@ A vantagem editorial deste projeto é que **toda limitação aqui listada é end
 | Free-riding / sub-iniciação Olson | arquétipo `oportunista` | `DISTRIBUICAO_COM_OPORTUNISTAS` em `cenarios.py` |
 | Anti-commons (sobre-denúncia frívola) | `taxa_falso_reporte` + `n_tcc_anulados` | cenário `uso_adversarial_oportunista` |
 | Erosão Coleman (Proposição 5 candidata) | `alpha_erosao` | `tests/test_erosao_coleman.py::test_proposicao_5_candidata_direcional` |
-| Capacidade institucional CADE (Cient. Pol. v2) | `taxa_capacidade` | cenário `captura_processamento_cade` |
+| Capacidade institucional CADE (ciência política) | `taxa_capacidade` | cenário `captura_processamento_cade` |
 | Viabilidade política Regime C 2024-2027 | n/a | documental ([viabilidade_regime_c.md](viabilidade_regime_c.md)) |
 | Choques institucionais discretos (layoff, paradigmático, campanha, jurídico) | parâmetro `choques` | catálogo em [Choques institucionais](choques.md) com 5 catálogos canônicos calibrados |
 
@@ -283,11 +283,11 @@ Por simetria, vale enumerar o que **não** está na lista de fragilidades acima 
 - **Inversão de incentivo** ($D > W$ no ponto-alvo) é verificável e tem teste automatizado pontual em `tests/test_vetores_quebra.py`.
 - **Dissuasão** (empresas param de violar) é produzida pelo próprio modelo, multi-seed, com CI 95% não cruzando zero — `test_dissuasao_endogena_robusta_a_multi_seed`.
 - **Bem-estar substantivo** credita a prevenção (dano evitado), custo de êxodo Hirschman, multa arrecadada pelo erário, e — sob `epsilon_dissuasao_difusa > 0` — externalidade erga omnes.
-- **Coordenação tipo jogo global** tem versão analítica fechada e testada em `jogo_global.py` (limiar único $x^\star$ em $\tau \to 0$). Sob LCMC, o limiar vira família $\{x^\star_k\}$ por posição na fila (Mat A v2).
+- **Coordenação tipo jogo global** tem versão analítica fechada e testada em `jogo_global.py` (limiar único $x^\star$ em $\tau \to 0$). Sob LCMC, o limiar vira família $\{x^\star_k\}$ por posição na fila.
 - **O travamento jurídico do vesting acelerado** está implementado — Regime A/B rejeita `fracao_contratos_acelerados > 0` com `UserWarning` citando Art. 22 I CF.
 - **Catálogo de 28 condutas** unilaterais digitais com gradiente 3-níveis Near & Miceli (inclui casos brasileiros: iFood marketplace, Apple anti-steering, e jurisprudência internacional pós-2024).
 - **Capital social residual** (Coleman) operacionalizado como reporter; Proposição 5 candidata falsificável em `tests/test_erosao_coleman.py`.
-- **Taxonomia declarativa de 5 entradas** (`src/waas_antitrust/instrumentos.py`) — canal base v3 + 4 instrumentos com reservas constitucionais Cₜ/Cᵩ/Cₚ.
+- **Taxonomia declarativa de 5 entradas** (`src/waas_antitrust/instrumentos.py`) — canal base + 4 instrumentos com reservas constitucionais Cₜ/Cᵩ/Cₚ.
 
 <div class="ato-fim" markdown>
 **Fim do Ato 4.** A honestidade não destrói o argumento; encurta o caminho para sustentá-lo. Há trabalho de calibração, trabalho jurídico e cinco decisões normativas em aberto. Se você quer ajudar — discordar, calibrar, escrever, criticar — o Ato 5 mostra como.

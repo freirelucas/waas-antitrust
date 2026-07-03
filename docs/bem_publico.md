@@ -158,7 +158,7 @@ Coleman (*Foundations of Social Theory*, 1990, cap. 12) define **capital
 social** como bem coletivo **produzido como subproduto de relações de
 obrigação** entre pessoas que se conhecem e dependem umas das outras.
 
-A cooperação interna que o WaaS tenta liberar não é uma mercadoria
+A cooperação interna que a LCMC mobiliza não é uma mercadoria
 quase-pública — é capital social organizacional. A diferença é material
 por uma razão central: Coleman previu que **o capital social pode ser
 destruído pela sua própria instrumentalização**. Quando a confiança
@@ -177,7 +177,7 @@ substrato que ele explora.
 
 ## A leitura jurídica — interesse público em detecção e cessação
 
-A crítica x10 v2 (Adv A) acrescentou um ângulo dogmático brasileiro: no
+A crítica do ângulo jurídico-dogmático brasileiro acrescentou uma camada: no
 direito sancionador administrativo BR, "bem público de detecção" não tem
 ancoragem legal. A categoria disponível é **interesse público em detecção
 e cessação** (Lei 9.784/99 Art. 2º, parágrafo único, IV e XIII) — princípio
@@ -211,8 +211,8 @@ constitucional brasileiro.
 
 ## Caveats — onde Olson e Ostrom falham para este caso
 
-A crítica x10 v2 (Sociólogo) identificou cinco dos oito *design principles*
-de Ostrom (*Governing the Commons*, 1990) que o WaaS **não** satisfaz:
+Uma leitura crítica do ângulo sociológico identificou cinco dos oito *design principles*
+de Ostrom (*Governing the Commons*, 1990) que a LCMC **não** satisfaz:
 
 - **P2 (congruência regras-condições locais)**: não há regra de proporcionalidade da recompensa ao dano sofrido pelo trabalhador individual.
 - **P3 (arenas de escolha coletiva)**: trabalhadores não participam do desenho do mecanismo.
@@ -230,5 +230,5 @@ documenta como falsificadores futuros.
 - [Mecanismo](mecanismo.md) — a aritmética dos instrumentos no Ato 2.
 - [Modelo (ODD)](ODD.md) — diagnóstico Ostrom como subseção; Proposições reformuladas sob LCMC + bem coletivo.
 - [Análise institucional](INSTITUTIONAL.md) — Lei 9.784/99 + LAC Art. 7º VII-VIII como precedente; decomposição Cₜ/Cᵩ/Cₚ.
-- [Crítica x10 v2](critica_x10_v2.md) — Sociólogo e Cientista Político como personas que validaram o reframe.
+- [Leitura crítica independente](critica_x10_v2.md) — os ângulos sociológico e de ciência política sobre o bem coletivo.
 - [Referências](REFERENCES.md) §"Coordenação coletiva e bens coletivos" — Olson, Ostrom, Coleman, Hardin, Heller.

@@ -1,4 +1,4 @@
-# Rescaling Leniency Programs for Digital Markets: A Whistleblower-as-a-Service Mechanism
+# Leniency Conditional on Critical Mass: A Conditional-Deposit Channel for Unilateral Conduct in Digital Markets
 
 <p class="deck">Versão web navegável do rascunho acadêmico. O PDF compilado a partir de <code>paper/main.tex</code> é o documento canônico para arbitragem; esta página apresenta o mesmo material na ordem do paper, preservando a estrutura argumentativa para revisão por pares.</p>
 
@@ -56,7 +56,7 @@ atuam sobre regimes constitucionais distintos.
 
 A IC-F\* é satisfazível *de lege lata* sob a Resolução CADE n.º 21/2018
 (Regime B), permitindo implementação por via infralegal. O Regime C
-(extensão da Lei n.º 13.608/2018) é juridicamente mais robusto mas exige
+(extensão da Lei n.º 13.608/2018, com a redação da Lei n.º 13.964/2019) é juridicamente mais robusto mas exige
 Congresso. O canal em si tem base autônoma no Art. 4º, II e III, da Lei n.º
 12.529/2011 c/c a Lei n.º 9.784/99 — o CADE pode disciplinar procedimento
 sem nova lei e sem depender da re-caracterização do Art. 12.
@@ -179,7 +179,7 @@ A charneira jurídica do Regime B, para o acoplamento monetário, é o **Art.
 
 A recompensa paga pela firma aos denunciantes *pode ser* re-caracterizada
 como ressarcimento extrajudicial sob este dispositivo — controvertido,
-sujeito à validação posterior pelo Judiciário (falsificador F6) — gerando o
+sujeito à validação posterior pelo Judiciário (o risco de anulação judicial da re-caracterização) — gerando o
 desconto $D$ sem mudança legal. **Crucialmente**: o canal em si dispensa o
 Art. 12, com base autônoma no Art. 4º da Lei 12.529 c/c Lei 9.784/99.
 
@@ -293,7 +293,7 @@ Assimetria de viabilidade 2024–2027: Congresso BR tem agenda concentrada em
 reforma tributária; PL 2768/2022 (telecomunicações) parado desde 2023.
 Regime C é **provavelmente infactível** salvo crise reputacional grande.
 Regime B depende de (i) prioridade interna no CADE, (ii) capacidade DEE/SG,
-(iii) aceitação judicial da re-caracterização sob Art. 12 (F6) — todas sob
+(iii) aceitação judicial da re-caracterização sob Art. 12 — todas sob
 arbítrio administrativo.
 
 **Coordenação inter-institucional CADE–CGU–MPF**: canal LCMC coexistiria com
@@ -327,14 +327,13 @@ re-caracterização do Art. 12 enfrentar resistência judicial.
    re-caracterização do Art. 12; paralelo DOJ-ATR confirma viabilidade da
    via administrativa.
 5. ABM identifica cinco vetores de quebra mensuráveis (TCC clássico
-   absorvente; anulação judicial F6; custo legal individual; massa crítica
+   absorvente; anulação judicial; custo legal individual; massa crítica
    inalcançável; erosão Coleman); **forma forte da Prop. 5 explicitamente
    refutada** pela varredura multi-seed.
 
 **Limites reconhecidos**: $N^\star \approx 1.679$ firmas é predição
 falsificável a verificar contra cadastro CADE real; Prop. 2 sob
-heterogeneidade segue conjectura aberta; 12 citações `[?]` aguardam
-verificação contra fonte primária; viabilidade política do Regime C é
+heterogeneidade segue conjectura aberta; viabilidade política do Regime C é
 baixa no horizonte 2024–2027; viabilidade do Regime B depende de decisão
 administrativa não anunciada nem em consulta pública.
 
@@ -370,8 +369,8 @@ pdflatex main && bibtex main && pdflatex main && pdflatex main
 Use `CITATION.cff` na raiz do repositório:
 
 ```
-APA: L. (2026). Rescaling Leniency Programs for Digital Markets:
-A Whistleblower-as-a-Service Mechanism. Working paper.
+APA: L. (2026). Leniency Conditional on Critical Mass:
+A Conditional-Deposit Channel for Unilateral Conduct in Digital Markets. Working paper.
 URL: https://github.com/freirelucas/waas-antitrust
 ```
 

@@ -61,7 +61,7 @@ class AutoridadeAgent(Agent):
         """Abertura simultânea quando massa crítica é atingida."""
 ```
 
-O `WaaSModel.step()` ativa o caminho v3 via flag opt-in:
+O `WaaSModel.step()` ativa este caminho via parâmetro opt-in:
 
 ```python
 # src/waas_antitrust/model.py — fase P2.5b
@@ -296,7 +296,7 @@ O **modelo** torna isto explícito: o parâmetro `D_disc_base_tcc` em `WaaSParam
 
 A re-caracterização da recompensa como "ressarcimento das vítimas" é uma construção jurídico-finalística. O Judiciário pode rejeitá-la — e a recusa pode vir anos depois do TCC ter sido assinado, **anulando-o retroativamente**. Quando isso acontece, a empresa perde o desconto e a multa cheia retorna como crédito ao erário.
 
-Este é precisamente o **falsificador F6** declarado no desenho. A defesa institucional contra ele é dupla. Em primeiro lugar, o Regime C — extensão da Lei 13.608/2018 via Congresso — elimina a controvérsia legal, custando voto político. Em segundo, mesmo em Regime B, o risco de anulação é uma propriedade do desenho que precisa ser dimensionada, não escondida.
+Este é precisamente o **risco de anulação judicial** declarado no desenho. A defesa institucional contra ele é dupla. Em primeiro lugar, o Regime C — extensão da Lei 13.608/2018 (com a redação da Lei 13.964/2019) via Congresso — elimina a controvérsia legal, custando voto político. Em segundo, mesmo em Regime B, o risco de anulação é uma propriedade do desenho que precisa ser dimensionada, não escondida.
 
 O **modelo** torna esse risco calibrável via `p_anulacao_tcc`. Em P4, todo TCC assinado é sorteado contra essa probabilidade; quando anulado, o contador `n_tcc_anulados` registra, a multa cheia volta ao erário, e o sistema perde a coordenação que o mecanismo construía. Em testes, $p_{\text{anulação}}$ alta faz o Regime B convergir para o Regime A — um falsificador quantitativo, não verbal.
 
@@ -338,16 +338,17 @@ aversion (parâmetro `peso_inequity_aversion`).
 **A consequência emergente é o break-even ético**: enquanto $\phi$ é
 baixa, FM se comporta como racional puro; quando $\phi$ ultrapassa um
 limiar tácito, o prêmio ético inverte o sinal da decisão — calar passa a
-ser desigualdade moral mais custosa do que falar. Não é hardcoded; é
+ser desigualdade moral mais custosa do que falar. Não é fixado por decreto no código; é
 propriedade emergente do mesmo agente Fehr-Schmidt que a literatura usa
 em jogos de barganha.
 
 O resultado central de Torsell (2026) — que FM **proliferaria** em
 populações HE+FM sob qualquer dinâmica payoff-monotone, com aprendizado
-intra-geracional via *fictitious play* — sugere que o canal ético não é
-uma curiosidade marginal; pode ser **a peça dominante** quando a massa
-crítica se forma. Modelar isto endogenamente é trabalho em aberto, e o
-catálogo de [cenários normativos](#) já oferece configurações que ativam
+intra-geracional via *fictitious play* — sugere, **em conjectura ainda não
+modelada endogenamente aqui**, que o canal ético não é uma curiosidade
+marginal e pode ser peça dominante quando a massa crítica se forma. Fechar
+esta conjectura é trabalho em aberto, e o
+catálogo de [cenários normativos](modelo_abm.md#5-atalho-cenarios-canonicos-23) já oferece configurações que ativam
 o canal.
 
 <span class="kicker">Camada 5 · Cascata</span>
@@ -363,7 +364,7 @@ Em prosa: a janela de adesão transforma a abertura do bloco em **evento Schelli
 
 O efeito jogo-teórico é dois: (i) a janela aumenta a captação de prova — mais trabalhadores cooperam, qualidade média da prova sobe; (ii) cria pressão antecipatória sobre quem está pensando em depositar para o canal em primeiro lugar. Mesmo quem prefere "esperar para ver" tem incentivo para depositar antes da abertura, porque saber-se na faixa 0 vale mais do que apostar em entrar na faixa 1 depois.
 
-Em código, a regra é uma fase nova P2.5c entre a abertura do escrow e a decisão da firma (P3). Sob `janela_adesao_pos_abertura = 0` (default), a fase é no-op e o modelo se comporta exatamente como antes — compat estrita.
+Em código, a regra é uma fase nova P2.5c entre a abertura do escrow e a decisão da firma (P3). Sob `janela_adesao_pos_abertura = 0` (default), a fase não altera nada e o modelo se comporta exatamente como antes.
 
 ```python
 # src/waas_antitrust/model.py — fase P2.5c
@@ -382,7 +383,7 @@ A decisão individual de aderir é a IR-W projetada para a faixa: o trabalhador 
 
 ## A corrida que faltava
 
-A leniência clássica funciona porque cria uma **corrida temporal** entre cúmplices: quem entrega primeiro escapa da multa, e cada conspirador, sabendo disso, antecipa-se ao outro. O **WaaS na sua forma original não tinha esta corrida**: o gatilho de massa crítica era binário (`k` denunciantes ⇒ a firma é notificada), o desconto da firma era constante na IC-F\*, a recompensa do trabalhador era constante na IR-W. A delação era um *ato*, não uma *corrida*.
+A leniência clássica funciona porque cria uma **corrida temporal** entre cúmplices: quem entrega primeiro escapa da multa, e cada conspirador, sabendo disso, antecipa-se ao outro. O **desenho, na formulação binária inicial, não tinha esta corrida**: o gatilho de massa crítica era binário (`k` denunciantes ⇒ a firma é notificada), o desconto da firma era constante na IC-F\*, a recompensa do trabalhador era constante na IR-W. A delação era um *ato*, não uma *corrida*.
 
 Sob o moat dos mercados digitais, a corrida clássica entre firmas **não tem onde acontecer** — a conduta é unilateral, sem cúmplice externo. A única corrida possível é **intra-firma**: entre os funcionários que viram a conduta. A LCMC institucionaliza isso e acopla a uma segunda corrida — **inter-firma** — calibrando ambas pelo mesmo gradiente Saito.
 
@@ -457,9 +458,9 @@ cascata de adesão e sinergia internacional com suas variantes) estão em [`mode
 | Cenário | Hipótese institucional |
 |---|---|
 | `status_quo` | Brasil hoje — sem canal de incentivo individual. |
-| `resolucao_pura` | Regime B — Art. 12 da Res. 21/2018; F6 calibrado em 10%. |
+| `resolucao_pura` | Regime B — Art. 12 da Res. 21/2018; risco de anulação judicial calibrado em 10%. |
 | `resolucao_mais_portaria_mte` | Regime B + portaria MTE com proteção trabalhista reforçada — `r_represalia` cai a 8%, `custo_legal` a 15%. |
-| `lei_waas_pura` | Regime C — Lei 13.608/2018 estendida; F6 = 0. |
+| `lei_waas_pura` | Regime C — Lei 13.608/2018 estendida; risco de anulação judicial nulo. |
 | `lei_waas_com_fundo_honorarios` | Regime C + fundo público para honorários (análogo IRS Whistleblower Office). |
 | `lei_waas_com_vesting_padrao` | Regime C + cláusula padrão de vesting acelerado (vesting acelerado universal); haircut IRPF+INSS realista. |
 | `mercado_digital_br_pareto` | Regime C com fatia de mercado distribuída em Pareto (α=1,16) — reflete moat de plataformas dominantes (iFood, Mercado Livre, Apple/Google). |
@@ -511,6 +512,8 @@ A página de [Limitações](limitacoes.md) sintetiza isso em linguagem acessíve
 
 <div class="ato-fim" markdown>
 **Fim do Ato 2.** Temos um desenho — com fórmula, exemplo numérico e três vetores de quebra calibráveis. Mas até aqui é tudo papel e equação. **Será que funciona em simulação?** O Ato 3 mostra o que acontece quando rodamos o modelo nos três regimes, em 20 firmas, ao longo de 40 trimestres.
+
+*Antes dos resultados, se quiser a fundamentação:* [Bem coletivo](bem_publico.md) (teoria da ação coletiva) · [Análise institucional](INSTITUTIONAL.md) (base jurídica e reserva de lei).
 
 [Ato 3: Resultados →](resultados.md)
 </div>

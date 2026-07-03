@@ -29,7 +29,7 @@ e neste documento; até lá, não há.
 - **Estágio:** rascunho de trabalho `v0.2.0-draft` (jun/2026). **Não citar como resultado final.**
 - **Paper:** [`paper/main.tex`](https://github.com/freirelucas/waas-antitrust/blob/main/paper/main.tex) em elaboração.
 - **Site:** mantido em <https://freirelucas.github.io/waas-antitrust/>, deploy automatizado a cada commit em `main` (ver [`DEPLOY.md`](https://github.com/freirelucas/waas-antitrust/blob/main/DEPLOY.md)).
-- **Mudanças recentes** consolidadas no [`CHANGELOG.md`](https://github.com/freirelucas/waas-antitrust/blob/main/CHANGELOG.md); estado interno de revisão e backlog em [`brainstorm de revisão`](brainstorm_revisao.md) e [`revisão por personas`](revisao_personas.md).
+- **Mudanças recentes** consolidadas no [`CHANGELOG.md`](https://github.com/freirelucas/waas-antitrust/blob/main/CHANGELOG.md).
 
 ## Licença
 
