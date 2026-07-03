@@ -16,12 +16,26 @@ repositório. Leia isto primeiro ao abrir uma sessão nova.
 
 ## 1. Onde paramos exatamente (o único fio em aberto)
 
-Todo o conteúdo — paper, site, modelo, testes — está **coerente e completo**
-para *circulação pública*. Resta **um** bloqueador mecânico, já diagnosticado
-com precisão nesta sessão mas **não corrigido** (o autor optou por encerrar e
-registrar):
+> **ATUALIZAÇÃO (sessão 03/07/2026, ramo `claude/leniencia-condicionada-massa-5ccysm`).**
+> O bloqueador descrito abaixo foi **corrigido pela opção C**: o parquet da
+> figura 03 (`results/alpha_erosao_grade.parquet`, ~5 KB, determinístico) foi
+> regenerado e versionado por exceção no `.gitignore`. As quatro figuras
+> regeneram a partir dele num checkout limpo (verificado localmente), e a
+> auditoria de integridade do paper não encontra mais bloqueadores de
+> compilação. **Resta só observar o verde:** o `paper.yml` só dispara em push a
+> `main` (não em ramo de feature) e o `workflow_dispatch` está fora do alcance
+> da integração desta sessão — logo o run verde e o artifact `paper/main.pdf`
+> serão confirmados no próximo push a `main`. Nesta sessão também foram
+> corrigidos os achados de três auditorias de leitura primária (navegação —
+> 6 cartões de persona davam 404; hierarquia LCMC>WaaS no título do espelho;
+> resíduo de meta-narrativa; fundamentação jurídica). O texto original do
+> bloqueador segue abaixo para registro histórico.
 
-> **O CI `paper.yml` está vermelho.** O PDF camera-ready não compila no CI.
+Todo o conteúdo — paper, site, modelo, testes — está **coerente e completo**
+para *circulação pública*. Restava **um** bloqueador mecânico, já diagnosticado
+com precisão (e agora corrigido — ver atualização acima):
+
+> **O CI `paper.yml` estava vermelho.** O PDF camera-ready não compilava no CI.
 
 ### Causa-raiz (confirmada por log do run 28679734682, sha `e24883c`)
 
