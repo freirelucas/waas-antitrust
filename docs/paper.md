@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Paper</em> · rascunho v0.2.0 · jun/2026 · não citar como definitivo</p>
 
-<p class="lede">Esta página acompanha <code>paper/main.tex</code> no repositório e está em iteração ativa. A versão atual tem todas as dez seções escritas; o §3 (Blocos construtivos) e o §4 (Análise comparada) ainda estão em primeira redação e podem mudar materialmente. O DOI Zenodo será emitido após o congelamento da versão de submissão (ver <a href="sobre/">Sobre</a> para a forma canônica provisória de citação). Para a leitura em cinco Atos no formato site (mais didática, com figuras embarcadas), começar pelo <a href="index/">Ato 1</a>.</p>
+<p class="lede">Esta página acompanha <code>paper/main.tex</code> no repositório. A versão atual tem as dez seções escritas e coerentes entre si; o texto segue sujeito a revisão até o congelamento da versão de submissão, mas nenhuma seção está incompleta. O DOI Zenodo será emitido nesse congelamento (ver <a href="sobre/">Sobre</a> para a forma canônica provisória de citação). Para a leitura em cinco Atos no formato site (mais didática, com figuras embarcadas), começar pelo <a href="index/">Ato 1</a>.</p>
 
 ## Sumário
 
@@ -15,7 +15,7 @@
 | 3 | Blocos construtivos | Spagnolo, Aubert-Rey-Kovacic, Dodd-Frank §922 |
 | 4 | Análise comparada | SEC, DOJ-ATR, DMA Tool, Diretiva 2019/1937, CADE |
 | 5 | O mecanismo LCMC | Canal + cinco fases P1-P4 + base normativa BR |
-| 6 | Modelo baseado em agentes | 3 classes de agente, calibração formal R03 |
+| 6 | Modelo baseado em agentes | 3 classes de agente, calibração formal |
 | 7 | Enquadramento cibernético | Ashby, variedade requisitada |
 | 8 | Pré-condição sociológica | Olson, Google Walkout, Haugen, NLRB |
 | 9 | Tradução política para o Brasil | Regimes B vs C, coordenação CADE-CGU-MPF |
@@ -197,11 +197,12 @@ tique (P0 atualização de detecção; P1–P4 acima).
 Calibração formal:
 - Gradiente Saito intra/inter-firma verbatim contra Saito (2021), 349 TCCs.
 - Capacidade institucional contra RIG/TCU 2022–2024 (180 servidores área-fim).
-- **Ponto ótimo R03 (Nelder-Mead, 5 seeds, 19 avaliações)**:
+- **Ponto ótimo da calibração formal (Nelder-Mead, 5 seeds, 19 avaliações)**:
   $(f_v^\star, t_c^\star) = (0{,}323;\, 0{,}481)$ produz 0,56 TCC/ano
   contra alvo normalizado 0,60 — **erro relativo 6,65%**, alvo dentro do IC
   bootstrap 95% $[0{,}200;\, 0{,}900]$. $N^\star$ implícito: 1.679 firmas
-  (predição falsificável).
+  (predição falsificável; sobrevive ao teste de sanidade — 73 investigações
+  instauradas em 2024 sobre N\* = 4,3% de cobertura anual, ordem plausível).
 
 ### Cinco proposições
 
