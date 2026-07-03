@@ -40,6 +40,10 @@ results/*.csv
 results/*.npz
 results/*.pkl
 !results/.gitkeep
+# Exceção: dado da figura 03 do paper (determinístico, ~5 KB, sustenta o PDF
+# publicado). Versionar segue o precedente dos JSON de calibração já rastreados
+# e garante que o paper.yml compile a partir de um checkout limpo do CI.
+!results/alpha_erosao_grade.parquet
 
 # Dados brutos (versionar via DVC ou similar se necessário)
 data/raw/*
