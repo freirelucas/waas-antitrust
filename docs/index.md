@@ -8,7 +8,7 @@
 
 [Ato 2 · O mecanismo](mecanismo.md) · [Simulador in-browser](brincar.md) · [Paper](paper.md)
 
-| R\$ 12,3 mi | 1.679 firmas | +1.363% | 364 testes |
+| R\$ 12,3 mi | 1.679 firmas | +1.363% | 385 testes |
 |:---:|:---:|:---:|:---:|
 | margem da firma sob TCC-WaaS para receita de R\$ 1 bi (cenário ilustrativo) | universo CADE implícito após a calibração formal (predição falsificável) | ΔW do Regime B sobre o A em bem-estar agregado (rodada multi-seed) | verdes em ~31 s · 23 figuras reproduzíveis · `mkdocs --strict` limpa |
 
@@ -196,6 +196,6 @@ LCMC sob Ostrom-Coleman-Olson · Prop. 5 refutada
 
 ---
 
-[![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE) [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/) [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/) [![364 testes](https://img.shields.io/badge/pytest-364%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions) [![Brincar in-browser](https://img.shields.io/badge/brincar-in--browser-27AE60)](brincar.md)
+[![Licença: CC BY-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--SA%204.0-blue.svg)](https://github.com/freirelucas/waas-antitrust/blob/main/LICENSE) [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/) [![Mesa 3.x](https://img.shields.io/badge/mesa-3.x-green.svg)](https://mesa.readthedocs.io/) [![385 testes](https://img.shields.io/badge/pytest-385%20passed-brightgreen)](https://github.com/freirelucas/waas-antitrust/actions) [![Brincar in-browser](https://img.shields.io/badge/brincar-in--browser-27AE60)](brincar.md)
 
 Este repositório acompanha um **artigo acadêmico em elaboração** — *Leniency Conditional on Critical Mass: A Conditional-Deposit Channel for Unilateral Conduct in Digital Markets*. Não citar como resultado final. Veja `CITATION.cff` para metadados estruturados (Zenodo via release futura).

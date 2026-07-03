@@ -225,7 +225,7 @@ cd waas-antitrust && pip install -e ".[dev]"
 # Figura 03 (a deste Ato)
 python scripts/gerar_figura_dissuasao.py
 
-# Suite completa de testes (331 testes, ~25s)
+# Suite completa de testes (385 testes, ~25s)
 pytest -x -q -m "not slow" tests/
 
 # Varredura Sobol paper-grade (várias horas)

@@ -34,7 +34,7 @@ from waas_antitrust.model import WaaSModel, WaaSParametros
 params = WaaSParametros(regime="B", seed=42, n_tiques=40)
 df = WaaSModel(params).executar()
 
-# DataFrame com 40 linhas × 34 colunas
+# DataFrame com 40 linhas × 38 colunas
 print(df[["n_sinais", "n_violadoras_ativas", "dano_acumulado",
           "capital_social_residual", "valor_dissuasao_difusa_acum"]].tail())
 ```
@@ -170,7 +170,7 @@ waas-sobol --n-base 1024 --jobs -1 --out results/sobol_full.parquet
 Antes de propor PR, rodar:
 
 ```bash
-pytest -x -q -m "not slow" tests/   # 331 testes, ~25s
+pytest -x -q -m "not slow" tests/   # 385 testes, ~25s
 ruff check src/ tests/ scripts/
 black --check src/ tests/ scripts/
 mkdocs build --strict               # site sem warnings

@@ -1,6 +1,6 @@
 # O modelo ABM em detalhe
 
-<p class="deck">Referência completa do modelo baseado em agentes (Mesa 3.x) que sustenta a LCMC: três classes de agente, cinquenta e poucos parâmetros expostos, 364 testes verdes, comportamento histórico preservado por design por trás de cada parâmetro novo (opt-in via <em>flag</em>).</p>
+<p class="deck">Referência completa do modelo baseado em agentes (Mesa 3.x) que sustenta a LCMC: três classes de agente, cinquenta e poucos parâmetros expostos, 385 testes verdes, comportamento histórico preservado por design por trás de cada parâmetro novo (opt-in via <em>flag</em>).</p>
 
 | § | Seção | O que tem |
 |---|---|---|
