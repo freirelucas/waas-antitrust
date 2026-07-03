@@ -9,10 +9,10 @@ Esta página é o pano de fundo conceitual da LCMC. Responde a uma pergunta que 
 | Instrumento | Quem paga | Para quem | Reserva normativa | Onde no código |
 |---|---|---|---|---|
 | **Canal puro** | — | — | Art. 4º II/III Lei 12.529 + Lei 9.784 (ordinária) | `usar_escrow_explicito=True` |
-| **Recompensa via TCC** (WaaS) | Firma | Trabalhador | Art. 12 Res. CADE 21/2018 (controvertível, F6) | `model.py` P3 |
+| **Recompensa via TCC** (WaaS) | Firma | Trabalhador | Art. 12 Res. CADE 21/2018 (controvertível) | `model.py` P3 |
 | **Vesting acelerado** (Hirschman) | Firma (equity) | Trabalhador | Reserva Cₜ trabalhista (lei) | `hirschman.py` |
-| **Crédito tributário** | Estado (renúncia) | Trabalhador | Reserva Cᵩ tributária (LC + LRF) | *stub* declarativo |
-| **Leniência criminal individual** | Estado (não-persecução) | Trabalhador | Reserva Cₚ penal (lei estrita) | *stub* declarativo |
+| **Crédito tributário** | Estado (renúncia) | Trabalhador | Reserva Cᵩ tributária (LC + LRF) | não implementado (declarativo) |
+| **Leniência criminal individual** | Estado (não-persecução) | Trabalhador | Reserva Cₚ penal (lei estrita) | não implementado (declarativo) |
 
 O canal puro carrega o mecanismo sozinho — os outros quatro elevam a taxa de adesão. As duas leituras conceituais que seguem (Samuelson e Coleman) servem para **diagnosticar fragilidades** do desenho (bem coletivo difícil de internalizar; risco de erosão por uso instrumental), não para sustentar o mecanismo, que tem outra ancoragem.
 
@@ -42,7 +42,7 @@ constitutiva nova, e sem precisar instrumento monetário.
       leitores com background em economia clássica.
     - **Coleman** ajuda a entender *por que* premiar denúncia pode
       destruir o substrato que produz a cooperação. Motiva a
-      Proposição 5 candidata (R26), falsificável via `alpha_erosao`.
+      Proposição 5 candidata, falsificável via `alpha_erosao`.
 
     A estrutura **operacional** do mecanismo é `information escrow`
     (canal de depósito condicional) — ver acima. As leituras abaixo
@@ -54,7 +54,7 @@ pela primeira.
 <figure markdown>
   ![Cascata sigmoidal de formação de massa crítica ao longo de 40 tiques](img/04_cascata.png){ .figura-conceitual }
   <figcaption>
-    A cooperação interna emerge por cascata. A curva mostra a fração cumulativa de trabalhadores cooperando ao longo de 40 trimestres; quando ela cruza o gatilho <code>q_min</code> (LCMC, R20), a firma atinge massa crítica interna e ganha posição na fila de leniência. O pagamento via TCC vem <strong>depois</strong> desta cascata — não antes. Esta é a leitura sob reframe.
+    A cooperação interna emerge por cascata. A curva mostra a fração cumulativa de trabalhadores cooperando ao longo de 40 trimestres; quando ela cruza o gatilho <code>q_min</code> (LCMC), a firma atinge massa crítica interna e ganha posição na fila de leniência. O pagamento via TCC vem <strong>depois</strong> desta cascata — não antes.
   </figcaption>
 </figure>
 
@@ -94,7 +94,7 @@ coordenação que torna sua provisão difícil**.
 <figure markdown>
   ![Trajetórias de capital social residual sob três valores de alpha_erosao em Regime B](img/05_erosao_coleman.png){ .figura-empirica }
   <figcaption>
-    Trajetórias de <code>capital_social_residual</code> para três valores de <code>alpha_erosao</code> (R26). Sem erosão (preto, $\alpha=0$), o capital social fica constante em 1.0. Com erosão moderada (verde, $\alpha=0.2$), degrada lentamente. Com erosão forte (vermelho, $\alpha=0.5$), colapsa em poucos tiques. A Proposição 5 candidata afirma que existe $\alpha^\star$ tal que para $\alpha > \alpha^\star$, o Regime B colapsa em A após N tiques.
+    Trajetórias de <code>capital_social_residual</code> para três valores de <code>alpha_erosao</code>. Sem erosão (preto, $\alpha=0$), o capital social fica constante em 1.0. Com erosão moderada (verde, $\alpha=0.2$), degrada lentamente. Com erosão forte (vermelho, $\alpha=0.5$), colapsa em poucos tiques. A Proposição 5 candidata afirma que existe $\alpha^\star$ tal que para $\alpha > \alpha^\star$, o Regime B colapsa em A após N tiques.
   </figcaption>
 </figure>
 
@@ -120,11 +120,11 @@ adicionais não dissuadidas:
 <figure markdown>
   ![Painel 1x2 da Proposição 5 candidata: capital social residual e dano relativo](img/08_proposicao_5.png){ .figura-empirica }
   <figcaption>
-    Proposição 5 candidata sob multi-seed. <strong>(A)</strong> Capital social residual para 4 valores de $\alpha_\text{erosão}$ (média entre 5 seeds, ± 1 std); linha pontilhada em 0.5 é patamar crítico hipotético (calibrar em R03). <strong>(B)</strong> Dano acumulado relativo ao baseline $\alpha=0$. Se Coleman estiver direcionalmente certo, o painel B mostra crescimento monotônico com $\alpha$. Linha tracejada em 1.0 é o baseline. A leitura epistêmica: o painel apresenta evidência direcional, não calibrada — o valor crítico $\alpha^\star$ permanece como conjectura aberta (R26).
+    Proposição 5 candidata sob multi-seed. <strong>(A)</strong> Capital social residual para 4 valores de $\alpha_\text{erosão}$ (média entre 5 seeds, ± 1 std); linha pontilhada em 0.5 é patamar crítico hipotético (a calibrar). <strong>(B)</strong> Dano acumulado relativo ao baseline $\alpha=0$. Se Coleman estiver direcionalmente certo, o painel B mostra crescimento monotônico com $\alpha$. Linha tracejada em 1.0 é o baseline. A leitura epistêmica: o painel apresenta evidência direcional, não calibrada — o valor crítico $\alpha^\star$ permanece como conjectura aberta.
   </figcaption>
 </figure>
 
-A leitura sob v3: o painel (B) mostra que mesmo erosão moderada
+A leitura: o painel (B) mostra que mesmo erosão moderada
 ($\alpha=0.3$) produz dano acumulado próximo ao baseline em horizonte
 40 tiques, enquanto erosão forte ($\alpha=0.7$) produz crescimento
 detectável. O efeito **existe direcionalmente** mas a magnitude
@@ -140,20 +140,23 @@ Proposição 5 candidata** na configuração testada:
 <figure markdown>
   ![Painel 1x2 da falsificação da Prop. 5 candidata: dano acumulado por alpha contra piso A e capital social residual final](img/10_alpha_erosao_limiar.png){ .figura-empirica .status-falsificacao }
   <figcaption>
-    Falsificação numérica da Proposição 5 candidata (forma forte). <strong>(A)</strong> Mediana de <code>dano_acumulado</code> por $\alpha_\text{erosão}$ no Regime B (banda IC bootstrap 95%) contra o piso do Regime A (linha tracejada). <strong>(B)</strong> Mediana de <code>capital_social_residual</code> final. O substrato cooperativo (B) <strong>sim</strong> é erodido por $\alpha$ crescente — a forma fraca de Coleman se confirma. Mas o dano agregado (A) permanece ~8× menor que o piso A até $\alpha=0.9$: a dissuasão endógena (R01) compensa a erosão do substrato no nível agregado. A forma forte da Proposição 5 ("B colapsa em A") <strong>não se materializa</strong> nesta grade.
+    Falsificação numérica da Proposição 5 candidata (forma forte). <strong>(A)</strong> Mediana de <code>dano_acumulado</code> por $\alpha_\text{erosão}$ no Regime B (banda IC bootstrap 95%) contra o piso do Regime A (linha tracejada). <strong>(B)</strong> Mediana de <code>capital_social_residual</code> final. O substrato cooperativo (B) <strong>sim</strong> é erodido por $\alpha$ crescente — a forma fraca de Coleman se confirma. Mas o dano agregado (A) permanece ~8× menor que o piso A até $\alpha=0.9$: a dissuasão endógena compensa a erosão do substrato no nível agregado. A forma forte da Proposição 5 ("B colapsa em A") <strong>não se materializa</strong> nesta grade.
   </figcaption>
 </figure>
 
-A implicação é dupla: (i) o reframe Coleman segue **descritivamente
+A implicação é dupla: (i) a leitura Coleman segue **descritivamente
 correto** — a instrumentalização erode mensuravelmente o substrato
 cooperativo; (ii) mas o efeito agregado é **dominado pela dissuasão
 endógena** — uma firma com `p_perc` elevada acaba violando menos mesmo
-com o substrato erodido. A Proposição 5, sob v3, deve ser **rebaixada
+com o substrato erodido. A Proposição 5 deve ser **rebaixada
 para forma fraca**: "instrumentalizar erode o substrato", sem afirmação
 forte sobre colapso de regime.
 
-A calibração formal contra dados históricos (R03) decidirá se a
+A calibração formal contra dados históricos decidirá se a
 Proposição 5 (forma fraca) é verificada ou rejeitada.
+
+### Capital social, na definição de Coleman
+
 Coleman (*Foundations of Social Theory*, 1990, cap. 12) define **capital
 social** como bem coletivo **produzido como subproduto de relações de
 obrigação** entre pessoas que se conhecem e dependem umas das outras.
@@ -165,7 +168,7 @@ destruído pela sua própria instrumentalização**. Quando a confiança
 horizontal entre colegas vira moeda regulatória, a moeda corrói a
 confiança que a produziu.
 
-Por isso o reframe correto não é "massa crítica é bem quase-público"
+Por isso a leitura correta não é "massa crítica é bem quase-público"
 puro; é:
 
 > **Massa crítica de cooperação interna é capital social organizacional cuja internalização institucional tem risco de erosão endógena.**
@@ -201,12 +204,12 @@ e regime jurídico próprio.
 | Instrumento | O que internaliza | Reserva constitucional | Regime mínimo | Status no código |
 |---|---|---|---|---|
 | **Recompensa via TCC (WaaS)** | parte do valor da cooperação como ressarcimento extrajudicial | Art. 22 I (lei ordinária) | B (Resolução) ou C | implementado em `model.py` P3 |
-| **Vesting Hirschman** | custo de êxodo coletivo como ameaça crível pré-denúncia | Art. 22 I (cláusula contratual padrão exige lei) | **Cₜ trabalhista** | `hirschman.py` (R07) |
-| **Crédito tributário** | retorno público ao denunciante via renúncia fiscal | Art. 146 LC (IRPJ/CSLL) + Art. 150 §6º (benefício) + LRF Art. 14 | **Cᵩ tributária-LC** | stub (R22, novo) |
-| **Leniência criminal individual** | redução do risco de tipificação como partícipe | Art. 5º XXXIX (penal estrita) | **Cₚ penal** | stub (R23, novo) |
+| **Vesting Hirschman** | custo de êxodo coletivo como ameaça crível pré-denúncia | Art. 22 I (cláusula contratual padrão exige lei) | **Cₜ trabalhista** | `hirschman.py` |
+| **Crédito tributário** | retorno público ao denunciante via renúncia fiscal | Art. 146 LC (IRPJ/CSLL) + Art. 150 §6º (benefício) + LRF Art. 14 | **Cᵩ tributária-LC** | não implementado (declarativo) |
+| **Leniência criminal individual** | redução do risco de tipificação como partícipe | Art. 5º XXXIX (penal estrita) | **Cₚ penal** | não implementado (declarativo) |
 
 A decomposição do **Regime C** em três sub-regimes (Cₜ, Cᵩ, Cₚ) atende
-à crítica do Adv B: "exigir lei" não é categoria homogênea no direito
+a uma objeção de direito constitucional: "exigir lei" não é categoria homogênea no direito
 constitucional brasileiro.
 
 ## Caveats — onde Olson e Ostrom falham para este caso
@@ -221,7 +224,7 @@ de Ostrom (*Governing the Commons*, 1990) que a LCMC **não** satisfaz:
 - **P8 (empreendimentos aninhados)**: coordenação CADE-MPF-MPT é institucionalmente inexistente.
 
 A LCMC é, no vocabulário de Ostrom, um *commons imposto de cima*
-(top-down), não governado de baixo. A teoria prevê degradação. O reframe
+(top-down), não governado de baixo. A teoria prevê degradação. A leitura
 não esconde isso; explicita que esse é o eixo de pesquisa aberto e
 documenta como falsificadores futuros.
 

@@ -13,7 +13,7 @@ A figura abaixo é a **saída direta** do `WaaSModel.executar()`. Não foi estil
 <figure markdown>
   ![Dissuasão endógena e bem-estar — 20 firmas, 40 tiques, 3 regimes lado a lado](img/03_dissuasao_bem_estar.png){ .figura-empirica }
   <figcaption>
-    <strong>(A)</strong> Violadoras ativas ao longo do tempo. Regime A (cinza) sobe e estabiliza em 18; regimes B/C (verde/roxo) caem a zero em ~17 tiques. <strong>(B)</strong> Bem-estar social agregado (mais alto = melhor). ΔW (B sobre A) = +1363%. Mesma seed (11), mesmos parâmetros — única diferença é o regime regulatório.
+    <strong>(A)</strong> Violadoras ativas ao longo do tempo. Regime A (cinza) sobe e estabiliza em 18; regimes B/C (verde/roxo) caem a zero em ~17 tiques. <strong>(B)</strong> Bem-estar social agregado (mais alto = melhor). ΔW (B sobre A) = +1.363%. Mesma seed (11), mesmos parâmetros — única diferença é o regime regulatório.
   </figcaption>
 </figure>
 
@@ -58,7 +58,7 @@ Três fatos brutos saltam:
 
 1. **Violadoras ativas no fim do horizonte**: A=10, B=0. Em A o sistema convergiu para "violar é o equilíbrio"; em B convergiu para "ninguém viola".
 2. **Dano acumulado (40 tiques)**: A=370, B=20. Razão A/B = **18,5×**. Não é da figura — é da soma direta do reporter `dano_acumulado`.
-3. **Sinalização esporádica em B** (tique 38: 14 sinais → 1 firma notificada): mesmo depois de a cascata original ter feito violadoras=0, o canal continua ativo. O sistema funciona como "policia adormecida" — não precisa estar disparando o tempo todo para dissuadir.
+3. **Sinalização esporádica em B** (tique 38: 14 sinais → 1 firma notificada): mesmo depois de a cascata original ter feito violadoras=0, o canal continua ativo. O sistema funciona como "polícia adormecida" — não precisa estar disparando o tempo todo para dissuadir.
 
 ## A anatomia dos reporters
 
@@ -225,7 +225,7 @@ cd waas-antitrust && pip install -e ".[dev]"
 # Figura 03 (a deste Ato)
 python scripts/gerar_figura_dissuasao.py
 
-# Suite completa de testes (385 testes, ~25s)
+# Suite completa de testes (385 testes, ~31s)
 pytest -x -q -m "not slow" tests/
 
 # Varredura Sobol paper-grade (várias horas)

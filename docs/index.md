@@ -4,7 +4,7 @@
 
 <p class="byline"><em><a href="sobre/">L.</a></em> · <a href="sobre/">Rascunho v0.2.0</a> · jun/2026 · CC BY-SA 4.0</p>
 
-<p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a LCMC — desenhada para esse domínio.</p>
+<p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a **Leniência Condicionada à Massa Crítica** (LCMC) — desenhada para esse domínio.</p>
 
 [Ato 2 · O mecanismo](mecanismo.md) · [Simulador in-browser](brincar.md) · [Paper](paper.md) · [Sobre](sobre.md)
 
@@ -28,7 +28,7 @@ Em mercados digitais, no entanto, o abuso costuma vir de **uma única empresa** 
 
 A informação sobre essas práticas existe **dentro da própria empresa** — em conversas no Slack, na ata da reunião do comitê de produto, no slide-deck do time de aquisições. Mas ela não chega ao CADE. No Brasil de hoje, o trabalhador que falaria arrisca emprego, carreira, tranquilidade — e ganha **nada de previsível** em troca.
 
-Os quatro exemplos acima são caso individual de uma lista mais longa: o projeto cataloga 28 condutas digitais unilaterais com taxonomia, taxa de observabilidade e estimativa de massa crítica em [Catálogo de condutas digitais](condutas.md). Para a definição precisa de "canal", "escrow", "massa crítica" e "abertura simultânea", ver [Glossário](glossario.md) e [Terminologia canônica](TERMINOLOGIA.md).
+Os quatro exemplos acima são apenas quatro casos de uma lista mais longa: o projeto cataloga 28 condutas digitais unilaterais com taxonomia, taxa de observabilidade e estimativa de massa crítica em [Catálogo de condutas digitais](condutas.md). Para a definição precisa de "canal", "escrow", "massa crítica" e "abertura simultânea", ver [Glossário](glossario.md) e [Terminologia canônica](TERMINOLOGIA.md).
 
 > A leniência só funciona quando há cumplicidade entre firmas. Quando a infração é unilateral, é como esperar que o ladrão se entregue porque tem medo do espelho.
 
@@ -64,7 +64,7 @@ Quando o canal abre (massa crítica atingida), o procedimento administrativo se 
 
 | Instrumento incremental | Quem paga | Para quem | Quando |
 |---|---|---|---|
-| **WaaS — recompensa via TCC** | Firma | Trabalhador | Ex-post: firma paga sob TCC; pagamento re-caracterizado como ressarcimento (Art. 12 Res. 21/2018) |
+| **WaaS (Whistleblower-as-a-Service) — recompensa via TCC** | Firma | Trabalhador | Ex-post: firma paga sob TCC; pagamento re-caracterizado como ressarcimento (Art. 12 Res. 21/2018) |
 | **Hirschman — vesting acelerado** | Firma (via equity) | Trabalhador | Ex-ante: cláusula contratual dispara ao gatilho de ação coletiva |
 | **Crédito tributário** | Estado (renúncia fiscal) | Trabalhador | Pós-instauração (ainda não implementado) |
 | **Leniência criminal individual** | Estado (não-persecução) | Trabalhador-partícipe | Pós-instauração (ainda não implementado) |
@@ -79,7 +79,7 @@ A figura abaixo é a **saída literal** de uma execução do modelo computaciona
 
 ![Dissuasão endógena e bem-estar — 3 regimes ao longo de 40 trimestres](img/03_dissuasao_bem_estar.png)
 
-**(A)** Violadoras ativas ao longo do tempo: regime A (cinza) cresce e estabiliza alto; regimes B/C (verde/roxo) caem a zero em ~17 tiques. **(B)** Bem-estar social agregado. ΔW (B sobre A) = +1363%.
+**(A)** Violadoras ativas ao longo do tempo: regime A (cinza) cresce e estabiliza alto; regimes B/C (verde/roxo) caem a zero em ~17 tiques. **(B)** Bem-estar social agregado. ΔW (B sobre A) = +1.363%.
 
 <aside class="dado-destaque" markdown>
 <strong>+1.363%</strong>

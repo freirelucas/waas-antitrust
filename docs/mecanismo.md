@@ -42,7 +42,7 @@ formalização contemporânea está em Ayres & Unkovic (2012), *Information Escr
 *Michigan Law Review* vol. 111 p. 145; a aplicação ao antitruste brasileiro com o
 CADE como custodiante é a contribuição deste projeto.
 
-No modelo computacional, o canal é implementado em duas camadas. A primeira apenas registra que uma firma atingiu massa crítica agregada, sem rastrear a identidade de cada depositante. A segunda carrega o escrow individual dentro da autoridade: cada sinal vira um depósito identificado, e a abertura simultânea colapsa os N depósitos em um caso processual único. Há também uma janela de expiração — o intervalo máximo (o "Δt" da definição) que um depósito permanece selado antes de vencer, com o valor padrão configurado para escrow indefinido, na leitura da plataforma Callisto.
+No modelo computacional, o canal é implementado em duas camadas. A primeira apenas registra que uma firma atingiu massa crítica agregada, sem rastrear a identidade de cada depositante. A segunda carrega o escrow individual dentro da autoridade: cada sinal vira um depósito identificado, e a abertura simultânea colapsa os N depósitos em um caso processual único. Há também uma janela de expiração — o intervalo máximo (o "Δt" da definição) que um depósito permanece selado antes de vencer, com o valor padrão configurado para escrow indefinido, espelhando a plataforma Callisto.
 
 ```python
 # src/waas_antitrust/agents.py — AutoridadeAgent
@@ -131,7 +131,7 @@ Sob a LCMC, o **substrato cooperativo** é o que importa. Mas a cooperação cus
 
 | Instrumento | Direção do pagamento | Reserva constitucional · regime |
 |---|---|---|
-| 💰 **WaaS — recompensa via TCC** | Firma → trabalhador; pagamento entra como atenuante. Aplicação direta da IC-F\* (Camada 3) | Art. 22 I; regime B ou C |
+| 💰 **WaaS (Whistleblower-as-a-Service) — recompensa via TCC** | Firma → trabalhador; pagamento entra como atenuante. Aplicação direta da IC-F\* (Camada 3) | Art. 22 I; regime B ou C |
 | 🚪 **Hirschman — vesting acelerado** | Firma → trabalhador via equity; cláusula contratual padrão; ameaça crível de êxodo coletivo dissuade em P0 e amplia IC-F\* em P3 | Art. 22 I; regime Cₜ |
 | 🧾 **Crédito tributário** | Estado → trabalhador via renúncia fiscal; análogo limitado ao IRS Whistleblower (26 U.S.C. §7623) | LC + LRF; regime Cᵩ (ainda não implementado) |
 | ⚖️ **Leniência criminal individual** | Estado → trabalhador via imunidade penal; não-persecução do partícipe cooperador | Art. 5º XXXIX penal estrita; regime Cₚ (ainda não implementado) |
@@ -302,7 +302,7 @@ O **modelo** torna esse risco calibrável via `p_anulacao_tcc`. Em P4, todo TCC 
 
 #### Vetor C: e os advogados dos denunciantes?
 
-Esta é uma crítica que custumeiramente passa em branco e merece resposta direta. **Sim**, o denunciante terá custos legais: advogado para reivindicar a recompensa, defesa em eventual ação trabalhista por represália, e — em hipótese pior — defesa criminal se for caracterizado como **partícipe** da conduta (a colisão dura com o Art. 86 da Lei 12.529/2011, território de leniência clássica).
+Esta é uma crítica que costumeiramente passa em branco e merece resposta direta. **Sim**, o denunciante terá custos legais: advogado para reivindicar a recompensa, defesa em eventual ação trabalhista por represália, e — em hipótese pior — defesa criminal se for caracterizado como **partícipe** da conduta (a colisão dura com o Art. 86 da Lei 12.529/2011, território de leniência clássica).
 
 Três cenários institucionais são possíveis, e implicam calibrações diferentes:
 
@@ -323,7 +323,7 @@ não decide pelo mesmo cálculo de quem está sozinho.
 O modelo agora incorpora isso explicitamente, baseado em **Torsell (2026,
 *Theory and Decision*)** e na teoria de inequity aversion de **Fehr &
 Schmidt (1999)**. Um quinto arquétipo — `"fairminded"` — entra ao lado dos
-quatro de Hokamp-Pickhardt (ético, imitativo, racional, aleatório). O FM
+quatro de Hokamp-Pickhardt (ético, imitativo, racional, aleatório); um sexto, o oportunista, entra na análise adversarial de uso extrativo. O FM
 agente computa o payoff racional clássico **e** adiciona um prêmio ético
 proporcional à fração de pares já sinalizando:
 
@@ -362,7 +362,7 @@ A lógica é direta. No instante da abertura, os depositantes originais — aque
 
 Em prosa: a janela de adesão transforma a abertura do bloco em **evento Schelling reverso**. No instante zero, a firma já sabe que vai ser notificada — não há mais dúvida sobre o gatilho. Mas para cada trabalhador que tinha hesitado, agora há uma escolha clara: aderir já (e levar desconto alto) ou esperar (e ver o desconto cair tique a tique). É o mesmo dispositivo da fila clássica de leniência operado **dentro da firma já aberta**, sem precisar de outro cartel para servir de gatilho.
 
-O efeito jogo-teórico é dois: (i) a janela aumenta a captação de prova — mais trabalhadores cooperam, qualidade média da prova sobe; (ii) cria pressão antecipatória sobre quem está pensando em depositar para o canal em primeiro lugar. Mesmo quem prefere "esperar para ver" tem incentivo para depositar antes da abertura, porque saber-se na faixa 0 vale mais do que apostar em entrar na faixa 1 depois.
+O efeito jogo-teórico é duplo: (i) a janela aumenta a captação de prova — mais trabalhadores cooperam, qualidade média da prova sobe; (ii) cria pressão antecipatória sobre quem está pensando em depositar para o canal em primeiro lugar. Mesmo quem prefere "esperar para ver" tem incentivo para depositar antes da abertura, porque saber-se na faixa 0 vale mais do que apostar em entrar na faixa 1 depois.
 
 Em código, a regra é uma fase nova P2.5c entre a abertura do escrow e a decisão da firma (P3). Sob `janela_adesao_pos_abertura = 0` (default), a fase não altera nada e o modelo se comporta exatamente como antes.
 
@@ -385,7 +385,7 @@ A decisão individual de aderir é a IR-W projetada para a faixa: o trabalhador 
 
 A leniência clássica funciona porque cria uma **corrida temporal** entre cúmplices: quem entrega primeiro escapa da multa, e cada conspirador, sabendo disso, antecipa-se ao outro. O **desenho, na formulação binária inicial, não tinha esta corrida**: o gatilho de massa crítica era binário (`k` denunciantes ⇒ a firma é notificada), o desconto da firma era constante na IC-F\*, a recompensa do trabalhador era constante na IR-W. A delação era um *ato*, não uma *corrida*.
 
-Sob o moat dos mercados digitais, a corrida clássica entre firmas **não tem onde acontecer** — a conduta é unilateral, sem cúmplice externo. A única corrida possível é **intra-firma**: entre os funcionários que viram a conduta. A LCMC institucionaliza isso e acopla a uma segunda corrida — **inter-firma** — calibrando ambas pelo mesmo gradiente Saito.
+Sob o fosso competitivo dos mercados digitais, a corrida clássica entre firmas **não tem onde acontecer** — a conduta é unilateral, sem cúmplice externo. A única corrida possível é **intra-firma**: entre os funcionários que viram a conduta. A LCMC institucionaliza isso e acopla a uma segunda corrida — **inter-firma** — calibrando ambas pelo mesmo gradiente Saito.
 
 ### Corrida intra-firma (entre trabalhadores)
 
@@ -451,8 +451,8 @@ trata cada alteração normativa como um **cenário comparável**: um conjunto
 nomeado de sobrescritas de parâmetros, executável e reportável.
 
 O catálogo (módulo `waas_antitrust.cenarios`) contém **27 cenários
-canônicos**. A tabela abaixo lista os 9 que cobrem a malha institucional
-brasileira; os outros 18 (generalidade EUA/UE, canal puro, erosão Coleman,
+canônicos**. A tabela abaixo lista os 11 que cobrem a malha institucional
+brasileira; os outros 16 (generalidade EUA/UE, canal puro, erosão Coleman,
 cascata de adesão e sinergia internacional com suas variantes) estão em [`modelo_abm.md`](modelo_abm.md) §5.
 
 | Cenário | Hipótese institucional |
@@ -463,7 +463,7 @@ cascata de adesão e sinergia internacional com suas variantes) estão em [`mode
 | `lei_waas_pura` | Regime C — Lei 13.608/2018 estendida; risco de anulação judicial nulo. |
 | `lei_waas_com_fundo_honorarios` | Regime C + fundo público para honorários (análogo IRS Whistleblower Office). |
 | `lei_waas_com_vesting_padrao` | Regime C + cláusula padrão de vesting acelerado (vesting acelerado universal); haircut IRPF+INSS realista. |
-| `mercado_digital_br_pareto` | Regime C com fatia de mercado distribuída em Pareto (α=1,16) — reflete moat de plataformas dominantes (iFood, Mercado Livre, Apple/Google). |
+| `mercado_digital_br_pareto` | Regime C com fatia de mercado distribuída em Pareto (α=1,16) — reflete o fosso competitivo de plataformas dominantes (iFood, Mercado Livre, Apple/Google). |
 | `cenario_sancao_dura` | Regime C + multa por descumprimento de TCC = 2× sanção base. |
 | **`cenario_corrida_leniencia`** | **LCMC plena** — Regime C + `modo_corrida=True` + `q_min=10%` + janela 4 tiques + decaimento Saito. Ativa as duas corridas acopladas (intra-firma + inter-firma) descritas em "A corrida que faltava". |
 | **`apenas_canal_sem_instrumento`** | **Canal puro** — Regime B + `usar_escrow_explicito=True` + `W_mult=0` + `D_disc=0`. Isola o canal: testa se sozinho carrega o mecanismo. |
@@ -508,7 +508,7 @@ Há pendências que o modelo, sozinho, não resolve. Estão rastreadas em [Decis
 - **Condição de pagamento completa** — a forma usada é simplificada; a versão completa compara a recompensa mais a sanção esperada sob pagamento contra a sanção esperada sem pagamento.
 - **Distribuição de fatia de mercado** — hoje uniforme; em mercados digitais o dano é de cauda longa (Pareto ou lognormal).
 
-A página de [Limitações](limitacoes.md) sintetiza isso em linguagem acessível; a [Crítica x10](critica_x10.md) detalha o que oito revisores externos apontaram.
+A página de [Limitações](limitacoes.md) sintetiza isso em linguagem acessível; uma [leitura crítica independente](critica_x10.md) detalha o que oito revisores externos apontaram.
 
 <div class="ato-fim" markdown>
 **Fim do Ato 2.** Temos um desenho — com fórmula, exemplo numérico e três vetores de quebra calibráveis. Mas até aqui é tudo papel e equação. **Será que funciona em simulação?** O Ato 3 mostra o que acontece quando rodamos o modelo nos três regimes, em 20 firmas, ao longo de 40 trimestres.
