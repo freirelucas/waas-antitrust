@@ -16,20 +16,25 @@ repositório. Leia isto primeiro ao abrir uma sessão nova.
 
 ## 1. Onde paramos exatamente (o único fio em aberto)
 
-> **ATUALIZAÇÃO (sessão 03/07/2026, ramo `claude/leniencia-condicionada-massa-5ccysm`).**
-> O bloqueador descrito abaixo foi **corrigido pela opção C**: o parquet da
-> figura 03 (`results/alpha_erosao_grade.parquet`, ~5 KB, determinístico) foi
-> regenerado e versionado por exceção no `.gitignore`. As quatro figuras
-> regeneram a partir dele num checkout limpo (verificado localmente), e a
-> auditoria de integridade do paper não encontra mais bloqueadores de
-> compilação. **Resta só observar o verde:** o `paper.yml` só dispara em push a
-> `main` (não em ramo de feature) e o `workflow_dispatch` está fora do alcance
-> da integração desta sessão — logo o run verde e o artifact `paper/main.pdf`
-> serão confirmados no próximo push a `main`. Nesta sessão também foram
-> corrigidos os achados de três auditorias de leitura primária (navegação —
-> 6 cartões de persona davam 404; hierarquia LCMC>WaaS no título do espelho;
-> resíduo de meta-narrativa; fundamentação jurídica). O texto original do
-> bloqueador segue abaixo para registro histórico.
+> **ATUALIZAÇÃO (sessão 03/07/2026, ramo `claude/leniencia-condicionada-massa-5ccysm`,
+> mesclado em `main`).** O `paper.yml` está **VERDE** (run 28685008638, sha
+> `b4a2c11`) e publica `paper/main.pdf` (~208 KB) — o entregável camera-ready.
+> Foram removidas **duas** camadas de bloqueio, não uma: (1) o parquet da
+> figura 03 (`results/alpha_erosao_grade.parquet`) era ignorado pelo git e
+> sumia no checkout limpo do CI — versionado por exceção no `.gitignore`;
+> (2) exposta só depois que as figuras passaram a gerar, o BibTeX quebrava com
+> `natbib Error: Bibliography not compatible with author-year citations`
+> (`\usepackage[round]{natbib}` + `\bibliographystyle{apalike}`) — trocado para
+> `plainnat`. **Site no ar:** o deploy de `main` (docs.yml) foi confirmado e os
+> 6 cartões de persona (roteiros) resolvem 200 na produção — eles estavam
+> quebrados no ar porque o Pages publica só de `main` e as correções viviam no
+> ramo. Além disso: classe inteira de links `<a href="X/">` em HTML cru dava
+> 404 em subpáginas (o `mkdocs --strict` não pega HTML cru); corrigida com
+> esquema robusto (relativo na raiz, `../` em subpágina, URL completa no
+> rodapé), verificada em serve local e no deploy. O `README.md` da raiz estava
+> defasado do site (testes 343→385, figuras 21→23, cenários 19→27, etc. +
+> códigos de backlog) — sincronizado. O texto original do bloqueador segue
+> abaixo para registro histórico.
 
 Todo o conteúdo — paper, site, modelo, testes — está **coerente e completo**
 para *circulação pública*. Restava **um** bloqueador mecânico, já diagnosticado

@@ -37,18 +37,18 @@ Duas metas distintas, com barras diferentes:
   [Limitações](docs/limitacoes.md).
 - [x] **Reprodutibilidade** — 385 testes verdes, 94% de cobertura, piso 85%
   no CI, `mkdocs build --strict` limpo, `ruff`/`black` limpos.
-- [x] **PDF sem bloqueadores de compilação** — o bloqueador que mantinha o
-  `paper.yml` vermelho (a figura 03 lia `results/alpha_erosao_grade.parquet`,
-  ignorado pelo git, ausente no checkout limpo do CI) está resolvido: o
-  parquet foi versionado por exceção no `.gitignore` e as quatro figuras
-  regeneram a partir dele num estado limpo (verificado localmente). A
-  auditoria de integridade do paper não encontra bloqueadores de compilação
-  (zero citação órfã, zero `[?]` no corpo, todas as `\includegraphics` no
-  gerador, sem Unicode que quebre o Tectonic, `\ref`/`\label` íntegros).
-  *Pendência de observação:* o run verde do `paper.yml` só ocorre em push a
-  `main` — o gatilho não roda em ramo de feature e o `workflow_dispatch` está
-  fora do alcance da integração desta sessão. Confirmar o verde e baixar o
-  artifact `paper/main.pdf` no próximo push a `main`.
+- [x] **PDF compila no CI — verde confirmado.** O `paper.yml` está **verde**
+  (run 28685008638, sha `b4a2c11`, em `main`) e publica `paper/main.pdf`
+  (~208 KB) como artifact `paper-pdf`. Foram removidas **duas** camadas de
+  bloqueio: (1) a figura 03 lia `results/alpha_erosao_grade.parquet`, ignorado
+  pelo git e ausente no checkout limpo do CI — resolvido versionando o parquet
+  por exceção no `.gitignore`; (2) exposto só depois que as figuras passaram a
+  gerar, o BibTeX quebrava com `natbib Error: Bibliography not compatible with
+  author-year citations`, porque `\usepackage[round]{natbib}` (author-year)
+  convivia com `\bibliographystyle{apalike}` (não-natbib) — resolvido trocando
+  para `plainnat`. As quatro figuras regeneram do parquet num checkout limpo e
+  não há citação órfã, `[?]` no corpo, `\includegraphics` sem gerador, Unicode
+  que quebre o Tectonic, nem `\ref`/`\label` frouxos.
 - [x] **Hierarquia LCMC > WaaS consistente** — auditoria de regressão
   concluída; "WaaS" aparece apenas como instrumento monetário opcional,
   nunca como o mecanismo central.
