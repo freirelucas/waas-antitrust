@@ -28,7 +28,7 @@ A Conditional-Deposit Channel for Unilateral Conduct in Digital Markets}
 \begin{center}\textbf{Rascunho de trabalho (v0.2.0) --- não citar.}\end{center}
 
 \begin{abstract}
-Os programas clássicos de leniência, ao explorarem a instabilidade interna do dilema do prisioneiro entre conspiradores externos, perdem tração diante das condutas predominantemente unilaterais que caracterizam o enforcement antitruste de mercados digitais \citep{cremer2019competition}. Propomos a \emph{Leniência Condicionada à Massa Crítica} (LCMC), um \emph{canal de depósito condicional} operado pelo CADE que implementa o desenho de \emph{information escrow} de \citet{ayres2012information} no domínio antitruste, com análogo operacional em \citet{callisto}: depósitos individuais de denúncia permanecem selados até que um gatilho de massa crítica $q_{\min}\cdot n$ sobre a mesma firma seja atingido, hipótese em que se abrem simultaneamente para o procedimento administrativo. A base normativa do canal é autônoma --- Art.~4º, II e III, da Lei nº~12.529/2011 \citep{lei12529} combinado com a Lei nº~9.784/1999 \citep{lei9784} ---, dispensando nova lei e dissociando a coordenação do incentivo monetário. Ao canal podem ser acoplados, de modo facultativo e ortogonal, cinco instrumentos de internalização: canal puro sem recompensa; recompensa via Termo de Compromisso de Cessação (TCC) sob o Art.~12 da Resolução CADE nº~21/2018 \citep{res21cade}; saída coordenada com vesting acelerado \emph{à la} Hirschman; crédito tributário; e leniência criminal individual. Quando a recompensa via TCC --- o instrumento \emph{Whistleblower-as-a-Service} (WaaS) --- é o acoplamento ativo, a firma maximiza a margem $D - W$, e a fronteira IC-F* ($D > W$) é satisfazível na jurisprudência atual do Art.~12 (Regime~B, infralegal; controvertível e sujeita ao falsificador F6). A análise empírica usa modelo baseado em agentes em Mesa~3.x com três populações (trabalhador, empresa, autoridade) e seis fases por tique. A calibração formal (R03) por Nelder-Mead em $(fra\c{c}\tilde{a}o\_violadoras, taxa\_capacidade) = (0{,}323;\ 0{,}481)$ entrega erro relativo de 6,65\% sobre o alvo operacional de TCCs/ano, dentro do intervalo de confiança \emph{bootstrap} de 95\%, e implica universo CADE de $N^\star \approx 1\,679$ firmas como predição falsificável. A validação institucional externa apoia-se em dois marcos contemporâneos: o programa de recompensa antitruste do DOJ-ATR \citep{dojatr2025}, instituído em julho de 2025 por ato infralegal em parceria com o USPS, oferece paralelo direto à via administrativa do Regime~B; a Whistleblower Tool da DMA \citep{dmatool2024}, lançada em abril de 2024 sem recompensa associada, oferece contrafactual para o canal puro. Reconhecem-se duas limitações: a forma forte da Proposição~5 (erosão Coleman do substrato cooperativo) foi refutada por varredura multi-seed dedicada, sobrevivendo apenas a forma fraca; e a unicidade do equilíbrio de coordenação (Proposição~2) sob heterogeneidade de arquétipos e papéis segue conjectura aberta.
+Os programas clássicos de leniência, ao explorarem a instabilidade interna do dilema do prisioneiro entre conspiradores externos, perdem tração diante das condutas predominantemente unilaterais que caracterizam o enforcement antitruste de mercados digitais \citep{cremer2019competition}. Propomos a \emph{Leniência Condicionada à Massa Crítica} (LCMC), um \emph{canal de depósito condicional} operado pelo CADE que implementa o desenho de \emph{information escrow} de \citet{ayres2012information} no domínio antitruste, com análogo operacional em \citet{callisto}: depósitos individuais de denúncia permanecem selados até que um gatilho de massa crítica $q_{\min}\cdot n$ sobre a mesma firma seja atingido, hipótese em que se abrem simultaneamente para o procedimento administrativo. A base normativa do canal é autônoma --- Art.~4º, II e III, da Lei nº~12.529/2011 \citep{lei12529} combinado com a Lei nº~9.784/1999 \citep{lei9784} ---, dispensando nova lei e dissociando a coordenação do incentivo monetário. Ao canal podem ser acoplados, de modo facultativo e ortogonal, cinco instrumentos de internalização: canal puro sem recompensa; recompensa via Termo de Compromisso de Cessação (TCC) sob o Art.~12 da Resolução CADE nº~21/2018 \citep{res21cade}; saída coordenada com vesting acelerado \emph{à la} Hirschman; crédito tributário; e leniência criminal individual. Quando a recompensa via TCC --- o instrumento \emph{Whistleblower-as-a-Service} (WaaS) --- é o acoplamento ativo, a firma maximiza a margem $D - W$, e a fronteira IC-F* ($D > W$) é satisfazível na jurisprudência atual do Art.~12 (Regime~B, infralegal; construção controvertível, sujeita a anulação judicial). A análise empírica usa modelo baseado em agentes em Mesa~3.x com três populações (trabalhador, empresa, autoridade) e seis fases por tique. A calibração formal por Nelder-Mead em $(fra\c{c}\tilde{a}o\_violadoras, taxa\_capacidade) = (0{,}323;\ 0{,}481)$ entrega erro relativo de 6,65\% sobre o alvo operacional de TCCs/ano, dentro do intervalo de confiança \emph{bootstrap} de 95\%, e implica universo CADE de $N^\star \approx 1\,679$ firmas como predição falsificável. A validação institucional externa apoia-se em dois marcos contemporâneos: o programa de recompensa antitruste do DOJ-ATR \citep{dojatr2025}, instituído em julho de 2025 por ato infralegal em parceria com o USPS, oferece paralelo direto à via administrativa do Regime~B; a Whistleblower Tool da DMA \citep{dmatool2024}, lançada em abril de 2024 sem recompensa associada, oferece contrafactual para o canal puro. Reconhecem-se duas limitações: a forma forte da Proposição~5 (erosão Coleman do substrato cooperativo) foi refutada por varredura multi-seed dedicada, sobrevivendo apenas a forma fraca; e a unicidade do equilíbrio de coordenação (Proposição~2) sob heterogeneidade de arquétipos e papéis segue conjectura aberta.
 \end{abstract}
 
 \section{Introdução}
@@ -41,7 +41,7 @@ O problema central, sustentamos, não é a punição da firma --- já endereçad
 
 Este artigo propõe a \emph{Leniência Condicionada à Massa Crítica} (LCMC) como mecanismo de coordenação adequado ao domínio. O núcleo do desenho é um \emph{canal de depósito condicional} operado pelo CADE: trabalhadores depositam denúncias seladas em escrow institucional, à maneira do \emph{information escrow} de \citet{ayres2012information}; os depósitos só se abrem simultaneamente quando um gatilho de massa crítica $q_{\min}\cdot n$ sobre a mesma firma é atingido, replicando \emph{mutatis mutandis} o desenho \emph{all-or-nothing} de \citet{callisto} para denúncias condicionais de assédio em campus universitário. O CADE figura como custodiante neutro do escrow; nenhum depósito individual permanece exposto isoladamente. A base normativa do canal é autônoma no Art.~4º, II e III, da Lei nº~12.529/2011 \citep{lei12529} combinado com a Lei nº~9.784/1999 \citep{lei9784} sobre processo administrativo federal: o canal é implementável por ato infralegal do CADE, sem nova lei.
 
-Ao canal podem ser acoplados, de modo opcional e ortogonal, cinco instrumentos de internalização: o canal puro (sem instrumento acoplado, equivalente operacional da DMA Tool); a recompensa via TCC sob re-caracterização do Art.~12 da Resolução CADE nº~21/2018 \citep{res21cade} --- o instrumento \emph{Whistleblower-as-a-Service} (WaaS) que dá nome à literatura precedente do projeto e que satisfaz a aritmética IC-F* ($D > W$) sobre a firma, sujeita à validação judicial (falsificador F6); o vesting acelerado de Hirschman como saída coordenada da firma; o crédito tributário (sub-regime $C_\varphi$); e a leniência criminal individual (sub-regime $C_p$). O acoplamento é, em todo caso, lógica e juridicamente separável do canal. A Seção~\ref{sec:mecanismo} detalha o mecanismo e a charneira normativa de cada regime; a Seção~\ref{sec:limitacoes}, o modelo baseado em agentes e a calibração formal; as seções subsequentes desenvolvem o enquadramento cibernético, a pré-condição sociológica e a tradução política do desenho ao contexto institucional brasileiro 2024--2027.
+Ao canal podem ser acoplados, de modo opcional e ortogonal, cinco instrumentos de internalização: o canal puro (sem instrumento acoplado, equivalente operacional da DMA Tool); a recompensa via TCC sob re-caracterização do Art.~12 da Resolução CADE nº~21/2018 \citep{res21cade} --- o instrumento \emph{Whistleblower-as-a-Service} (WaaS) que dá nome à literatura precedente do projeto e que satisfaz a aritmética IC-F* ($D > W$) sobre a firma, sujeita à validação judicial; o vesting acelerado de Hirschman como saída coordenada da firma; o crédito tributário (sub-regime $C_\varphi$); e a leniência criminal individual (sub-regime $C_p$). O acoplamento é, em todo caso, lógica e juridicamente separável do canal. A Seção~\ref{sec:mecanismo} detalha o mecanismo e a charneira normativa de cada regime; a Seção~\ref{sec:limitacoes}, o modelo baseado em agentes e a calibração formal; as seções subsequentes desenvolvem o enquadramento cibernético, a pré-condição sociológica e a tradução política do desenho ao contexto institucional brasileiro 2024--2027.
 
 \section{Falha estrutural da leniência clássica em mercados digitais}
 
@@ -188,7 +188,7 @@ representado, na forma do art. 45, V e VI da Lei nº~12.529, de 2011.''}
 A recompensa paga pela firma aos denunciantes \emph{pode ser} re-caracterizada como
 ressarcimento extrajudicial sob este dispositivo --- e essa re-caracterização é
 juridicamente controvertida, sujeita a validação posterior pelo Judiciário
-(falsificador F6) ---, gerando o desconto $D$ sem mudança legal. O Regime~C estende
+---, gerando o desconto $D$ sem mudança legal. O Regime~C estende
 a Lei nº~13.608/2018 (com a redação da Lei nº~13.964/2019) \citep{lei13608} ao
 enforcement antitruste, com percentual explícito de recompensa --- maior robustez
 jurídica ao custo de via legislativa. O Regime~A é a situação atual, sem canal de
@@ -332,7 +332,7 @@ Regime~B colapsa em A''; rastreada em R26) foi falsificada por varredura
 em grade (10 seeds $\times$ 8 valores de $\alpha \in [0, 0{,}9]$ $\times$
 40 ciclos): a mediana do dano em B fica em $\sim 53$ contra piso A em
 $\sim 425$ (fator 8$\times$ menor), estável até $\alpha = 0{,}9$
-(Figura~\ref{fig:erosao}). A dissuasão endógena (R01) compensa a erosão
+(Figura~\ref{fig:erosao}). A dissuasão endógena compensa a erosão
 do substrato no nível agregado. A Proposição~5 é portanto rebaixada para
 a forma fraca acima; a forma forte fica registrada como conjectura
 refutada na configuração testada.
@@ -373,7 +373,7 @@ forte \emph{refutada} pela varredura dedicada (Figura~\ref{fig:erosao}) e a
 forma fraca verificada; o que pode reverter o veredicto --- erosão propagada
 por rede inter-firma e calibração de $\alpha$ contra dados reais --- está
 rastreado em R26. Os itens de pesquisa que sustentariam plenamente cada
-proposição estão rastreados no backlog (R01--R28) do repositório.
+proposição estão rastreados no backlog do repositório.
 
 \section{Enquadramento cibernético}
 \label{sec:cibernetica}
@@ -577,7 +577,7 @@ do CADE; sua viabilidade é função (i) da prioridade interna do tema na
 agenda do Conselho, (ii) da capacidade institucional do DEE e SG para
 operacionalizar o canal, e (iii) da aceitação judicial da
 re-caracterização do pagamento como ressarcimento sob o Art.~12 da Resolução
-21/2018 (falsificador F6 explicitado em \S\ref{sec:limitacoes}). Nenhuma destas
+21/2018 (risco de anulação judicial, \S\ref{sec:limitacoes}). Nenhuma destas
 três condições requer alteração legislativa; todas estão sob arbítrio
 administrativo do CADE ou de revisão judicial subsequente.
 
@@ -639,8 +639,7 @@ combinado com a Lei 9.784/99, sem dependência da re-caracterização
 controvertida do Art.~12 da Resolução 21/2018; o paralelo institucional do
 \citet{dojatr2025} (julho de 2025) confirma a viabilidade da via administrativa
 em jurisdição comparável. Quinto, o modelo baseado em agentes identifica cinco
-vetores de quebra mensuráveis (TCC clássico absorvente; anulação judicial sob
-F6; custo legal individual; massa crítica inalcançável; erosão Coleman do
+vetores de quebra mensuráveis (TCC clássico absorvente; anulação judicial; custo legal individual; massa crítica inalcançável; erosão Coleman do
 substrato cooperativo), cada um com parâmetro falsificável e teste de regressão
 associado --- a forma forte da Proposição~5 foi explicitamente \emph{refutada}
 pela varredura multi-seed dedicada (10 seeds $\times$ 8 valores de $\alpha$
