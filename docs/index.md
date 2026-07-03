@@ -4,7 +4,7 @@
 
 <p class="byline"><em><a href="sobre/">L.</a></em> · <a href="sobre/">Rascunho v0.2.0</a> · jun/2026 · CC BY-SA 4.0</p>
 
-<p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a **Leniência Condicionada à Massa Crítica** (LCMC) — desenhada para esse domínio.</p>
+<p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a <strong>Leniência Condicionada à Massa Crítica</strong> (LCMC) — desenhada para esse domínio.</p>
 
 [Ato 2 · O mecanismo](mecanismo.md) · [Simulador in-browser](brincar.md) · [Paper](paper.md) · [Sobre](sobre.md)
 
