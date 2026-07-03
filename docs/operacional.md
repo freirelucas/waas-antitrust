@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Anexo direito-institucional</em> · operacionalização · rascunho v0.2.0</p>
 
-<p class="lede">Esta página atende a duas leituras críticas registradas na <a href="revisao_personas/">simulação por personas</a>: a do conselheiro do CADE, que ao ler o <a href="procedimento_cade/">procedimento administrativo</a> sentiu falta da ligação dosimétrica com o Art. 45 e do desenho operacional da Resolução que viabilizaria o canal; e a do compliance officer da Big Tech, que ao ler o <a href="compliance_corporativo/">compliance corporativo</a> sentiu falta de uma resposta jurídica defensiva — quais cláusulas contratuais ficam afetadas e como reagir. Sem prejuízo do caveat substantivo de que esta é leitura acadêmica especulativa, não aconselhamento jurídico.</p>
+<p class="lede">Esta página atende a duas leituras críticas registradas na <a href="/waas-antitrust/revisao_personas/">simulação por personas</a>: a do conselheiro do CADE, que ao ler o <a href="/waas-antitrust/procedimento_cade/">procedimento administrativo</a> sentiu falta da ligação dosimétrica com o Art. 45 e do desenho operacional da Resolução que viabilizaria o canal; e a do compliance officer da Big Tech, que ao ler o <a href="/waas-antitrust/compliance_corporativo/">compliance corporativo</a> sentiu falta de uma resposta jurídica defensiva — quais cláusulas contratuais ficam afetadas e como reagir. Sem prejuízo do caveat substantivo de que esta é leitura acadêmica especulativa, não aconselhamento jurídico.</p>
 
 ## Camada institucional — o que o CADE pode fazer sem nova lei
 

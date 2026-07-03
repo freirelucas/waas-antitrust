@@ -1,6 +1,6 @@
 # Auditoria de clareza e coerência estrutural
 
-<p class="deck">Inspeção sistemática da estrutura do site enquanto produto: hierarquia do nav, padrão de abertura entre páginas, sequência narrativa dos cinco Atos, mapa de cross-links e detecção de páginas pouco linkadas. Complementa as auditorias anteriores (<a href="brainstorm_revisao/">brainstorm de revisão</a>: tom; <a href="revisao_personas/">revisão por personas</a>: leitura por perfil) com foco em coerência estrutural.</p>
+<p class="deck">Inspeção sistemática da estrutura do site enquanto produto: hierarquia do nav, padrão de abertura entre páginas, sequência narrativa dos cinco Atos, mapa de cross-links e detecção de páginas pouco linkadas. Complementa as auditorias anteriores (<a href="/waas-antitrust/brainstorm_revisao/">brainstorm de revisão</a>: tom; <a href="/waas-antitrust/revisao_personas/">revisão por personas</a>: leitura por perfil) com foco em coerência estrutural.</p>
 
 <p class="byline"><em>Auditoria interna</em> · jun/2026 · clareza e coerência estrutural</p>
 

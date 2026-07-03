@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Ato 3 de 5</em> · Resultados · rascunho v0.2.0</p>
 
-<p class="lede">O <a href="mecanismo/">Ato 2</a> apresentou as cinco camadas do mecanismo (canal, coordenação, instrumentos, aritmética IC-F* e cascata pós-abertura) em prosa, equações e exemplos numéricos. Esta página mostra o que efetivamente sai do código quando o desenho é executado. A pergunta operacional é direta: rodando o modelo nos três regimes com os mesmos parâmetros e as mesmas sementes, o que muda?</p>
+<p class="lede">O <a href="/waas-antitrust/mecanismo/">Ato 2</a> apresentou as cinco camadas do mecanismo (canal, coordenação, instrumentos, aritmética IC-F* e cascata pós-abertura) em prosa, equações e exemplos numéricos. Esta página mostra o que efetivamente sai do código quando o desenho é executado. A pergunta operacional é direta: rodando o modelo nos três regimes com os mesmos parâmetros e as mesmas sementes, o que muda?</p>
 
 ## A evidência principal — saída literal do modelo
 

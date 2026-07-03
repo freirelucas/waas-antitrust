@@ -160,7 +160,7 @@ python scripts/regerar_todas_as_figuras.py
 ```
 
 Cada um produz `.parquet` ou `.json` em `results/` e PNG em `docs/img/`. O
-`pytest` cobre 354 casos verdes em ~38 s; o `ruff`/`black` rodam em <2 s
+`pytest` cobre 385 casos verdes em ~31 s; o `ruff`/`black` rodam em <2 s
 cada.
 
 [**▶ Mecanismo →**](mecanismo.md) · [**▶ Resultados →**](resultados.md) ·

@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Ato 5 de 5</em> · Colaborar · rascunho v0.2.0</p>
 
-<p class="lede">O projeto é um rascunho de trabalho em elaboração, com pendências normativas e empíricas explícitas registradas em <a href="DECISIONS/">decisões e backlog</a> e na lista de <a href="limitacoes/">limitações</a>. Esta página enumera as formas concretas pelas quais alguém de fora pode contestar, estender ou se associar ao trabalho — preferencialmente em canal aberto (issues no GitHub), preservando a auditabilidade do processo.</p>
+<p class="lede">O projeto é um rascunho de trabalho em elaboração, com pendências normativas e empíricas explícitas registradas em <a href="/waas-antitrust/DECISIONS/">decisões e backlog</a> e na lista de <a href="/waas-antitrust/limitacoes/">limitações</a>. Esta página enumera as formas concretas pelas quais alguém de fora pode contestar, estender ou se associar ao trabalho — preferencialmente em canal aberto (issues no GitHub), preservando a auditabilidade do processo.</p>
 
 ## Três comunidades com pontos de entrada explícitos
 

@@ -2,7 +2,7 @@
 
 <p class="deck">Proposta acadêmica de um canal de depósito condicional (<em>information escrow</em>) operado pelo CADE para destravar a denúncia interna em mercados digitais — onde a infração é tipicamente de uma firma só, sem cúmplice externo a quem oferecer leniência clássica.</p>
 
-<p class="byline"><em><a href="sobre/">L.</a></em> · <a href="sobre/">Rascunho v0.2.0</a> · jun/2026 · CC BY-SA 4.0</p>
+<p class="byline"><em><a href="/waas-antitrust/sobre/">L.</a></em> · <a href="/waas-antitrust/sobre/">Rascunho v0.2.0</a> · jun/2026 · CC BY-SA 4.0</p>
 
 <p class="lede">Programas de leniência transformaram o enforcement antitruste das últimas três décadas, mas operam sob uma premissa cada vez mais frágil: a existência de um cartel — coordenação entre firmas distintas cuja instabilidade interna a leniência explora. Em mercados digitais, parte central das condutas potencialmente anticompetitivas é unilateral. Não há cúmplice externo a quem oferecer imunidade; a informação relevante reside dentro da própria firma. Esta página apresenta uma proposta de mecanismo — a <strong>Leniência Condicionada à Massa Crítica</strong> (LCMC) — desenhada para esse domínio.</p>
 
@@ -144,42 +144,42 @@ O **Regime B** é a aposta política deste projeto: usar o que o CADE pode fazer
 
 <div class="persona-grade" markdown>
 
-<a class="persona-card jornalista" href="imprensa/" markdown>
+<a class="persona-card jornalista" href="/waas-antitrust/imprensa/" markdown>
 <span class="persona-icone">📰</span>
 **Jornalista**
 3 leads · 6 números com fonte · autor e contato
 <span class="persona-cta">Kit de imprensa →</span>
 </a>
 
-<a class="persona-card advogado" href="INSTITUTIONAL/" markdown>
+<a class="persona-card advogado" href="/waas-antitrust/INSTITUTIONAL/" markdown>
 <span class="persona-icone">⚖️</span>
 **Advogada/o**
 Base autônoma Art. 4º · vetores de anulação judicial e reserva de lei
 <span class="persona-cta">Análise institucional →</span>
 </a>
 
-<a class="persona-card economista" href="formulario/" markdown>
+<a class="persona-card economista" href="/waas-antitrust/formulario/" markdown>
 <span class="persona-icone">📐</span>
 **Economista**
 IC-F\* nas 3 formas · bem-estar · calibração formal
 <span class="persona-cta">Formulário matemático →</span>
 </a>
 
-<a class="persona-card autoridade" href="procedimento_cade/" markdown>
+<a class="persona-card autoridade" href="/waas-antitrust/procedimento_cade/" markdown>
 <span class="persona-icone">🏛️</span>
 **Autoridade**
 Tabela A/B/C · fluxograma processual · sensibilidade
 <span class="persona-cta">Procedimento CADE →</span>
 </a>
 
-<a class="persona-card bigtech" href="compliance_corporativo/" markdown>
+<a class="persona-card bigtech" href="/waas-antitrust/compliance_corporativo/" markdown>
 <span class="persona-icone">🏢</span>
 **Big Tech**
 Aritmética R\$ · 4 vetores corporativos · DOJ-ATR
 <span class="persona-cta">Compliance corporativo →</span>
 </a>
 
-<a class="persona-card academia" href="bem_publico/" markdown>
+<a class="persona-card academia" href="/waas-antitrust/bem_publico/" markdown>
 <span class="persona-icone">🎓</span>
 **Academia · sociedade civil**
 LCMC sob Ostrom-Coleman-Olson · Prop. 5 refutada

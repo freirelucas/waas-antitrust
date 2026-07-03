@@ -13,7 +13,7 @@ edit_uri: edit/main/docs/
 copyright: >-
   Código e documentação sob CC BY-SA 4.0 ·
   <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> ·
-  <a href="brincar/">brincar in-browser</a>
+  <a href="/waas-antitrust/brincar/">brincar in-browser</a>
 
 theme:
   name: material
@@ -73,7 +73,7 @@ extra:
       link: https://github.com/freirelucas/waas-antitrust
       name: Repositório no GitHub
     - icon: material/play-box-outline
-      link: brincar/
+      link: /waas-antitrust/brincar/
       name: Brincar in-browser
   generator: false
 

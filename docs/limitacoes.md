@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Ato 4 de 5</em> · Limitações · rascunho v0.2.0</p>
 
-<p class="lede">O <a href="resultados/">Ato 3</a> consolidou a evidência direcional para o canal de dissuasão. Parar aí seria desonesto. O projeto é um rascunho de trabalho em elaboração, e há pontos onde a alegação ainda não tem cobertura completa. Esta página enumera cada um deles e diz, na medida do possível, o que faria a alegação sustentar-se. O backlog técnico estruturado fica em <a href="DECISIONS/">Decisões e backlog</a>; o que segue é a versão para leitor humano, dividida por categoria de fragilidade.</p>
+<p class="lede">O <a href="/waas-antitrust/resultados/">Ato 3</a> consolidou a evidência direcional para o canal de dissuasão. Parar aí seria desonesto. O projeto é um rascunho de trabalho em elaboração, e há pontos onde a alegação ainda não tem cobertura completa. Esta página enumera cada um deles e diz, na medida do possível, o que faria a alegação sustentar-se. O backlog técnico estruturado fica em <a href="/waas-antitrust/DECISIONS/">Decisões e backlog</a>; o que segue é a versão para leitor humano, dividida por categoria de fragilidade.</p>
 
 ## Fragilidade jurídica do Regime B
 

@@ -4,7 +4,7 @@
 
 <p class="byline"><em>Paper</em> · rascunho v0.2.0 · jun/2026 · não citar como definitivo</p>
 
-<p class="lede">Esta página acompanha <code>paper/main.tex</code> no repositório. A versão atual tem as dez seções escritas e coerentes entre si; o texto segue sujeito a revisão até o congelamento da versão de submissão, mas nenhuma seção está incompleta. O DOI Zenodo será emitido nesse congelamento (ver <a href="sobre/">Sobre</a> para a forma canônica provisória de citação). Para a leitura em cinco Atos no formato site (mais didática, com figuras embarcadas), começar pelo <a href="index/">Ato 1</a>.</p>
+<p class="lede">Esta página acompanha <code>paper/main.tex</code> no repositório. A versão atual tem as dez seções escritas e coerentes entre si; o texto segue sujeito a revisão até o congelamento da versão de submissão, mas nenhuma seção está incompleta. O DOI Zenodo será emitido nesse congelamento (ver <a href="/waas-antitrust/sobre/">Sobre</a> para a forma canônica provisória de citação). Para a leitura em cinco Atos no formato site (mais didática, com figuras embarcadas), começar pelo <a href="/waas-antitrust/">Ato 1</a>.</p>
 
 ## Sumário
 

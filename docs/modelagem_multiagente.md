@@ -1,6 +1,6 @@
 # Modelagem multiagente
 
-<p class="deck">Como o modelo é composto agente a agente: classes, estados, decisões individuais, microfundamentos comportamentais e acoplamentos entre populações. Complemento técnico ao <a href="mecanismo/">Ato 2 (mecanismo)</a> e ao <a href="ODD/">protocolo ODD</a>; o foco aqui é a arquitetura computacional, não a intuição econômica nem a descrição padrão JASSS.</p>
+<p class="deck">Como o modelo é composto agente a agente: classes, estados, decisões individuais, microfundamentos comportamentais e acoplamentos entre populações. Complemento técnico ao <a href="/waas-antitrust/mecanismo/">Ato 2 (mecanismo)</a> e ao <a href="/waas-antitrust/ODD/">protocolo ODD</a>; o foco aqui é a arquitetura computacional, não a intuição econômica nem a descrição padrão JASSS.</p>
 
 A simulação roda em [Mesa 3.x](https://mesa.readthedocs.io/) com três classes de agente, uma rede social intra-firma em [NetworkX](https://networkx.org/) (modelo *small-world* de Watts-Strogatz) e topologia inter-firma implícita (acoplamento por uma percepção global de detecção `p_perc`). Cada extensão posterior do modelo entra como opção que pode ser ligada ou desligada por um parâmetro em `WaaSParametros`; os valores padrão preservam o comportamento histórico bit a bit (regra explícita do projeto, ver [Postura epistêmica](modelo_abm.md#8-postura-epistemica)).
 
