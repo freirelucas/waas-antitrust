@@ -4,8 +4,8 @@ site_description: >-
   LCMC — canal de depósito condicional (information escrow) operado pelo
   CADE, sem lei nova, para o antitruste de mercados digitais brasileiros.
   Cinco instrumentos de internalização opcionalmente acoplados ao canal,
-  WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 343 testes,
-  21 figuras reproduzíveis, calibração formal R03 em (0,323; 0,481).
+  WaaS entre eles. Modelo baseado em agentes Mesa 3.x, 385 testes,
+  23 figuras reproduzíveis, calibração formal em (0,323; 0,481).
 site_author: "L."
 repo_url: https://github.com/freirelucas/waas-antitrust
 repo_name: freirelucas/waas-antitrust
@@ -13,7 +13,7 @@ edit_uri: edit/main/docs/
 copyright: >-
   Código e documentação sob CC BY-SA 4.0 ·
   <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CITATION.cff">como citar</a> ·
-  <a href="/waas-antitrust/brincar/">brincar in-browser</a>
+  <a href="https://freirelucas.github.io/waas-antitrust/brincar/">brincar in-browser</a>
 
 theme:
   name: material
@@ -73,7 +73,7 @@ extra:
       link: https://github.com/freirelucas/waas-antitrust
       name: Repositório no GitHub
     - icon: material/play-box-outline
-      link: /waas-antitrust/brincar/
+      link: https://freirelucas.github.io/waas-antitrust/brincar/
       name: Brincar in-browser
   generator: false
 

@@ -2,7 +2,7 @@
 
 <p class="deck">Panorama do estado do projeto em uma página: o que está fechado, o que está em andamento, o que permanece em aberto.</p>
 
-<p class="lede">Esta página é o atalho para quem precisa entender, em poucos minutos, o estado de evidência e o ponto da agenda de pesquisa em que o projeto se encontra. Para detalhe técnico, ver <a href="/waas-antitrust/DECISIONS/">decisões e backlog</a>; para histórico de mudanças, ver o <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CHANGELOG.md">changelog</a>.</p>
+<p class="lede">Esta página é o atalho para quem precisa entender, em poucos minutos, o estado de evidência e o ponto da agenda de pesquisa em que o projeto se encontra. Para detalhe técnico, ver <a href="../DECISIONS/">decisões e backlog</a>; para histórico de mudanças, ver o <a href="https://github.com/freirelucas/waas-antitrust/blob/main/CHANGELOG.md">changelog</a>.</p>
 
 ## Numérico
 
