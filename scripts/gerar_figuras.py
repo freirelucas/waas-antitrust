@@ -6,7 +6,13 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from waas_antitrust.viz import aplicar_estilo, fase, inversao
+from waas_antitrust.viz import (
+    alpha_erosao_limiar,
+    aplicar_estilo,
+    fase,
+    inversao,
+    sankey,
+)
 
 
 def principal():
@@ -21,10 +27,13 @@ def principal():
     aplicar_estilo()
     args.out.mkdir(parents=True, exist_ok=True)
 
+    # As quatro figuras referenciadas por \includegraphics em paper/main.tex.
+    # Todas rodam com os defaults dos respectivos módulos viz (sem argumentos).
     geradoras = {
         "01_inversao_utilidade": inversao.gerar_figura,
         "02_fase_jogo_global": fase.gerar_figura,
-        # 03-11 ainda no caderno; ver docs/DECISIONS.md
+        "03_alpha_erosao_limiar": alpha_erosao_limiar.gerar_figura,
+        "04_sankey_lcmc": sankey.gerar_figura,
     }
 
     formatos = {"ambos": ["png", "svg"], "todos": ["png", "svg", "pdf"]}.get(
