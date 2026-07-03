@@ -56,7 +56,9 @@ A calibração formal R03 (Nelder-Mead em duas dimensões) entrega o ponto ótim
 3. Cruzar com a lista de firmas com algum tipo de procedimento antitruste em curso na vigência da pesquisa (CADE 2023–2025).
 4. Comparar o universo resultante com N\* = 1.679.
 
-Se o universo real ficar dentro de uma ordem de grandeza (entre ~500 e ~5.000 firmas), a predição é confirmada; se ficar fora desse intervalo, a calibração R03 precisa de revisão substantiva. Esse cruzamento é registrado em [Brainstorm de revisão](brainstorm_revisao.md) §5 e em [Decisões e backlog](DECISIONS.md).
+Se o universo real ficar dentro de uma ordem de grandeza (entre ~500 e ~5.000 firmas), a predição é confirmada; se ficar fora desse intervalo, a calibração precisa de revisão substantiva. Esse cruzamento é registrado em [Brainstorm de revisão](brainstorm_revisao.md) §5 e em [Decisões e backlog](DECISIONS.md).
+
+**Teste de sanidade já possível.** Antes do cruzamento definitivo, os dados que sustentam a calibração de capacidade permitem uma verificação parcial. A Superintendência-Geral do CADE instaurou **73 investigações em 2024** (RIG/TCU-CADE). Sob N\* ≈ 1.679, isso corresponde a uma taxa anual de instauração de 73 / 1.679 ≈ **4,3% do universo latente** — uma cobertura investigativa da ordem de grandeza esperada para uma autoridade antitruste de capacidade limitada: nem negligenciável (< 0,5%), nem implausivelmente alta (> 30%). A predição sobrevive ao único teste que os dados hoje disponíveis permitem; o teste definitivo contra o cadastro de jurisdicionados fica pendente.
 
 ## 2 · Capacidade institucional DOJ-ATR e DG-COMP
 

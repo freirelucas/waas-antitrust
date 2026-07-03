@@ -250,7 +250,44 @@ da fonte primária). A capacidade institucional é calibrada contra os
 Relatórios Integrados de Gestão TCU/CADE 2022--2024 (180 servidores na
 área-fim, 73 investigações instauradas em 2024, 109 leniências acumuladas em
 20 anos). Os demais parâmetros do modelo seguem ordens de grandeza
-plausíveis com pendência de calibração formal em R03.
+plausíveis com pendência de calibração formal.
+
+\subsection{A predição \texorpdfstring{$N^\star$}{N*} e seu teste de falsificação}
+\label{sec:nstar}
+
+A calibração formal ajusta o modelo a um alvo operacional de fluxo --- TCCs
+por ano --- normalizado pelo número de firmas simuladas. Como o alvo empírico
+(a ordem de 47 TCCs/ano observada por \citet{saito2021tcc} sobre o universo
+inteiro sob jurisdição do CADE) refere-se a um universo muito maior que as
+20 firmas simuladas, a razão de normalização implica um \emph{universo latente}
+$N^\star$ de firmas para o qual a taxa simulada seria consistente com a taxa
+observada. O ponto ótimo entrega $N^\star \approx 1\,679$.
+
+Trata-se de uma predição derivada, não de um dado ajustado: $N^\star$ não
+entra na função objetivo, mas dela decorre. Seu valor é, portanto,
+\emph{falsificável} --- e o teste de falsificação é preciso. Cruze-se
+$N^\star$ com o número real de firmas sob jurisdição ativa do CADE,
+operacionalizado como firmas acima do limiar de faturamento que a Lei
+nº~12.529/2011 (Art.~88) fixa para notificação obrigatória de atos de
+concentração (R\$~75 milhões para uma das partes), filtradas pelas divisões
+CNAE de tecnologia da informação e serviços de informação (62 e 63). Se o
+universo real ficar dentro da mesma ordem de grandeza de $N^\star$ --- entre
+algumas centenas e alguns milhares ---, a calibração da capacidade
+institucional é consistente; se ficar uma ordem de grandeza fora (abaixo de
+$\sim$200 ou acima de $\sim$15.000), o parâmetro \emph{taxa\_capacidade}
+requer revisão substantiva.
+
+Uma verificação de sanidade parcial já é possível com os dados que
+sustentam a calibração de capacidade. A Superintendência-Geral instaurou 73
+investigações em 2024 (RIG/TCU-CADE); sob $N^\star \approx 1\,679$, isso
+corresponde a uma taxa anual de instauração de $73/1\,679 \approx 4{,}3\%$ do
+universo latente --- uma cobertura investigativa da ordem de grandeza
+esperada para uma autoridade antitruste de capacidade limitada, nem
+negligenciável ($<0{,}5\%$) nem implausivelmente alta ($>30\%$). A predição
+sobrevive, portanto, ao único teste que os dados hoje disponíveis permitem;
+o teste definitivo contra o cadastro de jurisdicionados fica registrado como
+pendência empírica explícita, não realizada aqui para não substituir dado
+verificável por estimativa.
 
 \subsection{Proposições}
 
@@ -614,9 +651,12 @@ substrato local.
 
 \subsection{Limites reconhecidos}
 
-Os limites da contribuição são reconhecidos. A calibração formal de R03
-identifica $N^\star \approx 1.679$ firmas como predição falsificável, a
-verificar contra o universo CADE real de firmas sob jurisdição ativa. A
+Os limites da contribuição são reconhecidos. A calibração formal
+identifica $N^\star \approx 1\,679$ firmas como predição falsificável
+(\S\ref{sec:nstar}); a predição sobrevive ao teste de sanidade que os dados
+públicos permitem --- taxa de instauração de $\approx 4{,}3\%$ do universo
+latente ---, mas o teste definitivo contra o cadastro de jurisdicionados do
+CADE permanece pendência empírica não realizada aqui. A
 Proposição~2, no que se refere à unicidade do equilíbrio de \emph{switching}
 sob heterogeneidade de arquétipos e papéis, permanece conjectura aberta ---
 verificada por construção do canal no limite homogêneo $\tau \to 0$, mas
