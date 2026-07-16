@@ -83,7 +83,13 @@ def _gerar_viz(modulo: str) -> Path:
 def _gerar_script(rel_cmd: str) -> Path | None:
     """Roda `python <script>` ou cadeia 'cmd1 && cmd2'."""
     for partial in rel_cmd.split("&&"):
-        cmd = [sys.executable] + partial.strip().split()
+        tokens = partial.strip().split()
+        # Um interpretador `python`/`python3` explícito no comando seria
+        # duplicado ao anexar `sys.executable`; remove-o para invocar o
+        # mesmo interpretador do venv corrente (ex.: `python -m modulo`).
+        if tokens and tokens[0] in ("python", "python3"):
+            tokens = tokens[1:]
+        cmd = [sys.executable, *tokens]
         subprocess.run(cmd, check=True, capture_output=True, text=True)
     return None  # caminho do PNG variável; script imprime
 

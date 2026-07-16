@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "waas-antitrust"
-version = "0.1.0"
+version = "0.2.0"
 description = "Modelo baseado em agentes para o mecanismo Whistleblower-as-a-Service em enforcement antitruste de mercados digitais."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -70,7 +70,7 @@ where = ["src"]
 # ----- Ruff -----
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py312"
 extend-exclude = ["notebooks/", "paper/"]
 
 [tool.ruff.lint]
@@ -87,7 +87,7 @@ ignore = [
 # ----- Black -----
 [tool.black]
 line-length = 100
-target-version = ["py310", "py311", "py312"]
+target-version = ["py312"]
 extend-exclude = "notebooks/|paper/"
 
 # ----- Pytest -----

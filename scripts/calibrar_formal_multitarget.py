@@ -106,7 +106,9 @@ def _objetivo_multitarget(
     for seed in seeds:
         resultados = _executar_seed(fracao, taxa, seed, n_empresas, n_tiques)
         # Alvo 1 — TCCs/ano
-        err_tcc.append(((resultados["tcc_anual"] - alvo_tcc_modelo) / max(alvo_tcc_modelo, 1e-6)) ** 2)
+        err_tcc.append(
+            ((resultados["tcc_anual"] - alvo_tcc_modelo) / max(alvo_tcc_modelo, 1e-6)) ** 2
+        )
         # Alvo 2 — fração de tiques com ≥ 1 sinal por trabalhador
         err_sinais.append(
             ((resultados["fracao_sinais"] - ALVO_FRACAO_SINAIS_DMZ) / ALVO_FRACAO_SINAIS_DMZ) ** 2
@@ -116,9 +118,7 @@ def _objetivo_multitarget(
         rel = resultados["dano_final"] / max(dano_a, 1e-6)
         err_dano.append(((rel - ALVO_DANO_RELATIVO_B_SOBRE_A) / ALVO_DANO_RELATIVO_B_SOBRE_A) ** 2)
     return float(
-        pesos[0] * np.mean(err_tcc)
-        + pesos[1] * np.mean(err_sinais)
-        + pesos[2] * np.mean(err_dano)
+        pesos[0] * np.mean(err_tcc) + pesos[1] * np.mean(err_sinais) + pesos[2] * np.mean(err_dano)
     )
 
 

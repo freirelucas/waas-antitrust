@@ -23,7 +23,8 @@ Este arquivo orienta o uso do Claude Code neste repositório. Siga estritamente.
 
 - **Formatação**: `black` (linha 100) e `ruff` (configurado em `pyproject.toml`).
 - **Tipagem**: gradual; use type hints em assinaturas públicas.
-- **Testes**: `pytest` + `nbval` para validar o caderno. Cobertura-alvo: 80%.
+- **Testes**: `pytest` + `nbval` para validar o caderno. Cobertura-alvo: 85%
+  (piso imposto no CI via `--cov-fail-under=85`; cobertura atual ~94%).
 - **Commits**: estilo *Conventional Commits* em português. Exemplos:
   - `feat: adiciona módulo de calibração Brasscom 2024`
   - `fix(model): corrige sinal residual de auto-detecção no Regime A`

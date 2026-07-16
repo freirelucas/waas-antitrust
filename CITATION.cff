@@ -23,8 +23,8 @@ abstract: >-
   Inclui cinco instrumentos opcionais de internalização (canal puro,
   WaaS via TCC sob Art. 12 Res. 21/2018, Hirschman, crédito tributário,
   leniência criminal individual), modelo baseado em agentes (Mesa 3.x)
-  com 364 testes verdes, calibração formal Nelder-Mead em (0,323; 0,481),
-  22 cenários canônicos, 38 reporters expostos e 23 figuras
+  com 385 testes verdes, calibração formal Nelder-Mead em (0,323; 0,481),
+  27 cenários canônicos, 38 reporters expostos e 23 figuras
   reproduzíveis. Extensões R29 (janela de adesão pós-abertura com
   desconto progressivo por classe) e R30 (sinergia entre autoridades
   internacionais sob LCMC global) acrescentadas em jun/2026.
